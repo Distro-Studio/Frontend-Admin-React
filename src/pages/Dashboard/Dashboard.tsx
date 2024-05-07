@@ -2,6 +2,7 @@ import { Wrap } from "@chakra-ui/react";
 import DashboardTotal from "../../components/Independent/DashboardTotal";
 import DashboardJenisKelamin from "../../components/Independent/DashboardJenisKelamin";
 import DashboardJabatan from "../../components/Independent/DashboardJabatan";
+import DashboardStatusKaryawan from "../../components/Independent/DashboardStatusKaryawan";
 
 export default function Dashboard() {
   return (
@@ -11,7 +12,9 @@ export default function Dashboard() {
       <Wrap spacing={6}>
         <DashboardJenisKelamin />
 
-        <DashboardJabatan />
+        <DashboardJabatan flex={"1 1 0"} />
+
+        <DashboardStatusKaryawan flex={"1 1 0"} />
       </Wrap>
     </>
   );
