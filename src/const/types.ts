@@ -1,5 +1,3 @@
-import { string } from "yup";
-
 export interface AttendanceDataInterface {
   masuk: string;
   keluar: string;

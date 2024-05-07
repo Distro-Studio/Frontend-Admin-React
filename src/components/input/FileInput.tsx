@@ -1,0 +1,124 @@
+import {
+  Box,
+  Button,
+  HStack,
+  Input,
+  Text,
+  Tooltip,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import React, { useRef, useState } from "react";
+
+interface Props {
+  formik: any;
+  name: string;
+  accept?: string;
+}
+
+export default function FileInput({ formik, name, accept }: Props) {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const [fileName, setFileName] = useState("Klik untuk pilih file");
+  const [isDraggingOver, setIsDraggingOver] = useState(false);
+
+  const handleDragOver = (e: any) => {
+    e.preventDefault();
+    setIsDraggingOver(true); // Set state untuk menandakan sedang ada operasi seret-menyeret
+  };
+
+  const handleDragLeave = (e: any) => {
+    setIsDraggingOver(false); // Set state untuk menandakan tidak ada operasi seret-menyeret lagi
+  };
+
+  const handleDrop = (e: any) => {
+    e.preventDefault();
+    setIsDraggingOver(false); // Set state untuk menandakan tidak ada operasi seret-menyeret lagi
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      console.log(file);
+      setFileName(file.name);
+      formik.setFieldValue(name, [file]);
+    }
+  };
+
+  // SX
+  const errorColor = useColorModeValue("red.500", "red.300");
+
+  return (
+    <>
+      <Input
+        ref={inputRef}
+        display={"none"}
+        name={name}
+        type="file"
+        accept={accept || "*"}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          const files: FileList | null = e.target.files;
+          if (files && files.length > 0) {
+            const file = files[0];
+            setFileName(file.name);
+            formik.setFieldValue(name, [file]); // Setel ke array dengan satu file
+          }
+          console.log(files);
+        }}
+        mb={4}
+      />
+
+      <Button
+        px={0}
+        w={"100%"}
+        fontWeight={400}
+        variant={"ghost"}
+        className="btn"
+        gap={0}
+        border={`2px dashed ${
+          isDraggingOver ? "var(--p500) !important" : "var(--divider3)"
+        }`}
+        borderColor={formik.errors[name] ? errorColor : ""}
+        borderRadius={8}
+        cursor={"pointer"}
+        _focus={{
+          borderColor: "p.500",
+        }}
+        onClick={() => {
+          if (inputRef.current) {
+            inputRef.current.click();
+          }
+        }}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave} // Tambahkan event handler untuk menangani event drag leave
+        onDrop={handleDrop}
+      >
+        <HStack gap={0} w={"100%"}>
+          <Box px={4} py={2} w={"100%"}>
+            <Tooltip
+              label={
+                formik.values[name].length > 0
+                  ? formik.values[name]
+                      .map((file: File) => file.name)
+                      .join(", ")
+                  : ""
+              }
+            >
+              <Text
+                w={"100%"}
+                noOfLines={1}
+                fontSize={[12, null, 14]}
+                whiteSpace={"normal"}
+                textAlign={"center"}
+                opacity={formik.values[name].length > 0 ? 1 : 0.3}
+              >
+                {fileName}
+                {/* {formik.values[name].length > 0
+                  ? formik.values[name]
+                      .map((file: File) => file.name)
+                      .join(", ")
+                  : "Pilih File"} */}
+              </Text>
+            </Tooltip>
+          </Box>
+        </HStack>
+      </Button>
+    </>
+  );
+}
