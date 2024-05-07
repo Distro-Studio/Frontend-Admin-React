@@ -20,11 +20,8 @@ export default function Header({ title, left, right, ...props }: Props) {
       </Text>
 
       <ButtonGroup>
-        <NotificationButton
-          className="btn-solid"
-          aria-label="Notification Button"
-        />
-        <ColorModeSwitcher className="btn-solid" />
+        <NotificationButton aria-label="Notification Button" />
+        <ColorModeSwitcher />
         <AdminMiniProfile />
       </ButtonGroup>
     </HStack>

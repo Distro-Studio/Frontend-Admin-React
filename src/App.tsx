@@ -31,7 +31,7 @@ export const App = () => (
         <Route
           path="/karyawan"
           element={
-            <NavContainer active={1}>
+            <NavContainer active={1} title="Karyawan">
               <Karyawan />
             </NavContainer>
           }
@@ -40,7 +40,7 @@ export const App = () => (
         <Route
           path="/presensi"
           element={
-            <NavContainer active={2}>
+            <NavContainer active={2} title="Presensi">
               <Presensi />
             </NavContainer>
           }
@@ -49,7 +49,7 @@ export const App = () => (
         <Route
           path="/manajemen-jadwal"
           element={
-            <NavContainer active={3}>
+            <NavContainer active={3} title="Manajemen Jadwal">
               <ManajemenJadwal />
             </NavContainer>
           }
@@ -58,7 +58,7 @@ export const App = () => (
         <Route
           path="/keuangan"
           element={
-            <NavContainer active={4}>
+            <NavContainer active={4} title="Keuangan">
               <Keuangan />
             </NavContainer>
           }
@@ -67,7 +67,7 @@ export const App = () => (
         <Route
           path="/perusahaan"
           element={
-            <NavContainer active={5}>
+            <NavContainer active={5} title="Perusahaan">
               <Perusahaan />
             </NavContainer>
           }
@@ -76,7 +76,7 @@ export const App = () => (
         <Route
           path="/pengaturan"
           element={
-            <NavContainer active={6}>
+            <NavContainer active={6} title="Pengaturan">
               <Pengaturan />
             </NavContainer>
           }

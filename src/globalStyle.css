@@ -252,7 +252,7 @@ select {
 .scrollX::-webkit-scrollbar-thumb,
 .scrollY::-webkit-scrollbar-thumb {
   background-color: var(--divider2);
-  border-radius: 8px;
+  border-radius: 100px;
 }
 
 .scrollX::-webkit-scrollbar-thumb:hover,

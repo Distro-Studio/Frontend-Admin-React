@@ -8,7 +8,7 @@ export default function NotificationButton({ ...props }: Props) {
   return (
     <IconButton
       icon={<Icon as={RiNotification2Line} mb={"2px"} fontSize={18} />}
-      className="btn clicky"
+      className="btn-solid clicky"
       as={Link}
       to={"/notifikasi"}
       {...props}
