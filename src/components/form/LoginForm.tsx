@@ -6,11 +6,11 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import PasswordInput from "../Input/PasswordInput";
 import { useState } from "react";
-import RequiredForm from "./RequiredForm";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import PasswordInput from "../../components/Input/PasswordInput";
+import RequiredForm from "./RequiredForm";
 
 export default function LoginForm() {
   const [loading, setLoading] = useState<boolean>(false);
