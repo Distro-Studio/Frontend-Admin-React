@@ -6,7 +6,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import PasswordInput from "../input/PasswordInput";
+import PasswordInput from "../Input/PasswordInput";
 import { useState } from "react";
 import RequiredForm from "./RequiredForm";
 import * as yup from "yup";

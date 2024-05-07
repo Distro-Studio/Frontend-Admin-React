@@ -1,46 +1,48 @@
 import {
-  RiCalendarFill,
-  RiCalendarLine,
-  RiHistoryFill,
-  RiHistoryLine,
-  RiHomeSmile2Fill,
-  RiHomeSmile2Line,
-  RiTeamFill,
-  RiTeamLine,
-  RiUserFill,
-  RiUserLine,
+  RiBuilding2Fill,
+  RiGroupFill,
+  RiHome6Fill,
+  RiMoneyDollarCircleFill,
+  RiSettingsFill,
+  RiTimeFill,
+  RiTimerFill,
 } from "@remixicon/react";
 
 const navs = [
   {
-    label: "Beranda",
-    link: "/beranda",
-    icon: RiHomeSmile2Line,
-    iconFill: RiHomeSmile2Fill,
-  },
-  {
-    label: "Jadwal",
-    link: "/jadwal",
-    icon: RiCalendarLine,
-    iconFill: RiCalendarFill,
+    label: "Dashboard",
+    link: "/dashboard",
+    icon: RiHome6Fill,
   },
   {
     label: "Karyawan",
     link: "/karyawan",
-    icon: RiTeamLine,
-    iconFill: RiTeamFill,
+    icon: RiGroupFill,
   },
   {
-    label: "Aktivitas",
-    link: "/aktivitas",
-    icon: RiHistoryLine,
-    iconFill: RiHistoryFill,
+    label: "Presensi",
+    link: "/presensi",
+    icon: RiTimerFill,
   },
   {
-    label: "Profil",
-    link: "/profil",
-    icon: RiUserLine,
-    iconFill: RiUserFill,
+    label: "Manajemen Jadwal",
+    link: "/manajemen-jadwal",
+    icon: RiTimeFill,
+  },
+  {
+    label: "Keuangan",
+    link: "/keuangan",
+    icon: RiMoneyDollarCircleFill,
+  },
+  {
+    label: "Perusahaan",
+    link: "/perusahaan",
+    icon: RiBuilding2Fill,
+  },
+  {
+    label: "Pengaturan",
+    link: "/pengaturan",
+    icon: RiSettingsFill,
   },
 ];
 

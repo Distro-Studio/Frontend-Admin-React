@@ -1,8 +1,18 @@
-import { SimpleGrid, VStack } from "@chakra-ui/react";
+import {
+  HStack,
+  Icon,
+  IconButton,
+  Image,
+  Tooltip,
+  VStack,
+} from "@chakra-ui/react";
 import navs from "../../const/navs";
+import { useBodyColor, useContentBg } from "../../const/colors";
 import Container from "./Container";
-import { useBodyColor } from "../../const/colors";
-import NavItem from "../dependent/NavItem";
+import CContainer from "./CContainer";
+import { iconSize } from "../../const/sizes";
+import { RiLogoutBoxLine } from "@remixicon/react";
+import { Link } from "react-router-dom";
 
 interface Props {
   active: number;
@@ -12,47 +22,60 @@ interface Props {
 
 export default function NavContainer({ children, active, noNavs }: Props) {
   // SX
-  const bodyColor = useBodyColor();
 
   return (
-    <Container p={0}>
-      <VStack gap={0} minH={"100vh"} align={"stretch"}>
-        <VStack
-          id="content"
-          flex={1}
-          mb={noNavs ? 0 : "85px"}
-          align={"stretch"}
-          gap={0}
-        >
-          {children}
-        </VStack>
-
+    <Container>
+      <HStack flex={1} align={"stretch"} gap={0}>
         {!noNavs && (
           <VStack
-            position={"fixed"}
-            bottom={0}
-            left={0}
-            w={"100%"}
-            overflow={"clip"}
-            // zIndex={999999}
+            p={4}
+            borderRight={"1px solid var(--divider)"}
+            justify={"space-between"}
           >
-            <SimpleGrid
-              bg={bodyColor}
-              pb={4}
-              w={"100%"}
-              columns={5}
-              borderTop={"1px solid var(--divider)"}
-              h={"85px"}
-              maxW={"720px"}
-              mx={"auto"}
-            >
+            <VStack>
+              <Image src="/logo512.png" w={"40px"} mb={8} />
               {navs.map((nav, i) => (
-                <NavItem key={i} nav={nav} index={i} active={active} />
+                <Tooltip key={i} label={nav.label} placement="right">
+                  <IconButton
+                    aria-label={`Nav Button ${nav.label}`}
+                    icon={
+                      <Icon
+                        as={nav.icon}
+                        fontSize={iconSize}
+                        opacity={active === i ? 1 : 0.6}
+                      />
+                    }
+                    className="btn clicky"
+                    color={active === i ? "p.500" : ""}
+                    as={Link}
+                    to={nav.link}
+                  />
+                </Tooltip>
               ))}
-            </SimpleGrid>
+            </VStack>
+
+            <Tooltip label={"Keluar"} placement="right">
+              <IconButton
+                aria-label="Logout Butotn"
+                icon={
+                  <Icon
+                    as={RiLogoutBoxLine}
+                    fontSize={iconSize}
+                    transform={"scaleX(-1)"}
+                  />
+                }
+                bg={"var(--reda)"}
+                _hover={{ bg: "var(--reda)" }}
+                _active={{ bg: "var(--reda)" }}
+                color={"red.400"}
+                className="clicky"
+              />
+            </Tooltip>
           </VStack>
         )}
-      </VStack>
+
+        <CContainer bg={useContentBg()}>{children}</CContainer>
+      </HStack>
     </Container>
   );
 }

@@ -1,7 +1,7 @@
-import Container from "../../components/wrapper/Container";
-import CContainer from "../../components/wrapper/CContainer";
+import Container from "../../components/Wrapper/Container";
+import CContainer from "../../components/Wrapper/CContainer";
 import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
-import LoginForm from "../../components/form/LoginForm";
+import LoginForm from "../../components/Form/LoginForm";
 
 export default function Login() {
   return (
