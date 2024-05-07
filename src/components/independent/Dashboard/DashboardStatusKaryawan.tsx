@@ -61,10 +61,10 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
                 left={"50%"}
                 top={"50%"}
                 transform={"translate(-50%, -50%)"}
-                fontSize={28}
+                fontSize={48}
                 opacity={0.6}
               >
-                Jumlah
+                N
               </Text>
             </VStack>
 

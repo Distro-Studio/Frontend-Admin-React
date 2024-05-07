@@ -156,14 +156,12 @@ export default function DashboardPengumuman({ ...props }: Props) {
                   py={4}
                 >
                   <HStack align={"flex-end"} justify={"space-between"}>
-                    <Text fontWeight={500} fontSize={14}>
-                      {pengumuman.judul}
-                    </Text>
+                    <Text fontWeight={500}>{pengumuman.judul}</Text>
                     <Text opacity={0.6} fontSize={12}>
                       {formatDate(pengumuman.createdAt)}
                     </Text>
                   </HStack>
-                  <Text>{pengumuman.isi}</Text>
+                  <Text fontSize={14}>{pengumuman.isi}</Text>
                 </VStack>
               ))}
           </VStack>
