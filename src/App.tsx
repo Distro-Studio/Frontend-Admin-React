@@ -11,7 +11,7 @@ import Perusahaan from "./pages/Perusahaan/Perusahaan";
 import Pengaturan from "./pages/Pengaturan/Pengaturan";
 import MissingPage from "./pages/Error/MissingPage";
 import ManajemenJadwal from "./pages/Manajemen__Jadwal/ManajemenJadwal";
-import NavWrapper from "./components/Wrapper/NavWrapper";
+import NavWrapper from "./components/RequireChildren/NavWrapper";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
