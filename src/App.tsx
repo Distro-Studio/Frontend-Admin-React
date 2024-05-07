@@ -3,7 +3,6 @@ import { globalTheme } from "./chakraTheme/globalTheme";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import "./globalStyle.css";
-import NavContainer from "./components/Wrapper/NavContainer";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Karyawan from "./pages/Karyawan/Karyawan";
 import Presensi from "./pages/Presensi/Presensi";
@@ -12,6 +11,7 @@ import Perusahaan from "./pages/Perusahaan/Perusahaan";
 import Pengaturan from "./pages/Pengaturan/Pengaturan";
 import MissingPage from "./pages/Error/MissingPage";
 import ManajemenJadwal from "./pages/Manajemen__Jadwal/ManajemenJadwal";
+import NavContainer from "./components/Wrapper/NavContainer";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
