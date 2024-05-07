@@ -6,13 +6,13 @@ import {
   Tooltip,
   VStack,
 } from "@chakra-ui/react";
-import navs from "../../const/navs";
-import { useBodyColor, useContentBg } from "../../const/colors";
-import Container from "./Container";
-import CContainer from "./CContainer";
-import { iconSize } from "../../const/sizes";
 import { RiLogoutBoxLine } from "@remixicon/react";
 import { Link } from "react-router-dom";
+import { useContentBg } from "../../const/colors";
+import navs from "../../const/navs";
+import { iconSize } from "../../const/sizes";
+import CContainer from "./CContainer";
+import Container from "./Container";
 
 interface Props {
   active: number;
