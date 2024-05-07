@@ -50,3 +50,8 @@ export interface Dashboard__Total__Interface {
   totalCuti: number;
   totalIzinKerja: number;
 }
+
+export interface Dashboard__Jabatan__Interface {
+  nama: string;
+  jumlah: number;
+}

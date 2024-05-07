@@ -26,7 +26,7 @@ export default function Container({ children, ...props }: Props) {
         {...props}
       >
         {sw < 1200 ? (
-          <VStack my={"auto"} px={6}>
+          <VStack my={"auto"} px={6} py={12}>
             <Image src={"/vectors/error404.webp"} mb={4} maxW={"300px"} />
             <Text
               textAlign={"center"}
