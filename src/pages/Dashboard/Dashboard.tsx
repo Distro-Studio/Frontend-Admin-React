@@ -14,11 +14,11 @@ export default function Dashboard() {
       <Wrap spacing={6}>
         <DashboardJenisKelamin flex={"1 1 0"} />
 
-        <DashboardJabatan />
+        <DashboardJabatan flex={"1 1 0"} />
 
         <DashboardStatusKaryawan flex={"1 1 0"} />
 
-        <DashboardSiapaYangLibur />
+        <DashboardSiapaYangLibur flex={"1 1 0"} />
 
         <DashboardPengumuman flex={"1 1 0"} />
       </Wrap>
