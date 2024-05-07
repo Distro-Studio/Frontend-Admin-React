@@ -39,9 +39,12 @@ export default function NavContainer({
       <HStack flex={1} align={"stretch"} gap={0}>
         {!noNavs && (
           <VStack
-            // borderRight={"1px solid var(--divider)"}
             p={4}
             justify={"space-between"}
+            h={"100vh"}
+            overflowY={"auto"}
+            position={"sticky"}
+            top={0}
           >
             <VStack>
               <Image src="/logo512.png" w={"40px"} mb={8} />
@@ -65,8 +68,10 @@ export default function NavContainer({
               ))}
             </VStack>
 
-            <Tooltip label={"Keluar"} placement="right">
+            <Tooltip label={"Keluar"} placement="right" flexShrink={0}>
               <IconButton
+                flexShrink={0}
+                mt={8}
                 aria-label="Logout Butotn"
                 icon={
                   <Icon

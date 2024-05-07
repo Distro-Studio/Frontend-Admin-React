@@ -10,9 +10,9 @@ export default function Dashboard() {
       <DashboardTotal mb={6} />
 
       <Wrap spacing={6}>
-        <DashboardJenisKelamin />
+        <DashboardJenisKelamin flex={"1 1 0"} />
 
-        <DashboardJabatan flex={"1 1 0"} />
+        <DashboardJabatan />
 
         <DashboardStatusKaryawan flex={"1 1 0"} />
       </Wrap>

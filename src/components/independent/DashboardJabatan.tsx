@@ -1,9 +1,8 @@
-import { Box, HStack, StackProps, Text, VStack } from "@chakra-ui/react";
+import { HStack, StackProps, Text, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useBodyColor } from "../../const/colors";
-import ChartDoughnut from "../Dependent/ChartDoughnut";
-import Skeleton from "./Skeleton";
 import { Dashboard__Jabatan__Interface } from "../../const/types";
+import Skeleton from "./Skeleton";
 
 interface Props extends StackProps {}
 

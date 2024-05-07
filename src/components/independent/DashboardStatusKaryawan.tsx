@@ -42,28 +42,30 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
           p={6}
           {...props}
         >
-          <Text fontWeight={600}>Jenis Kelamin</Text>
+          <Text fontWeight={600}>Status Karyawan</Text>
           <Text fontSize={14} opacity={0.6}>
             Karyawan saat ini
           </Text>
 
-          <HStack gap={12}>
+          <HStack gap={12} my={"auto"} mx={"auto"}>
             <VStack my={6} position={"relative"}>
-              <ChartDoughnut labels={labels} datasets={datasets} />
+              <VStack maxW={"240px"}>
+                <ChartDoughnut labels={labels} datasets={datasets} />
+              </VStack>
 
               <Text
                 position={"absolute"}
                 left={"50%"}
                 top={"50%"}
                 transform={"translate(-50%, -50%)"}
-                fontSize={32}
+                fontSize={28}
                 opacity={0.6}
               >
-                Count
+                Jumlah
               </Text>
             </VStack>
 
-            <VStack align={"stretch"} flex={1}>
+            <VStack align={"stretch"} minW={"140px"}>
               <HStack>
                 <Box
                   borderRadius={"full"}

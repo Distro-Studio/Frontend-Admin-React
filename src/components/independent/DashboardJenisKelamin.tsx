@@ -47,42 +47,46 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
             Karyawan saat ini
           </Text>
 
-          <VStack my={6} position={"relative"}>
-            <ChartDoughnut labels={labels} datasets={datasets} />
+          <VStack my={"auto"} pt={6} gap={4}>
+            <VStack position={"relative"}>
+              <VStack maxW={"240px"}>
+                <ChartDoughnut labels={labels} datasets={datasets} />
+              </VStack>
 
-            <Text
-              position={"absolute"}
-              left={"50%"}
-              top={"50%"}
-              transform={"translate(-50%, -50%)"}
-              fontSize={48}
-              opacity={0.6}
-            >
-              %
-            </Text>
+              <Text
+                position={"absolute"}
+                left={"50%"}
+                top={"50%"}
+                transform={"translate(-50%, -50%)"}
+                fontSize={48}
+                opacity={0.6}
+              >
+                %
+              </Text>
+            </VStack>
+
+            <HStack justify={"center"}>
+              <HStack>
+                <Box
+                  borderRadius={"full"}
+                  w={"10px"}
+                  h={"10px"}
+                  bg={"orange.200"}
+                />
+                <Text>Pria </Text>
+              </HStack>
+
+              <HStack>
+                <Box
+                  borderRadius={"full"}
+                  w={"10px"}
+                  h={"10px"}
+                  bg={"purple.400"}
+                />
+                <Text>Wanita</Text>
+              </HStack>
+            </HStack>
           </VStack>
-
-          <HStack justify={"center"}>
-            <HStack>
-              <Box
-                borderRadius={"full"}
-                w={"10px"}
-                h={"10px"}
-                bg={"orange.200"}
-              />
-              <Text>Pria </Text>
-            </HStack>
-
-            <HStack>
-              <Box
-                borderRadius={"full"}
-                w={"10px"}
-                h={"10px"}
-                bg={"purple.400"}
-              />
-              <Text>Wanita</Text>
-            </HStack>
-          </HStack>
         </VStack>
       )}
     </>
