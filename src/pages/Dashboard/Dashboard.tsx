@@ -1,8 +1,9 @@
 import { Wrap } from "@chakra-ui/react";
-import DashboardTotal from "../../components/Independent/DashboardTotal";
-import DashboardJenisKelamin from "../../components/Independent/DashboardJenisKelamin";
-import DashboardJabatan from "../../components/Independent/DashboardJabatan";
-import DashboardStatusKaryawan from "../../components/Independent/DashboardStatusKaryawan";
+import DashboardTotal from "../../components/Independent/Dashboard/DashboardTotal";
+import DashboardJenisKelamin from "../../components/Independent/Dashboard/DashboardJenisKelamin";
+import DashboardJabatan from "../../components/Independent/Dashboard/DashboardJabatan";
+import DashboardStatusKaryawan from "../../components/Independent/Dashboard/DashboardStatusKaryawan";
+import DashboardSiapaYangLibur from "../../components/Independent/Dashboard/DashboardSiapaYangLibur";
 
 export default function Dashboard() {
   return (
@@ -15,6 +16,8 @@ export default function Dashboard() {
         <DashboardJabatan />
 
         <DashboardStatusKaryawan flex={"1 1 0"} />
+
+        <DashboardSiapaYangLibur flex={"1 1 0"} />
       </Wrap>
     </>
   );

@@ -35,8 +35,8 @@ export interface Jadwal__Interface {
 
 export interface Karyawan__Interface {
   id: number;
-  name: string;
   image: string;
+  name: string;
   role: string;
   status?: Valid__Status__Type;
   schedules?: Jadwal__Interface[];
@@ -51,7 +51,7 @@ export interface Dashboard__Total__Interface {
   totalIzinKerja: number;
 }
 
-export interface Dashboard__Jabatan__Interface {
+export interface Jabatan__Interface {
   nama: string;
   jumlah: number;
 }

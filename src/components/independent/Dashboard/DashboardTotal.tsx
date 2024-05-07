@@ -14,8 +14,8 @@ import {
   RiTeamFill,
 } from "@remixicon/react";
 import { useEffect, useState } from "react";
-import { Dashboard__Total__Interface } from "../../const/types";
-import formatNumber from "../../lib/formatNumber";
+import { Dashboard__Total__Interface } from "../../../const/interfaces";
+import formatNumber from "../../../lib/formatNumber";
 
 interface Props extends SimpleGridProps {}
 

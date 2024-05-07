@@ -1,8 +1,8 @@
 import { HStack, StackProps, Text, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useBodyColor } from "../../const/colors";
-import { Dashboard__Jabatan__Interface } from "../../const/types";
-import Skeleton from "./Skeleton";
+import { useBodyColor } from "../../../const/colors";
+import { Jabatan__Interface } from "../../../const/interfaces";
+import Skeleton from "../Skeleton";
 
 interface Props extends StackProps {}
 
@@ -40,7 +40,7 @@ export default function DashboardJabatan({ ...props }: Props) {
   ];
   //! DEBUG
 
-  const [data] = useState<Dashboard__Jabatan__Interface[] | null>(dummy);
+  const [data] = useState<Jabatan__Interface[] | null>(dummy);
   const [loading] = useState<boolean>(false);
   useEffect(() => {
     //TODO api get data dashboard jenis kelamin
@@ -59,7 +59,7 @@ export default function DashboardJabatan({ ...props }: Props) {
           bg={bodyColor}
           borderRadius={12}
           p={6}
-          minW={"300px"}
+          minW={"400px"}
           {...props}
         >
           <Text fontWeight={600}>Jabatan</Text>
