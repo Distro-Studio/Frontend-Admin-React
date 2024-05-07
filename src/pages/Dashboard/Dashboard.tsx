@@ -1,10 +1,10 @@
 import { Wrap } from "@chakra-ui/react";
 import DashboardTotal from "../../components/Independent/Dashboard/DashboardTotal";
-import DashboardJenisKelamin from "../../components/Independent/Dashboard/DashboardJenisKelamin";
 import DashboardJabatan from "../../components/Independent/Dashboard/DashboardJabatan";
 import DashboardStatusKaryawan from "../../components/Independent/Dashboard/DashboardStatusKaryawan";
 import DashboardSiapaYangLibur from "../../components/Independent/Dashboard/DashboardSiapaYangLibur";
 import DashboardPengumuman from "../../components/Independent/Dashboard/DashboardPengumuman";
+import DashboardJenisKelamin from "../../components/Independent/Dashboard/DashboardJenisKelamin";
 
 export default function Dashboard() {
   return (
