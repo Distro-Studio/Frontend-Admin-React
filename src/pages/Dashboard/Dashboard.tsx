@@ -1,7 +1,9 @@
-import React from 'react'
+import DashboardTotal from "../../components/Independent/DashboardTotal";
 
 export default function Dashboard() {
   return (
-    <div>Dashboard</div>
-  )
+    <>
+      <DashboardTotal />
+    </>
+  );
 }

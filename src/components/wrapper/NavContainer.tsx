@@ -13,14 +13,25 @@ import navs from "../../const/navs";
 import { iconSize } from "../../const/sizes";
 import CContainer from "./CContainer";
 import Container from "./Container";
+import Header from "../Dependent/Header";
 
 interface Props {
   active: number;
   children?: any;
   noNavs?: boolean;
+  title?: string;
+  left?: any;
+  right?: any;
 }
 
-export default function NavContainer({ children, active, noNavs }: Props) {
+export default function NavContainer({
+  children,
+  active,
+  noNavs,
+  title,
+  left,
+  right,
+}: Props) {
   // SX
 
   return (
@@ -74,7 +85,11 @@ export default function NavContainer({ children, active, noNavs }: Props) {
           </VStack>
         )}
 
-        <CContainer bg={useContentBg()}>{children}</CContainer>
+        <CContainer bg={useContentBg()} p={6}>
+          <Header title={title} left={left} right={right} />
+
+          {children}
+        </CContainer>
       </HStack>
     </Container>
   );

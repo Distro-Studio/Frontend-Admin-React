@@ -1,6 +1,8 @@
-import { ValidStatusType } from "../const/types";
+import { Valid__Status__Type } from "../const/types";
 
-export default function karyawanStatusColor(status: ValidStatusType): string {
+export default function karyawanStatusColor(
+  status: Valid__Status__Type
+): string {
   const color = {
     Kerja: "green",
     Cuti: "yellow",

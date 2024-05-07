@@ -1,4 +1,4 @@
-export interface AttendanceDataInterface {
+export interface Attendance__Data__Interface {
   masuk: string;
   keluar: string;
   jam_kerja: number;
@@ -6,40 +6,47 @@ export interface AttendanceDataInterface {
   office_lng: number;
 }
 
-export interface AktivitasInterface {
+export interface Aktivitas__Interface {
   type: string;
   timestamp: string;
 }
 
-export interface UserDataInterface {
+export interface User__Data__Interface {
   name: string;
   role: string;
   image: string;
   is_complete: boolean;
 }
 
-export interface SelectItemInterface {
+export interface Select__Item__Interface {
   value: number;
   label: string;
 }
 
-export interface JadwalInterface {
+export interface Jadwal__Interface {
   id: number;
   masuk: string; // bisa untuk tanggal hari libur
   minggu?: number;
   keluar?: string | null;
   label?: string | null; // Nama Shift
-  assignees?: KaryawanInterface[];
+  assignees?: Karyawan__Interface[];
   keterangan?: string;
 }
 
-export interface KaryawanInterface {
+export interface Karyawan__Interface {
   id: number;
   name: string;
   image: string;
   role: string;
-  status?: ValidStatusType;
-  schedules?: JadwalInterface[];
+  status?: Valid__Status__Type;
+  schedules?: Jadwal__Interface[];
 }
 
-export type ValidStatusType = "Kerja" | "Cuti" | "Izin" | "Libur";
+export type Valid__Status__Type = "Kerja" | "Cuti" | "Izin" | "Libur";
+
+export interface Dashboard__Total__Interface {
+  totalKaryawan: number;
+  totalLibur: number;
+  totalCuti: number;
+  totalIzinKerja: number;
+}

@@ -7,11 +7,11 @@ import NavContainer from "./components/Wrapper/NavContainer";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Karyawan from "./pages/Karyawan/Karyawan";
 import Presensi from "./pages/Presensi/Presensi";
-import ManajemenJadwal from "./pages/ManajemenJadwal/ManajemenJadwal";
 import Keuangan from "./pages/Keuangan/Keuangan";
 import Perusahaan from "./pages/Perusahaan/Perusahaan";
 import Pengaturan from "./pages/Pengaturan/Pengaturan";
 import MissingPage from "./pages/Error/MissingPage";
+import ManajemenJadwal from "./pages/Manajemen__Jadwal/ManajemenJadwal";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -22,7 +22,7 @@ export const App = () => (
         <Route
           path="/dashboard"
           element={
-            <NavContainer active={0}>
+            <NavContainer active={0} title="Dashboard">
               <Dashboard />
             </NavContainer>
           }
