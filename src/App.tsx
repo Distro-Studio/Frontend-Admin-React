@@ -11,7 +11,7 @@ import Perusahaan from "./pages/Perusahaan/Perusahaan";
 import Pengaturan from "./pages/Pengaturan/Pengaturan";
 import MissingPage from "./pages/Error/MissingPage";
 import ManajemenJadwal from "./pages/Manajemen__Jadwal/ManajemenJadwal";
-import NavWrapper from "./components/Wrapper/NavWrapper";
+import NavContainer from "./components/Wrapper/NavContainer";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -22,63 +22,63 @@ export const App = () => (
         <Route
           path="/dashboard"
           element={
-            <NavWrapper active={0} title="Dashboard">
+            <NavContainer active={0} title="Dashboard">
               <Dashboard />
-            </NavWrapper>
+            </NavContainer>
           }
         />
 
         <Route
           path="/karyawan"
           element={
-            <NavWrapper active={1}>
+            <NavContainer active={1}>
               <Karyawan />
-            </NavWrapper>
+            </NavContainer>
           }
         />
 
         <Route
           path="/presensi"
           element={
-            <NavWrapper active={2}>
+            <NavContainer active={2}>
               <Presensi />
-            </NavWrapper>
+            </NavContainer>
           }
         />
 
         <Route
           path="/manajemen-jadwal"
           element={
-            <NavWrapper active={3}>
+            <NavContainer active={3}>
               <ManajemenJadwal />
-            </NavWrapper>
+            </NavContainer>
           }
         />
 
         <Route
           path="/keuangan"
           element={
-            <NavWrapper active={4}>
+            <NavContainer active={4}>
               <Keuangan />
-            </NavWrapper>
+            </NavContainer>
           }
         />
 
         <Route
           path="/perusahaan"
           element={
-            <NavWrapper active={5}>
+            <NavContainer active={5}>
               <Perusahaan />
-            </NavWrapper>
+            </NavContainer>
           }
         />
 
         <Route
           path="/pengaturan"
           element={
-            <NavWrapper active={6}>
+            <NavContainer active={6}>
               <Pengaturan />
-            </NavWrapper>
+            </NavContainer>
           }
         />
 
