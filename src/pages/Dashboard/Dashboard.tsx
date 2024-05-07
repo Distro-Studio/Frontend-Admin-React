@@ -4,6 +4,7 @@ import DashboardJenisKelamin from "../../components/Independent/Dashboard/Dashbo
 import DashboardJabatan from "../../components/Independent/Dashboard/DashboardJabatan";
 import DashboardStatusKaryawan from "../../components/Independent/Dashboard/DashboardStatusKaryawan";
 import DashboardSiapaYangLibur from "../../components/Independent/Dashboard/DashboardSiapaYangLibur";
+import DashboardPengumuman from "../../components/Independent/Dashboard/DashboardPengumuman";
 
 export default function Dashboard() {
   return (
@@ -18,6 +19,8 @@ export default function Dashboard() {
         <DashboardStatusKaryawan flex={"1 1 0"} />
 
         <DashboardSiapaYangLibur flex={"1 1 0"} />
+
+        <DashboardPengumuman flex={"1 1 0"} />
       </Wrap>
     </>
   );

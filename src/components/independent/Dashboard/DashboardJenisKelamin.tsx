@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useBodyColor } from "../../../const/colors";
 import ChartDoughnut from "../../Dependent/ChartDoughnut";
 import Skeleton from "../Skeleton";
+import { dashboardItemHeight } from "../../../const/sizes";
 
 interface Props extends StackProps {}
 
@@ -20,7 +21,7 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
   const labels = ["Pria", "Wanita"];
   const datasets = [
     {
-      label: "Presentase Kelamin",
+      label: "",
       data: data,
       backgroundColor: ["#FBD38D", "#805AD5"],
       borderWidth: 0,
@@ -40,6 +41,8 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
           bg={bodyColor}
           borderRadius={12}
           p={6}
+          gap={0}
+          h={dashboardItemHeight}
           {...props}
         >
           <Text fontWeight={600}>Jenis Kelamin</Text>
@@ -47,7 +50,7 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
             Karyawan saat ini
           </Text>
 
-          <VStack my={"auto"} pt={6} gap={4}>
+          <HStack m={"auto"} gap={12}>
             <VStack position={"relative"}>
               <VStack maxW={"240px"}>
                 <ChartDoughnut labels={labels} datasets={datasets} />
@@ -65,7 +68,7 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
               </Text>
             </VStack>
 
-            <HStack justify={"center"}>
+            <VStack align={"stretch"} minW={"140px"}>
               <HStack>
                 <Box
                   borderRadius={"full"}
@@ -73,7 +76,9 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
                   h={"10px"}
                   bg={"orange.200"}
                 />
-                <Text>Pria </Text>
+                <Text>Pria</Text>
+
+                <Text ml={"auto"}>{data[0]}%</Text>
               </HStack>
 
               <HStack>
@@ -84,9 +89,11 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
                   bg={"purple.400"}
                 />
                 <Text>Wanita</Text>
+
+                <Text ml={"auto"}>{data[1]}%</Text>
               </HStack>
-            </HStack>
-          </VStack>
+            </VStack>
+          </HStack>
         </VStack>
       )}
     </>

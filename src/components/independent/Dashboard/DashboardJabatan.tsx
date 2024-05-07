@@ -1,8 +1,9 @@
-import { HStack, StackProps, Text, VStack } from "@chakra-ui/react";
+import { Box, HStack, StackProps, Text, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useBodyColor } from "../../../const/colors";
 import { Jabatan__Interface } from "../../../const/interfaces";
 import Skeleton from "../Skeleton";
+import { dashboardItemHeight } from "../../../const/sizes";
 
 interface Props extends StackProps {}
 
@@ -34,6 +35,30 @@ export default function DashboardJabatan({ ...props }: Props) {
       jumlah: 254,
     },
     {
+      nama: "Dokter Hewan",
+      jumlah: 10,
+    },
+    {
+      nama: "Dokter Gigi",
+      jumlah: 10,
+    },
+    {
+      nama: "Dokter Bedah",
+      jumlah: 10,
+    },
+    {
+      nama: "Dokter Anak",
+      jumlah: 10,
+    },
+    {
+      nama: "Dokter Kulit",
+      jumlah: 10,
+    },
+    {
+      nama: "Dokter Palsu",
+      jumlah: 10,
+    },
+    {
       nama: "Office Boy",
       jumlah: 10,
     },
@@ -58,20 +83,30 @@ export default function DashboardJabatan({ ...props }: Props) {
           align={"stretch"}
           bg={bodyColor}
           borderRadius={12}
-          p={6}
           minW={"400px"}
+          gap={0}
+          h={dashboardItemHeight}
           {...props}
         >
-          <Text fontWeight={600}>Jabatan</Text>
-          <Text fontSize={14} opacity={0.6}>
-            Karyawan saat ini
-          </Text>
+          <Box p={6}>
+            <Text fontWeight={600}>Jabatan</Text>
+            <Text fontSize={14} opacity={0.6}>
+              Karyawan saat ini
+            </Text>
+          </Box>
 
-          <VStack my={6} align={"stretch"}>
+          <VStack
+            align={"stretch"}
+            gap={4}
+            pb={6}
+            overflowY={"auto"}
+            px={6}
+            className="scrollY"
+          >
             {data.map((jabatan, i) => (
               <HStack key={i} justify={"space-between"}>
-                <Text>{jabatan.nama}</Text>
-                <Text>{jabatan.jumlah}</Text>
+                <Text fontSize={14}>{jabatan.nama}</Text>
+                <Text fontSize={14}>{jabatan.jumlah}</Text>
               </HStack>
             ))}
           </VStack>

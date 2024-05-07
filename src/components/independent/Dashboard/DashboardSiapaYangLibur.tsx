@@ -17,7 +17,7 @@ import { useBodyColor } from "../../../const/colors";
 import { Karyawan__Interface } from "../../../const/interfaces";
 import Skeleton from "../Skeleton";
 import { RiArrowDownSLine } from "@remixicon/react";
-import { iconSize } from "../../../const/sizes";
+import { dashboardItemHeight, iconSize } from "../../../const/sizes";
 import whosOffPeriode from "../../../const/whosOffPeriode";
 
 interface Props extends StackProps {}
@@ -89,20 +89,25 @@ export default function DashboardSiapaYangLibur({ ...props }: Props) {
           align={"stretch"}
           bg={bodyColor}
           borderRadius={12}
-          p={6}
-          minW={"300px"}
+          gap={0}
+          minW={"400px"}
+          h={dashboardItemHeight}
           {...props}
         >
-          <HStack justify={"space-between"}>
+          <HStack justify={"space-between"} p={6}>
             <Text fontWeight={600}>Siapa Yang Libur</Text>
+
             <Menu>
               <MenuButton
                 as={Button}
-                className="btn"
+                size={"xs"}
+                className="btn-clear"
+                color={"p.500"}
                 rightIcon={<Icon as={RiArrowDownSLine} fontSize={iconSize} />}
               >
                 {whosOffPeriode[periode]}
               </MenuButton>
+
               <MenuList minW={"160px"}>
                 {whosOffPeriode.map((periodeLabel, i) => (
                   <MenuItem
@@ -119,7 +124,14 @@ export default function DashboardSiapaYangLibur({ ...props }: Props) {
             </Menu>
           </HStack>
 
-          <VStack my={6} align={"stretch"} gap={4}>
+          <VStack
+            align={"stretch"}
+            gap={6}
+            pb={6}
+            overflowY={"auto"}
+            px={6}
+            className="scrollY"
+          >
             {data.map((user, i) => (
               <HStack key={i}>
                 <Avatar name={user.name} src={user.image} />

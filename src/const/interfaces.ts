@@ -55,3 +55,10 @@ export interface Jabatan__Interface {
   nama: string;
   jumlah: number;
 }
+
+export interface Pengumuman__Interface {
+  id: number;
+  judul: string;
+  isi: string;
+  createdAt: string;
+}

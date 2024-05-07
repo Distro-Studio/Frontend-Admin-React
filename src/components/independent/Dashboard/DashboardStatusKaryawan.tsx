@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useBodyColor } from "../../../const/colors";
 import ChartDoughnut from "../../Dependent/ChartDoughnut";
 import Skeleton from "../Skeleton";
+import { dashboardItemHeight } from "../../../const/sizes";
 
 interface Props extends StackProps {}
 
@@ -20,7 +21,7 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
   const labels = ["Pria", "Wanita"];
   const datasets = [
     {
-      label: "Presentase Kelamin",
+      label: "",
       data: data,
       backgroundColor: ["#FBD38D", "#805AD5", "#48BB78"],
       borderWidth: 0,
@@ -40,6 +41,8 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
           bg={bodyColor}
           borderRadius={12}
           p={6}
+          gap={0}
+          h={dashboardItemHeight}
           {...props}
         >
           <Text fontWeight={600}>Status Karyawan</Text>
@@ -47,7 +50,7 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
             Karyawan saat ini
           </Text>
 
-          <HStack gap={12} my={"auto"} mx={"auto"}>
+          <HStack gap={12} m={"auto"}>
             <VStack my={6} position={"relative"}>
               <VStack maxW={"240px"}>
                 <ChartDoughnut labels={labels} datasets={datasets} />
