@@ -3,6 +3,7 @@ import {
   HStack,
   Icon,
   SimpleGrid,
+  SimpleGridProps,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -16,7 +17,9 @@ import { useEffect, useState } from "react";
 import { Dashboard__Total__Interface } from "../../const/types";
 import formatNumber from "../../lib/formatNumber";
 
-export default function DashboardTotal() {
+interface Props extends SimpleGridProps {}
+
+export default function DashboardTotal({ ...props }: Props) {
   //! DEBUG
   const dummy = {
     totalKaryawan: 201,
@@ -31,25 +34,25 @@ export default function DashboardTotal() {
       label: "Total Karyawan",
       icon: RiTeamFill,
       iconBgColor: "green.400",
-      bgColor: "var(--greena)",
+      bgColor: "green.200",
     },
     totalLibur: {
       label: "Total Libur",
       icon: RiHome4Fill,
       iconBgColor: "red.400",
-      bgColor: "var(--reda)",
+      bgColor: "red.200",
     },
     totalCuti: {
       label: "Total Cuti",
       icon: RiLandscapeFill,
       iconBgColor: "yellow.400",
-      bgColor: "var(--yellowa)",
+      bgColor: "yellow.200",
     },
     totalIzinKerja: {
       label: "Total Izin Kerja",
       icon: RiFileCopy2Fill,
       iconBgColor: "blue.400",
-      bgColor: "var(--bluea)",
+      bgColor: "blue.200",
     },
   };
   const [data] = useState<Dashboard__Total__Interface | null>(dummy);
@@ -60,7 +63,7 @@ export default function DashboardTotal() {
   }, []);
 
   return (
-    <SimpleGrid columns={[1, 2, 4]} gap={6}>
+    <SimpleGrid columns={[1, 2, 4]} gap={6} {...props}>
       {!loading &&
         data &&
         Object.entries(data).map(([key, value]) => (
@@ -69,6 +72,7 @@ export default function DashboardTotal() {
             align={"flex-start"}
             p={4}
             borderRadius={12}
+            color={"dark"}
             // @ts-ignore
             bg={statics[key].bgColor}
           >

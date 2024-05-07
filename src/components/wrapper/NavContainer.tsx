@@ -39,8 +39,8 @@ export default function NavContainer({
       <HStack flex={1} align={"stretch"} gap={0}>
         {!noNavs && (
           <VStack
+            // borderRight={"1px solid var(--divider)"}
             p={4}
-            borderRight={"1px solid var(--divider)"}
             justify={"space-between"}
           >
             <VStack>

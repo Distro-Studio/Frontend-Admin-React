@@ -18,7 +18,7 @@ export default function Container({ children, ...props }: Props) {
       <VStack
         className="container"
         w={"100%"}
-        maxW={"1440px"}
+        // maxW={"1440px"}
         gap={0}
         minH={"100vh"}
         mx={"auto"}
