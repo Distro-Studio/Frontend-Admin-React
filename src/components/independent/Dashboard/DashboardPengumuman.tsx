@@ -135,7 +135,6 @@ export default function DashboardPengumuman({ ...props }: Props) {
 
           <VStack
             align={"stretch"}
-            gap={6}
             pb={6}
             overflowY={"auto"}
             px={6}
@@ -150,7 +149,12 @@ export default function DashboardPengumuman({ ...props }: Props) {
 
             {data &&
               data.map((pengumuman, i) => (
-                <VStack key={i} align={"stretch"}>
+                <VStack
+                  key={i}
+                  align={"stretch"}
+                  borderBottom={"1px solid var(--divider3)"}
+                  py={4}
+                >
                   <HStack align={"flex-end"} justify={"space-between"}>
                     <Text fontWeight={500} fontSize={14}>
                       {pengumuman.judul}

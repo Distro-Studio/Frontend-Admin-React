@@ -18,7 +18,7 @@ export default function Dashboard() {
 
         <DashboardStatusKaryawan flex={"1 1 0"} />
 
-        <DashboardSiapaYangLibur flex={"1 1 0"} />
+        <DashboardSiapaYangLibur />
 
         <DashboardPengumuman flex={"1 1 0"} />
       </Wrap>

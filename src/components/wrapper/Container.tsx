@@ -25,7 +25,7 @@ export default function Container({ children, ...props }: Props) {
         align={"stretch"}
         {...props}
       >
-        {sw < 1200 ? (
+        {sw < 1000 ? (
           <VStack my={"auto"} px={6} py={12}>
             <Image src={"/vectors/error404.webp"} mb={4} maxW={"300px"} />
             <Text
@@ -36,7 +36,7 @@ export default function Container({ children, ...props }: Props) {
               maxW={"600px"}
             >
               Untuk menggunakan aplikasi ini, minimal lebar viewport/monitor
-              harus 1200px.
+              harus 1000px.
             </Text>
             <Text textAlign={"center"} maxW={"600px"}>
               Jika lebar layar tidak memenuhi syarat, anda dapat menurunkan
