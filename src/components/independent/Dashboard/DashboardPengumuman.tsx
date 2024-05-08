@@ -22,6 +22,7 @@ import {
   dashboardItemHeight,
   dashboardItemMinWidth,
   iconSize,
+  responsiveSpacing,
 } from "../../../const/sizes";
 import whosOffPeriode from "../../../const/whosOffPeriode";
 import Skeleton from "../Skeleton";
@@ -95,7 +96,11 @@ export default function DashboardPengumuman({ ...props }: Props) {
           {...props}
         >
           <Box p={6}>
-            <HStack justify={"space-between"} mb={5} align={"flex-start"}>
+            <HStack
+              justify={"space-between"}
+              mb={responsiveSpacing}
+              align={"flex-start"}
+            >
               <Text fontWeight={600}>Pengumuman</Text>
 
               <DashboardBuatPengumumanModal />
