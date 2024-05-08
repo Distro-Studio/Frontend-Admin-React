@@ -8,10 +8,13 @@ const dashboardItemHeight = "500px";
 
 const dashboardItemMinWidth = "300px";
 
+const itemSpacing = [4, null, 6];
+
 export {
   iconSize,
   textSize,
   checkBoxTextMt,
   dashboardItemHeight,
   dashboardItemMinWidth,
+  itemSpacing,
 };

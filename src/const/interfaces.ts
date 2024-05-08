@@ -62,3 +62,8 @@ export interface Pengumuman__Interface {
   pengumuman: string;
   createdAt: string;
 }
+
+export interface TopNavs__Interface {
+  label: string;
+  link: string;
+}

@@ -1,5 +1,10 @@
-import React from "react";
+import TopNavs from "../../components/dependent/TopNavs";
+import karyawanTopNavs from "../../const/karyawanTopNavs";
 
 export default function Karyawan() {
-  return <div>Karyawan</div>;
+  return (
+    <>
+      <TopNavs data={karyawanTopNavs} active={0} />
+    </>
+  );
 }

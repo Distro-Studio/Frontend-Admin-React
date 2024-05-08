@@ -94,7 +94,7 @@ export default function DashboardPengumuman({ ...props }: Props) {
           {...props}
         >
           <Box p={6}>
-            <HStack justify={"space-between"} mb={4} align={"flex-start"}>
+            <HStack justify={"space-between"} mb={5} align={"flex-start"}>
               <Text fontWeight={600}>Pengumuman</Text>
 
               <Button

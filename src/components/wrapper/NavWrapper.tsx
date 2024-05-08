@@ -1,4 +1,5 @@
 import {
+  Box,
   HStack,
   Icon,
   IconButton,
@@ -15,6 +16,7 @@ import CContainer from "./CContainer";
 import Container from "./Container";
 import Header from "../dependent/Header";
 import useScreenWidth from "../../lib/useScreenWidth";
+import CWrapper from "./CWrapper";
 
 interface Props {
   active: number;
@@ -33,7 +35,7 @@ export default function NavWrapper({
   left,
   right,
 }: Props) {
-  const smScreen = useScreenWidth() <= 500;
+  const smScreen = useScreenWidth() <= 768;
 
   // SX
   const bodyColor = useBodyColor();
@@ -97,45 +99,52 @@ export default function NavWrapper({
         )}
 
         {!noNavs && smScreen && (
-          <HStack
-            id="navs"
-            overflowX={"auto"}
-            position={"fixed"}
-            bottom={0}
-            left={0}
-            minW={"100%"}
-            h={"60px"}
-            zIndex={99}
-            bg={bodyColor}
-            justify={"center"}
-          >
-            {navs.map((nav, i) => (
-              <Tooltip key={i} placement="top">
-                <IconButton
-                  aria-label={`Nav Button ${nav.label}`}
-                  icon={
-                    <Icon
-                      as={nav.icon}
-                      fontSize={20}
-                      opacity={active === i ? 1 : 0.6}
-                    />
-                  }
-                  className="btn clicky"
-                  color={active === i ? "p.500" : ""}
-                  as={Link}
-                  to={nav.link}
-                />
-              </Tooltip>
-            ))}
-          </HStack>
+          <Box overflowX={"auto"}>
+            <HStack
+              id="navs"
+              position={"fixed"}
+              bottom={0}
+              left={0}
+              minW={"100%"}
+              h={"60px"}
+              zIndex={99}
+              bg={bodyColor}
+              justify={"center"}
+            >
+              {navs.map((nav, i) => (
+                <Tooltip key={i} placement="top">
+                  <IconButton
+                    aria-label={`Nav Button ${nav.label}`}
+                    icon={
+                      <Icon
+                        as={nav.icon}
+                        fontSize={20}
+                        opacity={active === i ? 1 : 0.6}
+                      />
+                    }
+                    className="btn clicky"
+                    color={active === i ? "p.500" : ""}
+                    as={Link}
+                    to={nav.link}
+                  />
+                </Tooltip>
+              ))}
+            </HStack>
+          </Box>
         )}
 
         <CContainer
           bg={useContentBg()}
-          p={smScreen ? 4 : 6}
-          pb={smScreen ? "76px" : ""}
+          py={smScreen ? 4 : 6}
+          pb={smScreen ? "76px" : 6}
+          align={"stretch"}
+          // w={"100%"}
+          flex={1}
+          overflowX={"clip"}
         >
-          <Header title={title} left={left} right={right} />
+          <CWrapper>
+            <Header title={title} left={left} right={right} />
+          </CWrapper>
 
           {children}
         </CContainer>

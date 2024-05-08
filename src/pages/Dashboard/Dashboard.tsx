@@ -5,23 +5,29 @@ import DashboardStatusKaryawan from "../../components/independent/Dashboard/Dash
 import DashboardSiapaYangLibur from "../../components/independent/Dashboard/DashboardSiapaYangLibur";
 import DashboardPengumuman from "../../components/independent/Dashboard/DashboardPengumuman";
 import DashboardJenisKelamin from "../../components/independent/Dashboard/DashboardJenisKelamin";
+import CWrapper from "../../components/wrapper/CWrapper";
+import { itemSpacing } from "../../const/sizes";
 
 export default function Dashboard() {
   return (
     <>
-      <DashboardTotal mb={6} />
+      <CWrapper>
+        <DashboardTotal mb={6} />
+      </CWrapper>
 
-      <Wrap spacing={6}>
-        <DashboardJenisKelamin flex={"1 1 0"} />
+      <CWrapper>
+        <Wrap spacing={itemSpacing}>
+          <DashboardJenisKelamin flex={"1 1 0"} />
 
-        <DashboardJabatan flex={"1 1 0"} />
+          <DashboardJabatan flex={"1 1 0"} />
 
-        <DashboardStatusKaryawan flex={"1 1 0"} />
+          <DashboardStatusKaryawan flex={"1 1 0"} />
 
-        <DashboardSiapaYangLibur flex={"1 1 0"} />
+          <DashboardSiapaYangLibur flex={"1 1 0"} />
 
-        <DashboardPengumuman flex={"1 1 0"} />
-      </Wrap>
+          <DashboardPengumuman flex={"1 1 0"} />
+        </Wrap>
+      </CWrapper>
     </>
   );
 }
