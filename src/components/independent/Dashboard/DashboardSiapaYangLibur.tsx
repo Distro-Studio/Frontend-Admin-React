@@ -31,45 +31,45 @@ export default function DashboardSiapaYangLibur({ ...props }: Props) {
   const dummy = [
     {
       id: 1,
-      name: "Jolitos Kurniawan",
-      role: "Dokter Hewan",
-      image: "https://bit.ly/dan-abramov",
+      nama: "Jolitos Kurniawan",
+      unit_kerja: "Dokter Hewan",
+      foto_profil: "https://bit.ly/dan-abramov",
     },
     {
       id: 2,
-      name: "Melky Simonsely",
-      role: "Dokter Gigi",
-      image: "https://bit.ly/tioluwani-kolawole",
+      nama: "Melky Simonsely",
+      unit_kerja: "Dokter Gigi",
+      foto_profil: "https://bit.ly/tioluwani-kolawole",
     },
     {
       id: 3,
-      name: "Sulenq Wazawsky",
-      role: "Perawat",
-      image: "https://bit.ly/kent-c-dodds",
+      nama: "Sulenq Wazawsky",
+      unit_kerja: "Perawat",
+      foto_profil: "https://bit.ly/kent-c-dodds",
     },
     {
       id: 4,
-      name: "Sullivan",
-      role: "Perawat",
-      image: "https://bit.ly/ryan-florence",
+      nama: "Sullivan",
+      unit_kerja: "Perawat",
+      foto_profil: "https://bit.ly/ryan-florence",
     },
     {
       id: 5,
-      name: "Sopik Simanjutak",
-      role: "Kepala Ruang",
-      image: "https://bit.ly/code-beast",
+      nama: "Sopik Simanjutak",
+      unit_kerja: "Kepala Ruang",
+      foto_profil: "https://bit.ly/code-beast",
     },
     {
       id: 6,
-      name: "Segun Adebayo",
-      role: "Anak Direktur",
-      image: "ttps://bit.ly/sage-adebayo",
+      nama: "Segun Adebayo",
+      unit_kerja: "Anak Direktur",
+      foto_profil: "ttps://bit.ly/sage-adebayo",
     },
     {
       id: 7,
-      name: "Davon Bucker",
-      role: "Anonimus",
-      image: "",
+      nama: "Davon Bucker",
+      unit_kerja: "Anonimus",
+      foto_profil: "",
     },
   ];
   //! DEBUG
@@ -138,11 +138,11 @@ export default function DashboardSiapaYangLibur({ ...props }: Props) {
           >
             {data.map((user, i) => (
               <HStack key={i}>
-                <Avatar name={user.name} src={user.image} />
+                <Avatar name={user.nama} src={user.foto_profil} />
                 <Box>
-                  <Text mb={1}>{user.name}</Text>
+                  <Text mb={1}>{user.nama}</Text>
                   <Text opacity={0.6} fontSize={12}>
-                    {user.role}
+                    {user.unit_kerja}
                   </Text>
                 </Box>
               </HStack>

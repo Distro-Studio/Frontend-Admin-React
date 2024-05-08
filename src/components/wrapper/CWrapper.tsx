@@ -14,6 +14,7 @@ export default function CWrapper({ children, ...props }: Props) {
       align={"stretch"}
       overflow={"auto"}
       className="noScroll"
+      gap={0}
       {...props}
     >
       {children}

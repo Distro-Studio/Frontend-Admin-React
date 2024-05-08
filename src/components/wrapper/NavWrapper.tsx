@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { RiLogoutBoxLine } from "@remixicon/react";
 import { Link } from "react-router-dom";
-import { useBodyColor, useContentBg } from "../../const/colors";
+import { useBodyColor, useContentBgColor } from "../../const/colors";
 import navs from "../../const/navs";
 import { iconSize } from "../../const/sizes";
 import CContainer from "./CContainer";
@@ -135,7 +135,7 @@ export default function NavWrapper({
         )}
 
         <CContainer
-          bg={useContentBg()}
+          bg={useContentBgColor()}
           py={smScreen ? 4 : 6}
           pb={smScreen ? "86px" : 6}
           align={"stretch"}

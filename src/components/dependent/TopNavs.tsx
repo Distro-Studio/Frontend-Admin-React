@@ -1,7 +1,6 @@
 import { Box, Button, HStack, StackProps, Text } from "@chakra-ui/react";
-import { TopNavs__Interface } from "../../const/interfaces";
 import { Link } from "react-router-dom";
-import { useRef, useEffect } from "react";
+import { TopNavs__Interface } from "../../const/interfaces";
 import CWrapper from "../wrapper/CWrapper";
 
 interface Props extends StackProps {
@@ -10,15 +9,15 @@ interface Props extends StackProps {
 }
 
 export default function TopNavs({ data, active, ...props }: Props) {
-  const activeNavRef = useRef<any>(null);
+  // const activeNavRef = useRef<any>(null);
 
-  useEffect(() => {
-    if (activeNavRef.current) {
-      activeNavRef.current.scrollIntoView({
-        inline: "start",
-      });
-    }
-  }, [active]);
+  // useEffect(() => {
+  //   if (activeNavRef.current) {
+  //     activeNavRef.current.scrollIntoView({
+  //       inline: "start",
+  //     });
+  //   }
+  // }, [active]);
 
   return (
     <Box overflowX={"auto"} className="noScroll" w={"100%"}>
@@ -34,7 +33,7 @@ export default function TopNavs({ data, active, ...props }: Props) {
               className={active === i ? "btn-apa" : "btn"}
               scrollSnapAlign={"center"}
               // color={"p.500"}
-              ref={active === i ? activeNavRef : null}
+              // ref={active === i ? activeNavRef : null}
             >
               <Text
                 opacity={active === i ? 1 : 0.6}

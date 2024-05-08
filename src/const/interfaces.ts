@@ -35,11 +35,15 @@ export interface Jadwal__Interface {
 
 export interface Karyawan__Interface {
   id: number;
-  image: string;
-  name: string;
-  role: string;
-  status?: Valid__Status__Type;
-  schedules?: Jadwal__Interface[];
+  nama: string;
+  no_induk_karyawan?: string;
+  rm?: string;
+  nik?: string;
+  unit_kerja: string;
+  status_karyawan?: string;
+  tempat_lahir?: string;
+  tanggal_lahir?: string;
+  foto_profil: string;
 }
 
 export type Valid__Status__Type = "Kerja" | "Cuti" | "Izin" | "Libur";
@@ -66,4 +70,10 @@ export interface Pengumuman__Interface {
 export interface TopNavs__Interface {
   label: string;
   link: string;
+}
+
+export interface Tabel__Column__Interface {
+  key: string;
+  label: string;
+  dataType: "string" | "number" | "date" | "badge";
 }

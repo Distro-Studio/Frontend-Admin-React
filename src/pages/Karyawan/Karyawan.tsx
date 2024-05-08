@@ -10,10 +10,16 @@ import {
 import TopNavs from "../../components/dependent/TopNavs";
 import CWrapper from "../../components/wrapper/CWrapper";
 import karyawanTopNavs from "../../const/karyawanTopNavs";
-import { RiArrowDownSLine, RiSearchLine } from "@remixicon/react";
+import {
+  RiArrowDownSLine,
+  RiDownloadLine,
+  RiSearchLine,
+  RiUploadLine,
+} from "@remixicon/react";
 import CContainer from "../../components/wrapper/CContainer";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 import { useBodyColor } from "../../const/colors";
+import TabelKaryawan from "../../components/independent/Karyawan/TabelKaryawan";
 
 export default function Karyawan() {
   return (
@@ -48,10 +54,20 @@ export default function Karyawan() {
             </HStack>
 
             <HStack flex={"1 1 0"}>
-              <Button variant={"outline"} colorScheme="ap" className="clicky">
+              <Button
+                variant={"outline"}
+                colorScheme="ap"
+                className="clicky"
+                rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
+              >
                 Export
               </Button>
-              <Button variant={"outline"} colorScheme="ap" className="clicky">
+              <Button
+                variant={"outline"}
+                colorScheme="ap"
+                className="clicky"
+                rightIcon={<Icon as={RiDownloadLine} fontSize={iconSize} />}
+              >
                 Import
               </Button>
               <Button flex={"1 1 0"} colorScheme="ap" className="btn-ap clicky">
@@ -59,6 +75,8 @@ export default function Karyawan() {
               </Button>
             </HStack>
           </Stack>
+
+          <TabelKaryawan />
         </CWrapper>
       </CContainer>
     </>
