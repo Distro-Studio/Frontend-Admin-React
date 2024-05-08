@@ -2,6 +2,7 @@ import {
   Button,
   ButtonGroup,
   HStack,
+  Icon,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -14,19 +15,24 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import formatDate from "../../../lib/formatDate";
-import { Pengumuman__Interface } from "../../../const/interfaces";
-import useBackOnClose from "../../../lib/useBackOnClose";
-import backOnClose from "../../../lib/backOnClose";
+import { RiCalendarLine } from "@remixicon/react";
 import { useRef, useState } from "react";
-import FormDashboardPengumumanUpdate from "../../form/Dashboard/FormDashboardPengumumanUpdate";
+import { Pengumuman__Interface } from "../../../const/interfaces";
+import { iconSize } from "../../../const/sizes";
+import backOnClose from "../../../lib/backOnClose";
+import formatDate from "../../../lib/formatDate";
+import useBackOnClose from "../../../lib/useBackOnClose";
 import DeletePermanentWarning from "../../alert/DeletePermanentWarning";
+import FormDashboardPengumumanUpdate from "../../form/Dashboard/FormDashboardPengumumanUpdate";
 
 interface Props extends StackProps {
   data: Pengumuman__Interface;
 }
 
-export default function DashboardPengumumanItem({ data, ...props }: Props) {
+export default function DashboardPengumumanItemDetail({
+  data,
+  ...props
+}: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
@@ -72,9 +78,19 @@ export default function DashboardPengumumanItem({ data, ...props }: Props) {
           <ModalHeader>
             {isDeleting ? "Hapus" : "Detail"} Pengumuman
           </ModalHeader>
+
           <ModalBody>
-            {!isDeleting && <FormDashboardPengumumanUpdate data={data} />}
+            {!isDeleting && (
+              <>
+                <HStack mb={4}>
+                  <Icon as={RiCalendarLine} fontSize={iconSize} opacity={0.6} />
+                  <Text>{formatDate(data.createdAt)}</Text>
+                </HStack>
+                <FormDashboardPengumumanUpdate data={data} />
+              </>
+            )}
           </ModalBody>
+
           <ModalFooter pt={isDeleting ? "0 !important" : 6}>
             {!isDeleting && (
               <ButtonGroup w={"100%"}>

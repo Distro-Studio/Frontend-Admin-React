@@ -14,7 +14,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { RiAddLine, RiArrowDownSLine, RiSearch2Line } from "@remixicon/react";
+import { RiArrowDownSLine, RiSearch2Line } from "@remixicon/react";
 import { useEffect, useState } from "react";
 import { useBodyColor } from "../../../const/colors";
 import { Pengumuman__Interface } from "../../../const/interfaces";
@@ -25,7 +25,8 @@ import {
 } from "../../../const/sizes";
 import whosOffPeriode from "../../../const/whosOffPeriode";
 import Skeleton from "../Skeleton";
-import DashboardPengumumanItem from "./DashboardPengumumanItem";
+import DashboardBuatPengumumanModal from "./DashboardBuatPengumumanModal";
+import DashboardPengumumanItemDetail from "./DashboardPengumumanItemDetail";
 
 interface Props extends StackProps {}
 
@@ -97,15 +98,7 @@ export default function DashboardPengumuman({ ...props }: Props) {
             <HStack justify={"space-between"} mb={5} align={"flex-start"}>
               <Text fontWeight={600}>Pengumuman</Text>
 
-              <Button
-                size={"xs"}
-                leftIcon={<Icon as={RiAddLine} fontSize={iconSize} />}
-                pl={2}
-                className="btn-clear clicky"
-                color={"p.500"}
-              >
-                Buat Pengumuman
-              </Button>
+              <DashboardBuatPengumumanModal />
             </HStack>
 
             <HStack>
@@ -158,7 +151,7 @@ export default function DashboardPengumuman({ ...props }: Props) {
 
             {data &&
               data.map((pengumuman, i) => (
-                <DashboardPengumumanItem
+                <DashboardPengumumanItemDetail
                   key={i}
                   data={pengumuman}
                   borderBottom={

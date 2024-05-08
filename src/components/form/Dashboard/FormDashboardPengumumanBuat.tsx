@@ -1,23 +1,18 @@
-import { useFormik } from "formik";
-import { Pengumuman__Interface } from "../../../const/interfaces";
-import * as yup from "yup";
 import {
   FormControl,
   FormErrorMessage,
   FormLabel,
   Input,
 } from "@chakra-ui/react";
-import FormRequired from "../FormRequired";
+import { useFormik } from "formik";
+import * as yup from "yup";
 import Textarea from "../../input/Textarea";
+import FormRequired from "../FormRequired";
 
-interface Props {
-  data: Pengumuman__Interface;
-}
-
-export default function FormDashboardPengumumanUpdate({ data }: Props) {
+export default function FormDashboardPengumumanBuat() {
   const formik = useFormik({
     validateOnChange: false,
-    initialValues: { judul: data.judul, pengumuman: data.pengumuman },
+    initialValues: { judul: "", pengumuman: "" },
     validationSchema: yup.object().shape({
       judul: yup.string().required("Judul harus diisi"),
       pengumuman: yup.string().required("Pengumuman harus diisi"),
@@ -25,12 +20,12 @@ export default function FormDashboardPengumumanUpdate({ data }: Props) {
     onSubmit: (values, { resetForm }) => {
       console.log(values);
 
-      //TODO api update pengumuman
+      // TODO api create pengumuman
     },
   });
 
   return (
-    <form id="updatePengumumanForm" onSubmit={formik.handleSubmit}>
+    <form id="buatPengumumanForm" onSubmit={formik.handleSubmit}>
       <FormControl mb={4} isInvalid={formik.errors.judul ? true : false}>
         <FormLabel>
           Judul
