@@ -7,7 +7,7 @@ export default function Login() {
   return (
     <Container>
       <CContainer>
-        <HStack minH={"100vh"} w={"100%"}>
+        <HStack flexDir={["column", null, "row"]} minH={"100vh"} w={"100%"}>
           <VStack
             align={"stretch"}
             justify={"space-between"}
@@ -34,7 +34,7 @@ export default function Login() {
             <Text opacity={0.6}>Copyright 2024 RSKI All right Reserved</Text>
           </VStack>
 
-          <VStack p={6} h={"100vh"} flex={1}>
+          <VStack p={6} minH={"400px"} h={"100vh"} flex={1}>
             <VStack
               borderRadius={24}
               justify={"flex-end"}
