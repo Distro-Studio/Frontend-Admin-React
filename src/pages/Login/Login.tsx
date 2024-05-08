@@ -1,5 +1,5 @@
 import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
-import LoginForm from "../../components/form/LoginForm";
+import FormLogin from "../../components/form/FormLogin";
 import Container from "../../components/wrapper/Container";
 import CContainer from "../../components/wrapper/CContainer";
 
@@ -28,7 +28,7 @@ export default function Login() {
                 Masuk untuk mendapatkan akses tak terbatas ke data & informasi
               </Text>
 
-              <LoginForm />
+              <FormLogin />
             </Box>
 
             <Text opacity={0.6}>Copyright 2024 RSKI All right Reserved</Text>

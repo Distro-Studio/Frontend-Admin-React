@@ -59,6 +59,6 @@ export interface Jabatan__Interface {
 export interface Pengumuman__Interface {
   id: number;
   judul: string;
-  isi: string;
+  pengumuman: string;
   createdAt: string;
 }

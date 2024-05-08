@@ -52,7 +52,11 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
 
           <HStack m={"auto"} gap={12}>
             <VStack position={"relative"}>
-              <VStack maxW={"240px"}>
+              <VStack
+                w={"100%"}
+                maxW={"240px"}
+                className="doughnutChartContainer"
+              >
                 <ChartDoughnut labels={labels} datasets={datasets} />
               </VStack>
 

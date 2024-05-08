@@ -52,7 +52,11 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
 
           <HStack gap={12} m={"auto"}>
             <VStack my={6} position={"relative"}>
-              <VStack maxW={"240px"}>
+              <VStack
+                w={"100% !important"}
+                maxW={"240px"}
+                className="doughnutChartContainer"
+              >
                 <ChartDoughnut labels={labels} datasets={datasets} />
               </VStack>
 

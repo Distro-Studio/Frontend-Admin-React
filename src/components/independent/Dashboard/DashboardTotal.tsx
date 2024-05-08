@@ -83,8 +83,10 @@ export default function DashboardTotal({ ...props }: Props) {
                 <Icon as={statics[key].icon} color={"white"} />
               </Center>
 
-              {/* @ts-ignore */}
-              <Text>{statics[key].label}</Text>
+              <Text lineHeight={1.2} fontSize={14}>
+                {/* @ts-ignore */}
+                {statics[key].label}
+              </Text>
             </HStack>
 
             <Text fontWeight={700} fontSize={24}>

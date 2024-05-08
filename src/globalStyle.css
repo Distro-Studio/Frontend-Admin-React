@@ -370,6 +370,15 @@ select {
 }
 
 /* Custom */
+.doughnutChartContainer canvas {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 200px !important;
+  max-width: 240px !important;
+  min-height: 200px !important;
+  max-height: 240px !important;
+}
+
 img[src^="/vectors/icons/hospital.svg"] {
   transform: scale(0.5) translateY(80px);
 }

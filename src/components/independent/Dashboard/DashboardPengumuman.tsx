@@ -20,8 +20,8 @@ import { useBodyColor } from "../../../const/colors";
 import { Pengumuman__Interface } from "../../../const/interfaces";
 import { dashboardItemHeight, iconSize } from "../../../const/sizes";
 import whosOffPeriode from "../../../const/whosOffPeriode";
-import formatDate from "../../../lib/formatDate";
 import Skeleton from "../Skeleton";
+import DashboardPengumumanDetail from "./DashboardPengumumanDetail";
 
 interface Props extends StackProps {}
 
@@ -31,31 +31,35 @@ export default function DashboardPengumuman({ ...props }: Props) {
     {
       id: 1,
       judul: "Judul Pengumuman",
-      isi: "Contoh isi pengumuman, bisa pendek, bisa sangat amat panjang sekali seperti ini, ber tele - tele kaya lele",
+      pengumuman:
+        "Contoh isi pengumuman, bisa pendek, bisa sangat amat panjang sekali seperti ini, ber tele - tele kaya lele",
       createdAt: "Tue May 07 2024 21:13:25 GMT+0700 (Western Indonesia Time)",
     },
     {
       id: 2,
       judul: "Judul Pengumuman",
-      isi: "Contoh isi pengumuman, bisa pendek, bisa sangat amat panjang sekali seperti ini, ber tele - tele kaya lele, tambahan aja",
+      pengumuman:
+        "Contoh isi pengumuman, bisa pendek, bisa sangat amat panjang sekali seperti ini, ber tele - tele kaya lele, tambahan aja",
       createdAt: "Tue May 07 2024 21:13:25 GMT+0700 (Western Indonesia Time)",
     },
     {
       id: 3,
       judul: "Judul Pengumuman",
-      isi: "Contoh isi pengumuman, bisa pendek",
+      pengumuman: "Contoh isi pengumuman, bisa pendek",
       createdAt: "Tue May 07 2024 21:13:25 GMT+0700 (Western Indonesia Time)",
     },
     {
       id: 4,
       judul: "Judul Pengumuman",
-      isi: "Contoh isi pengumuman, bisa pendek, bisa sangat amat panjang sekali seperti ini, ber tele - tele kaya lele, apa lagi ya gatau ah gelap",
+      pengumuman:
+        "Contoh isi pengumuman, bisa pendek, bisa sangat amat panjang sekali seperti ini, ber tele - tele kaya lele, apa lagi ya gatau ah gelap",
       createdAt: "Tue May 07 2024 21:13:25 GMT+0700 (Western Indonesia Time)",
     },
     {
       id: 5,
       judul: "Judul Pengumuman",
-      isi: "Contoh isi pengumuman, bisa pendek, bisa sangat amat panjang sekali seperti ini, ber tele - tele kaya lele",
+      pengumuman:
+        "Contoh isi pengumuman, bisa pendek, bisa sangat amat panjang sekali seperti ini, ber tele - tele kaya lele",
       createdAt: "Tue May 07 2024 21:13:25 GMT+0700 (Western Indonesia Time)",
     },
   ];
@@ -137,9 +141,10 @@ export default function DashboardPengumuman({ ...props }: Props) {
             align={"stretch"}
             pb={6}
             overflowY={"auto"}
-            px={6}
+            // px={6}
             className="scrollY"
             flex={1}
+            gap={0}
           >
             {!data && (
               <Text m={"auto"} opacity={0.6}>
@@ -149,20 +154,7 @@ export default function DashboardPengumuman({ ...props }: Props) {
 
             {data &&
               data.map((pengumuman, i) => (
-                <VStack
-                  key={i}
-                  align={"stretch"}
-                  borderBottom={"1px solid var(--divider3)"}
-                  py={4}
-                >
-                  <HStack align={"flex-end"} justify={"space-between"}>
-                    <Text fontWeight={500}>{pengumuman.judul}</Text>
-                    <Text opacity={0.6} fontSize={12}>
-                      {formatDate(pengumuman.createdAt)}
-                    </Text>
-                  </HStack>
-                  <Text fontSize={14}>{pengumuman.isi}</Text>
-                </VStack>
+                <DashboardPengumumanDetail data={pengumuman} />
               ))}
           </VStack>
         </VStack>

@@ -10,9 +10,9 @@ import { useState } from "react";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import PasswordInput from "../input/PasswordInput";
-import RequiredForm from "./RequiredForm";
+import FormRequired from "./FormRequired";
 
-export default function LoginForm() {
+export default function FormLogin() {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -39,11 +39,11 @@ export default function LoginForm() {
   });
 
   return (
-    <form id="loginForm" onSubmit={formik.handleSubmit}>
+    <form id="FormLogin" onSubmit={formik.handleSubmit}>
       <FormControl isInvalid={formik.errors.username ? true : false} mb={4}>
         <FormLabel>
           Username
-          <RequiredForm />
+          <FormRequired />
         </FormLabel>
         <Input
           name="username"
@@ -57,7 +57,7 @@ export default function LoginForm() {
       <FormControl isInvalid={formik.errors.password ? true : false} mb={8}>
         <FormLabel>
           Password
-          <RequiredForm />
+          <FormRequired />
         </FormLabel>
         <PasswordInput
           formik={formik}
@@ -69,7 +69,7 @@ export default function LoginForm() {
 
       <Button
         type="submit"
-        form="loginForm"
+        form="FormLogin"
         colorScheme="ap"
         className="btn-ap clicky"
         w={"100%"}
