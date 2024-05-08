@@ -1,27 +1,27 @@
 const karyawanTopNavs = [
   {
     label: "Karyawan",
-    link: "/karyaawn/karyawan",
+    link: "/karyawan",
   },
   {
     label: "Akun Karyawan",
-    link: "/karyaawn/akun-karyawan",
+    link: "/karyawan/akun-karyawan",
   },
   {
     label: "Keluaga Karyawan",
-    link: "/karyaawn/keluarga-karyawan",
+    link: "/karyawan/keluarga-karyawan",
   },
   {
     label: "Pekerja Kontrak",
-    link: "/karyaawn/pekerja-kontrak",
+    link: "/karyawan/pekerja-kontrak",
   },
   {
     label: "Rekam Jejak",
-    link: "/karyaawn/rekam-jejak",
+    link: "/karyawan/rekam-jejak",
   },
   {
     label: "Transfer Karyawan",
-    link: "/karyaawn/transfer-karyawan",
+    link: "/karyawan/transfer-karyawan",
   },
 ];
 

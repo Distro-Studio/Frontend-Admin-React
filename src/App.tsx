@@ -12,6 +12,11 @@ import Pengaturan from "./pages/Pengaturan/Pengaturan";
 import MissingPage from "./pages/Error/MissingPage";
 import ManajemenJadwal from "./pages/Manajemen__Jadwal/ManajemenJadwal";
 import NavWrapper from "./components/wrapper/NavWrapper";
+import AkunKaryawan from "./pages/Karyawan/AkunKaryawan";
+import KeluargaKaryawan from "./pages/Karyawan/KeluargaKaryawan";
+import PekerjaKontrak from "./pages/Karyawan/PekerjaKontrak";
+import RekamJejak from "./pages/Karyawan/RekamJejak";
+import TransferKaryawan from "./pages/Karyawan/TransferKaryawan";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -33,6 +38,46 @@ export const App = () => (
           element={
             <NavWrapper active={1} title="Karyawan">
               <Karyawan />
+            </NavWrapper>
+          }
+        />
+        <Route
+          path="/karyawan/akun-karyawan"
+          element={
+            <NavWrapper active={1} title="Akun Karyawan">
+              <AkunKaryawan />
+            </NavWrapper>
+          }
+        />
+        <Route
+          path="/karyawan/keluarga-karyawan"
+          element={
+            <NavWrapper active={1} title="Keluarga Karyawan">
+              <KeluargaKaryawan />
+            </NavWrapper>
+          }
+        />
+        <Route
+          path="/karyawan/pekerja-kontrak"
+          element={
+            <NavWrapper active={1} title="Pekerja Kontrak">
+              <PekerjaKontrak />
+            </NavWrapper>
+          }
+        />
+        <Route
+          path="/karyawan/rekam-jejak"
+          element={
+            <NavWrapper active={1} title="Rekam Jejak">
+              <RekamJejak />
+            </NavWrapper>
+          }
+        />
+        <Route
+          path="/karyawan/transfer-karyawan"
+          element={
+            <NavWrapper active={1} title="Transfer Karyawan">
+              <TransferKaryawan />
             </NavWrapper>
           }
         />
