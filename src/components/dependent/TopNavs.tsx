@@ -27,11 +27,13 @@ export default function TopNavs({ data, active, ...props }: Props) {
           {data.map((nav, i) => (
             <Button
               key={i}
+              size={"sm"}
               as={Link}
               fontWeight={400}
               to={nav.link}
-              className={active === i ? "btn-apa" : "btn-solid"}
+              className={active === i ? "btn-apa" : "btn"}
               scrollSnapAlign={"center"}
+              // color={"p.500"}
               ref={active === i ? activeNavRef : null}
             >
               <Text
