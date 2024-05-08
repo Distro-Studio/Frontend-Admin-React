@@ -25,7 +25,7 @@ export default function Container({ children, ...props }: Props) {
         align={"stretch"}
         {...props}
       >
-        {sw < 375 ? (
+        {sw < 350 ? (
           <VStack my={"auto"} px={6} py={12}>
             <Image src={"/vectors/screenWarning.webp"} mb={4} maxW={"300px"} />
             <Text
@@ -36,7 +36,7 @@ export default function Container({ children, ...props }: Props) {
               maxW={"600px"}
             >
               Untuk menggunakan aplikasi ini, minimal lebar viewport/monitor
-              harus 375px.
+              harus 350px.
             </Text>
             <Text textAlign={"center"} maxW={"600px"}>
               Jika lebar layar tidak memenuhi syarat, anda dapat menurunkan
