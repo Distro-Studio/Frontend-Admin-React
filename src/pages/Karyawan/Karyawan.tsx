@@ -27,12 +27,12 @@ export default function Karyawan() {
             py={responsiveSpacing}
             justify={"space-between"}
           >
-            <HStack>
+            <HStack flex={"1 1 0"}>
               <InputGroup>
                 <InputLeftElement>
                   <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
                 </InputLeftElement>
-                <Input placeholder="Pencarian" />
+                <Input placeholder="Pencarian" flex={"1 1 0"} />
               </InputGroup>
 
               <Button
@@ -47,14 +47,14 @@ export default function Karyawan() {
               </Button>
             </HStack>
 
-            <HStack>
+            <HStack flex={"1 1 0"}>
               <Button variant={"outline"} colorScheme="ap" className="clicky">
                 Export
               </Button>
               <Button variant={"outline"} colorScheme="ap" className="clicky">
                 Import
               </Button>
-              <Button colorScheme="ap" className="btn-ap clicky">
+              <Button flex={"1 1 0"} colorScheme="ap" className="btn-ap clicky">
                 Tambah Karyawan
               </Button>
             </HStack>
