@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 import { useBodyColor } from "../../../const/colors";
 import { Jabatan__Interface } from "../../../const/interfaces";
 import Skeleton from "../Skeleton";
-import { dashboardItemHeight } from "../../../const/sizes";
+import {
+  dashboardItemHeight,
+  dashboardItemMinWidth,
+} from "../../../const/sizes";
 
 interface Props extends StackProps {}
 
@@ -83,7 +86,7 @@ export default function DashboardJabatan({ ...props }: Props) {
           align={"stretch"}
           bg={bodyColor}
           borderRadius={12}
-          minW={"400px"}
+          minW={dashboardItemMinWidth}
           gap={0}
           h={dashboardItemHeight}
           {...props}

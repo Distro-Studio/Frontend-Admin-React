@@ -14,6 +14,7 @@ import { iconSize } from "../../const/sizes";
 import CContainer from "./CContainer";
 import Container from "./Container";
 import Header from "../dependent/Header";
+import useScreenWidth from "../../lib/useScreenWidth";
 
 interface Props {
   active: number;
@@ -32,12 +33,14 @@ export default function NavWrapper({
   left,
   right,
 }: Props) {
+  const smScreen = useScreenWidth() < 500;
+
   // SX
 
   return (
     <Container>
       <HStack flex={1} align={"stretch"} gap={0}>
-        {!noNavs && (
+        {!noNavs && !smScreen && (
           <VStack
             p={4}
             justify={"space-between"}
@@ -45,6 +48,7 @@ export default function NavWrapper({
             overflowY={"auto"}
             position={"sticky"}
             top={0}
+            flexShrink={0}
           >
             <VStack>
               <Image src="/logo512.png" w={"40px"} mb={8} />
@@ -90,7 +94,7 @@ export default function NavWrapper({
           </VStack>
         )}
 
-        <CContainer bg={useContentBg()} p={6}>
+        <CContainer bg={useContentBg()} p={smScreen ? 4 : 6}>
           <Header title={title} left={left} right={right} />
 
           {children}

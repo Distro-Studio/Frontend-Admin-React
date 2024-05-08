@@ -1,9 +1,19 @@
-import { Box, HStack, StackProps, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  SimpleGrid,
+  StackProps,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useBodyColor } from "../../../const/colors";
 import ChartDoughnut from "../../dependent/ChartDoughnut";
 import Skeleton from "../Skeleton";
-import { dashboardItemHeight } from "../../../const/sizes";
+import {
+  dashboardItemHeight,
+  dashboardItemMinWidth,
+} from "../../../const/sizes";
 
 interface Props extends StackProps {}
 
@@ -40,6 +50,7 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
           align={"stretch"}
           bg={bodyColor}
           borderRadius={12}
+          minW={dashboardItemMinWidth}
           p={6}
           gap={0}
           h={dashboardItemHeight}
@@ -50,7 +61,7 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
             Karyawan saat ini
           </Text>
 
-          <HStack m={"auto"} gap={12}>
+          <SimpleGrid m={"auto"} gap={12} columns={[1, null, null, 2]}>
             <VStack position={"relative"}>
               <VStack
                 w={"100%"}
@@ -72,7 +83,7 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
               </Text>
             </VStack>
 
-            <VStack align={"stretch"} minW={"140px"}>
+            <VStack align={"stretch"} minW={"140px"} justify={"center"}>
               <HStack>
                 <Box
                   borderRadius={"full"}
@@ -97,7 +108,7 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
                 <Text ml={"auto"}>{data[1]}%</Text>
               </HStack>
             </VStack>
-          </HStack>
+          </SimpleGrid>
         </VStack>
       )}
     </>

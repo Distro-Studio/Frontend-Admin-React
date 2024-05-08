@@ -12,12 +12,21 @@ interface Props extends StackProps {
 
 export default function Header({ title, left, right, ...props }: Props) {
   return (
-    <HStack mb={6} justify={"space-between"} {...props}>
-      {left && <Box w={"40px"}>{left === "back" ? <BackButton /> : left}</Box>}
+    <HStack
+      flexDir={["column", null, "row"]}
+      mb={6}
+      justify={"space-between"}
+      {...props}
+    >
+      <HStack>
+        {left && (
+          <Box w={"40px"}>{left === "back" ? <BackButton /> : left}</Box>
+        )}
 
-      <Text fontSize={24} fontWeight={700}>
-        {title}
-      </Text>
+        <Text fontSize={24} fontWeight={700}>
+          {title}
+        </Text>
+      </HStack>
 
       <ButtonGroup>
         <NotificationButton aria-label="Notification Button" />

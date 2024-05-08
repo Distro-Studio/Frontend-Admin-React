@@ -17,7 +17,11 @@ import { useBodyColor } from "../../../const/colors";
 import { Karyawan__Interface } from "../../../const/interfaces";
 import Skeleton from "../Skeleton";
 import { RiArrowDownSLine } from "@remixicon/react";
-import { dashboardItemHeight, iconSize } from "../../../const/sizes";
+import {
+  dashboardItemHeight,
+  dashboardItemMinWidth,
+  iconSize,
+} from "../../../const/sizes";
 import whosOffPeriode from "../../../const/whosOffPeriode";
 
 interface Props extends StackProps {}
@@ -90,7 +94,7 @@ export default function DashboardSiapaYangLibur({ ...props }: Props) {
           bg={bodyColor}
           borderRadius={12}
           gap={0}
-          minW={"400px"}
+          minW={dashboardItemMinWidth}
           h={dashboardItemHeight}
           {...props}
         >

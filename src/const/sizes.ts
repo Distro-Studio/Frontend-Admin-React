@@ -6,4 +6,12 @@ const checkBoxTextMt = ["-2px", null, "-2px"];
 
 const dashboardItemHeight = "500px";
 
-export { iconSize, textSize, checkBoxTextMt, dashboardItemHeight };
+const dashboardItemMinWidth = "300px";
+
+export {
+  iconSize,
+  textSize,
+  checkBoxTextMt,
+  dashboardItemHeight,
+  dashboardItemMinWidth,
+};

@@ -18,7 +18,11 @@ import { RiAddLine, RiArrowDownSLine, RiSearch2Line } from "@remixicon/react";
 import { useEffect, useState } from "react";
 import { useBodyColor } from "../../../const/colors";
 import { Pengumuman__Interface } from "../../../const/interfaces";
-import { dashboardItemHeight, iconSize } from "../../../const/sizes";
+import {
+  dashboardItemHeight,
+  dashboardItemMinWidth,
+  iconSize,
+} from "../../../const/sizes";
 import whosOffPeriode from "../../../const/whosOffPeriode";
 import Skeleton from "../Skeleton";
 import DashboardPengumumanItem from "./DashboardPengumumanItem";
@@ -84,7 +88,7 @@ export default function DashboardPengumuman({ ...props }: Props) {
           align={"stretch"}
           bg={bodyColor}
           borderRadius={12}
-          minW={"400px"}
+          minW={dashboardItemMinWidth}
           gap={0}
           h={dashboardItemHeight}
           {...props}
