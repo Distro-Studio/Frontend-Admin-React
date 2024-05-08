@@ -108,7 +108,10 @@ export default function DashboardJabatan({ ...props }: Props) {
           >
             {data.map((jabatan, i) => (
               <HStack key={i} justify={"space-between"}>
-                <Text fontSize={14}>{jabatan.nama}</Text>
+                <Text fontSize={14} flexShrink={0}>
+                  {jabatan.nama}
+                </Text>
+                <Box w={"100%"} h={"1px"} bg={"var(--divider)"} mx={4} />
                 <Text fontSize={14}>{jabatan.jumlah}</Text>
               </HStack>
             ))}

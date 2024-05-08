@@ -4,11 +4,11 @@ const textSize = [14, null, 16];
 
 const checkBoxTextMt = ["-2px", null, "-2px"];
 
-const dashboardItemHeight = "500px";
+const dashboardItemHeight = "600px";
 
 const dashboardItemMinWidth = "300px";
 
-const itemSpacing = [4, null, 6];
+const responsiveSpacing = [4, null, 6];
 
 export {
   iconSize,
@@ -16,5 +16,5 @@ export {
   checkBoxTextMt,
   dashboardItemHeight,
   dashboardItemMinWidth,
-  itemSpacing,
+  responsiveSpacing,
 };

@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { RiMenu4Line, RiNotification2Line } from "@remixicon/react";
 import { ColorModeSwitcher } from "../../ColorModeSwitcher";
-import { iconSize, itemSpacing } from "../../const/sizes";
+import { iconSize, responsiveSpacing } from "../../const/sizes";
 import useScreenWidth from "../../lib/useScreenWidth";
 import AdminMiniProfile from "../independent/AdminMiniProfile";
 import BackButton from "../independent/BackButton";
@@ -32,7 +32,7 @@ export default function Header({ title, left, right, ...props }: Props) {
   return (
     <HStack
       // flexDir={["column", null, "row"]}
-      mb={itemSpacing}
+      mb={responsiveSpacing}
       justify={"space-between"}
       gap={4}
       {...props}

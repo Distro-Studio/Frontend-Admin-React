@@ -16,7 +16,7 @@ import {
 import { useEffect, useState } from "react";
 import { Dashboard__Total__Interface } from "../../../const/interfaces";
 import formatNumber from "../../../lib/formatNumber";
-import { itemSpacing } from "../../../const/sizes";
+import { responsiveSpacing } from "../../../const/sizes";
 
 interface Props extends SimpleGridProps {}
 
@@ -64,7 +64,7 @@ export default function DashboardTotal({ ...props }: Props) {
   }, []);
 
   return (
-    <SimpleGrid columns={[1, 2, 4]} gap={itemSpacing} {...props}>
+    <SimpleGrid columns={[1, 2, 4]} gap={responsiveSpacing} {...props}>
       {!loading &&
         data &&
         Object.entries(data).map(([key, value]) => (

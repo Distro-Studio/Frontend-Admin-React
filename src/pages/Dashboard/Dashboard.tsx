@@ -6,7 +6,7 @@ import DashboardSiapaYangLibur from "../../components/independent/Dashboard/Dash
 import DashboardPengumuman from "../../components/independent/Dashboard/DashboardPengumuman";
 import DashboardJenisKelamin from "../../components/independent/Dashboard/DashboardJenisKelamin";
 import CWrapper from "../../components/wrapper/CWrapper";
-import { itemSpacing } from "../../const/sizes";
+import { responsiveSpacing } from "../../const/sizes";
 
 export default function Dashboard() {
   return (
@@ -16,7 +16,7 @@ export default function Dashboard() {
       </CWrapper>
 
       <CWrapper>
-        <Wrap spacing={itemSpacing}>
+        <Wrap spacing={responsiveSpacing}>
           <DashboardJenisKelamin flex={"1 1 0"} />
 
           <DashboardJabatan flex={"1 1 0"} />

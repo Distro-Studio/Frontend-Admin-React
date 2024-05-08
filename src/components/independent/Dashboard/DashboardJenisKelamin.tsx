@@ -13,6 +13,7 @@ import Skeleton from "../Skeleton";
 import {
   dashboardItemHeight,
   dashboardItemMinWidth,
+  responsiveSpacing,
 } from "../../../const/sizes";
 
 interface Props extends StackProps {}
@@ -61,8 +62,12 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
             Karyawan saat ini
           </Text>
 
-          <SimpleGrid m={"auto"} gap={12} columns={[1, null, null, 2]}>
-            <VStack position={"relative"}>
+          <SimpleGrid
+            m={"auto"}
+            gap={responsiveSpacing}
+            columns={[1, null, null, 2]}
+          >
+            <VStack my={responsiveSpacing} position={"relative"}>
               <VStack
                 w={"100%"}
                 maxW={"240px"}
