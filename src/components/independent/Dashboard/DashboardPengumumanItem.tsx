@@ -61,6 +61,7 @@ export default function DashboardPengumumanItem({ data, ...props }: Props) {
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
+          setIsDeleting(false);
         }}
         initialFocusRef={initialRef}
         isCentered

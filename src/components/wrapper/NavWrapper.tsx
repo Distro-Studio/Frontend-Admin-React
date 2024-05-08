@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { RiLogoutBoxLine } from "@remixicon/react";
 import { Link } from "react-router-dom";
-import { useContentBg } from "../../const/colors";
+import { useBodyColor, useContentBg } from "../../const/colors";
 import navs from "../../const/navs";
 import { iconSize } from "../../const/sizes";
 import CContainer from "./CContainer";
@@ -33,15 +33,17 @@ export default function NavWrapper({
   left,
   right,
 }: Props) {
-  const smScreen = useScreenWidth() < 500;
+  const smScreen = useScreenWidth() <= 500;
 
   // SX
+  const bodyColor = useBodyColor();
 
   return (
     <Container>
       <HStack flex={1} align={"stretch"} gap={0}>
         {!noNavs && !smScreen && (
           <VStack
+            id="navs"
             p={4}
             justify={"space-between"}
             h={"100vh"}
@@ -94,7 +96,45 @@ export default function NavWrapper({
           </VStack>
         )}
 
-        <CContainer bg={useContentBg()} p={smScreen ? 4 : 6}>
+        {!noNavs && smScreen && (
+          <HStack
+            id="navs"
+            overflowX={"auto"}
+            position={"fixed"}
+            bottom={0}
+            left={0}
+            minW={"100%"}
+            h={"60px"}
+            zIndex={99}
+            bg={bodyColor}
+            justify={"center"}
+          >
+            {navs.map((nav, i) => (
+              <Tooltip key={i} label={nav.label} placement="top">
+                <IconButton
+                  aria-label={`Nav Button ${nav.label}`}
+                  icon={
+                    <Icon
+                      as={nav.icon}
+                      fontSize={20}
+                      opacity={active === i ? 1 : 0.6}
+                    />
+                  }
+                  className="btn clicky"
+                  color={active === i ? "p.500" : ""}
+                  as={Link}
+                  to={nav.link}
+                />
+              </Tooltip>
+            ))}
+          </HStack>
+        )}
+
+        <CContainer
+          bg={useContentBg()}
+          p={smScreen ? 4 : 6}
+          pb={smScreen ? "76px" : ""}
+        >
           <Header title={title} left={left} right={right} />
 
           {children}
