@@ -26,7 +26,7 @@ interface Props extends StackProps {
   data: Pengumuman__Interface;
 }
 
-export default function DashboardPengumumanDetail({ data, ...props }: Props) {
+export default function DashboardPengumumanItem({ data, ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
@@ -106,7 +106,7 @@ export default function DashboardPengumumanDetail({ data, ...props }: Props) {
                   Apakah anda yakin menghapus pengumuman ini?
                 </Text>
 
-                <DeletePermanentWarning mb={4} />
+                <DeletePermanentWarning mb={2} mt={4} />
 
                 <ButtonGroup w={"100%"}>
                   <Button
@@ -122,7 +122,7 @@ export default function DashboardPengumumanDetail({ data, ...props }: Props) {
                     w={"50%"}
                     className="clicky"
                     colorScheme="red"
-                    variant={"ghost"}
+                    // variant={"ghost"}
                   >
                     Ya
                   </Button>

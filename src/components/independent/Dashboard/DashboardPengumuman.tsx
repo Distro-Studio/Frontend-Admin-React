@@ -21,7 +21,7 @@ import { Pengumuman__Interface } from "../../../const/interfaces";
 import { dashboardItemHeight, iconSize } from "../../../const/sizes";
 import whosOffPeriode from "../../../const/whosOffPeriode";
 import Skeleton from "../Skeleton";
-import DashboardPengumumanDetail from "./DashboardPengumumanDetail";
+import DashboardPengumumanItem from "./DashboardPengumumanItem";
 
 interface Props extends StackProps {}
 
@@ -139,7 +139,7 @@ export default function DashboardPengumuman({ ...props }: Props) {
 
           <VStack
             align={"stretch"}
-            pb={6}
+            // pb={6}
             overflowY={"auto"}
             // px={6}
             className="scrollY"
@@ -154,7 +154,13 @@ export default function DashboardPengumuman({ ...props }: Props) {
 
             {data &&
               data.map((pengumuman, i) => (
-                <DashboardPengumumanDetail key={i} data={pengumuman} />
+                <DashboardPengumumanItem
+                  key={i}
+                  data={pengumuman}
+                  borderBottom={
+                    i < data.length - 1 ? "1px solid var(--divider2)" : ""
+                  }
+                />
               ))}
           </VStack>
         </VStack>
