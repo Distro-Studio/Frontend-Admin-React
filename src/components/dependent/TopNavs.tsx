@@ -28,12 +28,18 @@ export default function TopNavs({ data, active, ...props }: Props) {
             <Button
               key={i}
               as={Link}
+              fontWeight={400}
               to={nav.link}
               className={active === i ? "btn-apa" : "btn-solid"}
               scrollSnapAlign={"center"}
               ref={active === i ? activeNavRef : null}
             >
-              <Text opacity={active === i ? 1 : 0.6}>{nav.label}</Text>
+              <Text
+                opacity={active === i ? 1 : 0.6}
+                fontSize={"14px !important"}
+              >
+                {nav.label}
+              </Text>
             </Button>
           ))}
         </HStack>
