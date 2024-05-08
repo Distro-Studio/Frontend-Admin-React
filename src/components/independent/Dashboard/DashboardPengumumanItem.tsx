@@ -86,6 +86,7 @@ export default function DashboardPengumumanItem({ data, ...props }: Props) {
                   onClick={() => {
                     setIsDeleting(true);
                   }}
+                  bg={"var(--reda)"}
                 >
                   Delete
                 </Button>
@@ -112,7 +113,8 @@ export default function DashboardPengumumanItem({ data, ...props }: Props) {
                 <ButtonGroup w={"100%"}>
                   <Button
                     w={"50%"}
-                    className="btn-solid clicky"
+                    className="clicky"
+                    colorScheme="red"
                     onClick={() => {
                       setIsDeleting(false);
                     }}
@@ -122,7 +124,9 @@ export default function DashboardPengumumanItem({ data, ...props }: Props) {
                   <Button
                     w={"50%"}
                     className="clicky"
+                    variant={"ghost"}
                     colorScheme="red"
+                    bg={"var(--reda)"}
                     // variant={"ghost"}
                   >
                     Ya
