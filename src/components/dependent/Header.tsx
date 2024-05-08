@@ -18,6 +18,7 @@ import useScreenWidth from "../../lib/useScreenWidth";
 import AdminMiniProfile from "../independent/AdminMiniProfile";
 import BackButton from "../independent/BackButton";
 import NotificationButton from "../independent/NotificationButton";
+import { ColorModeSwitcherHeaderMenu } from "../independent/ColorModeSwitcherHeaderMenu";
 
 interface Props extends StackProps {
   title?: string;
@@ -56,11 +57,13 @@ export default function Header({ title, left, right, ...props }: Props) {
 
       {smScreen && (
         <HStack>
+          <AdminMiniProfile />
+
           <Menu>
             <MenuButton
               as={IconButton}
               icon={<Icon as={RiMenu4Line} fontSize={24} />}
-              className="btn"
+              className="btn-solid"
             />
 
             <MenuList>
@@ -71,16 +74,15 @@ export default function Header({ title, left, right, ...props }: Props) {
                 </HStack>
               </MenuItem>
 
-              <MenuItem>
-                <HStack>
+              <MenuItem p={0}>
+                {/* <HStack>
                   <Icon as={RiNotification2Line} fontSize={iconSize} />
-                  <Text>Notifikasi</Text>
-                </HStack>
+                  <Text>Mode Gelap</Text>
+                </HStack> */}
+                <ColorModeSwitcherHeaderMenu />
               </MenuItem>
             </MenuList>
           </Menu>
-
-          <AdminMiniProfile />
         </HStack>
       )}
     </HStack>
