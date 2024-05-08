@@ -106,7 +106,8 @@ export default function NavWrapper({
               bottom={0}
               left={0}
               minW={"100%"}
-              h={"60px"}
+              h={"70px"}
+              pb={4}
               zIndex={99}
               bg={bodyColor}
               justify={"center"}
@@ -136,7 +137,7 @@ export default function NavWrapper({
         <CContainer
           bg={useContentBg()}
           py={smScreen ? 4 : 6}
-          pb={smScreen ? "76px" : 6}
+          pb={smScreen ? "86px" : 6}
           align={"stretch"}
           // w={"100%"}
           flex={1}
