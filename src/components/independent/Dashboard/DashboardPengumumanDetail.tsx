@@ -118,7 +118,12 @@ export default function DashboardPengumumanDetail({ data, ...props }: Props) {
                   >
                     Tidak
                   </Button>
-                  <Button w={"50%"} className="clicky" colorScheme="red">
+                  <Button
+                    w={"50%"}
+                    className="clicky"
+                    colorScheme="red"
+                    variant={"ghost"}
+                  >
                     Ya
                   </Button>
                 </ButtonGroup>

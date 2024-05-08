@@ -154,7 +154,7 @@ export default function DashboardPengumuman({ ...props }: Props) {
 
             {data &&
               data.map((pengumuman, i) => (
-                <DashboardPengumumanDetail data={pengumuman} />
+                <DashboardPengumumanDetail key={i} data={pengumuman} />
               ))}
           </VStack>
         </VStack>

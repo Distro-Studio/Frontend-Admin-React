@@ -17,7 +17,7 @@ interface Props {
 export default function FormDashboardPengumumanUpdate({ data }: Props) {
   const formik = useFormik({
     validateOnChange: false,
-    initialValues: { judul: "", pengumuman: "" },
+    initialValues: { judul: data.judul, pengumuman: data.pengumuman },
     validationSchema: yup.object().shape({
       judul: yup.string().required("Judul harus diisi"),
       pengumuman: yup.string().required("Pengumuman harus diisi"),
@@ -34,7 +34,12 @@ export default function FormDashboardPengumumanUpdate({ data }: Props) {
           Judul
           <FormRequired />
         </FormLabel>
-        <Input name="judul" placeholder="Judul Pengumuman" />
+        <Input
+          name="judul"
+          placeholder="Judul Pengumuman"
+          onChange={formik.handleChange}
+          value={formik.values.judul}
+        />
         <FormErrorMessage>{formik.errors.judul}</FormErrorMessage>
       </FormControl>
 
