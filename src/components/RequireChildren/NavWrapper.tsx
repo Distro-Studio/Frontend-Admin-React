@@ -13,7 +13,7 @@ import navs from "../../const/navs";
 import { iconSize } from "../../const/sizes";
 import CContainer from "./CContainer";
 import Container from "./Container";
-import Header from "../Dependent/Header";
+import Header from "../dependent/Header";
 
 interface Props {
   active: number;

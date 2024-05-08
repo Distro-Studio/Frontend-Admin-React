@@ -1,5 +1,5 @@
-import Container from "../../components/RequireChildren/Container";
-import CContainer from "../../components/RequireChildren/CContainer";
+import Container from "../../components/requireChildren/Container";
+import CContainer from "../../components/requireChildren/CContainer";
 import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import LoginForm from "../../components/form/LoginForm";
 

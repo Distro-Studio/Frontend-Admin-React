@@ -9,7 +9,7 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-import PasswordInput from "../Input/PasswordInput";
+import PasswordInput from "../input/PasswordInput";
 import RequiredForm from "./RequiredForm";
 
 export default function LoginForm() {

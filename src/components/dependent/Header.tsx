@@ -1,8 +1,8 @@
 import { Box, ButtonGroup, HStack, StackProps, Text } from "@chakra-ui/react";
 import { ColorModeSwitcher } from "../../ColorModeSwitcher";
-import AdminMiniProfile from "../Independent/AdminMiniProfile";
-import BackButton from "../Independent/BackButton";
-import NotificationButton from "../Independent/NotificationButton";
+import AdminMiniProfile from "../independent/AdminMiniProfile";
+import BackButton from "../independent/BackButton";
+import NotificationButton from "../independent/NotificationButton";
 
 interface Props extends StackProps {
   title?: string;

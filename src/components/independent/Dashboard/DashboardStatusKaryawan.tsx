@@ -1,7 +1,7 @@
 import { Box, HStack, StackProps, Text, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useBodyColor } from "../../../const/colors";
-import ChartDoughnut from "../../Dependent/ChartDoughnut";
+import ChartDoughnut from "../../dependent/ChartDoughnut";
 import Skeleton from "../Skeleton";
 import { dashboardItemHeight } from "../../../const/sizes";
 
