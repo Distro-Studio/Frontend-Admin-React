@@ -16,6 +16,7 @@ export default function Header({ title, left, right, ...props }: Props) {
       flexDir={["column", null, "row"]}
       mb={6}
       justify={"space-between"}
+      gap={4}
       {...props}
     >
       <HStack>

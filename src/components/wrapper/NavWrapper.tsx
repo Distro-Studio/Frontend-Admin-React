@@ -110,7 +110,7 @@ export default function NavWrapper({
             justify={"center"}
           >
             {navs.map((nav, i) => (
-              <Tooltip key={i} label={nav.label} placement="top">
+              <Tooltip key={i} placement="top">
                 <IconButton
                   aria-label={`Nav Button ${nav.label}`}
                   icon={
