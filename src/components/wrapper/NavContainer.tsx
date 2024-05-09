@@ -27,7 +27,7 @@ interface Props {
   right?: any;
 }
 
-export default function NavWrapper({
+export default function NavContainer({
   children,
   active,
   noNavs,

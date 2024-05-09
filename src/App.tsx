@@ -11,7 +11,7 @@ import Perusahaan from "./pages/Perusahaan/Perusahaan";
 import Pengaturan from "./pages/Pengaturan/Pengaturan";
 import MissingPage from "./pages/Error/MissingPage";
 import ManajemenJadwal from "./pages/Manajemen__Jadwal/ManajemenJadwal";
-import NavWrapper from "./components/wrapper/NavWrapper";
+import NavContainer from "./components/wrapper/NavContainer";
 import AkunKaryawan from "./pages/Karyawan/AkunKaryawan";
 import KeluargaKaryawan from "./pages/Karyawan/KeluargaKaryawan";
 import PekerjaKontrak from "./pages/Karyawan/PekerjaKontrak";
@@ -27,103 +27,103 @@ export const App = () => (
         <Route
           path="/dashboard"
           element={
-            <NavWrapper active={0} title="Dashboard">
+            <NavContainer active={0} title="Dashboard">
               <Dashboard />
-            </NavWrapper>
+            </NavContainer>
           }
         />
 
         <Route
           path="/karyawan"
           element={
-            <NavWrapper active={1} title="Karyawan">
+            <NavContainer active={1} title="Karyawan">
               <Karyawan />
-            </NavWrapper>
+            </NavContainer>
           }
         />
         <Route
           path="/karyawan/akun-karyawan"
           element={
-            <NavWrapper active={1} title="Akun Karyawan">
+            <NavContainer active={1} title="Akun Karyawan">
               <AkunKaryawan />
-            </NavWrapper>
+            </NavContainer>
           }
         />
         <Route
           path="/karyawan/keluarga-karyawan"
           element={
-            <NavWrapper active={1} title="Keluarga Karyawan">
+            <NavContainer active={1} title="Keluarga Karyawan">
               <KeluargaKaryawan />
-            </NavWrapper>
+            </NavContainer>
           }
         />
         <Route
           path="/karyawan/pekerja-kontrak"
           element={
-            <NavWrapper active={1} title="Pekerja Kontrak">
+            <NavContainer active={1} title="Pekerja Kontrak">
               <PekerjaKontrak />
-            </NavWrapper>
+            </NavContainer>
           }
         />
         <Route
           path="/karyawan/rekam-jejak"
           element={
-            <NavWrapper active={1} title="Rekam Jejak">
+            <NavContainer active={1} title="Rekam Jejak">
               <RekamJejak />
-            </NavWrapper>
+            </NavContainer>
           }
         />
         <Route
           path="/karyawan/transfer-karyawan"
           element={
-            <NavWrapper active={1} title="Transfer Karyawan">
+            <NavContainer active={1} title="Transfer Karyawan">
               <TransferKaryawan />
-            </NavWrapper>
+            </NavContainer>
           }
         />
 
         <Route
           path="/presensi"
           element={
-            <NavWrapper active={2} title="Presensi">
+            <NavContainer active={2} title="Presensi">
               <Presensi />
-            </NavWrapper>
+            </NavContainer>
           }
         />
 
         <Route
           path="/manajemen-jadwal"
           element={
-            <NavWrapper active={3} title="Manajemen Jadwal">
+            <NavContainer active={3} title="Manajemen Jadwal">
               <ManajemenJadwal />
-            </NavWrapper>
+            </NavContainer>
           }
         />
 
         <Route
           path="/keuangan"
           element={
-            <NavWrapper active={4} title="Keuangan">
+            <NavContainer active={4} title="Keuangan">
               <Keuangan />
-            </NavWrapper>
+            </NavContainer>
           }
         />
 
         <Route
           path="/perusahaan"
           element={
-            <NavWrapper active={5} title="Perusahaan">
+            <NavContainer active={5} title="Perusahaan">
               <Perusahaan />
-            </NavWrapper>
+            </NavContainer>
           }
         />
 
         <Route
           path="/pengaturan"
           element={
-            <NavWrapper active={6} title="Pengaturan">
+            <NavContainer active={6} title="Pengaturan">
               <Pengaturan />
-            </NavWrapper>
+            </NavContainer>
           }
         />
 
