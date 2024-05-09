@@ -30,7 +30,7 @@ export default function Karyawan() {
       <CWrapper>
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
           <Wrap w={"100%"} mb={responsiveSpacing}>
-            <InputGroup flex={"1 1 300px"}>
+            <InputGroup flex={"1 1 200px"}>
               <InputLeftElement>
                 <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
               </InputLeftElement>
