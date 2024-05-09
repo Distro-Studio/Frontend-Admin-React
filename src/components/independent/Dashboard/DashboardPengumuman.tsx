@@ -144,7 +144,7 @@ export default function DashboardPengumuman({ ...props }: Props) {
             // pb={6}
             overflowY={"auto"}
             // px={6}
-            className="scrollY"
+            // className="scrollY"
             flex={1}
             gap={0}
           >

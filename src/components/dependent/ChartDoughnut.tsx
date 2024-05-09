@@ -24,6 +24,9 @@ export default function ChartDoughnut({ labels, datasets }: Props) {
         display: false,
       },
     },
+    tooltip: {
+      tooltip: false,
+    },
   };
 
   return <Doughnut data={data} options={options} />;

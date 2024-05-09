@@ -1,20 +1,13 @@
-import {
-  Box,
-  HStack,
-  SimpleGrid,
-  StackProps,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, HStack, StackProps, Text, VStack, Wrap } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useBodyColor } from "../../../const/colors";
-import ChartDoughnut from "../../dependent/ChartDoughnut";
-import Skeleton from "../Skeleton";
 import {
   dashboardItemHeight,
   dashboardItemMinWidth,
   responsiveSpacing,
 } from "../../../const/sizes";
+import ChartDoughnut from "../../dependent/ChartDoughnut";
+import Skeleton from "../Skeleton";
 
 interface Props extends StackProps {}
 
@@ -62,12 +55,8 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
             Karyawan saat ini
           </Text>
 
-          <SimpleGrid
-            gap={responsiveSpacing}
-            m={"auto"}
-            columns={[1, null, null, 2]}
-          >
-            <VStack my={responsiveSpacing} position={"relative"}>
+          <Wrap m={"auto"} spacing={responsiveSpacing}>
+            <VStack flex={"1 1 0"} my={responsiveSpacing} position={"relative"}>
               <VStack
                 w={"100% !important"}
                 maxW={"240px"}
@@ -88,8 +77,14 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
               </Text>
             </VStack>
 
-            <VStack align={"stretch"} minW={"140px"} justify={"center"}>
-              <HStack>
+            <VStack
+              flex={"1 1 0"}
+              align={"stretch"}
+              justify={"center"}
+              maxW={"240px"}
+              mx={"auto"}
+            >
+              <HStack gap={6}>
                 <Box
                   borderRadius={"full"}
                   w={"10px"}
@@ -101,7 +96,7 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
                 <Text ml={"auto"}>{data[0]}</Text>
               </HStack>
 
-              <HStack>
+              <HStack gap={6}>
                 <Box
                   borderRadius={"full"}
                   w={"10px"}
@@ -113,7 +108,7 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
                 <Text ml={"auto"}>{data[1]}</Text>
               </HStack>
 
-              <HStack>
+              <HStack gap={6}>
                 <Box
                   borderRadius={"full"}
                   w={"10px"}
@@ -125,7 +120,7 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
                 <Text ml={"auto"}>{data[2]}</Text>
               </HStack>
             </VStack>
-          </SimpleGrid>
+          </Wrap>
         </VStack>
       )}
     </>

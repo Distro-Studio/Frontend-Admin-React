@@ -77,7 +77,9 @@ export default function Tabel({ columns, data }: Props) {
                 pr={i === columns.length - 1 ? 4 : ""}
                 position={"sticky"}
                 top={0}
+                borderBottom={"none !important"}
                 bg={bodyColor}
+                zIndex={2}
               >
                 <HStack justify={"space-between"}>
                   <Text fontWeight={600} flexShrink={0} lineHeight={1.2}>
@@ -106,10 +108,19 @@ export default function Tabel({ columns, data }: Props) {
             ))}
 
             {/* Kolom tetap di sebelah kanan */}
-            <Th position={"sticky"} right={0} top={0} p={0} bg={bodyColor}>
+            <Th
+              position={"sticky"}
+              top={0}
+              right={0}
+              borderBottom={"none !important"}
+              p={0}
+              bg={bodyColor}
+              zIndex={2}
+            >
               <VStack
                 px={4}
                 py={3}
+                zIndex={99}
                 borderLeft={"1px solid var(--divider3)"}
                 h={"51px"}
               ></VStack>
@@ -147,6 +158,7 @@ export default function Tabel({ columns, data }: Props) {
                 right={0}
                 p={0}
                 bg={i % 2 === 0 ? contectBgColor : bodyColor}
+                zIndex={1}
               >
                 <VStack
                   h={"72px"}

@@ -104,7 +104,7 @@ export default function DashboardJabatan({ ...props }: Props) {
             pb={6}
             overflowY={"auto"}
             px={6}
-            className="scrollY"
+            // className="scrollY"
           >
             {data.map((jabatan, i) => (
               <HStack key={i} justify={"space-between"}>

@@ -374,10 +374,10 @@ select {
 .doughnutChartContainer canvas {
   width: 100% !important;
   height: 100% !important;
-  min-width: 140px !important;
-  max-width: 240px !important;
-  min-height: 140px !important;
-  max-height: 240px !important;
+  min-width: 200px !important;
+  max-width: 320px !important;
+  min-height: 200px !important;
+  max-height: 320px !important;
 }
 
 img[src^="/vectors/icons/hospital.svg"] {

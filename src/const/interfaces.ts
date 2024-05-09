@@ -75,5 +75,5 @@ export interface TopNavs__Interface {
 export interface Tabel__Column__Interface {
   key: string;
   label: string;
-  dataType: "string" | "number" | "date" | "badge";
+  dataType: "string" | "number" | "date" | "badge" | "options";
 }
