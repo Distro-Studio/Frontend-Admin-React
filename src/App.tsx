@@ -11,12 +11,12 @@ import Perusahaan from "./pages/Perusahaan/Perusahaan";
 import Pengaturan from "./pages/Pengaturan/Pengaturan";
 import MissingPage from "./pages/Error/MissingPage";
 import ManajemenJadwal from "./pages/Manajemen__Jadwal/ManajemenJadwal";
-import NavContainer from "./components/wrapper/NavContainer";
 import AkunKaryawan from "./pages/Karyawan/AkunKaryawan";
 import KeluargaKaryawan from "./pages/Karyawan/KeluargaKaryawan";
 import PekerjaKontrak from "./pages/Karyawan/PekerjaKontrak";
 import RekamJejak from "./pages/Karyawan/RekamJejak";
 import TransferKaryawan from "./pages/Karyawan/TransferKaryawan";
+import NavContainer from "./components/wrapper/NavContainer";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>

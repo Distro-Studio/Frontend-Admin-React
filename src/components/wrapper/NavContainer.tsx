@@ -11,12 +11,11 @@ import { RiLogoutBoxLine } from "@remixicon/react";
 import { Link } from "react-router-dom";
 import { useBodyColor, useContentBgColor } from "../../const/colors";
 import navs from "../../const/navs";
-import { iconSize } from "../../const/sizes";
+import { iconSize, responsiveSpacing } from "../../const/sizes";
+import useScreenWidth from "../../lib/useScreenWidth";
+import Header from "../dependent/Header";
 import CContainer from "./CContainer";
 import Container from "./Container";
-import Header from "../dependent/Header";
-import useScreenWidth from "../../lib/useScreenWidth";
-import CWrapper from "./CWrapper";
 
 interface Props {
   active: number;
@@ -143,9 +142,12 @@ export default function NavContainer({
           flex={1}
           overflowX={"clip"}
         >
-          <CWrapper>
-            <Header title={title} left={left} right={right} />
-          </CWrapper>
+          <Header
+            title={title}
+            left={left}
+            right={right}
+            px={responsiveSpacing}
+          />
 
           {children}
         </CContainer>

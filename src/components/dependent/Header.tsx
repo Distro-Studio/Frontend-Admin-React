@@ -41,7 +41,7 @@ export default function Header({ title, left, right, ...props }: Props) {
         {left && (
           <Box w={"40px"}>{left === "back" ? <BackButton /> : left}</Box>
         )}
-        S
+
         <Text fontSize={24} fontWeight={700} noOfLines={1}>
           {title}
         </Text>
