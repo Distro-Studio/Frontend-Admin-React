@@ -16,7 +16,7 @@ export default function Login() {
             px={12}
             maxW={"450px"}
           >
-            <VStack align={"flex-start"}>
+            <VStack align={"flex-start"} mb={6}>
               <Image src={"/logo512.png"} w={"180px"} />
             </VStack>
 
@@ -31,7 +31,9 @@ export default function Login() {
               <FormLogin />
             </Box>
 
-            <Text opacity={0.6}>Copyright 2024 RSKI All right Reserved</Text>
+            <Text opacity={0.6} mt={6}>
+              Copyright 2024 RSKI All right Reserved
+            </Text>
           </VStack>
 
           <VStack p={6} minH={"400px"} h={"100vh"} flex={1}>
