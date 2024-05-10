@@ -63,7 +63,7 @@ export default function DashboardSiapaYangLibur({ ...props }: Props) {
       id: 6,
       nama: "Segun Adebayo",
       unit_kerja: "Anak Direktur",
-      avatar: "ttps://bit.ly/sage-adebayo",
+      avatar: "https://bit.ly/sage-adebayo",
     },
     {
       id: 7,
