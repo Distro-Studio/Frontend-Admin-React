@@ -9,7 +9,7 @@ export default function TabelContainer({ children, ...props }: Props) {
     <Box
       overflow={"auto"}
       w={"100%"}
-      maxH={"calc(80vh - 80px)"}
+      h={[`calc(100vh - 398px)`, null, `calc(100vh - 344px)`]}
       border={"1px solid var(--divider3)"}
       borderRadius={8}
       {...props}

@@ -41,6 +41,7 @@ export default function DashboardBuatPengumumanModal() {
           backOnClose(onClose);
         }}
         initialFocusRef={initialRef}
+        isCentered
       >
         <ModalOverlay />
         <ModalContent>

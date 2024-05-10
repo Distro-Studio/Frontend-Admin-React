@@ -5,6 +5,9 @@ import {
 } from "../../../const/interfaces";
 import Tabel from "../../dependent/Tabel";
 import Skeleton from "../Skeleton";
+import TabelContainer from "../../wrapper/TabelContainer";
+import { VStack } from "@chakra-ui/react";
+import { responsiveSpacing } from "../../../const/sizes";
 
 export default function TabelKaryawan() {
   const columns: Tabel__Column__Interface[] = [
@@ -62,7 +65,7 @@ export default function TabelKaryawan() {
       status_karyawan: "Kontrak",
       tempat_lahir: "Semarang",
       tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/code-beast",
+      avatar: "https://bit.ly/dan-abramov",
     },
     {
       id: 2,
@@ -74,7 +77,7 @@ export default function TabelKaryawan() {
       status_karyawan: "Tetap",
       tempat_lahir: "Jakarta",
       tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/code-beast",
+      avatar: "https://bit.ly/tioluwani-kolawole",
     },
     {
       id: 3,
@@ -86,7 +89,7 @@ export default function TabelKaryawan() {
       status_karyawan: "Kontrak",
       tempat_lahir: "Surabaya",
       tgl_lahir: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/code-beast",
+      avatar: "https://bit.ly/kent-c-dodds",
     },
     {
       id: 4,
@@ -98,7 +101,7 @@ export default function TabelKaryawan() {
       status_karyawan: "Tetap",
       tempat_lahir: "Bandung",
       tgl_lahir: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/code-beast",
+      avatar: "https://bit.ly/ryan-florence",
     },
     {
       id: 5,
@@ -110,7 +113,7 @@ export default function TabelKaryawan() {
       status_karyawan: "Kontrak",
       tempat_lahir: "Yogyakarta",
       tgl_lahir: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/code-beast",
+      avatar: "https://bit.ly/prosper-baba",
     },
     {
       id: 6,
@@ -122,7 +125,175 @@ export default function TabelKaryawan() {
       status_karyawan: "Tetap",
       tempat_lahir: "Medan",
       tgl_lahir: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/sage-adebayo",
+    },
+    {
+      id: 7,
+      nama: "Maria Garcia",
+      no_induk_karyawan: "123456789",
+      rm: "1357",
+      nik: "9990001112223",
+      unit_kerja: "Pelayanan Pelanggan",
+      status_karyawan: "Kontrak",
+      tempat_lahir: "Denpasar",
+      tgl_lahir: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/code-beast",
+    },
+    {
+      id: 8,
+      nama: "Sulenq Wazawsky",
+      no_induk_karyawan: "412123143",
+      rm: "3214",
+      nik: "3321231412412",
+      unit_kerja: "Perawat Hewan",
+      status_karyawan: "Kontrak",
+      tempat_lahir: "Semarang",
+      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/dan-abramov",
+    },
+    {
+      id: 9,
+      nama: "John Doe",
+      no_induk_karyawan: "111222333",
+      rm: "1234",
+      nik: "4445556667778",
+      unit_kerja: "Dokter",
+      status_karyawan: "Tetap",
+      tempat_lahir: "Jakarta",
+      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/tioluwani-kolawole",
+    },
+    {
+      id: 10,
+      nama: "Jane Smith",
+      no_induk_karyawan: "987654321",
+      rm: "5678",
+      nik: "8889990001112",
+      unit_kerja: "Administrasi",
+      status_karyawan: "Kontrak",
+      tempat_lahir: "Surabaya",
+      tgl_lahir: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/kent-c-dodds",
+    },
+    {
+      id: 11,
+      nama: "Michael Johnson",
+      no_induk_karyawan: "654321789",
+      rm: "9876",
+      nik: "2223334445556",
+      unit_kerja: "Keuangan",
+      status_karyawan: "Tetap",
+      tempat_lahir: "Bandung",
+      tgl_lahir: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/ryan-florence",
+    },
+    {
+      id: 12,
+      nama: "Amanda Lee",
+      no_induk_karyawan: "789456123",
+      rm: "3456",
+      nik: "6667778889990",
+      unit_kerja: "Pemasaran",
+      status_karyawan: "Kontrak",
+      tempat_lahir: "Yogyakarta",
+      tgl_lahir: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/prosper-baba",
+    },
+    {
+      id: 6,
+      nama: "Kevin Brown",
+      no_induk_karyawan: "555666777",
+      rm: "2468",
+      nik: "1112223334445",
+      unit_kerja: "IT",
+      status_karyawan: "Tetap",
+      tempat_lahir: "Medan",
+      tgl_lahir: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/sage-adebayo",
+    },
+    {
+      id: 7,
+      nama: "Maria Garcia",
+      no_induk_karyawan: "123456789",
+      rm: "1357",
+      nik: "9990001112223",
+      unit_kerja: "Pelayanan Pelanggan",
+      status_karyawan: "Kontrak",
+      tempat_lahir: "Denpasar",
+      tgl_lahir: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/code-beast",
+    },
+    {
+      id: 1,
+      nama: "Sulenq Wazawsky",
+      no_induk_karyawan: "412123143",
+      rm: "3214",
+      nik: "3321231412412",
+      unit_kerja: "Perawat Hewan",
+      status_karyawan: "Kontrak",
+      tempat_lahir: "Semarang",
+      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/dan-abramov",
+    },
+    {
+      id: 2,
+      nama: "John Doe",
+      no_induk_karyawan: "111222333",
+      rm: "1234",
+      nik: "4445556667778",
+      unit_kerja: "Dokter",
+      status_karyawan: "Tetap",
+      tempat_lahir: "Jakarta",
+      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/tioluwani-kolawole",
+    },
+    {
+      id: 3,
+      nama: "Jane Smith",
+      no_induk_karyawan: "987654321",
+      rm: "5678",
+      nik: "8889990001112",
+      unit_kerja: "Administrasi",
+      status_karyawan: "Kontrak",
+      tempat_lahir: "Surabaya",
+      tgl_lahir: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/kent-c-dodds",
+    },
+    {
+      id: 4,
+      nama: "Michael Johnson",
+      no_induk_karyawan: "654321789",
+      rm: "9876",
+      nik: "2223334445556",
+      unit_kerja: "Keuangan",
+      status_karyawan: "Tetap",
+      tempat_lahir: "Bandung",
+      tgl_lahir: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/ryan-florence",
+    },
+    {
+      id: 5,
+      nama: "Amanda Lee",
+      no_induk_karyawan: "789456123",
+      rm: "3456",
+      nik: "6667778889990",
+      unit_kerja: "Pemasaran",
+      status_karyawan: "Kontrak",
+      tempat_lahir: "Yogyakarta",
+      tgl_lahir: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/prosper-baba",
+    },
+    {
+      id: 6,
+      nama: "Kevin Brown",
+      no_induk_karyawan: "555666777",
+      rm: "2468",
+      nik: "1112223334445",
+      unit_kerja: "IT",
+      status_karyawan: "Tetap",
+      tempat_lahir: "Medan",
+      tgl_lahir: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/sage-adebayo",
     },
     {
       id: 7,
@@ -145,9 +316,22 @@ export default function TabelKaryawan() {
 
   return (
     <>
-      {loading && <Skeleton />}
+      {loading && (
+        <TabelContainer minH={"calc(80vh - 80px)"} p={responsiveSpacing}>
+          <VStack h={"100%"} gap={responsiveSpacing}>
+            <Skeleton h={"52px"} />
+            <Skeleton flex={1} flexShrink={0} />
+          </VStack>
+        </TabelContainer>
+      )}
 
-      {!loading && data && <Tabel columns={columns} data={data} />}
+      {!loading && data && (
+        <Tabel
+          columns={columns}
+          data={data}
+          pagination={{ prev_page_url: "", next_page_url: "", last_page: 1 }}
+        />
+      )}
     </>
   );
 }

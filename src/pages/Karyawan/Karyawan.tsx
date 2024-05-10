@@ -7,8 +7,8 @@ import {
   Wrap,
 } from "@chakra-ui/react";
 import {
-  RiArrowDownSLine,
   RiDownloadLine,
+  RiEqualizer3Line,
   RiSearchLine,
   RiUploadLine,
 } from "@remixicon/react";
@@ -23,7 +23,7 @@ import { iconSize, responsiveSpacing } from "../../const/sizes";
 export default function Karyawan() {
   return (
     <>
-      <TopNavs data={karyawanTopNavs} active={0} mb={4} />
+      <TopNavs data={karyawanTopNavs} active={0} mb={responsiveSpacing} />
 
       <CWrapper>
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
@@ -40,10 +40,9 @@ export default function Karyawan() {
               variant={"outline"}
               colorScheme="ap"
               className="clicky"
-              rightIcon={<Icon as={RiArrowDownSLine} fontSize={iconSize} />}
+              rightIcon={<Icon as={RiEqualizer3Line} fontSize={iconSize} />}
               flexShrink={0}
               pr={3}
-              justifyContent={"space-between"}
             >
               Filter
             </Button>

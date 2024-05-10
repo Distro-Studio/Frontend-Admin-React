@@ -36,8 +36,21 @@ export default function DashboardPengumumanItemDetail({
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
-  // const [loading, setLoading] = useState<boolean>(false);
+  const [loadingUpdate, setLoadingUpdate] = useState<boolean>(false);
+  const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
+
+  function updatePengumuman() {
+    setLoadingUpdate(true);
+
+    //TODO api update pengumuman
+  }
+
+  function deletePengumuman() {
+    setLoadingDelete(true);
+
+    //TODO api delete pengumuman
+  }
 
   // SX
 
@@ -102,7 +115,9 @@ export default function DashboardPengumumanItemDetail({
                   onClick={() => {
                     setIsDeleting(true);
                   }}
+                  isDisabled={loadingUpdate}
                   bg={"var(--reda)"}
+                  _hover={{ bg: "var(--reda)" }}
                 >
                   Delete
                 </Button>
@@ -112,6 +127,9 @@ export default function DashboardPengumumanItemDetail({
                   w={"50%"}
                   className="btn-ap clicky"
                   colorScheme="ap"
+                  isLoading={loadingUpdate}
+                  isDisabled={loadingDelete}
+                  onClick={updatePengumuman}
                 >
                   Update
                 </Button>
@@ -134,6 +152,7 @@ export default function DashboardPengumumanItemDetail({
                     onClick={() => {
                       setIsDeleting(false);
                     }}
+                    isDisabled={loadingDelete}
                   >
                     Tidak
                   </Button>
@@ -143,7 +162,9 @@ export default function DashboardPengumumanItemDetail({
                     variant={"ghost"}
                     colorScheme="red"
                     bg={"var(--reda)"}
-                    // variant={"ghost"}
+                    _hover={{ bg: "var(--reda)" }}
+                    isLoading={loadingDelete}
+                    onClick={deletePengumuman}
                   >
                     Ya
                   </Button>

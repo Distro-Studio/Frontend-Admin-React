@@ -1,9 +1,14 @@
 import {
   Avatar,
   Badge,
+  Button,
   HStack,
   Icon,
   IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Table,
   Tbody,
   Td,
@@ -12,27 +17,36 @@ import {
   Thead,
   Tr,
   VStack,
+  Wrap,
 } from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
-import { useState } from "react";
+import {
+  RiArrowDownLine,
+  RiArrowDownSLine,
+  RiArrowUpLine,
+  RiMore2Fill,
+} from "@remixicon/react";
+import { useEffect, useRef, useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../const/colors";
 import { Tabel__Column__Interface } from "../../const/interfaces";
-import { iconSize } from "../../const/sizes";
+import { iconSize, responsiveSpacing } from "../../const/sizes";
 import formatDate from "../../lib/formatDate";
 import formatNumber from "../../lib/formatNumber";
 import TabelContainer from "../wrapper/TabelContainer";
+import PaginationNav from "./PaginationNav";
 
 interface Props {
   columns: Tabel__Column__Interface[];
   data: any[];
+  pagination?: any;
+  noLimit?: boolean;
 }
 
-export default function Tabel({ columns, data }: Props) {
+export default function Tabel({ columns, data, pagination, noLimit }: Props) {
+  // Sort Congig
   const [sortConfig, setSortConfig] = useState<{
     key: string;
     direction: "asc" | "desc";
   } | null>({ key: columns[0].key, direction: "asc" });
-
   const sortedData = [...data];
   if (sortConfig !== null) {
     sortedData.sort((a, b) => {
@@ -45,7 +59,6 @@ export default function Tabel({ columns, data }: Props) {
       return 0;
     });
   }
-
   const sort = (key: string) => {
     let direction: "asc" | "desc" = "asc";
     if (
@@ -57,6 +70,24 @@ export default function Tabel({ columns, data }: Props) {
     }
     setSortConfig({ key, direction });
   };
+
+  // Filter Config
+  // const [filterConfig, setFilterConfig] = useState<any>({});
+
+  // Limit Config
+  const [limitConfig, setLimitConfig] = useState<10 | 50 | 100>(10);
+  const limitButtonRef = useRef<HTMLButtonElement>(null);
+  const [limitMenuListW, setLimitMenuListW] = useState<
+    number | (number | null)[]
+  >([119, null, 127]);
+  useEffect(() => {
+    if (limitButtonRef.current) {
+      setLimitMenuListW(limitButtonRef.current.offsetWidth);
+    }
+  }, [limitButtonRef, limitConfig]);
+
+  // Pagination Config
+  const [pageConfig, setPageConfig] = useState<number>(1);
 
   // SX
   const contectBgColor = useContentBgColor();
@@ -132,7 +163,7 @@ export default function Tabel({ columns, data }: Props) {
                   zIndex={99}
                   borderLeft={"1px solid var(--divider3)"}
                   borderBottom={"1px solid var(--divider3)"}
-                  h={"51px"}
+                  h={"52px"}
                 ></VStack>
               </Th>
             </Tr>
@@ -188,7 +219,7 @@ export default function Tabel({ columns, data }: Props) {
                       h={"72px"}
                       aria-label="Option Button"
                       icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
-                      className="btn-clear clicky"
+                      className="btn"
                       borderRadius={0}
                     />
                   </VStack>
@@ -198,6 +229,62 @@ export default function Tabel({ columns, data }: Props) {
           </Tbody>
         </Table>
       </TabelContainer>
+
+      <Wrap
+        spacing={responsiveSpacing}
+        justify={"space-between"}
+        mt={responsiveSpacing}
+      >
+        {!noLimit && (
+          <Menu>
+            <MenuButton
+              ref={limitButtonRef}
+              as={Button}
+              className="btn-solid"
+              rightIcon={
+                <Icon as={RiArrowDownSLine} fontSize={iconSize} opacity={0.6} />
+              }
+            >
+              <HStack>
+                <Text opacity={0.6}>Show</Text>
+                <Text color={"p.500"}>{limitConfig}</Text>
+              </HStack>
+            </MenuButton>
+            <MenuList minW={`${limitMenuListW}px`}>
+              <MenuItem
+                color={limitConfig === 10 ? "p.500" : ""}
+                onClick={() => {
+                  setLimitConfig(10);
+                }}
+              >
+                10
+              </MenuItem>
+              <MenuItem
+                color={limitConfig === 50 ? "p.500" : ""}
+                onClick={() => {
+                  setLimitConfig(50);
+                }}
+              >
+                50
+              </MenuItem>
+              <MenuItem
+                color={limitConfig === 100 ? "p.500" : ""}
+                onClick={() => {
+                  setLimitConfig(100);
+                }}
+              >
+                100
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        )}
+
+        <PaginationNav
+          page={pageConfig}
+          setPage={setPageConfig}
+          pagination={pagination}
+        />
+      </Wrap>
     </>
     // </div>
   );
