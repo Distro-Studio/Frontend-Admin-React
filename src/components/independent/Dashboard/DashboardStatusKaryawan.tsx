@@ -105,7 +105,9 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
                 />
                 <Text>Kontrak</Text>
 
-                <Text ml={"auto"}>{data[1]}</Text>
+                <Text pl={2} ml={"auto"}>
+                  {data[1]}
+                </Text>
               </HStack>
 
               <HStack gap={4}>
@@ -117,7 +119,9 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
                 />
                 <Text>Magang</Text>
 
-                <Text ml={"auto"}>{data[2]}</Text>
+                <Text pl={2} ml={"auto"}>
+                  {data[2]}
+                </Text>
               </HStack>
             </VStack>
           </Wrap>

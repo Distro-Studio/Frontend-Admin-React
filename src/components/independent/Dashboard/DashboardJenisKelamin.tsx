@@ -94,7 +94,9 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
 
                 <Text>Pria</Text>
 
-                <Text ml={"auto"}>{data[0]}%</Text>
+                <Text pl={2} ml={"auto"}>
+                  {data[0]}%
+                </Text>
               </HStack>
 
               <HStack gap={4}>
@@ -107,7 +109,9 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
 
                 <Text>Wanita</Text>
 
-                <Text ml={"auto"}>{data[1]}%</Text>
+                <Text pl={2} ml={"auto"}>
+                  {data[1]}%
+                </Text>
               </HStack>
             </VStack>
           </Wrap>
