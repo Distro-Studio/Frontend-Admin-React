@@ -15,7 +15,7 @@ import { useRef } from "react";
 import { iconSize } from "../../../const/sizes";
 import backOnClose from "../../../lib/backOnClose";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import FormDashboardPengumumanBuat from "../../form/Dashboard/FormDashboardPengumumanBuat";
+import FormDashboardBuatPengumuman from "../../form/Dashboard/FormDashboardBuatPengumuman";
 
 export default function DashboardBuatPengumumanModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -47,7 +47,7 @@ export default function DashboardBuatPengumumanModal() {
           <ModalCloseButton />
           <ModalHeader>Buat Pengumuman</ModalHeader>
           <ModalBody>
-            <FormDashboardPengumumanBuat />
+            <FormDashboardBuatPengumuman />
           </ModalBody>
           <ModalFooter>
             <Button

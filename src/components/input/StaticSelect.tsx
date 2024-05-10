@@ -57,7 +57,7 @@ export default function StaticSelect({
     "0 0 0 1px #FC8181"
   );
 
-  console.log(selectedValue);
+  // console.log(selectedValue);
 
   return (
     <>

@@ -23,7 +23,7 @@ import backOnClose from "../../../lib/backOnClose";
 import formatDate from "../../../lib/formatDate";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import DeletePermanentWarning from "../../alert/DeletePermanentWarning";
-import FormDashboardPengumumanUpdate from "../../form/Dashboard/FormDashboardPengumumanUpdate";
+import FormDashboardUpdatePengumuman from "../../form/Dashboard/FormDashboardUpdatePengumuman";
 
 interface Props extends StackProps {
   data: Pengumuman__Interface;
@@ -86,7 +86,7 @@ export default function DashboardPengumumanItemDetail({
                   <Icon as={RiCalendarLine} fontSize={iconSize} opacity={0.6} />
                   <Text>{formatDate(data.createdAt)}</Text>
                 </HStack>
-                <FormDashboardPengumumanUpdate data={data} />
+                <FormDashboardUpdatePengumuman data={data} />
               </>
             )}
           </ModalBody>

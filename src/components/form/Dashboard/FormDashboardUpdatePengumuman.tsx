@@ -14,7 +14,7 @@ interface Props {
   data: Pengumuman__Interface;
 }
 
-export default function FormDashboardPengumumanUpdate({ data }: Props) {
+export default function FormDashboardUpdatePengumuman({ data }: Props) {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: { judul: data.judul, pengumuman: data.pengumuman },

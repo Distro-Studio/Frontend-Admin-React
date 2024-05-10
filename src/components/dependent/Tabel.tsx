@@ -28,8 +28,6 @@ interface Props {
 }
 
 export default function Tabel({ columns, data }: Props) {
-  console.log(data[0].tgl_lahir);
-
   const [sortConfig, setSortConfig] = useState<{
     key: string;
     direction: "asc" | "desc";
@@ -48,7 +46,7 @@ export default function Tabel({ columns, data }: Props) {
     });
   }
 
-  const requestSort = (key: string) => {
+  const sort = (key: string) => {
     let direction: "asc" | "desc" = "asc";
     if (
       sortConfig &&
@@ -66,139 +64,141 @@ export default function Tabel({ columns, data }: Props) {
 
   return (
     // <div style={{ overflowX: "auto" }}>
-    <TabelContainer>
-      <Table minW={"100%"}>
-        <Thead>
-          <Tr>
-            {columns.map((column, i) => (
-              <Th
-                key={i}
-                whiteSpace={"nowrap"}
-                onClick={() => requestSort(column.key)}
-                cursor={"pointer"}
-                position={"sticky"}
-                top={0}
-                borderBottom={"none !important"}
-                bg={bodyColor}
-                zIndex={2}
-                p={0}
-              >
-                <HStack
-                  justify={"space-between"}
-                  borderBottom={"1px solid var(--divider3)"}
-                  px={4}
-                  py={3}
-                  h={"52px"}
-                  pl={i === 0 ? 4 : ""}
-                  pr={i === columns.length - 1 ? 4 : ""}
-                >
-                  <Text fontWeight={600} flexShrink={0} lineHeight={1.2}>
-                    {column.label}
-                  </Text>
-
-                  {sortConfig && sortConfig.key === column.key && (
-                    <>
-                      {sortConfig.direction === "asc" ? (
-                        <Icon
-                          as={RiArrowUpLine}
-                          color={"p.500"}
-                          fontSize={16}
-                        />
-                      ) : (
-                        <Icon
-                          as={RiArrowDownLine}
-                          color={"p.500"}
-                          fontSize={16}
-                        />
-                      )}
-                    </>
-                  )}
-                </HStack>
-              </Th>
-            ))}
-
-            {/* Kolom tetap di sebelah kanan */}
-            <Th
-              position={"sticky"}
-              top={0}
-              right={0}
-              borderBottom={"none !important"}
-              p={0}
-              bg={bodyColor}
-              zIndex={2}
-            >
-              <VStack
-                px={4}
-                py={3}
-                zIndex={99}
-                borderLeft={"1px solid var(--divider3)"}
-                borderBottom={"1px solid var(--divider3)"}
-                h={"51px"}
-              ></VStack>
-            </Th>
-          </Tr>
-        </Thead>
-
-        <Tbody>
-          {sortedData.map((row, i) => (
-            <Tr key={i} bg={i % 2 === 0 ? contectBgColor : ""}>
-              {columns.map((column, colIndex) => (
-                <Td
-                  key={colIndex}
-                  pl={colIndex === 0 ? 4 : ""}
-                  pr={colIndex === columns.length - 1 ? 4 : ""}
+    <>
+      <TabelContainer>
+        <Table minW={"100%"}>
+          <Thead>
+            <Tr>
+              {columns.map((column, i) => (
+                <Th
+                  key={i}
                   whiteSpace={"nowrap"}
+                  onClick={() => sort(column.key)}
+                  cursor={"pointer"}
+                  position={"sticky"}
+                  top={0}
+                  borderBottom={"none !important"}
+                  bg={bodyColor}
+                  zIndex={2}
+                  p={0}
                 >
-                  {column.dataType === "date" ? (
-                    formatDate(row[column.key])
-                  ) : column.dataType === "number" ? (
-                    formatNumber(row[column.key])
-                  ) : column.dataType === "badge" ? (
-                    <Badge w={"100%"} textAlign={"center"} colorScheme="teal">
-                      {row[column.key]}
-                    </Badge>
-                  ) : column.dataType === "avatarAndName" ? (
-                    <HStack>
-                      <Avatar
-                        size={"sm"}
-                        name={row[column.key]}
-                        src={row.avatar}
-                      />
-                      <Text>{row[column.key]}</Text>
-                    </HStack>
-                  ) : (
-                    row[column.key]
-                  )}
-                </Td>
+                  <HStack
+                    justify={"space-between"}
+                    borderBottom={"1px solid var(--divider3)"}
+                    px={4}
+                    py={3}
+                    h={"52px"}
+                    pl={i === 0 ? 4 : ""}
+                    pr={i === columns.length - 1 ? 4 : ""}
+                  >
+                    <Text fontWeight={600} flexShrink={0} lineHeight={1.2}>
+                      {column.label}
+                    </Text>
+
+                    {sortConfig && sortConfig.key === column.key && (
+                      <>
+                        {sortConfig.direction === "asc" ? (
+                          <Icon
+                            as={RiArrowUpLine}
+                            color={"p.500"}
+                            fontSize={16}
+                          />
+                        ) : (
+                          <Icon
+                            as={RiArrowDownLine}
+                            color={"p.500"}
+                            fontSize={16}
+                          />
+                        )}
+                      </>
+                    )}
+                  </HStack>
+                </Th>
               ))}
 
               {/* Kolom tetap di sebelah kanan */}
-              <Td
+              <Th
                 position={"sticky"}
+                top={0}
                 right={0}
+                borderBottom={"none !important"}
                 p={0}
-                bg={i % 2 === 0 ? contectBgColor : bodyColor}
-                zIndex={1}
+                bg={bodyColor}
+                zIndex={2}
               >
                 <VStack
-                  h={"72px"}
+                  px={4}
+                  py={3}
+                  zIndex={99}
                   borderLeft={"1px solid var(--divider3)"}
-                  justify={"center"}
-                >
-                  <IconButton
-                    h={"72px"}
-                    aria-label="Option Button"
-                    icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
-                    className="btn-clear clicky"
-                    borderRadius={0}
-                  />
-                </VStack>
-              </Td>
+                  borderBottom={"1px solid var(--divider3)"}
+                  h={"51px"}
+                ></VStack>
+              </Th>
             </Tr>
-          ))}
-        </Tbody>
-      </Table>
-    </TabelContainer>
+          </Thead>
+
+          <Tbody>
+            {sortedData.map((row, i) => (
+              <Tr key={i} bg={i % 2 === 0 ? contectBgColor : ""}>
+                {columns.map((column, colIndex) => (
+                  <Td
+                    key={colIndex}
+                    pl={colIndex === 0 ? 4 : ""}
+                    pr={colIndex === columns.length - 1 ? 4 : ""}
+                    whiteSpace={"nowrap"}
+                  >
+                    {column.dataType === "date" ? (
+                      formatDate(row[column.key])
+                    ) : column.dataType === "number" ? (
+                      formatNumber(row[column.key])
+                    ) : column.dataType === "badge" ? (
+                      <Badge w={"100%"} textAlign={"center"} colorScheme="teal">
+                        {row[column.key]}
+                      </Badge>
+                    ) : column.dataType === "avatarAndName" ? (
+                      <HStack>
+                        <Avatar
+                          size={"sm"}
+                          name={row[column.key]}
+                          src={row.avatar}
+                        />
+                        <Text>{row[column.key]}</Text>
+                      </HStack>
+                    ) : (
+                      row[column.key]
+                    )}
+                  </Td>
+                ))}
+
+                {/* Kolom tetap di sebelah kanan */}
+                <Td
+                  position={"sticky"}
+                  right={0}
+                  p={0}
+                  bg={i % 2 === 0 ? contectBgColor : bodyColor}
+                  zIndex={1}
+                >
+                  <VStack
+                    h={"72px"}
+                    borderLeft={"1px solid var(--divider3)"}
+                    justify={"center"}
+                  >
+                    <IconButton
+                      h={"72px"}
+                      aria-label="Option Button"
+                      icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
+                      className="btn-clear clicky"
+                      borderRadius={0}
+                    />
+                  </VStack>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </TabelContainer>
+    </>
     // </div>
   );
 }

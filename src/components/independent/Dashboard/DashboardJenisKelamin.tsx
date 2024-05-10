@@ -25,7 +25,7 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
   const labels = ["Pria", "Wanita"];
   const datasets = [
     {
-      label: "",
+      label: "Persentase (%)",
       data: data,
       backgroundColor: ["#FBD38D", "#805AD5"],
       borderWidth: 0,

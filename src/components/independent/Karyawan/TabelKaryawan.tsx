@@ -143,10 +143,6 @@ export default function TabelKaryawan() {
   const [data] = useState<Karyawan__Interface[] | null>(dummy);
   const [loading] = useState<boolean>(false);
 
-  const date = new Date();
-  const tanggal = date.getDate();
-  console.log(tanggal);
-
   return (
     <>
       {loading && <Skeleton />}

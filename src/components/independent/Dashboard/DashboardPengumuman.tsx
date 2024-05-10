@@ -90,8 +90,9 @@ export default function DashboardPengumuman({ ...props }: Props) {
           align={"stretch"}
           bg={bodyColor}
           borderRadius={12}
-          minW={dashboardItemMinWidth}
           gap={0}
+          minW={dashboardItemMinWidth}
+          overflowX={"hidden"}
           h={dashboardItemHeight}
           {...props}
         >

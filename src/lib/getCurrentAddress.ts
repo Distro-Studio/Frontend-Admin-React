@@ -6,7 +6,7 @@ async function getCurrentAddress(
     const url = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&accept-language=id`;
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
 
     // Ambil alamat dari respons
     const address = data.display_name || "Alamat tidak ditemukan";

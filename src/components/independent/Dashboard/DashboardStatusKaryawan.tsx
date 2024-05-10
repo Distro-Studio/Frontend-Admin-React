@@ -22,10 +22,10 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
     //TODO api get data dashboard jenis kelamin
   }, []);
 
-  const labels = ["Pria", "Wanita"];
+  const labels = ["Pria", "Wanita", "Magang"];
   const datasets = [
     {
-      label: "",
+      label: "Jumlah Karyawan",
       data: data,
       backgroundColor: ["#FBD38D", "#805AD5", "#48BB78"],
       borderWidth: 0,

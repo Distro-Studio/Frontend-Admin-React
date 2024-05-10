@@ -9,7 +9,7 @@ import * as yup from "yup";
 import Textarea from "../../input/Textarea";
 import FormRequired from "../FormRequired";
 
-export default function FormDashboardPengumumanBuat() {
+export default function FormDashboardBuatPengumuman() {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: { judul: "", pengumuman: "" },

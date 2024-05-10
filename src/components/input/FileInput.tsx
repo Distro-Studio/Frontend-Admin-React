@@ -35,7 +35,7 @@ export default function FileInput({ formik, name, accept }: Props) {
     setIsDraggingOver(false); // Set state untuk menandakan tidak ada operasi seret-menyeret lagi
     const file = e.dataTransfer.files[0];
     if (file) {
-      console.log(file);
+      // console.log(file);
       setFileName(file.name);
       formik.setFieldValue(name, [file]);
     }
@@ -59,7 +59,7 @@ export default function FileInput({ formik, name, accept }: Props) {
             setFileName(file.name);
             formik.setFieldValue(name, [file]); // Setel ke array dengan satu file
           }
-          console.log(files);
+          // console.log(files);
         }}
         mb={4}
       />

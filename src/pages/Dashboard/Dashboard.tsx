@@ -9,8 +9,6 @@ import CWrapper from "../../components/wrapper/CWrapper";
 import { responsiveSpacing } from "../../const/sizes";
 
 export default function Dashboard() {
-  console.log("render");
-
   return (
     <>
       <CWrapper>
