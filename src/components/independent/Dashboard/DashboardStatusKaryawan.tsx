@@ -84,7 +84,7 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
               maxW={"240px"}
               mx={"auto"}
             >
-              <HStack gap={6}>
+              <HStack gap={4}>
                 <Box
                   borderRadius={"full"}
                   w={"10px"}
@@ -96,7 +96,7 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
                 <Text ml={"auto"}>{data[0]}</Text>
               </HStack>
 
-              <HStack gap={6}>
+              <HStack gap={4}>
                 <Box
                   borderRadius={"full"}
                   w={"10px"}
@@ -108,7 +108,7 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
                 <Text ml={"auto"}>{data[1]}</Text>
               </HStack>
 
-              <HStack gap={6}>
+              <HStack gap={4}>
                 <Box
                   borderRadius={"full"}
                   w={"10px"}
