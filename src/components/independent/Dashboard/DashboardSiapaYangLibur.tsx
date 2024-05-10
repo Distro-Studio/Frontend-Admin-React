@@ -33,43 +33,43 @@ export default function DashboardSiapaYangLibur({ ...props }: Props) {
       id: 1,
       nama: "Jolitos Kurniawan",
       unit_kerja: "Dokter Hewan",
-      foto_profil: "https://bit.ly/dan-abramov",
+      avatar: "https://bit.ly/dan-abramov",
     },
     {
       id: 2,
       nama: "Melky Simonsely",
       unit_kerja: "Dokter Gigi",
-      foto_profil: "https://bit.ly/tioluwani-kolawole",
+      avatar: "https://bit.ly/tioluwani-kolawole",
     },
     {
       id: 3,
       nama: "Sulenq Wazawsky",
       unit_kerja: "Perawat",
-      foto_profil: "https://bit.ly/kent-c-dodds",
+      avatar: "https://bit.ly/kent-c-dodds",
     },
     {
       id: 4,
       nama: "Sullivan",
       unit_kerja: "Perawat",
-      foto_profil: "https://bit.ly/ryan-florence",
+      avatar: "https://bit.ly/ryan-florence",
     },
     {
       id: 5,
       nama: "Sopik Simanjutak",
       unit_kerja: "Kepala Ruang",
-      foto_profil: "https://bit.ly/code-beast",
+      avatar: "https://bit.ly/code-beast",
     },
     {
       id: 6,
       nama: "Segun Adebayo",
       unit_kerja: "Anak Direktur",
-      foto_profil: "ttps://bit.ly/sage-adebayo",
+      avatar: "ttps://bit.ly/sage-adebayo",
     },
     {
       id: 7,
       nama: "Davon Bucker",
       unit_kerja: "Anonimus",
-      foto_profil: "",
+      avatar: "",
     },
   ];
   //! DEBUG
@@ -138,7 +138,7 @@ export default function DashboardSiapaYangLibur({ ...props }: Props) {
           >
             {data.map((user, i) => (
               <HStack key={i}>
-                <Avatar name={user.nama} src={user.foto_profil} />
+                <Avatar name={user.nama} src={user.avatar} />
                 <Box>
                   <Text mb={1}>{user.nama}</Text>
                   <Text opacity={0.6} fontSize={12}>

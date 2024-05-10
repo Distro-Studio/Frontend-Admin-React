@@ -1,26 +1,24 @@
 import {
   Button,
-  HStack,
   Icon,
   Input,
   InputGroup,
   InputLeftElement,
-  Stack,
   Wrap,
 } from "@chakra-ui/react";
-import TopNavs from "../../components/dependent/TopNavs";
-import CWrapper from "../../components/wrapper/CWrapper";
-import karyawanTopNavs from "../../const/karyawanTopNavs";
 import {
   RiArrowDownSLine,
   RiDownloadLine,
   RiSearchLine,
   RiUploadLine,
 } from "@remixicon/react";
-import CContainer from "../../components/wrapper/CContainer";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
-import { useBodyColor } from "../../const/colors";
+import TopNavs from "../../components/dependent/TopNavs";
 import TabelKaryawan from "../../components/independent/Karyawan/TabelKaryawan";
+import CContainer from "../../components/wrapper/CContainer";
+import CWrapper from "../../components/wrapper/CWrapper";
+import { useBodyColor } from "../../const/colors";
+import karyawanTopNavs from "../../const/karyawanTopNavs";
+import { iconSize, responsiveSpacing } from "../../const/sizes";
 
 export default function Karyawan() {
   return (
@@ -45,6 +43,7 @@ export default function Karyawan() {
               rightIcon={<Icon as={RiArrowDownSLine} fontSize={iconSize} />}
               flexShrink={0}
               pr={3}
+              justifyContent={"space-between"}
             >
               Filter
             </Button>

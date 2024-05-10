@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Badge,
   HStack,
   Icon,
@@ -27,6 +28,8 @@ interface Props {
 }
 
 export default function Tabel({ columns, data }: Props) {
+  console.log(data[0].tgl_lahir);
+
   const [sortConfig, setSortConfig] = useState<{
     key: string;
     direction: "asc" | "desc";
@@ -73,15 +76,22 @@ export default function Tabel({ columns, data }: Props) {
                 whiteSpace={"nowrap"}
                 onClick={() => requestSort(column.key)}
                 cursor={"pointer"}
-                pl={i === 0 ? 4 : ""}
-                pr={i === columns.length - 1 ? 4 : ""}
                 position={"sticky"}
                 top={0}
                 borderBottom={"none !important"}
                 bg={bodyColor}
                 zIndex={2}
+                p={0}
               >
-                <HStack justify={"space-between"}>
+                <HStack
+                  justify={"space-between"}
+                  borderBottom={"1px solid var(--divider3)"}
+                  px={4}
+                  py={3}
+                  h={"52px"}
+                  pl={i === 0 ? 4 : ""}
+                  pr={i === columns.length - 1 ? 4 : ""}
+                >
                   <Text fontWeight={600} flexShrink={0} lineHeight={1.2}>
                     {column.label}
                   </Text>
@@ -122,6 +132,7 @@ export default function Tabel({ columns, data }: Props) {
                 py={3}
                 zIndex={99}
                 borderLeft={"1px solid var(--divider3)"}
+                borderBottom={"1px solid var(--divider3)"}
                 h={"51px"}
               ></VStack>
             </Th>
@@ -146,6 +157,15 @@ export default function Tabel({ columns, data }: Props) {
                     <Badge w={"100%"} textAlign={"center"} colorScheme="teal">
                       {row[column.key]}
                     </Badge>
+                  ) : column.dataType === "avatarAndName" ? (
+                    <HStack>
+                      <Avatar
+                        size={"sm"}
+                        name={row[column.key]}
+                        src={row.avatar}
+                      />
+                      <Text>{row[column.key]}</Text>
+                    </HStack>
                   ) : (
                     row[column.key]
                   )}

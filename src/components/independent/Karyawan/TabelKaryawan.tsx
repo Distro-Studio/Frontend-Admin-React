@@ -3,15 +3,15 @@ import {
   Karyawan__Interface,
   Tabel__Column__Interface,
 } from "../../../const/interfaces";
-import Skeleton from "../Skeleton";
 import Tabel from "../../dependent/Tabel";
+import Skeleton from "../Skeleton";
 
 export default function TabelKaryawan() {
   const columns: Tabel__Column__Interface[] = [
     {
       key: "nama",
       label: "Nama",
-      dataType: "string",
+      dataType: "avatarAndName",
     },
     {
       key: "no_induk_karyawan",
@@ -61,8 +61,8 @@ export default function TabelKaryawan() {
       unit_kerja: "Perawat Hewan",
       status_karyawan: "Kontrak",
       tempat_lahir: "Semarang",
-      tanggal_lahir: "01/01/2001",
-      foto_profil: "https://bit.ly/code-beast",
+      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/code-beast",
     },
     {
       id: 2,
@@ -73,8 +73,8 @@ export default function TabelKaryawan() {
       unit_kerja: "Dokter",
       status_karyawan: "Tetap",
       tempat_lahir: "Jakarta",
-      tanggal_lahir: "12/12/1985",
-      foto_profil: "https://bit.ly/code-beast",
+      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/code-beast",
     },
     {
       id: 3,
@@ -85,8 +85,8 @@ export default function TabelKaryawan() {
       unit_kerja: "Administrasi",
       status_karyawan: "Kontrak",
       tempat_lahir: "Surabaya",
-      tanggal_lahir: "05/05/1990",
-      foto_profil: "https://bit.ly/code-beast",
+      tgl_lahir: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/code-beast",
     },
     {
       id: 4,
@@ -97,8 +97,8 @@ export default function TabelKaryawan() {
       unit_kerja: "Keuangan",
       status_karyawan: "Tetap",
       tempat_lahir: "Bandung",
-      tanggal_lahir: "20/09/1978",
-      foto_profil: "https://bit.ly/code-beast",
+      tgl_lahir: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/code-beast",
     },
     {
       id: 5,
@@ -109,8 +109,8 @@ export default function TabelKaryawan() {
       unit_kerja: "Pemasaran",
       status_karyawan: "Kontrak",
       tempat_lahir: "Yogyakarta",
-      tanggal_lahir: "15/03/1988",
-      foto_profil: "https://bit.ly/code-beast",
+      tgl_lahir: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/code-beast",
     },
     {
       id: 6,
@@ -121,8 +121,8 @@ export default function TabelKaryawan() {
       unit_kerja: "IT",
       status_karyawan: "Tetap",
       tempat_lahir: "Medan",
-      tanggal_lahir: "08/08/1995",
-      foto_profil: "https://bit.ly/code-beast",
+      tgl_lahir: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/code-beast",
     },
     {
       id: 7,
@@ -133,8 +133,8 @@ export default function TabelKaryawan() {
       unit_kerja: "Pelayanan Pelanggan",
       status_karyawan: "Kontrak",
       tempat_lahir: "Denpasar",
-      tanggal_lahir: "25/04/1983",
-      foto_profil: "https://bit.ly/code-beast",
+      tgl_lahir: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
+      avatar: "https://bit.ly/code-beast",
     },
   ];
 
@@ -142,6 +142,10 @@ export default function TabelKaryawan() {
 
   const [data] = useState<Karyawan__Interface[] | null>(dummy);
   const [loading] = useState<boolean>(false);
+
+  const date = new Date();
+  const tanggal = date.getDate();
+  console.log(tanggal);
 
   return (
     <>

@@ -42,8 +42,8 @@ export interface Karyawan__Interface {
   unit_kerja: string;
   status_karyawan?: string;
   tempat_lahir?: string;
-  tanggal_lahir?: string;
-  foto_profil: string;
+  tgl_lahir?: string;
+  avatar: string;
 }
 
 export type Valid__Status__Type = "Kerja" | "Cuti" | "Izin" | "Libur";
@@ -75,5 +75,5 @@ export interface TopNavs__Interface {
 export interface Tabel__Column__Interface {
   key: string;
   label: string;
-  dataType: "string" | "number" | "date" | "badge" | "options";
+  dataType: "string" | "number" | "date" | "badge" | "avatarAndName";
 }
