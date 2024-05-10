@@ -11,7 +11,7 @@ export default function getLocation(): Promise<{ lat: number; long: number }> {
         resolve({ lat: latitude, long: longitude });
       },
       (error) => {
-        console.log("Error getting current location", error);
+        console.log("Error", error);
         reject(error);
       },
       navigatorLocationOptions

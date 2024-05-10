@@ -8,8 +8,13 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import Textarea from "../../input/Textarea";
 import FormRequired from "../FormRequired";
+import { MutableRefObject } from "react";
 
-export default function FormDashboardBuatPengumuman() {
+interface Props {
+  forwardRef: MutableRefObject<null>;
+}
+
+export default function FormDashboardBuatPengumuman({ forwardRef }: Props) {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: { judul: "", pengumuman: "" },
@@ -32,6 +37,7 @@ export default function FormDashboardBuatPengumuman() {
           <FormRequired />
         </FormLabel>
         <Input
+          ref={forwardRef}
           name="judul"
           placeholder="Judul Pengumuman"
           onChange={formik.handleChange}

@@ -43,12 +43,14 @@ export default function DashboardBuatPengumumanModal() {
         initialFocusRef={initialRef}
       >
         <ModalOverlay />
-        <ModalContent ref={initialRef}>
+        <ModalContent>
           <ModalCloseButton />
           <ModalHeader>Buat Pengumuman</ModalHeader>
+
           <ModalBody>
-            <FormDashboardBuatPengumuman />
+            <FormDashboardBuatPengumuman forwardRef={initialRef} />
           </ModalBody>
+
           <ModalFooter>
             <Button
               type="submit"
