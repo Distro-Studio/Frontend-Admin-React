@@ -308,16 +308,27 @@ export default function TabelKaryawan() {
       avatar: "https://bit.ly/code-beast",
     },
   ];
-
   //! DEBUG
 
   const [data] = useState<Karyawan__Interface[] | null>(dummy);
   const [loading] = useState<boolean>(false);
 
+  // Filter Config
+  // const [filterConfig, setFilterConfig] = useState<any>({});
+
+  // Limit Config
+  const [limitConfig, setLimitConfig] = useState<number>(10);
+
+  // Pagination Config
+  const [pageConfig, setPageConfig] = useState<number>(1);
+
   return (
     <>
       {loading && (
-        <TabelContainer minH={"calc(80vh - 80px)"} p={responsiveSpacing}>
+        <TabelContainer
+          h={[`calc(100vh - 342px)`, null, `calc(100vh - 288px)`]}
+          p={responsiveSpacing}
+        >
           <VStack h={"100%"} gap={responsiveSpacing}>
             <Skeleton h={"52px"} />
             <Skeleton flex={1} flexShrink={0} />
@@ -329,7 +340,15 @@ export default function TabelKaryawan() {
         <Tabel
           columns={columns}
           data={data}
-          pagination={{ prev_page_url: "", next_page_url: "", last_page: 1 }}
+          paginationData={{
+            prev_page_url: "",
+            next_page_url: "",
+            last_page: 1,
+          }}
+          pageConfig={pageConfig}
+          setPageConfig={setPageConfig}
+          limitConfig={limitConfig}
+          setLimitConfig={setLimitConfig}
         />
       )}
     </>

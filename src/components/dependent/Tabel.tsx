@@ -37,11 +37,22 @@ import PaginationNav from "./PaginationNav";
 interface Props {
   columns: Tabel__Column__Interface[];
   data: any[];
-  pagination?: any;
-  noLimit?: boolean;
+  paginationData?: any;
+  pageConfig?: number;
+  setPageConfig?: (page: number) => void;
+  limitConfig?: number;
+  setLimitConfig?: (limit: number) => void;
 }
 
-export default function Tabel({ columns, data, pagination, noLimit }: Props) {
+export default function Tabel({
+  columns,
+  data,
+  paginationData,
+  pageConfig,
+  setPageConfig,
+  limitConfig,
+  setLimitConfig,
+}: Props) {
   // Sort Congig
   const [sortConfig, setSortConfig] = useState<{
     key: string;
@@ -71,11 +82,6 @@ export default function Tabel({ columns, data, pagination, noLimit }: Props) {
     setSortConfig({ key, direction });
   };
 
-  // Filter Config
-  // const [filterConfig, setFilterConfig] = useState<any>({});
-
-  // Limit Config
-  const [limitConfig, setLimitConfig] = useState<10 | 50 | 100>(10);
   const limitButtonRef = useRef<HTMLButtonElement>(null);
   const [limitMenuListW, setLimitMenuListW] = useState<
     number | (number | null)[] | null
@@ -85,9 +91,6 @@ export default function Tabel({ columns, data, pagination, noLimit }: Props) {
       setLimitMenuListW(limitButtonRef.current.offsetWidth);
     }
   }, [limitButtonRef, limitConfig]);
-
-  // Pagination Config
-  const [pageConfig, setPageConfig] = useState<number>(1);
 
   // SX
   const contectBgColor = useContentBgColor();
@@ -235,7 +238,7 @@ export default function Tabel({ columns, data, pagination, noLimit }: Props) {
         justify={"space-between"}
         mt={responsiveSpacing}
       >
-        {!noLimit && (
+        {limitConfig && setLimitConfig && (
           <Menu>
             <MenuButton
               ref={limitButtonRef}
@@ -280,11 +283,13 @@ export default function Tabel({ columns, data, pagination, noLimit }: Props) {
           </Menu>
         )}
 
-        <PaginationNav
-          page={pageConfig}
-          setPage={setPageConfig}
-          pagination={pagination}
-        />
+        {pageConfig && setPageConfig && (
+          <PaginationNav
+            page={pageConfig}
+            setPage={setPageConfig}
+            paginationData={paginationData}
+          />
+        )}
       </Wrap>
     </>
     // </div>

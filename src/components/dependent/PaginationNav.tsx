@@ -6,39 +6,45 @@ import PaginationJump from "./PaginationJump";
 type Props = {
   page: number;
   setPage: (page: number) => void;
-  pagination?: any;
+  paginationData?: any;
 };
 
-export default function PaginationNav({ page, setPage, pagination }: Props) {
+export default function PaginationNav({
+  page,
+  setPage,
+  paginationData,
+}: Props) {
   return (
-    pagination && (
-      <HStack justify={"center"}>
-        <IconButton
-          aria-label="prev"
-          icon={<Icon as={RiArrowLeftSLine} fontSize={iconSize} />}
-          variant={"ghost"}
-          className="btn"
-          size={"sm"}
-          onClick={() => {
-            setPage(page - 1);
-          }}
-          isDisabled={!pagination.prev_page_url}
-        />
+    <HStack justify={"center"}>
+      <IconButton
+        aria-label="prev"
+        icon={<Icon as={RiArrowLeftSLine} fontSize={iconSize} />}
+        variant={"ghost"}
+        className="btn"
+        size={"sm"}
+        onClick={() => {
+          setPage(page - 1);
+        }}
+        isDisabled={!paginationData.prev_page_url}
+      />
 
-        <PaginationJump page={page} setPage={setPage} pagination={pagination} />
+      <PaginationJump
+        page={page}
+        setPage={setPage}
+        pagination={paginationData}
+      />
 
-        <IconButton
-          aria-label="prev"
-          icon={<Icon as={RiArrowRightSLine} fontSize={iconSize} />}
-          variant={"ghost"}
-          className="btn"
-          size={"sm"}
-          onClick={() => {
-            setPage(page + 1);
-          }}
-          isDisabled={!pagination.next_page_url}
-        />
-      </HStack>
-    )
+      <IconButton
+        aria-label="prev"
+        icon={<Icon as={RiArrowRightSLine} fontSize={iconSize} />}
+        variant={"ghost"}
+        className="btn"
+        size={"sm"}
+        onClick={() => {
+          setPage(page + 1);
+        }}
+        isDisabled={!paginationData.next_page_url}
+      />
+    </HStack>
   );
 }
