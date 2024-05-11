@@ -13,11 +13,15 @@ export default function Login() {
             justify={"space-between"}
             minH={"100vh"}
             py={6}
-            px={12}
+            px={[6, null, 12]}
             maxW={"450px"}
           >
             <VStack align={"flex-start"} mb={6}>
-              <Image src={"/logo512.png"} w={"180px"} />
+              <Image
+                src={"/logo512.png"}
+                w={"180px"}
+                mx={["auto", null, "0"]}
+              />
             </VStack>
 
             <Box>
