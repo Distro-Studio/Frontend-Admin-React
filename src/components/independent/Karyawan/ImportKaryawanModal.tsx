@@ -94,11 +94,8 @@ export default function ImportKaryawanModal() {
                 onClick={() => {
                   backOnClose(onClose);
                 }}
-                className="clicky"
+                className="btn-solid clicky"
                 bg={"var(--reda)"}
-                _hover={{ bg: "var(--reda)" }}
-                variant={"ghost"}
-                colorScheme="red"
               >
                 Batal
               </Button>

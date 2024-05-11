@@ -6,10 +6,14 @@ import {
 import Tabel from "../../dependent/Tabel";
 import Skeleton from "../Skeleton";
 import TabelContainer from "../../wrapper/TabelContainer";
-import { VStack } from "@chakra-ui/react";
+import { HStack, VStack } from "@chakra-ui/react";
 import { responsiveSpacing } from "../../../const/sizes";
 
-export default function TabelKaryawan() {
+interface Props {
+  filterConfig?: any;
+}
+
+export default function TabelKaryawan({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
       key: "nama",
@@ -308,13 +312,11 @@ export default function TabelKaryawan() {
       avatar: "https://bit.ly/code-beast",
     },
   ];
+  console.log(filterConfig);
   //! DEBUG
 
   const [data] = useState<Karyawan__Interface[] | null>(dummy);
   const [loading] = useState<boolean>(false);
-
-  // Filter Config
-  // const [filterConfig, setFilterConfig] = useState<any>({});
 
   // Limit Config
   const [limitConfig, setLimitConfig] = useState<number>(10);
@@ -325,15 +327,19 @@ export default function TabelKaryawan() {
   return (
     <>
       {loading && (
-        <TabelContainer
-          h={[`calc(100vh - 342px)`, null, `calc(100vh - 288px)`]}
-          p={responsiveSpacing}
-        >
-          <VStack h={"100%"} gap={responsiveSpacing}>
-            <Skeleton h={"52px"} />
-            <Skeleton flex={1} flexShrink={0} />
-          </VStack>
-        </TabelContainer>
+        <>
+          <TabelContainer p={responsiveSpacing}>
+            <VStack h={"100%"} align={"stretch"} gap={responsiveSpacing}>
+              <Skeleton h={"52px"} />
+              <Skeleton flex={1} flexShrink={0} />
+            </VStack>
+          </TabelContainer>
+
+          <HStack justify={"space-between"} mt={responsiveSpacing}>
+            <Skeleton h={"40px"} w={"120px"} />
+            <Skeleton h={"40px"} w={"120px"} />
+          </HStack>
+        </>
       )}
 
       {!loading && data && (

@@ -6,7 +6,8 @@ import {
   InputLeftElement,
   Wrap,
 } from "@chakra-ui/react";
-import { RiEqualizer3Line, RiSearchLine, RiUploadLine } from "@remixicon/react";
+import { RiSearchLine, RiUploadLine } from "@remixicon/react";
+import { useState } from "react";
 import TopNavs from "../../components/dependent/TopNavs";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
 import TabelKaryawan from "../../components/independent/Karyawan/TabelKaryawan";
@@ -15,8 +16,16 @@ import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import karyawanTopNavs from "../../const/karyawanTopNavs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
+import FilterTabelKaryawan from "./FilterTabelKaryawan";
 
 export default function Karyawan() {
+  // Filter Config
+  const [filterConfig, setFilterConfig] = useState<any>({
+    search: "",
+    unit_kerja: "",
+    status_karyawan: "",
+  });
+
   return (
     <>
       <TopNavs data={karyawanTopNavs} active={0} mb={responsiveSpacing} />
@@ -28,20 +37,23 @@ export default function Karyawan() {
               <InputLeftElement>
                 <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
               </InputLeftElement>
-              <Input placeholder="Pencarian" flex={"1 1 0"} />
+              <Input
+                placeholder="Pencarian"
+                flex={"1 1 0"}
+                onChange={(e) => {
+                  setFilterConfig((ps: any) => ({
+                    ...ps,
+                    search: e.target.value,
+                  }));
+                }}
+                value={filterConfig.search}
+              />
             </InputGroup>
 
-            <Button
-              flex={"1 1 110px"}
-              variant={"outline"}
-              colorScheme="ap"
-              className="clicky"
-              rightIcon={<Icon as={RiEqualizer3Line} fontSize={iconSize} />}
-              flexShrink={0}
-              pr={3}
-            >
-              Filter
-            </Button>
+            <FilterTabelKaryawan
+              filterConfig={filterConfig}
+              setFilterConfig={setFilterConfig}
+            />
 
             <Button
               flex={"1 1 110px"}
@@ -64,7 +76,7 @@ export default function Karyawan() {
             </Button>
           </Wrap>
 
-          <TabelKaryawan />
+          <TabelKaryawan filterConfig={filterConfig} />
         </CContainer>
       </CWrapper>
     </>

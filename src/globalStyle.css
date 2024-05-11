@@ -185,8 +185,9 @@ textarea:focus-visible,
 textarea.filled:focus,
 textarea.filled:focus-visible {
   transition: 200ms !important;
-  box-shadow: 0 0 0 2px var(--p500) !important;
-  /* border: 1px solid var(--p500) !important; */
+  /* box-shadow: 0 0 0 2px var(--p500) !important; */
+  box-shadow: none !important;
+  border: 1px solid var(--p500) !important;
 }
 input.filled {
   border: 1px solid var(--divider3) !important;
@@ -253,13 +254,19 @@ select {
 
 .scrollX::-webkit-scrollbar-thumb,
 .scrollY::-webkit-scrollbar-thumb {
-  background-color: var(--p500a3);
+  background-color: var(--divider);
   border-radius: 100px;
+}
+
+.scrollXkotak::-webkit-scrollbar-thumb,
+.scrollYkotak::-webkit-scrollbar-thumb {
+  background-color: var(--divider);
+  border-radius: 0px !important;
 }
 
 .scrollX::-webkit-scrollbar-thumb:hover,
 .scrollY::-webkit-scrollbar-thumb:hover {
-  background-color: var(--p500a2);
+  background-color: var(--divider2);
 }
 
 .scrollX::-webkit-scrollbar-track,
