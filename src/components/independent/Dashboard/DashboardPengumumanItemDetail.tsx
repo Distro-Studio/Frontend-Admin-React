@@ -15,7 +15,7 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import { RiCalendarLine } from "@remixicon/react";
+import { RiCalendar2Fill } from "@remixicon/react";
 import { useRef, useState } from "react";
 import { Pengumuman__Interface } from "../../../const/interfaces";
 import { iconSize } from "../../../const/sizes";
@@ -96,7 +96,11 @@ export default function DashboardPengumumanItemDetail({
             {!isDeleting && (
               <>
                 <HStack mb={4}>
-                  <Icon as={RiCalendarLine} fontSize={iconSize} opacity={0.6} />
+                  <Icon
+                    as={RiCalendar2Fill}
+                    fontSize={iconSize}
+                    opacity={0.6}
+                  />
                   <Text>{formatDate(data.createdAt)}</Text>
                 </HStack>
                 <FormDashboardUpdatePengumuman data={data} />

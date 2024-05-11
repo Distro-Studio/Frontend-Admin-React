@@ -78,8 +78,8 @@ export default function Tabel({ columns, data, pagination, noLimit }: Props) {
   const [limitConfig, setLimitConfig] = useState<10 | 50 | 100>(10);
   const limitButtonRef = useRef<HTMLButtonElement>(null);
   const [limitMenuListW, setLimitMenuListW] = useState<
-    number | (number | null)[]
-  >([119, null, 127]);
+    number | (number | null)[] | null
+  >(null);
   useEffect(() => {
     if (limitButtonRef.current) {
       setLimitMenuListW(limitButtonRef.current.offsetWidth);
@@ -246,10 +246,11 @@ export default function Tabel({ columns, data, pagination, noLimit }: Props) {
               }
             >
               <HStack>
-                <Text opacity={0.6}>Show</Text>
+                <Text opacity={0.6}>Row</Text>
                 <Text color={"p.500"}>{limitConfig}</Text>
               </HStack>
             </MenuButton>
+
             <MenuList minW={`${limitMenuListW}px`}>
               <MenuItem
                 color={limitConfig === 10 ? "p.500" : ""}
