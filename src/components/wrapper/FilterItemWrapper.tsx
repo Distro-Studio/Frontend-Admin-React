@@ -5,23 +5,20 @@ import {
   AccordionItemProps,
   AccordionPanel,
   Box,
-  Icon,
-  Input,
-  InputGroup,
-  InputLeftElement,
+  HStack,
+  Text,
   VStack,
 } from "@chakra-ui/react";
-import { RiSearch2Line } from "@remixicon/react";
-import { useBodyColor } from "../../const/colors";
-import { iconSize } from "../../const/sizes";
 
 interface Props extends AccordionItemProps {
   title: string;
   children: any;
+  filterValue?: string;
 }
 export default function FilterItemWrapper({
   title,
   children,
+  filterValue,
   ...props
 }: Props) {
   return (
@@ -34,10 +31,20 @@ export default function FilterItemWrapper({
           // borderBottom: "1px solid var(--divider)",
         }}
         _hover={{ bg: "transparent" }}
+        justifyContent={"space-between"}
       >
-        <Box as="span" flex="1" textAlign="left" fontSize={16}>
-          {title}
-        </Box>
+        <HStack w={"100%"} justify={"space-between"} gap={20}>
+          <Text flexShrink={0}>{title}</Text>
+
+          {filterValue && (
+            <Box py={1} px={3} borderRadius={"full"} mr={4}>
+              <Text fontWeight={400} ml={"auto"} noOfLines={1} fontSize={12}>
+                {filterValue}
+              </Text>
+            </Box>
+          )}
+        </HStack>
+
         <AccordionIcon />
       </AccordionButton>
 
@@ -46,32 +53,11 @@ export default function FilterItemWrapper({
           align={"stretch"}
           maxH={"300px"}
           overflowY={"auto"}
-          pb={2}
-          px={2}
+          gap={0}
+          // pb={2}
+          // px={2}
           className="scrollY scrollYkotak"
         >
-          <InputGroup
-            position={"sticky"}
-            top={0}
-            bg={useBodyColor()}
-            zIndex={2}
-          >
-            <InputLeftElement>
-              <Icon as={RiSearch2Line} fontSize={iconSize} color={"p.500"} />
-            </InputLeftElement>
-            <Input
-              name="search"
-              placeholder="Pencarian"
-              border={"0 !important"}
-              borderBottom={"1px solid var(--divider3) !important"}
-              borderRadius={"0 !important"}
-              _focus={{
-                border: "0 !important",
-                borderBottom: "1px solid var(--p500) !important",
-              }}
-            />
-          </InputGroup>
-
           {children}
         </VStack>
       </AccordionPanel>

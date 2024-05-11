@@ -16,14 +16,14 @@ import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import karyawanTopNavs from "../../const/karyawanTopNavs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
-import FilterTabelKaryawan from "./FilterTabelKaryawan";
+import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
 
 export default function Karyawan() {
   // Filter Config
   const [filterConfig, setFilterConfig] = useState<any>({
-    search: "",
-    unit_kerja: "",
-    status_karyawan: "",
+    search: null,
+    unit_kerja: null,
+    status_karyawan: null,
   });
 
   return (
