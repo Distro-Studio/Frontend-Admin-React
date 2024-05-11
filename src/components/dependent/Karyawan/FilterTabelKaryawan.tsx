@@ -24,6 +24,7 @@ interface Props {
   filterConfig: any;
   setFilterConfig: Dispatch<any>;
 }
+
 export default function FilterTabelKaryawan({
   filterConfig,
   setFilterConfig,
@@ -70,14 +71,27 @@ export default function FilterTabelKaryawan({
                   setFilterConfig={setFilterConfig}
                 />
 
-                <FilterStatusKaryawan setFilterConfig={setFilterConfig} />
+                <FilterStatusKaryawan
+                  filterConfig={filterConfig}
+                  setFilterConfig={setFilterConfig}
+                />
               </form>
             </Accordion>
           </ModalBody>
 
           <ModalFooter>
             <ButtonGroup w={"100%"}>
-              <Button w={"50%"} className="btn-solid clicky">
+              <Button
+                w={"50%"}
+                className="btn-solid clicky"
+                onClick={() => {
+                  setFilterConfig({
+                    search: "",
+                    unit_kerja: null,
+                    status_karyawan: null,
+                  });
+                }}
+              >
                 Reset
               </Button>
               <Button w={"50%"} colorScheme="ap" className="btn-ap clicky">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, useState } from "react";
 import FilterItemWrapper from "../../wrapper/FilterItemWrapper";
 import {
   Box,
@@ -16,7 +16,7 @@ import DataNotFound from "../../independent/DataNotFound";
 
 interface Props {
   filterConfig: any;
-  setFilterConfig: (config: any) => void;
+  setFilterConfig: Dispatch<any>;
 }
 
 export default function FilterUnitKerja({
@@ -191,6 +191,8 @@ export default function FilterUnitKerja({
     <FilterItemWrapper
       title="Unit Kerja"
       filterValue={filterConfig.unit_kerja?.nama_unit}
+      setFilterConfig={setFilterConfig}
+      filterKey="unit_kerja"
     >
       <InputGroup position={"sticky"} top={0} bg={useBodyColor()} zIndex={2}>
         <InputLeftElement>
@@ -215,12 +217,17 @@ export default function FilterUnitKerja({
       </InputGroup>
 
       <VStack align={"stretch"} minH={"calc(300px - 56px)"} gap={0}>
-        {filteredData.length === 0 && <DataNotFound mt={4} />}
+        {filteredData?.length === 0 && <DataNotFound mt={4} />}
 
-        {filteredData.map((data, i) => (
+        {filteredData?.map((data, i) => (
           <Button
             key={i}
-            opacity={data.id === filterConfig.unit_kerja.id ? 1 : 0.6}
+            opacity={
+              filterConfig?.unit_kerja &&
+              filterConfig?.unit_kerja?.id === data.id
+                ? 1
+                : 0.6
+            }
             justifyContent={"space-between"}
             gap={4}
             fontWeight={400}
@@ -235,9 +242,10 @@ export default function FilterUnitKerja({
           >
             {data.nama_unit}
 
-            {data.id === filterConfig.unit_kerja.id && (
-              <Box h={"10px"} w={"10px"} borderRadius={"full"} bg={"p.500"} />
-            )}
+            {filterConfig?.unit_kerja &&
+              filterConfig?.unit_kerja?.id === data.id && (
+                <Box h={"6px"} w={"6px"} borderRadius={"full"} bg={"p.500"} />
+              )}
           </Button>
         ))}
       </VStack>

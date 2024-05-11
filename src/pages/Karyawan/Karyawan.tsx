@@ -21,7 +21,7 @@ import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabel
 export default function Karyawan() {
   // Filter Config
   const [filterConfig, setFilterConfig] = useState<any>({
-    search: null,
+    search: "",
     unit_kerja: null,
     status_karyawan: null,
   });

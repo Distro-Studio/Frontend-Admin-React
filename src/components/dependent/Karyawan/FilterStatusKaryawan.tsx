@@ -1,81 +1,69 @@
-import React, { useState } from "react";
+import { Box, Button } from "@chakra-ui/react";
 import FilterItemWrapper from "../../wrapper/FilterItemWrapper";
-import {
-  Button,
-  Icon,
-  Input,
-  InputGroup,
-  InputLeftElement,
-} from "@chakra-ui/react";
-import { RiSearch2Line } from "@remixicon/react";
-import { iconSize } from "../../../const/sizes";
-import { useBodyColor } from "../../../const/colors";
+import { Dispatch } from "react";
 
 interface Props {
-  setFilterConfig: (config: any) => void;
+  filterConfig: any;
+  setFilterConfig: Dispatch<any>;
 }
 
-export default function FilterStatusKaryawan({ setFilterConfig }: Props) {
-  const [search, setSearch] = useState<string>("");
+export default function FilterStatusKaryawan({
+  filterConfig,
+  setFilterConfig,
+}: Props) {
+  const statusKaryawanList = [
+    {
+      id: 1,
+      nama_status: "Tetap",
+    },
+    {
+      id: 2,
+      nama_status: "Kontrak",
+    },
+    {
+      id: 3,
+      nama_status: "Magang",
+    },
+  ];
   //TODO get list status karyawan
 
   return (
-    <FilterItemWrapper title="Status Karyawan">
-      <InputGroup position={"sticky"} top={0} bg={useBodyColor()} zIndex={2}>
-        <InputLeftElement>
-          <Icon as={RiSearch2Line} fontSize={iconSize} color={"p.500"} />
-        </InputLeftElement>
-        <Input
-          name="search"
-          placeholder="Pencarian"
-          border={"0 !important"}
-          borderBottom={"1px solid var(--divider3) !important"}
-          borderRadius={"0 !important"}
-          _focus={{
-            border: "0 !important",
-            borderBottom: "1px solid var(--p500) !important",
-          }}
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
-          value={search}
-        />
-      </InputGroup>
-
+    <FilterItemWrapper
+      title="Status Karyawan"
+      filterValue={filterConfig.status_karyawan?.nama_status}
+      setFilterConfig={setFilterConfig}
+      filterKey="status_karyawan"
+    >
       <>
-        <Button
-          opacity={0.6}
-          justifyContent={"flex-start"}
-          fontWeight={400}
-          className="btn"
-          flexShrink={0}
-          borderRadius={0}
-          h={"50px"}
-        >
-          Tetap
-        </Button>
-        <Button
-          opacity={0.6}
-          justifyContent={"flex-start"}
-          fontWeight={400}
-          className="btn"
-          flexShrink={0}
-          borderRadius={0}
-          h={"50px"}
-        >
-          Kontrak
-        </Button>
-        <Button
-          opacity={0.6}
-          justifyContent={"flex-start"}
-          fontWeight={400}
-          className="btn"
-          flexShrink={0}
-          borderRadius={0}
-          h={"50px"}
-        >
-          Magang
-        </Button>
+        {statusKaryawanList.map((data, i) => (
+          <Button
+            key={i}
+            opacity={
+              filterConfig?.status_karyawan &&
+              filterConfig?.status_karyawan?.id === data.id
+                ? 1
+                : 0.6
+            }
+            justifyContent={"space-between"}
+            gap={4}
+            fontWeight={400}
+            className="btn"
+            flexShrink={0}
+            borderRadius={0}
+            h={"50px"}
+            // color={data.id === filterConfig.status_karyawan ? "p.500" : ""}
+            onClick={() => {
+              setFilterConfig((ps: any) => ({ ...ps, status_karyawan: data }));
+            }}
+          >
+            {data.nama_status}
+
+            {filterConfig?.status_karyawan &&
+              filterConfig?.status_karyawan?.id === data.id && (
+                <Box h={"6px"} w={"6px"} borderRadius={"full"} bg={"p.500"} />
+              )}
+          </Button>
+        ))}
       </>
     </FilterItemWrapper>
   );
