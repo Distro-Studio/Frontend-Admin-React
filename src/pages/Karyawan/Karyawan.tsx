@@ -6,13 +6,9 @@ import {
   InputLeftElement,
   Wrap,
 } from "@chakra-ui/react";
-import {
-  RiDownloadLine,
-  RiEqualizer3Line,
-  RiSearchLine,
-  RiUploadLine,
-} from "@remixicon/react";
+import { RiEqualizer3Line, RiSearchLine, RiUploadLine } from "@remixicon/react";
 import TopNavs from "../../components/dependent/TopNavs";
+import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
 import TabelKaryawan from "../../components/independent/Karyawan/TabelKaryawan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -57,15 +53,7 @@ export default function Karyawan() {
               Export
             </Button>
 
-            <Button
-              flex={"1 1 110px"}
-              variant={"outline"}
-              colorScheme="ap"
-              className="clicky"
-              rightIcon={<Icon as={RiDownloadLine} fontSize={iconSize} />}
-            >
-              Import
-            </Button>
+            <ImportKaryawanModal />
 
             <Button
               flex={"1 0 170px"}
