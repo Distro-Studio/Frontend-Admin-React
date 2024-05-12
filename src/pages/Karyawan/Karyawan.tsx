@@ -73,7 +73,7 @@ export default function Karyawan() {
               colorScheme="ap"
               className="btn-ap clicky"
               as={Link}
-              to={"/karyawan/tambah-karyawan-1"}
+              to={"/karyawan/tambah-karyawan"}
             >
               Tambah Karyawan
             </Button>

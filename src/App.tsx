@@ -1,25 +1,24 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import { globalTheme } from "./chakraTheme/globalTheme";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./pages/Login/Login";
+import { globalTheme } from "./chakraTheme/globalTheme";
+import NavContainer from "./components/wrapper/NavContainer";
 import "./globalStyle.css";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import Karyawan from "./pages/Karyawan/Karyawan";
-import Presensi from "./pages/Presensi/Presensi";
-import Keuangan from "./pages/Keuangan/Keuangan";
-import Perusahaan from "./pages/Perusahaan/Perusahaan";
-import Pengaturan from "./pages/Pengaturan/Pengaturan";
 import MissingPage from "./pages/Error/MissingPage";
-import ManajemenJadwal from "./pages/ManajemenJadwal/ManajemenJadwal";
 import AkunKaryawan from "./pages/Karyawan/AkunKaryawan";
+import Karyawan from "./pages/Karyawan/Karyawan";
 import KeluargaKaryawan from "./pages/Karyawan/KeluargaKaryawan";
 import PekerjaKontrak from "./pages/Karyawan/PekerjaKontrak";
 import RekamJejak from "./pages/Karyawan/RekamJejak";
 import TransferKaryawan from "./pages/Karyawan/TransferKaryawan";
-import NavContainer from "./components/wrapper/NavContainer";
-import TambahKaryawan1 from "./pages/Karyawan/TambahKaryawan1";
-import TambahKaryawan2 from "./pages/Karyawan/TambahKaryawan2";
-import TambahKaryawan3 from "./pages/Karyawan/TambahKaryawan3";
+import Keuangan from "./pages/Keuangan/Keuangan";
+import Login from "./pages/Login/Login";
+import ManajemenJadwal from "./pages/ManajemenJadwal/ManajemenJadwal";
+import Pengaturan from "./pages/Pengaturan/Pengaturan";
+import Perusahaan from "./pages/Perusahaan/Perusahaan";
+import Presensi from "./pages/Presensi/Presensi";
+import TambahKaryawan from "./pages/Karyawan/TambahKaryawan";
+import { responsiveSpacing } from "./const/sizes";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -45,7 +44,7 @@ export const App = () => (
           }
         />
         <Route
-          path="/karyawan/tambah-karyawan-1"
+          path="/karyawan/tambah-karyawan"
           element={
             <NavContainer
               active={1}
@@ -53,34 +52,9 @@ export const App = () => (
               noNavs
               left={"back"}
               backLink="/karyawan"
+              pb={responsiveSpacing}
             >
-              <TambahKaryawan1 />
-            </NavContainer>
-          }
-        />
-        <Route
-          path="/karyawan/tambah-karyawan-2"
-          element={
-            <NavContainer
-              active={1}
-              title="Tambah Karyawan"
-              noNavs
-              left={"back"}
-            >
-              <TambahKaryawan2 />
-            </NavContainer>
-          }
-        />
-        <Route
-          path="/karyawan/tambah-karyawan-3"
-          element={
-            <NavContainer
-              active={1}
-              title="Tambah Karyawan"
-              noNavs
-              left={"back"}
-            >
-              <TambahKaryawan3 />
+              <TambahKaryawan />
             </NavContainer>
           }
         />

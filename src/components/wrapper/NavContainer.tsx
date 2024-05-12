@@ -4,6 +4,7 @@ import {
   Icon,
   IconButton,
   Image,
+  StackProps,
   Tooltip,
   VStack,
 } from "@chakra-ui/react";
@@ -17,7 +18,7 @@ import Header from "../dependent/Header";
 import CContainer from "./CContainer";
 import Container from "./Container";
 
-interface Props {
+interface Props extends StackProps {
   active: number;
   children?: any;
   noNavs?: boolean;
@@ -35,6 +36,7 @@ export default function NavContainer({
   left,
   backLink,
   right,
+  ...props
 }: Props) {
   const smScreen = useScreenWidth() <= 768;
 
@@ -144,6 +146,7 @@ export default function NavContainer({
           // w={"100%"}
           flex={1}
           overflowX={"clip"}
+          {...props}
         >
           <Header
             title={title}
