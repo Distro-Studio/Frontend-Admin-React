@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionItemProps,
   AccordionPanel,
+  Center,
   HStack,
   Icon,
   IconButton,
@@ -12,6 +13,8 @@ import {
 } from "@chakra-ui/react";
 import { RiCloseLine } from "@remixicon/react";
 import { Dispatch } from "react";
+import { useBodyColor } from "../../const/colors";
+import formatNumber from "../../lib/formatNumber";
 
 interface Props extends AccordionItemProps {
   title: string;
@@ -28,6 +31,9 @@ export default function FilterItemWrapper({
   filterKey,
   ...props
 }: Props) {
+  // SX
+  const bodyColor = useBodyColor();
+
   return (
     <AccordionItem {...props}>
       <AccordionButton
@@ -66,19 +72,21 @@ export default function FilterItemWrapper({
 
           <Text flexShrink={0}>{title}</Text>
 
-          {filterValue && (
-            <HStack>
-              <Text
-                fontWeight={400}
-                ml={"auto"}
-                mr={2}
-                noOfLines={1}
-                maxW={"140px"}
-                fontSize={12}
-              >
-                {filterValue}
+          {filterValue && filterValue.length > 0 && (
+            <Center
+              flexShrink={0}
+              p={1}
+              minW={"20px"}
+              h={"20px"}
+              borderRadius={"full"}
+              bg={"p.500"}
+              ml={"auto"}
+              mr={2}
+            >
+              <Text color={bodyColor} fontSize={12} fontWeight={600}>
+                {formatNumber(filterValue.length)}
               </Text>
-            </HStack>
+            </Center>
           )}
         </HStack>
 

@@ -22,8 +22,8 @@ export default function Karyawan() {
   // Filter Config
   const [filterConfig, setFilterConfig] = useState<any>({
     search: "",
-    unit_kerja: null,
-    status_karyawan: null,
+    unit_kerja: [],
+    status_karyawan: [],
   });
 
   return (

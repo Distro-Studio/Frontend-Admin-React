@@ -77,3 +77,5 @@ export interface Tabel__Column__Interface {
   label: string;
   dataType: "string" | "number" | "date" | "badge" | "avatarAndName";
 }
+
+export interface Unit__Kerja__Interface {}

@@ -32,8 +32,8 @@ export const ColorModeSwitcherHeaderMenu: React.FC<ColorModeSwitcherProps> = (
       <Icon as={RiMoonLine} fontSize={18} />
       <Text>Mode Gelap</Text>
       <Box
-        w={"10px"}
-        h={"10px"}
+        w={"6px"}
+        h={"6px"}
         borderRadius={"full"}
         bg={text === "dark" ? "red.400" : "green.400"}
         ml={"auto"}

@@ -1,16 +1,15 @@
 import {
-  Box,
-  HStack,
+  Button,
   Icon,
   Input,
   InputGroup,
   InputLeftElement,
-  Text,
   VStack,
+  Wrap,
 } from "@chakra-ui/react";
 import { RiSearch2Line } from "@remixicon/react";
 import { Dispatch, useState } from "react";
-import { useBodyColor } from "../../../const/colors";
+import { useBodyColor, usePrimaryAlphaColor } from "../../../const/colors";
 import { iconSize } from "../../../const/sizes";
 import DataNotFound from "../../independent/DataNotFound";
 import FilterItemWrapper from "../../wrapper/FilterItemWrapper";
@@ -25,8 +24,9 @@ export default function FilterUnitKerja({
   setFilterConfig,
 }: Props) {
   const [search, setSearch] = useState<string>("");
+
   //TODO get list unit kerja
-  //TODO get list unit kerja
+
   const dummy = [
     {
       id: 1,
@@ -184,14 +184,17 @@ export default function FilterUnitKerja({
     },
   ];
 
-  const filteredData = dummy.filter((data) =>
+  const filteredList = dummy.filter((data) =>
     data.nama_unit.toLowerCase().includes(search.toLowerCase())
   );
+
+  // SX
+  const primaryAlphaColor = usePrimaryAlphaColor();
 
   return (
     <FilterItemWrapper
       title="Unit Kerja"
-      filterValue={filterConfig.unit_kerja?.nama_unit}
+      filterValue={filterConfig.unit_kerja}
       setFilterConfig={setFilterConfig}
       filterKey="unit_kerja"
     >
@@ -217,39 +220,56 @@ export default function FilterUnitKerja({
         />
       </InputGroup>
 
-      <VStack align={"stretch"} minH={"calc(300px - 52px)"} gap={0}>
-        {filteredData?.length === 0 && <DataNotFound mt={4} />}
+      <VStack align={"stretch"} h={"calc(300px - 52px)"} gap={0}>
+        {filteredList?.length === 0 && <DataNotFound mt={4} />}
 
-        {filteredData?.map((data, i) => (
-          <HStack
-            key={i}
-            px={4}
-            opacity={
+        <Wrap py={4}>
+          {filteredList?.map((data, i) => {
+            const active =
               filterConfig?.unit_kerja &&
-              filterConfig?.unit_kerja?.id === data.id
-                ? 1
-                : 0.6
-            }
-            justifyContent={"space-between"}
-            gap={2}
-            fontWeight={400}
-            className="btn"
-            flexShrink={0}
-            borderRadius={0}
-            h={"50px"}
-            cursor={"pointer"}
-            onClick={() => {
-              setFilterConfig((ps: any) => ({ ...ps, unit_kerja: data }));
-            }}
-          >
-            <Text noOfLines={1}>{data.nama_unit}</Text>
+              filterConfig?.unit_kerja.some((unit: any) => unit.id === data.id);
 
-            {filterConfig?.unit_kerja &&
-              filterConfig?.unit_kerja?.id === data.id && (
-                <Box h={"6px"} w={"6px"} borderRadius={"full"} bg={"p.500"} />
-              )}
-          </HStack>
-        ))}
+            return (
+              <Button
+                key={i}
+                borderRadius={"full"}
+                className="btn-outline"
+                fontWeight={400}
+                opacity={active ? 1 : 0.6}
+                bg={active && `${primaryAlphaColor} !important`}
+                borderColor={active && "var(--p500a2)"}
+                onClick={() => {
+                  setFilterConfig((ps: any) => {
+                    // Mengecek apakah data sudah ada dalam unit_kerja
+                    const isDataExist =
+                      ps.unit_kerja &&
+                      ps.unit_kerja.some((unit: any) => unit.id === data.id);
+
+                    // Jika data sudah ada, maka hapus data dari unit_kerja
+                    if (isDataExist) {
+                      return {
+                        ...ps,
+                        unit_kerja: ps.unit_kerja.filter(
+                          (unit: any) => unit.id !== data.id
+                        ),
+                      };
+                    } else {
+                      // Jika data belum ada, maka tambahkan data ke unit_kerja
+                      return {
+                        ...ps,
+                        unit_kerja: ps.unit_kerja
+                          ? [...ps.unit_kerja, data]
+                          : [data],
+                      };
+                    }
+                  });
+                }}
+              >
+                {data.nama_unit}
+              </Button>
+            );
+          })}
+        </Wrap>
       </VStack>
     </FilterItemWrapper>
   );

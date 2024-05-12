@@ -103,6 +103,7 @@ button:focus-visible {
 .btn-outline:hover:not(:disabled),
 .btn-solid:hover:not(:disabled) {
   background: var(--divider2) !important;
+  border: 1px solid var(--divider3);
 }
 .btn:hover:not(:disabled) {
   background: var(--divider) !important;

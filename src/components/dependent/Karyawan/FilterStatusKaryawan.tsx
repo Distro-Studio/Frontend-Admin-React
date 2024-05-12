@@ -1,6 +1,7 @@
 import { Button, Wrap } from "@chakra-ui/react";
 import { Dispatch } from "react";
 import FilterItemWrapper from "../../wrapper/FilterItemWrapper";
+import { usePrimaryAlphaColor } from "../../../const/colors";
 
 interface Props {
   filterConfig: any;
@@ -25,45 +26,67 @@ export default function FilterStatusKaryawan({
       nama_status: "Magang",
     },
   ];
+
   //TODO get list status karyawan
+
+  // SX
+  const primaryAlphaColor = usePrimaryAlphaColor();
 
   return (
     <FilterItemWrapper
       title="Status Karyawan"
-      filterValue={filterConfig.status_karyawan?.nama_status}
+      filterValue={filterConfig.status_karyawan}
       setFilterConfig={setFilterConfig}
       filterKey="status_karyawan"
     >
-      <Wrap pt={2} pb={4} px={3}>
-        {statusKaryawanList.map((data, i) => (
-          <Button
-            borderRadius={"full"}
-            className="btn-outline"
-            opacity={
-              filterConfig?.status_karyawan &&
-              filterConfig?.status_karyawan?.id === data.id
-                ? 1
-                : 0.6
-            }
-            // color={
-            //   filterConfig?.status_karyawan &&
-            //   filterConfig?.status_karyawan?.id === data.id
-            //     ? "p.500"
-            //     : ""
-            // }
-            borderColor={
-              filterConfig?.status_karyawan &&
-              filterConfig?.status_karyawan?.id === data.id
-                ? "p.500"
-                : ""
-            }
-            onClick={() => {
-              setFilterConfig((ps: any) => ({ ...ps, status_karyawan: data }));
-            }}
-          >
-            {data.nama_status}
-          </Button>
-        ))}
+      <Wrap py={4}>
+        {statusKaryawanList?.map((data, i) => {
+          const active =
+            filterConfig?.status_karyawan &&
+            filterConfig?.status_karyawan.some(
+              (unit: any) => unit.id === data.id
+            );
+
+          return (
+            <Button
+              key={i}
+              borderRadius={"full"}
+              className="btn-outline"
+              fontWeight={400}
+              opacity={active ? 1 : 0.6}
+              bg={active && `${primaryAlphaColor} !important`}
+              borderColor={active && "var(--p500a2)"}
+              onClick={() => {
+                setFilterConfig((ps: any) => {
+                  // Mengecek apakah data sudah ada dalam status_karyawan
+                  const isDataExist =
+                    ps.status_karyawan &&
+                    ps.status_karyawan.some((unit: any) => unit.id === data.id);
+
+                  // Jika data sudah ada, maka hapus data dari status_karyawan
+                  if (isDataExist) {
+                    return {
+                      ...ps,
+                      status_karyawan: ps.status_karyawan.filter(
+                        (unit: any) => unit.id !== data.id
+                      ),
+                    };
+                  } else {
+                    // Jika data belum ada, maka tambahkan data ke status_karyawan
+                    return {
+                      ...ps,
+                      status_karyawan: ps.status_karyawan
+                        ? [...ps.status_karyawan, data]
+                        : [data],
+                    };
+                  }
+                });
+              }}
+            >
+              {data.nama_status}
+            </Button>
+          );
+        })}
       </Wrap>
     </FilterItemWrapper>
   );
