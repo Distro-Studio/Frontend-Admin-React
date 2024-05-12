@@ -1,7 +1,7 @@
-import { Button, Wrap } from "@chakra-ui/react";
+import { HStack, Text, Wrap } from "@chakra-ui/react";
 import { Dispatch } from "react";
-import FilterItemWrapper from "../../wrapper/FilterItemWrapper";
 import { usePrimaryAlphaColor } from "../../../const/colors";
+import FilterItemWrapper from "../../wrapper/FilterItemWrapper";
 
 interface Props {
   filterConfig: any;
@@ -48,7 +48,7 @@ export default function FilterStatusKaryawan({
             );
 
           return (
-            <Button
+            <HStack
               key={i}
               borderRadius={"full"}
               className="btn-outline"
@@ -56,6 +56,10 @@ export default function FilterStatusKaryawan({
               opacity={active ? 1 : 0.6}
               bg={active && `${primaryAlphaColor} !important`}
               borderColor={active && "var(--p500a2)"}
+              flexShrink={0}
+              h={"40px"}
+              maxW={"100%"}
+              px={4}
               onClick={() => {
                 setFilterConfig((ps: any) => {
                   // Mengecek apakah data sudah ada dalam status_karyawan
@@ -83,8 +87,15 @@ export default function FilterStatusKaryawan({
                 });
               }}
             >
-              {data.nama_status}
-            </Button>
+              <Text
+                lineHeight={1.3}
+                w={"100%"}
+                h={"20px !important"}
+                noOfLines={1}
+              >
+                {data.nama_status}
+              </Text>
+            </HStack>
           );
         })}
       </Wrap>

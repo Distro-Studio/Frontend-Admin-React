@@ -270,7 +270,12 @@ export default function FilterUnitKerja({
                   });
                 }}
               >
-                <Text w={"100%"} h={"20px !important"} noOfLines={1}>
+                <Text
+                  lineHeight={1.3}
+                  w={"100%"}
+                  h={"20px !important"}
+                  noOfLines={1}
+                >
                   {data.nama_unit}
                 </Text>
               </HStack>
