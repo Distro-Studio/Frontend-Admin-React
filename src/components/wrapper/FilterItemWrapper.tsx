@@ -75,7 +75,6 @@ export default function FilterItemWrapper({
           {filterValue && filterValue.length > 0 && (
             <Center
               flexShrink={0}
-              p={1}
               minW={"20px"}
               h={"20px"}
               borderRadius={"full"}

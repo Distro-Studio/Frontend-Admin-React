@@ -312,7 +312,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       avatar: "https://bit.ly/code-beast",
     },
   ];
-  console.log(filterConfig);
+  // console.log(filterConfig);
   //! DEBUG
 
   const [data] = useState<Karyawan__Interface[] | null>(dummy);

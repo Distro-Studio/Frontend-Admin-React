@@ -13,7 +13,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { RiEqualizer3Line } from "@remixicon/react";
-import { Dispatch, useRef } from "react";
+import { Dispatch, useRef, useState } from "react";
 import { iconSize } from "../../../const/sizes";
 import backOnClose from "../../../lib/backOnClose";
 import useBackOnClose from "../../../lib/useBackOnClose";
@@ -32,6 +32,14 @@ export default function FilterTabelKaryawan({
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
+
+  const [loading, setLoading] = useState<boolean>(false);
+
+  function filterData() {
+    setLoading(true);
+  }
+
+  //TODO post api filter data karyawan
 
   return (
     <>
@@ -65,18 +73,16 @@ export default function FilterTabelKaryawan({
           <ModalHeader>Filter</ModalHeader>
 
           <ModalBody>
-            <Accordion allowToggle>
-              <form id="filterKaryawanForm">
-                <FilterUnitKerja
-                  filterConfig={filterConfig}
-                  setFilterConfig={setFilterConfig}
-                />
+            <Accordion allowMultiple>
+              <FilterUnitKerja
+                filterConfig={filterConfig}
+                setFilterConfig={setFilterConfig}
+              />
 
-                <FilterStatusKaryawan
-                  filterConfig={filterConfig}
-                  setFilterConfig={setFilterConfig}
-                />
-              </form>
+              <FilterStatusKaryawan
+                filterConfig={filterConfig}
+                setFilterConfig={setFilterConfig}
+              />
             </Accordion>
           </ModalBody>
 
@@ -92,10 +98,18 @@ export default function FilterTabelKaryawan({
                     status_karyawan: null,
                   });
                 }}
+                isDisabled={loading}
               >
                 Reset
               </Button>
-              <Button w={"50%"} colorScheme="ap" className="btn-ap clicky">
+
+              <Button
+                onClick={filterData}
+                isLoading={loading}
+                w={"50%"}
+                colorScheme="ap"
+                className="btn-ap clicky"
+              >
                 Terapkan
               </Button>
             </ButtonGroup>
