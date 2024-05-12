@@ -51,7 +51,7 @@ export default function FilterItemWrapper({
         role="group"
       >
         <HStack w={"100%"} justify={"space-between"}>
-          {filterValue && (
+          {filterValue && filterValue.length > 0 && (
             <IconButton
               aria-label="Delete filter item button"
               icon={<Icon as={RiCloseLine} fontSize={16} />}
@@ -65,7 +65,7 @@ export default function FilterItemWrapper({
               _groupHover={{ opacity: 1 }} // Set opacity 1 saat tombol akordion dihover
               onClick={(e) => {
                 e.stopPropagation();
-                setFilterConfig((ps: any) => ({ ...ps, [filterKey]: null }));
+                setFilterConfig((ps: any) => ({ ...ps, [filterKey]: [] }));
               }}
             />
           )}

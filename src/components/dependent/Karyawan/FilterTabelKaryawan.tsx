@@ -2,6 +2,8 @@ import {
   Accordion,
   Button,
   ButtonGroup,
+  Center,
+  HStack,
   Icon,
   Modal,
   ModalBody,
@@ -10,6 +12,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import { RiEqualizer3Line } from "@remixicon/react";
@@ -19,6 +22,8 @@ import backOnClose from "../../../lib/backOnClose";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import FilterStatusKaryawan from "./FilterStatusKaryawan";
 import FilterUnitKerja from "./FilterUnitKerja";
+import formatNumber from "../../../lib/formatNumber";
+import { useBodyColor } from "../../../const/colors";
 
 interface Props {
   filterConfig: any;
@@ -41,6 +46,9 @@ export default function FilterTabelKaryawan({
 
   //TODO post api filter data karyawan
 
+  // SX
+  const bodyColor = useBodyColor();
+
   return (
     <>
       <Button
@@ -53,7 +61,33 @@ export default function FilterTabelKaryawan({
         pr={3}
         onClick={onOpen}
       >
-        Filter
+        <HStack>
+          {filterConfig &&
+            ((filterConfig.unit_kerja && filterConfig.unit_kerja.length > 0) ||
+              (filterConfig.status_karyawan &&
+                filterConfig.status_karyawan.length > 0)) && (
+              <Center
+                position={"absolute"}
+                right={"-6px"}
+                top={"-6px"}
+                flexShrink={0}
+                minW={"20px"}
+                h={"20px"}
+                borderRadius={"full"}
+                bg={"p.500"}
+                ml={"auto"}
+              >
+                <Text color={bodyColor} fontSize={12} fontWeight={600}>
+                  {formatNumber(
+                    filterConfig.unit_kerja.length +
+                      filterConfig.status_karyawan.length
+                  )}
+                </Text>
+              </Center>
+            )}
+
+          <Text>Filter</Text>
+        </HStack>
       </Button>
 
       <Modal
@@ -94,8 +128,8 @@ export default function FilterTabelKaryawan({
                 onClick={() => {
                   setFilterConfig({
                     search: "",
-                    unit_kerja: null,
-                    status_karyawan: null,
+                    unit_kerja: [],
+                    status_karyawan: [],
                   });
                 }}
                 isDisabled={loading}
