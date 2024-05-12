@@ -102,7 +102,7 @@ export default function FilterTabelKaryawan({
       >
         <ModalOverlay />
 
-        <ModalContent ref={initialRef}>
+        <ModalContent ref={initialRef} minW={"328px"}>
           <ModalCloseButton />
           <ModalHeader>Filter</ModalHeader>
 

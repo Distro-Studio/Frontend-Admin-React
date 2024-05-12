@@ -94,11 +94,12 @@ export default function FilterItemWrapper({
         <AccordionIcon />
       </AccordionButton>
 
-      <AccordionPanel p={0}>
+      <AccordionPanel p={0} w={"100%"}>
         <VStack
           align={"stretch"}
           maxH={"300px"}
           overflowY={"auto"}
+          // overflowX={"hidden"}
           gap={0}
           // pb={2}
           // px={2}

@@ -25,6 +25,7 @@ import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
+import useScreenWidth from "../../lib/useScreenWidth";
 
 export default function TambahKaryawan2() {
   const steps = [
@@ -32,6 +33,9 @@ export default function TambahKaryawan2() {
     { title: "Penggajian" },
     { title: "Akun Karywan" },
   ];
+  const activeStepText = steps[1].title;
+  const sw = useScreenWidth();
+
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
@@ -66,7 +70,13 @@ export default function TambahKaryawan2() {
 
   return (
     <CWrapper maxW={"800px"} mx={"auto"} mt={12}>
-      <Stepper index={1} colorScheme="ap" mb={6}>
+      <Stepper
+        // orientation="vertical"
+        // h={"200px"}
+        index={1}
+        colorScheme="ap"
+        mb={6}
+      >
         {steps.map((step, index) => (
           <Step key={index}>
             <StepIndicator>
@@ -78,15 +88,19 @@ export default function TambahKaryawan2() {
             </StepIndicator>
 
             <Box flexShrink="0">
-              <StepTitle>
-                <Text fontWeight={600}>{step.title}</Text>
-              </StepTitle>
+              <StepTitle>{sw >= 768 && <Text>{step.title}</Text>}</StepTitle>
             </Box>
 
             <StepSeparator />
           </Step>
         ))}
       </Stepper>
+
+      {sw < 768 && (
+        <Text mb={6}>
+          Step 2 : <b>{activeStepText}</b>
+        </Text>
+      )}
 
       <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
         <Text fontSize={22} fontWeight={600}>

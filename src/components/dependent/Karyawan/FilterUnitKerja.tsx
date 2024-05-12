@@ -1,9 +1,10 @@
 import {
-  Button,
+  HStack,
   Icon,
   Input,
   InputGroup,
   InputLeftElement,
+  Text,
   VStack,
   Wrap,
 } from "@chakra-ui/react";
@@ -223,14 +224,14 @@ export default function FilterUnitKerja({
       <VStack align={"stretch"} h={"calc(300px - 52px)"} gap={0}>
         {filteredList?.length === 0 && <DataNotFound mt={4} />}
 
-        <Wrap py={4}>
+        <Wrap py={4} w={"100%"}>
           {filteredList?.map((data, i) => {
             const active =
               filterConfig?.unit_kerja &&
               filterConfig?.unit_kerja.some((unit: any) => unit.id === data.id);
 
             return (
-              <Button
+              <HStack
                 key={i}
                 borderRadius={"full"}
                 className="btn-outline"
@@ -238,6 +239,10 @@ export default function FilterUnitKerja({
                 opacity={active ? 1 : 0.6}
                 bg={active && `${primaryAlphaColor} !important`}
                 borderColor={active && "var(--p500a2)"}
+                flexShrink={0}
+                h={"40px"}
+                maxW={"100%"}
+                px={4}
                 onClick={() => {
                   setFilterConfig((ps: any) => {
                     // Mengecek apakah data sudah ada dalam unit_kerja
@@ -265,8 +270,10 @@ export default function FilterUnitKerja({
                   });
                 }}
               >
-                {data.nama_unit}
-              </Button>
+                <Text w={"100%"} h={"20px !important"} noOfLines={1}>
+                  {data.nama_unit}
+                </Text>
+              </HStack>
             );
           })}
         </Wrap>

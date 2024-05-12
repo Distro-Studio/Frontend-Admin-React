@@ -24,6 +24,7 @@ import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
+import useScreenWidth from "../../lib/useScreenWidth";
 
 export default function TambahKaryawan3() {
   const steps = [
@@ -31,6 +32,9 @@ export default function TambahKaryawan3() {
     { title: "Penggajian" },
     { title: "Akun Karywan" },
   ];
+  const activeStepText = steps[2].title;
+  const sw = useScreenWidth();
+
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
@@ -62,15 +66,19 @@ export default function TambahKaryawan3() {
             </StepIndicator>
 
             <Box flexShrink="0">
-              <StepTitle>
-                <Text fontWeight={600}>{step.title}</Text>
-              </StepTitle>
+              <StepTitle>{sw >= 768 && <Text>{step.title}</Text>}</StepTitle>
             </Box>
 
             <StepSeparator />
           </Step>
         ))}
       </Stepper>
+
+      {sw < 768 && (
+        <Text mb={6}>
+          Step 3 : <b>{activeStepText}</b>
+        </Text>
+      )}
 
       <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
         <Text fontSize={22} fontWeight={600}>
