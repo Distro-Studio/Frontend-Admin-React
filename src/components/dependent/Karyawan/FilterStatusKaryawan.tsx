@@ -1,6 +1,6 @@
-import { Box, Button } from "@chakra-ui/react";
-import FilterItemWrapper from "../../wrapper/FilterItemWrapper";
+import { Button, Wrap } from "@chakra-ui/react";
 import { Dispatch } from "react";
+import FilterItemWrapper from "../../wrapper/FilterItemWrapper";
 
 interface Props {
   filterConfig: any;
@@ -34,37 +34,37 @@ export default function FilterStatusKaryawan({
       setFilterConfig={setFilterConfig}
       filterKey="status_karyawan"
     >
-      <>
+      <Wrap pt={2} pb={4} px={3}>
         {statusKaryawanList.map((data, i) => (
           <Button
-            key={i}
+            borderRadius={"full"}
+            className="btn-outline"
             opacity={
               filterConfig?.status_karyawan &&
               filterConfig?.status_karyawan?.id === data.id
                 ? 1
                 : 0.6
             }
-            justifyContent={"space-between"}
-            gap={4}
-            fontWeight={400}
-            className="btn"
-            flexShrink={0}
-            borderRadius={0}
-            h={"50px"}
-            // color={data.id === filterConfig.status_karyawan ? "p.500" : ""}
+            // color={
+            //   filterConfig?.status_karyawan &&
+            //   filterConfig?.status_karyawan?.id === data.id
+            //     ? "p.500"
+            //     : ""
+            // }
+            borderColor={
+              filterConfig?.status_karyawan &&
+              filterConfig?.status_karyawan?.id === data.id
+                ? "p.500"
+                : ""
+            }
             onClick={() => {
               setFilterConfig((ps: any) => ({ ...ps, status_karyawan: data }));
             }}
           >
             {data.nama_status}
-
-            {filterConfig?.status_karyawan &&
-              filterConfig?.status_karyawan?.id === data.id && (
-                <Box h={"6px"} w={"6px"} borderRadius={"full"} bg={"p.500"} />
-              )}
           </Button>
         ))}
-      </>
+      </Wrap>
     </FilterItemWrapper>
   );
 }

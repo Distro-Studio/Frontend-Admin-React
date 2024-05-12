@@ -1,18 +1,19 @@
-import React, { Dispatch, useState } from "react";
-import FilterItemWrapper from "../../wrapper/FilterItemWrapper";
 import {
   Box,
-  Button,
+  HStack,
   Icon,
   Input,
   InputGroup,
   InputLeftElement,
+  Text,
   VStack,
 } from "@chakra-ui/react";
 import { RiSearch2Line } from "@remixicon/react";
-import { iconSize } from "../../../const/sizes";
+import { Dispatch, useState } from "react";
 import { useBodyColor } from "../../../const/colors";
+import { iconSize } from "../../../const/sizes";
 import DataNotFound from "../../independent/DataNotFound";
+import FilterItemWrapper from "../../wrapper/FilterItemWrapper";
 
 interface Props {
   filterConfig: any;
@@ -216,12 +217,13 @@ export default function FilterUnitKerja({
         />
       </InputGroup>
 
-      <VStack align={"stretch"} minH={"calc(300px - 56px)"} gap={0}>
+      <VStack align={"stretch"} minH={"calc(300px - 52px)"} gap={0}>
         {filteredData?.length === 0 && <DataNotFound mt={4} />}
 
         {filteredData?.map((data, i) => (
-          <Button
+          <HStack
             key={i}
+            px={4}
             opacity={
               filterConfig?.unit_kerja &&
               filterConfig?.unit_kerja?.id === data.id
@@ -229,24 +231,24 @@ export default function FilterUnitKerja({
                 : 0.6
             }
             justifyContent={"space-between"}
-            gap={4}
+            gap={2}
             fontWeight={400}
             className="btn"
             flexShrink={0}
             borderRadius={0}
             h={"50px"}
-            // color={data.id === filterConfig.unit_kerja ? "p.500" : ""}
+            cursor={"pointer"}
             onClick={() => {
               setFilterConfig((ps: any) => ({ ...ps, unit_kerja: data }));
             }}
           >
-            {data.nama_unit}
+            <Text noOfLines={1}>{data.nama_unit}</Text>
 
             {filterConfig?.unit_kerja &&
               filterConfig?.unit_kerja?.id === data.id && (
                 <Box h={"6px"} w={"6px"} borderRadius={"full"} bg={"p.500"} />
               )}
-          </Button>
+          </HStack>
         ))}
       </VStack>
     </FilterItemWrapper>

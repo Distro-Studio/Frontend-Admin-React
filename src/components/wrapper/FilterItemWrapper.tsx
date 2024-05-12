@@ -39,16 +39,24 @@ export default function FilterItemWrapper({
         }}
         _hover={{ bg: "transparent" }}
         justifyContent={"space-between"}
-        px={filterValue ? 0 : 2}
+        pl={5}
+        pr={4}
+        position="relative"
+        role="group"
       >
-        <HStack w={"100%"} justify={"space-between"} position={"relative"}>
+        <HStack w={"100%"} justify={"space-between"}>
           {filterValue && (
             <IconButton
               aria-label="Delete filter item button"
-              icon={<Icon as={RiCloseLine} />}
+              icon={<Icon as={RiCloseLine} fontSize={16} />}
               size={"xs"}
+              className="btn-clear"
               colorScheme="red"
               variant={"ghost"}
+              position={"absolute"}
+              left={-2}
+              opacity={0} // Set opacity 0 saat kondisi hover tidak terpenuhi
+              _groupHover={{ opacity: 1 }} // Set opacity 1 saat tombol akordion dihover
               onClick={(e) => {
                 e.stopPropagation();
                 setFilterConfig((ps: any) => ({ ...ps, [filterKey]: null }));
@@ -56,30 +64,21 @@ export default function FilterItemWrapper({
             />
           )}
 
-          {/* {filterValue && (
-            <Box
-              // position={"absolute"}
-              // left={"-16px"}
-              h={"6px"}
-              w={"6px"}
-              borderRadius={"full"}
-              bg={"p.500"}
-            />
-          )} */}
-
           <Text flexShrink={0}>{title}</Text>
 
           {filterValue && (
-            <Text
-              fontWeight={400}
-              ml={"auto"}
-              mr={2}
-              noOfLines={1}
-              maxW={"140px"}
-              fontSize={12}
-            >
-              {filterValue}
-            </Text>
+            <HStack>
+              <Text
+                fontWeight={400}
+                ml={"auto"}
+                mr={2}
+                noOfLines={1}
+                maxW={"140px"}
+                fontSize={12}
+              >
+                {filterValue}
+              </Text>
+            </HStack>
           )}
         </HStack>
 
