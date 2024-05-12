@@ -13,8 +13,9 @@ export default function CWrapper({ children, ...props }: Props) {
       px={smScreen ? 4 : 6}
       align={"stretch"}
       overflow={"auto"}
-      className="noScroll"
+      className="CWrapper noScroll"
       gap={0}
+      w={"100%"}
       {...props}
     >
       {children}

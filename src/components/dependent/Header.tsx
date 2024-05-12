@@ -23,10 +23,17 @@ import { ColorModeSwitcherHeaderMenu } from "../independent/ColorModeSwitcherHea
 interface Props extends StackProps {
   title?: string;
   left?: any;
+  backLink?: string;
   right?: any;
 }
 
-export default function Header({ title, left, right, ...props }: Props) {
+export default function Header({
+  title,
+  left,
+  backLink,
+  right,
+  ...props
+}: Props) {
   const smScreen = useScreenWidth() <= 768;
 
   return (
@@ -39,7 +46,9 @@ export default function Header({ title, left, right, ...props }: Props) {
     >
       <HStack>
         {left && (
-          <Box w={"40px"}>{left === "back" ? <BackButton /> : left}</Box>
+          <Box w={"40px"}>
+            {left === "back" ? <BackButton backLink={backLink} /> : left}
+          </Box>
         )}
 
         <Text fontSize={24} fontWeight={700} noOfLines={1}>

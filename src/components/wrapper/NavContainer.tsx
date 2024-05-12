@@ -23,6 +23,7 @@ interface Props {
   noNavs?: boolean;
   title?: string;
   left?: any;
+  backLink?: string;
   right?: any;
 }
 
@@ -32,6 +33,7 @@ export default function NavContainer({
   noNavs,
   title,
   left,
+  backLink,
   right,
 }: Props) {
   const smScreen = useScreenWidth() <= 768;
@@ -138,6 +140,7 @@ export default function NavContainer({
           py={smScreen ? 4 : 6}
           pb={smScreen ? "86px" : 6}
           align={"stretch"}
+          minH={"100vh"}
           // w={"100%"}
           flex={1}
           overflowX={"clip"}
@@ -145,6 +148,7 @@ export default function NavContainer({
           <Header
             title={title}
             left={left}
+            backLink={backLink}
             right={right}
             px={responsiveSpacing}
           />

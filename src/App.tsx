@@ -10,13 +10,16 @@ import Keuangan from "./pages/Keuangan/Keuangan";
 import Perusahaan from "./pages/Perusahaan/Perusahaan";
 import Pengaturan from "./pages/Pengaturan/Pengaturan";
 import MissingPage from "./pages/Error/MissingPage";
-import ManajemenJadwal from "./pages/Manajemen__Jadwal/ManajemenJadwal";
+import ManajemenJadwal from "./pages/ManajemenJadwal/ManajemenJadwal";
 import AkunKaryawan from "./pages/Karyawan/AkunKaryawan";
 import KeluargaKaryawan from "./pages/Karyawan/KeluargaKaryawan";
 import PekerjaKontrak from "./pages/Karyawan/PekerjaKontrak";
 import RekamJejak from "./pages/Karyawan/RekamJejak";
 import TransferKaryawan from "./pages/Karyawan/TransferKaryawan";
 import NavContainer from "./components/wrapper/NavContainer";
+import TambahKaryawan1 from "./pages/Karyawan/TambahKaryawan1";
+import TambahKaryawan2 from "./pages/Karyawan/TambahKaryawan2";
+import TambahKaryawan3 from "./pages/Karyawan/TambahKaryawan3";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -38,6 +41,46 @@ export const App = () => (
           element={
             <NavContainer active={1} title="Karyawan">
               <Karyawan />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/karyawan/tambah-karyawan-1"
+          element={
+            <NavContainer
+              active={1}
+              title="Tambah Karyawan"
+              noNavs
+              left={"back"}
+              backLink="/karyawan"
+            >
+              <TambahKaryawan1 />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/karyawan/tambah-karyawan-2"
+          element={
+            <NavContainer
+              active={1}
+              title="Tambah Karyawan"
+              noNavs
+              left={"back"}
+            >
+              <TambahKaryawan2 />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/karyawan/tambah-karyawan-3"
+          element={
+            <NavContainer
+              active={1}
+              title="Tambah Karyawan"
+              noNavs
+              left={"back"}
+            >
+              <TambahKaryawan3 />
             </NavContainer>
           }
         />

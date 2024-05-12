@@ -17,6 +17,7 @@ import { useBodyColor } from "../../const/colors";
 import karyawanTopNavs from "../../const/karyawanTopNavs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
+import { Link } from "react-router-dom";
 
 export default function Karyawan() {
   // Filter Config
@@ -71,6 +72,8 @@ export default function Karyawan() {
               flex={"1 0 170px"}
               colorScheme="ap"
               className="btn-ap clicky"
+              as={Link}
+              to={"/karyawan/tambah-karyawan-1"}
             >
               Tambah Karyawan
             </Button>
