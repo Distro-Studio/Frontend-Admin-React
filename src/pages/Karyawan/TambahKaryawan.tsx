@@ -7,6 +7,8 @@ import {
   FormHelperText,
   FormLabel,
   Input,
+  InputGroup,
+  InputLeftElement,
   Step,
   StepIcon,
   StepIndicator,
@@ -58,7 +60,7 @@ export default function TambahKaryawan() {
       tunjangan_khusus: "",
       tunjangan_lainnya: "",
       uang_lembur: "",
-      unag_makan: "",
+      uang_makan: "",
       //TODO lagi ditanyakan PTKP
       PTKP: "",
       username: "",
@@ -81,7 +83,7 @@ export default function TambahKaryawan() {
       tunjangan_khusus: yup.string().required("Harus diisi"),
       tunjangan_lainnya: yup.string().required("Harus diisi"),
       uang_lembur: yup.string().required("Harus diisi"),
-      unag_makan: yup.string().required("Harus diisi"),
+      uang_makan: yup.string().required("Harus diisi"),
       PTKP: yup.string().required("Harus diisi"),
       username: yup.string().required("Harus diisi"),
       password: yup.string().required("Harus diisi"),
@@ -263,10 +265,6 @@ export default function TambahKaryawan() {
           />
           <FormErrorMessage>{formik.errors.role}</FormErrorMessage>
         </FormControl>
-
-        <Text flex={"1 1 300px"} opacity={"0"}>
-          Spacer
-        </Text>
       </Wrap>
     );
   };
@@ -301,7 +299,7 @@ export default function TambahKaryawan() {
           </FormLabel>
           <Input
             name="kelompok_gaji"
-            placeholder="Jolitos Kurniawan"
+            placeholder="pilih Kurniawan"
             onChange={formik.handleChange}
             value={formik.values.kelompok_gaji}
           />
@@ -319,7 +317,7 @@ export default function TambahKaryawan() {
           </FormLabel>
           <Input
             name="no_rekening"
-            placeholder="jolitos@gmail.com"
+            placeholder="4312*****"
             onChange={formik.handleChange}
             value={formik.values.no_rekening}
           />
@@ -332,15 +330,20 @@ export default function TambahKaryawan() {
           isInvalid={formik.errors.tunjangan_uang_lembur ? true : false}
         >
           <FormLabel>
-            Tunjangan uang_lembur
+            Tunjangan Uang Lebur
             <FormRequired />
           </FormLabel>
-          <Input
-            name="rm"
-            placeholder="871***"
-            onChange={formik.handleChange}
-            value={formik.values.tunjangan_uang_lembur}
-          />
+          <InputGroup>
+            <InputLeftElement>
+              <Text>Rp</Text>
+            </InputLeftElement>
+            <Input
+              name="tunjangan_uang_lembur"
+              placeholder="150.000"
+              onChange={formik.handleChange}
+              value={formik.values.tunjangan_uang_lembur}
+            />
+          </InputGroup>
           <FormErrorMessage>
             {formik.errors.tunjangan_uang_lembur}
           </FormErrorMessage>
@@ -355,12 +358,17 @@ export default function TambahKaryawan() {
             Tunjangan Fungsional
             <FormRequired />
           </FormLabel>
-          <Input
-            name="tunjangan_fungsional"
-            placeholder="019***"
-            onChange={formik.handleChange}
-            value={formik.values.tunjangan_fungsional}
-          />
+          <InputGroup>
+            <InputLeftElement>
+              <Text>Rp</Text>
+            </InputLeftElement>
+            <Input
+              name="tunjangan_fungsional"
+              placeholder="150.000"
+              onChange={formik.handleChange}
+              value={formik.values.tunjangan_fungsional}
+            />
+          </InputGroup>
           <FormErrorMessage>
             {formik.errors.tunjangan_fungsional}
           </FormErrorMessage>
@@ -375,12 +383,17 @@ export default function TambahKaryawan() {
             Tunjangan Khusus
             <FormRequired />
           </FormLabel>
-          <Input
-            name="tunjangan_khusus"
-            placeholder="date picker"
-            onChange={formik.handleChange}
-            value={formik.values.tunjangan_khusus}
-          />
+          <InputGroup>
+            <InputLeftElement>
+              <Text>Rp</Text>
+            </InputLeftElement>
+            <Input
+              name="tunjangan_khusus"
+              placeholder="150.000"
+              onChange={formik.handleChange}
+              value={formik.values.tunjangan_khusus}
+            />
+          </InputGroup>
           <FormErrorMessage>{formik.errors.tunjangan_khusus}</FormErrorMessage>
         </FormControl>
 
@@ -393,12 +406,17 @@ export default function TambahKaryawan() {
             Tunjangan Lainnya
             <FormRequired />
           </FormLabel>
-          <Input
-            name="tunjangan_lainnya"
-            placeholder="pilih"
-            onChange={formik.handleChange}
-            value={formik.values.tunjangan_lainnya}
-          />
+          <InputGroup>
+            <InputLeftElement>
+              <Text>Rp</Text>
+            </InputLeftElement>
+            <Input
+              name="tunjangan_lainnya"
+              placeholder="150.000"
+              onChange={formik.handleChange}
+              value={formik.values.tunjangan_lainnya}
+            />
+          </InputGroup>
           <FormErrorMessage>{formik.errors.tunjangan_lainnya}</FormErrorMessage>
         </FormControl>
 
@@ -411,31 +429,41 @@ export default function TambahKaryawan() {
             Uang Lembur
             <FormRequired />
           </FormLabel>
-          <Input
-            name="uang_lembur"
-            placeholder="pilih"
-            onChange={formik.handleChange}
-            value={formik.values.uang_lembur}
-          />
+          <InputGroup>
+            <InputLeftElement>
+              <Text>Rp</Text>
+            </InputLeftElement>
+            <Input
+              name="uang_lembur"
+              placeholder="150.000"
+              onChange={formik.handleChange}
+              value={formik.values.uang_lembur}
+            />
+          </InputGroup>
           <FormErrorMessage>{formik.errors.uang_lembur}</FormErrorMessage>
         </FormControl>
 
         <FormControl
           mb={4}
           flex={"1 1 300px"}
-          isInvalid={formik.errors.unag_makan ? true : false}
+          isInvalid={formik.errors.uang_makan ? true : false}
         >
           <FormLabel>
             Uang Makan
             <FormRequired />
           </FormLabel>
-          <Input
-            name="unag_makan"
-            placeholder="pilih"
-            onChange={formik.handleChange}
-            value={formik.values.unag_makan}
-          />
-          <FormErrorMessage>{formik.errors.unag_makan}</FormErrorMessage>
+          <InputGroup>
+            <InputLeftElement>
+              <Text>Rp</Text>
+            </InputLeftElement>
+            <Input
+              name="uang_makan"
+              placeholder="150.000"
+              onChange={formik.handleChange}
+              value={formik.values.uang_makan}
+            />
+          </InputGroup>
+          <FormErrorMessage>{formik.errors.uang_makan}</FormErrorMessage>
         </FormControl>
 
         <FormControl
@@ -500,7 +528,7 @@ export default function TambahKaryawan() {
           </FormLabel>
           <Input
             name="username"
-            placeholder="Jolitos Kurniawan"
+            placeholder="jolitos"
             onChange={formik.handleChange}
             value={formik.values.username}
           />
@@ -518,7 +546,7 @@ export default function TambahKaryawan() {
           </FormLabel>
           <Input
             name="password"
-            placeholder="jolitos@gmail.com"
+            placeholder="jolit****"
             onChange={formik.handleChange}
             value={formik.values.password}
           />
