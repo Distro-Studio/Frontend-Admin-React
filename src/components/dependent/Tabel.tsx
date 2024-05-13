@@ -181,26 +181,47 @@ export default function Tabel({
                     pl={colIndex === 0 ? 4 : ""}
                     pr={colIndex === columns.length - 1 ? 4 : ""}
                     whiteSpace={"nowrap"}
+                    textAlign={
+                      row[column.key] === undefined || row[column.key] === null
+                        ? "center" // Jika datanya kosong, textAlign menjadi center
+                        : column.dataType === "number"
+                        ? "right" // Jika numeric, textAlign menjadi right
+                        : "left" // Jika tidak, textAlign defaultnya menjadi left
+                    }
+                    opacity={
+                      row[column.key] === undefined || row[column.key] === null
+                        ? 0.6
+                        : 1
+                    }
                   >
-                    {column.dataType === "date" ? (
-                      formatDate(row[column.key])
-                    ) : column.dataType === "number" ? (
-                      formatNumber(row[column.key])
-                    ) : column.dataType === "badge" ? (
-                      <Badge w={"100%"} textAlign={"center"} colorScheme="teal">
-                        {row[column.key]}
-                      </Badge>
-                    ) : column.dataType === "avatarAndName" ? (
-                      <HStack>
-                        <Avatar
-                          size={"sm"}
-                          name={row[column.key]}
-                          src={row.avatar}
-                        />
-                        <Text>{row[column.key]}</Text>
-                      </HStack>
+                    {row[column.key] !== undefined &&
+                    row[column.key] !== null ? (
+                      column.dataType === "date" ? (
+                        formatDate(row[column.key])
+                      ) : column.dataType === "number" ? (
+                        formatNumber(row[column.key])
+                      ) : column.dataType === "badge" ? (
+                        <Badge
+                          w={"100%"}
+                          textAlign={"center"}
+                          colorScheme="teal"
+                        >
+                          {row[column.key]}
+                        </Badge>
+                      ) : column.dataType === "avatarAndName" ? (
+                        <HStack>
+                          <Avatar
+                            size={"sm"}
+                            name={row[column.key]}
+                            src={row.avatar}
+                          />
+                          <Text>{row[column.key]}</Text>
+                        </HStack>
+                      ) : (
+                        row[column.key]
+                      )
                     ) : (
-                      row[column.key]
+                      "-"
                     )}
                   </Td>
                 ))}

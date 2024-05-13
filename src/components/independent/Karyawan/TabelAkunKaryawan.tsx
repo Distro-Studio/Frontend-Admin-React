@@ -21,8 +21,8 @@ export default function TabelAkunKaryawan({ filterConfig }: Props) {
       dataType: "avatarAndName",
     },
     {
-      key: "public_id",
-      label: "Id",
+      key: "no_induk_karyawan",
+      label: "No. Induk Karyawan",
       dataType: "string",
     },
     {
