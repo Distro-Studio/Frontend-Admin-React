@@ -13,12 +13,13 @@ import {
 } from "@chakra-ui/react";
 import { RiMenu4Line, RiNotification2Line } from "@remixicon/react";
 import { ColorModeSwitcher } from "../../ColorModeSwitcher";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { iconSize } from "../../const/sizes";
 import useScreenWidth from "../../lib/useScreenWidth";
 import AdminMiniProfile from "../independent/AdminMiniProfile";
 import BackButton from "../independent/BackButton";
-import NotificationButton from "../independent/NotificationButton";
 import { ColorModeSwitcherHeaderMenu } from "../independent/ColorModeSwitcherHeaderMenu";
+import NotificationButton from "../independent/NotificationButton";
+import { useContentBgColor } from "../../const/colors";
 
 interface Props extends StackProps {
   title?: string;
@@ -38,10 +39,12 @@ export default function Header({
 
   return (
     <HStack
-      // flexDir={["column", null, "row"]}
-      mb={responsiveSpacing}
       justify={"space-between"}
       gap={4}
+      position={"sticky"}
+      top={0}
+      zIndex={99}
+      bg={useContentBgColor()}
       {...props}
     >
       <HStack>

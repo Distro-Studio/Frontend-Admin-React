@@ -139,8 +139,7 @@ export default function NavContainer({
 
         <CContainer
           bg={useContentBgColor()}
-          py={smScreen ? 4 : 6}
-          pb={smScreen ? "86px" : 6}
+          pb={["86px", null, 6]}
           align={"stretch"}
           minH={"100vh"}
           // w={"100%"}
@@ -153,7 +152,7 @@ export default function NavContainer({
             left={left}
             backLink={backLink}
             right={right}
-            px={responsiveSpacing}
+            p={responsiveSpacing}
           />
 
           {children}
