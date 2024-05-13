@@ -263,6 +263,10 @@ export default function TambahKaryawan() {
           />
           <FormErrorMessage>{formik.errors.role}</FormErrorMessage>
         </FormControl>
+
+        <Text flex={"1 1 300px"} opacity={"0"}>
+          Spacer
+        </Text>
       </Wrap>
     );
   };
