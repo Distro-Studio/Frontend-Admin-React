@@ -25,8 +25,8 @@ const navs = [
     icon: RiTimerFill,
   },
   {
-    label: "Manajemen Jadwal",
-    link: "/manajemen-jadwal",
+    label: "Jadwal",
+    link: "/jadwal",
     icon: RiTimeFill,
   },
   {

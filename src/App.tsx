@@ -13,12 +13,12 @@ import RekamJejak from "./pages/Karyawan/RekamJejak";
 import TransferKaryawan from "./pages/Karyawan/TransferKaryawan";
 import Keuangan from "./pages/Keuangan/Keuangan";
 import Login from "./pages/Login/Login";
-import ManajemenJadwal from "./pages/ManajemenJadwal/ManajemenJadwal";
 import Pengaturan from "./pages/Pengaturan/Pengaturan";
 import Perusahaan from "./pages/Perusahaan/Perusahaan";
 import Presensi from "./pages/Presensi/Presensi";
 import TambahKaryawan from "./pages/Karyawan/TambahKaryawan";
 import { responsiveSpacing } from "./const/sizes";
+import Jadwal from "./pages/Jadwal/Jadwal";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -109,10 +109,10 @@ export const App = () => (
         />
 
         <Route
-          path="/manajemen-jadwal"
+          path="/jadwal"
           element={
-            <NavContainer active={3} title="Manajemen Jadwal">
-              <ManajemenJadwal />
+            <NavContainer active={3} title="Jadwal">
+              <Jadwal />
             </NavContainer>
           }
         />

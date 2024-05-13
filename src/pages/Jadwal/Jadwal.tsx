@@ -9,16 +9,17 @@ import {
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
+import TopNavs from "../../components/dependent/TopNavs";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
-import PresensiTotal from "../../components/independent/Karyawan/PresensiTotal";
 import TabelKaryawan from "../../components/independent/Karyawan/TabelKaryawan";
 import DatePicker from "../../components/input/DatePicker";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
+import jadwalTopNavs from "../../const/jadwalTopNavs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 
-export default function Presensi() {
+export default function Jadwal() {
   const today = new Date().toDateString();
 
   // Filter Config
@@ -34,7 +35,7 @@ export default function Presensi() {
 
   return (
     <>
-      <PresensiTotal />
+      <TopNavs active={0} data={jadwalTopNavs} mb={responsiveSpacing} />
 
       <CWrapper>
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>

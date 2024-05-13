@@ -25,22 +25,23 @@ import {
   RiArrowRightSLine,
   RiCalendarLine,
 } from "@remixicon/react";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { DayPicker } from "react-day-picker";
-import formatDate from "../../lib/formatDate";
 import { id } from "date-fns/locale"; // Import locale for Indonesian language
+import { useEffect, useRef, useState } from "react";
+import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import useBackOnClose from "../../lib/useBackOnClose";
-import parseNumber from "../../lib/parseNumber";
 import { iconSize } from "../../const/sizes";
+import formatDate from "../../lib/formatDate";
+import parseNumber from "../../lib/parseNumber";
+import useBackOnClose from "../../lib/useBackOnClose";
 
 interface Props extends ButtonProps {
   formik?: any;
   name?: string;
   placeholder?: string;
   confirmDate?: (date: any) => void;
-  defaultValue?: string;
   value?: string;
+  defaultValue?: string;
+  dateFormatOptions?: any;
 }
 
 export default function DatePicker({
@@ -48,8 +49,9 @@ export default function DatePicker({
   name,
   placeholder,
   confirmDate,
-  defaultValue,
   value,
+  defaultValue,
+  dateFormatOptions,
   ...props
 }: Props) {
   const initialRef = useRef(null);
@@ -59,9 +61,9 @@ export default function DatePicker({
   const [date, setDate] = useState<Date>(new Date());
   const [tahun, setTahun] = useState<number>(date.getFullYear());
   const [bulan, setBulan] = useState<number>(date.getMonth() + 1);
-  const [selected, setSelected] = useState<Date>();
+  const [selected, setSelected] = useState<any>();
   const [confirm, setConfirm] = useState<boolean>(false);
-  const confirmSelect = useCallback(() => {
+  const confirmSelect = () => {
     if (selected) {
       if (formik && name) {
         formik.setFieldValue(name, selected);
@@ -70,15 +72,18 @@ export default function DatePicker({
       }
       setConfirm(true);
     }
-  }, [formik, name, selected, confirmDate]);
+  };
+
   useEffect(() => {
-    // Pengecekan jika prop defaultValue telah disediakan
     if (defaultValue) {
-      const parsedDate = new Date(defaultValue);
-      setSelected(parsedDate);
-      confirmSelect();
+      setSelected(defaultValue);
     }
-  }, [confirmSelect, defaultValue]);
+  }, [defaultValue]); // Menambahkan selected ke dalam array dependencies
+
+  useEffect(() => {
+    setConfirm(true);
+  }, [selected]);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   function handleOnClose() {
@@ -104,7 +109,7 @@ export default function DatePicker({
     setDate(nextMonth);
     setBulan(nextMonth.getMonth() + 1);
     setTahun(nextMonth.getFullYear());
-    setSelected(undefined);
+    // setSelected(undefined); // Hindari pemanggilan setSelected di sini
   }
   function prevMonth() {
     const currentMonth = date.getMonth();
@@ -117,7 +122,7 @@ export default function DatePicker({
     setDate(prevMonth);
     setBulan(prevMonth.getMonth() + 1);
     setTahun(prevMonth.getFullYear());
-    setSelected(undefined);
+    // setSelected(undefined); // Hindari pemanggilan setSelected di sini
   }
 
   const isBulanValid = (bulan: number) => {
@@ -126,11 +131,6 @@ export default function DatePicker({
   const isTahunValid = (tahun: number) => {
     return tahun >= 100 && tahun <= 270000;
   };
-
-  let footer = <p>Silahkan pilih tanggal</p>;
-  if (selected) {
-    footer = <p>Kamu memilih {formatDate(selected.toDateString())}.</p>;
-  }
 
   // SX
   const bnwColor = useColorModeValue("black", "white");
@@ -169,15 +169,9 @@ export default function DatePicker({
         _focus={{ boxShadow: "0 0 0px 2px var(--p500)" }}
         {...props}
       >
-        <Text
-          opacity={
-            (formik && name && formik.values[name]) || (value && selected)
-              ? 1
-              : 0.3
-          }
-        >
-          {(confirm && selected) || (defaultValue && selected)
-            ? formatDate(selected.toDateString())
+        <Text opacity={confirm && selected ? 1 : 0.3}>
+          {confirm && selected
+            ? formatDate(selected, dateFormatOptions)
             : placeholder || `Pilih tanggal`}
         </Text>
 
@@ -278,7 +272,6 @@ export default function DatePicker({
                         setSelected(e);
                         setConfirm(false);
                       }}
-                      footer={footer}
                       locale={id}
                       modifiersStyles={modifiersStyles}
                       month={date}
@@ -333,7 +326,7 @@ export default function DatePicker({
               <VStack borderRadius={8} bg={"var(--divider)"} p={2} gap={1}>
                 <Text>
                   {selected
-                    ? `${formatDate(selected?.toDateString())}`
+                    ? `${formatDate(selected)}`
                     : "Silahkan pilih tanggal"}
                 </Text>
               </VStack>
