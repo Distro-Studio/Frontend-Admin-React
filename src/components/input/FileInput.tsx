@@ -18,7 +18,9 @@ interface Props {
 export default function FileInput({ formik, name, accept }: Props) {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const [fileName, setFileName] = useState("Klik untuk pilih file");
+  const [fileName, setFileName] = useState(
+    "Seret & Letakkan atau Klik untuk Cari"
+  );
   const [isDraggingOver, setIsDraggingOver] = useState(false);
 
   const handleDragOver = (e: any) => {

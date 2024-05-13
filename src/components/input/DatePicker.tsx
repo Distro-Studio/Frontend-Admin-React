@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   ButtonGroup,
+  ButtonProps,
   FormControl,
   FormLabel,
   HStack,
@@ -24,7 +25,7 @@ import {
   RiArrowRightSLine,
   RiCalendarLine,
 } from "@remixicon/react";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { DayPicker } from "react-day-picker";
 import formatDate from "../../lib/formatDate";
 import { id } from "date-fns/locale"; // Import locale for Indonesian language
@@ -33,13 +34,24 @@ import useBackOnClose from "../../lib/useBackOnClose";
 import parseNumber from "../../lib/parseNumber";
 import { iconSize } from "../../const/sizes";
 
-interface Props {
-  formik: any;
-  name: string;
+interface Props extends ButtonProps {
+  formik?: any;
+  name?: string;
   placeholder?: string;
+  confirmDate?: (date: any) => void;
+  defaultValue?: string;
+  value?: string;
 }
 
-export default function DatePicker({ formik, name, placeholder }: Props) {
+export default function DatePicker({
+  formik,
+  name,
+  placeholder,
+  confirmDate,
+  defaultValue,
+  value,
+  ...props
+}: Props) {
   const initialRef = useRef(null);
   const monthInputRef = useRef<HTMLInputElement>(null);
   const yearInputRef = useRef<HTMLInputElement>(null);
@@ -49,12 +61,24 @@ export default function DatePicker({ formik, name, placeholder }: Props) {
   const [bulan, setBulan] = useState<number>(date.getMonth() + 1);
   const [selected, setSelected] = useState<Date>();
   const [confirm, setConfirm] = useState<boolean>(false);
-  const confirmSelect = () => {
+  const confirmSelect = useCallback(() => {
     if (selected) {
-      formik.setFieldValue(name, selected);
+      if (formik && name) {
+        formik.setFieldValue(name, selected);
+      } else if (confirmDate) {
+        confirmDate(selected);
+      }
       setConfirm(true);
     }
-  };
+  }, [formik, name, selected, confirmDate]);
+  useEffect(() => {
+    // Pengecekan jika prop defaultValue telah disediakan
+    if (defaultValue) {
+      const parsedDate = new Date(defaultValue);
+      setSelected(parsedDate);
+      confirmSelect();
+    }
+  }, [confirmSelect, defaultValue]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   function handleOnClose() {
@@ -69,7 +93,6 @@ export default function DatePicker({ formik, name, placeholder }: Props) {
     setTahun(today.getFullYear());
     // setSelected(undefined);
   }
-
   function nextMonth() {
     const currentMonth = date.getMonth();
     const currentyear = date.getFullYear();
@@ -126,14 +149,17 @@ export default function DatePicker({ formik, name, placeholder }: Props) {
 
   return (
     <>
-      <HStack
-        as={Button}
+      <Button
         className="btn"
         w={"100%"}
-        justify={"space-between"}
+        justifyContent={"space-between"}
         borderRadius={8}
         border={"1px solid var(--divider3)"}
-        boxShadow={formik.errors[name] ? `0 0 0px 1px ${errorColor}` : ""}
+        boxShadow={
+          formik && name && formik.errors[name]
+            ? `0 0 0px 1px ${errorColor}`
+            : ""
+        }
         py={2}
         px={4}
         h={"40px"}
@@ -141,14 +167,22 @@ export default function DatePicker({ formik, name, placeholder }: Props) {
         cursor={"pointer"}
         onClick={onOpen}
         _focus={{ boxShadow: "0 0 0px 2px var(--p500)" }}
+        {...props}
       >
-        <Text opacity={formik.values[name] ? 1 : 0.3}>
-          {confirm && selected
+        <Text
+          opacity={
+            (formik && name && formik.values[name]) || (value && selected)
+              ? 1
+              : 0.3
+          }
+        >
+          {(confirm && selected) || (defaultValue && selected)
             ? formatDate(selected.toDateString())
             : placeholder || `Pilih tanggal`}
         </Text>
-        <Icon as={RiCalendarLine} />
-      </HStack>
+
+        <Icon as={RiCalendarLine} mb={"2px"} />
+      </Button>
 
       <Modal
         isOpen={isOpen}

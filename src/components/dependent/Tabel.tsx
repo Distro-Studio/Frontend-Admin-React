@@ -1,6 +1,7 @@
 import {
   Avatar,
   Badge,
+  BoxProps,
   Button,
   HStack,
   Icon,
@@ -34,7 +35,7 @@ import formatNumber from "../../lib/formatNumber";
 import TabelContainer from "../wrapper/TabelContainer";
 import PaginationNav from "./PaginationNav";
 
-interface Props {
+interface Props extends BoxProps {
   columns: Tabel__Column__Interface[];
   data: any[];
   paginationData?: any;
@@ -52,6 +53,7 @@ export default function Tabel({
   setPageConfig,
   limitConfig,
   setLimitConfig,
+  ...props
 }: Props) {
   // Sort Congig
   const [sortConfig, setSortConfig] = useState<{
@@ -99,7 +101,7 @@ export default function Tabel({
   return (
     // <div style={{ overflowX: "auto" }}>
     <>
-      <TabelContainer>
+      <TabelContainer {...props}>
         <Table minW={"100%"}>
           <Thead>
             <Tr>

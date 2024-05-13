@@ -243,6 +243,7 @@ export default function FilterUnitKerja({
                 h={"40px"}
                 maxW={"100%"}
                 px={4}
+                cursor={'pointer'}
                 onClick={() => {
                   setFilterConfig((ps: any) => {
                     // Mengecek apakah data sudah ada dalam unit_kerja

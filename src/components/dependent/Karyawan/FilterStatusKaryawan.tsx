@@ -60,6 +60,7 @@ export default function FilterStatusKaryawan({
               h={"40px"}
               maxW={"100%"}
               px={4}
+              cursor={"pointer"}
               onClick={() => {
                 setFilterConfig((ps: any) => {
                   // Mengecek apakah data sudah ada dalam status_karyawan
