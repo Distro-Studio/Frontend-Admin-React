@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { RiSearch2Line } from "@remixicon/react";
 import { Dispatch, useState } from "react";
-import { useBodyColor, usePrimaryAlphaColor } from "../../../const/colors";
+import { useBodyColor } from "../../../const/colors";
 import { iconSize } from "../../../const/sizes";
 import DataNotFound from "../../independent/DataNotFound";
 import FilterItemWrapper from "../../wrapper/FilterItemWrapper";
@@ -190,7 +190,6 @@ export default function FilterUnitKerja({
   );
 
   // SX
-  const primaryAlphaColor = usePrimaryAlphaColor();
 
   return (
     <FilterItemWrapper

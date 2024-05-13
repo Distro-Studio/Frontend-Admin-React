@@ -1,6 +1,5 @@
 import { HStack, Text, Wrap } from "@chakra-ui/react";
 import { Dispatch } from "react";
-import { usePrimaryAlphaColor } from "../../../const/colors";
 import FilterItemWrapper from "../../wrapper/FilterItemWrapper";
 
 interface Props {
@@ -30,7 +29,6 @@ export default function FilterStatusKaryawan({
   //TODO get list status karyawan
 
   // SX
-  const primaryAlphaColor = usePrimaryAlphaColor();
 
   return (
     <FilterItemWrapper

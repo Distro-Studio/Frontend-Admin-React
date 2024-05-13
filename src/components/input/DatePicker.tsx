@@ -40,7 +40,7 @@ interface Props extends ButtonProps {
   placeholder?: string;
   confirmDate?: (date: any) => void;
   value?: string;
-  defaultValue?: string;
+  defaultDateSelected?: Date;
   dateFormatOptions?: any;
 }
 
@@ -50,7 +50,7 @@ export default function DatePicker({
   placeholder,
   confirmDate,
   value,
-  defaultValue,
+  defaultDateSelected,
   dateFormatOptions,
   ...props
 }: Props) {
@@ -62,7 +62,7 @@ export default function DatePicker({
   const [tahun, setTahun] = useState<number>(date.getFullYear());
   const [bulan, setBulan] = useState<number>(date.getMonth() + 1);
   const [selected, setSelected] = useState<any>();
-  const [confirm, setConfirm] = useState<boolean>(false);
+  // const [confirm, setConfirm] = useState<boolean>(false);
   const confirmSelect = () => {
     if (selected) {
       if (formik && name) {
@@ -70,19 +70,19 @@ export default function DatePicker({
       } else if (confirmDate) {
         confirmDate(selected);
       }
-      setConfirm(true);
+      // setConfirm(true);
     }
   };
 
   useEffect(() => {
-    if (defaultValue) {
-      setSelected(defaultValue);
+    if (defaultDateSelected) {
+      setSelected(defaultDateSelected);
     }
-  }, [defaultValue]); // Menambahkan selected ke dalam array dependencies
+  }, [defaultDateSelected]);
 
-  useEffect(() => {
-    setConfirm(true);
-  }, [selected]);
+  // useEffect(() => {
+  //   setConfirm(true);
+  // }, []);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
@@ -145,6 +145,8 @@ export default function DatePicker({
       color: "var(--p500)",
     },
   };
+
+  // SX
   const errorColor = useColorModeValue("#E53E3E", "#FC8181");
 
   return (
@@ -170,9 +172,14 @@ export default function DatePicker({
         _focus={{ border: "1px solid var(--p500)", boxShadow: "none" }}
         {...props}
       >
-        <Text opacity={confirm && selected ? 1 : 0.3}>
-          {confirm && selected
-            ? formatDate(selected, dateFormatOptions)
+        <Text
+          opacity={(formik && name && formik.values[name]) || value ? 1 : 0.3}
+        >
+          {(formik && name && formik.values[name]) || value
+            ? formatDate(
+                (formik && name && formik.values[name]) || value,
+                dateFormatOptions
+              )
             : placeholder || `Pilih tanggal`}
         </Text>
 
@@ -184,6 +191,7 @@ export default function DatePicker({
         onClose={handleOnClose}
         size={"sm"}
         initialFocusRef={initialRef}
+        isCentered
       >
         <ModalOverlay />
 
@@ -206,7 +214,7 @@ export default function DatePicker({
                       if (value <= 12) {
                         setDate(new Date(tahun, value - 1));
                         setBulan(value);
-                        setConfirm(false);
+                        // setConfirm(false);
                         setSelected(undefined);
                       }
                     }}
@@ -228,7 +236,7 @@ export default function DatePicker({
                       const value = parseNumber(e.target.value);
                       setDate(new Date(value, bulan - 1));
                       setTahun(value);
-                      setConfirm(false);
+                      // setConfirm(false);
                       setSelected(undefined);
                     }}
                     value={tahun === 0 ? "" : tahun}
@@ -271,7 +279,7 @@ export default function DatePicker({
                       selected={selected}
                       onSelect={(e) => {
                         setSelected(e);
-                        setConfirm(false);
+                        // setConfirm(false);
                       }}
                       locale={id}
                       modifiersStyles={modifiersStyles}

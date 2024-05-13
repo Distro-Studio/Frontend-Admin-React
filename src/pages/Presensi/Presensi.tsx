@@ -19,7 +19,7 @@ import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 
 export default function Presensi() {
-  const today = new Date().toDateString();
+  const today = new Date();
 
   // Filter Config
   const [filterConfig, setFilterConfig] = useState<any>({
@@ -60,7 +60,7 @@ export default function Presensi() {
               flex={"1 1 140px"}
               confirmDate={confirmDate}
               value={filterConfig.tgl}
-              defaultValue={today}
+              defaultDateSelected={today}
               dateFormatOptions={{
                 year: "numeric",
                 month: "long",

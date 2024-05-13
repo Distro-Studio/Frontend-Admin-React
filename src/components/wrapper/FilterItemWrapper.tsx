@@ -58,6 +58,7 @@ export default function FilterItemWrapper({
             {filterValue && filterValue.length > 0 && (
               <Tooltip label={"Hapus filter ini"} openDelay={500}>
                 <IconButton
+                  as={Center}
                   aria-label="Delete filter item button"
                   icon={<Icon as={RiCloseLine} fontSize={16} />}
                   size={"xs"}
