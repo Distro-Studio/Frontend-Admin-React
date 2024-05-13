@@ -155,7 +155,14 @@ export default function NavContainer({
             p={responsiveSpacing}
           />
 
-          {children}
+          <VStack
+            gap={0}
+            w={"100%"}
+            // maxW={"1280px"}
+            mx={"auto"}
+          >
+            {children}
+          </VStack>
         </CContainer>
       </HStack>
     </Container>

@@ -10,7 +10,7 @@ import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useEffect, useState } from "react";
 import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
-import PresensiSummary from "../../components/independent/Karyawan/PresensiSummary";
+import PresensiTotal from "../../components/independent/Karyawan/PresensiTotal";
 import TabelKaryawan from "../../components/independent/Karyawan/TabelKaryawan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -37,7 +37,7 @@ export default function Presensi() {
 
   return (
     <>
-      <PresensiSummary />
+      <PresensiTotal />
 
       <CWrapper>
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>

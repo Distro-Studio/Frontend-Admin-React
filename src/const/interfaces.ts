@@ -78,4 +78,21 @@ export interface Tabel__Column__Interface {
   dataType: "string" | "number" | "date" | "badge" | "avatarAndName";
 }
 
+export interface Presensi__SUmmary__Interface {
+  hadir: {
+    tepat_waktu: number;
+    terlambat: number;
+    masuk: number;
+  };
+  tidak_hadir: {
+    absen: number;
+    izin: number;
+    invalid: number;
+  };
+  libur: {
+    hari_libur: number;
+    cuti: number;
+  };
+}
+
 export interface Unit__Kerja__Interface {}
