@@ -1,11 +1,72 @@
-import React from "react";
+import {
+  Button,
+  Icon,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Wrap,
+} from "@chakra-ui/react";
+import { RiSearchLine, RiUploadLine } from "@remixicon/react";
+import { useState } from "react";
+import FilterTabelAkunKaryawan from "../../components/dependent/Karyawan/FilterTabelAkunKaryawan";
 import TopNavs from "../../components/dependent/TopNavs";
+import TabelAkunKaryawan from "../../components/independent/Karyawan/TabelAkunKaryawan";
+import CContainer from "../../components/wrapper/CContainer";
+import CWrapper from "../../components/wrapper/CWrapper";
+import { useBodyColor } from "../../const/colors";
 import karyawanTopNavs from "../../const/karyawanTopNavs";
+import { iconSize, responsiveSpacing } from "../../const/sizes";
 
 export default function AkunKaryawan() {
+  // Filter Config
+  const [filterConfig, setFilterConfig] = useState<any>({
+    search: "",
+    status_karyawan: [],
+  });
+
   return (
     <>
-      <TopNavs data={karyawanTopNavs} active={1} />
+      <TopNavs data={karyawanTopNavs} active={1} mb={responsiveSpacing} />
+
+      <CWrapper>
+        <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
+          <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
+            <InputGroup flex={"1 1 200px"}>
+              <InputLeftElement>
+                <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
+              </InputLeftElement>
+              <Input
+                placeholder="Pencarian"
+                flex={"1 1 0"}
+                onChange={(e) => {
+                  setFilterConfig((ps: any) => ({
+                    ...ps,
+                    search: e.target.value,
+                  }));
+                }}
+                value={filterConfig.search}
+              />
+            </InputGroup>
+
+            <FilterTabelAkunKaryawan
+              filterConfig={filterConfig}
+              setFilterConfig={setFilterConfig}
+            />
+
+            <Button
+              flex={"1 1 110px"}
+              variant={"outline"}
+              colorScheme="ap"
+              className="clicky"
+              rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
+            >
+              Export
+            </Button>
+          </Wrap>
+
+          <TabelAkunKaryawan filterConfig={filterConfig} />
+        </CContainer>
+      </CWrapper>
     </>
   );
 }
