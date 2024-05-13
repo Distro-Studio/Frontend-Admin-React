@@ -9,10 +9,10 @@ import {
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
+import JadwalPeriodeModal from "../../components/dependent/Karyawan/JadwalPeriodeModal";
 import TopNavs from "../../components/dependent/TopNavs";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
-import TabelKaryawan from "../../components/independent/Karyawan/TabelKaryawan";
-import DatePicker from "../../components/input/DatePicker";
+import TabelJadwal from "../../components/independent/Karyawan/TabelJadwal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
@@ -20,14 +20,58 @@ import jadwalTopNavs from "../../const/jadwalTopNavs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 
 export default function Jadwal() {
-  const today = new Date().toDateString();
+  const periode = [
+    {
+      id: 1,
+      label: "29 April - 5 Mei 2024",
+      dates: [
+        "Apr 29 2024",
+        "Apr 30 2024",
+        "May 1 2024",
+        "May 2 2024",
+        "May 3 2024",
+        "May 4 2024",
+        "May 5 2024",
+      ],
+    },
+    {
+      id: 2,
+      label: "6 Mei - 12 Mei 2024",
+      dates: [
+        "May 6 2024",
+        "May 7 2024",
+        "May 8 2024",
+        "May 9 2024",
+        "May 10 2024",
+        "May 11 2024",
+        "May 12 2024",
+      ],
+    },
+    {
+      id: 3,
+      label: "13 Mei - 19 Mei 2024",
+      dates: [
+        "Mon May 13 2024",
+        "Tue May 14 2024",
+        "Wed May 15 2024",
+        "Thu May 16 2024",
+        "Fri May 17 2024",
+        "Sat May 18 2024",
+        "Sun May 19 2024",
+      ],
+    },
+  ];
+  const [active, setActive] = useState<any | null>(periode[periode.length - 1]);
 
   // Filter Config
   const [filterConfig, setFilterConfig] = useState<any>({
     search: "",
     unit_kerja: [],
     status_karyawan: [],
-    tgl: today,
+    range_tgl: {
+      start: "",
+      end: "",
+    },
   });
   const confirmDate = (newDate: string) => {
     setFilterConfig((ps: any) => ({ ...ps, tgl: newDate }));
@@ -57,16 +101,11 @@ export default function Jadwal() {
               />
             </InputGroup>
 
-            <DatePicker
-              flex={"1 1 140px"}
-              confirmDate={confirmDate}
-              value={filterConfig.tgl}
-              defaultValue={today}
-              dateFormatOptions={{
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              }}
+            <JadwalPeriodeModal
+              data={periode}
+              active={active}
+              setActive={setActive}
+              flex={"1 1 200px"}
             />
 
             <FilterTabelKaryawan
@@ -87,7 +126,7 @@ export default function Jadwal() {
             <ImportKaryawanModal />
           </Wrap>
 
-          <TabelKaryawan filterConfig={filterConfig} />
+          <TabelJadwal filterConfig={filterConfig} />
         </CContainer>
       </CWrapper>
     </>

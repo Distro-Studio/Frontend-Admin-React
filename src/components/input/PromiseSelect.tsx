@@ -138,7 +138,7 @@ export default function PromiseSelect({
                       className="btn"
                       bg={
                         formik.values[name] && selectedValue === option.value
-                          ? "var(--p500a3) !important"
+                          ? "var(--p500a2) !important"
                           : ""
                       }
                       key={i}

@@ -138,7 +138,7 @@ export default function StaticSelect({
                     // borderRadius={"0"}
                     bg={
                       selectedValue === option.value
-                        ? "var(--p500a3) !important"
+                        ? "var(--p500a2) !important"
                         : ""
                     }
                     // color={selectedValue === option.value ? "p.500" : ""}

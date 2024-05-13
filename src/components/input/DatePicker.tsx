@@ -166,7 +166,8 @@ export default function DatePicker({
         fontWeight={400}
         cursor={"pointer"}
         onClick={onOpen}
-        _focus={{ boxShadow: "0 0 0px 2px var(--p500)" }}
+        // _focus={{ boxShadow: "0 0 0px 2px var(--p500)" }}
+        _focus={{ border: "1px solid var(--p500)", boxShadow: "none" }}
         {...props}
       >
         <Text opacity={confirm && selected ? 1 : 0.3}>

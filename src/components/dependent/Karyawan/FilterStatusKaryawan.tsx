@@ -54,8 +54,8 @@ export default function FilterStatusKaryawan({
               className="btn-outline"
               fontWeight={400}
               opacity={active ? 1 : 0.6}
-              bg={active && `${primaryAlphaColor} !important`}
-              borderColor={active && "var(--p500a2)"}
+              bg={active && `var(--p500a2) !important`}
+              borderColor={active && "p.500"}
               flexShrink={0}
               h={"40px"}
               maxW={"100%"}
