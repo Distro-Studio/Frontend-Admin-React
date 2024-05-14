@@ -45,9 +45,6 @@ export default function FilterTabelPekerjaKontrak({
     defaultFilterConfig
   );
 
-  console.log("default", defaultFilterConfig);
-  console.log(localFilterConfig);
-
   function filterData() {
     setFilterConfig(localFilterConfig);
     backOnClose(onClose);
