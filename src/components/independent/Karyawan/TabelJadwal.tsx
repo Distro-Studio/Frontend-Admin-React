@@ -25,9 +25,9 @@ import { dummyTabelJadwalData } from "../../../const/dummy";
 import formatTime from "../../../const/formatTime";
 import { responsiveSpacing } from "../../../const/sizes";
 import JadwalTabelHeader from "../../dependent/Karyawan/JadwalTabelHeader";
-import TabelFooterConfig from "../../dependent/TabelFooterConfig";
 import TabelContainer from "../../wrapper/TabelContainer";
 import Skeleton from "../Skeleton";
+import TabelFooterConfig from "../../dependent/TabelFooterConfig";
 
 interface Props {
   filterConfig?: any;
@@ -43,8 +43,6 @@ export default function TabelJadwal({ filterConfig }: Props) {
   //! DEBUG
   todayMasuk.setHours(9, 0, 0, 0); // Set jam menjadi 09:00
   todayKeluar.setHours(17, 0, 0, 0); // Set jam menjadi 17:00
-  console.log(todayMasuk);
-  console.log(todayKeluar.toISOString());
   //! DEBUG
 
   // Limit Config
