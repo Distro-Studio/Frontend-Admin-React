@@ -57,9 +57,9 @@ export default function Presensi() {
             </InputGroup>
 
             <DatePicker
-              flex={"1 1 140px"}
+              flex={"1 1 200px"}
               confirmDate={confirmDate}
-              value={filterConfig.tgl}
+              dateValue={filterConfig.tgl}
               defaultDateSelected={today}
               dateFormatOptions={{
                 year: "numeric",

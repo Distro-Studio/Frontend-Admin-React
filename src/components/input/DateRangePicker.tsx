@@ -19,6 +19,7 @@ import {
   useColorModeValue,
   useDisclosure,
   VStack,
+  Wrap,
 } from "@chakra-ui/react";
 import {
   RiArrowLeftSLine,
@@ -38,20 +39,22 @@ interface Props extends ButtonProps {
   formik?: any;
   name?: string;
   placeholder?: string;
-  confirmDate?: (date: any) => void;
-  dateValue?: string;
-  defaultDateSelected?: Date;
-  dateFormatOptions?: any;
+  confirmDate?: (from: Date, to: Date) => void;
+  dateValue?: { from: Date; to: Date };
+  defaultDateSelected?: { from: Date; to: Date };
+  dateFormatFromOptions?: any;
+  dateFormatToOptions?: any;
 }
 
-export default function DatePicker({
+export default function DateRangePicker({
   formik,
   name,
   placeholder,
   confirmDate,
   dateValue,
   defaultDateSelected,
-  dateFormatOptions,
+  dateFormatFromOptions,
+  dateFormatToOptions,
   ...props
 }: Props) {
   const initialRef = useRef(null);
@@ -68,7 +71,7 @@ export default function DatePicker({
       if (formik && name) {
         formik.setFieldValue(name, selected);
       } else if (confirmDate) {
-        confirmDate(selected);
+        confirmDate(selected.from, selected.to);
       }
       // setConfirm(true);
     }
@@ -93,7 +96,7 @@ export default function DatePicker({
   function todayMonth() {
     const today = new Date();
     setDate(today);
-    setSelected(today);
+    setSelected({ from: today, to: null });
     setBulan(today.getMonth() + 1);
     setTahun(today.getFullYear());
     // setSelected(undefined);
@@ -137,17 +140,21 @@ export default function DatePicker({
   const modifiersStyles = {
     selected: {
       border: "2px solid var(--p500)",
-      background: "transparent",
       color: bnwColor,
       opacity: 1,
+    },
+    range_middle: {
+      backgroundColor: "var(--p500a2) !important",
+      border: "none",
+      color: bnwColor,
     },
     today: {
       color: "var(--p500)",
     },
   };
-
-  // SX
   const errorColor = useColorModeValue("#E53E3E", "#FC8181");
+
+  console.log("selected", dateValue);
 
   return (
     <>
@@ -178,11 +185,18 @@ export default function DatePicker({
           }
         >
           {(formik && name && formik.values[name]) || dateValue
-            ? formatDate(
-                (formik && name && formik.values[name]) || dateValue,
-                dateFormatOptions
-              )
-            : placeholder || `Pilih tanggal`}
+            ? `${formatDate(
+                (formik && name && formik.values[name].from) || dateValue?.from,
+                dateFormatFromOptions || { day: "numeric", month: "short" }
+              )} - ${formatDate(
+                (formik && name && formik.values[name].to) || dateValue?.to,
+                dateFormatToOptions || {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                }
+              )}`
+            : placeholder || `Pilih periode tanggal`}
         </Text>
 
         <Icon as={RiCalendarLine} mb={"2px"} />
@@ -191,6 +205,7 @@ export default function DatePicker({
       <Modal
         isOpen={isOpen}
         onClose={handleOnClose}
+        // size={"lg"}
         initialFocusRef={initialRef}
         isCentered
       >
@@ -276,7 +291,7 @@ export default function DatePicker({
                 <>
                   <VStack overflowX={"auto"} w={"100%"} align={"stretch"}>
                     <DayPicker
-                      mode="single"
+                      mode="range"
                       selected={selected}
                       onSelect={(e) => {
                         setSelected(e);
@@ -333,19 +348,47 @@ export default function DatePicker({
 
           <ModalFooter>
             <VStack align={"stretch"} w={"100%"}>
-              <VStack borderRadius={8} bg={"var(--divider)"} p={2} gap={1}>
-                <Text opacity={selected ? 1 : 0.6}>
-                  {selected
-                    ? `${formatDate(selected)}`
-                    : "Silahkan pilih tanggal"}
-                </Text>
-              </VStack>
+              <Wrap>
+                <Box flex={"1 1 180px"}>
+                  <Text opacity={0.6}>Dari</Text>
+                  <VStack borderRadius={8} bg={"var(--divider)"} p={2} gap={1}>
+                    <Text opacity={selected?.from ? 1 : 0.6}>
+                      {selected?.from
+                        ? `${formatDate(selected.from, {
+                            weekday: "short",
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                          })}`
+                        : "Pilih tanggal awal"}
+                    </Text>
+                  </VStack>
+                </Box>
+
+                <Box flex={"1 1 180px"}>
+                  <Text opacity={0.6}>Ke</Text>
+                  <VStack borderRadius={8} bg={"var(--divider)"} p={2} gap={1}>
+                    <Text opacity={selected?.to ? 1 : 0.6}>
+                      {selected?.to
+                        ? `${formatDate(selected.to, {
+                            weekday: "short",
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                          })}`
+                        : "Pilih tanggal akhir"}
+                    </Text>
+                  </VStack>
+                </Box>
+              </Wrap>
 
               <Button
                 colorScheme="ap"
                 className="btn-ap clicky"
                 w={"100%"}
-                isDisabled={selected ? false : true}
+                isDisabled={
+                  selected && selected.from && selected.to ? false : true
+                }
                 onClick={() => {
                   confirmSelect();
                   handleOnClose();

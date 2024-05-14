@@ -20,9 +20,9 @@
 
   --p500a1: rgba(22, 179, 171, 0.6);
   --p500a2: rgba(22, 179, 171, 0.4);
-  --p500a3: rgba(22, 179, 171, 0.2);
-  --p500a4: rgba(22, 179, 171, 0.1);
-  --p500a5: rgba(22, 179, 171, 0.05);
+  --p500a3: rgba(22, 179, 171, 0.25);
+  --p500a4: rgba(22, 179, 171, 0.15);
+  --p500a5: rgba(22, 179, 171, 0.1);
 
   --ba: #050505a6;
   --bt: #333333;
@@ -439,7 +439,9 @@ img[alt="Google"] {
 .rdp-button {
   width: 30px !important;
   height: 30px !important;
-  margin-left: 5px !important;
+  border-radius: 100px !important;
+  /* margin-left: 5px !important; */
+  margin: auto !important;
 }
 .rdp-button:focus-visible {
   background-color: transparent !important;
@@ -447,6 +449,17 @@ img[alt="Google"] {
 }
 .rdp-button:hover {
   background-color: var(--divider) !important;
+}
+.rdp-day_selected {
+  background: transparent !important;
+}
+.rdp-day_range_start,
+.rdp-day_range_end {
+  background: var(--p500a4) !important;
+}
+
+.rdp-day_range_middle {
+  background: var(--p500a3) !important;
 }
 .rdp-tfoot {
   display: none !important;

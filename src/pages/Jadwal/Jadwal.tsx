@@ -18,63 +18,32 @@ import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import jadwalTopNavs from "../../const/jadwalTopNavs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
+import DateRangePicker from "../../components/input/DateRangePicker";
 
 export default function Jadwal() {
-  const periode = [
-    {
-      id: 1,
-      label: "29 April - 5 Mei 2024",
-      dates: [
-        "Apr 29 2024",
-        "Apr 30 2024",
-        "May 1 2024",
-        "May 2 2024",
-        "May 3 2024",
-        "May 4 2024",
-        "May 5 2024",
-      ],
-    },
-    {
-      id: 2,
-      label: "6 Mei - 12 Mei 2024",
-      dates: [
-        "May 6 2024",
-        "May 7 2024",
-        "May 8 2024",
-        "May 9 2024",
-        "May 10 2024",
-        "May 11 2024",
-        "May 12 2024",
-      ],
-    },
-    {
-      id: 3,
-      label: "13 Mei - 19 Mei 2024",
-      dates: [
-        "Mon May 13 2024",
-        "Tue May 14 2024",
-        "Wed May 15 2024",
-        "Thu May 16 2024",
-        "Fri May 17 2024",
-        "Sat May 18 2024",
-        "Sun May 19 2024",
-      ],
-    },
-  ];
-  const [active, setActive] = useState<any | null>(periode[periode.length - 1]);
+  const dateFns = require("date-fns");
+
+  const now = new Date();
+  const startOfWeek = dateFns.startOfWeek(now, { weekStartsOn: 1 });
+  const endOfWeek = dateFns.endOfWeek(now, { weekStartsOn: 1 });
+
+  const defaultRangeTgl = {
+    from: startOfWeek,
+    to: endOfWeek,
+  };
 
   // Filter Config
   const [filterConfig, setFilterConfig] = useState<any>({
     search: "",
     unit_kerja: [],
     status_karyawan: [],
-    range_tgl: {
-      start: "",
-      end: "",
-    },
+    range_tgl: defaultRangeTgl,
   });
-  const confirmDate = (newDate: string) => {
-    setFilterConfig((ps: any) => ({ ...ps, tgl: newDate }));
+  const confirmDateRange = (from: Date, to: Date) => {
+    setFilterConfig((ps: any) => ({
+      ...ps,
+      range_tgl: { from: from, to: to },
+    }));
   };
 
   return (
@@ -101,11 +70,11 @@ export default function Jadwal() {
               />
             </InputGroup>
 
-            <JadwalPeriodeModal
-              data={periode}
-              active={active}
-              setActive={setActive}
+            <DateRangePicker
               flex={"1 1 200px"}
+              confirmDate={confirmDateRange}
+              dateValue={filterConfig.range_tgl}
+              defaultDateSelected={defaultRangeTgl}
             />
 
             <FilterTabelKaryawan
