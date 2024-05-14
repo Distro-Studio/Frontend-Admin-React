@@ -21,10 +21,11 @@ export const ColorModeSwitcherHeaderMenu: React.FC<ColorModeSwitcherProps> = (
 
   return (
     <HStack
-      as={Button}
       h={"45px"}
+      px={4}
       w={"100%"}
       className="btn"
+      cursor={"pointer"}
       justify={"flex-start"}
       fontWeight={400}
       onClick={toggleColorMode}

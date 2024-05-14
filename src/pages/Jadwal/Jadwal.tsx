@@ -9,16 +9,15 @@ import {
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
-import JadwalPeriodeModal from "../../components/dependent/Karyawan/JadwalPeriodeModal";
 import TopNavs from "../../components/dependent/TopNavs";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
 import TabelJadwal from "../../components/independent/Karyawan/TabelJadwal";
+import DateRangePicker from "../../components/input/DateRangePicker";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import jadwalTopNavs from "../../const/jadwalTopNavs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
-import DateRangePicker from "../../components/input/DateRangePicker";
 
 export default function Jadwal() {
   const dateFns = require("date-fns");

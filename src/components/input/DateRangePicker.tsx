@@ -154,8 +154,6 @@ export default function DateRangePicker({
   };
   const errorColor = useColorModeValue("#E53E3E", "#FC8181");
 
-  console.log("selected", dateValue);
-
   return (
     <>
       <Button
@@ -187,12 +185,16 @@ export default function DateRangePicker({
           {(formik && name && formik.values[name]) || dateValue
             ? `${formatDate(
                 (formik && name && formik.values[name].from) || dateValue?.from,
-                dateFormatFromOptions || { day: "numeric", month: "short" }
+                dateFormatFromOptions || {
+                  day: "numeric",
+                  month: "numeric",
+                  year: "numeric",
+                }
               )} - ${formatDate(
                 (formik && name && formik.values[name].to) || dateValue?.to,
                 dateFormatToOptions || {
                   day: "numeric",
-                  month: "short",
+                  month: "numeric",
                   year: "numeric",
                 }
               )}`
