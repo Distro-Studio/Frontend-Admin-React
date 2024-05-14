@@ -26,10 +26,11 @@ export default function Presensi() {
     search: "",
     unit_kerja: [],
     status_karyawan: [],
+    tanggal: [today],
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
   const confirmDate = (newDate: string) => {
-    setFilterConfig((ps: any) => ({ ...ps, tgl: newDate }));
+    setFilterConfig((ps: any) => ({ ...ps, tanggal: [newDate] }));
   };
 
   return (
@@ -59,7 +60,7 @@ export default function Presensi() {
             <DatePicker
               flex={"1 1 200px"}
               confirmDate={confirmDate}
-              dateValue={filterConfig.tgl}
+              dateValue={filterConfig.tanggal}
               defaultDateSelected={today}
               dateFormatOptions={{
                 year: "numeric",
