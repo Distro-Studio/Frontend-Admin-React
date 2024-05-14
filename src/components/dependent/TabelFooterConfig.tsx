@@ -22,7 +22,7 @@ interface Props {
   paginationData?: any;
 }
 
-export default function TabelFooterControl({
+export default function TabelFooterConfig({
   limitConfig,
   setLimitConfig,
   pageConfig,
@@ -61,7 +61,7 @@ export default function TabelFooterControl({
             </HStack>
           </MenuButton>
 
-          <MenuList minW={`${limitMenuListW}px`}>
+          <MenuList minW={`${limitMenuListW}px`} zIndex={10}>
             <MenuItem
               color={limitConfig === 10 ? "p.500" : ""}
               onClick={() => {

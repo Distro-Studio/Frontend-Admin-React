@@ -24,7 +24,8 @@ import { iconSize } from "../../const/sizes";
 import formatDate from "../../lib/formatDate";
 import formatNumber from "../../lib/formatNumber";
 import TabelContainer from "../wrapper/TabelContainer";
-import TabelFooterControl from "./TabelFooterControl";
+import TabelFooterConfig from "./TabelFooterConfig";
+import { Link } from "react-router-dom";
 
 interface Props extends BoxProps {
   columns: Tabel__Column__Interface[];
@@ -191,56 +192,68 @@ export default function Tabel({
                   </Center>
                 </Td>
 
-                {columns.map((column, colIndex) => (
-                  <Td
-                    key={colIndex}
-                    pl={colIndex === 0 ? 4 : ""}
-                    pr={colIndex === columns.length - 1 ? 4 : ""}
-                    whiteSpace={"nowrap"}
-                    textAlign={
-                      row[column.key] === undefined || row[column.key] === null
-                        ? "center" // Jika datanya kosong, textAlign menjadi center
-                        : column.dataType === "number"
-                        ? "right" // Jika numeric, textAlign menjadi right
-                        : "left" // Jika tidak, textAlign defaultnya menjadi left
-                    }
-                    opacity={
-                      row[column.key] === undefined || row[column.key] === null
-                        ? 0.6
-                        : 1
-                    }
-                  >
-                    {row[column.key] !== undefined &&
-                    row[column.key] !== null ? (
-                      column.dataType === "date" ? (
-                        formatDate(row[column.key])
-                      ) : column.dataType === "number" ? (
-                        formatNumber(row[column.key])
-                      ) : column.dataType === "badge" ? (
-                        <Badge
-                          w={"100%"}
-                          textAlign={"center"}
-                          colorScheme="teal"
-                        >
-                          {row[column.key]}
-                        </Badge>
-                      ) : column.dataType === "avatarAndName" ? (
-                        <HStack>
-                          <Avatar
-                            size={"sm"}
-                            name={row[column.key]}
-                            src={row.avatar}
-                          />
-                          <Text>{row[column.key]}</Text>
-                        </HStack>
-                      ) : (
-                        row[column.key]
-                      )
-                    ) : (
-                      "-"
-                    )}
-                  </Td>
-                ))}
+                {columns.map((column, colIndex) => {
+                  const typicalRender = {
+                    date: formatDate(row[column.key]),
+                    number: formatNumber(row[column.key]),
+                    badge: (
+                      <Badge w={"100%"} textAlign={"center"} colorScheme="teal">
+                        {row[column.key]}
+                      </Badge>
+                    ),
+                    avatarAndName: (
+                      <HStack>
+                        <Avatar
+                          size={"sm"}
+                          name={row[column.key]}
+                          src={row.avatar}
+                        />
+                        <Text>{row[column.key]}</Text>
+                      </HStack>
+                    ),
+                    link: (
+                      <Text
+                        as={Link}
+                        color={"p.500"}
+                        fontWeight={500}
+                        w={"100%"}
+                        to={`${column.link}`}
+                        borderBottom={"1px solid var(--p500)"}
+                      >
+                        {row[column.key]}
+                      </Text>
+                    ),
+                  };
+
+                  return (
+                    <Td
+                      key={colIndex}
+                      pl={colIndex === 0 ? 4 : ""}
+                      pr={colIndex === columns.length - 1 ? 4 : ""}
+                      whiteSpace={"nowrap"}
+                      textAlign={
+                        row[column.key] === undefined ||
+                        row[column.key] === null ||
+                        column.dataType === "link"
+                          ? "center" // Jika datanya kosong, textAlign menjadi center
+                          : column.dataType === "number"
+                          ? "right" // Jika numeric, textAlign menjadi right
+                          : "left" // Jika tidak, textAlign defaultnya menjadi left
+                      }
+                      opacity={
+                        row[column.key] === undefined ||
+                        row[column.key] === null
+                          ? 0.6
+                          : 1
+                      }
+                    >
+                      {row[column.key] !== undefined && row[column.key] !== null
+                        ? // @ts-ignore
+                          typicalRender[column.dataType]
+                        : "-"}
+                    </Td>
+                  );
+                })}
 
                 {/* Kolom tetap di sebelah kanan */}
                 <Td
@@ -270,7 +283,7 @@ export default function Tabel({
         </Table>
       </TabelContainer>
 
-      <TabelFooterControl
+      <TabelFooterConfig
         limitConfig={limitConfig}
         setLimitConfig={setLimitConfig}
         pageConfig={pageConfig}

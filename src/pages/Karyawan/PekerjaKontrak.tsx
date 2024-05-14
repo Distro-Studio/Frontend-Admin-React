@@ -8,9 +8,9 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
+import FilterPekerjaKontrak from "../../components/dependent/Karyawan/FilterPekerjaKontrak";
 import TopNavs from "../../components/dependent/TopNavs";
-import TabelKaryawan from "../../components/independent/Karyawan/TabelKaryawan";
+import TabelPekerjaKontrak from "../../components/independent/Karyawan/TabelPekerjaKontrak";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
@@ -49,7 +49,7 @@ export default function PekerjaKontrak() {
               />
             </InputGroup>
 
-            <FilterTabelKaryawan
+            <FilterPekerjaKontrak
               filterConfig={filterConfig}
               setFilterConfig={setFilterConfig}
             />
@@ -65,7 +65,7 @@ export default function PekerjaKontrak() {
             </Button>
           </Wrap>
 
-          <TabelKaryawan filterConfig={filterConfig} />
+          <TabelPekerjaKontrak filterConfig={filterConfig} />
         </CContainer>
       </CWrapper>
     </>

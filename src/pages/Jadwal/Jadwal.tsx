@@ -7,8 +7,9 @@ import {
   Wrap,
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
+import { endOfWeek, startOfWeek } from "date-fns";
 import { useState } from "react";
-import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
+import FilterTabelJadwal from "../../components/dependent/Jadwal/FilterTabelJadwal";
 import TopNavs from "../../components/dependent/TopNavs";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
 import TabelJadwal from "../../components/independent/Karyawan/TabelJadwal";
@@ -20,15 +21,13 @@ import jadwalTopNavs from "../../const/jadwalTopNavs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 
 export default function Jadwal() {
-  const dateFns = require("date-fns");
-
   const today = new Date();
-  const startOfWeek = dateFns.startOfWeek(today, { weekStartsOn: 1 });
-  const endOfWeek = dateFns.endOfWeek(today, { weekStartsOn: 1 });
+  const startOfWeekDate = startOfWeek(today, { weekStartsOn: 1 });
+  const endOfWeekDate = endOfWeek(today, { weekStartsOn: 1 });
 
   const defaultRangeTgl = {
-    from: startOfWeek,
-    to: endOfWeek,
+    from: startOfWeekDate,
+    to: endOfWeekDate,
   };
   // console.log(defaultRangeTgl);
 
@@ -77,9 +76,10 @@ export default function Jadwal() {
               defaultDateSelected={defaultRangeTgl}
             />
 
-            <FilterTabelKaryawan
+            <FilterTabelJadwal
               filterConfig={filterConfig}
               setFilterConfig={setFilterConfig}
+              rangeTgl={filterConfig.range_tgl}
             />
 
             <Button

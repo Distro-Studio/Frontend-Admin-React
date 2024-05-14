@@ -68,6 +68,7 @@ export default function PaginationJump({ page, setPage, pagination }: Props) {
         onClose={handleOnClose}
         initialFocusRef={initialFocusRef}
         isCentered
+        size={"sm"}
       >
         <ModalOverlay />
         <ModalContent>

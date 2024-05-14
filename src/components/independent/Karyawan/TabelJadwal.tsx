@@ -25,7 +25,7 @@ import { dummyTabelJadwalData } from "../../../const/dummy";
 import formatTime from "../../../const/formatTime";
 import { responsiveSpacing } from "../../../const/sizes";
 import JadwalTabelHeader from "../../dependent/Karyawan/JadwalTabelHeader";
-import TabelFooterControl from "../../dependent/TabelFooterControl";
+import TabelFooterConfig from "../../dependent/TabelFooterConfig";
 import TabelContainer from "../../wrapper/TabelContainer";
 import Skeleton from "../Skeleton";
 
@@ -174,7 +174,7 @@ export default function TabelJadwal({ filterConfig }: Props) {
 
             <Tbody>
               {sortedData.map((jadwalData: any, i: number) => (
-                <Tr key={i}>
+                <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
                   <Td
                     position={"sticky"}
                     left={0}
@@ -219,7 +219,6 @@ export default function TabelJadwal({ filterConfig }: Props) {
                       return (
                         <Td
                           key={ii}
-                          bg={contentBgColor}
                           pt={i === 0 ? 4 : 2}
                           pb={i === data.length - 1 ? 4 : 2}
                           pl={ii === 0 ? 4 : 2}
@@ -250,7 +249,6 @@ export default function TabelJadwal({ filterConfig }: Props) {
                     return (
                       <Td
                         key={ii}
-                        bg={contentBgColor}
                         pt={i === 0 ? 4 : 2}
                         pb={i === data.length - 1 ? 4 : 2}
                         pl={ii === 0 ? 4 : 2}
@@ -287,7 +285,7 @@ export default function TabelJadwal({ filterConfig }: Props) {
         </TabelContainer>
       )}
 
-      <TabelFooterControl
+      <TabelFooterConfig
         limitConfig={limitConfig}
         setLimitConfig={setLimitConfig}
         pageConfig={pageConfig}
