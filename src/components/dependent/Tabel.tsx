@@ -2,14 +2,11 @@ import {
   Avatar,
   Badge,
   BoxProps,
-  Button,
+  Center,
+  Checkbox,
   HStack,
   Icon,
   IconButton,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Table,
   Tbody,
   Td,
@@ -18,31 +15,25 @@ import {
   Thead,
   Tr,
   VStack,
-  Wrap,
 } from "@chakra-ui/react";
-import {
-  RiArrowDownLine,
-  RiArrowDownSLine,
-  RiArrowUpLine,
-  RiMore2Fill,
-} from "@remixicon/react";
-import { useEffect, useRef, useState } from "react";
+import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
+import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../const/colors";
 import { Tabel__Column__Interface } from "../../const/interfaces";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { iconSize } from "../../const/sizes";
 import formatDate from "../../lib/formatDate";
 import formatNumber from "../../lib/formatNumber";
 import TabelContainer from "../wrapper/TabelContainer";
-import PaginationNav from "./PaginationNav";
+import TabelFooterControl from "./TabelFooterControl";
 
 interface Props extends BoxProps {
   columns: Tabel__Column__Interface[];
   data: any[];
-  paginationData?: any;
-  pageConfig?: number;
-  setPageConfig?: (page: number) => void;
   limitConfig?: number;
   setLimitConfig?: (limit: number) => void;
+  pageConfig?: number;
+  setPageConfig?: (page: number) => void;
+  paginationData?: any;
 }
 
 export default function Tabel({
@@ -84,18 +75,8 @@ export default function Tabel({
     setSortConfig({ key, direction });
   };
 
-  const limitButtonRef = useRef<HTMLButtonElement>(null);
-  const [limitMenuListW, setLimitMenuListW] = useState<
-    number | (number | null)[] | null
-  >(null);
-  useEffect(() => {
-    if (limitButtonRef.current) {
-      setLimitMenuListW(limitButtonRef.current.offsetWidth);
-    }
-  }, [limitButtonRef, limitConfig]);
-
   // SX
-  const contectBgColor = useContentBgColor();
+  const contentBgColor = useContentBgColor();
   const bodyColor = useBodyColor();
 
   return (
@@ -104,15 +85,31 @@ export default function Tabel({
       <TabelContainer {...props}>
         <Table minW={"100%"}>
           <Thead>
-            <Tr>
+            <Tr position={"sticky"} top={0} zIndex={3}>
+              <Th
+                position={"sticky"}
+                left={0}
+                p={0}
+                borderBottom={"none !important"}
+                zIndex={3}
+              >
+                <Center
+                  p={4}
+                  h={"52px"}
+                  borderRight={"1px solid var(--divider3)"}
+                  bg={bodyColor}
+                  borderBottom={"1px solid var(--divider3) !important"}
+                >
+                  <Checkbox colorScheme="ap" />
+                </Center>
+              </Th>
+
               {columns.map((column, i) => (
                 <Th
                   key={i}
                   whiteSpace={"nowrap"}
                   onClick={() => sort(column.key)}
                   cursor={"pointer"}
-                  position={"sticky"}
-                  top={0}
                   borderBottom={"none !important"}
                   bg={bodyColor}
                   zIndex={2}
@@ -176,7 +173,24 @@ export default function Tabel({
 
           <Tbody>
             {sortedData.map((row, i) => (
-              <Tr key={i} bg={i % 2 === 0 ? contectBgColor : ""}>
+              <Tr key={i} bg={i % 2 === 0 ? contentBgColor : ""}>
+                <Td
+                  position={"sticky"}
+                  left={0}
+                  p={0}
+                  bg={bodyColor}
+                  zIndex={2}
+                >
+                  <Center
+                    h={"94px"}
+                    bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                    p={4}
+                    borderRight={"1px solid var(--divider3)"}
+                  >
+                    <Checkbox colorScheme="ap" />
+                  </Center>
+                </Td>
+
                 {columns.map((column, colIndex) => (
                   <Td
                     key={colIndex}
@@ -233,7 +247,7 @@ export default function Tabel({
                   position={"sticky"}
                   right={0}
                   p={0}
-                  bg={i % 2 === 0 ? contectBgColor : bodyColor}
+                  bg={i % 2 === 0 ? contentBgColor : bodyColor}
                   zIndex={1}
                 >
                   <VStack
@@ -256,64 +270,13 @@ export default function Tabel({
         </Table>
       </TabelContainer>
 
-      <Wrap
-        spacing={responsiveSpacing}
-        justify={"space-between"}
-        mt={responsiveSpacing}
-      >
-        {limitConfig && setLimitConfig && (
-          <Menu>
-            <MenuButton
-              ref={limitButtonRef}
-              as={Button}
-              className="btn-solid"
-              rightIcon={
-                <Icon as={RiArrowDownSLine} fontSize={iconSize} opacity={0.6} />
-              }
-            >
-              <HStack>
-                <Text opacity={0.6}>Row</Text>
-                <Text color={"p.500"}>{limitConfig}</Text>
-              </HStack>
-            </MenuButton>
-
-            <MenuList minW={`${limitMenuListW}px`}>
-              <MenuItem
-                color={limitConfig === 10 ? "p.500" : ""}
-                onClick={() => {
-                  setLimitConfig(10);
-                }}
-              >
-                10
-              </MenuItem>
-              <MenuItem
-                color={limitConfig === 50 ? "p.500" : ""}
-                onClick={() => {
-                  setLimitConfig(50);
-                }}
-              >
-                50
-              </MenuItem>
-              <MenuItem
-                color={limitConfig === 100 ? "p.500" : ""}
-                onClick={() => {
-                  setLimitConfig(100);
-                }}
-              >
-                100
-              </MenuItem>
-            </MenuList>
-          </Menu>
-        )}
-
-        {pageConfig && setPageConfig && (
-          <PaginationNav
-            page={pageConfig}
-            setPage={setPageConfig}
-            paginationData={paginationData}
-          />
-        )}
-      </Wrap>
+      <TabelFooterControl
+        limitConfig={limitConfig}
+        setLimitConfig={setLimitConfig}
+        pageConfig={pageConfig}
+        setPageConfig={setPageConfig}
+        paginationData={paginationData}
+      />
     </>
     // </div>
   );

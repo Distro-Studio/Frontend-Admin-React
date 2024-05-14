@@ -1,15 +1,31 @@
 import {
+  Avatar,
+  Box,
+  Center,
   Checkbox,
   HStack,
+  Icon,
   Table,
+  Tbody,
+  Td,
+  Text,
   Th,
   Thead,
   Tr,
   VStack,
 } from "@chakra-ui/react";
+import {
+  RiArrowDownLine,
+  RiArrowUpLine,
+  RiEditBoxLine,
+} from "@remixicon/react";
 import { useState } from "react";
-import { Karyawan__Interface } from "../../../const/interfaces";
+import { useBodyColor, useContentBgColor } from "../../../const/colors";
+import { dummyTabelJadwalData } from "../../../const/dummy";
+import formatTime from "../../../const/formatTime";
 import { responsiveSpacing } from "../../../const/sizes";
+import JadwalTabelHeader from "../../dependent/Karyawan/JadwalTabelHeader";
+import TabelFooterControl from "../../dependent/TabelFooterControl";
 import TabelContainer from "../../wrapper/TabelContainer";
 import Skeleton from "../Skeleton";
 
@@ -18,104 +34,57 @@ interface Props {
 }
 
 export default function TabelJadwal({ filterConfig }: Props) {
-  //! DEBUG
-  const dummy = [
-    {
-      id: 1,
-      nama: "Sulenq Wazawsky",
-      no_induk_karyawan: "412123143",
-      rm: "3214",
-      nik: "3321231412412",
-      unit_kerja: "Perawat Hewan",
-      status_karyawan: "Kontrak",
-      tempat_lahir: "Semarang",
-      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/dan-abramov",
-    },
-    {
-      id: 2,
-      nama: "John Doe",
-      no_induk_karyawan: "111222333",
-      rm: "1234",
-      nik: "4445556667778",
-      unit_kerja: "Dokter",
-      status_karyawan: "Tetap",
-      tempat_lahir: "Jakarta",
-      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/tioluwani-kolawole",
-    },
-    {
-      id: 3,
-      nama: "Jane Smith",
-      no_induk_karyawan: "987654321",
-      rm: "5678",
-      nik: "8889990001112",
-      unit_kerja: "Administrasi",
-      status_karyawan: "Kontrak",
-      tempat_lahir: "Surabaya",
-      tgl_lahir: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/kent-c-dodds",
-    },
-    {
-      id: 4,
-      nama: "Michael Johnson",
-      no_induk_karyawan: "654321789",
-      rm: "9876",
-      nik: "2223334445556",
-      unit_kerja: "Keuangan",
-      status_karyawan: "Tetap",
-      tempat_lahir: "Bandung",
-      tgl_lahir: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/ryan-florence",
-    },
-    {
-      id: 5,
-      nama: "Amanda Lee",
-      no_induk_karyawan: "789456123",
-      rm: "3456",
-      nik: "6667778889990",
-      unit_kerja: "Pemasaran",
-      status_karyawan: "Kontrak",
-      tempat_lahir: "Yogyakarta",
-      tgl_lahir: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/prosper-baba",
-    },
-    {
-      id: 6,
-      nama: "Kevin Brown",
-      no_induk_karyawan: "555666777",
-      rm: "2468",
-      nik: "1112223334445",
-      unit_kerja: "IT",
-      status_karyawan: "Tetap",
-      tempat_lahir: "Medan",
-      tgl_lahir: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/sage-adebayo",
-    },
-    {
-      id: 7,
-      nama: "Maria Garcia",
-      no_induk_karyawan: "123456789",
-      rm: "1357",
-      nik: "9990001112223",
-      unit_kerja: "Pelayanan Pelanggan",
-      status_karyawan: "Kontrak",
-      tempat_lahir: "Denpasar",
-      tgl_lahir: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/code-beast",
-    },
-  ];
-  // console.log(filterConfig);
-  //! DEBUG
-
-  const [data] = useState<Karyawan__Interface[] | null>(dummy);
+  const [data] = useState<any | null>(dummyTabelJadwalData);
   const [loading] = useState<boolean>(false);
+
+  const todayMasuk = new Date();
+  const todayKeluar = new Date();
+
+  //! DEBUG
+  todayMasuk.setHours(9, 0, 0, 0); // Set jam menjadi 09:00
+  todayKeluar.setHours(17, 0, 0, 0); // Set jam menjadi 17:00
+  console.log(todayMasuk);
+  console.log(todayKeluar.toISOString());
+  //! DEBUG
 
   // Limit Config
   const [limitConfig, setLimitConfig] = useState<number>(10);
 
   // Pagination Config
   const [pageConfig, setPageConfig] = useState<number>(1);
+
+  // Sort Congig
+  const [sortConfig, setSortConfig] = useState<{
+    key: string;
+    direction: "asc" | "desc";
+  } | null>({ key: "nama", direction: "asc" });
+  const sortedData = [...data];
+  if (sortConfig !== null) {
+    sortedData.sort((a, b) => {
+      if (a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.direction === "asc" ? -1 : 1;
+      }
+      if (a[sortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === "asc" ? 1 : -1;
+      }
+      return 0;
+    });
+  }
+  const sort = (key: string) => {
+    let direction: "asc" | "desc" = "asc";
+    if (
+      sortConfig &&
+      sortConfig.key === key &&
+      sortConfig.direction === "asc"
+    ) {
+      direction = "desc";
+    }
+    setSortConfig({ key, direction });
+  };
+
+  // SX
+  const bodyColor = useBodyColor();
+  const contentBgColor = useContentBgColor();
 
   return (
     <>
@@ -137,18 +106,198 @@ export default function TabelJadwal({ filterConfig }: Props) {
 
       {!loading && data && (
         <TabelContainer>
-          <Table>
+          <Table minW={"100%"}>
             <Thead>
-              <Tr>
-                <Th>
-                  <Checkbox colorScheme="ap" />
+              <Tr position={"sticky"} top={0} bg={bodyColor} zIndex={3}>
+                <Th
+                  position={"sticky"}
+                  left={0}
+                  p={0}
+                  borderBottom={"none !important"}
+                  zIndex={3}
+                >
+                  <Center
+                    p={4}
+                    h={"52px"}
+                    borderRight={"1px solid var(--divider3)"}
+                    bg={bodyColor}
+                    borderBottom={"1px solid var(--divider3) !important"}
+                  >
+                    <Checkbox colorScheme="ap" />
+                  </Center>
                 </Th>
-                <Th>Nama</Th>
+
+                <Th
+                  position={"sticky"}
+                  left={"49px"}
+                  bg={bodyColor}
+                  onClick={() => sort("nama")}
+                  cursor={"pointer"}
+                  p={0}
+                  borderBottom={"none !important"}
+                >
+                  <HStack
+                    justify={"space-between"}
+                    borderBottom={"1px solid var(--divider3)"}
+                    borderRight={"1px solid var(--divider3)"}
+                    px={4}
+                    py={3}
+                    h={"52px"}
+                  >
+                    <Text fontWeight={600} flexShrink={0} lineHeight={1.2}>
+                      Nama
+                    </Text>
+
+                    {sortConfig && sortConfig.key === "nama" && (
+                      <>
+                        {sortConfig.direction === "asc" ? (
+                          <Icon
+                            as={RiArrowUpLine}
+                            color={"p.500"}
+                            fontSize={16}
+                          />
+                        ) : (
+                          <Icon
+                            as={RiArrowDownLine}
+                            color={"p.500"}
+                            fontSize={16}
+                          />
+                        )}
+                      </>
+                    )}
+                  </HStack>
+                </Th>
+
+                <JadwalTabelHeader range_tgl={filterConfig.range_tgl} />
               </Tr>
             </Thead>
+
+            <Tbody>
+              {sortedData.map((jadwalData: any, i: number) => (
+                <Tr key={i}>
+                  <Td
+                    position={"sticky"}
+                    left={0}
+                    p={0}
+                    bg={bodyColor}
+                    zIndex={2}
+                  >
+                    <Center
+                      h={"94px"}
+                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                      p={4}
+                      borderRight={"1px solid var(--divider3)"}
+                    >
+                      <Checkbox colorScheme="ap" />
+                    </Center>
+                  </Td>
+
+                  <Td
+                    position={"sticky"}
+                    left={"49px"}
+                    p={0}
+                    zIndex={2}
+                    bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                  >
+                    <HStack
+                      px={4}
+                      py={2}
+                      h={"94px"}
+                      borderRight={"1px solid var(--divider3)"}
+                    >
+                      <Avatar
+                        src={jadwalData.foto_profil}
+                        name={jadwalData.nama}
+                        size={"sm"}
+                      />
+                      <Text>{jadwalData.nama}</Text>
+                    </HStack>
+                  </Td>
+
+                  {jadwalData.jadwal_list.map((jadwal: any, ii: number) => {
+                    if (!jadwal) {
+                      return (
+                        <Td
+                          key={ii}
+                          bg={contentBgColor}
+                          pt={i === 0 ? 4 : 2}
+                          pb={i === data.length - 1 ? 4 : 2}
+                          pl={ii === 0 ? 4 : 2}
+                          pr={ii === jadwalData.jadwal_list.length - 1 ? 4 : 2}
+                        >
+                          <VStack
+                            p={3}
+                            gap={1}
+                            borderRadius={8}
+                            w={"180px"}
+                            h={"70px"}
+                            cursor={"pointer"}
+                            bg={bodyColor}
+                            className="btn-solid clicky"
+                            border={"1px solid var(--divider3) !important"}
+                          >
+                            <Icon
+                              opacity={0.6}
+                              as={RiEditBoxLine}
+                              fontSize={20}
+                            />
+                            <Text opacity={0.6}>Terapkan</Text>
+                          </VStack>
+                        </Td>
+                      );
+                    }
+
+                    return (
+                      <Td
+                        key={ii}
+                        bg={contentBgColor}
+                        pt={i === 0 ? 4 : 2}
+                        pb={i === data.length - 1 ? 4 : 2}
+                        pl={ii === 0 ? 4 : 2}
+                        pr={ii === jadwalData.jadwal_list.length - 1 ? 4 : 2}
+                      >
+                        <VStack
+                          p={3}
+                          gap={1}
+                          borderRadius={8}
+                          bg={"var(--p500a3)"}
+                          w={"180px"}
+                          h={"70px"}
+                          border={"1px solid var(--p500a2)"}
+                          // color={whiteDarkColor}
+                          align={"stretch"}
+                        >
+                          <Box>
+                            <Text noOfLines={1} mb={1} fontSize={14}>
+                              {jadwal.label}
+                            </Text>
+                            <Text whiteSpace={"nowrap"} fontSize={14}>
+                              {formatTime(jadwal.jam_masuk)} -{" "}
+                              {formatTime(jadwal.jam_keluar)}
+                            </Text>
+                          </Box>
+                        </VStack>
+                      </Td>
+                    );
+                  })}
+                </Tr>
+              ))}
+            </Tbody>
           </Table>
         </TabelContainer>
       )}
+
+      <TabelFooterControl
+        limitConfig={limitConfig}
+        setLimitConfig={setLimitConfig}
+        pageConfig={pageConfig}
+        setPageConfig={setPageConfig}
+        paginationData={{
+          prev_page_url: "",
+          next_page_url: "",
+          last_page: 1,
+        }}
+      />
     </>
   );
 }

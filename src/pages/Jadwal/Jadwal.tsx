@@ -22,14 +22,15 @@ import { iconSize, responsiveSpacing } from "../../const/sizes";
 export default function Jadwal() {
   const dateFns = require("date-fns");
 
-  const now = new Date();
-  const startOfWeek = dateFns.startOfWeek(now, { weekStartsOn: 1 });
-  const endOfWeek = dateFns.endOfWeek(now, { weekStartsOn: 1 });
+  const today = new Date();
+  const startOfWeek = dateFns.startOfWeek(today, { weekStartsOn: 1 });
+  const endOfWeek = dateFns.endOfWeek(today, { weekStartsOn: 1 });
 
   const defaultRangeTgl = {
     from: startOfWeek,
     to: endOfWeek,
   };
+  // console.log(defaultRangeTgl);
 
   // Filter Config
   const [filterConfig, setFilterConfig] = useState<any>({

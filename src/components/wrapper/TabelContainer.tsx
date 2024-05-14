@@ -1,5 +1,7 @@
 import { Box, BoxProps } from "@chakra-ui/react";
 import useScreenWidth from "../../lib/useScreenWidth";
+import useScreenHeight from "../../lib/useScreenHeight";
+import { useEffect, useState } from "react";
 
 interface Props extends BoxProps {
   children: any;
@@ -7,8 +9,13 @@ interface Props extends BoxProps {
 
 export default function TabelContainer({ children, ...props }: Props) {
   const tabelConfig = document.querySelector(".tabelConfig") as HTMLDivElement;
-  const tabelConfigH = tabelConfig && tabelConfig.offsetHeight;
+  const [tabelConfigH, setTabelConfigH] = useState(0);
+  useEffect(() => {
+    setTabelConfigH(tabelConfig && tabelConfig.offsetHeight);
+  }, [tabelConfig]);
+
   useScreenWidth();
+  useScreenHeight();
 
   return (
     <Box
