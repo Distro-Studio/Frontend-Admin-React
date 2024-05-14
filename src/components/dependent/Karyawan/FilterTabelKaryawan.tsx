@@ -132,11 +132,7 @@ export default function FilterTabelKaryawan({
                 w={"50%"}
                 className="btn-solid clicky"
                 onClick={() => {
-                  setLocalFilterConfig({
-                    search: "",
-                    unit_kerja: [],
-                    status_karyawan: [],
-                  });
+                  setLocalFilterConfig(defaultFilterConfig);
                 }}
               >
                 Reset

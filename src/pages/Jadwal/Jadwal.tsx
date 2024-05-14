@@ -32,12 +32,13 @@ export default function Jadwal() {
   // console.log(defaultRangeTgl);
 
   // Filter Config
-  const [filterConfig, setFilterConfig] = useState<any>({
+  const defaultFilterConfig = {
     search: "",
     unit_kerja: [],
     status_karyawan: [],
     range_tgl: defaultRangeTgl,
-  });
+  };
+  const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
   const confirmDateRange = (from: Date, to: Date) => {
     setFilterConfig((ps: any) => ({
       ...ps,
@@ -77,6 +78,7 @@ export default function Jadwal() {
             />
 
             <FilterTabelJadwal
+              defaultFilterConfig={defaultFilterConfig}
               filterConfig={filterConfig}
               setFilterConfig={setFilterConfig}
               rangeTgl={filterConfig.range_tgl}

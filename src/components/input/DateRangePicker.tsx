@@ -3,6 +3,7 @@ import {
   Button,
   ButtonGroup,
   ButtonProps,
+  Center,
   FormControl,
   FormLabel,
   HStack,
@@ -15,14 +16,16 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Stack,
   Text,
   useColorModeValue,
   useDisclosure,
   VStack,
-  Wrap,
 } from "@chakra-ui/react";
 import {
+  RiArrowDownLine,
   RiArrowLeftSLine,
+  RiArrowRightLine,
   RiArrowRightSLine,
   RiCalendarLine,
 } from "@remixicon/react";
@@ -34,6 +37,7 @@ import { iconSize } from "../../const/sizes";
 import formatDate from "../../lib/formatDate";
 import parseNumber from "../../lib/parseNumber";
 import useBackOnClose from "../../lib/useBackOnClose";
+import useScreenWidth from "../../lib/useScreenWidth";
 
 interface Props extends ButtonProps {
   formik?: any;
@@ -96,7 +100,7 @@ export default function DateRangePicker({
   function todayMonth() {
     const today = new Date();
     setDate(today);
-    setSelected({ from: today, to: null });
+    setSelected(defaultDateSelected);
     setBulan(today.getMonth() + 1);
     setTahun(today.getFullYear());
     // setSelected(undefined);
@@ -136,6 +140,7 @@ export default function DateRangePicker({
   };
 
   // SX
+  const sw = useScreenWidth();
   const bnwColor = useColorModeValue("black", "white");
   const modifiersStyles = {
     selected: {
@@ -327,7 +332,7 @@ export default function DateRangePicker({
                       className="btn-outline clicky"
                       onClick={todayMonth}
                     >
-                      Hari Ini
+                      Minggu Ini
                     </Button>
 
                     <Button
@@ -350,9 +355,9 @@ export default function DateRangePicker({
 
           <ModalFooter>
             <VStack align={"stretch"} w={"100%"}>
-              <Wrap>
-                <Box flex={"1 1 180px"}>
-                  <Text opacity={0.6}>Dari</Text>
+              <Stack flexDir={["column", "row"]}>
+                <Box flex={[null, "1 1 180px"]}>
+                  {/* <Text opacity={0.6}>Dari</Text> */}
                   <VStack borderRadius={8} bg={"var(--divider)"} p={2} gap={1}>
                     <Text opacity={selected?.from ? 1 : 0.6}>
                       {selected?.from
@@ -367,8 +372,12 @@ export default function DateRangePicker({
                   </VStack>
                 </Box>
 
-                <Box flex={"1 1 180px"}>
-                  <Text opacity={0.6}>Ke</Text>
+                <Center>
+                  <Icon as={sw < 480 ? RiArrowDownLine : RiArrowRightLine} />
+                </Center>
+
+                <Box flex={[null, "1 1 180px"]}>
+                  {/* <Text opacity={0.6}>Ke</Text> */}
                   <VStack borderRadius={8} bg={"var(--divider)"} p={2} gap={1}>
                     <Text opacity={selected?.to ? 1 : 0.6}>
                       {selected?.to
@@ -382,7 +391,7 @@ export default function DateRangePicker({
                     </Text>
                   </VStack>
                 </Box>
-              </Wrap>
+              </Stack>
 
               <Button
                 colorScheme="ap"

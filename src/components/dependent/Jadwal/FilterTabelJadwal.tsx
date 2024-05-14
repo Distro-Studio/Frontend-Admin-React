@@ -26,12 +26,14 @@ import FilterStatusKaryawan from "../Karyawan/FilterOptions/FilterStatusKaryawan
 import FilterUnitKerja from "../Karyawan/FilterOptions/FilterUnitKerja";
 
 interface Props {
+  defaultFilterConfig: any;
   filterConfig: any;
   setFilterConfig: Dispatch<any>;
   rangeTgl: { from: Date; to: Date };
 }
 
 export default function FilterTabelJadwal({
+  defaultFilterConfig,
   filterConfig,
   setFilterConfig,
   rangeTgl,
@@ -40,10 +42,13 @@ export default function FilterTabelJadwal({
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
 
-  const [loading, setLoading] = useState<boolean>(false);
+  const [localFilterConfig, setLocalFilterConfig] = useState<any | null>(
+    defaultFilterConfig
+  );
 
   function filterData() {
-    setLoading(true);
+    setFilterConfig(localFilterConfig);
+    backOnClose(onClose);
   }
 
   //TODO post api filter data karyawan
@@ -96,6 +101,7 @@ export default function FilterTabelJadwal({
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
+          setLocalFilterConfig(filterConfig);
         }}
         initialFocusRef={initialRef}
         isCentered
@@ -111,13 +117,13 @@ export default function FilterTabelJadwal({
           <ModalBody>
             <Accordion allowMultiple>
               <FilterUnitKerja
-                filterConfig={filterConfig}
-                setFilterConfig={setFilterConfig}
+                filterConfig={localFilterConfig}
+                setFilterConfig={setLocalFilterConfig}
               />
 
               <FilterStatusKaryawan
-                filterConfig={filterConfig}
-                setFilterConfig={setFilterConfig}
+                filterConfig={localFilterConfig}
+                setFilterConfig={setLocalFilterConfig}
               />
             </Accordion>
           </ModalBody>
@@ -128,21 +134,14 @@ export default function FilterTabelJadwal({
                 w={"50%"}
                 className="btn-solid clicky"
                 onClick={() => {
-                  setFilterConfig({
-                    search: "",
-                    unit_kerja: [],
-                    status_karyawan: [],
-                    range_tgl: rangeTgl,
-                  });
+                  setLocalFilterConfig(defaultFilterConfig);
                 }}
-                isDisabled={loading}
               >
                 Reset
               </Button>
 
               <Button
                 onClick={filterData}
-                isLoading={loading}
                 w={"50%"}
                 colorScheme="ap"
                 className="btn-ap clicky"
