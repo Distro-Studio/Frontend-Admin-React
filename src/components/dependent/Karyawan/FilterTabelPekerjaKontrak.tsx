@@ -144,12 +144,7 @@ export default function FilterTabelPekerjaKontrak({
                 w={"50%"}
                 className="btn-solid clicky"
                 onClick={() => {
-                  setLocalFilterConfig({
-                    search: "",
-                    unit_kerja: [],
-                    status_karyawan: [],
-                    tgl_masuk: [],
-                  });
+                  setLocalFilterConfig(defaultFilterConfig);
                 }}
               >
                 Reset
