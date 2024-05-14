@@ -24,6 +24,7 @@ import FilterStatusKaryawan from "./FilterOptions/FilterStatusKaryawan";
 import FilterUnitKerja from "./FilterOptions/FilterUnitKerja";
 import formatNumber from "../../../lib/formatNumber";
 import { useBodyColor } from "../../../const/colors";
+import FilterTglMasuk from "./FilterOptions/FilterTglMasuk";
 
 interface Props {
   filterConfig: any;
@@ -44,12 +45,20 @@ export default function FilterTabelPekerjaKontrak({
     defaultFilterConfig
   );
 
+  console.log("default", defaultFilterConfig);
+  console.log(localFilterConfig);
+
   function filterData() {
     setFilterConfig(localFilterConfig);
     backOnClose(onClose);
   }
 
-  //TODO post api filter data karyawan
+  const adaFilter =
+    filterConfig &&
+    ((filterConfig.unit_kerja && filterConfig.unit_kerja.length > 0) ||
+      (filterConfig.status_karyawan &&
+        filterConfig.status_karyawan.length > 0) ||
+      (filterConfig.tgl_masuk && filterConfig.tgl_masuk).length > 0);
 
   // SX
   const bodyColor = useBodyColor();
@@ -67,29 +76,27 @@ export default function FilterTabelPekerjaKontrak({
         onClick={onOpen}
       >
         <HStack>
-          {filterConfig &&
-            ((filterConfig.unit_kerja && filterConfig.unit_kerja.length > 0) ||
-              (filterConfig.status_karyawan &&
-                filterConfig.status_karyawan.length > 0)) && (
-              <Center
-                position={"absolute"}
-                right={"-6px"}
-                top={"-6px"}
-                flexShrink={0}
-                minW={"20px"}
-                h={"20px"}
-                borderRadius={"full"}
-                bg={"p.500"}
-                ml={"auto"}
-              >
-                <Text color={bodyColor} fontSize={12} fontWeight={600}>
-                  {formatNumber(
-                    filterConfig.unit_kerja.length +
-                      filterConfig.status_karyawan.length
-                  )}
-                </Text>
-              </Center>
-            )}
+          {adaFilter && (
+            <Center
+              position={"absolute"}
+              right={"-6px"}
+              top={"-6px"}
+              flexShrink={0}
+              minW={"20px"}
+              h={"20px"}
+              borderRadius={"full"}
+              bg={"p.500"}
+              ml={"auto"}
+            >
+              <Text color={bodyColor} fontSize={12} fontWeight={600}>
+                {formatNumber(
+                  filterConfig.unit_kerja.length +
+                    filterConfig.status_karyawan.length +
+                    filterConfig.tgl_masuk.length
+                )}
+              </Text>
+            </Center>
+          )}
 
           <Text>Filter</Text>
         </HStack>
@@ -99,7 +106,7 @@ export default function FilterTabelPekerjaKontrak({
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
-          setLocalFilterConfig(defaultFilterConfig);
+          setLocalFilterConfig(filterConfig);
         }}
         initialFocusRef={initialRef}
         isCentered
@@ -123,6 +130,11 @@ export default function FilterTabelPekerjaKontrak({
                 filterConfig={localFilterConfig}
                 setFilterConfig={setLocalFilterConfig}
               />
+
+              <FilterTglMasuk
+                filterConfig={localFilterConfig}
+                setFilterConfig={setLocalFilterConfig}
+              />
             </Accordion>
           </ModalBody>
 
@@ -136,6 +148,7 @@ export default function FilterTabelPekerjaKontrak({
                     search: "",
                     unit_kerja: [],
                     status_karyawan: [],
+                    tgl_masuk: [],
                   });
                 }}
               >

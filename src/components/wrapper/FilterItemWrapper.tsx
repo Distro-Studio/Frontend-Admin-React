@@ -23,6 +23,7 @@ interface Props extends AccordionItemProps {
   setFilterConfig: Dispatch<any>;
   filterValue?: string;
   filterKey: string;
+  panelMaxH?: string;
 }
 export default function FilterItemWrapper({
   title,
@@ -30,6 +31,7 @@ export default function FilterItemWrapper({
   setFilterConfig,
   filterValue,
   filterKey,
+  panelMaxH,
   ...props
 }: Props) {
   // SX
@@ -98,7 +100,7 @@ export default function FilterItemWrapper({
       <AccordionPanel p={0} w={"100%"}>
         <VStack
           align={"stretch"}
-          maxH={"300px"}
+          maxH={panelMaxH || "300px"}
           overflowY={"auto"}
           // overflowX={"hidden"}
           gap={0}

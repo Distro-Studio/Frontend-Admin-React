@@ -78,10 +78,10 @@ export default function DateRangePicker({
   };
 
   useEffect(() => {
-    if (defaultDateSelected) {
-      setSelected(defaultDateSelected);
+    if (dateValue) {
+      setSelected(dateValue);
     }
-  }, [defaultDateSelected]);
+  }, [dateValue]);
 
   // useEffect(() => {
   //   setConfirm(true);

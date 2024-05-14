@@ -97,7 +97,7 @@ export default function FilterTabelAkunKaryawan({
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
-          setLocalFilterConfig(defaultFilterConfig);
+          setLocalFilterConfig(filterConfig);
         }}
         initialFocusRef={initialRef}
         isCentered

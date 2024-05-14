@@ -23,6 +23,7 @@ export default function PekerjaKontrak() {
     search: "",
     unit_kerja: [],
     status_karyawan: [],
+    tgl_masuk: [],
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
 

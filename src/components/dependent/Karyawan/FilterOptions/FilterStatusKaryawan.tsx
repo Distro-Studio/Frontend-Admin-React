@@ -26,8 +26,6 @@ export default function FilterStatusKaryawan({
     },
   ];
 
-  //TODO get list status karyawan
-
   // SX
 
   return (

@@ -96,7 +96,7 @@ export default function FilterTabelRekamJejak({
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
-          setLocalFilterConfig(defaultFilterConfig);
+          setLocalFilterConfig(filterConfig);
         }}
         initialFocusRef={initialRef}
         isCentered
