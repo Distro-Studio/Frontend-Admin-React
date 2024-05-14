@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
+import FilterTabelRekamJejak from "../../components/dependent/Karyawan/FilterTabelRekamJejak";
 import TopNavs from "../../components/dependent/TopNavs";
 import TabelRekamJejak from "../../components/independent/Karyawan/TabelRekamJejak";
 import CContainer from "../../components/wrapper/CContainer";
@@ -19,11 +19,14 @@ import { iconSize, responsiveSpacing } from "../../const/sizes";
 
 export default function RekamJejak() {
   // Filter Config
-  const [filterConfig, setFilterConfig] = useState<any>({
+  const defaultFilterConfig = {
     search: "",
-    unit_kerja: [],
-    status_karyawan: [],
-  });
+    masa_kerja: [],
+    promosi: [],
+    mutasi: [],
+    penghargaan: [],
+  };
+  const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
 
   return (
     <>
@@ -49,7 +52,8 @@ export default function RekamJejak() {
               />
             </InputGroup>
 
-            <FilterTabelKaryawan
+            <FilterTabelRekamJejak
+              defaultFilterConfig={defaultFilterConfig}
               filterConfig={filterConfig}
               setFilterConfig={setFilterConfig}
             />

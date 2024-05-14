@@ -22,26 +22,36 @@ import { iconSize } from "../../../const/sizes";
 import backOnClose from "../../../lib/backOnClose";
 import formatNumber from "../../../lib/formatNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import FilterStatusKaryawan from "./FilterStatusKaryawan";
+import FilterStatusKaryawan from "./FilterOptions/FilterStatusKaryawan";
 
 interface Props {
   filterConfig: any;
   setFilterConfig: Dispatch<any>;
+  defaultFilterConfig: any;
 }
 
 export default function FilterTabelAkunKaryawan({
   filterConfig,
   setFilterConfig,
+  defaultFilterConfig,
 }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
 
-  const [loading, setLoading] = useState<boolean>(false);
+  const [localFilterConfig, setLocalFilterConfig] = useState<any | null>(
+    defaultFilterConfig
+  );
 
   function filterData() {
-    setLoading(true);
+    setFilterConfig(localFilterConfig);
+    backOnClose(onClose);
   }
+
+  const filterAda =
+    filterConfig &&
+    filterConfig.status_karyawan &&
+    filterConfig.status_karyawan.length > 0;
 
   //TODO post api filter data karyawan
 
@@ -61,29 +71,23 @@ export default function FilterTabelAkunKaryawan({
         onClick={onOpen}
       >
         <HStack>
-          {filterConfig &&
-            ((filterConfig.unit_kerja && filterConfig.unit_kerja.length > 0) ||
-              (filterConfig.status_karyawan &&
-                filterConfig.status_karyawan.length > 0)) && (
-              <Center
-                position={"absolute"}
-                right={"-6px"}
-                top={"-6px"}
-                flexShrink={0}
-                minW={"20px"}
-                h={"20px"}
-                borderRadius={"full"}
-                bg={"p.500"}
-                ml={"auto"}
-              >
-                <Text color={bodyColor} fontSize={12} fontWeight={600}>
-                  {formatNumber(
-                    filterConfig.unit_kerja.length +
-                      filterConfig.status_karyawan.length
-                  )}
-                </Text>
-              </Center>
-            )}
+          {filterAda && (
+            <Center
+              position={"absolute"}
+              right={"-6px"}
+              top={"-6px"}
+              flexShrink={0}
+              minW={"20px"}
+              h={"20px"}
+              borderRadius={"full"}
+              bg={"p.500"}
+              ml={"auto"}
+            >
+              <Text color={bodyColor} fontSize={12} fontWeight={600}>
+                {formatNumber(filterConfig.status_karyawan.length)}
+              </Text>
+            </Center>
+          )}
 
           <Text>Filter</Text>
         </HStack>
@@ -93,6 +97,7 @@ export default function FilterTabelAkunKaryawan({
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
+          setLocalFilterConfig(defaultFilterConfig);
         }}
         initialFocusRef={initialRef}
         isCentered
@@ -108,8 +113,8 @@ export default function FilterTabelAkunKaryawan({
           <ModalBody>
             <Accordion allowMultiple>
               <FilterStatusKaryawan
-                filterConfig={filterConfig}
-                setFilterConfig={setFilterConfig}
+                filterConfig={localFilterConfig}
+                setFilterConfig={setLocalFilterConfig}
               />
             </Accordion>
           </ModalBody>
@@ -120,20 +125,14 @@ export default function FilterTabelAkunKaryawan({
                 w={"50%"}
                 className="btn-solid clicky"
                 onClick={() => {
-                  setFilterConfig({
-                    search: "",
-                    unit_kerja: [],
-                    status_karyawan: [],
-                  });
+                  setFilterConfig(defaultFilterConfig);
                 }}
-                isDisabled={loading}
               >
                 Reset
               </Button>
 
               <Button
                 onClick={filterData}
-                isLoading={loading}
                 w={"50%"}
                 colorScheme="ap"
                 className="btn-ap clicky"

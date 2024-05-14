@@ -22,34 +22,38 @@ import { iconSize } from "../../../const/sizes";
 import backOnClose from "../../../lib/backOnClose";
 import formatNumber from "../../../lib/formatNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import FilterStatusKaryawan from "../Karyawan/FilterOptions/FilterStatusKaryawan";
-import FilterUnitKerja from "../Karyawan/FilterOptions/FilterUnitKerja";
+import FilterMasaKerja from "./FilterOptions/FilterMasaKerja";
 
 interface Props {
+  defaultFilterConfig: any;
   filterConfig: any;
   setFilterConfig: Dispatch<any>;
-  rangeTgl: { from: Date; to: Date };
 }
 
-export default function FilterTabelJadwal({
+export default function FilterTabelRekamJejak({
+  defaultFilterConfig,
   filterConfig,
   setFilterConfig,
-  rangeTgl,
 }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
 
-  const [loading, setLoading] = useState<boolean>(false);
+  const [localFilterConfig, setLocalFilterConfig] = useState<any | null>(
+    defaultFilterConfig
+  );
 
   function filterData() {
-    setLoading(true);
+    setFilterConfig(localFilterConfig);
+    backOnClose(onClose);
   }
-
-  //TODO post api filter data karyawan
 
   // SX
   const bodyColor = useBodyColor();
+  const adaFilter =
+    filterConfig &&
+    ((filterConfig.masa_kerja && filterConfig.masa_kerja.length > 0) ||
+      (filterConfig.promosi && filterConfig.promosi.length > 0));
 
   return (
     <>
@@ -64,29 +68,25 @@ export default function FilterTabelJadwal({
         onClick={onOpen}
       >
         <HStack>
-          {filterConfig &&
-            ((filterConfig.unit_kerja && filterConfig.unit_kerja.length > 0) ||
-              (filterConfig.status_karyawan &&
-                filterConfig.status_karyawan.length > 0)) && (
-              <Center
-                position={"absolute"}
-                right={"-6px"}
-                top={"-6px"}
-                flexShrink={0}
-                minW={"20px"}
-                h={"20px"}
-                borderRadius={"full"}
-                bg={"p.500"}
-                ml={"auto"}
-              >
-                <Text color={bodyColor} fontSize={12} fontWeight={600}>
-                  {formatNumber(
-                    filterConfig.unit_kerja.length +
-                      filterConfig.status_karyawan.length
-                  )}
-                </Text>
-              </Center>
-            )}
+          {adaFilter && (
+            <Center
+              position={"absolute"}
+              right={"-6px"}
+              top={"-6px"}
+              flexShrink={0}
+              minW={"20px"}
+              h={"20px"}
+              borderRadius={"full"}
+              bg={"p.500"}
+              ml={"auto"}
+            >
+              <Text color={bodyColor} fontSize={12} fontWeight={600}>
+                {formatNumber(
+                  filterConfig.masa_kerja.length + filterConfig.promosi.length
+                )}
+              </Text>
+            </Center>
+          )}
 
           <Text>Filter</Text>
         </HStack>
@@ -96,6 +96,7 @@ export default function FilterTabelJadwal({
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
+          setLocalFilterConfig(defaultFilterConfig);
         }}
         initialFocusRef={initialRef}
         isCentered
@@ -110,14 +111,9 @@ export default function FilterTabelJadwal({
 
           <ModalBody>
             <Accordion allowMultiple>
-              <FilterUnitKerja
-                filterConfig={filterConfig}
-                setFilterConfig={setFilterConfig}
-              />
-
-              <FilterStatusKaryawan
-                filterConfig={filterConfig}
-                setFilterConfig={setFilterConfig}
+              <FilterMasaKerja
+                filterConfig={localFilterConfig}
+                setFilterConfig={setLocalFilterConfig}
               />
             </Accordion>
           </ModalBody>
@@ -128,21 +124,14 @@ export default function FilterTabelJadwal({
                 w={"50%"}
                 className="btn-solid clicky"
                 onClick={() => {
-                  setFilterConfig({
-                    search: "",
-                    unit_kerja: [],
-                    status_karyawan: [],
-                    range_tgl: rangeTgl,
-                  });
+                  setLocalFilterConfig(defaultFilterConfig);
                 }}
-                isDisabled={loading}
               >
                 Reset
               </Button>
 
               <Button
                 onClick={filterData}
-                isLoading={loading}
                 w={"50%"}
                 colorScheme="ap"
                 className="btn-ap clicky"

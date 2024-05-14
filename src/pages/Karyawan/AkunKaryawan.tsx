@@ -19,10 +19,11 @@ import { iconSize, responsiveSpacing } from "../../const/sizes";
 
 export default function AkunKaryawan() {
   // Filter Config
-  const [filterConfig, setFilterConfig] = useState<any>({
+  const defaultFilterConfig = {
     search: "",
     status_karyawan: [],
-  });
+  };
+  const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
 
   return (
     <>
@@ -49,6 +50,7 @@ export default function AkunKaryawan() {
             </InputGroup>
 
             <FilterTabelAkunKaryawan
+              defaultFilterConfig={defaultFilterConfig}
               filterConfig={filterConfig}
               setFilterConfig={setFilterConfig}
             />

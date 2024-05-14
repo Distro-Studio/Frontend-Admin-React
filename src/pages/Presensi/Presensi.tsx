@@ -22,12 +22,12 @@ export default function Presensi() {
   const today = new Date();
 
   // Filter Config
-  const [filterConfig, setFilterConfig] = useState<any>({
+  const defaultFilterConfig = {
     search: "",
     unit_kerja: [],
     status_karyawan: [],
-    tgl: today,
-  });
+  };
+  const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
   const confirmDate = (newDate: string) => {
     setFilterConfig((ps: any) => ({ ...ps, tgl: newDate }));
   };
@@ -69,6 +69,7 @@ export default function Presensi() {
             />
 
             <FilterTabelKaryawan
+              defaultFilterConfig={defaultFilterConfig}
               filterConfig={filterConfig}
               setFilterConfig={setFilterConfig}
             />

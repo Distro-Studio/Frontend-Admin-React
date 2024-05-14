@@ -20,28 +20,33 @@ import { Dispatch, useRef, useState } from "react";
 import { iconSize } from "../../../const/sizes";
 import backOnClose from "../../../lib/backOnClose";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import FilterStatusKaryawan from "./FilterStatusKaryawan";
-import FilterUnitKerja from "./FilterUnitKerja";
+import FilterStatusKaryawan from "./FilterOptions/FilterStatusKaryawan";
+import FilterUnitKerja from "./FilterOptions/FilterUnitKerja";
 import formatNumber from "../../../lib/formatNumber";
 import { useBodyColor } from "../../../const/colors";
 
 interface Props {
   filterConfig: any;
   setFilterConfig: Dispatch<any>;
+  defaultFilterConfig: any;
 }
 
-export default function FilterPekerjaKontrak({
+export default function FilterTabelPekerjaKontrak({
   filterConfig,
   setFilterConfig,
+  defaultFilterConfig,
 }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
 
-  const [loading, setLoading] = useState<boolean>(false);
+  const [localFilterConfig, setLocalFilterConfig] = useState<any | null>(
+    defaultFilterConfig
+  );
 
   function filterData() {
-    setLoading(true);
+    setFilterConfig(localFilterConfig);
+    backOnClose(onClose);
   }
 
   //TODO post api filter data karyawan
@@ -94,6 +99,7 @@ export default function FilterPekerjaKontrak({
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
+          setLocalFilterConfig(defaultFilterConfig);
         }}
         initialFocusRef={initialRef}
         isCentered
@@ -109,13 +115,13 @@ export default function FilterPekerjaKontrak({
           <ModalBody>
             <Accordion allowMultiple>
               <FilterUnitKerja
-                filterConfig={filterConfig}
-                setFilterConfig={setFilterConfig}
+                filterConfig={localFilterConfig}
+                setFilterConfig={setLocalFilterConfig}
               />
 
               <FilterStatusKaryawan
-                filterConfig={filterConfig}
-                setFilterConfig={setFilterConfig}
+                filterConfig={localFilterConfig}
+                setFilterConfig={setLocalFilterConfig}
               />
             </Accordion>
           </ModalBody>
@@ -126,20 +132,18 @@ export default function FilterPekerjaKontrak({
                 w={"50%"}
                 className="btn-solid clicky"
                 onClick={() => {
-                  setFilterConfig({
+                  setLocalFilterConfig({
                     search: "",
                     unit_kerja: [],
                     status_karyawan: [],
                   });
                 }}
-                isDisabled={loading}
               >
                 Reset
               </Button>
 
               <Button
                 onClick={filterData}
-                isLoading={loading}
                 w={"50%"}
                 colorScheme="ap"
                 className="btn-ap clicky"

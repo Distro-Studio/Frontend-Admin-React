@@ -183,7 +183,7 @@ export default function Tabel({
                   zIndex={2}
                 >
                   <Center
-                    h={"94px"}
+                    h={"72px"}
                     bg={i % 2 === 0 ? contentBgColor : bodyColor}
                     p={4}
                     borderRight={"1px solid var(--divider3)"}
@@ -194,6 +194,7 @@ export default function Tabel({
 
                 {columns.map((column, colIndex) => {
                   const typicalRender = {
+                    string: row[column.key],
                     date: formatDate(row[column.key]),
                     number: formatNumber(row[column.key]),
                     badge: (

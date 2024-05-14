@@ -19,11 +19,12 @@ import { iconSize, responsiveSpacing } from "../../const/sizes";
 
 export default function TransferKaryawan() {
   // Filter Config
-  const [filterConfig, setFilterConfig] = useState<any>({
+  const defaultFilterConfig = {
     search: "",
     unit_kerja: [],
     status_karyawan: [],
-  });
+  };
+  const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
 
   return (
     <>
@@ -50,6 +51,7 @@ export default function TransferKaryawan() {
             </InputGroup>
 
             <FilterTabelKaryawan
+              defaultFilterConfig={defaultFilterConfig}
               filterConfig={filterConfig}
               setFilterConfig={setFilterConfig}
             />
