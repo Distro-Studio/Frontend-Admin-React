@@ -241,7 +241,7 @@ export default function TabelJadwal({ onCheckItem, filterConfig }: Props) {
 
                   <Td
                     position={"sticky"}
-                    left={"49px"}
+                    left={"50px"}
                     p={0}
                     zIndex={2}
                     bg={i % 2 === 0 ? contentBgColor : bodyColor}
