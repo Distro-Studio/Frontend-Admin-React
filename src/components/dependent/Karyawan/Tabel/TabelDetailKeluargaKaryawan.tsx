@@ -8,13 +8,9 @@ import Tabel from "../../Tabel";
 
 interface Props {
   data: any;
-  filterConfig?: any;
 }
 
-export default function TabelDetailKeluargaKaryawan({
-  data,
-  filterConfig,
-}: Props) {
+export default function TabelDetailKeluargaKaryawan({ data }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
       key: "hubungan",

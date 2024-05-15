@@ -52,7 +52,12 @@ export default function DetailKeluargaKaryawan() {
 
   return (
     <CWrapper>
-      <CContainer bg={useBodyColor()} p={responsiveSpacing} borderRadius={12}>
+      <CContainer
+        flex={0}
+        bg={useBodyColor()}
+        p={responsiveSpacing}
+        borderRadius={12}
+      >
         {loading && <ComponentSpinner minH={"400px"} flex={1} />}
 
         {!loading && data && (

@@ -1,5 +1,6 @@
 import { Box, BoxProps } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import ComponentSpinner from "../independent/ComponentSpinner";
 
 interface Props extends BoxProps {
   children: any;
@@ -7,6 +8,7 @@ interface Props extends BoxProps {
 
 export default function TabelContainer({ children, ...props }: Props) {
   const [tabelConfigH, setTabelConfigH] = useState(0);
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     const tabelConfig = document.querySelector(
       ".tabelConfig"
@@ -14,16 +16,19 @@ export default function TabelContainer({ children, ...props }: Props) {
 
     if (tabelConfig) {
       setTabelConfigH(tabelConfig.offsetHeight);
+      setLoading(false);
     }
+    setLoading(false);
   }, []);
 
   // useScreenWidth();
   // useScreenHeight();
 
-  return (
+  return !loading ? (
     <Box
       overflow={"auto"}
       w={"100%"}
+      minH={"300px"}
       h={[
         `calc(100vh - 318px - ${tabelConfigH}px)`,
         null,
@@ -38,5 +43,8 @@ export default function TabelContainer({ children, ...props }: Props) {
     >
       {children}
     </Box>
+  ) : (
+    // <Skeleton flex={1} />
+    <ComponentSpinner flex={1} />
   );
 }

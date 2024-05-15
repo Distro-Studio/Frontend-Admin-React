@@ -16,6 +16,7 @@ export default function CWrapper({ children, ...props }: Props) {
       className="CWrapper noScroll"
       gap={0}
       w={"100%"}
+      flex={1}
       {...props}
     >
       {children}
