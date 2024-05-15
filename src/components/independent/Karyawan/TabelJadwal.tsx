@@ -20,7 +20,11 @@ import {
   RiEditBoxLine,
 } from "@remixicon/react";
 import { useState } from "react";
-import { useBodyColor, useContentBgColor } from "../../../const/colors";
+import {
+  useBodyColor,
+  useContentBgColor,
+  useWhiteDarkColor,
+} from "../../../const/colors";
 import { dummyTabelJadwalData } from "../../../const/dummy";
 import formatTime from "../../../const/formatTime";
 import { responsiveSpacing } from "../../../const/sizes";
@@ -83,6 +87,7 @@ export default function TabelJadwal({ filterConfig }: Props) {
   // SX
   const bodyColor = useBodyColor();
   const contentBgColor = useContentBgColor();
+  const whiteDarkColor = useWhiteDarkColor();
 
   return (
     <>
@@ -230,15 +235,12 @@ export default function TabelJadwal({ filterConfig }: Props) {
                             h={"70px"}
                             cursor={"pointer"}
                             bg={bodyColor}
-                            className="btn-solid clicky"
-                            border={"1px solid var(--divider3) !important"}
+                            color={whiteDarkColor}
+                            className="btn-ap clicky"
+                            // border={"1px solid var(--divider3) !important"}
                           >
-                            <Icon
-                              opacity={0.6}
-                              as={RiEditBoxLine}
-                              fontSize={20}
-                            />
-                            <Text opacity={0.6}>Terapkan</Text>
+                            <Icon as={RiEditBoxLine} fontSize={20} />
+                            <Text>Terapkan</Text>
                           </VStack>
                         </Td>
                       );
@@ -256,10 +258,11 @@ export default function TabelJadwal({ filterConfig }: Props) {
                           p={3}
                           gap={1}
                           borderRadius={8}
-                          bg={"var(--p500a3)"}
+                          // bg={"var(--p500a3)"}
+                          bg={"var(--divider)"}
                           w={"180px"}
                           h={"70px"}
-                          border={"1px solid var(--p500a2)"}
+                          // border={"1px solid var(--p500a2)"}
                           // color={whiteDarkColor}
                           align={"stretch"}
                         >
