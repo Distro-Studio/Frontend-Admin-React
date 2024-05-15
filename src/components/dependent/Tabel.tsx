@@ -306,6 +306,7 @@ export default function Tabel({
                   return (
                     <Td
                       key={colIndex}
+                      h={"72px !important"}
                       pl={colIndex === 0 ? 4 : ""}
                       pr={colIndex === columns.length - 1 ? 4 : ""}
                       whiteSpace={"nowrap"}
@@ -348,6 +349,7 @@ export default function Tabel({
                         className="btn-ap clicky"
                         as={Link}
                         w={"90px"}
+                        h={"36px"}
                         to={`${row.id}`}
                       >
                         {action}
