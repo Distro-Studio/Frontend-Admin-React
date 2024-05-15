@@ -273,13 +273,13 @@ export const globalTheme = extendTheme({
       },
       sizes: {
         md: {
-          th: {
-            py: "16px",
-            px: "12px",
-          },
+          // th: {
+          //   py: "16px",
+          //   px: "12px",
+          // },
           td: {
-            py: "16px",
-            px: "12px",
+            py: "12px",
+            px: "16px",
           },
         },
       },

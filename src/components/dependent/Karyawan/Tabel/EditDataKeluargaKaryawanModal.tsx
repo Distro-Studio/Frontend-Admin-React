@@ -15,7 +15,7 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import { RiEditBoxFill, RiEditFill } from "@remixicon/react";
+import { RiEditFill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";

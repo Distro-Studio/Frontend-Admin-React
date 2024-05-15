@@ -158,7 +158,7 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
       )}
 
       {!loading && data && (
-        <TabelContainer>
+        <TabelContainer h={"fit-content"}>
           <Table>
             <Thead>
               <Tr>
@@ -243,7 +243,7 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
             <Tbody>
               {sortedData.map((row, rowIndex) => (
                 <Tr
-                  key={rowIndex}
+                  key={row.id}
                   bg={rowIndex % 2 === 0 ? contentBgColor : bodyColor}
                 >
                   <Td pl={4} whiteSpace={"nowrap"}>
@@ -256,11 +256,9 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
                     <Badge
                       w={"100%"}
                       textAlign={"center"}
-                      colorScheme={
-                        row.status_hidup === "Hidup" ? "green" : "red"
-                      }
+                      colorScheme={row.status_hidup === 1 ? "green" : "red"}
                     >
-                      {row.status_hidup}
+                      {row.status_hidup === 1 ? "Hidup" : "Meninggal"}
                     </Badge>
                   </Td>
                   <Td whiteSpace={"nowrap"}>{row.no_hp}</Td>

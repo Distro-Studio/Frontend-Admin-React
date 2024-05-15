@@ -28,7 +28,7 @@ export default function DetailKeluargaKaryawan() {
         nama: "Karlitos Kurniawan",
         pendidikan_terakhir: "S1 Teknik Sipil",
         pekerjaan: "Mandor",
-        status_hidup: "Meninggal",
+        status_hidup: 0,
         no_hp: "098172637162",
         email: "emailBapak@gmail.com",
       },
@@ -38,7 +38,7 @@ export default function DetailKeluargaKaryawan() {
         nama: "Sri Lanxka",
         pendidikan_terakhir: "SMA",
         pekerjaan: "Ibu Rumah Tangga",
-        status_hidup: "Hidup",
+        status_hidup: 1,
         no_hp: "09198276334",
         email: "emailIbu@gmail.com",
       },
@@ -48,7 +48,7 @@ export default function DetailKeluargaKaryawan() {
         nama: "Jolitos Junior I",
         pendidikan_terakhir: "SMA",
         pekerjaan: "Pelajar",
-        status_hidup: "Hidup",
+        status_hidup: 1,
         no_hp: "08076175623",
         email: "jolijubior@gmail.com",
       },
@@ -58,7 +58,7 @@ export default function DetailKeluargaKaryawan() {
         nama: "Annisa Sarah",
         pendidikan_terakhir: "S1 Hukum",
         pekerjaan: "Jaksa",
-        status_hidup: "Hidup",
+        status_hidup: 1,
         no_hp: "089120831",
         email: "annsar@gmail.com",
       },
@@ -81,7 +81,7 @@ export default function DetailKeluargaKaryawan() {
         {!loading && data && (
           <>
             <Wrap
-              gap={responsiveSpacing}
+              spacing={responsiveSpacing}
               mb={responsiveSpacing}
               align={"center"}
             >
