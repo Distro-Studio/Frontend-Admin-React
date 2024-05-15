@@ -24,6 +24,7 @@ import jadwalTopNavs from "./const/jadwalTopNavs";
 import TukarJadwal from "./pages/Jadwal/TukarJadwal";
 import Lembur from "./pages/Jadwal/Lembur";
 import Cuti from "./pages/Jadwal/Cuti";
+import DetailKeluargaKaryawan from "./pages/Karyawan/DetailKeluargaKaryawan";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -91,6 +92,19 @@ export const App = () => (
               topNavActive={2}
             >
               <KeluargaKaryawan />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/karyawan/keluarga-karyawan/:karyawanId"
+          element={
+            <NavContainer
+              active={1}
+              title="Detail Keluarga Karyawan"
+              left={"back"}
+              backLink="/karyawan/keluarga-karyawan"
+            >
+              <DetailKeluargaKaryawan />
             </NavContainer>
           }
         />

@@ -2,6 +2,7 @@ import {
   Avatar,
   Badge,
   BoxProps,
+  Button,
   Center,
   Checkbox,
   HStack,
@@ -36,6 +37,9 @@ interface Props extends BoxProps {
   setPageConfig?: (page: number) => void;
   paginationData?: any;
   onCheckItem?: (checkedItem: any) => void;
+  noMore?: boolean;
+  noCheckList?: boolean;
+  action?: any;
 }
 
 export default function Tabel({
@@ -47,6 +51,9 @@ export default function Tabel({
   limitConfig,
   setLimitConfig,
   onCheckItem,
+  noMore,
+  noCheckList,
+  action,
   ...props
 }: Props) {
   // Check List Config
@@ -113,32 +120,34 @@ export default function Tabel({
         <Table minW={"100%"}>
           <Thead>
             <Tr position={"sticky"} top={0} zIndex={3}>
-              <Th
-                position={"sticky"}
-                left={0}
-                p={0}
-                borderBottom={"none !important"}
-                zIndex={3}
-                w={"50px"}
-              >
-                <Center
-                  p={4}
-                  h={"52px"}
+              {!noCheckList && (
+                <Th
+                  position={"sticky"}
+                  left={0}
+                  p={0}
+                  borderBottom={"none !important"}
+                  zIndex={3}
                   w={"50px"}
-                  borderRight={"1px solid var(--divider3)"}
-                  bg={bodyColor}
-                  borderBottom={"1px solid var(--divider3) !important"}
                 >
-                  <Checkbox
-                    colorScheme="ap"
-                    isChecked={isCheckAll}
-                    onChange={(e) => {
-                      e.stopPropagation();
-                      handleCheckAll();
-                    }}
-                  />
-                </Center>
-              </Th>
+                  <Center
+                    p={4}
+                    h={"52px"}
+                    w={"50px"}
+                    borderRight={"1px solid var(--divider3)"}
+                    bg={bodyColor}
+                    borderBottom={"1px solid var(--divider3) !important"}
+                  >
+                    <Checkbox
+                      colorScheme="ap"
+                      isChecked={isCheckAll}
+                      onChange={(e) => {
+                        e.stopPropagation();
+                        handleCheckAll();
+                      }}
+                    />
+                  </Center>
+                </Th>
+              )}
 
               {columns.map((column, i) => (
                 <Th
@@ -150,9 +159,14 @@ export default function Tabel({
                   bg={bodyColor}
                   zIndex={2}
                   p={0}
+                  w={column.preferredW}
                 >
                   <HStack
-                    justify={"space-between"}
+                    justify={
+                      column.dataType === "numeric"
+                        ? "flex-end"
+                        : "space-between"
+                    }
                     borderBottom={"1px solid var(--divider3)"}
                     px={4}
                     py={3}
@@ -185,62 +199,81 @@ export default function Tabel({
                 </Th>
               ))}
 
+              {action && (
+                <Th
+                  position={"sticky"}
+                  right={0}
+                  p={0}
+                  bg={bodyColor}
+                  zIndex={1}
+                  w={"100px"}
+                  textAlign={"center"}
+                >
+                  Aksi
+                </Th>
+              )}
+
               {/* Kolom tetap di sebelah kanan */}
-              <Th
-                position={"sticky"}
-                top={0}
-                right={0}
-                borderBottom={"none !important"}
-                p={0}
-                bg={bodyColor}
-                zIndex={2}
-              >
-                <VStack
-                  px={4}
-                  py={3}
-                  zIndex={99}
-                  borderLeft={"1px solid var(--divider3)"}
-                  borderBottom={"1px solid var(--divider3)"}
-                  h={"52px"}
-                ></VStack>
-              </Th>
+              {!noMore && (
+                <Th
+                  position={"sticky"}
+                  top={0}
+                  right={0}
+                  borderBottom={"none !important"}
+                  p={0}
+                  bg={bodyColor}
+                  zIndex={2}
+                >
+                  <VStack
+                    px={4}
+                    py={3}
+                    zIndex={99}
+                    borderLeft={"1px solid var(--divider3)"}
+                    borderBottom={"1px solid var(--divider3)"}
+                    h={"52px"}
+                  ></VStack>
+                </Th>
+              )}
             </Tr>
           </Thead>
 
           <Tbody>
             {sortedData.map((row, i) => (
               <Tr key={i} bg={i % 2 === 0 ? contentBgColor : ""}>
-                <Td
-                  position={"sticky"}
-                  left={0}
-                  p={0}
-                  bg={bodyColor}
-                  zIndex={2}
-                  w={"50px"}
-                >
-                  <Center
-                    h={"72px"}
+                {!noCheckList && (
+                  <Td
+                    position={"sticky"}
+                    left={0}
+                    p={0}
+                    bg={bodyColor}
+                    zIndex={2}
                     w={"50px"}
-                    bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                    p={4}
-                    borderRight={"1px solid var(--divider3)"}
                   >
-                    <Checkbox
-                      colorScheme="ap"
-                      isChecked={checkedItems.includes(row.id)}
-                      onChange={(e) => {
-                        e.stopPropagation();
-                        handleCheckItem(row.id);
-                      }}
-                    />
-                  </Center>
-                </Td>
+                    <Center
+                      h={"72px"}
+                      w={"50px"}
+                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                      p={4}
+                      borderRight={"1px solid var(--divider3)"}
+                    >
+                      <Checkbox
+                        colorScheme="ap"
+                        isChecked={checkedItems.includes(row.id)}
+                        onChange={(e) => {
+                          e.stopPropagation();
+                          handleCheckItem(row.id);
+                        }}
+                      />
+                    </Center>
+                  </Td>
+                )}
 
                 {columns.map((column, colIndex) => {
                   const typicalRender = {
                     string: row[column.key],
                     date: formatDate(row[column.key]),
                     number: formatNumber(row[column.key]),
+                    numeric: formatNumber(row[column.key]),
                     badge: (
                       <Badge w={"100%"} textAlign={"center"} colorScheme="teal">
                         {row[column.key]}
@@ -278,12 +311,13 @@ export default function Tabel({
                       whiteSpace={"nowrap"}
                       textAlign={
                         row[column.key] === undefined ||
-                        row[column.key] === null ||
-                        column.dataType === "link"
-                          ? "center" // Jika datanya kosong, textAlign menjadi center
-                          : column.dataType === "number"
-                          ? "right" // Jika numeric, textAlign menjadi right
-                          : "left" // Jika tidak, textAlign defaultnya menjadi left
+                        row[column.key] === null
+                          ? "left"
+                          : column.dataType === "link"
+                          ? "center"
+                          : column.dataType === "numeric"
+                          ? "right"
+                          : "left"
                       }
                       opacity={
                         row[column.key] === undefined ||
@@ -300,31 +334,56 @@ export default function Tabel({
                   );
                 })}
 
-                {/* Kolom tetap di sebelah kanan */}
-                <Td
-                  position={"sticky"}
-                  right={0}
-                  p={0}
-                  bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                  zIndex={1}
-                  w={"50px"}
-                >
-                  <VStack
-                    h={"72px"}
-                    w={"50px"}
-                    borderLeft={"1px solid var(--divider3)"}
-                    justify={"center"}
+                {action && (
+                  <Td
+                    position={"sticky"}
+                    right={0}
+                    p={0}
+                    bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                    zIndex={1}
+                    w={"100px"}
                   >
-                    <IconButton
+                    <VStack>
+                      <Button
+                        colorScheme="ap"
+                        className="btn-ap clicky"
+                        as={Link}
+                        w={"90px"}
+                        to={`${row.id}`}
+                      >
+                        {action}
+                      </Button>
+                    </VStack>
+                  </Td>
+                )}
+
+                {/* Kolom tetap di sebelah kanan */}
+                {!noMore && (
+                  <Td
+                    position={"sticky"}
+                    right={0}
+                    p={0}
+                    bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                    zIndex={1}
+                    w={"50px"}
+                  >
+                    <VStack
                       h={"72px"}
                       w={"50px"}
-                      aria-label="Option Button"
-                      icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
-                      className="btn"
-                      borderRadius={0}
-                    />
-                  </VStack>
-                </Td>
+                      borderLeft={"1px solid var(--divider3)"}
+                      justify={"center"}
+                    >
+                      <IconButton
+                        h={"72px"}
+                        w={"50px"}
+                        aria-label="Option Button"
+                        icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
+                        className="btn"
+                        borderRadius={0}
+                      />
+                    </VStack>
+                  </Td>
+                )}
               </Tr>
             ))}
           </Tbody>

@@ -75,8 +75,16 @@ export interface TopNavs__Interface {
 export interface Tabel__Column__Interface {
   key: string;
   label: string;
-  dataType: "string" | "number" | "date" | "badge" | "avatarAndName" | "link";
+  dataType:
+    | "string"
+    | "number"
+    | "numeric"
+    | "date"
+    | "badge"
+    | "avatarAndName"
+    | "link";
   link?: string;
+  preferredW?: string;
 }
 
 export interface Presensi__SUmmary__Interface {
