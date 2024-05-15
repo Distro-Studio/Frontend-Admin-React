@@ -1,13 +1,13 @@
-import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import { Box, Image, Stack, Text, VStack } from "@chakra-ui/react";
 import FormLogin from "../../components/form/FormLogin";
-import Container from "../../components/wrapper/Container";
 import CContainer from "../../components/wrapper/CContainer";
+import Container from "../../components/wrapper/Container";
 
 export default function Login() {
   return (
     <Container>
       <CContainer>
-        <HStack flexDir={["column", null, "row"]} minH={"100vh"} w={"100%"}>
+        <Stack flexDir={["column", null, "row"]} minH={"100vh"} w={"100%"}>
           <VStack
             align={"stretch"}
             justify={"space-between"}
@@ -69,7 +69,7 @@ export default function Login() {
               </VStack>
             </VStack>
           </VStack>
-        </HStack>
+        </Stack>
       </CContainer>
     </Container>
   );

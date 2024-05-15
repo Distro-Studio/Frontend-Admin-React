@@ -15,13 +15,13 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import { RiEditBoxLine } from "@remixicon/react";
+import { RiEditBoxFill, RiEditFill } from "@remixicon/react";
+import { useFormik } from "formik";
+import { useRef } from "react";
+import * as yup from "yup";
 import { iconSize } from "../../../../const/sizes";
 import backOnClose from "../../../../lib/backOnClose";
 import useBackOnClose from "../../../../lib/useBackOnClose";
-import { useRef } from "react";
-import { useFormik } from "formik";
-import * as yup from "yup";
 import FormRequired from "../../../form/FormRequired";
 import StaticSelect from "../../../input/StaticSelect";
 
@@ -74,8 +74,9 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
     <>
       <Button
         colorScheme="ap"
-        className="btn-apa clicky"
-        leftIcon={<Icon as={RiEditBoxLine} fontSize={iconSize} />}
+        variant={"ghost"}
+        className=" clicky"
+        leftIcon={<Icon as={RiEditFill} fontSize={iconSize} />}
         onClick={onOpen}
       >
         Edit

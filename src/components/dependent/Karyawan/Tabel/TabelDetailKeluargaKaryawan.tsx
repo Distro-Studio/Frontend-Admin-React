@@ -256,7 +256,9 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
                     <Badge
                       w={"100%"}
                       textAlign={"center"}
-                      colorScheme={row.status_hidup === "Hidup" ? "ap" : "red"}
+                      colorScheme={
+                        row.status_hidup === "Hidup" ? "green" : "red"
+                      }
                     >
                       {row.status_hidup}
                     </Badge>
