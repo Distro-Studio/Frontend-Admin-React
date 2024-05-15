@@ -33,17 +33,67 @@ export interface Jadwal__Interface {
   keterangan?: string;
 }
 
-export interface Karyawan__Interface {
+export interface User__Interface {
   id: number;
   nama: string;
-  no_induk_karyawan?: string;
-  rm?: string;
+  username: string;
+  password: string;
+  role_id: number;
+  role: string;
+  foto_profil: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Karyawan__Interface {
+  id: number;
+  user_id?: string;
+  nama: string;
+  no_rm?: string;
+  username?: string;
+  email?: string;
+  no_manulife?: string;
+  tgl_masuk?: Date | string;
+  unit_kerja?: string;
+  jabatan?: string;
+  profesi?: string;
+  uang_lembur?: number;
   nik?: string;
-  unit_kerja: string;
-  status_karyawan?: string;
+  nik_ktp?: string;
+  gelar_depan?: string;
   tempat_lahir?: string;
   tgl_lahir?: string;
-  avatar: string;
+  alamat?: string;
+  no_hp?: string;
+  no_bpjsksh?: string;
+  no_bpjsktk?: string;
+  tgl_diangkat?: Date | string;
+  masa_kerja?: string;
+  tgl_keluar?: Date | string;
+  npwp?: string;
+  no_rekening?: string;
+  jenis_kelamin?: string;
+  agama?: string;
+  golongan_darah?: string;
+  mtinggi_badan?: string;
+  berat_badan?: string;
+  no_ijasah?: string;
+  tahun_lulus?: string;
+  no_kk?: string;
+  status_karyawan?: string;
+  kelompok_gaji?: string;
+  no_str?: string;
+  masa_berlaku_str?: string;
+  no_sip?: string;
+  masa_berlaku_sip?: string;
+  tgl_berakhir_pks?: string;
+  ptkp?: string;
+  masa_diklat?: string;
+  foto_profil: string;
+  is_active?: boolean;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export type Valid__Status__Type = "Kerja" | "Cuti" | "Izin" | "Libur";

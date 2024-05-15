@@ -1,13 +1,36 @@
+import {
+  Avatar,
+  Badge,
+  Center,
+  Checkbox,
+  HStack,
+  Icon,
+  IconButton,
+  Table,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+  VStack,
+} from "@chakra-ui/react";
+import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
 import { useState } from "react";
+import {
+  statusKaryawanColorScheme,
+  useBodyColor,
+  useContentBgColor,
+} from "../../../../const/colors";
+import { dummyKaryawanList } from "../../../../const/dummy";
 import {
   Karyawan__Interface,
   Tabel__Column__Interface,
 } from "../../../../const/interfaces";
-import Tabel from "../../Tabel";
+import { iconSize, responsiveSpacing } from "../../../../const/sizes";
 import Skeleton from "../../../independent/Skeleton";
 import TabelContainer from "../../../wrapper/TabelContainer";
-import { HStack, VStack } from "@chakra-ui/react";
-import { responsiveSpacing } from "../../../../const/sizes";
+import TabelFooterConfig from "../../TabelFooterConfig";
 
 interface Props {
   filterConfig?: any;
@@ -43,117 +66,12 @@ export default function TabelAkunKaryawan({ filterConfig }: Props) {
   ];
 
   //! DEBUG
-  const dummy = [
-    {
-      id: 1,
-      public_id: "K3124e23",
-      nama: "Sulenq Wazawsky",
-      email: "example@mail.com",
-      username: "karyawan_username",
-      no_induk_karyawan: "412123143",
-      rm: "3214",
-      nik: "3321231412412",
-      unit_kerja: "Perawat Hewan",
-      status_karyawan: "Kontrak",
-      tempat_lahir: "Semarang",
-      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/dan-abramov",
-    },
-    {
-      id: 2,
-      public_id: "K3124e23",
-      nama: "John Doe",
-      email: "example@mail.com",
-      username: "karyawan_username",
-      no_induk_karyawan: "111222333",
-      rm: "1234",
-      nik: "4445556667778",
-      unit_kerja: "Dokter",
-      status_karyawan: "Tetap",
-      tempat_lahir: "Jakarta",
-      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/tioluwani-kolawole",
-    },
-    {
-      id: 3,
-      public_id: "K3124e23",
-      nama: "Jane Smith",
-      email: "example@mail.com",
-      username: "karyawan_username",
-      no_induk_karyawan: "987654321",
-      rm: "5678",
-      nik: "8889990001112",
-      unit_kerja: "Administrasi",
-      status_karyawan: "Kontrak",
-      tempat_lahir: "Surabaya",
-      tgl_lahir: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/kent-c-dodds",
-    },
-    {
-      id: 4,
-      public_id: "K3124e23",
-      nama: "Michael Johnson",
-      email: "example@mail.com",
-      username: "karyawan_username",
-      no_induk_karyawan: "654321789",
-      rm: "9876",
-      nik: "2223334445556",
-      unit_kerja: "Keuangan",
-      status_karyawan: "Tetap",
-      tempat_lahir: "Bandung",
-      tgl_lahir: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/ryan-florence",
-    },
-    {
-      id: 5,
-      public_id: "K3124e23",
-      nama: "Amanda Lee",
-      email: "example@mail.com",
-      username: "karyawan_username",
-      no_induk_karyawan: "789456123",
-      rm: "3456",
-      nik: "6667778889990",
-      unit_kerja: "Pemasaran",
-      status_karyawan: "Kontrak",
-      tempat_lahir: "Yogyakarta",
-      tgl_lahir: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/prosper-baba",
-    },
-    {
-      id: 6,
-      public_id: "K3124e23",
-      nama: "Kevin Brown",
-      email: "example@mail.com",
-      username: "karyawan_username",
-      no_induk_karyawan: "555666777",
-      rm: "2468",
-      nik: "1112223334445",
-      unit_kerja: "IT",
-      status_karyawan: "Tetap",
-      tempat_lahir: "Medan",
-      tgl_lahir: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/sage-adebayo",
-    },
-    {
-      id: 7,
-      public_id: "K3124e23",
-      nama: "Maria Garcia",
-      email: "example@mail.com",
-      username: "karyawan_username",
-      no_induk_karyawan: "123456789",
-      rm: "1357",
-      nik: "9990001112223",
-      unit_kerja: "Pelayanan Pelanggan",
-      status_karyawan: "Kontrak",
-      tempat_lahir: "Denpasar",
-      tgl_lahir: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/code-beast",
-    },
-  ];
   // console.log(filterConfig);
   //! DEBUG
 
-  const [data] = useState<Karyawan__Interface[] | null>(dummy);
+  //TODO get akun karyawan
+
+  const [data] = useState<Karyawan__Interface[] | null>(dummyKaryawanList);
   const [loading] = useState<boolean>(false);
 
   // Limit Config
@@ -161,6 +79,65 @@ export default function TabelAkunKaryawan({ filterConfig }: Props) {
 
   // Pagination Config
   const [pageConfig, setPageConfig] = useState<number>(1);
+
+  // Check List Config
+  const [checkedItems, setCheckedItems] = useState<number[]>([]);
+  const [isCheckAll, setIsCheckAll] = useState(false);
+  const handleCheckItem = (id: number) => {
+    let updatedCheckedItems;
+    if (checkedItems.includes(id)) {
+      updatedCheckedItems = checkedItems.filter((item) => item !== id);
+    } else {
+      updatedCheckedItems = [...checkedItems, id];
+    }
+    setCheckedItems(updatedCheckedItems);
+  };
+  const handleCheckAll = () => {
+    if (data) {
+      if (isCheckAll) {
+        setCheckedItems([]);
+      } else {
+        const allIds = data.map((item) => item.id);
+        setCheckedItems(allIds);
+      }
+      setIsCheckAll(!isCheckAll);
+    }
+  };
+
+  // Sort Config
+  const [sortConfig, setSortConfig] = useState<{
+    key: string;
+    direction: "asc" | "desc";
+  } | null>({ key: columns[0].key, direction: "asc" });
+  const sortedData = data && [...data];
+  if (sortConfig !== null && sortedData) {
+    sortedData.sort((a, b) => {
+      //@ts-ignore
+      if (a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.direction === "asc" ? -1 : 1;
+      }
+      //@ts-ignore
+      if (a[sortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === "asc" ? 1 : -1;
+      }
+      return 0;
+    });
+  }
+  const sort = (key: string) => {
+    let direction: "asc" | "desc" = "asc";
+    if (
+      sortConfig &&
+      sortConfig.key === key &&
+      sortConfig.direction === "asc"
+    ) {
+      direction = "desc";
+    }
+    setSortConfig({ key, direction });
+  };
+
+  // SX
+  const contentBgColor = useContentBgColor();
+  const bodyColor = useBodyColor();
 
   return (
     <>
@@ -180,20 +157,235 @@ export default function TabelAkunKaryawan({ filterConfig }: Props) {
         </>
       )}
 
-      {!loading && data && (
-        <Tabel
-          columns={columns}
-          data={data}
-          paginationData={{
-            prev_page_url: "",
-            next_page_url: "",
-            last_page: 1,
-          }}
-          pageConfig={pageConfig}
-          setPageConfig={setPageConfig}
-          limitConfig={limitConfig}
-          setLimitConfig={setLimitConfig}
-        />
+      {!loading && sortedData && (
+        <>
+          <TabelContainer>
+            <Table minW={"100%"}>
+              <Thead>
+                <Tr position={"sticky"} top={0} zIndex={3}>
+                  <Th
+                    position={"sticky"}
+                    left={0}
+                    p={0}
+                    borderBottom={"none !important"}
+                    zIndex={3}
+                    w={"50px"}
+                  >
+                    <Center
+                      p={4}
+                      h={"52px"}
+                      w={"50px"}
+                      borderRight={"1px solid var(--divider3)"}
+                      bg={bodyColor}
+                      borderBottom={"1px solid var(--divider3) !important"}
+                    >
+                      <Checkbox
+                        colorScheme="ap"
+                        isChecked={isCheckAll}
+                        onChange={(e) => {
+                          e.stopPropagation();
+                          handleCheckAll();
+                        }}
+                      />
+                    </Center>
+                  </Th>
+
+                  {columns.map((column, i) => (
+                    <Th
+                      key={i}
+                      whiteSpace={"nowrap"}
+                      onClick={() => {
+                        if (column.dataType !== "action") {
+                          sort(column.key);
+                        }
+                      }}
+                      cursor={"pointer"}
+                      borderBottom={"none !important"}
+                      bg={bodyColor}
+                      zIndex={2}
+                      p={0}
+                      {...column.thProps}
+                    >
+                      {column.dataType === "action" ? (
+                        <HStack
+                          justify={"center"}
+                          borderBottom={"1px solid var(--divider3)"}
+                          px={4}
+                          py={3}
+                          h={"52px"}
+                          pl={i === 0 ? 4 : ""}
+                          pr={i === columns.length - 1 ? 4 : ""}
+                          {...column.thContentProps}
+                        >
+                          <Text>{column.label}</Text>
+                        </HStack>
+                      ) : (
+                        <HStack
+                          justify={
+                            column.preferredTextAlign === "center"
+                              ? "center"
+                              : column.dataType === "numeric"
+                              ? "flex-end"
+                              : "space-between"
+                          }
+                          borderBottom={"1px solid var(--divider3)"}
+                          px={4}
+                          py={3}
+                          h={"52px"}
+                          pl={i === 0 ? 4 : ""}
+                          pr={i === columns.length - 1 ? 4 : ""}
+                          {...column.thContentProps}
+                        >
+                          <Text
+                            fontWeight={600}
+                            flexShrink={0}
+                            lineHeight={1.2}
+                          >
+                            {column.label}
+                          </Text>
+
+                          {sortConfig && sortConfig.key === column.key && (
+                            <>
+                              {sortConfig.direction === "asc" ? (
+                                <Icon
+                                  as={RiArrowUpLine}
+                                  color={"p.500"}
+                                  fontSize={16}
+                                />
+                              ) : (
+                                <Icon
+                                  as={RiArrowDownLine}
+                                  color={"p.500"}
+                                  fontSize={16}
+                                />
+                              )}
+                            </>
+                          )}
+                        </HStack>
+                      )}
+                    </Th>
+                  ))}
+
+                  {/* Kolom tetap di sebelah kanan */}
+                  <Th
+                    position={"sticky"}
+                    top={0}
+                    right={0}
+                    borderBottom={"none !important"}
+                    p={0}
+                    bg={bodyColor}
+                    zIndex={2}
+                  >
+                    <VStack
+                      px={4}
+                      py={3}
+                      zIndex={99}
+                      borderLeft={"1px solid var(--divider3)"}
+                      borderBottom={"1px solid var(--divider3)"}
+                      h={"52px"}
+                    ></VStack>
+                  </Th>
+                </Tr>
+              </Thead>
+
+              <Tbody>
+                {sortedData.map((row, i) => (
+                  <Tr key={i} bg={i % 2 === 0 ? contentBgColor : ""}>
+                    <Td
+                      position={"sticky"}
+                      left={0}
+                      p={0}
+                      bg={bodyColor}
+                      zIndex={2}
+                      w={"50px"}
+                    >
+                      <Center
+                        h={"72px"}
+                        w={"50px"}
+                        bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                        p={4}
+                        borderRight={"1px solid var(--divider3)"}
+                      >
+                        <Checkbox
+                          colorScheme="ap"
+                          isChecked={checkedItems.includes(row.id)}
+                          onChange={(e) => {
+                            e.stopPropagation();
+                            handleCheckItem(row.id);
+                          }}
+                        />
+                      </Center>
+                    </Td>
+
+                    <Td whiteSpace={"nowrap"}>
+                      <HStack>
+                        <Avatar
+                          size={"sm"}
+                          name={row.nama}
+                          src={row.foto_profil}
+                        />
+                        <Text>{row.nama}</Text>
+                      </HStack>
+                    </Td>
+                    <Td whiteSpace={"nowrap"}>{row.nik}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.email}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.username}</Td>
+                    <Td whiteSpace={"nowrap"}>
+                      <Badge
+                        w={"100%"}
+                        textAlign={"center"}
+                        colorScheme={
+                          //@ts-ignore
+                          statusKaryawanColorScheme[row.status_karyawan]
+                        }
+                      >
+                        {row.status_karyawan}
+                      </Badge>
+                    </Td>
+
+                    {/* Kolom tetap di sebelah kanan */}
+                    <Td
+                      position={"sticky"}
+                      top={0}
+                      right={0}
+                      borderBottom={"none !important"}
+                      p={0}
+                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                      zIndex={1}
+                      w={"50px"}
+                    >
+                      <VStack
+                        borderLeft={"1px solid var(--divider3)"}
+                        justify={"center"}
+                      >
+                        <IconButton
+                          h={"72px"}
+                          w={"50px"}
+                          aria-label="Option Button"
+                          icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
+                          className="btn"
+                          borderRadius={0}
+                        />
+                      </VStack>
+                    </Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            </Table>
+          </TabelContainer>
+
+          <TabelFooterConfig
+            limitConfig={limitConfig}
+            setLimitConfig={setLimitConfig}
+            pageConfig={pageConfig}
+            setPageConfig={setPageConfig}
+            paginationData={{
+              prev_page_url: "",
+              next_page_url: "",
+              last_page: 1,
+            }}
+          />
+        </>
       )}
     </>
   );
