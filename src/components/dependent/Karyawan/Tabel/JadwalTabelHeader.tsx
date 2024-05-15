@@ -1,6 +1,6 @@
 import { HStack, Text, Th } from "@chakra-ui/react";
 import { addDays } from "date-fns";
-import formatDate from "../../../lib/formatDate";
+import formatDate from "../../../../lib/formatDate";
 
 interface Props {
   range_tgl: {

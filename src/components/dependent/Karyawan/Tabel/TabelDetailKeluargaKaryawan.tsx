@@ -1,10 +1,26 @@
-import { HStack, VStack } from "@chakra-ui/react";
+import {
+  Badge,
+  Center,
+  HStack,
+  Icon,
+  Table,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+  VStack,
+} from "@chakra-ui/react";
+import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useState } from "react";
+import { useBodyColor, useContentBgColor } from "../../../../const/colors";
 import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import { responsiveSpacing } from "../../../../const/sizes";
 import Skeleton from "../../../independent/Skeleton";
 import TabelContainer from "../../../wrapper/TabelContainer";
-import Tabel from "../../Tabel";
+import TabelFooterConfig from "../../TabelFooterConfig";
+import EditDataKeluargaKaryawanModal from "./EditDataKeluargaKaryawanModal";
 
 interface Props {
   data: any;
@@ -47,6 +63,39 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
       label: "Email",
       dataType: "string",
     },
+    // {
+    //   key: "",
+    //   label: "Edit",
+    //   dataType: "action",
+    //   actionLabel: "Edit",
+    //   action: (id: number) => {},
+    //   actionButtonProps: {
+    //     colorScheme: "ap",
+    //     className: "btn-apa clicky",
+    //     rightIcon: <Icon as={RiEditBoxLine} fontSize={iconSize} />,
+    //     pr: 3,
+    //   },
+    //   tdProps: {
+    //     position: "sticky",
+    //     right: 0,
+    //     p: 0,
+    //   },
+    //   tdContentProps: {
+    //     h: "72px",
+    //     w: "100px",
+    //     borderLeft: "1px solid var(--divider3)",
+    //   },
+    //   thProps: {
+    //     position: "sticky",
+    //     right: 0,
+    //     p: 0,
+    //   },
+    //   thContentProps: {
+    //     w: "100px",
+    //     borderLeft: "1px solid var(--divider3)",
+    //   },
+    //   preferredW: "100px",
+    // },
   ];
 
   const [loading] = useState<boolean>(false);
@@ -56,6 +105,39 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
 
   // Pagination Config
   const [pageConfig, setPageConfig] = useState<number>(1);
+
+  // Sort Config
+  const [sortConfig, setSortConfig] = useState<{
+    key: string;
+    direction: "asc" | "desc";
+  } | null>({ key: columns[0].key, direction: "asc" });
+  const sortedData = [...data];
+  if (sortConfig !== null) {
+    sortedData.sort((a, b) => {
+      if (a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.direction === "asc" ? -1 : 1;
+      }
+      if (a[sortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === "asc" ? 1 : -1;
+      }
+      return 0;
+    });
+  }
+  const sort = (key: string) => {
+    let direction: "asc" | "desc" = "asc";
+    if (
+      sortConfig &&
+      sortConfig.key === key &&
+      sortConfig.direction === "asc"
+    ) {
+      direction = "desc";
+    }
+    setSortConfig({ key, direction });
+  };
+
+  // SX
+  const contentBgColor = useContentBgColor();
+  const bodyColor = useBodyColor();
 
   return (
     <>
@@ -76,24 +158,149 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
       )}
 
       {!loading && data && (
-        <Tabel
-          flexGrow={0}
-          h={"fit-content"}
-          columns={columns}
-          data={data}
-          paginationData={{
-            prev_page_url: "",
-            next_page_url: "",
-            last_page: 1,
-          }}
-          pageConfig={pageConfig}
-          setPageConfig={setPageConfig}
-          limitConfig={limitConfig}
-          setLimitConfig={setLimitConfig}
-          noCheckList
-          noMore
-        />
+        <TabelContainer>
+          <Table>
+            <Thead>
+              <Tr>
+                {columns.map((column, i) => (
+                  <Th
+                    key={i}
+                    whiteSpace={"nowrap"}
+                    onClick={() => {
+                      sort(column.key);
+                    }}
+                    cursor={"pointer"}
+                    borderBottom={"none !important"}
+                    bg={bodyColor}
+                    zIndex={2}
+                    p={0}
+                    {...column.thProps}
+                  >
+                    <HStack
+                      justify={
+                        column.preferredTextAlign === "center"
+                          ? "center"
+                          : column.dataType === "numeric"
+                          ? "flex-end"
+                          : "space-between"
+                      }
+                      borderBottom={"1px solid var(--divider3)"}
+                      px={4}
+                      py={3}
+                      h={"52px"}
+                      pl={i === 0 ? 4 : ""}
+                      pr={i === columns.length - 1 ? 4 : ""}
+                      {...column.thContentProps}
+                    >
+                      <Text fontWeight={600} flexShrink={0} lineHeight={1.2}>
+                        {column.label}
+                      </Text>
+
+                      {sortConfig && sortConfig.key === column.key && (
+                        <>
+                          {sortConfig.direction === "asc" ? (
+                            <Icon
+                              as={RiArrowUpLine}
+                              color={"p.500"}
+                              fontSize={16}
+                            />
+                          ) : (
+                            <Icon
+                              as={RiArrowDownLine}
+                              color={"p.500"}
+                              fontSize={16}
+                            />
+                          )}
+                        </>
+                      )}
+                    </HStack>
+                  </Th>
+                ))}
+
+                <Th
+                  position={"sticky"}
+                  top={0}
+                  right={0}
+                  borderBottom={"none !important"}
+                  p={0}
+                  bg={bodyColor}
+                  zIndex={2}
+                >
+                  <Center
+                    px={4}
+                    py={3}
+                    zIndex={99}
+                    borderLeft={"1px solid var(--divider3)"}
+                    borderBottom={"1px solid var(--divider3)"}
+                    h={"52px"}
+                  >
+                    <Text>Edit</Text>
+                  </Center>
+                </Th>
+              </Tr>
+            </Thead>
+
+            <Tbody>
+              {sortedData.map((row, rowIndex) => (
+                <Tr
+                  key={rowIndex}
+                  bg={rowIndex % 2 === 0 ? contentBgColor : bodyColor}
+                >
+                  <Td pl={4} whiteSpace={"nowrap"}>
+                    {row.nama}
+                  </Td>
+                  <Td whiteSpace={"nowrap"}>{row.hubungan}</Td>
+                  <Td whiteSpace={"nowrap"}>{row.pendidikan_terakhir}</Td>
+                  <Td whiteSpace={"nowrap"}>{row.pekerjaan}</Td>
+                  <Td whiteSpace={"nowrap"}>
+                    <Badge
+                      w={"100%"}
+                      textAlign={"center"}
+                      colorScheme={row.status_hidup === "Hidup" ? "ap" : "red"}
+                    >
+                      {row.status_hidup}
+                    </Badge>
+                  </Td>
+                  <Td whiteSpace={"nowrap"}>{row.no_hp}</Td>
+                  <Td whiteSpace={"nowrap"} pr={4}>
+                    {row.email}
+                  </Td>
+                  <Td
+                    position={"sticky"}
+                    top={0}
+                    right={0}
+                    borderBottom={"none !important"}
+                    p={0}
+                    bg={rowIndex % 2 === 0 ? contentBgColor : bodyColor}
+                    zIndex={1}
+                  >
+                    <VStack
+                      borderLeft={"1px solid var(--divider3)"}
+                      justify={"center"}
+                      w={"120px"}
+                      h={"72px"}
+                    >
+                      <EditDataKeluargaKaryawanModal data={row} />
+                    </VStack>
+                  </Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        </TabelContainer>
       )}
+
+      <TabelFooterConfig
+        limitConfig={limitConfig}
+        setLimitConfig={setLimitConfig}
+        pageConfig={pageConfig}
+        setPageConfig={setPageConfig}
+        paginationData={{
+          prev_page_url: "",
+          next_page_url: "",
+          last_page: 1,
+        }}
+      />
     </>
   );
 }

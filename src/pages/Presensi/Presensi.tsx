@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
+import FilterTabelKaryawan from "../../components/dependent/Karyawan/Tabel/FilterTabelKaryawan";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
 import PresensiTotal from "../../components/independent/Karyawan/PresensiTotal";
 import TabelKaryawan from "../../components/dependent/Karyawan/Tabel/TabelKaryawan";

@@ -75,6 +75,8 @@ export interface TopNavs__Interface {
 export interface Tabel__Column__Interface {
   key: string;
   label: string;
+  actionLabel?: string;
+  actionComponent?: any;
   dataType:
     | "string"
     | "number"
@@ -85,9 +87,12 @@ export interface Tabel__Column__Interface {
     | "link"
     | "action";
   link?: string;
-  preferredW?: string;
   preferredTextAlign?: string;
   action?: any;
+  tdProps?: any;
+  tdContentProps?: any;
+  thProps?: any;
+  thContentProps?: any;
   actionButtonProps?: any;
 }
 

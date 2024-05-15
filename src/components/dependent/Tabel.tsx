@@ -163,7 +163,7 @@ export default function Tabel({
                   bg={bodyColor}
                   zIndex={2}
                   p={0}
-                  w={column.preferredW}
+                  {...column.thProps}
                 >
                   {column.dataType === "action" ? (
                     <HStack
@@ -174,6 +174,7 @@ export default function Tabel({
                       h={"52px"}
                       pl={i === 0 ? 4 : ""}
                       pr={i === columns.length - 1 ? 4 : ""}
+                      {...column.thContentProps}
                     >
                       <Text>{column.label}</Text>
                     </HStack>
@@ -192,6 +193,7 @@ export default function Tabel({
                       h={"52px"}
                       pl={i === 0 ? 4 : ""}
                       pr={i === columns.length - 1 ? 4 : ""}
+                      {...column.thContentProps}
                     >
                       <Text fontWeight={600} flexShrink={0} lineHeight={1.2}>
                         {column.label}
@@ -308,14 +310,16 @@ export default function Tabel({
                       </Text>
                     ),
                     action: (
-                      <Button
-                        onClick={() => {
-                          column.action(row.id);
-                        }}
-                        {...column.actionButtonProps}
-                      >
-                        {column.label}
-                      </Button>
+                      <Center {...column.tdContentProps}>
+                        <Button
+                          onClick={() => {
+                            column.action(row.id);
+                          }}
+                          {...column.actionButtonProps}
+                        >
+                          {column.actionLabel}
+                        </Button>
+                      </Center>
                     ),
                   };
 
@@ -326,6 +330,7 @@ export default function Tabel({
                       pl={colIndex === 0 ? 4 : ""}
                       pr={colIndex === columns.length - 1 ? 4 : ""}
                       whiteSpace={"nowrap"}
+                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
                       // @ts-ignore
                       textAlign={
                         column.preferredTextAlign
@@ -345,6 +350,7 @@ export default function Tabel({
                           ? 0.6
                           : 1
                       }
+                      {...column.tdProps}
                     >
                       {(row[column.key] !== undefined &&
                         row[column.key] !== null) ||

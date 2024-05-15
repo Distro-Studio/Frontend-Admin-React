@@ -29,6 +29,7 @@ interface Props {
   options: { value: any; label: string }[];
   selectedValue: any;
   noSearch?: boolean;
+  noUseBackOnClsoe?: boolean;
 }
 
 export default function StaticSelect({
@@ -38,12 +39,18 @@ export default function StaticSelect({
   options,
   selectedValue,
   noSearch,
+  noUseBackOnClsoe,
 }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
+  const backOnClose = useBackOnClose;
+  if (!noUseBackOnClsoe) {
+    backOnClose(isOpen, onClose);
+  }
   const handleOnClose = () => {
     onClose();
-    window.history.back();
+    if (!noUseBackOnClsoe) {
+      window.history.back();
+    }
   };
   const initialRef = useRef(null);
   const [search, setSearch] = useState<string>("");

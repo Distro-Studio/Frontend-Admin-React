@@ -17,12 +17,13 @@ import {
 } from "@chakra-ui/react";
 import { RiEqualizer3Line } from "@remixicon/react";
 import { Dispatch, useRef, useState } from "react";
-import { useBodyColor } from "../../../const/colors";
-import { iconSize } from "../../../const/sizes";
-import backOnClose from "../../../lib/backOnClose";
-import formatNumber from "../../../lib/formatNumber";
-import useBackOnClose from "../../../lib/useBackOnClose";
-import FilterStatusKaryawan from "./FilterOptions/FilterStatusKaryawan";
+import { iconSize } from "../../../../const/sizes";
+import backOnClose from "../../../../lib/backOnClose";
+import useBackOnClose from "../../../../lib/useBackOnClose";
+import FilterStatusKaryawan from "../FilterOptions/FilterStatusKaryawan";
+import FilterUnitKerja from "../FilterOptions/FilterUnitKerja";
+import formatNumber from "../../../../lib/formatNumber";
+import { useBodyColor } from "../../../../const/colors";
 
 interface Props {
   filterConfig: any;
@@ -30,7 +31,7 @@ interface Props {
   defaultFilterConfig: any;
 }
 
-export default function FilterTabelAkunKaryawan({
+export default function FilterTabelKaryawan({
   filterConfig,
   setFilterConfig,
   defaultFilterConfig,
@@ -47,11 +48,6 @@ export default function FilterTabelAkunKaryawan({
     setFilterConfig(localFilterConfig);
     backOnClose(onClose);
   }
-
-  const filterAda =
-    filterConfig &&
-    filterConfig.status_karyawan &&
-    filterConfig.status_karyawan.length > 0;
 
   //TODO post api filter data karyawan
 
@@ -71,23 +67,29 @@ export default function FilterTabelAkunKaryawan({
         onClick={onOpen}
       >
         <HStack>
-          {filterAda && (
-            <Center
-              position={"absolute"}
-              right={"-6px"}
-              top={"-6px"}
-              flexShrink={0}
-              minW={"20px"}
-              h={"20px"}
-              borderRadius={"full"}
-              bg={"p.500"}
-              ml={"auto"}
-            >
-              <Text color={bodyColor} fontSize={12} fontWeight={600}>
-                {formatNumber(filterConfig.status_karyawan.length)}
-              </Text>
-            </Center>
-          )}
+          {filterConfig &&
+            ((filterConfig.unit_kerja && filterConfig.unit_kerja.length > 0) ||
+              (filterConfig.status_karyawan &&
+                filterConfig.status_karyawan.length > 0)) && (
+              <Center
+                position={"absolute"}
+                right={"-6px"}
+                top={"-6px"}
+                flexShrink={0}
+                minW={"20px"}
+                h={"20px"}
+                borderRadius={"full"}
+                bg={"p.500"}
+                ml={"auto"}
+              >
+                <Text color={bodyColor} fontSize={12} fontWeight={600}>
+                  {formatNumber(
+                    filterConfig.unit_kerja.length +
+                      filterConfig.status_karyawan.length
+                  )}
+                </Text>
+              </Center>
+            )}
 
           <Text>Filter</Text>
         </HStack>
@@ -112,6 +114,11 @@ export default function FilterTabelAkunKaryawan({
 
           <ModalBody>
             <Accordion allowMultiple>
+              <FilterUnitKerja
+                filterConfig={localFilterConfig}
+                setFilterConfig={setLocalFilterConfig}
+              />
+
               <FilterStatusKaryawan
                 filterConfig={localFilterConfig}
                 setFilterConfig={setLocalFilterConfig}
@@ -125,7 +132,7 @@ export default function FilterTabelAkunKaryawan({
                 w={"50%"}
                 className="btn-solid clicky"
                 onClick={() => {
-                  setFilterConfig(defaultFilterConfig);
+                  setLocalFilterConfig(defaultFilterConfig);
                 }}
               >
                 Reset

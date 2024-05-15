@@ -1,4 +1,13 @@
-import { Avatar, Box, Button, HStack, Icon, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Button,
+  HStack,
+  Icon,
+  Text,
+  Wrap,
+} from "@chakra-ui/react";
+import { RiErrorWarningFill } from "@remixicon/react";
 import { useState } from "react";
 import TabelDetailKeluargaKaryawan from "../../components/dependent/Karyawan/Tabel/TabelDetailKeluargaKaryawan";
 import ComponentSpinner from "../../components/independent/ComponentSpinner";
@@ -6,13 +15,12 @@ import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
-import { RiEditBoxLine } from "@remixicon/react";
 
 export default function DetailKeluargaKaryawan() {
   const dummy = {
     nama: "Jolitos Kurniawan",
     foto_profil: "https://bit.ly/dan-abramov",
-    jumlah_keluarga: 3,
+    jumlah_keluarga: 4,
     keluarga: [
       {
         id: 1,
@@ -20,7 +28,7 @@ export default function DetailKeluargaKaryawan() {
         nama: "Karlitos Kurniawan",
         pendidikan_terakhir: "S1 Teknik Sipil",
         pekerjaan: "Mandor",
-        status_hidup: "Hidup",
+        status_hidup: "Meninggal",
         no_hp: "098172637162",
         email: "emailBapak@gmail.com",
       },
@@ -44,6 +52,16 @@ export default function DetailKeluargaKaryawan() {
         no_hp: "08076175623",
         email: "jolijubior@gmail.com",
       },
+      {
+        id: 4,
+        hubungan: "Istri",
+        nama: "Annisa Sarah",
+        pendidikan_terakhir: "S1 Hukum",
+        pekerjaan: "Jaksa",
+        status_hidup: "Hidup",
+        no_hp: "089120831",
+        email: "annsar@gmail.com",
+      },
     ],
   };
 
@@ -62,7 +80,11 @@ export default function DetailKeluargaKaryawan() {
 
         {!loading && data && (
           <>
-            <HStack gap={responsiveSpacing} mb={responsiveSpacing}>
+            <Wrap
+              gap={responsiveSpacing}
+              mb={responsiveSpacing}
+              align={"center"}
+            >
               <Avatar size={"lg"} src={data.foto_profil} name={data.nama} />
 
               <Box>
@@ -81,16 +103,18 @@ export default function DetailKeluargaKaryawan() {
 
               <HStack ml={"auto"}>
                 <Button
-                  leftIcon={<Icon as={RiEditBoxLine} fontSize={iconSize} />}
+                  leftIcon={
+                    <Icon as={RiErrorWarningFill} fontSize={iconSize} />
+                  }
                   pl={5}
                   pr={6}
                   className="btn-ap clicky"
                   colorScheme="ap"
                 >
-                  Ubah Data Keluarga
+                  Persetujuan
                 </Button>
               </HStack>
-            </HStack>
+            </Wrap>
 
             <TabelDetailKeluargaKaryawan data={data.keluarga} />
           </>

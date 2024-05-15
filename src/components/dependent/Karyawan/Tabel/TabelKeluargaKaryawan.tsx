@@ -37,12 +37,13 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
       key: "jumlah_keluarga",
       label: "Jumlah Keluarga",
       dataType: "number",
-      preferredW: "200px",
+      thProps: { w: "200px" },
       preferredTextAlign: "center",
     },
     {
       key: "",
       label: "Detail",
+      actionLabel: "Detail",
       dataType: "action",
       action: (id: number) => {
         navigate(`/karyawan/keluarga-karyawan/${id}`);
@@ -53,7 +54,7 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
         rightIcon: <Icon as={RiArrowRightSLine} fontSize={iconSize} />,
         pr: 3,
       },
-      preferredW: "100px",
+      thProps: { w: "100px" },
     },
   ];
 

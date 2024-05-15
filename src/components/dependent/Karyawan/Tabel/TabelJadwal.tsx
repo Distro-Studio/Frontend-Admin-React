@@ -28,7 +28,7 @@ import {
 import { dummyTabelJadwalData } from "../../../../const/dummy";
 import formatTime from "../../../../const/formatTime";
 import { responsiveSpacing } from "../../../../const/sizes";
-import JadwalTabelHeader from "../JadwalTabelHeader";
+import JadwalTabelHeader from "./JadwalTabelHeader";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import Skeleton from "../../../independent/Skeleton";
 import TabelFooterConfig from "../../TabelFooterConfig";

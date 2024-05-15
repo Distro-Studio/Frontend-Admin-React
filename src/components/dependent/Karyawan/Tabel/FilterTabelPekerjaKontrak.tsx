@@ -17,23 +17,25 @@ import {
 } from "@chakra-ui/react";
 import { RiEqualizer3Line } from "@remixicon/react";
 import { Dispatch, useRef, useState } from "react";
-import { useBodyColor } from "../../../const/colors";
-import { iconSize } from "../../../const/sizes";
-import backOnClose from "../../../lib/backOnClose";
-import formatNumber from "../../../lib/formatNumber";
-import useBackOnClose from "../../../lib/useBackOnClose";
-import FilterMasaKerja from "./FilterOptions/FilterMasaKerja";
+import { iconSize } from "../../../../const/sizes";
+import backOnClose from "../../../../lib/backOnClose";
+import useBackOnClose from "../../../../lib/useBackOnClose";
+import FilterStatusKaryawan from "../FilterOptions/FilterStatusKaryawan";
+import FilterUnitKerja from "../FilterOptions/FilterUnitKerja";
+import formatNumber from "../../../../lib/formatNumber";
+import { useBodyColor } from "../../../../const/colors";
+import FilterTglMasuk from "../FilterOptions/FilterTglMasuk";
 
 interface Props {
-  defaultFilterConfig: any;
   filterConfig: any;
   setFilterConfig: Dispatch<any>;
+  defaultFilterConfig: any;
 }
 
-export default function FilterTabelRekamJejak({
-  defaultFilterConfig,
+export default function FilterTabelPekerjaKontrak({
   filterConfig,
   setFilterConfig,
+  defaultFilterConfig,
 }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
@@ -48,12 +50,15 @@ export default function FilterTabelRekamJejak({
     backOnClose(onClose);
   }
 
-  // SX
-  const bodyColor = useBodyColor();
   const adaFilter =
     filterConfig &&
-    ((filterConfig.masa_kerja && filterConfig.masa_kerja.length > 0) ||
-      (filterConfig.promosi && filterConfig.promosi.length > 0));
+    ((filterConfig.unit_kerja && filterConfig.unit_kerja.length > 0) ||
+      (filterConfig.status_karyawan &&
+        filterConfig.status_karyawan.length > 0) ||
+      (filterConfig.tgl_masuk && filterConfig.tgl_masuk).length > 0);
+
+  // SX
+  const bodyColor = useBodyColor();
 
   return (
     <>
@@ -82,7 +87,9 @@ export default function FilterTabelRekamJejak({
             >
               <Text color={bodyColor} fontSize={12} fontWeight={600}>
                 {formatNumber(
-                  filterConfig.masa_kerja.length + filterConfig.promosi.length
+                  filterConfig.unit_kerja.length +
+                    filterConfig.status_karyawan.length +
+                    filterConfig.tgl_masuk.length
                 )}
               </Text>
             </Center>
@@ -111,7 +118,17 @@ export default function FilterTabelRekamJejak({
 
           <ModalBody>
             <Accordion allowMultiple>
-              <FilterMasaKerja
+              <FilterUnitKerja
+                filterConfig={localFilterConfig}
+                setFilterConfig={setLocalFilterConfig}
+              />
+
+              <FilterStatusKaryawan
+                filterConfig={localFilterConfig}
+                setFilterConfig={setLocalFilterConfig}
+              />
+
+              <FilterTglMasuk
                 filterConfig={localFilterConfig}
                 setFilterConfig={setLocalFilterConfig}
               />

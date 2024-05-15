@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import FilterTabelPekerjaKontrak from "../../components/dependent/Karyawan/FilterTabelPekerjaKontrak";
+import FilterTabelPekerjaKontrak from "../../components/dependent/Karyawan/Tabel/FilterTabelPekerjaKontrak";
 import TabelPekerjaKontrak from "../../components/dependent/Karyawan/Tabel/TabelPekerjaKontrak";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
