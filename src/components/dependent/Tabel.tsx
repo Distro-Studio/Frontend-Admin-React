@@ -35,6 +35,7 @@ interface Props extends BoxProps {
   pageConfig?: number;
   setPageConfig?: (page: number) => void;
   paginationData?: any;
+  onCheckItem?: (checkedItem: any) => void;
 }
 
 export default function Tabel({
@@ -45,9 +46,35 @@ export default function Tabel({
   setPageConfig,
   limitConfig,
   setLimitConfig,
+  onCheckItem,
   ...props
 }: Props) {
-  // Sort Congig
+  // Check List Config
+  const [checkedItems, setCheckedItems] = useState<string[]>([]);
+  const [isCheckAll, setIsCheckAll] = useState(false);
+  const handleCheckItem = (id: string) => {
+    let updatedCheckedItems;
+    if (checkedItems.includes(id)) {
+      updatedCheckedItems = checkedItems.filter((item) => item !== id);
+    } else {
+      updatedCheckedItems = [...checkedItems, id];
+    }
+    setCheckedItems(updatedCheckedItems);
+    onCheckItem && onCheckItem(updatedCheckedItems);
+  };
+  const handleCheckAll = () => {
+    if (isCheckAll) {
+      setCheckedItems([]);
+      onCheckItem && onCheckItem([]);
+    } else {
+      const allIds = data.map((item) => item.id);
+      setCheckedItems(allIds);
+      onCheckItem && onCheckItem(allIds);
+    }
+    setIsCheckAll(!isCheckAll);
+  };
+
+  // Sort Config
   const [sortConfig, setSortConfig] = useState<{
     key: string;
     direction: "asc" | "desc";
@@ -81,7 +108,6 @@ export default function Tabel({
   const bodyColor = useBodyColor();
 
   return (
-    // <div style={{ overflowX: "auto" }}>
     <>
       <TabelContainer {...props}>
         <Table minW={"100%"}>
@@ -93,15 +119,24 @@ export default function Tabel({
                 p={0}
                 borderBottom={"none !important"}
                 zIndex={3}
+                w={"50px"}
               >
                 <Center
                   p={4}
                   h={"52px"}
+                  w={"50px"}
                   borderRight={"1px solid var(--divider3)"}
                   bg={bodyColor}
                   borderBottom={"1px solid var(--divider3) !important"}
                 >
-                  <Checkbox colorScheme="ap" />
+                  <Checkbox
+                    colorScheme="ap"
+                    isChecked={isCheckAll}
+                    onChange={(e) => {
+                      e.stopPropagation();
+                      handleCheckAll();
+                    }}
+                  />
                 </Center>
               </Th>
 
@@ -181,14 +216,23 @@ export default function Tabel({
                   p={0}
                   bg={bodyColor}
                   zIndex={2}
+                  w={"50px"}
                 >
                   <Center
                     h={"72px"}
+                    w={"50px"}
                     bg={i % 2 === 0 ? contentBgColor : bodyColor}
                     p={4}
                     borderRight={"1px solid var(--divider3)"}
                   >
-                    <Checkbox colorScheme="ap" />
+                    <Checkbox
+                      colorScheme="ap"
+                      isChecked={checkedItems.includes(row.id)}
+                      onChange={(e) => {
+                        e.stopPropagation();
+                        handleCheckItem(row.id);
+                      }}
+                    />
                   </Center>
                 </Td>
 
@@ -263,14 +307,17 @@ export default function Tabel({
                   p={0}
                   bg={i % 2 === 0 ? contentBgColor : bodyColor}
                   zIndex={1}
+                  w={"50px"}
                 >
                   <VStack
                     h={"72px"}
+                    w={"50px"}
                     borderLeft={"1px solid var(--divider3)"}
                     justify={"center"}
                   >
                     <IconButton
                       h={"72px"}
+                      w={"50px"}
                       aria-label="Option Button"
                       icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
                       className="btn"
@@ -292,6 +339,5 @@ export default function Tabel({
         paginationData={paginationData}
       />
     </>
-    // </div>
   );
 }

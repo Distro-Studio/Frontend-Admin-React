@@ -35,9 +35,10 @@ import TabelFooterConfig from "../../dependent/TabelFooterConfig";
 
 interface Props {
   filterConfig?: any;
+  onCheckItem?: (checkedItem: any) => void;
 }
 
-export default function TabelJadwal({ filterConfig }: Props) {
+export default function TabelJadwal({ onCheckItem, filterConfig }: Props) {
   const [data] = useState<any | null>(dummyTabelJadwalData);
   const [loading] = useState<boolean>(false);
 
@@ -48,6 +49,31 @@ export default function TabelJadwal({ filterConfig }: Props) {
   todayMasuk.setHours(9, 0, 0, 0); // Set jam menjadi 09:00
   todayKeluar.setHours(17, 0, 0, 0); // Set jam menjadi 17:00
   //! DEBUG
+
+  // Check List Config
+  const [checkedItems, setCheckedItems] = useState<string[]>([]);
+  const [isCheckAll, setIsCheckAll] = useState(false);
+  const handleCheckItem = (id: string) => {
+    let updatedCheckedItems;
+    if (checkedItems.includes(id)) {
+      updatedCheckedItems = checkedItems.filter((item) => item !== id);
+    } else {
+      updatedCheckedItems = [...checkedItems, id];
+    }
+    setCheckedItems(updatedCheckedItems);
+    onCheckItem && onCheckItem(updatedCheckedItems);
+  };
+  const handleCheckAll = () => {
+    if (isCheckAll) {
+      setCheckedItems([]);
+      onCheckItem && onCheckItem([]);
+    } else {
+      const allIds = data.map((item: any) => item.id);
+      setCheckedItems(allIds);
+      onCheckItem && onCheckItem(allIds);
+    }
+    setIsCheckAll(!isCheckAll);
+  };
 
   // Limit Config
   const [limitConfig, setLimitConfig] = useState<number>(10);
@@ -118,15 +144,24 @@ export default function TabelJadwal({ filterConfig }: Props) {
                   p={0}
                   borderBottom={"none !important"}
                   zIndex={3}
+                  w={"50px"}
                 >
                   <Center
                     p={4}
                     h={"52px"}
+                    w={"50px"}
                     borderRight={"1px solid var(--divider3)"}
                     bg={bodyColor}
                     borderBottom={"1px solid var(--divider3) !important"}
                   >
-                    <Checkbox colorScheme="ap" />
+                    <Checkbox
+                      colorScheme="ap"
+                      isChecked={isCheckAll}
+                      onChange={(e) => {
+                        e.stopPropagation();
+                        handleCheckAll();
+                      }}
+                    />
                   </Center>
                 </Th>
 
@@ -184,14 +219,23 @@ export default function TabelJadwal({ filterConfig }: Props) {
                     p={0}
                     bg={bodyColor}
                     zIndex={2}
+                    w={"50px"}
                   >
                     <Center
                       h={"94px"}
+                      w={"50px"}
                       bg={i % 2 === 0 ? contentBgColor : bodyColor}
                       p={4}
                       borderRight={"1px solid var(--divider3)"}
                     >
-                      <Checkbox colorScheme="ap" />
+                      <Checkbox
+                        colorScheme="ap"
+                        isChecked={checkedItems.includes(jadwalData.id)}
+                        onChange={(e) => {
+                          e.stopPropagation();
+                          handleCheckItem(jadwalData.id);
+                        }}
+                      />
                     </Center>
                   </Td>
 

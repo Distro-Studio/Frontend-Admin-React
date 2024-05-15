@@ -24,7 +24,7 @@ import parseNumber from "../../../../lib/parseNumber";
 interface Props extends ButtonProps {
   placeholder?: string;
   confirmDate: (date: any) => void;
-  dateValue?: Date;
+  dateValue?: Date[];
   defaultDateSelected?: Date;
   dateFormatOptions?: any;
 }
@@ -44,7 +44,7 @@ export default function FilterTglMasukPanel({
   const [tahun, setTahun] = useState<number>(date.getFullYear());
   const [bulan, setBulan] = useState<number>(date.getMonth() + 1);
   const [selected, setSelected] = useState<any>();
-  // const [confirm, setConfirm] = useState<boolean>(false);
+  console.log(dateValue);
 
   const confirmDateRef = useRef(confirmDate);
 
@@ -191,7 +191,7 @@ export default function FilterTglMasukPanel({
             <VStack overflowX={"auto"} w={"100%"} align={"stretch"}>
               <DayPicker
                 mode="single"
-                selected={dateValue}
+                selected={dateValue && dateValue[0]}
                 onSelect={(e) => {
                   setSelected(e);
                   // setConfirm(false);
@@ -242,8 +242,10 @@ export default function FilterTglMasukPanel({
 
       <VStack align={"stretch"} w={"100%"}>
         <VStack borderRadius={8} bg={"var(--divider)"} p={2} gap={1}>
-          <Text opacity={selected || dateValue ? 1 : 0.6}>
-            {selected || dateValue
+          <Text
+            opacity={selected || (dateValue && dateValue.length > 0) ? 1 : 0.6}
+          >
+            {selected || (dateValue && dateValue.length > 0)
               ? `${formatDate(selected || dateValue)}`
               : "Silahkan pilih tanggal"}
           </Text>
