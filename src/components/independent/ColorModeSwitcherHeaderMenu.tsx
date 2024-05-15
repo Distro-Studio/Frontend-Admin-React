@@ -35,7 +35,7 @@ export const ColorModeSwitcherHeaderMenu: React.FC<ColorModeSwitcherProps> = (
         w={"6px"}
         h={"6px"}
         borderRadius={"full"}
-        bg={text === "dark" ? "red.400" : "green.400"}
+        bg={text === "dark" ? "var(--divider2)" : "green.400"}
         ml={"auto"}
       />
     </HStack>
