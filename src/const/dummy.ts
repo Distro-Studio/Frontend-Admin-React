@@ -9,6 +9,7 @@ const dummyTabelJadwalData = [
     status_karyawan: "Kontrak",
     tempat_lahir: "Semarang",
     tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
     avatar: "https://bit.ly/dan-abramov",
     jadwal_list: [
       null,
@@ -60,6 +61,7 @@ const dummyTabelJadwalData = [
     status_karyawan: "Tetap",
     tempat_lahir: "Jakarta",
     tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
     avatar: "https://bit.ly/tioluwani-kolawole",
     jadwal_list: [
       {
@@ -105,6 +107,7 @@ const dummyTabelJadwalData = [
     status_karyawan: "Kontrak",
     tempat_lahir: "Surabaya",
     tgl_lahir: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
     avatar: "https://bit.ly/kent-c-dodds",
     jadwal_list: [
       null,
@@ -156,6 +159,7 @@ const dummyTabelJadwalData = [
     status_karyawan: "Tetap",
     tempat_lahir: "Bandung",
     tgl_lahir: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
     avatar: "https://bit.ly/ryan-florence",
     jadwal_list: [
       {
@@ -207,6 +211,7 @@ const dummyTabelJadwalData = [
     status_karyawan: "Kontrak",
     tempat_lahir: "Yogyakarta",
     tgl_lahir: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
     avatar: "https://bit.ly/prosper-baba",
     jadwal_list: [
       {
@@ -270,6 +275,7 @@ const dummyTabelJadwalData = [
     status_karyawan: "Tetap",
     tempat_lahir: "Medan",
     tgl_lahir: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
     avatar: "https://bit.ly/sage-adebayo",
     jadwal_list: [
       {
@@ -333,6 +339,7 @@ const dummyTabelJadwalData = [
     status_karyawan: "Kontrak",
     tempat_lahir: "Denpasar",
     tgl_lahir: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
     avatar: "https://bit.ly/code-beast",
     jadwal_list: [
       {
@@ -399,6 +406,7 @@ const dummyKaryawanList = [
     status_karyawan: "Kontrak",
     tempat_lahir: "Semarang",
     tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
     foto_profil: "https://bit.ly/dan-abramov",
     email: "sulenq.wazawsky@example.com",
     username: "sulenq_wazawsky",
@@ -416,6 +424,7 @@ const dummyKaryawanList = [
     status_karyawan: "Magang",
     tempat_lahir: "Jakarta",
     tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
     foto_profil: "https://bit.ly/tioluwani-kolawole",
     email: "john.doe@example.com",
     username: "john_doe",
@@ -433,6 +442,7 @@ const dummyKaryawanList = [
     status_karyawan: "Kontrak",
     tempat_lahir: "Surabaya",
     tgl_lahir: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
     foto_profil: "https://bit.ly/kent-c-dodds",
     email: "webber.smith@example.com",
     username: "webbermanjensen",
@@ -450,6 +460,7 @@ const dummyKaryawanList = [
     status_karyawan: "Tetap",
     tempat_lahir: "Bandung",
     tgl_lahir: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
     foto_profil: "https://bit.ly/ryan-florence",
     email: "michael.johnson@example.com",
     username: "michael_johnson",
@@ -467,6 +478,7 @@ const dummyKaryawanList = [
     status_karyawan: "Kontrak",
     tempat_lahir: "Yogyakarta",
     tgl_lahir: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
     foto_profil: "https://bit.ly/prosper-baba",
     email: "amanda.lee@example.com",
     username: "amanda_lee",
@@ -484,6 +496,7 @@ const dummyKaryawanList = [
     status_karyawan: "Tetap",
     tempat_lahir: "Medan",
     tgl_lahir: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
     foto_profil: "https://bit.ly/sage-adebayo",
     email: "kevin.brown@example.com",
     username: "kevin_brown",
@@ -501,6 +514,7 @@ const dummyKaryawanList = [
     status_karyawan: "Kontrak",
     tempat_lahir: "Denpasar",
     tgl_lahir: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
     foto_profil: "https://bit.ly/code-beast",
     email: "maria.garcia@example.com",
     username: "maria_garcia",
@@ -518,6 +532,7 @@ const dummyKaryawanList = [
     status_karyawan: "Magang",
     tempat_lahir: "Semarang",
     tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
     foto_profil: "https://bit.ly/dan-abramov",
     email: "sulenq.wazawsky2@example.com",
     username: "sulenq_wazawsky2",
@@ -535,6 +550,7 @@ const dummyKaryawanList = [
     status_karyawan: "Tetap",
     tempat_lahir: "Jakarta",
     tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
     foto_profil: "https://bit.ly/tioluwani-kolawole",
     email: "john.doe2@example.com",
     username: "john_doe2",
@@ -552,6 +568,7 @@ const dummyKaryawanList = [
     status_karyawan: "Kontrak",
     tempat_lahir: "Surabaya",
     tgl_lahir: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
+    tgl_masuk: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
     foto_profil: "https://bit.ly/kent-c-dodds",
     email: "jane.smith2@example.com",
     username: "jane_smith2",

@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Badge,
   Center,
   Checkbox,
   HStack,
@@ -16,7 +17,11 @@ import {
 } from "@chakra-ui/react";
 import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
 import { useState } from "react";
-import { useBodyColor, useContentBgColor } from "../../../../const/colors";
+import {
+  statusKaryawanColorScheme,
+  useBodyColor,
+  useContentBgColor,
+} from "../../../../const/colors";
 import {
   Karyawan__Interface,
   Tabel__Column__Interface,
@@ -26,6 +31,7 @@ import formatDate from "../../../../lib/formatDate";
 import Skeleton from "../../../independent/Skeleton";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
+import { dummyKaryawanList } from "../../../../const/dummy";
 
 interface Props {
   filterConfig?: any;
@@ -76,158 +82,12 @@ export default function TabelKaryawan({ filterConfig }: Props) {
   ];
 
   //! DEBUG
-  const dummy = [
-    {
-      id: 1,
-      nama: "Sulenq Wazawsky",
-      nik: "412123143",
-      no_rm: "3214",
-      nik_ktp: "3321231412412",
-      unit_kerja: "Perawat Hewan",
-      status_karyawan: "Kontrak",
-      tempat_lahir: "Semarang",
-      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      foto_profil: "https://bit.ly/dan-abramov",
-    },
-    {
-      id: 2,
-      nama: "John Doe",
-      nik: "111222333",
-      no_rm: "1234",
-      nik_ktp: "4445556667778",
-      unit_kerja: "Dokter",
-      status_karyawan: "Tetap",
-      tempat_lahir: "Jakarta",
-      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      foto_profil: "https://bit.ly/tioluwani-kolawole",
-    },
-    {
-      id: 3,
-      nama: "Jane Smith",
-      nik: "987654321",
-      no_rm: "5678",
-      nik_ktp: "8889990001112",
-      unit_kerja: "Administrasi",
-      status_karyawan: "Kontrak",
-      tempat_lahir: "Surabaya",
-      tgl_lahir: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
-      foto_profil: "https://bit.ly/kent-c-dodds",
-    },
-    {
-      id: 4,
-      nama: "Michael Johnson",
-      nik: "654321789",
-      no_rm: "9876",
-      nik_ktp: "2223334445556",
-      unit_kerja: "Keuangan",
-      status_karyawan: "Tetap",
-      tempat_lahir: "Bandung",
-      tgl_lahir: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
-      foto_profil: "https://bit.ly/ryan-florence",
-    },
-    {
-      id: 5,
-      nama: "Amanda Lee",
-      nik: "789456123",
-      no_rm: "3456",
-      nik_ktp: "6667778889990",
-      unit_kerja: "Pemasaran",
-      status_karyawan: "Kontrak",
-      tempat_lahir: "Yogyakarta",
-      tgl_lahir: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
-      foto_profil: "https://bit.ly/prosper-baba",
-    },
-    {
-      id: 6,
-      nama: "Kevin Brown",
-      nik: "555666777",
-      no_rm: "2468",
-      nik_ktp: "1112223334445",
-      unit_kerja: "IT",
-      status_karyawan: "Tetap",
-      tempat_lahir: "Medan",
-      tgl_lahir: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
-      foto_profil: "https://bit.ly/sage-adebayo",
-    },
-    {
-      id: 7,
-      nama: "Maria Garcia",
-      nik: "123456789",
-      no_rm: "1357",
-      nik_ktp: "9990001112223",
-      unit_kerja: "Pelayanan Pelanggan",
-      status_karyawan: "Kontrak",
-      tempat_lahir: "Denpasar",
-      tgl_lahir: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
-      foto_profil: "https://bit.ly/code-beast",
-    },
-    {
-      id: 8,
-      nama: "Sulenq Wazawsky",
-      nik: "412123143",
-      no_rm: "3214",
-      nik_ktp: "3321231412412",
-      unit_kerja: "Perawat Hewan",
-      status_karyawan: "Kontrak",
-      tempat_lahir: "Semarang",
-      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      foto_profil: "https://bit.ly/dan-abramov",
-    },
-    {
-      id: 9,
-      nama: "John Doe",
-      nik: "111222333",
-      no_rm: "1234",
-      nik_ktp: "4445556667778",
-      unit_kerja: "Dokter",
-      status_karyawan: "Tetap",
-      tempat_lahir: "Jakarta",
-      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      foto_profil: "https://bit.ly/tioluwani-kolawole",
-    },
-    {
-      id: 10,
-      nama: "Jane Smith",
-      nik: "987654321",
-      no_rm: "5678",
-      nik_ktp: "8889990001112",
-      unit_kerja: "Administrasi",
-      status_karyawan: "Kontrak",
-      tempat_lahir: "Surabaya",
-      tgl_lahir: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
-      foto_profil: "https://bit.ly/kent-c-dodds",
-    },
-    {
-      id: 11,
-      nama: "Michael Johnson",
-      nik: "654321789",
-      no_rm: "9876",
-      nik_ktp: "2223334445556",
-      unit_kerja: "Keuangan",
-      status_karyawan: "Tetap",
-      tempat_lahir: "Bandung",
-      tgl_lahir: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
-      foto_profil: "https://bit.ly/ryan-florence",
-    },
-    {
-      id: 12,
-      nama: "Amanda Lee",
-      nik: "789456123",
-      no_rm: "3456",
-      nik_ktp: "6667778889990",
-      unit_kerja: "Pemasaran",
-      status_karyawan: "Kontrak",
-      tempat_lahir: "Yogyakarta",
-      tgl_lahir: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
-      foto_profil: "https://bit.ly/prosper-baba",
-    },
-  ];
   // console.log(filterConfig);
   //! DEBUG
 
   //TODO get karyawan
 
-  const [data] = useState<Karyawan__Interface[] | null>(dummy);
+  const [data] = useState<Karyawan__Interface[] | null>(dummyKaryawanList);
   const [loading] = useState<boolean>(false);
 
   // Limit Config
@@ -472,7 +332,6 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                         />
                       </Center>
                     </Td>
-
                     <Td whiteSpace={"nowrap"}>
                       <HStack>
                         <Avatar
@@ -487,12 +346,22 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                     <Td whiteSpace={"nowrap"}>{row.no_rm}</Td>
                     <Td whiteSpace={"nowrap"}>{row.nik}</Td>
                     <Td whiteSpace={"nowrap"}>{row.unit_kerja}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.status_karyawan}</Td>
+                    <Td whiteSpace={"nowrap"}>
+                      <Badge
+                        w={"100%"}
+                        textAlign={"center"}
+                        colorScheme={
+                          //@ts-ignore
+                          statusKaryawanColorScheme[row.status_karyawan]
+                        }
+                      >
+                        {row.status_karyawan}
+                      </Badge>
+                    </Td>
                     <Td whiteSpace={"nowrap"}>{row.tempat_lahir}</Td>
                     <Td whiteSpace={"nowrap"}>
                       {formatDate(row.tgl_lahir as string)}
                     </Td>
-
                     {/* Kolom tetap di sebelah kanan */}
                     <Td
                       position={"sticky"}
