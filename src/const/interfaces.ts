@@ -82,9 +82,13 @@ export interface Tabel__Column__Interface {
     | "date"
     | "badge"
     | "avatarAndName"
-    | "link";
+    | "link"
+    | "action";
   link?: string;
   preferredW?: string;
+  preferredTextAlign?: string;
+  action?: any;
+  actionButtonProps?: any;
 }
 
 export interface Presensi__SUmmary__Interface {

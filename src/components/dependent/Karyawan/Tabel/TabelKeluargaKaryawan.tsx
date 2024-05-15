@@ -1,19 +1,22 @@
-import { HStack, VStack } from "@chakra-ui/react";
+import { HStack, Icon, VStack } from "@chakra-ui/react";
+import { RiArrowRightSLine } from "@remixicon/react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Karyawan__Interface,
   Tabel__Column__Interface,
 } from "../../../../const/interfaces";
-import { responsiveSpacing } from "../../../../const/sizes";
-import Tabel from "../../Tabel";
-import TabelContainer from "../../../wrapper/TabelContainer";
+import { iconSize, responsiveSpacing } from "../../../../const/sizes";
 import Skeleton from "../../../independent/Skeleton";
+import TabelContainer from "../../../wrapper/TabelContainer";
+import Tabel from "../../Tabel";
 
 interface Props {
   filterConfig?: any;
 }
 
 export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
+  const navigate = useNavigate();
   const columns: Tabel__Column__Interface[] = [
     {
       key: "nama",
@@ -34,7 +37,23 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
       key: "jumlah_keluarga",
       label: "Jumlah Keluarga",
       dataType: "number",
-      preferredW: "240px",
+      preferredW: "200px",
+      preferredTextAlign: "center",
+    },
+    {
+      key: "",
+      label: "Detail",
+      dataType: "action",
+      action: (id: number) => {
+        navigate(`/karyawan/keluarga-karyawan/${id}`);
+      },
+      actionButtonProps: {
+        colorScheme: "ap",
+        className: "btn-ap clicky",
+        rightIcon: <Icon as={RiArrowRightSLine} fontSize={iconSize} />,
+        pr: 3,
+      },
+      preferredW: "100px",
     },
   ];
 
@@ -226,7 +245,6 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
           setLimitConfig={setLimitConfig}
           noMore
           noCheckList
-          action={"Detail"}
         />
       )}
     </>

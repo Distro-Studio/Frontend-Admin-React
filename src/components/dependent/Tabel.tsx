@@ -153,7 +153,11 @@ export default function Tabel({
                 <Th
                   key={i}
                   whiteSpace={"nowrap"}
-                  onClick={() => sort(column.key)}
+                  onClick={() => {
+                    if (column.dataType !== "action") {
+                      sort(column.key);
+                    }
+                  }}
                   cursor={"pointer"}
                   borderBottom={"none !important"}
                   bg={bodyColor}
@@ -161,57 +165,59 @@ export default function Tabel({
                   p={0}
                   w={column.preferredW}
                 >
-                  <HStack
-                    justify={
-                      column.dataType === "numeric"
-                        ? "flex-end"
-                        : "space-between"
-                    }
-                    borderBottom={"1px solid var(--divider3)"}
-                    px={4}
-                    py={3}
-                    h={"52px"}
-                    pl={i === 0 ? 4 : ""}
-                    pr={i === columns.length - 1 ? 4 : ""}
-                  >
-                    <Text fontWeight={600} flexShrink={0} lineHeight={1.2}>
-                      {column.label}
-                    </Text>
+                  {column.dataType === "action" ? (
+                    <HStack
+                      justify={"center"}
+                      borderBottom={"1px solid var(--divider3)"}
+                      px={4}
+                      py={3}
+                      h={"52px"}
+                      pl={i === 0 ? 4 : ""}
+                      pr={i === columns.length - 1 ? 4 : ""}
+                    >
+                      <Text>{column.label}</Text>
+                    </HStack>
+                  ) : (
+                    <HStack
+                      justify={
+                        column.preferredTextAlign === "center"
+                          ? "center"
+                          : column.dataType === "numeric"
+                          ? "flex-end"
+                          : "space-between"
+                      }
+                      borderBottom={"1px solid var(--divider3)"}
+                      px={4}
+                      py={3}
+                      h={"52px"}
+                      pl={i === 0 ? 4 : ""}
+                      pr={i === columns.length - 1 ? 4 : ""}
+                    >
+                      <Text fontWeight={600} flexShrink={0} lineHeight={1.2}>
+                        {column.label}
+                      </Text>
 
-                    {sortConfig && sortConfig.key === column.key && (
-                      <>
-                        {sortConfig.direction === "asc" ? (
-                          <Icon
-                            as={RiArrowUpLine}
-                            color={"p.500"}
-                            fontSize={16}
-                          />
-                        ) : (
-                          <Icon
-                            as={RiArrowDownLine}
-                            color={"p.500"}
-                            fontSize={16}
-                          />
-                        )}
-                      </>
-                    )}
-                  </HStack>
+                      {sortConfig && sortConfig.key === column.key && (
+                        <>
+                          {sortConfig.direction === "asc" ? (
+                            <Icon
+                              as={RiArrowUpLine}
+                              color={"p.500"}
+                              fontSize={16}
+                            />
+                          ) : (
+                            <Icon
+                              as={RiArrowDownLine}
+                              color={"p.500"}
+                              fontSize={16}
+                            />
+                          )}
+                        </>
+                      )}
+                    </HStack>
+                  )}
                 </Th>
               ))}
-
-              {action && (
-                <Th
-                  position={"sticky"}
-                  right={0}
-                  p={0}
-                  bg={bodyColor}
-                  zIndex={1}
-                  w={"100px"}
-                  textAlign={"center"}
-                >
-                  Aksi
-                </Th>
-              )}
 
               {/* Kolom tetap di sebelah kanan */}
               {!noMore && (
@@ -301,6 +307,16 @@ export default function Tabel({
                         {row[column.key]}
                       </Text>
                     ),
+                    action: (
+                      <Button
+                        onClick={() => {
+                          column.action(row.id);
+                        }}
+                        {...column.actionButtonProps}
+                      >
+                        {column.label}
+                      </Button>
+                    ),
                   };
 
                   return (
@@ -310,53 +326,35 @@ export default function Tabel({
                       pl={colIndex === 0 ? 4 : ""}
                       pr={colIndex === columns.length - 1 ? 4 : ""}
                       whiteSpace={"nowrap"}
+                      // @ts-ignore
                       textAlign={
-                        row[column.key] === undefined ||
-                        row[column.key] === null
+                        column.preferredTextAlign
+                          ? column.preferredTextAlign
+                          : row[column.key] === undefined ||
+                            row[column.key] === null ||
+                            column.dataType === "link"
                           ? "left"
-                          : column.dataType === "link"
-                          ? "center"
                           : column.dataType === "numeric"
                           ? "right"
                           : "left"
                       }
                       opacity={
-                        row[column.key] === undefined ||
-                        row[column.key] === null
+                        (row[column.key] === undefined ||
+                          row[column.key] === null) &&
+                        column.dataType !== "action"
                           ? 0.6
                           : 1
                       }
                     >
-                      {row[column.key] !== undefined && row[column.key] !== null
+                      {(row[column.key] !== undefined &&
+                        row[column.key] !== null) ||
+                      column.dataType === "action"
                         ? // @ts-ignore
                           typicalRender[column.dataType]
                         : "-"}
                     </Td>
                   );
                 })}
-
-                {action && (
-                  <Td
-                    position={"sticky"}
-                    right={0}
-                    bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                    zIndex={1}
-                    w={"100px"}
-                  >
-                    <VStack>
-                      <Button
-                        colorScheme="ap"
-                        className="btn-ap clicky"
-                        as={Link}
-                        w={"90px"}
-                        h={"36px"}
-                        to={`${row.id}`}
-                      >
-                        {action}
-                      </Button>
-                    </VStack>
-                  </Td>
-                )}
 
                 {/* Kolom tetap di sebelah kanan */}
                 {!noMore && (
