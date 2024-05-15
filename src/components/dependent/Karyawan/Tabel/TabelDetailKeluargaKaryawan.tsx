@@ -94,6 +94,8 @@ export default function TabelDetailKeluargaKaryawan({
           setPageConfig={setPageConfig}
           limitConfig={limitConfig}
           setLimitConfig={setLimitConfig}
+          noCheckList
+          noMore
         />
       )}
     </>
