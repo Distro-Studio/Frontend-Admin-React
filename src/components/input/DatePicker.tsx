@@ -33,6 +33,7 @@ import { iconSize } from "../../const/sizes";
 import formatDate from "../../lib/formatDate";
 import parseNumber from "../../lib/parseNumber";
 import useBackOnClose from "../../lib/useBackOnClose";
+import backOnClose from "../../lib/backOnClose";
 
 interface Props extends ButtonProps {
   formik?: any;
@@ -57,12 +58,10 @@ export default function DatePicker({
   const initialRef = useRef(null);
   const monthInputRef = useRef<HTMLInputElement>(null);
   const yearInputRef = useRef<HTMLInputElement>(null);
-
   const [date, setDate] = useState<Date>(new Date());
   const [tahun, setTahun] = useState<number>(date.getFullYear());
   const [bulan, setBulan] = useState<number>(date.getMonth() + 1);
   const [selected, setSelected] = useState<any>();
-  // const [confirm, setConfirm] = useState<boolean>(false);
   const confirmSelect = () => {
     if (selected) {
       if (formik && name) {
@@ -70,7 +69,6 @@ export default function DatePicker({
       } else if (confirmDate) {
         confirmDate(selected);
       }
-      // setConfirm(true);
     }
   };
 
@@ -80,16 +78,9 @@ export default function DatePicker({
     }
   }, [defaultDateSelected]);
 
-  // useEffect(() => {
-  //   setConfirm(true);
-  // }, []);
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
-  function handleOnClose() {
-    window.history.back();
-    onClose();
-  }
+
   function todayMonth() {
     const today = new Date();
     setDate(today);
@@ -190,7 +181,10 @@ export default function DatePicker({
 
       <Modal
         isOpen={isOpen}
-        onClose={handleOnClose}
+        onClose={() => {
+          backOnClose(onClose);
+          setSelected(dateValue);
+        }}
         initialFocusRef={initialRef}
         isCentered
       >
@@ -280,7 +274,6 @@ export default function DatePicker({
                       selected={selected}
                       onSelect={(e) => {
                         setSelected(e);
-                        // setConfirm(false);
                       }}
                       locale={id}
                       modifiersStyles={modifiersStyles}
@@ -348,7 +341,7 @@ export default function DatePicker({
                 isDisabled={selected ? false : true}
                 onClick={() => {
                   confirmSelect();
-                  handleOnClose();
+                  backOnClose(onClose);
                 }}
               >
                 Konfirmasi

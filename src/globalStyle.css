@@ -433,6 +433,7 @@ img[alt="Google"] {
 }
 .rdp-months {
   width: 100%;
+  padding-top: 1px !important;
   align-items: stretch !important;
   justify-content: stretch !important;
 }
