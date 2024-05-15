@@ -11,7 +11,6 @@ export default function CContainer({ children, ...props }: Props) {
       gap={0}
       align={"stretch"}
       w={"100%"}
-      flex={1}
       {...props}
     >
       {children}

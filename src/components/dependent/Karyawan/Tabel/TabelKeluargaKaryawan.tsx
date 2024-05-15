@@ -1,19 +1,19 @@
+import { HStack, VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import {
   Karyawan__Interface,
   Tabel__Column__Interface,
-} from "../../../const/interfaces";
-import Tabel from "../../dependent/Tabel";
-import Skeleton from "../Skeleton";
-import TabelContainer from "../../wrapper/TabelContainer";
-import { HStack, VStack } from "@chakra-ui/react";
-import { responsiveSpacing } from "../../../const/sizes";
+} from "../../../../const/interfaces";
+import { responsiveSpacing } from "../../../../const/sizes";
+import Tabel from "../../Tabel";
+import TabelContainer from "../../../wrapper/TabelContainer";
+import Skeleton from "../../../independent/Skeleton";
 
 interface Props {
   filterConfig?: any;
 }
 
-export default function TabelKaryawan({ filterConfig }: Props) {
+export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
       key: "nama",
@@ -21,39 +21,20 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       dataType: "avatarAndName",
     },
     {
-      key: "no_induk_karyawan",
-      label: "No. Induk Karyawan",
+      key: "ayah",
+      label: "Ayah",
       dataType: "string",
     },
     {
-      key: "rm",
-      label: "RM",
+      key: "ibu",
+      label: "Ibu",
       dataType: "string",
     },
     {
-      key: "nik",
-      label: "NIK",
-      dataType: "string",
-    },
-    {
-      key: "unit_kerja",
-      label: "Unit Kerja",
-      dataType: "string",
-    },
-    {
-      key: "status_karyawan",
-      label: "Status Karyawan",
-      dataType: "badge",
-    },
-    {
-      key: "tempat_lahir",
-      label: "Tempat Lahir",
-      dataType: "string",
-    },
-    {
-      key: "tgl_lahir",
-      label: "Tanggal Lahir",
-      dataType: "date",
+      key: "jumlah_keluarga",
+      label: "Jumlah Keluarga",
+      dataType: "number",
+      preferredW: "240px",
     },
   ];
 
@@ -62,7 +43,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
     {
       id: 1,
       nama: "Sulenq Wazawsky",
-      no_induk_karyawan: "412123143",
+      jumlah_keluarga: "2",
+      ayah: "Jonatan",
+      ibu: "Aprilia",
       rm: "3214",
       nik: "3321231412412",
       unit_kerja: "Perawat Hewan",
@@ -74,7 +57,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
     {
       id: 2,
       nama: "John Doe",
-      no_induk_karyawan: "111222333",
+      jumlah_keluarga: "3",
+      ayah: "Supardi Johar",
+      ibu: "Srikandi Kendi",
       rm: "1234",
       nik: "4445556667778",
       unit_kerja: "Dokter",
@@ -86,7 +71,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
     {
       id: 3,
       nama: "Jane Smith",
-      no_induk_karyawan: "987654321",
+      jumlah_keluarga: "5",
+      ayah: "Sukamsi",
+      ibu: "Sarimi",
       rm: "5678",
       nik: "8889990001112",
       unit_kerja: "Administrasi",
@@ -98,7 +85,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
     {
       id: 4,
       nama: "Michael Johnson",
-      no_induk_karyawan: "654321789",
+      jumlah_keluarga: "4",
+      ayah: "Klerk",
+      ibu: "Aranaya",
       rm: "9876",
       nik: "2223334445556",
       unit_kerja: "Keuangan",
@@ -110,7 +99,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
     {
       id: 5,
       nama: "Amanda Lee",
-      no_induk_karyawan: "789456123",
+      jumlah_keluarga: "3",
+      ayah: "Joseph",
+      ibu: "Nada",
       rm: "3456",
       nik: "6667778889990",
       unit_kerja: "Pemasaran",
@@ -122,7 +113,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
     {
       id: 6,
       nama: "Kevin Brown",
-      no_induk_karyawan: "555666777",
+      jumlah_keluarga: "2",
+      ayah: "Nolan",
+      ibu: "Kadita",
       rm: "2468",
       nik: "1112223334445",
       unit_kerja: "IT",
@@ -134,7 +127,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
     {
       id: 7,
       nama: "Maria Garcia",
-      no_induk_karyawan: "123456789",
+      jumlah_keluarga: "2",
+      ayah: "Terizla",
+      ibu: "Nanabi",
       rm: "1357",
       nik: "9990001112223",
       unit_kerja: "Pelayanan Pelanggan",
@@ -146,7 +141,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
     {
       id: 8,
       nama: "Sulenq Wazawsky",
-      no_induk_karyawan: "412123143",
+      jumlah_keluarga: "1",
+      ayah: "Balmon",
+      ibu: "Miyabi",
       rm: "3214",
       nik: "3321231412412",
       unit_kerja: "Perawat Hewan",
@@ -158,7 +155,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
     {
       id: 9,
       nama: "John Doe",
-      no_induk_karyawan: "111222333",
+      jumlah_keluarga: "5",
+      ayah: "Gunandar",
+      ibu: "Pipik",
       rm: "1234",
       nik: "4445556667778",
       unit_kerja: "Dokter",
@@ -170,7 +169,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
     {
       id: 10,
       nama: "Jane Smith",
-      no_induk_karyawan: "987654321",
+      jumlah_keluarga: "2",
+      ayah: "Arif",
+      ibu: "Sinta",
       rm: "5678",
       nik: "8889990001112",
       unit_kerja: "Administrasi",
@@ -178,30 +179,6 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       tempat_lahir: "Surabaya",
       tgl_lahir: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/kent-c-dodds",
-    },
-    {
-      id: 11,
-      nama: "Michael Johnson",
-      no_induk_karyawan: "654321789",
-      rm: "9876",
-      nik: "2223334445556",
-      unit_kerja: "Keuangan",
-      status_karyawan: "Tetap",
-      tempat_lahir: "Bandung",
-      tgl_lahir: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/ryan-florence",
-    },
-    {
-      id: 12,
-      nama: "Amanda Lee",
-      no_induk_karyawan: "789456123",
-      rm: "3456",
-      nik: "6667778889990",
-      unit_kerja: "Pemasaran",
-      status_karyawan: "Kontrak",
-      tempat_lahir: "Yogyakarta",
-      tgl_lahir: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
-      avatar: "https://bit.ly/prosper-baba",
     },
   ];
   // console.log(filterConfig);
@@ -247,6 +224,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
           setPageConfig={setPageConfig}
           limitConfig={limitConfig}
           setLimitConfig={setLimitConfig}
+          noMore
+          noCheckList
+          action={"Detail"}
         />
       )}
     </>

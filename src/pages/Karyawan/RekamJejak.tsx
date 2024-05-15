@@ -9,7 +9,7 @@ import {
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import FilterTabelRekamJejak from "../../components/dependent/Karyawan/FilterTabelRekamJejak";
-import TabelRekamJejak from "../../components/independent/Karyawan/TabelRekamJejak";
+import TabelRekamJejak from "../../components/dependent/Karyawan/Tabel/TabelRekamJejak";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";

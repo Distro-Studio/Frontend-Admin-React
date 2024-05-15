@@ -2,18 +2,18 @@ import { useState } from "react";
 import {
   Karyawan__Interface,
   Tabel__Column__Interface,
-} from "../../../const/interfaces";
-import Tabel from "../../dependent/Tabel";
-import Skeleton from "../Skeleton";
-import TabelContainer from "../../wrapper/TabelContainer";
+} from "../../../../const/interfaces";
+import Tabel from "../../Tabel";
+import Skeleton from "../../../independent/Skeleton";
+import TabelContainer from "../../../wrapper/TabelContainer";
 import { HStack, VStack } from "@chakra-ui/react";
-import { responsiveSpacing } from "../../../const/sizes";
+import { responsiveSpacing } from "../../../../const/sizes";
 
 interface Props {
   filterConfig?: any;
 }
 
-export default function TabelRekamJejak({ filterConfig }: Props) {
+export default function TabelKaryawan({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
       key: "nama",
@@ -21,34 +21,39 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       dataType: "avatarAndName",
     },
     {
-      key: "tgl_masuk",
-      label: "Tanggal Masuk",
+      key: "no_induk_karyawan",
+      label: "No. Induk Karyawan",
+      dataType: "string",
+    },
+    {
+      key: "rm",
+      label: "RM",
+      dataType: "string",
+    },
+    {
+      key: "nik",
+      label: "NIK",
+      dataType: "string",
+    },
+    {
+      key: "unit_kerja",
+      label: "Unit Kerja",
+      dataType: "string",
+    },
+    {
+      key: "status_karyawan",
+      label: "Status Karyawan",
+      dataType: "badge",
+    },
+    {
+      key: "tempat_lahir",
+      label: "Tempat Lahir",
+      dataType: "string",
+    },
+    {
+      key: "tgl_lahir",
+      label: "Tanggal Lahir",
       dataType: "date",
-    },
-    {
-      key: "tgl_keluar",
-      label: "Tanggal Keluar",
-      dataType: "date",
-    },
-    {
-      key: "masa_kerja",
-      label: "Masa Kerja",
-      dataType: "string",
-    },
-    {
-      key: "promosi",
-      label: "Promosi",
-      dataType: "string",
-    },
-    {
-      key: "mutasi",
-      label: "Mutasi",
-      dataType: "string",
-    },
-    {
-      key: "pernghargaan",
-      label: "Pengharagaan",
-      dataType: "string",
     },
   ];
 
@@ -63,8 +68,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       unit_kerja: "Perawat Hewan",
       status_karyawan: "Kontrak",
       tempat_lahir: "Semarang",
-      tgl_masuk: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_keluar: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/dan-abramov",
     },
     {
@@ -76,8 +80,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       unit_kerja: "Dokter",
       status_karyawan: "Tetap",
       tempat_lahir: "Jakarta",
-      tgl_masuk: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_keluar: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/tioluwani-kolawole",
     },
     {
@@ -89,8 +92,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       unit_kerja: "Administrasi",
       status_karyawan: "Kontrak",
       tempat_lahir: "Surabaya",
-      tgl_masuk: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_keluar: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
+      tgl_lahir: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/kent-c-dodds",
     },
     {
@@ -102,8 +104,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       unit_kerja: "Keuangan",
       status_karyawan: "Tetap",
       tempat_lahir: "Bandung",
-      tgl_masuk: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_keluar: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
+      tgl_lahir: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/ryan-florence",
     },
     {
@@ -115,8 +116,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       unit_kerja: "Pemasaran",
       status_karyawan: "Kontrak",
       tempat_lahir: "Yogyakarta",
-      tgl_masuk: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_keluar: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+      tgl_lahir: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/prosper-baba",
     },
     {
@@ -128,8 +128,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       unit_kerja: "IT",
       status_karyawan: "Tetap",
       tempat_lahir: "Medan",
-      tgl_masuk: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_keluar: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+      tgl_lahir: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/sage-adebayo",
     },
     {
@@ -141,8 +140,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       unit_kerja: "Pelayanan Pelanggan",
       status_karyawan: "Kontrak",
       tempat_lahir: "Denpasar",
-      tgl_masuk: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_keluar: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
+      tgl_lahir: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/code-beast",
     },
     {
@@ -154,8 +152,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       unit_kerja: "Perawat Hewan",
       status_karyawan: "Kontrak",
       tempat_lahir: "Semarang",
-      tgl_masuk: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_keluar: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/dan-abramov",
     },
     {
@@ -167,8 +164,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       unit_kerja: "Dokter",
       status_karyawan: "Tetap",
       tempat_lahir: "Jakarta",
-      tgl_masuk: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_keluar: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+      tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/tioluwani-kolawole",
     },
     {
@@ -180,8 +176,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       unit_kerja: "Administrasi",
       status_karyawan: "Kontrak",
       tempat_lahir: "Surabaya",
-      tgl_masuk: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_keluar: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
+      tgl_lahir: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/kent-c-dodds",
     },
     {
@@ -193,8 +188,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       unit_kerja: "Keuangan",
       status_karyawan: "Tetap",
       tempat_lahir: "Bandung",
-      tgl_masuk: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_keluar: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
+      tgl_lahir: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/ryan-florence",
     },
     {
@@ -206,8 +200,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       unit_kerja: "Pemasaran",
       status_karyawan: "Kontrak",
       tempat_lahir: "Yogyakarta",
-      tgl_masuk: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_keluar: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+      tgl_lahir: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/prosper-baba",
     },
   ];

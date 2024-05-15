@@ -13,9 +13,7 @@ export default function Dashboard() {
     <>
       <CWrapper>
         <DashboardTotal mb={6} />
-      </CWrapper>
 
-      <CWrapper>
         <Wrap spacing={responsiveSpacing}>
           <DashboardJenisKelamin flex={"1 1 0"} />
 

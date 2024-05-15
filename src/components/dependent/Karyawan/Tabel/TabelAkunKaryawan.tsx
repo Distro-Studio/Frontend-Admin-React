@@ -2,12 +2,12 @@ import { useState } from "react";
 import {
   Karyawan__Interface,
   Tabel__Column__Interface,
-} from "../../../const/interfaces";
-import Tabel from "../../dependent/Tabel";
-import Skeleton from "../Skeleton";
-import TabelContainer from "../../wrapper/TabelContainer";
+} from "../../../../const/interfaces";
+import Tabel from "../../Tabel";
+import Skeleton from "../../../independent/Skeleton";
+import TabelContainer from "../../../wrapper/TabelContainer";
 import { HStack, VStack } from "@chakra-ui/react";
-import { responsiveSpacing } from "../../../const/sizes";
+import { responsiveSpacing } from "../../../../const/sizes";
 
 interface Props {
   filterConfig?: any;

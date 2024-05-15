@@ -2,18 +2,18 @@ import { useState } from "react";
 import {
   Karyawan__Interface,
   Tabel__Column__Interface,
-} from "../../../const/interfaces";
-import Tabel from "../../dependent/Tabel";
-import Skeleton from "../Skeleton";
-import TabelContainer from "../../wrapper/TabelContainer";
+} from "../../../../const/interfaces";
+import Tabel from "../../Tabel";
+import Skeleton from "../../../independent/Skeleton";
+import TabelContainer from "../../../wrapper/TabelContainer";
 import { HStack, VStack } from "@chakra-ui/react";
-import { responsiveSpacing } from "../../../const/sizes";
+import { responsiveSpacing } from "../../../../const/sizes";
 
 interface Props {
   filterConfig?: any;
 }
 
-export default function TabelPekerjaKontrak({ filterConfig }: Props) {
+export default function TabelTransferKarywan({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
       key: "nama",
@@ -21,29 +21,33 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       dataType: "avatarAndName",
     },
     {
+      key: "no_induk_karyawan",
+      label: "No. Induk Karyawan",
+      dataType: "string",
+    },
+    {
+      key: "tgl",
+      label: "Tanggal",
+      dataType: "date",
+    },
+    {
+      key: "tipe",
+      label: "Tipe",
+      dataType: "string",
+    },
+    {
       key: "unit_kerja",
       label: "Unit Kerja",
       dataType: "string",
     },
     {
-      key: "tgl_mulai",
-      label: "Tanggal Mulai",
-      dataType: "date",
+      key: "jabatan",
+      label: "Jabatan",
+      dataType: "string",
     },
     {
-      key: "tgl_selesai",
-      label: "Tanggal Selesai",
-      dataType: "date",
-    },
-    {
-      key: "laporan",
-      label: "Laporan",
-      dataType: "link",
-      link: `/laporan`,
-    },
-    {
-      key: "status",
-      label: "Status",
+      key: "status_karyawan",
+      label: "Pengharagaan",
       dataType: "badge",
     },
   ];
@@ -57,10 +61,9 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       rm: "3214",
       nik: "3321231412412",
       unit_kerja: "Perawat Hewan",
-      status: "1 Bulan",
-      laporan: "link",
-      tgl_mulai: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_selesai: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+      status_karyawan: "Kontrak",
+      tempat_lahir: "Semarang",
+      tgl: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/dan-abramov",
     },
     {
@@ -70,10 +73,9 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       rm: "1234",
       nik: "4445556667778",
       unit_kerja: "Dokter",
-      status: "1 Bulan",
-      laporan: "link",
-      tgl_mulai: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_selesai: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+      status_karyawan: "Tetap",
+      tempat_lahir: "Jakarta",
+      tgl: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/tioluwani-kolawole",
     },
     {
@@ -83,10 +85,9 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       rm: "5678",
       nik: "8889990001112",
       unit_kerja: "Administrasi",
-      status: "1 Bulan",
-      laporan: "link",
-      tgl_mulai: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_selesai: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
+      status_karyawan: "Kontrak",
+      tempat_lahir: "Surabaya",
+      tgl: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/kent-c-dodds",
     },
     {
@@ -96,10 +97,9 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       rm: "9876",
       nik: "2223334445556",
       unit_kerja: "Keuangan",
-      status: "1 Bulan",
-      laporan: "link",
-      tgl_mulai: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_selesai: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
+      status_karyawan: "Tetap",
+      tempat_lahir: "Bandung",
+      tgl: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/ryan-florence",
     },
     {
@@ -109,10 +109,9 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       rm: "3456",
       nik: "6667778889990",
       unit_kerja: "Pemasaran",
-      status: "1 Bulan",
-      laporan: "link",
-      tgl_mulai: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_selesai: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+      status_karyawan: "Kontrak",
+      tempat_lahir: "Yogyakarta",
+      tgl: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/prosper-baba",
     },
     {
@@ -122,10 +121,9 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       rm: "2468",
       nik: "1112223334445",
       unit_kerja: "IT",
-      status: "1 Bulan",
-      laporan: "link",
-      tgl_mulai: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_selesai: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+      status_karyawan: "Tetap",
+      tempat_lahir: "Medan",
+      tgl: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/sage-adebayo",
     },
     {
@@ -135,10 +133,9 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       rm: "1357",
       nik: "9990001112223",
       unit_kerja: "Pelayanan Pelanggan",
-      status: "1 Bulan",
-      laporan: "link",
-      tgl_mulai: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_selesai: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
+      status_karyawan: "Kontrak",
+      tempat_lahir: "Denpasar",
+      tgl: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/code-beast",
     },
     {
@@ -148,10 +145,9 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       rm: "3214",
       nik: "3321231412412",
       unit_kerja: "Perawat Hewan",
-      status: "1 Bulan",
-      laporan: "link",
-      tgl_mulai: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_selesai: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+      status_karyawan: "Kontrak",
+      tempat_lahir: "Semarang",
+      tgl: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/dan-abramov",
     },
     {
@@ -161,10 +157,9 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       rm: "1234",
       nik: "4445556667778",
       unit_kerja: "Dokter",
-      status: "1 Bulan",
-      laporan: "link",
-      tgl_mulai: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_selesai: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
+      status_karyawan: "Tetap",
+      tempat_lahir: "Jakarta",
+      tgl: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/tioluwani-kolawole",
     },
     {
@@ -174,10 +169,9 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       rm: "5678",
       nik: "8889990001112",
       unit_kerja: "Administrasi",
-      status: "1 Bulan",
-      laporan: "link",
-      tgl_mulai: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_selesai: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
+      status_karyawan: "Kontrak",
+      tempat_lahir: "Surabaya",
+      tgl: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/kent-c-dodds",
     },
     {
@@ -187,10 +181,9 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       rm: "9876",
       nik: "2223334445556",
       unit_kerja: "Keuangan",
-      status: "1 Bulan",
-      laporan: "link",
-      tgl_mulai: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_selesai: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
+      status_karyawan: "Tetap",
+      tempat_lahir: "Bandung",
+      tgl: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/ryan-florence",
     },
     {
@@ -200,10 +193,9 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       rm: "3456",
       nik: "6667778889990",
       unit_kerja: "Pemasaran",
-      status: "1 Bulan",
-      laporan: "link",
-      tgl_mulai: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
-      tgl_selesai: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
+      status_karyawan: "Kontrak",
+      tempat_lahir: "Yogyakarta",
+      tgl: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
       avatar: "https://bit.ly/prosper-baba",
     },
   ];

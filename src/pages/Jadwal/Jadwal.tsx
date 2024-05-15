@@ -11,7 +11,7 @@ import { endOfWeek, startOfWeek } from "date-fns";
 import { useState } from "react";
 import FilterTabelJadwal from "../../components/dependent/Jadwal/FilterTabelJadwal";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
-import TabelJadwal from "../../components/independent/Karyawan/TabelJadwal";
+import TabelJadwal from "../../components/dependent/Karyawan/Tabel/TabelJadwal";
 import DateRangePicker from "../../components/input/DateRangePicker";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";

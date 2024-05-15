@@ -24,14 +24,14 @@ import {
   useBodyColor,
   useContentBgColor,
   useWhiteDarkColor,
-} from "../../../const/colors";
-import { dummyTabelJadwalData } from "../../../const/dummy";
-import formatTime from "../../../const/formatTime";
-import { responsiveSpacing } from "../../../const/sizes";
-import JadwalTabelHeader from "../../dependent/Karyawan/JadwalTabelHeader";
-import TabelContainer from "../../wrapper/TabelContainer";
-import Skeleton from "../Skeleton";
-import TabelFooterConfig from "../../dependent/TabelFooterConfig";
+} from "../../../../const/colors";
+import { dummyTabelJadwalData } from "../../../../const/dummy";
+import formatTime from "../../../../const/formatTime";
+import { responsiveSpacing } from "../../../../const/sizes";
+import JadwalTabelHeader from "../JadwalTabelHeader";
+import TabelContainer from "../../../wrapper/TabelContainer";
+import Skeleton from "../../../independent/Skeleton";
+import TabelFooterConfig from "../../TabelFooterConfig";
 
 interface Props {
   filterConfig?: any;

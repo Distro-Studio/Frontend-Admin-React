@@ -171,9 +171,10 @@ export default function NavContainer({
           <VStack
             gap={0}
             w={"100%"}
-            // maxW={"1280px"}
             align={"stretch"}
             mx={"auto"}
+            flex={1}
+            // maxW={"1280px"}
           >
             {children}
           </VStack>

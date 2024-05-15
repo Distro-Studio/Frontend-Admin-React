@@ -338,7 +338,6 @@ export default function Tabel({
                   <Td
                     position={"sticky"}
                     right={0}
-                    p={0}
                     bg={i % 2 === 0 ? contentBgColor : bodyColor}
                     zIndex={1}
                     w={"100px"}
@@ -361,15 +360,15 @@ export default function Tabel({
                 {!noMore && (
                   <Td
                     position={"sticky"}
+                    top={0}
                     right={0}
+                    borderBottom={"none !important"}
                     p={0}
                     bg={i % 2 === 0 ? contentBgColor : bodyColor}
                     zIndex={1}
                     w={"50px"}
                   >
                     <VStack
-                      h={"72px"}
-                      w={"50px"}
                       borderLeft={"1px solid var(--divider3)"}
                       justify={"center"}
                     >

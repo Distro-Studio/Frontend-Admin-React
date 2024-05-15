@@ -11,7 +11,7 @@ import { useState } from "react";
 import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
 import PresensiTotal from "../../components/independent/Karyawan/PresensiTotal";
-import TabelKaryawan from "../../components/independent/Karyawan/TabelKaryawan";
+import TabelKaryawan from "../../components/dependent/Karyawan/Tabel/TabelKaryawan";
 import DatePicker from "../../components/input/DatePicker";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -35,9 +35,9 @@ export default function Presensi() {
 
   return (
     <>
-      <PresensiTotal />
-
       <CWrapper>
+        <PresensiTotal mb={responsiveSpacing} />
+
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
             <InputGroup flex={"1 1 200px"}>
