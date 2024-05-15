@@ -17,6 +17,7 @@ import useScreenWidth from "../../lib/useScreenWidth";
 import Header from "../dependent/Header";
 import CContainer from "./CContainer";
 import Container from "./Container";
+import TopNavs from "../dependent/TopNavs";
 
 interface Props extends StackProps {
   active: number;
@@ -26,6 +27,8 @@ interface Props extends StackProps {
   left?: any;
   backLink?: string;
   right?: any;
+  topNavsData?: any;
+  topNavActive?: number;
 }
 
 export default function NavContainer({
@@ -36,6 +39,8 @@ export default function NavContainer({
   left,
   backLink,
   right,
+  topNavsData,
+  topNavActive,
   ...props
 }: Props) {
   const smScreen = useScreenWidth() <= 768;
@@ -154,6 +159,14 @@ export default function NavContainer({
             right={right}
             p={responsiveSpacing}
           />
+
+          {topNavsData && typeof topNavActive === "number" && (
+            <TopNavs
+              data={topNavsData}
+              active={topNavActive}
+              mb={responsiveSpacing}
+            />
+          )}
 
           <VStack
             gap={0}

@@ -9,12 +9,10 @@ import {
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import FilterTabelPekerjaKontrak from "../../components/dependent/Karyawan/FilterTabelPekerjaKontrak";
-import TopNavs from "../../components/dependent/TopNavs";
 import TabelPekerjaKontrak from "../../components/independent/Karyawan/TabelPekerjaKontrak";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
-import karyawanTopNavs from "../../const/karyawanTopNavs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 
 export default function PekerjaKontrak() {
@@ -29,8 +27,6 @@ export default function PekerjaKontrak() {
 
   return (
     <>
-      <TopNavs data={karyawanTopNavs} active={3} mb={responsiveSpacing} />
-
       <CWrapper>
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">

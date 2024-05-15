@@ -9,12 +9,10 @@ import {
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import FilterTabelRekamJejak from "../../components/dependent/Karyawan/FilterTabelRekamJejak";
-import TopNavs from "../../components/dependent/TopNavs";
 import TabelRekamJejak from "../../components/independent/Karyawan/TabelRekamJejak";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
-import karyawanTopNavs from "../../const/karyawanTopNavs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 
 export default function RekamJejak() {
@@ -30,8 +28,6 @@ export default function RekamJejak() {
 
   return (
     <>
-      <TopNavs data={karyawanTopNavs} active={4} mb={responsiveSpacing} />
-
       <CWrapper>
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">

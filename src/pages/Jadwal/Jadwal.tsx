@@ -10,14 +10,12 @@ import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { endOfWeek, startOfWeek } from "date-fns";
 import { useState } from "react";
 import FilterTabelJadwal from "../../components/dependent/Jadwal/FilterTabelJadwal";
-import TopNavs from "../../components/dependent/TopNavs";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
 import TabelJadwal from "../../components/independent/Karyawan/TabelJadwal";
 import DateRangePicker from "../../components/input/DateRangePicker";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
-import jadwalTopNavs from "../../const/jadwalTopNavs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 
 export default function Jadwal() {
@@ -48,8 +46,6 @@ export default function Jadwal() {
 
   return (
     <>
-      <TopNavs active={0} data={jadwalTopNavs} mb={responsiveSpacing} />
-
       <CWrapper>
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">

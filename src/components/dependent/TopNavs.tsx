@@ -15,7 +15,9 @@ export default function TopNavs({ data, active, ...props }: Props) {
   useEffect(() => {
     if (activeNavRef.current) {
       activeNavRef.current.scrollIntoView({
-        block: "center",
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
       });
     }
   }, [active]);

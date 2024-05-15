@@ -19,6 +19,11 @@ import Presensi from "./pages/Presensi/Presensi";
 import TambahKaryawan from "./pages/Karyawan/TambahKaryawan";
 import { responsiveSpacing } from "./const/sizes";
 import Jadwal from "./pages/Jadwal/Jadwal";
+import karyawanTopNavs from "./const/karyawanTopNavs";
+import jadwalTopNavs from "./const/jadwalTopNavs";
+import TukarJadwal from "./pages/Jadwal/TukarJadwal";
+import Lembur from "./pages/Jadwal/Lembur";
+import Cuti from "./pages/Jadwal/Cuti";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -38,7 +43,12 @@ export const App = () => (
         <Route
           path="/karyawan"
           element={
-            <NavContainer active={1} title="Karyawan">
+            <NavContainer
+              active={1}
+              title="Karyawan"
+              topNavsData={karyawanTopNavs}
+              topNavActive={0}
+            >
               <Karyawan />
             </NavContainer>
           }
@@ -61,7 +71,12 @@ export const App = () => (
         <Route
           path="/karyawan/akun-karyawan"
           element={
-            <NavContainer active={1} title="Akun Karyawan">
+            <NavContainer
+              active={1}
+              title="Akun Karyawan"
+              topNavsData={karyawanTopNavs}
+              topNavActive={1}
+            >
               <AkunKaryawan />
             </NavContainer>
           }
@@ -69,7 +84,12 @@ export const App = () => (
         <Route
           path="/karyawan/keluarga-karyawan"
           element={
-            <NavContainer active={1} title="Keluarga Karyawan">
+            <NavContainer
+              active={1}
+              title="Keluarga Karyawan"
+              topNavsData={karyawanTopNavs}
+              topNavActive={2}
+            >
               <KeluargaKaryawan />
             </NavContainer>
           }
@@ -77,7 +97,12 @@ export const App = () => (
         <Route
           path="/karyawan/pekerja-kontrak"
           element={
-            <NavContainer active={1} title="Pekerja Kontrak">
+            <NavContainer
+              active={1}
+              title="Pekerja Kontrak"
+              topNavsData={karyawanTopNavs}
+              topNavActive={3}
+            >
               <PekerjaKontrak />
             </NavContainer>
           }
@@ -85,7 +110,12 @@ export const App = () => (
         <Route
           path="/karyawan/rekam-jejak"
           element={
-            <NavContainer active={1} title="Rekam Jejak">
+            <NavContainer
+              active={1}
+              title="Rekam Jejak"
+              topNavsData={karyawanTopNavs}
+              topNavActive={4}
+            >
               <RekamJejak />
             </NavContainer>
           }
@@ -93,7 +123,12 @@ export const App = () => (
         <Route
           path="/karyawan/transfer-karyawan"
           element={
-            <NavContainer active={1} title="Transfer Karyawan">
+            <NavContainer
+              active={1}
+              title="Transfer Karyawan"
+              topNavsData={karyawanTopNavs}
+              topNavActive={5}
+            >
               <TransferKaryawan />
             </NavContainer>
           }
@@ -111,8 +146,52 @@ export const App = () => (
         <Route
           path="/jadwal"
           element={
-            <NavContainer active={3} title="Jadwal">
+            <NavContainer
+              active={3}
+              title="Jadwal"
+              topNavsData={jadwalTopNavs}
+              topNavActive={0}
+            >
               <Jadwal />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/jadwal/tukar-jadwal"
+          element={
+            <NavContainer
+              active={3}
+              title="Tukar Jadwal"
+              topNavsData={jadwalTopNavs}
+              topNavActive={1}
+            >
+              <TukarJadwal />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/jadwal/lembur"
+          element={
+            <NavContainer
+              active={3}
+              title="Lembur"
+              topNavsData={jadwalTopNavs}
+              topNavActive={2}
+            >
+              <Lembur />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/jadwal/cuti"
+          element={
+            <NavContainer
+              active={3}
+              title="Cuti"
+              topNavsData={jadwalTopNavs}
+              topNavActive={3}
+            >
+              <Cuti />
             </NavContainer>
           }
         />

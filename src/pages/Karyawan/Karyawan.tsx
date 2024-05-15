@@ -8,16 +8,14 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import TopNavs from "../../components/dependent/TopNavs";
+import { Link } from "react-router-dom";
+import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
 import TabelKaryawan from "../../components/independent/Karyawan/TabelKaryawan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
-import karyawanTopNavs from "../../const/karyawanTopNavs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
-import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
-import { Link } from "react-router-dom";
 
 export default function Karyawan() {
   // Filter Config
@@ -30,8 +28,6 @@ export default function Karyawan() {
 
   return (
     <>
-      <TopNavs data={karyawanTopNavs} active={0} mb={responsiveSpacing} />
-
       <CWrapper>
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">

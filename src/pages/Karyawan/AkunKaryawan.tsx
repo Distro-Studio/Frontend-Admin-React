@@ -9,12 +9,10 @@ import {
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import FilterTabelAkunKaryawan from "../../components/dependent/Karyawan/FilterTabelAkunKaryawan";
-import TopNavs from "../../components/dependent/TopNavs";
 import TabelAkunKaryawan from "../../components/independent/Karyawan/TabelAkunKaryawan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
-import karyawanTopNavs from "../../const/karyawanTopNavs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 
 export default function AkunKaryawan() {
@@ -27,8 +25,6 @@ export default function AkunKaryawan() {
 
   return (
     <>
-      <TopNavs data={karyawanTopNavs} active={1} mb={responsiveSpacing} />
-
       <CWrapper>
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
