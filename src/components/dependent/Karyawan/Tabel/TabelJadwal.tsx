@@ -292,13 +292,11 @@ export default function TabelJadwal({ onCheckItem, filterConfig }: Props) {
                           p={3}
                           gap={1}
                           borderRadius={8}
-                          // bg={"var(--p500a3)"}
-                          bg={"var(--divider)"}
                           w={"180px"}
                           h={"70px"}
-                          // border={"1px solid var(--p500a2)"}
-                          // color={whiteDarkColor}
                           align={"stretch"}
+                          className="btn-apa clicky"
+                          cursor={"pointer"}
                         >
                           <Box>
                             <Text noOfLines={1} mb={1} fontSize={14}>
