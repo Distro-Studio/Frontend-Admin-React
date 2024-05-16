@@ -69,7 +69,7 @@ export const globalTheme = extendTheme({
     bt: "#333333",
     w: "white",
     wt: "#eeeeee",
-    dark: "#191919",
+    dark: "#171717",
     error: "#E53E3E",
     divider: "#b4b4b420",
     divider2: "#b4b4b440",
