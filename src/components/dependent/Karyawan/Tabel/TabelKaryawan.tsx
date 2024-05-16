@@ -306,7 +306,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
 
               <Tbody>
                 {sortedData.map((row, i) => (
-                  <Tr key={i} bg={i % 2 === 0 ? contentBgColor : ""}>
+                  <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
                     <Td
                       position={"sticky"}
                       left={0}
