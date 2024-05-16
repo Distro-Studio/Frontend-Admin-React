@@ -33,7 +33,6 @@ import { iconSize } from "../../const/sizes";
 import formatDate from "../../lib/formatDate";
 import parseNumber from "../../lib/parseNumber";
 import useBackOnClose from "../../lib/useBackOnClose";
-import backOnClose from "../../lib/backOnClose";
 
 interface Props extends ButtonProps {
   formik?: any;
@@ -43,6 +42,7 @@ interface Props extends ButtonProps {
   dateValue?: string;
   defaultDateSelected?: Date;
   dateFormatOptions?: any;
+  noUseBackOnClose?: boolean;
 }
 
 export default function DatePicker({
@@ -53,6 +53,7 @@ export default function DatePicker({
   dateValue,
   defaultDateSelected,
   dateFormatOptions,
+  noUseBackOnClose,
   ...props
 }: Props) {
   const initialRef = useRef(null);
@@ -79,7 +80,16 @@ export default function DatePicker({
   }, [defaultDateSelected]);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
+  const backOnClose = useBackOnClose;
+  if (!noUseBackOnClose) {
+    backOnClose(isOpen, onClose);
+  }
+  const handleOnClose = () => {
+    onClose();
+    if (!noUseBackOnClose) {
+      window.history.back();
+    }
+  };
 
   function todayMonth() {
     const today = new Date();
@@ -182,7 +192,7 @@ export default function DatePicker({
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          backOnClose(onClose);
+          handleOnClose();
           setSelected(dateValue);
         }}
         initialFocusRef={initialRef}
@@ -341,7 +351,7 @@ export default function DatePicker({
                 isDisabled={selected ? false : true}
                 onClick={() => {
                   confirmSelect();
-                  backOnClose(onClose);
+                  handleOnClose();
                 }}
               >
                 Konfirmasi

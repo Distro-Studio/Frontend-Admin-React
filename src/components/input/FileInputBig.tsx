@@ -69,7 +69,7 @@ export default function FileInputBig({ formik, name, accept }: Props) {
         w={"100%"}
         justify={"center"}
         p={6}
-        h={"360px"}
+        h={"300px"}
         className="btn"
         border={`2px dashed ${
           isDraggingOver ? "var(--p500) !important" : "var(--divider3)"

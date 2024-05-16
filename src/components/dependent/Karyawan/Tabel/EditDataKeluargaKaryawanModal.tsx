@@ -184,7 +184,7 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
                   options={statusHidupOptions}
                   selectedValue={formik.values.status_hidup}
                   noSearch
-                  noUseBackOnClsoe
+                  noUseBackOnClose
                 />
                 <FormErrorMessage>
                   {formik.errors.status_hidup as string}

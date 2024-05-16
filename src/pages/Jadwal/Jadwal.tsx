@@ -10,13 +10,14 @@ import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { endOfWeek, startOfWeek } from "date-fns";
 import { useState } from "react";
 import FilterTabelJadwal from "../../components/dependent/Jadwal/FilterTabelJadwal";
-import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
 import TabelJadwal from "../../components/dependent/Karyawan/Tabel/TabelJadwal";
+import ImportJadwalKaryawanModal from "../../components/independent/Karyawan/ImportJadwalKaryawanModal";
 import DateRangePicker from "../../components/input/DateRangePicker";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
+import TerapkanJadwalModal from "../../components/independent/Karyawan/TerapkanJadwalModal";
 
 export default function Jadwal() {
   const today = new Date();
@@ -67,7 +68,7 @@ export default function Jadwal() {
             </InputGroup>
 
             <DateRangePicker
-              flex={"1 1 200px"}
+              flex={"1 1 250px"}
               confirmDate={confirmDateRange}
               dateValue={filterConfig.range_tgl}
               defaultDateSelected={defaultRangeTgl}
@@ -90,7 +91,9 @@ export default function Jadwal() {
               Export
             </Button>
 
-            <ImportKaryawanModal />
+            <ImportJadwalKaryawanModal />
+
+            <TerapkanJadwalModal flex={"1 1 160px"} />
           </Wrap>
 
           <TabelJadwal filterConfig={filterConfig} />
