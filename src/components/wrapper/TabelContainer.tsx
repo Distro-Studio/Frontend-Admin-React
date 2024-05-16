@@ -26,10 +26,11 @@ export default function TabelContainer({ children, ...props }: Props) {
 
   return !loading ? (
     <Box
+      className={"tabelContainer"}
       overflow={"auto"}
       w={"100%"}
-      minH={"300px"}
-      h={[
+      minH={"400px"}
+      maxH={[
         `calc(100vh - 318px - ${tabelConfigH}px)`,
         null,
         `calc(100vh - 304px - ${tabelConfigH}px)`,

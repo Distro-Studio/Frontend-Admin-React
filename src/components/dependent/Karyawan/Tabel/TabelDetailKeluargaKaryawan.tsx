@@ -125,7 +125,7 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
       )}
 
       {!loading && data && (
-        <TabelContainer h={"fit-content"} flex={1}>
+        <TabelContainer>
           <Table>
             <Thead>
               <Tr>
