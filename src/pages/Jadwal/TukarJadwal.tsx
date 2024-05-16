@@ -26,7 +26,7 @@ export default function TukarJadwal() {
   const confirmSelectStatusPenukaranJadwal = (status: any) => {
     setFilterConfig((ps: any) => ({
       ...ps,
-      status: status,
+      status: status.value,
     }));
   };
 

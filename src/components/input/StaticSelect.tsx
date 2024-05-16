@@ -150,12 +150,14 @@ export default function StaticSelect({
                     // borderRadius={"0"}
                     bg={
                       selectedValue === option.value
-                        ? "var(--p500a2) !important"
+                        ? "var(--p500a3) !important"
                         : ""
                     }
                     // color={selectedValue === option.value ? "p.500" : ""}
                     border={"1px solid var(--divider)"}
-                    borderColor={selectedValue === option.value ? "p.500" : ""}
+                    borderColor={
+                      selectedValue === option.value ? "var(--p500a1)" : ""
+                    }
                     key={i}
                     onClick={() => {
                       if (formik) {
