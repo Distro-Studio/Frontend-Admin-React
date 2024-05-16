@@ -29,13 +29,13 @@ interface Props {
 export default function TabelDetailKeluargaKaryawan({ data }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
-      key: "hubungan",
-      label: "Status Hubungan",
+      key: "nama",
+      label: "Nama",
       dataType: "string",
     },
     {
-      key: "nama",
-      label: "Nama",
+      key: "hubungan",
+      label: "Status Hubungan",
       dataType: "string",
     },
     {
@@ -273,6 +273,7 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
                     p={0}
                     bg={rowIndex % 2 === 0 ? contentBgColor : bodyColor}
                     zIndex={1}
+                    w={"120px"}
                   >
                     <VStack
                       borderLeft={"1px solid var(--divider3)"}

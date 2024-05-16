@@ -39,7 +39,7 @@ export default function PresensiTotal({ ...props }: Props) {
       {!loading && data && (
         <>
           <VStack
-            borderRadius={8}
+            borderRadius={12}
             px={responsiveSpacing}
             py={[4, null, 5]}
             bg={"var(--p500a4)"}
@@ -50,8 +50,8 @@ export default function PresensiTotal({ ...props }: Props) {
             <Text fontWeight={600}>Hadir</Text>
 
             <HStack gap={4} justify={"space-between"} w={"100%"}>
-              <VStack align={"flex-start"} flex={"1 1"}>
-                <Text fontSize={32} fontWeight={600} color={"p.500"}>
+              <VStack align={"flex-start"} gap={0} flex={"1 1"}>
+                <Text fontSize={36} fontWeight={600} color={"p.500"}>
                   {formatNumber(data?.hadir.tepat_waktu)}
                 </Text>
                 <Text fontSize={14} opacity={0.6} whiteSpace={"nowrap"}>
@@ -59,8 +59,8 @@ export default function PresensiTotal({ ...props }: Props) {
                 </Text>
               </VStack>
 
-              <VStack align={"flex-start"} flex={"1 1"}>
-                <Text fontSize={32} fontWeight={600} color={"p.500"}>
+              <VStack align={"flex-start"} gap={0} flex={"1 1"}>
+                <Text fontSize={36} fontWeight={600} color={"p.500"}>
                   {formatNumber(data?.hadir.terlambat)}
                 </Text>
                 <Text fontSize={14} opacity={0.6} whiteSpace={"nowrap"}>
@@ -68,8 +68,8 @@ export default function PresensiTotal({ ...props }: Props) {
                 </Text>
               </VStack>
 
-              <VStack align={"flex-start"} flex={"1 1"}>
-                <Text fontSize={32} fontWeight={600} color={"p.500"}>
+              <VStack align={"flex-start"} gap={0} flex={"1 1"}>
+                <Text fontSize={36} fontWeight={600} color={"p.500"}>
                   {formatNumber(data?.hadir.masuk)}
                 </Text>
                 <Text fontSize={14} opacity={0.6} whiteSpace={"nowrap"}>
@@ -80,7 +80,7 @@ export default function PresensiTotal({ ...props }: Props) {
           </VStack>
 
           <VStack
-            borderRadius={8}
+            borderRadius={12}
             px={responsiveSpacing}
             py={[4, null, 5]}
             bg={"var(--reda)"}
@@ -91,8 +91,8 @@ export default function PresensiTotal({ ...props }: Props) {
             <Text fontWeight={600}>Tidak Hadir</Text>
 
             <HStack gap={4} justify={"space-between"} w={"100%"}>
-              <VStack align={"flex-start"} flex={"1 1"}>
-                <Text fontSize={32} fontWeight={600} color={"red.400"}>
+              <VStack align={"flex-start"} gap={0} flex={"1 1"}>
+                <Text fontSize={36} fontWeight={600} color={"red.400"}>
                   {formatNumber(data.tidak_hadir.absen)}
                 </Text>
                 <Text fontSize={14} opacity={0.6} whiteSpace={"nowrap"}>
@@ -100,8 +100,8 @@ export default function PresensiTotal({ ...props }: Props) {
                 </Text>
               </VStack>
 
-              <VStack align={"flex-start"} flex={"1 1"}>
-                <Text fontSize={32} fontWeight={600} color={"red.400"}>
+              <VStack align={"flex-start"} gap={0} flex={"1 1"}>
+                <Text fontSize={36} fontWeight={600} color={"red.400"}>
                   {formatNumber(data.tidak_hadir.izin)}
                 </Text>
                 <Text fontSize={14} opacity={0.6} whiteSpace={"nowrap"}>
@@ -109,8 +109,8 @@ export default function PresensiTotal({ ...props }: Props) {
                 </Text>
               </VStack>
 
-              <VStack align={"flex-start"} flex={"1 1"}>
-                <Text fontSize={32} fontWeight={600} color={"red.400"}>
+              <VStack align={"flex-start"} gap={0} flex={"1 1"}>
+                <Text fontSize={36} fontWeight={600} color={"red.400"}>
                   {formatNumber(data.tidak_hadir.invalid)}
                 </Text>
                 <Text fontSize={14} opacity={0.6} whiteSpace={"nowrap"}>
@@ -121,7 +121,7 @@ export default function PresensiTotal({ ...props }: Props) {
           </VStack>
 
           <VStack
-            borderRadius={8}
+            borderRadius={12}
             px={responsiveSpacing}
             py={[4, null, 5]}
             bg={"var(--divider)"}
@@ -132,9 +132,9 @@ export default function PresensiTotal({ ...props }: Props) {
             <Text fontWeight={600}>Libur</Text>
 
             <HStack gap={4} justify={"space-between"} w={"100%"}>
-              <VStack align={"flex-start"} flex={"1 1"}>
+              <VStack align={"flex-start"} gap={0} flex={"1 1"}>
                 <Text
-                  fontSize={32}
+                  fontSize={36}
                   fontWeight={600}
                   color={"var(--divider-text)"}
                 >
@@ -145,9 +145,9 @@ export default function PresensiTotal({ ...props }: Props) {
                 </Text>
               </VStack>
 
-              <VStack align={"flex-start"} flex={"1 1"}>
+              <VStack align={"flex-start"} gap={0} flex={"1 1"}>
                 <Text
-                  fontSize={32}
+                  fontSize={36}
                   fontWeight={600}
                   color={"var(--divider-text)"}
                 >
