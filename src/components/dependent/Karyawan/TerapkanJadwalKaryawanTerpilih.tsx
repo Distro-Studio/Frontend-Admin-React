@@ -30,6 +30,7 @@ import backOnClose from "../../../lib/backOnClose";
 import formatDate from "../../../lib/formatDate";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import FormRequired from "../../form/FormRequired";
+import { responsiveSpacing } from "../../../const/sizes";
 
 interface Props {
   data: any;
@@ -89,8 +90,11 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
           <ModalCloseButton />
           <ModalHeader>Terapkan Jadwal</ModalHeader>
           <ModalBody>
-            <SimpleGrid columns={[1, 2]} gap={4}>
-              <HStack gap={4} borderRight={[null, "1px solid var(--divider3)"]}>
+            <SimpleGrid columns={[1, 2]} gap={responsiveSpacing}>
+              <HStack
+                gap={responsiveSpacing}
+                borderRight={[null, "1px solid var(--divider3)"]}
+              >
                 <Avatar size={"lg"} src={data.foto_profil} name={data.nama} />
 
                 <Box>

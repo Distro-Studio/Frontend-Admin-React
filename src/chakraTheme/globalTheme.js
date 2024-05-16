@@ -135,7 +135,7 @@ export const globalTheme = extendTheme({
           mx: "16px",
         },
         overlay: {
-          bg: "#5b5b5b50",
+          // bg: "#5b5b5b50",
           backdropFilter: "blur(5px)",
         },
         header: {
