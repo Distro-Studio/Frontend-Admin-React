@@ -20,7 +20,7 @@ export default function TukarJadwal() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
-    status: { value: 3, label: "Semua Status" },
+    status: 1,
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
   const confirmSelectStatusPenukaranJadwal = (status: any) => {
@@ -54,8 +54,9 @@ export default function TukarJadwal() {
 
             <SelectStatusPenukaranJadwal
               placeholder="Pilih status"
-              selectedValue={filterConfig.status.value}
+              selectedValue={filterConfig.status}
               confirmSelect={confirmSelectStatusPenukaranJadwal}
+              noSearch
               flex={"1 1"}
             />
 

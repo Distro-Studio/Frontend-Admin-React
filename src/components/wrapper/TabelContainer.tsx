@@ -29,7 +29,7 @@ export default function TabelContainer({ children, ...props }: Props) {
       className={"tabelContainer"}
       overflow={"auto"}
       w={"100%"}
-      minH={"400px"}
+      minH={"max-content !important"}
       maxH={[
         `calc(100vh - 318px - ${tabelConfigH}px)`,
         null,
