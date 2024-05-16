@@ -63,39 +63,6 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
       label: "Email",
       dataType: "string",
     },
-    // {
-    //   key: "",
-    //   label: "Edit",
-    //   dataType: "action",
-    //   actionLabel: "Edit",
-    //   action: (id: number) => {},
-    //   actionButtonProps: {
-    //     colorScheme: "ap",
-    //     className: "btn-apa clicky",
-    //     rightIcon: <Icon as={RiEditBoxLine} fontSize={iconSize} />,
-    //     pr: 3,
-    //   },
-    //   tdProps: {
-    //     position: "sticky",
-    //     right: 0,
-    //     p: 0,
-    //   },
-    //   tdContentProps: {
-    //     h: "72px",
-    //     w: "100px",
-    //     borderLeft: "1px solid var(--divider3)",
-    //   },
-    //   thProps: {
-    //     position: "sticky",
-    //     right: 0,
-    //     p: 0,
-    //   },
-    //   thContentProps: {
-    //     w: "100px",
-    //     borderLeft: "1px solid var(--divider3)",
-    //   },
-    //   preferredW: "100px",
-    // },
   ];
 
   const [loading] = useState<boolean>(false);
@@ -158,7 +125,7 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
       )}
 
       {!loading && data && (
-        <TabelContainer h={"fit-content"}>
+        <TabelContainer h={"fit-content"} flex={1}>
           <Table>
             <Thead>
               <Tr>
@@ -277,9 +244,11 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
                   >
                     <VStack
                       borderLeft={"1px solid var(--divider3)"}
-                      justify={"center"}
                       w={"120px"}
                       h={"72px"}
+                      px={4}
+                      align={"stretch"}
+                      justify={"center"}
                     >
                       <EditDataKeluargaKaryawanModal data={row} />
                     </VStack>

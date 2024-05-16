@@ -261,12 +261,15 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
                       p={0}
                       bg={i % 2 === 0 ? contentBgColor : bodyColor}
                       zIndex={1}
-                      w={"120px"}
+                      w={"140px"}
                     >
-                      <Center
+                      <VStack
                         borderLeft={"1px solid var(--divider3)"}
-                        w={"120px"}
+                        w={"140px"}
                         h={"72px"}
+                        px={4}
+                        align={"stretch"}
+                        justify={"center"}
                       >
                         <Button
                           colorScheme="ap"
@@ -281,7 +284,7 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
                         >
                           Detail
                         </Button>
-                      </Center>
+                      </VStack>
                     </Td>
                   </Tr>
                 ))}
