@@ -55,7 +55,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       dataType: "string",
     },
     {
-      key: "nik",
+      key: "nik_ktp",
       label: "NIK",
       dataType: "string",
     },
