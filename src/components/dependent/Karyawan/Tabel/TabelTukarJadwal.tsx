@@ -1,6 +1,4 @@
 import {
-  Avatar,
-  Box,
   Center,
   Checkbox,
   HStack,
@@ -18,29 +16,19 @@ import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
 import { dummyTabelJadwalData } from "../../../../const/dummy";
-import formatTime from "../../../../const/formatTime";
 import { responsiveSpacing } from "../../../../const/sizes";
 import Skeleton from "../../../independent/Skeleton";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
-import TerapkanJadwalKaryawanTerpilih from "../TerapkanJadwalKaryawanTerpilih";
-import JadwalTabelHeader from "./JadwalTabelHeader";
-import { addDays } from "date-fns";
 
 interface Props {
   filterConfig?: any;
   onCheckItem?: (checkedItem: any) => void;
 }
 
-export default function TabelJadwal({ onCheckItem, filterConfig }: Props) {
+export default function TabelTukarJadwal({ onCheckItem, filterConfig }: Props) {
   const [data] = useState<any | null>(dummyTabelJadwalData);
   const [loading] = useState<boolean>(false);
-  const dateList: Date | string[] = [];
-  let currentDate = filterConfig.range_tgl.from;
-  while (currentDate <= filterConfig.range_tgl.to) {
-    dateList.push(currentDate);
-    currentDate = addDays(currentDate, 1);
-  }
 
   //TODO get jadwal by given range
 
@@ -206,8 +194,6 @@ export default function TabelJadwal({ onCheckItem, filterConfig }: Props) {
                     )}
                   </HStack>
                 </Th>
-
-                <JadwalTabelHeader range_tgl={filterConfig.range_tgl} />
               </Tr>
             </Thead>
 
@@ -223,7 +209,7 @@ export default function TabelJadwal({ onCheckItem, filterConfig }: Props) {
                     w={"50px"}
                   >
                     <Center
-                      h={"94px"}
+                      h={"72px"}
                       w={"50px"}
                       bg={i % 2 === 0 ? contentBgColor : bodyColor}
                       p={4}
@@ -239,80 +225,6 @@ export default function TabelJadwal({ onCheckItem, filterConfig }: Props) {
                       />
                     </Center>
                   </Td>
-
-                  <Td
-                    position={"sticky"}
-                    left={"50px"}
-                    p={0}
-                    zIndex={2}
-                    bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                  >
-                    <HStack
-                      px={4}
-                      py={2}
-                      h={"94px"}
-                      borderRight={"1px solid var(--divider3)"}
-                    >
-                      <Avatar
-                        src={row.foto_profil}
-                        name={row.nama}
-                        size={"sm"}
-                      />
-                      <Text>{row.nama}</Text>
-                    </HStack>
-                  </Td>
-
-                  {row.jadwal_list.map((jadwal: any, ii: number) => {
-                    if (!jadwal) {
-                      return (
-                        <Td
-                          key={ii}
-                          pt={i === 0 ? 4 : 2}
-                          pb={i === data.length - 1 ? 4 : 2}
-                          pl={ii === 0 ? 4 : 2}
-                          pr={ii === row.jadwal_list.length - 1 ? 4 : 2}
-                        >
-                          <TerapkanJadwalKaryawanTerpilih
-                            data={row}
-                            tgl={dateList[i]}
-                          />
-                        </Td>
-                      );
-                    }
-
-                    return (
-                      <Td
-                        key={ii}
-                        pt={i === 0 ? 4 : 2}
-                        pb={i === data.length - 1 ? 4 : 2}
-                        pl={ii === 0 ? 4 : 2}
-                        pr={ii === row.jadwal_list.length - 1 ? 4 : 2}
-                      >
-                        <VStack
-                          p={3}
-                          gap={1}
-                          borderRadius={8}
-                          // bg={"var(--p500a3)"}
-                          bg={"var(--divider)"}
-                          w={"180px"}
-                          h={"70px"}
-                          // border={"1px solid var(--p500a2)"}
-                          // color={whiteDarkColor}
-                          align={"stretch"}
-                        >
-                          <Box>
-                            <Text noOfLines={1} mb={1} fontSize={14}>
-                              {jadwal.label}
-                            </Text>
-                            <Text whiteSpace={"nowrap"} fontSize={14}>
-                              {formatTime(jadwal.jam_masuk)} -{" "}
-                              {formatTime(jadwal.jam_keluar)}
-                            </Text>
-                          </Box>
-                        </VStack>
-                      </Td>
-                    );
-                  })}
                 </Tr>
               ))}
             </Tbody>

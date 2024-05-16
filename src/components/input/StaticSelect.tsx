@@ -1,5 +1,6 @@
 import {
   Button,
+  ButtonProps,
   HStack,
   Icon,
   Input,
@@ -17,19 +18,21 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import { useRef, useState } from "react";
-import useBackOnClose from "../../lib/useBackOnClose";
 import { RiArrowDownSLine, RiSearchLine } from "@remixicon/react";
+import { useRef, useState } from "react";
+import { Select__Item__Interface } from "../../const/interfaces";
 import { iconSize } from "../../const/sizes";
+import useBackOnClose from "../../lib/useBackOnClose";
 
-interface Props {
-  formik: any;
-  name: string;
+interface Props extends ButtonProps {
+  formik?: any;
+  name?: string;
   placeholder: string;
   options: { value: any; label: string }[];
   selectedValue: any;
   noSearch?: boolean;
   noUseBackOnClose?: boolean;
+  confirmSelect?: (status: Select__Item__Interface) => void;
 }
 
 export default function StaticSelect({
@@ -40,6 +43,8 @@ export default function StaticSelect({
   selectedValue,
   noSearch,
   noUseBackOnClose,
+  confirmSelect,
+  ...props
 }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const backOnClose = useBackOnClose;
@@ -68,18 +73,18 @@ export default function StaticSelect({
 
   return (
     <>
-      <HStack
-        as={Button}
+      <Button
         className="btn-clear"
         h={"40px"}
         px={"16px !important"}
         border={"1px solid var(--divider3)"}
-        boxShadow={formik.errors[name] ? selectOnError : ""}
+        boxShadow={formik && name && formik.errors[name] ? selectOnError : ""}
         borderRadius={8}
         cursor={"pointer"}
         onClick={onOpen}
-        justify={"space-between"}
+        justifyContent={"space-between"}
         w={"100%"}
+        {...props}
       >
         <Text
           opacity={
@@ -92,11 +97,11 @@ export default function StaticSelect({
           fontSize={14}
           fontWeight={400}
         >
-          {options[selectedValue]?.label || placeholder}
+          {options[selectedValue - 1]?.label || placeholder}
         </Text>
 
         <Icon as={RiArrowDownSLine} />
-      </HStack>
+      </Button>
 
       <Modal
         isOpen={isOpen}
@@ -153,7 +158,12 @@ export default function StaticSelect({
                     borderColor={selectedValue === option.value ? "p.500" : ""}
                     key={i}
                     onClick={() => {
-                      formik.setFieldValue(name, option.value);
+                      if (formik) {
+                        formik.setFieldValue(name, option);
+                      }
+                      if (confirmSelect) {
+                        confirmSelect(option);
+                      }
                       handleOnClose();
                       setSearch("");
                     }}
