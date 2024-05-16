@@ -1,6 +1,6 @@
 import { VStack } from "@chakra-ui/react";
 import { Dispatch } from "react";
-import FilterItemWrapper from "../../../wrapper/FilterItemWrapper";
+import FilterItemWrapper from "../../wrapper/FilterItemWrapper";
 import FilterTglMasukPanel from "./FilterTglMasukPanel";
 
 interface Props {

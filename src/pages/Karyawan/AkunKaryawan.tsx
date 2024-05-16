@@ -19,6 +19,7 @@ export default function AkunKaryawan() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
+    unit_kerja: [],
     status_karyawan: [],
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);

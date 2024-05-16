@@ -10,10 +10,10 @@ import {
 } from "@chakra-ui/react";
 import { RiSearch2Line } from "@remixicon/react";
 import { Dispatch, useState } from "react";
-import { useBodyColor } from "../../../../const/colors";
-import { iconSize } from "../../../../const/sizes";
-import DataNotFound from "../../../independent/DataNotFound";
-import FilterItemWrapper from "../../../wrapper/FilterItemWrapper";
+import { useBodyColor } from "../../../const/colors";
+import { iconSize } from "../../../const/sizes";
+import DataNotFound from "../../independent/DataNotFound";
+import FilterItemWrapper from "../../wrapper/FilterItemWrapper";
 
 interface Props {
   filterConfig: any;

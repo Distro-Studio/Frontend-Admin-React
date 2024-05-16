@@ -22,7 +22,8 @@ import { iconSize } from "../../../../const/sizes";
 import backOnClose from "../../../../lib/backOnClose";
 import formatNumber from "../../../../lib/formatNumber";
 import useBackOnClose from "../../../../lib/useBackOnClose";
-import FilterStatusKaryawan from "../FilterOptions/FilterStatusKaryawan";
+import FilterStatusKaryawan from "../../FilterOptions/FilterStatusKaryawan";
+import FilterUnitKerja from "../../FilterOptions/FilterUnitKerja";
 
 interface Props {
   filterConfig: any;
@@ -50,8 +51,9 @@ export default function FilterTabelAkunKaryawan({
 
   const filterAda =
     filterConfig &&
-    filterConfig.status_karyawan &&
-    filterConfig.status_karyawan.length > 0;
+    ((filterConfig.status_karyawan &&
+      filterConfig.status_karyawan.length > 0) ||
+      (filterConfig.unit_kerja && filterConfig.unit_kerja.length > 0));
 
   //TODO post api filter data karyawan
 
@@ -84,7 +86,10 @@ export default function FilterTabelAkunKaryawan({
               ml={"auto"}
             >
               <Text color={bodyColor} fontSize={12} fontWeight={600}>
-                {formatNumber(filterConfig.status_karyawan.length)}
+                {formatNumber(
+                  filterConfig.status_karyawan.length +
+                    filterConfig.unit_kerja.length
+                )}
               </Text>
             </Center>
           )}
@@ -112,6 +117,11 @@ export default function FilterTabelAkunKaryawan({
 
           <ModalBody>
             <Accordion allowMultiple>
+              <FilterUnitKerja
+                filterConfig={localFilterConfig}
+                setFilterConfig={setLocalFilterConfig}
+              />
+
               <FilterStatusKaryawan
                 filterConfig={localFilterConfig}
                 setFilterConfig={setLocalFilterConfig}

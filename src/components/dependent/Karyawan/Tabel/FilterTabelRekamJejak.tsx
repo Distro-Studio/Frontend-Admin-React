@@ -22,7 +22,9 @@ import { iconSize } from "../../../../const/sizes";
 import backOnClose from "../../../../lib/backOnClose";
 import formatNumber from "../../../../lib/formatNumber";
 import useBackOnClose from "../../../../lib/useBackOnClose";
-import FilterMasaKerja from "../FilterOptions/FilterMasaKerja";
+import FilterMasaKerja from "../../FilterOptions/FilterMasaKerja";
+import FilterStatusKaryawan from "../../FilterOptions/FilterStatusKaryawan";
+import FilterUnitKerja from "../../FilterOptions/FilterUnitKerja";
 
 interface Props {
   defaultFilterConfig: any;
@@ -53,7 +55,10 @@ export default function FilterTabelRekamJejak({
   const adaFilter =
     filterConfig &&
     ((filterConfig.masa_kerja && filterConfig.masa_kerja.length > 0) ||
-      (filterConfig.promosi && filterConfig.promosi.length > 0));
+      (filterConfig.promosi && filterConfig.promosi.length > 0) ||
+      (filterConfig.unit_kerja && filterConfig.unit_kerja.length > 0) ||
+      (filterConfig.status_karyawan &&
+        filterConfig.status_karyawan.length > 0));
 
   return (
     <>
@@ -82,7 +87,10 @@ export default function FilterTabelRekamJejak({
             >
               <Text color={bodyColor} fontSize={12} fontWeight={600}>
                 {formatNumber(
-                  filterConfig.masa_kerja.length + filterConfig.promosi.length
+                  filterConfig.masa_kerja.length +
+                    filterConfig.promosi.length +
+                    filterConfig.unit_kerja.length +
+                    filterConfig.status_karyawan.length
                 )}
               </Text>
             </Center>
@@ -111,6 +119,14 @@ export default function FilterTabelRekamJejak({
 
           <ModalBody>
             <Accordion allowMultiple>
+              <FilterUnitKerja
+                filterConfig={localFilterConfig}
+                setFilterConfig={setLocalFilterConfig}
+              />
+              <FilterStatusKaryawan
+                filterConfig={localFilterConfig}
+                setFilterConfig={setLocalFilterConfig}
+              />
               <FilterMasaKerja
                 filterConfig={localFilterConfig}
                 setFilterConfig={setLocalFilterConfig}

@@ -45,6 +45,6 @@ export default function TabelContainer({ children, ...props }: Props) {
       {children}
     </Box>
   ) : (
-    <Skeleton flex={1} />
+    <Skeleton flex={1} minH={"calc(100vh - 344px)"} />
   );
 }

@@ -17,9 +17,9 @@ import { id } from "date-fns/locale"; // Import locale for Indonesian language
 import { useEffect, useRef, useState } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import { iconSize } from "../../../../const/sizes";
-import formatDate from "../../../../lib/formatDate";
-import parseNumber from "../../../../lib/parseNumber";
+import { iconSize } from "../../../const/sizes";
+import formatDate from "../../../lib/formatDate";
+import parseNumber from "../../../lib/parseNumber";
 
 interface Props extends ButtonProps {
   placeholder?: string;
@@ -44,7 +44,6 @@ export default function FilterTglMasukPanel({
   const [tahun, setTahun] = useState<number>(date.getFullYear());
   const [bulan, setBulan] = useState<number>(date.getMonth() + 1);
   const [selected, setSelected] = useState<any>();
-  console.log(dateValue);
 
   const confirmDateRef = useRef(confirmDate);
 

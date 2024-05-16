@@ -17,26 +17,24 @@ import {
 } from "@chakra-ui/react";
 import { RiEqualizer3Line } from "@remixicon/react";
 import { Dispatch, useRef, useState } from "react";
-import { useBodyColor } from "../../../const/colors";
-import { iconSize } from "../../../const/sizes";
-import backOnClose from "../../../lib/backOnClose";
-import formatNumber from "../../../lib/formatNumber";
-import useBackOnClose from "../../../lib/useBackOnClose";
-import FilterStatusKaryawan from "../FilterOptions/FilterStatusKaryawan";
-import FilterUnitKerja from "../FilterOptions/FilterUnitKerja";
+import { iconSize } from "../../../../const/sizes";
+import backOnClose from "../../../../lib/backOnClose";
+import useBackOnClose from "../../../../lib/useBackOnClose";
+import FilterStatusKaryawan from "../../FilterOptions/FilterStatusKaryawan";
+import FilterUnitKerja from "../../FilterOptions/FilterUnitKerja";
+import formatNumber from "../../../../lib/formatNumber";
+import { useBodyColor } from "../../../../const/colors";
 
 interface Props {
-  defaultFilterConfig: any;
   filterConfig: any;
   setFilterConfig: Dispatch<any>;
-  rangeTgl: { from: Date; to: Date };
+  defaultFilterConfig: any;
 }
 
-export default function FilterTabelJadwal({
-  defaultFilterConfig,
+export default function FilterTabelKeluargaKaryawan({
   filterConfig,
   setFilterConfig,
-  rangeTgl,
+  defaultFilterConfig,
 }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);

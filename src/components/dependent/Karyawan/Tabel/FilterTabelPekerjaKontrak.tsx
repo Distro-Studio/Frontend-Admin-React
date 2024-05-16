@@ -20,11 +20,11 @@ import { Dispatch, useRef, useState } from "react";
 import { iconSize } from "../../../../const/sizes";
 import backOnClose from "../../../../lib/backOnClose";
 import useBackOnClose from "../../../../lib/useBackOnClose";
-import FilterStatusKaryawan from "../FilterOptions/FilterStatusKaryawan";
-import FilterUnitKerja from "../FilterOptions/FilterUnitKerja";
+import FilterStatusKaryawan from "../../FilterOptions/FilterStatusKaryawan";
+import FilterUnitKerja from "../../FilterOptions/FilterUnitKerja";
 import formatNumber from "../../../../lib/formatNumber";
 import { useBodyColor } from "../../../../const/colors";
-import FilterTglMasuk from "../FilterOptions/FilterTglMasuk";
+import FilterTglMasuk from "../../FilterOptions/FilterTglMasuk";
 
 interface Props {
   filterConfig: any;
@@ -55,7 +55,7 @@ export default function FilterTabelPekerjaKontrak({
     ((filterConfig.unit_kerja && filterConfig.unit_kerja.length > 0) ||
       (filterConfig.status_karyawan &&
         filterConfig.status_karyawan.length > 0) ||
-      (filterConfig.tgl_masuk && filterConfig.tgl_masuk).length > 0);
+      (filterConfig.tgl_masuk && filterConfig.tgl_masuk.length > 0));
 
   // SX
   const bodyColor = useBodyColor();

@@ -19,6 +19,8 @@ export default function RekamJejak() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
+    unit_kerja: [],
+    status_karyawan: [],
     masa_kerja: [],
     promosi: [],
     mutasi: [],

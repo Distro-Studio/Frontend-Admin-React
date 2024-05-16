@@ -1,5 +1,4 @@
 import { Spinner, StackProps, VStack } from "@chakra-ui/react";
-import React from "react";
 
 interface Props extends StackProps {}
 

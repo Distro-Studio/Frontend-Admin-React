@@ -1,7 +1,7 @@
 import { HStack, Text, VStack, Wrap } from "@chakra-ui/react";
 import { Dispatch } from "react";
-import DataNotFound from "../../../independent/DataNotFound";
-import FilterItemWrapper from "../../../wrapper/FilterItemWrapper";
+import DataNotFound from "../../independent/DataNotFound";
+import FilterItemWrapper from "../../wrapper/FilterItemWrapper";
 
 interface Props {
   filterConfig: any;

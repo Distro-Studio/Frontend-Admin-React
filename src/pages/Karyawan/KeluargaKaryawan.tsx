@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import FilterTabelKaryawan from "../../components/dependent/Karyawan/Tabel/FilterTabelKaryawan";
+import FilterTabelKeluargaKaryawan from "../../components/dependent/Karyawan/Tabel/FilterTabelKeluargaKaryawan";
 import TabelKeluargaKaryawan from "../../components/dependent/Karyawan/Tabel/TabelKeluargaKaryawan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -46,7 +46,7 @@ export default function KeluargaKaryawan() {
               />
             </InputGroup>
 
-            <FilterTabelKaryawan
+            <FilterTabelKeluargaKaryawan
               defaultFilterConfig={defaultFilterConfig}
               filterConfig={filterConfig}
               setFilterConfig={setFilterConfig}

@@ -16,8 +16,7 @@ import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
 import { Tabel__Column__Interface } from "../../../../const/interfaces";
-import { responsiveSpacing } from "../../../../const/sizes";
-import Skeleton from "../../../independent/Skeleton";
+import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
 import EditDataKeluargaKaryawanModal from "./EditDataKeluargaKaryawanModal";
@@ -108,21 +107,7 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
 
   return (
     <>
-      {loading && (
-        <>
-          <TabelContainer p={responsiveSpacing}>
-            <VStack h={"100%"} align={"stretch"} gap={responsiveSpacing}>
-              <Skeleton h={"52px"} />
-              <Skeleton flex={1} flexShrink={0} />
-            </VStack>
-          </TabelContainer>
-
-          <HStack justify={"space-between"} mt={responsiveSpacing}>
-            <Skeleton h={"40px"} w={"120px"} />
-            <Skeleton h={"40px"} w={"120px"} />
-          </HStack>
-        </>
-      )}
+      {loading && <ComponentSpinner mt={4} />}
 
       {!loading && data && (
         <TabelContainer>

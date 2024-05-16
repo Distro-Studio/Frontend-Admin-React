@@ -22,16 +22,16 @@ import {
   useBodyColor,
   useContentBgColor,
 } from "../../../../const/colors";
+import { dummyKaryawanList } from "../../../../const/dummy";
 import {
   Karyawan__Interface,
   Tabel__Column__Interface,
 } from "../../../../const/interfaces";
-import { iconSize, responsiveSpacing } from "../../../../const/sizes";
+import { iconSize } from "../../../../const/sizes";
 import formatDate from "../../../../lib/formatDate";
-import Skeleton from "../../../independent/Skeleton";
+import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
-import { dummyKaryawanList } from "../../../../const/dummy";
 
 interface Props {
   filterConfig?: any;
@@ -157,21 +157,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
 
   return (
     <>
-      {loading && (
-        <>
-          <TabelContainer p={responsiveSpacing}>
-            <VStack h={"100%"} align={"stretch"} gap={responsiveSpacing}>
-              <Skeleton h={"52px"} />
-              <Skeleton flex={1} flexShrink={0} />
-            </VStack>
-          </TabelContainer>
-
-          <HStack justify={"space-between"} mt={responsiveSpacing}>
-            <Skeleton h={"40px"} w={"120px"} />
-            <Skeleton h={"40px"} w={"120px"} />
-          </HStack>
-        </>
-      )}
+      {loading && <ComponentSpinner mt={4} />}
 
       {!loading && sortedData && (
         <>
