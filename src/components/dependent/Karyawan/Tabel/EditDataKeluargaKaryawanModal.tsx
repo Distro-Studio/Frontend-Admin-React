@@ -23,7 +23,7 @@ import { iconSize } from "../../../../const/sizes";
 import backOnClose from "../../../../lib/backOnClose";
 import useBackOnClose from "../../../../lib/useBackOnClose";
 import FormRequired from "../../../form/FormRequired";
-import StaticSelect from "../../../input/StaticSelect";
+import SelectStatusHidup from "../SelectStatusHidup";
 
 interface Props {
   data: any;
@@ -58,17 +58,6 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
       console.log(values);
     },
   });
-
-  const statusHidupOptions = [
-    {
-      value: 0,
-      label: "Meninggal",
-    },
-    {
-      value: 1,
-      label: "Hidup",
-    },
-  ];
 
   return (
     <>
@@ -177,11 +166,10 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
                   Status Hidup
                   <FormRequired />
                 </FormLabel>
-                <StaticSelect
+                <SelectStatusHidup
                   formik={formik}
                   name="status_hidup"
                   placeholder="Pilih status hidup"
-                  options={statusHidupOptions}
                   selectedValue={formik.values.status_hidup}
                   noSearch
                   noUseBackOnClose
@@ -232,7 +220,7 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
           </ModalBody>
           <ModalFooter>
             <ButtonGroup w={"100%"}>
-              <Button
+              {/* <Button
                 w={"100%"}
                 className="btn-solid clicky"
                 onClick={() => {
@@ -240,7 +228,7 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
                 }}
               >
                 Batal
-              </Button>
+              </Button> */}
               <Button w={"100%"} className="btn-ap clicky" colorScheme="ap">
                 Simpan
               </Button>

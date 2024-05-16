@@ -29,7 +29,7 @@ export default function DetailKeluargaKaryawan() {
         nama: "Karlitos Kurniawan",
         pendidikan_terakhir: "S1 Teknik Sipil",
         pekerjaan: "Mandor",
-        status_hidup: 0,
+        status_hidup: 2,
         no_hp: "098172637162",
         email: "emailBapak@gmail.com",
       },

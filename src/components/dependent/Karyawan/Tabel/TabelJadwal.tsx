@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Box,
   Center,
   Checkbox,
   HStack,
@@ -15,17 +14,17 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
+import { addDays } from "date-fns";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
 import { dummyTabelJadwalData } from "../../../../const/dummy";
-import formatTime from "../../../../const/formatTime";
 import { responsiveSpacing } from "../../../../const/sizes";
 import Skeleton from "../../../independent/Skeleton";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
+import TabelJadwalItem from "../JadwalTabelItem";
 import TerapkanJadwalKaryawanTerpilih from "../TerapkanJadwalKaryawanTerpilih";
 import JadwalTabelHeader from "./JadwalTabelHeader";
-import { addDays } from "date-fns";
 
 interface Props {
   filterConfig?: any;
@@ -288,26 +287,11 @@ export default function TabelJadwal({ onCheckItem, filterConfig }: Props) {
                         pl={ii === 0 ? 4 : 2}
                         pr={ii === row.jadwal_list.length - 1 ? 4 : 2}
                       >
-                        <VStack
-                          p={3}
-                          gap={1}
-                          borderRadius={8}
-                          w={"180px"}
-                          h={"70px"}
-                          align={"stretch"}
-                          className="btn-apa clicky"
-                          cursor={"pointer"}
-                        >
-                          <Box>
-                            <Text noOfLines={1} mb={1} fontSize={14}>
-                              {jadwal.label}
-                            </Text>
-                            <Text whiteSpace={"nowrap"} fontSize={14}>
-                              {formatTime(jadwal.jam_masuk)} -{" "}
-                              {formatTime(jadwal.jam_keluar)}
-                            </Text>
-                          </Box>
-                        </VStack>
+                        <TabelJadwalItem
+                          data={row}
+                          jadwal={jadwal}
+                          tgl={dateList[i]}
+                        />
                       </Td>
                     );
                   })}

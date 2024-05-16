@@ -2,6 +2,7 @@ import {
   Alert,
   AlertDescription,
   AlertIcon,
+  HStack,
   TextProps,
 } from "@chakra-ui/react";
 
@@ -12,15 +13,18 @@ export default function DeletePermanentWarning({ ...props }: Props) {
     //   Data yang dihapus tidak bisa dikembalikan
     // </Text>
     <Alert
-      variant={"left-accent"}
+      // variant={"left-accent"}
       borderRadius={8}
       colorScheme="red"
+      minW={"100% !important"}
       {...props}
     >
-      <AlertIcon />
-      <AlertDescription mt={0}>
-        Data yang dihapus tidak bisa dikembalikan
-      </AlertDescription>
+      <HStack mx={"auto"} gap={0}>
+        <AlertIcon />
+        <AlertDescription mt={0}>
+          Data yang dihapus tidak bisa dikembalikan
+        </AlertDescription>
+      </HStack>
     </Alert>
   );
 }

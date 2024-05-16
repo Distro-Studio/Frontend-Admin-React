@@ -177,7 +177,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
           </ModalBody>
           <ModalFooter>
             <ButtonGroup w={"100%"}>
-              <Button
+              {/* <Button
                 w={"100%"}
                 className="btn-solid clicky"
                 onClick={() => {
@@ -185,7 +185,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                 }}
               >
                 Batal
-              </Button>
+              </Button> */}
               <Button w={"100%"} colorScheme="ap" className="btn-ap clicky">
                 Simpan
               </Button>

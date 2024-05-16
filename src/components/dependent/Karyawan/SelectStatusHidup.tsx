@@ -1,6 +1,6 @@
-import { ButtonProps } from "@chakra-ui/react";
-import StaticSelect from "../../input/StaticSelect";
+import { ButtonProps } from "react-day-picker";
 import { Select__Item__Interface } from "../../../const/interfaces";
+import StaticSelect from "../../input/StaticSelect";
 
 interface Props extends ButtonProps {
   formik?: any;
@@ -12,7 +12,7 @@ interface Props extends ButtonProps {
   confirmSelect?: (status: Select__Item__Interface) => void;
 }
 
-export default function SelectStatusPenukaranJadwal({
+export default function SelectStatusHidup({
   formik,
   name,
   placeholder,
@@ -25,23 +25,19 @@ export default function SelectStatusPenukaranJadwal({
   const options = [
     {
       value: 1,
-      label: "Semua Status",
+      label: "Hidup",
     },
     {
       value: 2,
-      label: "Disetujui",
-    },
-    {
-      value: 3,
-      label: "Tidak Disetujui",
+      label: "Meninggal",
     },
   ];
 
   return (
     <StaticSelect
       formik={formik}
-      name="status_penukaran_jadwal"
-      placeholder="Pilih status"
+      name="status_hidup"
+      placeholder="Pilih status hidup"
       options={options}
       selectedValue={selectedValue}
       confirmSelect={confirmSelect}

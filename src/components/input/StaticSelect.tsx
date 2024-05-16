@@ -159,9 +159,10 @@ export default function StaticSelect({
                     key={i}
                     onClick={() => {
                       if (formik) {
-                        formik.setFieldValue(name, option);
+                        formik.setFieldValue(name, option.value);
                       }
                       if (confirmSelect) {
+                        console.log(option);
                         confirmSelect(option);
                       }
                       handleOnClose();

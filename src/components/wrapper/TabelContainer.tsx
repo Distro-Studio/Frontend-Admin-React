@@ -1,6 +1,6 @@
 import { Box, BoxProps } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import ComponentSpinner from "../independent/ComponentSpinner";
+import Skeleton from "../independent/Skeleton";
 
 interface Props extends BoxProps {
   children: any;
@@ -45,7 +45,6 @@ export default function TabelContainer({ children, ...props }: Props) {
       {children}
     </Box>
   ) : (
-    // <Skeleton flex={1} />
-    <ComponentSpinner flex={1} />
+    <Skeleton flex={1} />
   );
 }

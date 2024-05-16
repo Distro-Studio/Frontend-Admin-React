@@ -123,7 +123,7 @@ export default function DashboardPengumumanItemDetail({
                   bg={"var(--reda)"}
                   _hover={{ bg: "var(--reda)" }}
                 >
-                  Delete
+                  Hapus
                 </Button>
                 <Button
                   type="submit"
@@ -135,7 +135,7 @@ export default function DashboardPengumumanItemDetail({
                   isDisabled={loadingDelete}
                   onClick={updatePengumuman}
                 >
-                  Update
+                  Simpan
                 </Button>
               </ButtonGroup>
             )}

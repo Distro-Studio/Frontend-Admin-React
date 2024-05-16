@@ -94,8 +94,8 @@ export default function ImportJadwalKaryawanModal() {
           </ModalBody>
           <ModalFooter>
             <ButtonGroup w={"100%"}>
-              <Button
-                w={"50%"}
+              {/* <Button
+                w={"100%"}
                 onClick={() => {
                   backOnClose(onClose);
                 }}
@@ -103,9 +103,9 @@ export default function ImportJadwalKaryawanModal() {
                 bg={"var(--reda)"}
               >
                 Batal
-              </Button>
+              </Button> */}
               <Button
-                w={"50%"}
+                w={"100%"}
                 type="submit"
                 form="importDataKaryawanForm"
                 className="btn-ap clicky"
