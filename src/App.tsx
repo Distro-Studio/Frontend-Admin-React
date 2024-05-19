@@ -234,7 +234,20 @@ export const App = () => (
           element={
             <NavContainer
               active={6}
-              title="Pengaturan"
+              title="Pengaturan - Kelola Role"
+              topNavsData={pengaturanTopNavs}
+              topNavActive={0}
+            >
+              <PengaturanKelolaRole />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/pengaturan/akun/ubah-kata-sandi"
+          element={
+            <NavContainer
+              active={6}
+              title="Pengaturan - Ubah Kata Sandi"
               topNavsData={pengaturanTopNavs}
               topNavActive={0}
             >

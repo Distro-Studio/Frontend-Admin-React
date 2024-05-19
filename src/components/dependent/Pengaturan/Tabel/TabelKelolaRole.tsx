@@ -13,7 +13,7 @@ import {
   Tr,
   VStack,
 } from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
+import { RiArrowDownLine, RiArrowUpLine, RiEditFill } from "@remixicon/react";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
 import { dummyKaryawanList } from "../../../../const/dummy";
@@ -24,6 +24,7 @@ import {
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
+import { iconSize } from "../../../../const/sizes";
 
 interface Props {
   filterConfig?: any;
@@ -248,7 +249,7 @@ export default function TabelKelolaRole({ filterConfig }: Props) {
                       borderBottom={"1px solid var(--divider3)"}
                       h={"52px"}
                     >
-                      <Text whiteSpace={"nowrap"}>Ubah Akses</Text>
+                      <Text whiteSpace={"nowrap"}>Edit</Text>
                     </Center>
                   </Th>
                 </Tr>
@@ -295,17 +296,26 @@ export default function TabelKelolaRole({ filterConfig }: Props) {
                       p={0}
                       bg={i % 2 === 0 ? contentBgColor : bodyColor}
                       zIndex={1}
-                      w={"160px"}
+                      w={"140px"}
                     >
                       <VStack
                         borderLeft={"1px solid var(--divider3)"}
-                        w={"160px"}
+                        w={"140px"}
                         h={"72px"}
                         px={4}
                         align={"stretch"}
                         justify={"center"}
                       >
-                        <Button className={"btn-apa clicky"}>Ubah Akses</Button>
+                        <Button
+                          colorScheme="ap"
+                          variant={"ghost"}
+                          className=" clicky"
+                          leftIcon={
+                            <Icon as={RiEditFill} fontSize={iconSize} />
+                          }
+                        >
+                          Edit
+                        </Button>
                       </VStack>
                     </Td>
                   </Tr>
