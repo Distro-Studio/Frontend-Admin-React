@@ -22,9 +22,16 @@ export default function RekamJejak() {
     unit_kerja: [],
     status_karyawan: [],
     masa_kerja: [],
-    promosi: [],
-    mutasi: [],
-    penghargaan: [],
+    // masa_kerja: {
+    //   tahun: {
+    //     min: null,
+    //     max: null,
+    //   },
+    //   bulan: {
+    //     min: null,
+    //     max: null,
+    //   },
+    // },
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
 

@@ -55,7 +55,6 @@ export default function FilterTabelRekamJejak({
   const adaFilter =
     filterConfig &&
     ((filterConfig.masa_kerja && filterConfig.masa_kerja.length > 0) ||
-      (filterConfig.promosi && filterConfig.promosi.length > 0) ||
       (filterConfig.unit_kerja && filterConfig.unit_kerja.length > 0) ||
       (filterConfig.status_karyawan &&
         filterConfig.status_karyawan.length > 0));
@@ -88,7 +87,6 @@ export default function FilterTabelRekamJejak({
               <Text color={bodyColor} fontSize={12} fontWeight={600}>
                 {formatNumber(
                   filterConfig.masa_kerja.length +
-                    filterConfig.promosi.length +
                     filterConfig.unit_kerja.length +
                     filterConfig.status_karyawan.length
                 )}

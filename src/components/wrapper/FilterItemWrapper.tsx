@@ -21,7 +21,7 @@ interface Props extends AccordionItemProps {
   title: string;
   children: any;
   setFilterConfig: Dispatch<any>;
-  filterValue?: string;
+  filterValue?: any;
   filterKey: string;
   panelMaxH?: string;
 }
@@ -58,38 +58,42 @@ export default function FilterItemWrapper({
 
           <HStack>
             {filterValue && filterValue.length > 0 && (
-              <Tooltip label={"Hapus filter ini"} openDelay={500}>
-                <IconButton
-                  as={Center}
-                  aria-label="Delete filter item button"
-                  icon={<Icon as={RiCloseLine} fontSize={16} />}
-                  size={"xs"}
+              <>
+                <Tooltip label={"Hapus filter ini"} openDelay={500}>
+                  <IconButton
+                    as={Center}
+                    aria-label="Delete filter item button"
+                    icon={<Icon as={RiCloseLine} fontSize={16} />}
+                    size={"xs"}
+                    borderRadius={"full"}
+                    colorScheme="red"
+                    variant={"ghost"}
+                    opacity={0} // Set opacity 0 saat kondisi hover tidak terpenuhi
+                    _groupHover={{ opacity: 1 }} // Set opacity 1 saat tombol akordion dihover
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setFilterConfig((ps: any) => ({
+                        ...ps,
+                        [filterKey]: [],
+                      }));
+                    }}
+                  />
+                </Tooltip>
+
+                <Center
+                  flexShrink={0}
+                  minW={"20px"}
+                  h={"20px"}
                   borderRadius={"full"}
-                  colorScheme="red"
-                  variant={"ghost"}
-                  opacity={0} // Set opacity 0 saat kondisi hover tidak terpenuhi
-                  _groupHover={{ opacity: 1 }} // Set opacity 1 saat tombol akordion dihover
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setFilterConfig((ps: any) => ({ ...ps, [filterKey]: [] }));
-                  }}
-                />
-              </Tooltip>
-            )}
-            {filterValue && filterValue.length > 0 && (
-              <Center
-                flexShrink={0}
-                minW={"20px"}
-                h={"20px"}
-                borderRadius={"full"}
-                bg={"p.500"}
-                ml={"auto"}
-                mr={2}
-              >
-                <Text color={bodyColor} fontSize={12} fontWeight={600}>
-                  {formatNumber(filterValue.length)}
-                </Text>
-              </Center>
+                  bg={"p.500"}
+                  ml={"auto"}
+                  mr={2}
+                >
+                  <Text color={bodyColor} fontSize={12} fontWeight={600}>
+                    {formatNumber(filterValue.length)}
+                  </Text>
+                </Center>
+              </>
             )}
           </HStack>
         </HStack>
