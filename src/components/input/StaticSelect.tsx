@@ -146,13 +146,17 @@ export default function StaticSelect({
               {filteredOptions && filteredOptions?.length > 0 ? (
                 filteredOptions?.map((option, i) => (
                   <Button
-                    className="btn-outline"
-                    // borderRadius={"0"}
                     bg={
                       selectedValue === option.value
                         ? "var(--p500a3) !important"
                         : ""
                     }
+                    _hover={{
+                      bg:
+                        selectedValue === option.value
+                          ? "var(--p500a3) !important"
+                          : "var(--divider) !important",
+                    }}
                     // color={selectedValue === option.value ? "p.500" : ""}
                     border={"1px solid var(--divider)"}
                     borderColor={

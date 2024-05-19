@@ -21,7 +21,7 @@ import { responsiveSpacing } from "./const/sizes";
 import Jadwal from "./pages/Jadwal/Jadwal";
 import karyawanTopNavs from "./const/karyawanTopNavs";
 import jadwalTopNavs from "./const/jadwalTopNavs";
-import TukarJadwal from "./pages/Jadwal/TukarJadwal";
+import PenukaranJadwal from "./pages/Jadwal/PenukaranJadwal";
 import Lembur from "./pages/Jadwal/Lembur";
 import Cuti from "./pages/Jadwal/Cuti";
 import DetailKeluargaKaryawan from "./pages/Karyawan/DetailKeluargaKaryawan";
@@ -171,15 +171,15 @@ export const App = () => (
           }
         />
         <Route
-          path="/jadwal/tukar-jadwal"
+          path="/jadwal/penukaran-jadwal"
           element={
             <NavContainer
               active={3}
-              title="Tukar Jadwal"
+              title="Penukaran Jadwal"
               topNavsData={jadwalTopNavs}
               topNavActive={1}
             >
-              <TukarJadwal />
+              <PenukaranJadwal />
             </NavContainer>
           }
         />

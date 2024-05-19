@@ -16,7 +16,7 @@ import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 
-export default function TukarJadwal() {
+export default function PenukaranJadwal() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
@@ -57,7 +57,7 @@ export default function TukarJadwal() {
               selectedValue={filterConfig.status}
               confirmSelect={confirmSelectStatusPenukaranJadwal}
               noSearch
-              flex={"1 1"}
+              flex={"1 1 160px"}
             />
 
             <Button
