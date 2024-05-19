@@ -10,7 +10,7 @@ import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import SelectStatusPenukaranJadwal from "../../components/dependent/Karyawan/SelectStatusPenukaranJadwal";
 import TabelTukarJadwal from "../../components/dependent/Karyawan/Tabel/TabelTukarJadwal";
-import AjukanTukarJadwalModal from "../../components/independent/Karyawan/AjukanTukarJadwalModal";
+import AjukanPenukaranJadwalModal from "../../components/independent/Karyawan/AjukanPenukaranJadwalModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
@@ -70,7 +70,7 @@ export default function PenukaranJadwal() {
               Export
             </Button>
 
-            <AjukanTukarJadwalModal flex={"1 1 220px"} />
+            <AjukanPenukaranJadwalModal flex={"1 1 220px"} />
           </Wrap>
 
           <TabelTukarJadwal filterConfig={filterConfig} />

@@ -1,12 +1,9 @@
 import {
-  Box,
   Button,
   ButtonProps,
   FormControl,
   FormErrorMessage,
   FormLabel,
-  HStack,
-  Icon,
   Input,
   Modal,
   ModalBody,
@@ -17,17 +14,17 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import { RiRepeatLine } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
 import backOnClose from "../../../lib/backOnClose";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import FormRequired from "../../form/FormRequired";
+import DateRangePicker from "../../input/DateRangePicker";
 
 interface Props extends ButtonProps {}
 
-export default function AjukanTukarJadwalModal({ ...props }: Props) {
+export default function AjukanCutiModal({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
@@ -35,16 +32,14 @@ export default function AjukanTukarJadwalModal({ ...props }: Props) {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      user_pengajuan: "",
-      jadwal_pengajuan: "",
-      user_ditukar: "",
-      jadwal_ditukar: "",
+      user_id: "",
+      tipe_cuti_id: "",
+      durasi: "",
     },
     validationSchema: yup.object().shape({
-      user_pengajuan: yup.string().required("Harus diisi"),
-      jadwal_pengajuan: yup.string().required("Harus diisi"),
-      user_ditukar: yup.string().required("Harus diisi"),
-      jadwal_ditukar: yup.string().required("Harus diisi"),
+      user_id: yup.string().required("Harus diisi"),
+      tipe_cuti_id: yup.string().required("Harus diisi"),
+      durasi: yup.string().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
@@ -59,7 +54,7 @@ export default function AjukanTukarJadwalModal({ ...props }: Props) {
         onClick={onOpen}
         {...props}
       >
-        Ajukan Penukaran Jadwal
+        Ajukan Cuti
       </Button>
 
       <Modal
@@ -74,99 +69,65 @@ export default function AjukanTukarJadwalModal({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent ref={initialRef}>
           <ModalCloseButton />
-          <ModalHeader>Ajukan Penukaran Jadwal</ModalHeader>
+          <ModalHeader>Ajukan Cuti</ModalHeader>
           <ModalBody>
-            <form id="penukaranJadwalForm">
+            <form id="ajukanCutiForm">
               <FormControl
                 mb={4}
-                isInvalid={formik.errors.user_pengajuan ? true : false}
+                isInvalid={formik.errors.user_id ? true : false}
               >
                 <FormLabel>
-                  Karyawan Pengajuan
+                  Karyawan
                   <FormRequired />
                 </FormLabel>
                 <Input
-                  name="user_pengajuan"
+                  name="user_id"
                   placeholder="pilih"
                   onChange={formik.handleChange}
-                  value={formik.values.user_pengajuan}
+                  value={formik.values.user_id}
                 />
                 <FormErrorMessage>
-                  {formik.errors.user_pengajuan as string}
-                </FormErrorMessage>
-              </FormControl>
-
-              <FormControl
-                isInvalid={formik.errors.jadwal_pengajuan ? true : false}
-              >
-                <FormLabel>
-                  Jadwal Pengajuan
-                  <FormRequired />
-                </FormLabel>
-                <Input
-                  name="jadwal_pengajuan"
-                  placeholder="pilih"
-                  onChange={formik.handleChange}
-                  value={formik.values.jadwal_pengajuan}
-                />
-                <FormErrorMessage>
-                  {formik.errors.jadwal_pengajuan as string}
-                </FormErrorMessage>
-              </FormControl>
-
-              <HStack my={8}>
-                <Box w={"100%"} h={"2px"} bg={"var(--divider3)"} />
-                <Icon
-                  as={RiRepeatLine}
-                  fontSize={20}
-                  opacity={0.6}
-                  transform={"rotate(90deg)"}
-                />
-                <Box w={"100%"} h={"2px"} bg={"var(--divider3)"} />
-              </HStack>
-
-              <FormControl
-                mb={4}
-                isInvalid={formik.errors.user_ditukar ? true : false}
-              >
-                <FormLabel>
-                  Karyawan Ditukar
-                  <FormRequired />
-                </FormLabel>
-                <Input
-                  name="user_ditukar"
-                  placeholder="pilih"
-                  onChange={formik.handleChange}
-                  value={formik.values.user_ditukar}
-                />
-                <FormErrorMessage>
-                  {formik.errors.user_ditukar as string}
+                  {formik.errors.user_id as string}
                 </FormErrorMessage>
               </FormControl>
 
               <FormControl
                 mb={4}
-                isInvalid={formik.errors.jadwal_ditukar ? true : false}
+                isInvalid={formik.errors.tipe_cuti_id ? true : false}
               >
                 <FormLabel>
-                  Jadwal Ditukar
+                  Tipe Cuti
                   <FormRequired />
                 </FormLabel>
                 <Input
-                  name="jadwal_ditukar"
+                  name="tipe_cuti_id"
                   placeholder="pilih"
                   onChange={formik.handleChange}
-                  value={formik.values.jadwal_ditukar}
+                  value={formik.values.tipe_cuti_id}
                 />
                 <FormErrorMessage>
-                  {formik.errors.jadwal_ditukar as string}
+                  {formik.errors.tipe_cuti_id as string}
+                </FormErrorMessage>
+              </FormControl>
+
+              <FormControl
+                mb={4}
+                isInvalid={formik.errors.durasi ? true : false}
+              >
+                <FormLabel>
+                  Durasi
+                  <FormRequired />
+                </FormLabel>
+                <DateRangePicker formik={formik} name="durasi" noBackOnClose />
+                <FormErrorMessage>
+                  {formik.errors.durasi as string}
                 </FormErrorMessage>
               </FormControl>
             </form>
           </ModalBody>
           <ModalFooter>
             <Button w={"100%"} colorScheme="ap" className="btn-ap clicky">
-              Tukar
+              Simpan
             </Button>
           </ModalFooter>
         </ModalContent>

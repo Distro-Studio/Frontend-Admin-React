@@ -48,6 +48,7 @@ interface Props extends ButtonProps {
   defaultDateSelected?: { from: Date; to: Date };
   dateFormatFromOptions?: any;
   dateFormatToOptions?: any;
+  noBackOnClose?: boolean;
 }
 
 export default function DateRangePicker({
@@ -59,6 +60,7 @@ export default function DateRangePicker({
   defaultDateSelected,
   dateFormatFromOptions,
   dateFormatToOptions,
+  noBackOnClose,
   ...props
 }: Props) {
   const initialRef = useRef(null);
@@ -69,15 +71,14 @@ export default function DateRangePicker({
   const [tahun, setTahun] = useState<number>(date.getFullYear());
   const [bulan, setBulan] = useState<number>(date.getMonth() + 1);
   const [selected, setSelected] = useState<any>();
-  // const [confirm, setConfirm] = useState<boolean>(false);
   const confirmSelect = () => {
     if (selected) {
       if (formik && name) {
+        console.log("titit");
         formik.setFieldValue(name, selected);
       } else if (confirmDate) {
         confirmDate(selected.from, selected.to);
       }
-      // setConfirm(true);
     }
   };
 
@@ -87,14 +88,12 @@ export default function DateRangePicker({
     }
   }, [dateValue]);
 
-  // useEffect(() => {
-  //   setConfirm(true);
-  // }, []);
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   function handleOnClose() {
-    window.history.back();
+    if (!noBackOnClose) {
+      window.history.back();
+    }
     onClose();
   }
   function todayMonth() {
@@ -206,7 +205,7 @@ export default function DateRangePicker({
             : placeholder || `Pilih periode tanggal`}
         </Text>
 
-        <Icon as={RiCalendarLine} mb={"2px"} />
+        <Icon as={RiCalendarLine} mt={"1px"} />
       </Button>
 
       <Modal

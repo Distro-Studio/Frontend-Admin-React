@@ -16,7 +16,7 @@ import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 
-export default function PenukaranJadwal() {
+export default function Lembur() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",

@@ -64,15 +64,15 @@ export default function AjukanLemburModal({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent ref={initialRef}>
           <ModalCloseButton />
-          <ModalHeader>Ajukan Penukaran Jadwal</ModalHeader>
+          <ModalHeader>Ajukan Lembur</ModalHeader>
           <ModalBody>
-            <form id="penukaranJadwalForm">
+            <form id="ajukanLemburForm">
               <FormControl
                 mb={4}
                 isInvalid={formik.errors.user_id ? true : false}
               >
                 <FormLabel>
-                  Karyawan Pengajuan
+                  Karyawan
                   <FormRequired />
                 </FormLabel>
                 <Input

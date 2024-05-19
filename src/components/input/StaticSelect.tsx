@@ -23,12 +23,13 @@ import { useRef, useState } from "react";
 import { Select__Item__Interface } from "../../const/interfaces";
 import { iconSize } from "../../const/sizes";
 import useBackOnClose from "../../lib/useBackOnClose";
+import ComponentSpinner from "../independent/ComponentSpinner";
 
 interface Props extends ButtonProps {
   formik?: any;
   name?: string;
   placeholder: string;
-  options: { value: any; label: string }[];
+  options: { value: any; label: string }[] | null;
   selectedValue: any;
   noSearch?: boolean;
   noUseBackOnClose?: boolean;
@@ -97,7 +98,7 @@ export default function StaticSelect({
           fontSize={14}
           fontWeight={400}
         >
-          {options[selectedValue - 1]?.label || placeholder}
+          {(options && options[selectedValue - 1]?.label) || placeholder}
         </Text>
 
         <Icon as={RiArrowDownSLine} />
@@ -143,6 +144,8 @@ export default function StaticSelect({
               overflow={"clip"}
               // p={2}
             >
+              {!filteredOptions && <ComponentSpinner />}
+
               {filteredOptions && filteredOptions?.length > 0 ? (
                 filteredOptions?.map((option, i) => (
                   <Button
