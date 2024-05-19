@@ -144,7 +144,8 @@ export interface Tabel__Column__Interface {
     | "badge"
     | "avatarAndName"
     | "link"
-    | "action";
+    | "action"
+    | "duration";
   link?: string;
   preferredTextAlign?: string;
   action?: any;

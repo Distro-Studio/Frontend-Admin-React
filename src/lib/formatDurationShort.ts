@@ -8,5 +8,5 @@ export default function formatDurationShort(seconds: number) {
   let formattedMinutes = String(minutes).padStart(2, "0");
 
   // Mengembalikan format yang diinginkan
-  return `${formattedHours}h${formattedMinutes}m`;
+  return `${formattedHours}j ${formattedMinutes}m`;
 }
