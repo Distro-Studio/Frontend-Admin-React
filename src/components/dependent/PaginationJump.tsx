@@ -12,13 +12,12 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
-  useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
-import useBackOnClose from "../../lib/useBackOnClose";
-import parseNumber from "../../lib/parseNumber";
 import formatNumber from "../../lib/formatNumber";
+import parseNumber from "../../lib/parseNumber";
+import useBackOnClose from "../../lib/useBackOnClose";
 
 type Props = {
   page: any;
@@ -52,7 +51,7 @@ export default function PaginationJump({ page, setPage, pagination }: Props) {
   return (
     <>
       <Center
-        bg={"p.500"}
+        className="btn-apa"
         w={"32px"}
         h={"32px"}
         borderRadius={8}
@@ -60,7 +59,7 @@ export default function PaginationJump({ page, setPage, pagination }: Props) {
         transition={"200ms"}
         onClick={onOpen}
       >
-        <Text color={useColorModeValue("white", "dark")}>{page}</Text>
+        <Text fontWeight={600}>{page}</Text>
       </Center>
 
       <Modal

@@ -50,14 +50,14 @@ export default function TabelFooterConfig({
           <MenuButton
             ref={limitButtonRef}
             as={Button}
-            className="btn-solid"
+            className="btn-apa"
             rightIcon={
               <Icon as={RiArrowDownSLine} fontSize={iconSize} opacity={0.6} />
             }
           >
             <HStack>
-              <Text opacity={0.6}>Row</Text>
               <Text color={"p.500"}>{limitConfig}</Text>
+              <Text>Row</Text>
             </HStack>
           </MenuButton>
 

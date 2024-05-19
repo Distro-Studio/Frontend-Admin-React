@@ -2,29 +2,30 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { globalTheme } from "./chakraTheme/globalTheme";
 import NavContainer from "./components/wrapper/NavContainer";
+import jadwalTopNavs from "./const/jadwalTopNavs";
+import karyawanTopNavs from "./const/karyawanTopNavs";
+import pengaturanTopNavs from "./const/pengaturanTopNavs";
+import { responsiveSpacing } from "./const/sizes";
 import "./globalStyle.css";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import MissingPage from "./pages/Error/MissingPage";
+import Cuti from "./pages/Jadwal/Cuti";
+import Jadwal from "./pages/Jadwal/Jadwal";
+import Lembur from "./pages/Jadwal/Lembur";
+import PenukaranJadwal from "./pages/Jadwal/PenukaranJadwal";
 import AkunKaryawan from "./pages/Karyawan/AkunKaryawan";
+import DetailKeluargaKaryawan from "./pages/Karyawan/DetailKeluargaKaryawan";
 import Karyawan from "./pages/Karyawan/Karyawan";
 import KeluargaKaryawan from "./pages/Karyawan/KeluargaKaryawan";
 import PekerjaKontrak from "./pages/Karyawan/PekerjaKontrak";
 import RekamJejak from "./pages/Karyawan/RekamJejak";
+import TambahKaryawan from "./pages/Karyawan/TambahKaryawan";
 import TransferKaryawan from "./pages/Karyawan/TransferKaryawan";
 import Keuangan from "./pages/Keuangan/Keuangan";
 import Login from "./pages/Login/Login";
-import Pengaturan from "./pages/Pengaturan/Pengaturan";
+import PengaturanKelolaRole from "./pages/Pengaturan/PengaturanKelolaRole";
 import Perusahaan from "./pages/Perusahaan/Perusahaan";
 import Presensi from "./pages/Presensi/Presensi";
-import TambahKaryawan from "./pages/Karyawan/TambahKaryawan";
-import { responsiveSpacing } from "./const/sizes";
-import Jadwal from "./pages/Jadwal/Jadwal";
-import karyawanTopNavs from "./const/karyawanTopNavs";
-import jadwalTopNavs from "./const/jadwalTopNavs";
-import PenukaranJadwal from "./pages/Jadwal/PenukaranJadwal";
-import Lembur from "./pages/Jadwal/Lembur";
-import Cuti from "./pages/Jadwal/Cuti";
-import DetailKeluargaKaryawan from "./pages/Karyawan/DetailKeluargaKaryawan";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -229,10 +230,15 @@ export const App = () => (
         />
 
         <Route
-          path="/pengaturan"
+          path="/pengaturan/akun/kelola-role"
           element={
-            <NavContainer active={6} title="Pengaturan">
-              <Pengaturan />
+            <NavContainer
+              active={6}
+              title="Pengaturan"
+              topNavsData={pengaturanTopNavs}
+              topNavActive={0}
+            >
+              <PengaturanKelolaRole />
             </NavContainer>
           }
         />

@@ -41,7 +41,7 @@ const navs = [
   },
   {
     label: "Pengaturan",
-    link: "/pengaturan",
+    link: "/pengaturan/akun/kelola-role",
     icon: RiSettingsFill,
   },
 ];
