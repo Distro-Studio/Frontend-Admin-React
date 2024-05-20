@@ -1,5 +1,5 @@
 import { Button, Checkbox, HStack, Text, Wrap } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import TabelKeizinan from "../../components/dependent/Pengaturan/Tabel/TabelKeizinan";
 import CContainer from "../../components/wrapper/CContainer";
@@ -70,6 +70,11 @@ export default function PengaturanKeizinan() {
   //! DEBUG
   const [data] = useState<any[] | null>(dummy);
   const [semuaIzin, setSemuaIzin] = useState(false);
+
+  useEffect(() => {
+    //TODO get permission
+    console.log(role_id);
+  }, []);
 
   return (
     <>
