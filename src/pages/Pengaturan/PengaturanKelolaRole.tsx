@@ -51,12 +51,7 @@ export default function PengaturanKelolaRole() {
             ))}
           </CContainer>
 
-          <CContainer
-            p={responsiveSpacing}
-            bg={useBodyColor()}
-            borderRadius={12}
-            flex={"1 1"}
-          >
+          <CContainer p={4} bg={useBodyColor()} borderRadius={12} flex={"1 1"}>
             <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
               <InputGroup flex={"1 1 200px"}>
                 <InputLeftElement>
