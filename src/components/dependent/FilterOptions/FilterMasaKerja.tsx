@@ -49,10 +49,17 @@ export default function FilterMasaKerja({
             aria-label="slider-ex-6"
             onChange={(val) => {
               const newValue = Math.round((val * 6) / 10);
-              setFilterConfig((ps: any) => ({
-                ...ps,
-                masa_kerja: [newValue],
-              }));
+              if (newValue > 0) {
+                setFilterConfig((ps: any) => ({
+                  ...ps,
+                  masa_kerja: [newValue],
+                }));
+              } else {
+                setFilterConfig((ps: any) => ({
+                  ...ps,
+                  masa_kerja: [],
+                }));
+              }
             }}
             value={(filterConfig.masa_kerja[0] * 10) / 6 || 0}
           >
