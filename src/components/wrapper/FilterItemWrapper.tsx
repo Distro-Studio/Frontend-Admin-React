@@ -82,8 +82,8 @@ export default function FilterItemWrapper({
 
                 <Center
                   flexShrink={0}
-                  minW={"20px"}
-                  h={"20px"}
+                  minW={"24px"}
+                  h={"24px"}
                   borderRadius={"full"}
                   bg={"p.500"}
                   ml={"auto"}
