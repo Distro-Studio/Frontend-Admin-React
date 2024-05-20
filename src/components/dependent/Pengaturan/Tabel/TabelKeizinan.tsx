@@ -1,7 +1,5 @@
 import {
-  Avatar,
-  Button,
-  Center,
+  Checkbox,
   HStack,
   Icon,
   Table,
@@ -11,62 +9,28 @@ import {
   Th,
   Thead,
   Tr,
-  VStack,
 } from "@chakra-ui/react";
-import {
-  RiArrowDownLine,
-  RiArrowRightSLine,
-  RiArrowUpLine,
-} from "@remixicon/react";
+import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
-import { dummyKaryawanList } from "../../../../const/dummy";
-import {
-  Karyawan__Interface,
-  Tabel__Column__Interface,
-} from "../../../../const/interfaces";
+import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
 
 interface Props {
-  filterConfig?: any;
+  data: any;
 }
 
-export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
+export default function TabelKeizinan({ data }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
-      key: "nama",
-      label: "Nama",
-      dataType: "avatarAndName",
-    },
-    {
-      key: "ayah",
-      label: "Ayah",
+      key: "name",
+      label: "Nama Modul",
       dataType: "string",
-    },
-    {
-      key: "ibu",
-      label: "Ibu",
-      dataType: "string",
-    },
-    {
-      key: "jumlah_keluarga",
-      label: "Jumlah Keluarga",
-      dataType: "number",
-      thProps: { w: "200px" },
-      preferredTextAlign: "center",
     },
   ];
 
-  //! DEBUG
-  // console.log(filterConfig);
-  //! DEBUG
-
-  //TODO get karyawan
-
-  const [data] = useState<Karyawan__Interface[] | null>(dummyKaryawanList);
   const [loading] = useState<boolean>(false);
 
   // Limit Config
@@ -82,7 +46,7 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
   } | null>({ key: columns[0].key, direction: "asc" });
   const sortedData = data && [...data];
   if (sortConfig !== null && sortedData) {
-    sortedData.sort((a, b) => {
+    sortedData.sort((a: any, b: any) => {
       //@ts-ignore
       if (a[sortConfig.key] < b[sortConfig.key]) {
         return sortConfig.direction === "asc" ? -1 : 1;
@@ -119,7 +83,7 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
           <TabelContainer>
             <Table minW={"100%"}>
               <Thead>
-                <Tr position={"sticky"} top={0} zIndex={3}>
+                <Tr position={"sticky"} top={0} zIndex={3} bg={bodyColor}>
                   {columns.map((column, i) => (
                     <Th
                       key={i}
@@ -131,7 +95,6 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
                       }}
                       cursor={"pointer"}
                       borderBottom={"none !important"}
-                      bg={bodyColor}
                       zIndex={2}
                       p={0}
                       {...column.thProps}
@@ -196,80 +159,73 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
                     </Th>
                   ))}
 
-                  <Th
-                    position={"sticky"}
-                    top={0}
-                    right={0}
-                    borderBottom={"none !important"}
-                    p={0}
-                    bg={bodyColor}
-                    zIndex={2}
-                  >
-                    <Center
+                  <Th borderBottom={"none !important"} p={0}>
+                    <HStack
+                      justify={"center"}
+                      borderBottom={"1px solid var(--divider3)"}
                       px={4}
                       py={3}
-                      zIndex={99}
-                      borderLeft={"1px solid var(--divider3)"}
-                      borderBottom={"1px solid var(--divider3)"}
                       h={"52px"}
                     >
-                      <Text>Detail</Text>
-                    </Center>
+                      <Text>View</Text>
+                    </HStack>
+                  </Th>
+                  <Th borderBottom={"none !important"} p={0}>
+                    <HStack
+                      justify={"center"}
+                      borderBottom={"1px solid var(--divider3)"}
+                      px={4}
+                      py={3}
+                      h={"52px"}
+                    >
+                      <Text>Add</Text>
+                    </HStack>
+                  </Th>
+                  <Th borderBottom={"none !important"} p={0}>
+                    <HStack
+                      justify={"center"}
+                      borderBottom={"1px solid var(--divider3)"}
+                      px={4}
+                      py={3}
+                      h={"52px"}
+                    >
+                      <Text>Edit</Text>
+                    </HStack>
+                  </Th>
+                  <Th borderBottom={"none !important"} p={0}>
+                    <HStack
+                      justify={"center"}
+                      borderBottom={"1px solid var(--divider3)"}
+                      px={4}
+                      py={3}
+                      pr={4}
+                      h={"52px"}
+                    >
+                      <Text>Delete</Text>
+                    </HStack>
                   </Th>
                 </Tr>
               </Thead>
 
               <Tbody>
-                {sortedData.map((row, i) => (
-                  <Tr key={row.id} bg={i % 2 === 0 ? contentBgColor : ""}>
-                    <Td whiteSpace={"nowrap"} h={"72px"}>
-                      <HStack>
-                        <Avatar
-                          size={"sm"}
-                          name={row.nama}
-                          src={row.foto_profil}
-                        />
-                        <Text>{row.nama}</Text>
-                      </HStack>
+                {sortedData.map((row: any, i: number) => (
+                  <Tr
+                    h={"72px"}
+                    key={i}
+                    bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                  >
+                    <Td whiteSpace={"nowrap"}>{row.name}</Td>
+                    <Td textAlign={"center"}>
+                      <Checkbox colorScheme="ap" size={"lg"}></Checkbox>
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{row.ayah}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.ibu}</Td>
-                    <Td whiteSpace={"nowrap"} textAlign={"center"}>
-                      {row.jumlah_keluarga}
+                    <Td textAlign={"center"}>
+                      <Checkbox colorScheme="ap" size={"lg"}></Checkbox>
                     </Td>
-
-                    <Td
-                      position={"sticky"}
-                      top={0}
-                      right={0}
-                      borderBottom={"none !important"}
-                      p={0}
-                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                      zIndex={1}
-                      w={"150px"}
-                    >
-                      <VStack
-                        borderLeft={"1px solid var(--divider3)"}
-                        w={"150px"}
-                        h={"72px"}
-                        px={4}
-                        align={"stretch"}
-                        justify={"center"}
-                      >
-                        <Button
-                          colorScheme="ap"
-                          variant={"ghost"}
-                          className="clicky"
-                          as={Link}
-                          to={`/karyawan/keluarga-karyawan/${row.id}`}
-                          rightIcon={
-                            <Icon as={RiArrowRightSLine} fontSize={20} />
-                          }
-                          pr={3}
-                        >
-                          Detail
-                        </Button>
-                      </VStack>
+                    <Td textAlign={"center"}>
+                      <Checkbox colorScheme="ap" size={"lg"}></Checkbox>
+                    </Td>
+                    <Td textAlign={"center"}>
+                      <Checkbox colorScheme="ap" size={"lg"}></Checkbox>
                     </Td>
                   </Tr>
                 ))}

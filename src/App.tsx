@@ -26,6 +26,7 @@ import Login from "./pages/Login/Login";
 import PengaturanKelolaRole from "./pages/Pengaturan/PengaturanKelolaRole";
 import Perusahaan from "./pages/Perusahaan/Perusahaan";
 import Presensi from "./pages/Presensi/Presensi";
+import PengaturanKeizinan from "./pages/Pengaturan/PengaturanKeizinan";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -239,6 +240,19 @@ export const App = () => (
               topNavActive={0}
             >
               <PengaturanKelolaRole />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/pengaturan/akun/kelola-role/:role_id/:role_name"
+          element={
+            <NavContainer
+              active={6}
+              title="Atur Keizinan"
+              left={"back"}
+              backLink="/pengaturan/akun/kelola-role"
+            >
+              <PengaturanKeizinan />
             </NavContainer>
           }
         />

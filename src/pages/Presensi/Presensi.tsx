@@ -38,7 +38,7 @@ export default function Presensi() {
       <CWrapper>
         <PresensiTotal mb={responsiveSpacing} />
 
-        <CContainer p={4} bg={useBodyColor()} borderRadius={12}>
+        <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
             <InputGroup flex={"1 1 200px"}>
               <InputLeftElement>

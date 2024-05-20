@@ -13,18 +13,19 @@ import {
   Tr,
   VStack,
 } from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine, RiEditFill } from "@remixicon/react";
-import { useState } from "react";
-import { useBodyColor, useContentBgColor } from "../../../../const/colors";
-import { dummyKaryawanList } from "../../../../const/dummy";
 import {
-  Karyawan__Interface,
-  Tabel__Column__Interface,
-} from "../../../../const/interfaces";
+  RiArrowDownLine,
+  RiArrowRightSLine,
+  RiArrowUpLine,
+} from "@remixicon/react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useBodyColor, useContentBgColor } from "../../../../const/colors";
+import { Tabel__Column__Interface } from "../../../../const/interfaces";
+import { iconSize } from "../../../../const/sizes";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
-import { iconSize } from "../../../../const/sizes";
 
 interface Props {
   filterConfig?: any;
@@ -46,11 +47,18 @@ export default function TabelKelolaRole({ filterConfig }: Props) {
 
   //! DEBUG
   // console.log(filterConfig);
+  const dummy = [
+    { id: 1, name: "Super Admin", deskripsi: "mbuh pak mumet pokoke lhosss" },
+    { id: 2, name: "Direktur", deskripsi: "mbuh pak mumet pokoke lhosss" },
+    { id: 3, name: "Admin", deskripsi: "mbuh pak mumet pokoke lhosss" },
+    { id: 4, name: "Manager", deskripsi: "mbuh pak mumet pokoke lhosss" },
+    { id: 5, name: "Karyawan", deskripsi: "mbuh pak mumet pokoke lhosss" },
+  ];
   //! DEBUG
 
   //TODO get karyawan
 
-  const [data] = useState<Karyawan__Interface[] | null>(dummyKaryawanList);
+  const [data] = useState<any[] | null>(dummy);
   const [loading] = useState<boolean>(false);
 
   // Limit Config
@@ -249,7 +257,7 @@ export default function TabelKelolaRole({ filterConfig }: Props) {
                       borderBottom={"1px solid var(--divider3)"}
                       h={"52px"}
                     >
-                      <Text whiteSpace={"nowrap"}>Edit</Text>
+                      <Text whiteSpace={"nowrap"}>Edit Akses</Text>
                     </Center>
                   </Th>
                 </Tr>
@@ -284,8 +292,8 @@ export default function TabelKelolaRole({ filterConfig }: Props) {
                       </Center>
                     </Td>
 
-                    <Td whiteSpace={"nowrap"}>{row.nama}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.ayah}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.name}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.deskripsi}</Td>
 
                     {/* Kolom tetap di sebelah kanan */}
                     <Td
@@ -296,25 +304,28 @@ export default function TabelKelolaRole({ filterConfig }: Props) {
                       p={0}
                       bg={i % 2 === 0 ? contentBgColor : bodyColor}
                       zIndex={1}
-                      w={"140px"}
+                      w={"150px"}
                     >
                       <VStack
                         borderLeft={"1px solid var(--divider3)"}
-                        w={"140px"}
+                        w={"150px"}
                         h={"72px"}
                         px={4}
                         align={"stretch"}
                         justify={"center"}
                       >
                         <Button
+                          pr={3}
                           colorScheme="ap"
                           variant={"ghost"}
                           className=" clicky"
-                          leftIcon={
-                            <Icon as={RiEditFill} fontSize={iconSize} />
+                          as={Link}
+                          to={`/pengaturan/akun/kelola-role/${row.id}/${row.name}`}
+                          rightIcon={
+                            <Icon as={RiArrowRightSLine} fontSize={iconSize} />
                           }
                         >
-                          Edit
+                          Keizinan
                         </Button>
                       </VStack>
                     </Td>

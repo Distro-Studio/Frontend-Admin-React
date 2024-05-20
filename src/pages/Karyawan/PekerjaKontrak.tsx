@@ -20,7 +20,6 @@ export default function PekerjaKontrak() {
   const defaultFilterConfig = {
     search: "",
     unit_kerja: [],
-    status_karyawan: [],
     tgl_masuk: [],
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
@@ -28,7 +27,7 @@ export default function PekerjaKontrak() {
   return (
     <>
       <CWrapper>
-        <CContainer p={4} bg={useBodyColor()} borderRadius={12}>
+        <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
             <InputGroup flex={"1 1 200px"}>
               <InputLeftElement>

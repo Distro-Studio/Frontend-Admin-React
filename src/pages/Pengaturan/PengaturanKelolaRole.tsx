@@ -8,14 +8,14 @@ import {
 } from "@chakra-ui/react";
 import { RiDownloadLine, RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import TabelKelolaRole from "../../components/dependent/Pengaturan/Tabel/TabelKelolaRole";
-import AjukanCutiModal from "../../components/independent/Karyawan/AjukanCutiModal";
+import TambahRole from "../../components/independent/Pengaturan/TambahRole";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import pengaturanTopNavs from "../../const/pengaturanTopNavs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
-import { Link } from "react-router-dom";
 
 export default function PengaturanKelolaRole() {
   // Filter Config
@@ -51,7 +51,12 @@ export default function PengaturanKelolaRole() {
             ))}
           </CContainer>
 
-          <CContainer p={4} bg={useBodyColor()} borderRadius={12} flex={"1 1"}>
+          <CContainer
+            p={responsiveSpacing}
+            bg={useBodyColor()}
+            borderRadius={12}
+            flex={"1 1"}
+          >
             <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
               <InputGroup flex={"1 1 200px"}>
                 <InputLeftElement>
@@ -90,7 +95,7 @@ export default function PengaturanKelolaRole() {
                 Import
               </Button>
 
-              <AjukanCutiModal flex={"1 1 220px"} />
+              <TambahRole flex={"1 1 130px"} />
             </Wrap>
 
             <TabelKelolaRole filterConfig={filterConfig} />

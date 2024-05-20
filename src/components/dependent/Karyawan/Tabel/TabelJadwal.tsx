@@ -151,7 +151,7 @@ export default function TabelJadwal({ onCheckItem, filterConfig }: Props) {
 
                 <Th
                   position={"sticky"}
-                  left={"49px"}
+                  left={"50px"}
                   bg={bodyColor}
                   onClick={() => sort("nama")}
                   cursor={"pointer"}

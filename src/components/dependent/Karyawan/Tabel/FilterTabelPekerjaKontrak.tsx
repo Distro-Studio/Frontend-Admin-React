@@ -17,14 +17,13 @@ import {
 } from "@chakra-ui/react";
 import { RiEqualizer3Line } from "@remixicon/react";
 import { Dispatch, useRef, useState } from "react";
+import { useBodyColor } from "../../../../const/colors";
 import { iconSize } from "../../../../const/sizes";
 import backOnClose from "../../../../lib/backOnClose";
-import useBackOnClose from "../../../../lib/useBackOnClose";
-import FilterStatusKaryawan from "../../FilterOptions/FilterStatusKaryawan";
-import FilterUnitKerja from "../../FilterOptions/FilterUnitKerja";
 import formatNumber from "../../../../lib/formatNumber";
-import { useBodyColor } from "../../../../const/colors";
+import useBackOnClose from "../../../../lib/useBackOnClose";
 import FilterTglMasuk from "../../FilterOptions/FilterTglMasuk";
+import FilterUnitKerja from "../../FilterOptions/FilterUnitKerja";
 
 interface Props {
   filterConfig: any;
@@ -119,11 +118,6 @@ export default function FilterTabelPekerjaKontrak({
           <ModalBody>
             <Accordion allowMultiple>
               <FilterUnitKerja
-                filterConfig={localFilterConfig}
-                setFilterConfig={setLocalFilterConfig}
-              />
-
-              <FilterStatusKaryawan
                 filterConfig={localFilterConfig}
                 setFilterConfig={setLocalFilterConfig}
               />
