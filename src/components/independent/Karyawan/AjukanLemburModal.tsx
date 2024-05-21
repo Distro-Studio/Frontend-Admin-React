@@ -62,9 +62,9 @@ export default function AjukanLemburModal({ ...props }: Props) {
         size={"lg"}
       >
         <ModalOverlay />
-        <ModalContent ref={initialRef}>
+        <ModalContent>
           <ModalCloseButton />
-          <ModalHeader>Ajukan Lembur</ModalHeader>
+          <ModalHeader ref={initialRef}>Ajukan Lembur</ModalHeader>
           <ModalBody>
             <form id="ajukanLemburForm">
               <FormControl

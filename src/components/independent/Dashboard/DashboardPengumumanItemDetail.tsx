@@ -86,9 +86,9 @@ export default function DashboardPengumumanItemDetail({
         isCentered
       >
         <ModalOverlay />
-        <ModalContent ref={initialRef}>
+        <ModalContent>
           <ModalCloseButton />
-          <ModalHeader>
+          <ModalHeader ref={initialRef}>
             {isDeleting ? "Hapus" : "Detail"} Pengumuman
           </ModalHeader>
 

@@ -111,9 +111,9 @@ export default function FilterTabelPekerjaKontrak({
       >
         <ModalOverlay />
 
-        <ModalContent ref={initialRef} minW={"328px"}>
+        <ModalContent minW={"328px"}>
           <ModalCloseButton />
-          <ModalHeader>Filter</ModalHeader>
+          <ModalHeader ref={initialRef}>Filter</ModalHeader>
 
           <ModalBody>
             <Accordion allowMultiple>

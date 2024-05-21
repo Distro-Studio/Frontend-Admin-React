@@ -200,10 +200,10 @@ export default function DatePicker({
       >
         <ModalOverlay />
 
-        <ModalContent ref={initialRef}>
+        <ModalContent>
           <ModalCloseButton />
 
-          <ModalHeader pr={""}>
+          <ModalHeader ref={initialRef} pr={""}>
             <Box>
               <Text fontSize={20}>Pilih Tanggal</Text>
 

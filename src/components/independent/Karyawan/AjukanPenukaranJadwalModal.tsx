@@ -72,9 +72,9 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
         size={"lg"}
       >
         <ModalOverlay />
-        <ModalContent ref={initialRef}>
+        <ModalContent>
           <ModalCloseButton />
-          <ModalHeader>Ajukan Penukaran Jadwal</ModalHeader>
+          <ModalHeader ref={initialRef}>Ajukan Penukaran Jadwal</ModalHeader>
           <ModalBody>
             <form id="ajukanPenukaranJadwalForm">
               <FormControl

@@ -89,9 +89,9 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
         size={"lg"}
       >
         <ModalOverlay />
-        <ModalContent ref={initialRef}>
+        <ModalContent>
           <ModalCloseButton />
-          <ModalHeader>Terapkan Jadwal</ModalHeader>
+          <ModalHeader ref={initialRef}>Terapkan Jadwal</ModalHeader>
           <ModalBody>
             <form id="terapkanJadwalForm">
               <FormControl

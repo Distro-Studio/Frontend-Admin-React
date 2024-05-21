@@ -217,10 +217,10 @@ export default function DateRangePicker({
       >
         <ModalOverlay />
 
-        <ModalContent ref={initialRef}>
+        <ModalContent>
           <ModalCloseButton />
 
-          <ModalHeader pr={""}>
+          <ModalHeader pr={""} ref={initialRef}>
             <Box>
               <Text fontSize={20}>Pilih Tanggal</Text>
 

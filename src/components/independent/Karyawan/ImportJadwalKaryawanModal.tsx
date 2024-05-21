@@ -77,9 +77,9 @@ export default function ImportJadwalKaryawanModal() {
         isCentered
       >
         <ModalOverlay />
-        <ModalContent ref={initialRef}>
+        <ModalContent>
           <ModalCloseButton />
-          <ModalHeader>Import Jadwal Karyawan</ModalHeader>
+          <ModalHeader ref={initialRef}>Import Jadwal Karyawan</ModalHeader>
           <ModalBody>
             <form id="importDataKaryawanForm" onSubmit={formik.handleSubmit}>
               <FormControl isInvalid={formik.errors.file ? true : false}>

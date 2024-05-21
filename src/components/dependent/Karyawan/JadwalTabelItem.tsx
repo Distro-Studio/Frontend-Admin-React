@@ -101,9 +101,9 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
         size={"lg"}
       >
         <ModalOverlay />
-        <ModalContent ref={initialRef}>
+        <ModalContent>
           <ModalCloseButton />
-          <ModalHeader>Detail Jadwal</ModalHeader>
+          <ModalHeader ref={initialRef}>Detail Jadwal</ModalHeader>
           <ModalBody>
             {!isDeleting && (
               <>

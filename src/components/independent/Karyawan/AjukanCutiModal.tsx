@@ -67,9 +67,9 @@ export default function AjukanCutiModal({ ...props }: Props) {
         size={"lg"}
       >
         <ModalOverlay />
-        <ModalContent ref={initialRef}>
+        <ModalContent>
           <ModalCloseButton />
-          <ModalHeader>Ajukan Cuti</ModalHeader>
+          <ModalHeader ref={initialRef}>Ajukan Cuti</ModalHeader>
           <ModalBody>
             <form id="ajukanCutiForm">
               <FormControl

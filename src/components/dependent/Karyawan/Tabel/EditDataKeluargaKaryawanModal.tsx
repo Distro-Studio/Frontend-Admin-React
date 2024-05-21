@@ -80,9 +80,9 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
         isCentered
       >
         <ModalOverlay />
-        <ModalContent ref={initialRef}>
+        <ModalContent>
           <ModalCloseButton />
-          <ModalHeader>Edit Data Keluarga</ModalHeader>
+          <ModalHeader ref={initialRef}>Edit Data Keluarga</ModalHeader>
           <ModalBody>
             <form id="editKeluargaKaryawanForm">
               <FormControl mb={4} isInvalid={formik.errors.nama ? true : false}>

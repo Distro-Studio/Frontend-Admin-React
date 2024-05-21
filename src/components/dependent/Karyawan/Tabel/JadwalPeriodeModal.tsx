@@ -65,9 +65,9 @@ export default function JadwalPeriodeModal({
         initialFocusRef={initialRef}
       >
         <ModalOverlay />
-        <ModalContent ref={initialRef}>
+        <ModalContent>
           <ModalCloseButton />
-          <ModalHeader>Pilih Periode</ModalHeader>
+          <ModalHeader ref={initialRef}>Pilih Periode</ModalHeader>
           <ModalBody pb={6}>
             <VStack align={"stretch"}>
               {data.map((periode: any, i: number) => (

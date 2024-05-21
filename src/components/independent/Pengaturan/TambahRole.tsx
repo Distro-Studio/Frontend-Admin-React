@@ -60,9 +60,9 @@ export default function TambahRole({ ...props }: Props) {
         isCentered
       >
         <ModalOverlay />
-        <ModalContent ref={initialRef}>
+        <ModalContent>
           <ModalCloseButton />
-          <ModalHeader>Tambah Role</ModalHeader>
+          <ModalHeader ref={initialRef}>Tambah Role</ModalHeader>
           <ModalBody>
             <form id="tambahROleForm">
               <FormControl mb={4} isInvalid={formik.errors.name ? true : false}>

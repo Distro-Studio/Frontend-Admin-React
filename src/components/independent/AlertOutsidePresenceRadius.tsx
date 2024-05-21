@@ -36,9 +36,9 @@ export default function AlertOutsidePresenceRadius({ isOpen, onClose }: Props) {
     >
       <ModalOverlay />
 
-      <ModalContent ref={initialRef}>
+      <ModalContent>
         <ModalCloseButton />
-        <ModalBody pt={6}>
+        <ModalBody pt={6} ref={initialRef}>
           <Image
             src="/vectors/outsideRadius.png"
             boxSize={"250px"}
