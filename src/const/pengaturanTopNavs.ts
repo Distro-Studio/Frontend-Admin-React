@@ -60,6 +60,20 @@ const pengaturanTopNavs = [
   {
     label: "Manajemen Waktu",
     link: "/pengaturan/manajemen-waktu/shift",
+    subNavs: [
+      {
+        link: "/pengaturan/manajemen-waktu/shift",
+        label: "Shift",
+      },
+      {
+        link: "/pengaturan/manajemen-waktu/hari-libur",
+        label: "Hari Libur",
+      },
+      {
+        link: "/pengaturan/manajemen-waktu/cuti",
+        label: "Cuti",
+      },
+    ],
   },
 ];
 

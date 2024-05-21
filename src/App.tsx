@@ -36,6 +36,7 @@ import PengaturanPremi from "./pages/Pengaturan/PengaturanPremi";
 import PengaturanTerPph21 from "./pages/Pengaturan/PengaturanTerPph21";
 import PengaturanJadwalPenggajian from "./pages/Pengaturan/PengaturanJadwalPenggajian";
 import PengaturanThr from "./pages/Pengaturan/PengaturanThr";
+import PengaturanShift from "./pages/Pengaturan/PengaturanShift";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -379,6 +380,45 @@ export const App = () => (
               topNavActive={2}
             >
               <PengaturanThr />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/pengaturan/manajemen-waktu/shift"
+          element={
+            <NavContainer
+              active={6}
+              title="Pengaturan - Shift"
+              topNavsData={pengaturanTopNavs}
+              topNavActive={3}
+            >
+              <PengaturanShift />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/pengaturan/manajemen-waktu/hari-libur"
+          element={
+            <NavContainer
+              active={6}
+              title="Pengaturan - Hari Libur"
+              topNavsData={pengaturanTopNavs}
+              topNavActive={3}
+            >
+              <PengaturanShift />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/pengaturan/manajemen-waktu/cuti"
+          element={
+            <NavContainer
+              active={6}
+              title="Pengaturan - Cuti"
+              topNavsData={pengaturanTopNavs}
+              topNavActive={3}
+            >
+              <PengaturanShift />
             </NavContainer>
           }
         />
