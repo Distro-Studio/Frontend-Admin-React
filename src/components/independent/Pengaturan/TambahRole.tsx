@@ -64,7 +64,7 @@ export default function TambahRole({ ...props }: Props) {
           <ModalCloseButton />
           <ModalHeader ref={initialRef}>Tambah Role</ModalHeader>
           <ModalBody>
-            <form id="tambahROleForm">
+            <form id="tambahRoleForm">
               <FormControl mb={4} isInvalid={formik.errors.name ? true : false}>
                 <FormLabel>
                   Nama Role
@@ -81,10 +81,7 @@ export default function TambahRole({ ...props }: Props) {
                 </FormErrorMessage>
               </FormControl>
 
-              <FormControl
-                mb={4}
-                isInvalid={formik.errors.deskripsi ? true : false}
-              >
+              <FormControl isInvalid={formik.errors.deskripsi ? true : false}>
                 <FormLabel>
                   Deskripsi
                   <FormRequired />
@@ -100,7 +97,17 @@ export default function TambahRole({ ...props }: Props) {
               </FormControl>
             </form>
           </ModalBody>
-          <ModalFooter></ModalFooter>
+          <ModalFooter>
+            <Button
+              type="submit"
+              form="tambahRoleForm"
+              className="btn-ap clicky"
+              colorScheme="ap"
+              w={"100%"}
+            >
+              Simpan
+            </Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
