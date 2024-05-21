@@ -11,14 +11,13 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
+import { useFormik } from "formik";
 import { useEffect, useState } from "react";
+import * as yup from "yup";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
 import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
-import TabelFooterConfig from "../../TabelFooterConfig";
-import { useFormik } from "formik";
-import * as yup from "yup";
 
 interface Props {
   data: any;
@@ -42,12 +41,6 @@ export default function TabelKeizinan({
       dataType: "string",
     },
   ];
-
-  // Limit Config
-  const [limitConfig, setLimitConfig] = useState<number>(10);
-
-  // Pagination Config
-  const [pageConfig, setPageConfig] = useState<number>(1);
 
   // Sort Config
   const [sortConfig, setSortConfig] = useState<{
@@ -131,7 +124,7 @@ export default function TabelKeizinan({
 
       {!loading && sortedData && (
         <>
-          <TabelContainer>
+          <TabelContainer noFooterConfig noTopNavs>
             <Table minW={"100%"}>
               <Thead>
                 <Tr position={"sticky"} top={0} zIndex={3} bg={bodyColor}>
@@ -443,18 +436,6 @@ export default function TabelKeizinan({
               </Tbody>
             </Table>
           </TabelContainer>
-
-          <TabelFooterConfig
-            limitConfig={limitConfig}
-            setLimitConfig={setLimitConfig}
-            pageConfig={pageConfig}
-            setPageConfig={setPageConfig}
-            paginationData={{
-              prev_page_url: "",
-              next_page_url: "",
-              last_page: 1,
-            }}
-          />
         </>
       )}
     </>

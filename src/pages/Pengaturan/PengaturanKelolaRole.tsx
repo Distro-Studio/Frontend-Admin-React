@@ -55,7 +55,7 @@ export default function PengaturanKelolaRole() {
             p={responsiveSpacing}
             bg={useBodyColor()}
             borderRadius={12}
-            flex={"1 1 900px"}
+            flex={"1 1 600px"}
           >
             <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
               <InputGroup flex={"1 1 200px"}>

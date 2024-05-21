@@ -1,49 +1,46 @@
 import { Box, BoxProps } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import Skeleton from "../independent/Skeleton";
 import useScreenHeight from "../../lib/useScreenHeight";
+import useScreenWidth from "../../lib/useScreenWidth";
 
 interface Props extends BoxProps {
   children: any;
+  noFooterConfig?: boolean;
+  noTopNavs?: boolean;
 }
 
-export default function TabelContainer({ children, ...props }: Props) {
-  const [tabelConfigH, setTabelConfigH] = useState(0);
-  const [loading, setLoading] = useState<boolean>(true);
+export default function TabelContainer({
+  children,
+  noFooterConfig,
+  noTopNavs,
+  ...props
+}: Props) {
   const sh = useScreenHeight();
-  useEffect(() => {
-    const tabelConfig = document.querySelector(
-      ".tabelConfig"
-    ) as HTMLDivElement;
+  const sw = useScreenWidth();
+  const spacings = sw < 768 ? 16 : 24;
+  const baseReducer = 88 + spacings * 4;
+  const noFooterConfigReducer = noFooterConfig ? 0 : spacings + 40;
+  const noTopNavsReducer = noTopNavs ? 0 : spacings + 32;
 
-    if (tabelConfig) {
-      setTabelConfigH(tabelConfig.offsetHeight);
-      setLoading(false);
-    }
-    setLoading(false);
-  }, []);
+  console.log(noFooterConfig, noFooterConfigReducer);
+  console.log(noTopNavs, noTopNavsReducer);
 
-  return !loading ? (
+  return (
     <Box
       className={"tabelContainer"}
       overflow={"auto"}
       w={"100%"}
-      minH={sh < 500 ? "300px" : "max-content !important"}
-      maxH={[
-        `calc(100vh - 318px - ${tabelConfigH}px)`,
-        null,
-        `calc(100vh - 304px - ${tabelConfigH}px)`,
-      ]}
+      minH={sh < 500 ? "400px" : "max-content !important"}
+      // maxH={[
+      //   `calc(100vh - 318px - ${tabelConfigH}px)`,
+      //   null,
+      //   `calc(100vh - 304px - ${tabelConfigH}px)`,
+      // ]}
+      maxH={`calc(100vh - 40px - ${baseReducer}px - ${noFooterConfigReducer}px - ${noTopNavsReducer}px)`}
       border={"1px solid var(--divider3)"}
       borderRadius={8}
       {...props}
-      // className="scrollX"
-      // maxW={"1024px"}
-      // mx={"auto"}
     >
       {children}
     </Box>
-  ) : (
-    <Skeleton flex={1} minH={"calc(100vh - 344px)"} />
   );
 }

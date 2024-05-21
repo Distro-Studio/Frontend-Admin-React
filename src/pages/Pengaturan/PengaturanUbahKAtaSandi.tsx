@@ -67,7 +67,7 @@ export default function PengaturanUbahKataSandi() {
             p={responsiveSpacing}
             bg={useBodyColor()}
             borderRadius={12}
-            flex={"1 1 900px"}
+            flex={"1 1 600px"}
           >
             <form id="ubahKataSandiForm" onSubmit={formik.handleSubmit}>
               <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>

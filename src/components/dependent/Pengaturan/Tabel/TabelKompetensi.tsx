@@ -21,7 +21,6 @@ import { iconSize } from "../../../../const/sizes";
 import formatNumber from "../../../../lib/formatNumber";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
-import TabelFooterConfig from "../../TabelFooterConfig";
 
 interface Props {
   filterConfig?: any;
@@ -129,12 +128,6 @@ export default function TabelKompetensi({ filterConfig }: Props) {
   const [data] = useState<any[] | null>(dummy);
   const [loading] = useState<boolean>(false);
 
-  // Limit Config
-  const [limitConfig, setLimitConfig] = useState<number>(10);
-
-  // Pagination Config
-  const [pageConfig, setPageConfig] = useState<number>(1);
-
   // Check List Config
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
   const [isCheckAll, setIsCheckAll] = useState(false);
@@ -200,7 +193,7 @@ export default function TabelKompetensi({ filterConfig }: Props) {
 
       {!loading && sortedData && (
         <>
-          <TabelContainer>
+          <TabelContainer noFooterConfig>
             <Table minW={"100%"}>
               <Thead>
                 <Tr position={"sticky"} top={0} zIndex={3}>
@@ -396,18 +389,6 @@ export default function TabelKompetensi({ filterConfig }: Props) {
               </Tbody>
             </Table>
           </TabelContainer>
-
-          <TabelFooterConfig
-            limitConfig={limitConfig}
-            setLimitConfig={setLimitConfig}
-            pageConfig={pageConfig}
-            setPageConfig={setPageConfig}
-            paginationData={{
-              prev_page_url: "",
-              next_page_url: "",
-              last_page: 1,
-            }}
-          />
         </>
       )}
     </>

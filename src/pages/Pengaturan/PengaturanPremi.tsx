@@ -55,7 +55,7 @@ export default function PengaturanPremi() {
             p={responsiveSpacing}
             bg={useBodyColor()}
             borderRadius={12}
-            flex={"1 1 900px"}
+            flex={"1 1 600px"}
             overflowX={"auto"}
           >
             <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
