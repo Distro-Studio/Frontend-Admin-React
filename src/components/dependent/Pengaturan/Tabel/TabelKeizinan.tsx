@@ -301,7 +301,7 @@ export default function TabelKeizinan({
                     key={i}
                     bg={i % 2 === 0 ? contentBgColor : bodyColor}
                   >
-                    <Td whiteSpace={"nowrap"}>{row.name}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.group}</Td>
                     <Td textAlign={"center"}>
                       <Checkbox
                         colorScheme="ap"

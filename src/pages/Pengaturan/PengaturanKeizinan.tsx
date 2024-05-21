@@ -155,7 +155,7 @@ export default function PengaturanKeizinan() {
   const [simpanTrigger, setSimpanTrigger] = useState<boolean | null>(null);
 
   const dataToArray = Object.keys(data).map((key) => ({
-    name: key,
+    group: key,
     permissions: data[key],
   }));
 
