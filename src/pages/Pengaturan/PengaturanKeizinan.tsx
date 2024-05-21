@@ -10,70 +10,168 @@ import { responsiveSpacing } from "../../const/sizes";
 export default function PengaturanKeizinan() {
   const { role_id, role_name } = useParams();
   //! DEBUG
-  const dummy = [
-    {
-      id: 1,
-      name: "Karyawan",
-      permission: { view: true, add: true, edit: true, delete: true },
+  const dummy = {
+    User: {
+      view: true,
+      create: true,
+      edit: true,
+      delete: true,
+      import: true,
+      export: true,
+      reset: null,
     },
-    {
-      id: 2,
-      name: "Keluarga Karyawan",
-      permission: { view: true, add: true, edit: true, delete: true },
+    "Data Karyawan": {
+      view: true,
+      create: true,
+      edit: true,
+      delete: true,
+      import: true,
+      export: true,
+      reset: null,
     },
-    {
-      id: 3,
-      name: "Akun Karyawan",
-      permission: { view: true, add: true, edit: true, delete: true },
+    Role: {
+      view: true,
+      create: true,
+      edit: true,
+      delete: true,
+      import: true,
+      export: true,
+      reset: null,
     },
-    {
-      id: 4,
-      name: "Pekerja Kontrak",
-      permission: { view: true, add: true, edit: true, delete: true },
+    Permission: {
+      view: null,
+      create: true,
+      edit: true,
+      delete: true,
+      import: null,
+      export: null,
+      reset: null,
     },
-    {
-      id: 5,
-      name: "Rekam Jejak",
-      permission: { view: true, add: true, edit: true, delete: true },
+    "Unit Kerja": {
+      view: true,
+      create: true,
+      edit: true,
+      delete: true,
+      import: true,
+      export: true,
+      reset: null,
     },
-    {
-      id: 6,
-      name: "Transfer Karyawan",
-      permission: { view: true, add: true, edit: true, delete: true },
+    Jabatan: {
+      view: true,
+      create: true,
+      edit: true,
+      delete: true,
+      import: true,
+      export: true,
+      reset: null,
     },
-    {
-      id: 7,
-      name: "Presensi",
-      permission: { view: true, add: true, edit: true, delete: true },
+    Kompetensi: {
+      view: true,
+      create: true,
+      edit: true,
+      delete: true,
+      import: true,
+      export: true,
+      reset: null,
     },
-    {
-      id: 8,
-      name: "Jadwal",
-      permission: { view: true, add: true, edit: true, delete: true },
+    "Kelompok Gaji": {
+      view: true,
+      create: true,
+      edit: true,
+      delete: true,
+      import: true,
+      export: true,
+      reset: null,
     },
-    {
-      id: 9,
-      name: "Penukaran Jadwal",
-      permission: { view: true, add: true, edit: true, delete: true },
+    Premi: {
+      view: true,
+      create: true,
+      edit: true,
+      delete: true,
+      import: true,
+      export: true,
+      reset: null,
     },
-    {
-      id: 10,
-      name: "Lembur",
-      permission: { view: true, add: true, edit: true, delete: true },
+    TER21: {
+      view: true,
+      create: true,
+      edit: true,
+      delete: true,
+      import: true,
+      export: true,
+      reset: null,
     },
-    {
-      id: 11,
-      name: "Cuti",
-      permission: { view: true, add: true, edit: true, delete: true },
+    "Jadwal Penggajian": {
+      view: null,
+      create: true,
+      edit: null,
+      delete: null,
+      import: null,
+      export: null,
+      reset: true,
     },
-  ];
+    THR: {
+      view: true,
+      create: true,
+      edit: true,
+      delete: true,
+      import: null,
+      export: null,
+      reset: null,
+    },
+    Shift: {
+      view: true,
+      create: true,
+      edit: true,
+      delete: true,
+      import: true,
+      export: true,
+      reset: null,
+    },
+    "Hari Libur": {
+      view: true,
+      create: true,
+      edit: true,
+      delete: true,
+      import: true,
+      export: true,
+      reset: null,
+    },
+    Cuti: {
+      view: true,
+      create: true,
+      edit: true,
+      delete: true,
+      import: true,
+      export: true,
+      reset: null,
+    },
+  };
   //! DEBUG
-  const [data] = useState<any[] | null>(dummy);
-  const [semuaIzin, setSemuaIzin] = useState(false);
+  const [data] = useState<any | null>(dummy);
+  const [semuaIzin, setSemuaIzin] = useState<boolean | null>(null);
+  const [loading] = useState<boolean>(false);
+
+  const dataToArray = Object.keys(data).map((key) => ({
+    name: key,
+    permissions: data[key],
+  }));
+
+  const checkAllPermissionsTrue = (permissionsArray: any) => {
+    return permissionsArray.every((item: any) => {
+      return Object.values(item.permissions).every(
+        (permission) => permission === null || permission === true
+      );
+    });
+  };
 
   useEffect(() => {
     //TODO get permission
     console.log(role_id);
+
+    if (checkAllPermissionsTrue(dataToArray)) {
+      setSemuaIzin(true);
+    }
   }, []);
 
   return (
@@ -95,10 +193,10 @@ export default function PengaturanKeizinan() {
                   onChange={() => {
                     setSemuaIzin(!semuaIzin);
                   }}
-                  isChecked={semuaIzin}
+                  isChecked={semuaIzin ? true : false}
                   size={"lg"}
                 >
-                  <Text fontWeight={500}>Beri semua izin</Text>
+                  <Text fontWeight={500}>Semua izin</Text>
                 </Checkbox>
               </HStack>
             </HStack>
@@ -108,7 +206,11 @@ export default function PengaturanKeizinan() {
             </Button>
           </Wrap>
 
-          <TabelKeizinan data={data} />
+          <TabelKeizinan
+            data={dataToArray}
+            loading={loading}
+            semuaIzin={semuaIzin}
+          />
         </CContainer>
       </CWrapper>
     </>

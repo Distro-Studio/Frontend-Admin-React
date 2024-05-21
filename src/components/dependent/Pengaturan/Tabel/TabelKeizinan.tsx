@@ -11,18 +11,22 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
 import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 interface Props {
   data: any;
+  loading: boolean;
+  semuaIzin: boolean | null;
 }
 
-export default function TabelKeizinan({ data }: Props) {
+export default function TabelKeizinan({ data, loading, semuaIzin }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
       key: "name",
@@ -30,8 +34,6 @@ export default function TabelKeizinan({ data }: Props) {
       dataType: "string",
     },
   ];
-
-  const [loading] = useState<boolean>(false);
 
   // Limit Config
   const [limitConfig, setLimitConfig] = useState<number>(10);
@@ -69,6 +71,40 @@ export default function TabelKeizinan({ data }: Props) {
     }
     setSortConfig({ key, direction });
   };
+
+  const formik = useFormik({
+    validateOnChange: false,
+    initialValues: { permissions: data },
+    validationSchema: yup
+      .object()
+      .shape({ permissions: yup.array().required("Harus diisi") }),
+    onSubmit: (values, { resetForm }) => {
+      console.log(values);
+    },
+  });
+
+  const handleCheckboxChange = (index: number, key: string) => {
+    const updatedPermissions = [...formik.values.permissions];
+    updatedPermissions[index].permissions[key] =
+      !updatedPermissions[index].permissions[key];
+    formik.setFieldValue("permissions", updatedPermissions);
+  };
+
+  useEffect(() => {
+    if (semuaIzin !== null) {
+      const updatedPermissions = formik.values.permissions.map((item: any) => {
+        const updatedItem = { ...item };
+        Object.keys(updatedItem.permissions).forEach((key) => {
+          if (updatedItem.permissions[key] !== null) {
+            updatedItem.permissions[key] = semuaIzin;
+          }
+        });
+        return updatedItem;
+      });
+
+      formik.setFieldValue("permissions", updatedPermissions);
+    }
+  }, [semuaIzin]);
 
   // SX
   const contentBgColor = useContentBgColor();
@@ -178,7 +214,7 @@ export default function TabelKeizinan({ data }: Props) {
                       py={3}
                       h={"52px"}
                     >
-                      <Text>Add</Text>
+                      <Text>Create</Text>
                     </HStack>
                   </Th>
                   <Th borderBottom={"none !important"} p={0}>
@@ -204,6 +240,42 @@ export default function TabelKeizinan({ data }: Props) {
                       <Text>Delete</Text>
                     </HStack>
                   </Th>
+                  <Th borderBottom={"none !important"} p={0}>
+                    <HStack
+                      justify={"center"}
+                      borderBottom={"1px solid var(--divider3)"}
+                      px={4}
+                      py={3}
+                      pr={4}
+                      h={"52px"}
+                    >
+                      <Text>Export</Text>
+                    </HStack>
+                  </Th>
+                  <Th borderBottom={"none !important"} p={0}>
+                    <HStack
+                      justify={"center"}
+                      borderBottom={"1px solid var(--divider3)"}
+                      px={4}
+                      py={3}
+                      pr={4}
+                      h={"52px"}
+                    >
+                      <Text>Import</Text>
+                    </HStack>
+                  </Th>
+                  <Th borderBottom={"none !important"} p={0}>
+                    <HStack
+                      justify={"center"}
+                      borderBottom={"1px solid var(--divider3)"}
+                      px={4}
+                      py={3}
+                      pr={4}
+                      h={"52px"}
+                    >
+                      <Text>Reset</Text>
+                    </HStack>
+                  </Th>
                 </Tr>
               </Thead>
 
@@ -216,16 +288,140 @@ export default function TabelKeizinan({ data }: Props) {
                   >
                     <Td whiteSpace={"nowrap"}>{row.name}</Td>
                     <Td textAlign={"center"}>
-                      <Checkbox colorScheme="ap" size={"lg"}></Checkbox>
+                      <Checkbox
+                        colorScheme="ap"
+                        size={"lg"}
+                        opacity={
+                          formik.values.permissions[i].permissions.view === null
+                            ? 0
+                            : 1
+                        }
+                        isDisabled={
+                          formik.values.permissions[i].permissions.view === null
+                        }
+                        isChecked={
+                          formik.values.permissions[i].permissions.view
+                        }
+                        onChange={() => handleCheckboxChange(i, "view")}
+                      ></Checkbox>
                     </Td>
                     <Td textAlign={"center"}>
-                      <Checkbox colorScheme="ap" size={"lg"}></Checkbox>
+                      <Checkbox
+                        colorScheme="ap"
+                        size={"lg"}
+                        opacity={
+                          formik.values.permissions[i].permissions.create ===
+                          null
+                            ? 0
+                            : 1
+                        }
+                        isDisabled={
+                          formik.values.permissions[i].permissions.create ===
+                          null
+                        }
+                        isChecked={
+                          formik.values.permissions[i].permissions.create
+                        }
+                        onChange={() => handleCheckboxChange(i, "create")}
+                      ></Checkbox>
                     </Td>
                     <Td textAlign={"center"}>
-                      <Checkbox colorScheme="ap" size={"lg"}></Checkbox>
+                      <Checkbox
+                        colorScheme="ap"
+                        size={"lg"}
+                        opacity={
+                          formik.values.permissions[i].permissions.edit === null
+                            ? 0
+                            : 1
+                        }
+                        isDisabled={
+                          formik.values.permissions[i].permissions.edit === null
+                        }
+                        isChecked={
+                          formik.values.permissions[i].permissions.edit
+                        }
+                        onChange={() => handleCheckboxChange(i, "edit")}
+                      ></Checkbox>
                     </Td>
                     <Td textAlign={"center"}>
-                      <Checkbox colorScheme="ap" size={"lg"}></Checkbox>
+                      <Checkbox
+                        colorScheme="ap"
+                        size={"lg"}
+                        opacity={
+                          formik.values.permissions[i].permissions.delete ===
+                          null
+                            ? 0
+                            : 1
+                        }
+                        isDisabled={
+                          formik.values.permissions[i].permissions.delete ===
+                          null
+                        }
+                        isChecked={
+                          formik.values.permissions[i].permissions.delete
+                        }
+                        onChange={() => handleCheckboxChange(i, "delete")}
+                      ></Checkbox>
+                    </Td>
+                    <Td textAlign={"center"}>
+                      <Checkbox
+                        colorScheme="ap"
+                        size={"lg"}
+                        opacity={
+                          formik.values.permissions[i].permissions.export ===
+                          null
+                            ? 0
+                            : 1
+                        }
+                        isDisabled={
+                          formik.values.permissions[i].permissions.export ===
+                          null
+                        }
+                        isChecked={
+                          formik.values.permissions[i].permissions.export
+                        }
+                        onChange={() => handleCheckboxChange(i, "export")}
+                      ></Checkbox>
+                    </Td>
+                    <Td textAlign={"center"}>
+                      <Checkbox
+                        colorScheme="ap"
+                        size={"lg"}
+                        opacity={
+                          formik.values.permissions[i].permissions.import ===
+                          null
+                            ? 0
+                            : 1
+                        }
+                        isDisabled={
+                          formik.values.permissions[i].permissions.import ===
+                          null
+                        }
+                        isChecked={
+                          formik.values.permissions[i].permissions.import
+                        }
+                        onChange={() => handleCheckboxChange(i, "import")}
+                      ></Checkbox>
+                    </Td>
+                    <Td textAlign={"center"}>
+                      <Checkbox
+                        colorScheme="ap"
+                        size={"lg"}
+                        opacity={
+                          formik.values.permissions[i].permissions.reset ===
+                          null
+                            ? 0
+                            : 1
+                        }
+                        isDisabled={
+                          formik.values.permissions[i].permissions.reset ===
+                          null
+                        }
+                        isChecked={
+                          formik.values.permissions[i].permissions.reset
+                        }
+                        onChange={() => handleCheckboxChange(i, "reset")}
+                      ></Checkbox>
                     </Td>
                   </Tr>
                 ))}
