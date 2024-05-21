@@ -29,12 +29,6 @@ export default function TambahUnitKerja({ ...props }: Props) {
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
 
-  // id;
-  // nama_kelompok;
-  // besaran_gaji;
-  // created_at;
-  // updated_at;
-
   const formik = useFormik({
     validateOnChange: false,
     initialValues: { nama_unit: "", jenis_karyawan: null },

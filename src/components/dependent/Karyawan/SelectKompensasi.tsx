@@ -51,6 +51,7 @@ export default function SelectKompensasi({
       confirmSelect={confirmSelect}
       noSearch={noSearch}
       noUseBackOnClose={noUseBackOnClose}
+      isBooleanOptions
       {...props}
     />
   );

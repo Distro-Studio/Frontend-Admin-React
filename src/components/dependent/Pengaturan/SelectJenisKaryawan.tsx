@@ -24,11 +24,11 @@ export default function SelectJenisKaryawan({
 }: Props) {
   const options = [
     {
-      value: 1,
+      value: 0,
       label: "Shift",
     },
     {
-      value: 2,
+      value: 1,
       label: "Non-Shift",
     },
   ];
@@ -43,6 +43,7 @@ export default function SelectJenisKaryawan({
       confirmSelect={confirmSelect}
       noSearch={noSearch}
       noUseBackOnClose={noUseBackOnClose}
+      isBooleanOptions
       {...props}
     />
   );

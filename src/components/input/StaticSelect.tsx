@@ -34,6 +34,7 @@ interface Props extends ButtonProps {
   noSearch?: boolean;
   noUseBackOnClose?: boolean;
   confirmSelect?: (status: Select__Item__Interface) => void;
+  isBooleanOptions?: boolean;
 }
 
 export default function StaticSelect({
@@ -45,6 +46,7 @@ export default function StaticSelect({
   noSearch,
   noUseBackOnClose,
   confirmSelect,
+  isBooleanOptions,
   ...props
 }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -99,7 +101,9 @@ export default function StaticSelect({
           fontSize={14}
           fontWeight={400}
         >
-          {(options && options[selectedValue - 1]?.label) || placeholder}
+          {options && isBooleanOptions
+            ? options[selectedValue]?.label || placeholder
+            : options?.[selectedValue - 1]?.label || placeholder}
         </Text>
 
         <Icon as={RiArrowDownSLine} />
