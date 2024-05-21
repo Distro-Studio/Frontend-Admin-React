@@ -1,6 +1,4 @@
 import {
-  Avatar,
-  Badge,
   Center,
   Checkbox,
   HStack,
@@ -17,18 +15,10 @@ import {
 } from "@chakra-ui/react";
 import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
 import { useState } from "react";
-import {
-  statusKaryawanColorScheme,
-  useBodyColor,
-  useContentBgColor,
-} from "../../../../const/colors";
-import { dummyKaryawanList } from "../../../../const/dummy";
-import {
-  Karyawan__Interface,
-  Tabel__Column__Interface,
-} from "../../../../const/interfaces";
+import { useBodyColor, useContentBgColor } from "../../../../const/colors";
+import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import { iconSize } from "../../../../const/sizes";
-import formatDate from "../../../../lib/formatDate";
+import formatNumber from "../../../../lib/formatNumber";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
@@ -40,54 +30,166 @@ interface Props {
 export default function TabelKelompokGaji({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
-      key: "nama",
-      label: "Nama",
-      dataType: "avatarAndName",
-    },
-    {
-      key: "nik",
-      label: "No. Induk Karyawan",
+      key: "nama_kelompok",
+      label: "Nama Kelompok",
       dataType: "string",
     },
     {
-      key: "no_rm",
-      label: "RM",
-      dataType: "string",
-    },
-    {
-      key: "nik_ktp",
-      label: "NIK",
-      dataType: "string",
-    },
-    {
-      key: "unit_kerja",
-      label: "Unit Kerja",
-      dataType: "string",
-    },
-    {
-      key: "status_karyawan",
-      label: "Status Karyawan",
-      dataType: "badge",
-    },
-    {
-      key: "tempat_lahir",
-      label: "Tempat Lahir",
-      dataType: "string",
-    },
-    {
-      key: "tgl_lahir",
-      label: "Tanggal Lahir",
-      dataType: "date",
+      key: "besaran_gaji",
+      label: "Besaran Gaji",
+      dataType: "numeric",
     },
   ];
 
   //! DEBUG
   // console.log(filterConfig);
+  const dummy = [
+    {
+      id: 1,
+      nama_kelompok: "G",
+      besaran_gaji: "4977981",
+      created_at: "2023-11-07T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 2,
+      nama_kelompok: "J",
+      besaran_gaji: "859068",
+      created_at: "2023-07-28T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 3,
+      nama_kelompok: "F",
+      besaran_gaji: "1707828",
+      created_at: "2024-01-14T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 4,
+      nama_kelompok: "R",
+      besaran_gaji: "3144790",
+      created_at: "2024-03-04T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 5,
+      nama_kelompok: "O",
+      besaran_gaji: "3294067",
+      created_at: "2023-06-17T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 6,
+      nama_kelompok: "I",
+      besaran_gaji: "1375882",
+      created_at: "2024-05-04T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 7,
+      nama_kelompok: "V",
+      besaran_gaji: "3145717",
+      created_at: "2023-07-26T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 8,
+      nama_kelompok: "G",
+      besaran_gaji: "4010040",
+      created_at: "2023-07-24T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 9,
+      nama_kelompok: "T",
+      besaran_gaji: "1565550",
+      created_at: "2024-04-16T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 10,
+      nama_kelompok: "T",
+      besaran_gaji: "3214521",
+      created_at: "2023-10-27T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 11,
+      nama_kelompok: "P",
+      besaran_gaji: "4504344",
+      created_at: "2023-05-29T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 12,
+      nama_kelompok: "N",
+      besaran_gaji: "2688569",
+      created_at: "2023-09-21T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 13,
+      nama_kelompok: "J",
+      besaran_gaji: "4633722",
+      created_at: "2023-11-02T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 14,
+      nama_kelompok: "Y",
+      besaran_gaji: "3222142",
+      created_at: "2023-10-13T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 15,
+      nama_kelompok: "K",
+      besaran_gaji: "2306846",
+      created_at: "2024-04-09T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 16,
+      nama_kelompok: "U",
+      besaran_gaji: "2044830",
+      created_at: "2024-04-01T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 17,
+      nama_kelompok: "Z",
+      besaran_gaji: "3482006",
+      created_at: "2023-11-20T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 18,
+      nama_kelompok: "Q",
+      besaran_gaji: "1573792",
+      created_at: "2024-04-17T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 19,
+      nama_kelompok: "J",
+      besaran_gaji: "4793942",
+      created_at: "2023-12-23T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+    {
+      id: 20,
+      nama_kelompok: "J",
+      besaran_gaji: "2621432",
+      created_at: "2023-08-22T03:18:23.000000Z",
+      updated_at: "2024-05-07T03:18:23.000000Z",
+    },
+  ];
   //! DEBUG
 
   //TODO get karyawan
 
-  const [data] = useState<Karyawan__Interface[] | null>(dummyKaryawanList);
+  const [data] = useState<any[] | null>(dummy);
   const [loading] = useState<boolean>(false);
 
   // Limit Config
@@ -318,36 +420,12 @@ export default function TabelKelompokGaji({ filterConfig }: Props) {
                         />
                       </Center>
                     </Td>
-                    <Td whiteSpace={"nowrap"}>
-                      <HStack>
-                        <Avatar
-                          size={"sm"}
-                          name={row.nama}
-                          src={row.foto_profil}
-                        />
-                        <Text>{row.nama}</Text>
-                      </HStack>
+
+                    <Td whiteSpace={"nowrap"}>{row.nama_kelompok}</Td>
+                    <Td whiteSpace={"nowrap"} textAlign={"right"}>
+                      {formatNumber(row.besaran_gaji)}
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{row.nik}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.no_rm}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.nik}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja}</Td>
-                    <Td whiteSpace={"nowrap"}>
-                      <Badge
-                        w={"100%"}
-                        textAlign={"center"}
-                        colorScheme={
-                          //@ts-ignore
-                          statusKaryawanColorScheme[row.status_karyawan]
-                        }
-                      >
-                        {row.status_karyawan}
-                      </Badge>
-                    </Td>
-                    <Td whiteSpace={"nowrap"}>{row.tempat_lahir}</Td>
-                    <Td whiteSpace={"nowrap"}>
-                      {formatDate(row.tgl_lahir as string)}
-                    </Td>
+
                     {/* Kolom tetap di sebelah kanan */}
                     <Td
                       position={"sticky"}
