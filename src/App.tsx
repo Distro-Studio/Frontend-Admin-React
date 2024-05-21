@@ -31,6 +31,7 @@ import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi"
 import PengaturanKelompokGaji from "./pages/Pengaturan/PengaturanKelompokGaji";
 import PengaturanJabatan from "./pages/Pengaturan/PengaturanJabatan";
 import PengaturanUnitKerja from "./pages/Pengaturan/PengaturanUnitKerja";
+import PengaturanKompetensi from "./pages/Pengaturan/PengaturanKompetensi";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -309,6 +310,19 @@ export const App = () => (
               topNavActive={1}
             >
               <PengaturanUnitKerja />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/pengaturan/karyawan/kompetensi"
+          element={
+            <NavContainer
+              active={6}
+              title="Pengaturan - Kompetensi"
+              topNavsData={pengaturanTopNavs}
+              topNavActive={1}
+            >
+              <PengaturanKompetensi />
             </NavContainer>
           }
         />

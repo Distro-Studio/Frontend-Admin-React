@@ -25,26 +25,26 @@ import formatNumber from "../../../lib/formatNumber";
 import parseNumber from "../../../lib/parseNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import FormRequired from "../../form/FormRequired";
+import SelectJenisKompetensi from "../../dependent/Pengaturan/SelectJenisKompetensi";
 
 interface Props extends ButtonProps {}
 
-export default function TambahJabatan({ ...props }: Props) {
+export default function TambahKompetensi({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
 
-  // id;
-  // nama_kelompok;
-  // besaran_gaji;
-  // created_at;
-  // updated_at;
-
   const formik = useFormik({
     validateOnChange: false,
-    initialValues: { nama_jabatan: "", tunjangan: "" as any },
+    initialValues: {
+      nama_jabatan: "",
+      total_tunjangan: "" as any,
+      jenis_kompetensi: "",
+    },
     validationSchema: yup.object().shape({
       nama_jabatan: yup.string().required("Harus diisi"),
-      tunjangan: yup.number().required("Harus diisi"),
+      total_tunjangan: yup.number().required("Harus diisi"),
+      jenis_kompetensi: yup.number().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
@@ -59,7 +59,7 @@ export default function TambahJabatan({ ...props }: Props) {
         onClick={onOpen}
         {...props}
       >
-        Tambah Jabatan
+        Tambah Kompetensi
       </Button>
 
       <Modal
@@ -73,7 +73,7 @@ export default function TambahJabatan({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />
-          <ModalHeader ref={initialRef}> Tambah Jabatan</ModalHeader>
+          <ModalHeader ref={initialRef}>Tambah Kompetensi</ModalHeader>
           <ModalBody>
             <form id="tambahJabatanForm" onSubmit={formik.handleSubmit}>
               <FormControl
@@ -81,7 +81,7 @@ export default function TambahJabatan({ ...props }: Props) {
                 isInvalid={formik.errors.nama_jabatan ? true : false}
               >
                 <FormLabel>
-                  Nama Jabatan
+                  Nama Kompetensi
                   <FormRequired />
                 </FormLabel>
                 <Input
@@ -95,7 +95,30 @@ export default function TambahJabatan({ ...props }: Props) {
                 </FormErrorMessage>
               </FormControl>
 
-              <FormControl isInvalid={formik.errors.tunjangan ? true : false}>
+              <FormControl
+                mb={4}
+                isInvalid={formik.errors.jenis_kompetensi ? true : false}
+              >
+                <FormLabel>
+                  Jenis Kompetensi
+                  <FormRequired />
+                </FormLabel>
+                <SelectJenisKompetensi
+                  name="jenis_kompetensi"
+                  formik={formik}
+                  placeholder="Pilih jenis kompetensi"
+                  selectedValue={formik.values.jenis_kompetensi}
+                  noUseBackOnClose
+                  noSearch
+                />
+                <FormErrorMessage>
+                  {formik.errors.jenis_kompetensi as string}
+                </FormErrorMessage>
+              </FormControl>
+
+              <FormControl
+                isInvalid={formik.errors.total_tunjangan ? true : false}
+              >
                 <FormLabel>
                   Tunjangan
                   <FormRequired />
@@ -105,25 +128,25 @@ export default function TambahJabatan({ ...props }: Props) {
                     <Text>Rp</Text>
                   </InputLeftElement>
                   <Input
-                    name="tunjangan"
+                    name="total_tunjangan"
                     placeholder="4.000.000"
                     onChange={(e) => {
                       const newValue = parseNumber(e.target.value);
                       if (newValue > 0) {
-                        formik.setFieldValue("tunjangan", newValue);
+                        formik.setFieldValue("total_tunjangan", newValue);
                       } else {
-                        formik.setFieldValue("tunjangan", "");
+                        formik.setFieldValue("total_tunjangan", "");
                       }
                     }}
                     value={
-                      formik.values.tunjangan === ""
+                      formik.values.total_tunjangan === ""
                         ? ""
-                        : formatNumber(formik.values.tunjangan)
+                        : formatNumber(formik.values.total_tunjangan)
                     }
                   />
                 </InputGroup>
                 <FormErrorMessage>
-                  {formik.errors.tunjangan as string}
+                  {formik.errors.total_tunjangan as string}
                 </FormErrorMessage>
               </FormControl>
             </form>
