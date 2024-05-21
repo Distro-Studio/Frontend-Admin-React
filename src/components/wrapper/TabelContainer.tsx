@@ -23,7 +23,7 @@ export default function TabelContainer({
 
   return (
     <Box
-      className={"tabelContainer"}
+      className={"tabelContainer scrollX scrollY"}
       overflow={"auto"}
       w={"100%"}
       minH={sh < 500 ? "400px" : "max-content !important"}

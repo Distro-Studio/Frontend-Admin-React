@@ -33,6 +33,7 @@ import PengaturanJabatan from "./pages/Pengaturan/PengaturanJabatan";
 import PengaturanUnitKerja from "./pages/Pengaturan/PengaturanUnitKerja";
 import PengaturanKompetensi from "./pages/Pengaturan/PengaturanKompetensi";
 import PengaturanPremi from "./pages/Pengaturan/PengaturanPremi";
+import PengaturanTerPph21 from "./pages/Pengaturan/PengaturanTerPph21";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -337,6 +338,19 @@ export const App = () => (
               topNavActive={2}
             >
               <PengaturanPremi />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/pengaturan/keuangan/ter-pph21"
+          element={
+            <NavContainer
+              active={6}
+              title="Pengaturan - TER pph21"
+              topNavsData={pengaturanTopNavs}
+              topNavActive={2}
+            >
+              <PengaturanTerPph21 />
             </NavContainer>
           }
         />

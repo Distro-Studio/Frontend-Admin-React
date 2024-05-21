@@ -44,7 +44,7 @@ const pengaturanTopNavs = [
         label: "Premi",
       },
       {
-        link: "/pengaturan/keuangan/terp-ph21",
+        link: "/pengaturan/keuangan/ter-pph21",
         label: "TER pph21",
       },
       {

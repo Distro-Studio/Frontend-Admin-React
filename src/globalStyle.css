@@ -254,6 +254,10 @@ select {
 .scrollX::-webkit-scrollbar {
   height: 10px;
 }
+.scrollX::-webkit-scrollbar-corner,
+.scrollY::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
 
 .scrollY::-webkit-scrollbar {
   width: 10px;
@@ -279,6 +283,42 @@ select {
 .scrollX::-webkit-scrollbar-track,
 .scrollY::-webkit-scrollbar-track {
   background-color: transparent;
+  border-radius: 0 0 8px 8px;
+}
+
+/* big scroll bar */
+.scrollXbig::-webkit-scrollbar {
+  height: 12px !important;
+}
+.scrollXbig::-webkit-scrollbar-corner,
+.scrollYbig::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+
+.scrollYbig::-webkit-scrollbar {
+  width: 12px !important;
+}
+
+.scrollXbig::-webkit-scrollbar-thumb,
+.scrollYbig::-webkit-scrollbar-thumb {
+  background-color: var(--divider3);
+  border-radius: 100px;
+}
+
+.scrollXbigkotak::-webkit-scrollbar-thumb,
+.scrollYbigkotak::-webkit-scrollbar-thumb {
+  background-color: var(--divider2);
+  border-radius: 0px !important;
+}
+
+.scrollXbig::-webkit-scrollbar-thumb:hover,
+.scrollYbig::-webkit-scrollbar-thumb:hover {
+  background-color: var(--divider3);
+}
+
+.scrollXbig::-webkit-scrollbar-track,
+.scrollYbig::-webkit-scrollbar-track {
+  background-color: var(--divider) !important;
   border-radius: 0 0 8px 8px;
 }
 
