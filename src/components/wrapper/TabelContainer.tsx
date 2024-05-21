@@ -21,9 +21,6 @@ export default function TabelContainer({
   const noFooterConfigReducer = noFooterConfig ? 0 : spacings + 40;
   const noTopNavsReducer = noTopNavs ? 0 : spacings + 32;
 
-  console.log(noFooterConfig, noFooterConfigReducer);
-  console.log(noTopNavs, noTopNavsReducer);
-
   return (
     <Box
       className={"tabelContainer"}

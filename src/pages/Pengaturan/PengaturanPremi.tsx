@@ -9,7 +9,7 @@ import {
 import { RiDownloadLine, RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import TabelKompetensi from "../../components/dependent/Pengaturan/Tabel/TabelKompetensi";
+import TabelPremi from "../../components/dependent/Pengaturan/Tabel/TabelPremi";
 import TambahKompetensi from "../../components/independent/Pengaturan/TambahKompetensi";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -99,7 +99,7 @@ export default function PengaturanPremi() {
               <TambahKompetensi flex={"1 1 180px"} />
             </Wrap>
 
-            <TabelKompetensi filterConfig={filterConfig} />
+            <TabelPremi filterConfig={filterConfig} />
           </CContainer>
         </Wrap>
       </CWrapper>
