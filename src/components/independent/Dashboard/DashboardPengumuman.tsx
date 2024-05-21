@@ -142,10 +142,8 @@ export default function DashboardPengumuman({ ...props }: Props) {
 
           <VStack
             align={"stretch"}
-            // pb={6}
             overflowY={"auto"}
-            // px={6}
-            // className="scrollY"
+            className="scrollX scrollY"
             flex={1}
             gap={0}
           >

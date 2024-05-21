@@ -91,6 +91,7 @@ export default function DashboardSiapaYangLibur({ ...props }: Props) {
             pb={6}
             overflowY={"auto"}
             px={6}
+            className="scrollX scrollY"
             // className="scrollY"
           >
             {data.map((user, i) => (
