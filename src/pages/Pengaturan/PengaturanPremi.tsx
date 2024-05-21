@@ -10,7 +10,7 @@ import { RiDownloadLine, RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import TabelPremi from "../../components/dependent/Pengaturan/Tabel/TabelPremi";
-import TambahKompetensi from "../../components/independent/Pengaturan/TambahKompetensi";
+import TambahPremi from "../../components/independent/Pengaturan/TambahPremi";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
@@ -96,7 +96,7 @@ export default function PengaturanPremi() {
                 Import
               </Button>
 
-              <TambahKompetensi flex={"1 1 180px"} />
+              <TambahPremi flex={"1 1 180px"} />
             </Wrap>
 
             <TabelPremi filterConfig={filterConfig} />

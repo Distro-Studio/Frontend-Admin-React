@@ -24,11 +24,11 @@ export default function SelectJenisKompetensi({
 }: Props) {
   const options = [
     {
-      value: 1,
+      value: 0,
       label: "Medis",
     },
     {
-      value: 2,
+      value: 1,
       label: "Non-Medis",
     },
   ];
@@ -43,6 +43,7 @@ export default function SelectJenisKompetensi({
       confirmSelect={confirmSelect}
       noSearch={noSearch}
       noUseBackOnClose={noUseBackOnClose}
+      isBooleanOptions
       {...props}
     />
   );

@@ -1,6 +1,6 @@
-import { ButtonProps } from "@chakra-ui/react";
-import StaticSelect from "../../input/StaticSelect";
+import { ButtonProps } from "react-day-picker";
 import { Select__Item__Interface } from "../../../const/interfaces";
+import StaticSelect from "../../input/StaticSelect";
 
 interface Props extends ButtonProps {
   formik?: any;
@@ -12,7 +12,7 @@ interface Props extends ButtonProps {
   confirmSelect?: (status: Select__Item__Interface) => void;
 }
 
-export default function SelectKompensasi({
+export default function SelectJenisPremi({
   formik,
   name,
   placeholder,
@@ -24,33 +24,26 @@ export default function SelectKompensasi({
 }: Props) {
   const options = [
     {
+      value: 0,
+      label: "Persentase",
+    },
+    {
       value: 1,
-      label: "Semua Kompensasi",
-    },
-    {
-      value: 2,
-      label: "Lembur Dibayar",
-    },
-    {
-      value: 3,
-      label: "Lembur Tidak Dibayar",
-    },
-    {
-      value: 4,
-      label: "Lembur Mandiri",
+      label: "Nominal",
     },
   ];
 
   return (
     <StaticSelect
       formik={formik}
-      name="status_penukaran_jadwal"
-      placeholder="Pilih status"
+      name={name}
+      placeholder={placeholder}
       options={options}
       selectedValue={selectedValue}
       confirmSelect={confirmSelect}
       noSearch={noSearch}
       noUseBackOnClose={noUseBackOnClose}
+      isBooleanOptions
       {...props}
     />
   );
