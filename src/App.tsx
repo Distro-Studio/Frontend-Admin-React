@@ -34,6 +34,7 @@ import PengaturanUnitKerja from "./pages/Pengaturan/PengaturanUnitKerja";
 import PengaturanKompetensi from "./pages/Pengaturan/PengaturanKompetensi";
 import PengaturanPremi from "./pages/Pengaturan/PengaturanPremi";
 import PengaturanTerPph21 from "./pages/Pengaturan/PengaturanTerPph21";
+import PengaturanJadwalPenggajian from "./pages/Pengaturan/PengaturanJadwalPenggajian";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -351,6 +352,19 @@ export const App = () => (
               topNavActive={2}
             >
               <PengaturanTerPph21 />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/pengaturan/keuangan/jadwal-penggajian"
+          element={
+            <NavContainer
+              active={6}
+              title="Pengaturan - Jadwal Penggajian"
+              topNavsData={pengaturanTopNavs}
+              topNavActive={2}
+            >
+              <PengaturanJadwalPenggajian />
             </NavContainer>
           }
         />
