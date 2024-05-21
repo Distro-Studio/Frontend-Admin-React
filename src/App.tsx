@@ -27,6 +27,7 @@ import PengaturanKelolaRole from "./pages/Pengaturan/PengaturanKelolaRole";
 import Perusahaan from "./pages/Perusahaan/Perusahaan";
 import Presensi from "./pages/Presensi/Presensi";
 import PengaturanKeizinan from "./pages/Pengaturan/PengaturanKeizinan";
+import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKAtaSandi";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -265,7 +266,7 @@ export const App = () => (
               topNavsData={pengaturanTopNavs}
               topNavActive={0}
             >
-              <PengaturanKelolaRole />
+              <PengaturanUbahKataSandi />
             </NavContainer>
           }
         />
