@@ -9,7 +9,7 @@ import {
 import { RiDownloadLine, RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import TabelJabatan from "../../components/dependent/Pengaturan/Tabel/TabelJabatan";
+import TabelUnitKerja from "../../components/dependent/Pengaturan/Tabel/TabelUnitKerja";
 import TambahUnitKerja from "../../components/independent/Pengaturan/TambahUnitKerja";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -99,7 +99,7 @@ export default function PengaturanUnitKerja() {
               <TambahUnitKerja flex={"1 1 180px"} />
             </Wrap>
 
-            <TabelJabatan filterConfig={filterConfig} />
+            <TabelUnitKerja filterConfig={filterConfig} />
           </CContainer>
         </Wrap>
       </CWrapper>

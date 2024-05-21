@@ -41,7 +41,7 @@ export default function TambahKelompokGaji({ ...props }: Props) {
 
   const formik = useFormik({
     validateOnChange: false,
-    initialValues: { nama_kelompok: "", besaran_gaji: 0 },
+    initialValues: { nama_kelompok: "", besaran_gaji: "" as any },
     validationSchema: yup.object().shape({
       nama_kelompok: yup.string().required("Harus diisi"),
       besaran_gaji: yup.number().required("Harus diisi"),
@@ -75,7 +75,7 @@ export default function TambahKelompokGaji({ ...props }: Props) {
           <ModalCloseButton />
           <ModalHeader ref={initialRef}> Tambah Kelompok Gaji</ModalHeader>
           <ModalBody>
-            <form id="tambahKelompokGajiForm">
+            <form id="tambahKelompokGajiForm" onSubmit={formik.handleSubmit}>
               <FormControl
                 mb={4}
                 isInvalid={formik.errors.nama_kelompok ? true : false}
@@ -111,10 +111,15 @@ export default function TambahKelompokGaji({ ...props }: Props) {
                     placeholder="4.000.000"
                     onChange={(e) => {
                       const newValue = parseNumber(e.target.value);
-                      formik.setFieldValue("besaran_gaji", newValue);
+                      if (newValue > 0) {
+                        formik.setFieldValue("besaran_gaji", newValue);
+                      } else {
+                        formik.setFieldValue("besaran_gaji", "");
+                      }
                     }}
                     value={
-                      formik.values.besaran_gaji === 0
+                      formik.values.besaran_gaji === 0 ||
+                      formik.values.besaran_gaji === ""
                         ? ""
                         : formatNumber(formik.values.besaran_gaji)
                     }
@@ -129,7 +134,7 @@ export default function TambahKelompokGaji({ ...props }: Props) {
           <ModalFooter>
             <Button
               type="submit"
-              form="tambahRoleForm"
+              form="tambahKelompokGajiForm"
               className="btn-ap clicky"
               colorScheme="ap"
               w={"100%"}

@@ -41,7 +41,7 @@ export default function TambahJabatan({ ...props }: Props) {
 
   const formik = useFormik({
     validateOnChange: false,
-    initialValues: { nama_jabatan: "", tunjangan: 0 },
+    initialValues: { nama_jabatan: "", tunjangan: "" as any },
     validationSchema: yup.object().shape({
       nama_jabatan: yup.string().required("Harus diisi"),
       tunjangan: yup.number().required("Harus diisi"),
@@ -75,7 +75,7 @@ export default function TambahJabatan({ ...props }: Props) {
           <ModalCloseButton />
           <ModalHeader ref={initialRef}> Tambah Jabatan</ModalHeader>
           <ModalBody>
-            <form id="tambahKelompokGajiForm">
+            <form id="tambahJabatanForm" onSubmit={formik.handleSubmit}>
               <FormControl
                 mb={4}
                 isInvalid={formik.errors.nama_jabatan ? true : false}
@@ -109,10 +109,14 @@ export default function TambahJabatan({ ...props }: Props) {
                     placeholder="4.000.000"
                     onChange={(e) => {
                       const newValue = parseNumber(e.target.value);
-                      formik.setFieldValue("tunjangan", newValue);
+                      if (newValue > 0) {
+                        formik.setFieldValue("tunjangan", newValue);
+                      } else {
+                        formik.setFieldValue("tunjangan", "");
+                      }
                     }}
                     value={
-                      formik.values.tunjangan === 0
+                      formik.values.tunjangan === ""
                         ? ""
                         : formatNumber(formik.values.tunjangan)
                     }
@@ -127,7 +131,7 @@ export default function TambahJabatan({ ...props }: Props) {
           <ModalFooter>
             <Button
               type="submit"
-              form="tambahRoleForm"
+              form="tambahJabatanForm"
               className="btn-ap clicky"
               colorScheme="ap"
               w={"100%"}

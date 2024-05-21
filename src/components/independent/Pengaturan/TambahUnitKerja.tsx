@@ -37,7 +37,7 @@ export default function TambahUnitKerja({ ...props }: Props) {
 
   const formik = useFormik({
     validateOnChange: false,
-    initialValues: { nama_unit: "", jenis_karyawan: 0 },
+    initialValues: { nama_unit: "", jenis_karyawan: null },
     validationSchema: yup.object().shape({
       nama_unit: yup.string().required("Harus diisi"),
       jenis_karyawan: yup.number().required("Harus diisi"),
@@ -71,7 +71,7 @@ export default function TambahUnitKerja({ ...props }: Props) {
           <ModalCloseButton />
           <ModalHeader ref={initialRef}> Tambah Unit Kerja</ModalHeader>
           <ModalBody>
-            <form id="tambahKelompokGajiForm">
+            <form id="tambahUnitKerjaForm" onSubmit={formik.handleSubmit}>
               <FormControl
                 mb={4}
                 isInvalid={formik.errors.nama_unit ? true : false}
@@ -115,7 +115,7 @@ export default function TambahUnitKerja({ ...props }: Props) {
           <ModalFooter>
             <Button
               type="submit"
-              form="tambahRoleForm"
+              form="tambahUnitKerjaForm"
               className="btn-ap clicky"
               colorScheme="ap"
               w={"100%"}
