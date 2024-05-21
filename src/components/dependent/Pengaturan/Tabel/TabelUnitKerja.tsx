@@ -20,7 +20,6 @@ import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import { iconSize } from "../../../../const/sizes";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
-import TabelFooterConfig from "../../TabelFooterConfig";
 
 interface Props {
   filterConfig?: any;

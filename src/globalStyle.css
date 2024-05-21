@@ -49,7 +49,15 @@
 
 *:focus-visible {
   transition: 200ms !important;
+  border: 1px solid var(--p500);
+  box-shadow: none !important;
   /* box-shadow: 0 0 0 2px var(--p200) !important; */
+}
+*:focus {
+  transition: 200ms !important;
+  border: 1px solid var(--p500);
+  box-shadow: none !important;
+  /* box-shado  w: 0 0 0 2px var(--p200) !important; */
 }
 
 /* .num {
