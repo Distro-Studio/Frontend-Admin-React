@@ -151,6 +151,8 @@ export default function PengaturanKeizinan() {
   const [data] = useState<any | null>(dummy);
   const [semuaIzin, setSemuaIzin] = useState<boolean | null>(null);
   const [loading] = useState<boolean>(false);
+  const [simpanLoading, setSimpanLoading] = useState<boolean>(false);
+  const [simpanTrigger, setSimpanTrigger] = useState<boolean | null>(null);
 
   const dataToArray = Object.keys(data).map((key) => ({
     name: key,
@@ -201,7 +203,15 @@ export default function PengaturanKeizinan() {
               </HStack>
             </HStack>
 
-            <Button colorScheme="ap" className="btn-ap clicky" minW={"100px"}>
+            <Button
+              colorScheme="ap"
+              className="btn-ap clicky"
+              minW={"120px"}
+              isLoading={simpanLoading}
+              onClick={() => {
+                setSimpanTrigger(!simpanTrigger);
+              }}
+            >
               Simpan
             </Button>
           </Wrap>
@@ -210,6 +220,8 @@ export default function PengaturanKeizinan() {
             data={dataToArray}
             loading={loading}
             semuaIzin={semuaIzin}
+            simpanTrigger={simpanTrigger}
+            setSimpanLoading={setSimpanLoading}
           />
         </CContainer>
       </CWrapper>

@@ -23,10 +23,18 @@ import * as yup from "yup";
 interface Props {
   data: any;
   loading: boolean;
+  simpanTrigger: boolean | null;
   semuaIzin: boolean | null;
+  setSimpanLoading: React.Dispatch<boolean>;
 }
 
-export default function TabelKeizinan({ data, loading, semuaIzin }: Props) {
+export default function TabelKeizinan({
+  data,
+  loading,
+  simpanTrigger,
+  semuaIzin,
+  setSimpanLoading,
+}: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
       key: "name",
@@ -80,8 +88,15 @@ export default function TabelKeizinan({ data, loading, semuaIzin }: Props) {
       .shape({ permissions: yup.array().required("Harus diisi") }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
+      setSimpanLoading(true);
     },
   });
+
+  useEffect(() => {
+    if (simpanTrigger !== null) {
+      formik.handleSubmit();
+    }
+  }, [simpanTrigger]);
 
   const handleCheckboxChange = (index: number, key: string) => {
     const updatedPermissions = [...formik.values.permissions];
