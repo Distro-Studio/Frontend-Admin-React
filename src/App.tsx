@@ -27,7 +27,8 @@ import PengaturanKelolaRole from "./pages/Pengaturan/PengaturanKelolaRole";
 import Perusahaan from "./pages/Perusahaan/Perusahaan";
 import Presensi from "./pages/Presensi/Presensi";
 import PengaturanKeizinan from "./pages/Pengaturan/PengaturanKeizinan";
-import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKAtaSandi";
+import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi";
+import PengaturanKelompokGaji from "./pages/Pengaturan/PengaturanKelompokGaji";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -267,6 +268,19 @@ export const App = () => (
               topNavActive={0}
             >
               <PengaturanUbahKataSandi />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/pengaturan/karyawan/kelompok-gaji"
+          element={
+            <NavContainer
+              active={6}
+              title="Pengaturan - Kelompok Gaji"
+              topNavsData={pengaturanTopNavs}
+              topNavActive={1}
+            >
+              <PengaturanKelompokGaji />
             </NavContainer>
           }
         />

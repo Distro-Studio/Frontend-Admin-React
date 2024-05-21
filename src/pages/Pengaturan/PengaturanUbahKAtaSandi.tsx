@@ -3,29 +3,21 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Input,
   Text,
   Wrap,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 import FormRequired from "../../components/form/FormRequired";
+import PasswordInput from "../../components/input/PasswordInput";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import pengaturanTopNavs from "../../const/pengaturanTopNavs";
 import { responsiveSpacing } from "../../const/sizes";
-import PasswordInput from "../../components/input/PasswordInput";
 
 export default function PengaturanUbahKataSandi() {
-  // Filter Config
-  const defaultFilterConfig = {
-    search: "",
-  };
-  const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
-
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
@@ -52,8 +44,8 @@ export default function PengaturanUbahKataSandi() {
             p={4}
             bg={useBodyColor()}
             borderRadius={12}
-            flex={"0 1 230px"}
-            maxW={"230px"}
+            w={"230px"}
+            flexShrink={0}
             gap={2}
           >
             {pengaturanTopNavs[0].subNavs?.map((nav, i) => (
@@ -75,7 +67,7 @@ export default function PengaturanUbahKataSandi() {
             p={responsiveSpacing}
             bg={useBodyColor()}
             borderRadius={12}
-            flex={"1 1"}
+            flex={"1 1 900px"}
           >
             <form id="ubahKataSandiForm" onSubmit={formik.handleSubmit}>
               <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>

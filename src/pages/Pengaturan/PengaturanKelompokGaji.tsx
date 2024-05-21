@@ -9,15 +9,15 @@ import {
 import { RiDownloadLine, RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import TabelKelolaRole from "../../components/dependent/Pengaturan/Tabel/TabelKelolaRole";
-import TambahRole from "../../components/independent/Pengaturan/TambahRole";
+import TabelKelompokGaji from "../../components/dependent/Pengaturan/Tabel/TabelKelompokGaji";
+import TambahKelompokGaji from "../../components/independent/Pengaturan/TambahKelompokGaji";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import pengaturanTopNavs from "../../const/pengaturanTopNavs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 
-export default function PengaturanKelolaRole() {
+export default function PengaturanKelompokGaji() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
@@ -27,7 +27,7 @@ export default function PengaturanKelolaRole() {
   return (
     <>
       <CWrapper>
-        <Wrap spacing={responsiveSpacing} align={"flex-start"}>
+        <Wrap w={"100%"} spacing={responsiveSpacing} align={"flex-start"}>
           <CContainer
             p={4}
             bg={useBodyColor()}
@@ -36,7 +36,7 @@ export default function PengaturanKelolaRole() {
             flexShrink={0}
             gap={2}
           >
-            {pengaturanTopNavs[0].subNavs?.map((nav, i) => (
+            {pengaturanTopNavs[1].subNavs?.map((nav, i) => (
               <Button
                 key={i}
                 justifyContent={"flex-start"}
@@ -56,6 +56,7 @@ export default function PengaturanKelolaRole() {
             bg={useBodyColor()}
             borderRadius={12}
             flex={"1 1 900px"}
+            overflowX={"auto"}
           >
             <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
               <InputGroup flex={"1 1 200px"}>
@@ -95,10 +96,10 @@ export default function PengaturanKelolaRole() {
                 Import
               </Button>
 
-              <TambahRole flex={"1 1 130px"} />
+              <TambahKelompokGaji flex={"1 1 180px"} />
             </Wrap>
 
-            <TabelKelolaRole filterConfig={filterConfig} />
+            <TabelKelompokGaji filterConfig={filterConfig} />
           </CContainer>
         </Wrap>
       </CWrapper>
