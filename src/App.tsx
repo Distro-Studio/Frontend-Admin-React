@@ -30,6 +30,7 @@ import PengaturanKeizinan from "./pages/Pengaturan/PengaturanKeizinan";
 import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi";
 import PengaturanKelompokGaji from "./pages/Pengaturan/PengaturanKelompokGaji";
 import PengaturanJabatan from "./pages/Pengaturan/PengaturanJabatan";
+import PengaturanUnitKerja from "./pages/Pengaturan/PengaturanUnitKerja";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -295,6 +296,19 @@ export const App = () => (
               topNavActive={1}
             >
               <PengaturanJabatan />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/pengaturan/karyawan/unit-kerja"
+          element={
+            <NavContainer
+              active={6}
+              title="Pengaturan - Unit Kerja"
+              topNavsData={pengaturanTopNavs}
+              topNavActive={1}
+            >
+              <PengaturanUnitKerja />
             </NavContainer>
           }
         />

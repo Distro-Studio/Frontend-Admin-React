@@ -81,6 +81,7 @@ export default function StaticSelect({
         border={"1px solid var(--divider3)"}
         boxShadow={formik && name && formik.errors[name] ? selectOnError : ""}
         borderRadius={8}
+        _focus={{ border: "1px solid var(--p500)" }}
         cursor={"pointer"}
         onClick={onOpen}
         justifyContent={"space-between"}

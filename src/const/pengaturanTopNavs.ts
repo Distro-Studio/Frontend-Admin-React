@@ -23,7 +23,7 @@ const pengaturanTopNavs = [
       },
       {
         link: "/pengaturan/karyawan/jabatan",
-        label: "Jabtan",
+        label: "Jabatan",
       },
       {
         link: "/pengaturan/karyawan/unit-kerja",
