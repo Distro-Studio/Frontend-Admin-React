@@ -32,6 +32,7 @@ import PengaturanKelompokGaji from "./pages/Pengaturan/PengaturanKelompokGaji";
 import PengaturanJabatan from "./pages/Pengaturan/PengaturanJabatan";
 import PengaturanUnitKerja from "./pages/Pengaturan/PengaturanUnitKerja";
 import PengaturanKompetensi from "./pages/Pengaturan/PengaturanKompetensi";
+import PengaturanPremi from "./pages/Pengaturan/PengaturanPremi";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -323,6 +324,19 @@ export const App = () => (
               topNavActive={1}
             >
               <PengaturanKompetensi />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/pengaturan/keuangan/premi"
+          element={
+            <NavContainer
+              active={6}
+              title="Pengaturan - Premi"
+              topNavsData={pengaturanTopNavs}
+              topNavActive={2}
+            >
+              <PengaturanPremi />
             </NavContainer>
           }
         />

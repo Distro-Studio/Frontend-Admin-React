@@ -38,6 +38,24 @@ const pengaturanTopNavs = [
   {
     label: "Keuangan",
     link: "/pengaturan/keuangan/premi",
+    subNavs: [
+      {
+        link: "/pengaturan/keuangan/premi",
+        label: "Premi",
+      },
+      {
+        link: "/pengaturan/keuangan/terp-ph21",
+        label: "TER pph21",
+      },
+      {
+        link: "/pengaturan/keuangan/jadwal-penggajian",
+        label: "Jadwal Penggajian",
+      },
+      {
+        link: "/pengaturan/keuangan/thr",
+        label: "THR",
+      },
+    ],
   },
   {
     label: "Manajemen Waktu",
