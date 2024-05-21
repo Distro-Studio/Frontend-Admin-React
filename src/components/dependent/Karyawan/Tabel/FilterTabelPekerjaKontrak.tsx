@@ -116,7 +116,7 @@ export default function FilterTabelPekerjaKontrak({
           <ModalHeader ref={initialRef}>Filter</ModalHeader>
 
           <ModalBody>
-            <Accordion allowMultiple>
+            <Accordion allowToggle>
               <FilterUnitKerja
                 filterConfig={localFilterConfig}
                 setFilterConfig={setLocalFilterConfig}

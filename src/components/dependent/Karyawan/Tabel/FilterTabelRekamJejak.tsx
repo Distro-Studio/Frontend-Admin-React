@@ -115,7 +115,7 @@ export default function FilterTabelRekamJejak({
           <ModalHeader ref={initialRef}>Filter</ModalHeader>
 
           <ModalBody>
-            <Accordion allowMultiple>
+            <Accordion allowToggle>
               <FilterUnitKerja
                 filterConfig={localFilterConfig}
                 setFilterConfig={setLocalFilterConfig}

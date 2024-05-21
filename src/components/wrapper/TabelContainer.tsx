@@ -1,6 +1,7 @@
 import { Box, BoxProps } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Skeleton from "../independent/Skeleton";
+import useScreenHeight from "../../lib/useScreenHeight";
 
 interface Props extends BoxProps {
   children: any;
@@ -9,6 +10,7 @@ interface Props extends BoxProps {
 export default function TabelContainer({ children, ...props }: Props) {
   const [tabelConfigH, setTabelConfigH] = useState(0);
   const [loading, setLoading] = useState<boolean>(true);
+  const sh = useScreenHeight();
   useEffect(() => {
     const tabelConfig = document.querySelector(
       ".tabelConfig"
@@ -21,15 +23,12 @@ export default function TabelContainer({ children, ...props }: Props) {
     setLoading(false);
   }, []);
 
-  // useScreenWidth();
-  // useScreenHeight();
-
   return !loading ? (
     <Box
       className={"tabelContainer"}
       overflow={"auto"}
       w={"100%"}
-      minH={"max-content !important"}
+      minH={sh < 500 ? "300px" : "max-content !important"}
       maxH={[
         `calc(100vh - 318px - ${tabelConfigH}px)`,
         null,

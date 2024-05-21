@@ -116,7 +116,7 @@ export default function FilterTabelAkunKaryawan({
           <ModalHeader ref={initialRef}>Filter</ModalHeader>
 
           <ModalBody>
-            <Accordion allowMultiple>
+            <Accordion allowToggle>
               <FilterUnitKerja
                 filterConfig={localFilterConfig}
                 setFilterConfig={setLocalFilterConfig}
