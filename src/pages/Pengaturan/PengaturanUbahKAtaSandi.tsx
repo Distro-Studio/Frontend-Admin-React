@@ -111,7 +111,7 @@ export default function PengaturanUbahKataSandi() {
               </FormControl>
 
               <FormControl
-                mb={4}
+                mb={responsiveSpacing}
                 isInvalid={
                   formik.errors.konfirmasi_password_baru ? true : false
                 }
