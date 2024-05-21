@@ -35,7 +35,7 @@ export default function PenukaranJadwal() {
       <CWrapper>
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
-            <InputGroup flex={"1 1 200px"}>
+            <InputGroup flex={"1 1 165px"}>
               <InputLeftElement>
                 <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
               </InputLeftElement>

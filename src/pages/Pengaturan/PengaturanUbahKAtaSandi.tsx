@@ -3,7 +3,6 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Text,
   Wrap,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
@@ -70,9 +69,9 @@ export default function PengaturanUbahKataSandi() {
             flex={"1 1 600px"}
           >
             <form id="ubahKataSandiForm" onSubmit={formik.handleSubmit}>
-              <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
+              {/* <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
                 Ubah Kata Sandi
-              </Text>
+              </Text> */}
 
               <FormControl
                 mb={4}

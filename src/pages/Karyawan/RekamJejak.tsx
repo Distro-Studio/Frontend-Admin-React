@@ -6,7 +6,7 @@ import {
   InputLeftElement,
   Wrap,
 } from "@chakra-ui/react";
-import { RiSearchLine, RiUploadLine } from "@remixicon/react";
+import { RiDownloadLine, RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import FilterTabelRekamJejak from "../../components/dependent/Karyawan/Tabel/FilterTabelRekamJejak";
 import TabelRekamJejak from "../../components/dependent/Karyawan/Tabel/TabelRekamJejak";
@@ -22,16 +22,6 @@ export default function RekamJejak() {
     unit_kerja: [],
     status_karyawan: [],
     masa_kerja: [],
-    // masa_kerja: {
-    //   tahun: {
-    //     min: null,
-    //     max: null,
-    //   },
-    //   bulan: {
-    //     min: null,
-    //     max: null,
-    //   },
-    // },
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
 
@@ -40,7 +30,7 @@ export default function RekamJejak() {
       <CWrapper>
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
-            <InputGroup flex={"1 1 200px"}>
+            <InputGroup flex={"1 1 165px"}>
               <InputLeftElement>
                 <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
               </InputLeftElement>
@@ -78,7 +68,7 @@ export default function RekamJejak() {
               variant={"outline"}
               colorScheme="ap"
               className="clicky"
-              rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
+              rightIcon={<Icon as={RiDownloadLine} fontSize={iconSize} />}
             >
               Import
             </Button>
