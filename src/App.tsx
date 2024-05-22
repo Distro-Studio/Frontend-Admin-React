@@ -37,6 +37,8 @@ import PengaturanTerPph21 from "./pages/Pengaturan/PengaturanTerPph21";
 import PengaturanJadwalPenggajian from "./pages/Pengaturan/PengaturanJadwalPenggajian";
 import PengaturanThr from "./pages/Pengaturan/PengaturanThr";
 import PengaturanShift from "./pages/Pengaturan/PengaturanShift";
+import PengaturanHariLibur from "./pages/Pengaturan/PengaturanHariLibur";
+import PengaturanCuti from "./pages/Pengaturan/PengaturanCuti";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -405,7 +407,7 @@ export const App = () => (
               topNavsData={pengaturanTopNavs}
               topNavActive={3}
             >
-              <PengaturanShift />
+              <PengaturanHariLibur />
             </NavContainer>
           }
         />
@@ -418,7 +420,7 @@ export const App = () => (
               topNavsData={pengaturanTopNavs}
               topNavActive={3}
             >
-              <PengaturanShift />
+              <PengaturanCuti />
             </NavContainer>
           }
         />
