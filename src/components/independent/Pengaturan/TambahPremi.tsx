@@ -137,18 +137,12 @@ export default function TambahPremi({ ...props }: Props) {
                       formik.values.jenis_premi === 0 ? "80" : "4.000.000"
                     }
                     onChange={(e) => {
-                      const newValue = parseNumber(e.target.value);
-                      if (newValue > 0) {
-                        formik.setFieldValue("besaran_premi", newValue);
-                      } else {
-                        formik.setFieldValue("besaran_premi", "");
-                      }
+                      formik.setFieldValue(
+                        "besaran_premi",
+                        parseNumber(e.target.value)
+                      );
                     }}
-                    value={
-                      formik.values.besaran_premi === ""
-                        ? ""
-                        : formatNumber(formik.values.besaran_premi)
-                    }
+                    value={formatNumber(formik.values.besaran_premi)}
                   />
                   {formik.values.jenis_premi === 0 && (
                     <InputRightElement>

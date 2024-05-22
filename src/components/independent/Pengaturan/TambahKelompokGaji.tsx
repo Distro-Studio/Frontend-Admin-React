@@ -111,7 +111,7 @@ export default function TambahKelompokGaji({ ...props }: Props) {
                     placeholder="4.000.000"
                     onChange={(e) => {
                       const newValue = parseNumber(e.target.value);
-                      if (newValue > 0) {
+                      if (newValue && newValue > 0) {
                         formik.setFieldValue("besaran_gaji", newValue);
                       } else {
                         formik.setFieldValue("besaran_gaji", "");

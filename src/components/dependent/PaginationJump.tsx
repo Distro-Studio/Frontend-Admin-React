@@ -32,10 +32,10 @@ export default function PaginationJump({ page, setPage, pagination }: Props) {
     window.history.back();
   };
   const initialFocusRef = useRef(null);
-  const [data, setData] = useState<number>(page);
+  const [data, setData] = useState<number | null>(page);
 
   const validation = () => {
-    if (data > 0 && data <= pagination.last_page) {
+    if (data && data > 0 && data <= pagination.last_page) {
       return true;
     }
     return false;
@@ -43,7 +43,7 @@ export default function PaginationJump({ page, setPage, pagination }: Props) {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (data > 0 && data <= pagination.last_page) {
+    if (data && data > 0 && data <= pagination.last_page) {
       setPage(data);
     }
   };

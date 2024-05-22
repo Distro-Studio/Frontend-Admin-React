@@ -213,7 +213,7 @@ export default function DatePicker({
                     placeholder="Bulan ke-"
                     onChange={(e) => {
                       const value = parseNumber(e.target.value);
-                      if (value <= 12) {
+                      if (value && value <= 12) {
                         setDate(new Date(tahun, value - 1));
                         setBulan(value);
                       }
@@ -234,8 +234,10 @@ export default function DatePicker({
                     placeholder="Tahun"
                     onChange={(e) => {
                       const value = parseNumber(e.target.value);
-                      setDate(new Date(value, bulan - 1));
-                      setTahun(value);
+                      if (value) {
+                        setDate(new Date(value, bulan - 1));
+                        setTahun(value);
+                      }
                     }}
                     value={tahun === 0 ? "" : tahun}
                     onFocus={() => {

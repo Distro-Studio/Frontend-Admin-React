@@ -109,7 +109,7 @@ export default function TambahJabatan({ ...props }: Props) {
                     placeholder="4.000.000"
                     onChange={(e) => {
                       const newValue = parseNumber(e.target.value);
-                      if (newValue > 0) {
+                      if (newValue && newValue > 0) {
                         formik.setFieldValue("tunjangan", newValue);
                       } else {
                         formik.setFieldValue("tunjangan", "");
