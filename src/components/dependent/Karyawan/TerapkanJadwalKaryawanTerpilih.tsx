@@ -86,9 +86,9 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
         size={"lg"}
       >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent ref={initialRef}>
           <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Terapkan Jadwal</ModalHeader>
+          <ModalHeader>Terapkan Jadwal</ModalHeader>
           <ModalBody>
             <SimpleGrid columns={[1, 2]} gap={responsiveSpacing}>
               <HStack
