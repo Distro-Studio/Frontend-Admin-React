@@ -9,7 +9,7 @@ import {
 import { RiDownloadLine, RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import TabelUnitKerja from "../../components/dependent/Pengaturan/Tabel/TabelUnitKerja";
+import TabelShift from "../../components/dependent/Pengaturan/Tabel/TabelShift";
 import TambahShift from "../../components/independent/Pengaturan/TambahShift";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -99,7 +99,7 @@ export default function PengaturanShift() {
               <TambahShift flex={"1 1 180px"} />
             </Wrap>
 
-            <TabelUnitKerja filterConfig={filterConfig} />
+            <TabelShift filterConfig={filterConfig} />
           </CContainer>
         </Wrap>
       </CWrapper>

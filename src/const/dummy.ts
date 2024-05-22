@@ -1731,4 +1731,31 @@ const dummyTerPph21 = [
   },
 ];
 
-export { dummyTabelJadwalData, dummyKaryawanList, dummyTerPph21 };
+const dummyShift = [
+  {
+    id: 1,
+    nama: "Pagi",
+    jam_from: "2024-05-07T07:00:00.000000",
+    jam_to: "2024-05-07T15:00:00.000000",
+    created_at: "2024-05-07T09:28:37.000000Z",
+    updated_at: "2024-05-07T09:28:37.000000Z",
+  },
+  {
+    id: 2,
+    nama: "Sore",
+    jam_from: "2024-05-07T15:00:00.000000",
+    jam_to: "2024-05-07T00:00:00.000000",
+    created_at: "2024-05-07T09:28:37.000000Z",
+    updated_at: "2024-05-07T09:28:37.000000Z",
+  },
+  {
+    id: 3,
+    nama: "Malam",
+    jam_from: "2024-05-07T19:30:00.000000",
+    jam_to: "2024-05-07T05:30:00.000000",
+    created_at: "2024-05-07T09:28:37.000000Z",
+    updated_at: "2024-05-07T09:28:37.000000Z",
+  },
+];
+
+export { dummyTabelJadwalData, dummyKaryawanList, dummyTerPph21, dummyShift };

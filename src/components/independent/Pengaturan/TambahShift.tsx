@@ -4,6 +4,7 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  HStack,
   Input,
   Modal,
   ModalBody,
@@ -20,8 +21,6 @@ import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
 import backOnClose from "../../../lib/backOnClose";
-import formatNumber from "../../../lib/formatNumber";
-import parseNumber from "../../../lib/parseNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import FormRequired from "../../form/FormRequired";
 
@@ -50,9 +49,22 @@ export default function TambahShift({ ...props }: Props) {
     }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
+      const jam_from = new Date(
+        Date.UTC(0, 0, 0, values.jam_from_hour, values.jam_from_minute)
+      );
+      const jam_to = new Date(
+        Date.UTC(0, 0, 0, values.jam_to_hour, values.jam_to_minute)
+      );
+
+      const payload = new FormData();
+      payload.append("nama", values.nama);
+      payload.append("jam_from", jam_from.toString());
+      payload.append("jam_to", jam_to.toString());
+
       //TODO api tambah kelompok gaji
     },
   });
+
   return (
     <>
       <Button
@@ -103,18 +115,60 @@ export default function TambahShift({ ...props }: Props) {
                   flex={"1 1"}
                   isInvalid={formik.errors.jam_from_hour ? true : false}
                 >
-                  <Input
-                    name="jam_from_hour"
-                    placeholder={"4.000.000"}
-                    type="time"
-                    onChange={(e) => {
-                      formik.setFieldValue(
-                        "jam_from_hour",
-                        parseNumber(e.target.value)
-                      );
-                    }}
-                    value={formatNumber(formik.values.jam_from_hour)}
-                  />
+                  <HStack>
+                    <Input
+                      name="jam_from_hour"
+                      placeholder="hh"
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        if (
+                          value === "" ||
+                          (formik.values.jam_from_hour === 0 && value === "0")
+                        ) {
+                          formik.setFieldValue("jam_from_hour", "");
+                        } else {
+                          const numValue = parseInt(value);
+                          if (numValue < 24) {
+                            formik.setFieldValue("jam_from_hour", numValue);
+                          }
+                        }
+                      }}
+                      value={
+                        formik.values.jam_from_hour === ""
+                          ? ""
+                          : formik.values.jam_from_hour
+                              .toString()
+                              .padStart(2, "0")
+                      }
+                    />
+
+                    <Input
+                      name="jam_from_minute"
+                      placeholder="hh"
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        if (
+                          value === "" ||
+                          (formik.values.jam_from_minute === 0 && value === "0")
+                        ) {
+                          formik.setFieldValue("jam_from_minute", "");
+                        } else {
+                          const numValue = parseInt(value);
+                          if (numValue < 60) {
+                            formik.setFieldValue("jam_from_minute", numValue);
+                          }
+                        }
+                      }}
+                      value={
+                        formik.values.jam_from_minute === ""
+                          ? ""
+                          : formik.values.jam_from_minute
+                              .toString()
+                              .padStart(2, "0")
+                      }
+                    />
+                  </HStack>
+
                   <FormErrorMessage>
                     {formik.errors.jam_from_hour as string}
                   </FormErrorMessage>
@@ -128,18 +182,59 @@ export default function TambahShift({ ...props }: Props) {
                   flex={"1 1"}
                   isInvalid={formik.errors.jam_to_hour ? true : false}
                 >
-                  <Input
-                    name="jam_to_hour"
-                    type="time"
-                    placeholder={"hh:mm"}
-                    onChange={(e) => {
-                      formik.setFieldValue(
-                        "jam_to_hour",
-                        parseNumber(e.target.value)
-                      );
-                    }}
-                    value={formatNumber(formik.values.jam_to_hour)}
-                  />
+                  <HStack>
+                    <Input
+                      name="jam_to_hour"
+                      placeholder="hh"
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        if (
+                          value === "" ||
+                          (formik.values.jam_to_hour === 0 && value === "0")
+                        ) {
+                          formik.setFieldValue("jam_to_hour", "");
+                        } else {
+                          const numValue = parseInt(value);
+                          if (numValue < 24) {
+                            formik.setFieldValue("jam_to_hour", numValue);
+                          }
+                        }
+                      }}
+                      value={
+                        formik.values.jam_to_hour === ""
+                          ? ""
+                          : formik.values.jam_to_hour
+                              .toString()
+                              .padStart(2, "0")
+                      }
+                    />
+
+                    <Input
+                      name="jam_to_minute"
+                      placeholder="hh"
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        if (
+                          value === "" ||
+                          (formik.values.jam_to_minute === 0 && value === "0")
+                        ) {
+                          formik.setFieldValue("jam_to_minute", "");
+                        } else {
+                          const numValue = parseInt(value);
+                          if (numValue < 60) {
+                            formik.setFieldValue("jam_to_minute", numValue);
+                          }
+                        }
+                      }}
+                      value={
+                        formik.values.jam_to_minute === ""
+                          ? ""
+                          : formik.values.jam_to_minute
+                              .toString()
+                              .padStart(2, "0")
+                      }
+                    />
+                  </HStack>
                   <FormErrorMessage>
                     {formik.errors.jam_to_hour as string}
                   </FormErrorMessage>
