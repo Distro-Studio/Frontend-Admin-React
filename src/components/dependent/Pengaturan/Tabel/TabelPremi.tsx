@@ -21,6 +21,8 @@ import { iconSize } from "../../../../const/sizes";
 import formatNumber from "../../../../lib/formatNumber";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
+import { dummyPremi } from "../../../../const/dummy";
+import NoData from "../../../alert/NoData";
 
 interface Props {
   filterConfig?: any;
@@ -47,182 +49,23 @@ export default function TabelPremi({ filterConfig }: Props) {
 
   //! DEBUG
   // console.log(filterConfig);
-  const dummy = [
-    {
-      id: 1,
-      nama_premi: "Asuransi Jiwa dengan Manfaat Unit Link",
-      jenis_premi: 0,
-      besaran_premi: 21,
-      created_at: "2024-01-05T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 2,
-      nama_premi: "Asuransi Kebakaran Rumah",
-      jenis_premi: 1,
-      besaran_premi: 2280018,
-      created_at: "2023-11-23T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 3,
-      nama_premi: "Asuransi Gagal Panen (per hektar)",
-      jenis_premi: 0,
-      besaran_premi: 84,
-      created_at: "2024-04-08T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 4,
-      nama_premi: "Asuransi Jiwa dengan Manfaat Unit Link",
-      jenis_premi: 1,
-      besaran_premi: 2421755,
-      created_at: "2023-06-18T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 5,
-      nama_premi: "Asuransi Kesehatan - Rawat Jalan & Rawat Inap",
-      jenis_premi: 0,
-      besaran_premi: 96,
-      created_at: "2023-06-21T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 6,
-      nama_premi: "Asuransi Jiwa Term Life (10 tahun)",
-      jenis_premi: 0,
-      besaran_premi: 57,
-      created_at: "2024-01-19T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 7,
-      nama_premi: "Asuransi Gagal Panen (per hektar)",
-      jenis_premi: 0,
-      besaran_premi: 46,
-      created_at: "2024-02-10T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 8,
-      nama_premi: "Asuransi Pendidikan - Unit Link (5 tahun)",
-      jenis_premi: 0,
-      besaran_premi: 11,
-      created_at: "2023-09-09T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 9,
-      nama_premi: "Asuransi Pendidikan - Unit Link (5 tahun)",
-      jenis_premi: 1,
-      besaran_premi: 2701838,
-      created_at: "2023-05-12T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 10,
-      nama_premi: "Asuransi Kesehatan - Rawat Jalan & Rawat Inap",
-      jenis_premi: 0,
-      besaran_premi: 44,
-      created_at: "2023-09-21T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 11,
-      nama_premi: "Asuransi Kecelakaan Diri",
-      jenis_premi: 1,
-      besaran_premi: 775525,
-      created_at: "2023-11-06T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 12,
-      nama_premi: "Asuransi Jiwa Term Life (10 tahun)",
-      jenis_premi: 1,
-      besaran_premi: 3909171,
-      created_at: "2024-03-20T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 13,
-      nama_premi: "Asuransi Kendaraan - Motor Full Coverage",
-      jenis_premi: 1,
-      besaran_premi: 2087445,
-      created_at: "2023-11-13T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 14,
-      nama_premi: "Asuransi Jiwa dengan Manfaat Unit Link",
-      jenis_premi: 0,
-      besaran_premi: 88,
-      created_at: "2024-02-18T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 15,
-      nama_premi: "Asuransi Kendaraan - Mobil Full Coverage",
-      jenis_premi: 1,
-      besaran_premi: 3721795,
-      created_at: "2023-12-02T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 16,
-      nama_premi: "Asuransi Kesehatan - Santunan Rawat Inap",
-      jenis_premi: 1,
-      besaran_premi: 3581297,
-      created_at: "2023-07-12T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 17,
-      nama_premi: "Asuransi Kendaraan - Motor Full Coverage",
-      jenis_premi: 1,
-      besaran_premi: 3390289,
-      created_at: "2023-11-08T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 18,
-      nama_premi: "Asuransi Gagal Panen (per hektar)",
-      jenis_premi: 1,
-      besaran_premi: 4156494,
-      created_at: "2023-08-27T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 19,
-      nama_premi: "Asuransi Jiwa Term Life (10 tahun)",
-      jenis_premi: 0,
-      besaran_premi: 53,
-      created_at: "2023-06-21T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 20,
-      nama_premi: "Asuransi Kebakaran Rumah",
-      jenis_premi: 0,
-      besaran_premi: 56,
-      created_at: "2023-10-31T05:46:22.000000Z",
-      updated_at: "2024-05-04T05:46:22.000000Z",
-    },
-    {
-      id: 21,
-      nama_premi: "Test",
-      jenis_premi: 0,
-      besaran_premi: 2500000,
-      created_at: "2024-05-04T05:47:19.000000Z",
-      updated_at: "2024-05-04T05:47:19.000000Z",
-    },
-  ];
+
   //! DEBUG
 
   //TODO get karyawan
 
-  const [data] = useState<any[] | null>(dummy);
+  const [data] = useState<any[] | null>(dummyPremi);
   const [loading] = useState<boolean>(false);
+
+  // Filter Config
+  const fd = data?.filter((d) => {
+    const searchTerm = filterConfig.search.toLowerCase();
+    const ok =
+      d.id.toString().toLowerCase().includes(searchTerm) ||
+      d.nama_premi.toLowerCase().includes(searchTerm);
+
+    return ok;
+  });
 
   // Check List Config
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
@@ -253,7 +96,7 @@ export default function TabelPremi({ filterConfig }: Props) {
     key: string;
     direction: "asc" | "desc";
   } | null>({ key: columns[0].key, direction: "asc" });
-  const sortedData = data && [...data];
+  const sortedData = fd && [...fd];
   if (sortConfig !== null && sortedData) {
     sortedData.sort((a, b) => {
       //@ts-ignore
@@ -290,202 +133,206 @@ export default function TabelPremi({ filterConfig }: Props) {
       {!loading && sortedData && (
         <>
           <TabelContainer noFooterConfig>
-            <Table minW={"100%"}>
-              <Thead>
-                <Tr position={"sticky"} top={0} zIndex={3}>
-                  <Th
-                    position={"sticky"}
-                    left={0}
-                    p={0}
-                    borderBottom={"none !important"}
-                    zIndex={3}
-                    w={"50px"}
-                  >
-                    <Center
-                      p={4}
-                      h={"52px"}
-                      w={"50px"}
-                      borderRight={"1px solid var(--divider3)"}
-                      bg={bodyColor}
-                      borderBottom={"1px solid var(--divider3) !important"}
-                    >
-                      <Checkbox
-                        colorScheme="ap"
-                        isChecked={isCheckAll}
-                        onChange={(e) => {
-                          e.stopPropagation();
-                          handleCheckAll();
-                        }}
-                      />
-                    </Center>
-                  </Th>
+            {fd && fd.length === 0 && <NoData />}
 
-                  {columns.map((column, i) => (
+            {fd && fd.length > 0 && (
+              <Table minW={"100%"}>
+                <Thead>
+                  <Tr position={"sticky"} top={0} zIndex={3}>
                     <Th
-                      key={i}
-                      whiteSpace={"nowrap"}
-                      onClick={() => {
-                        if (column.dataType !== "action") {
-                          sort(column.key);
-                        }
-                      }}
-                      cursor={"pointer"}
-                      borderBottom={"none !important"}
-                      bg={bodyColor}
-                      zIndex={2}
-                      p={0}
-                      {...column.thProps}
-                    >
-                      {column.dataType === "action" ? (
-                        <HStack
-                          justify={"center"}
-                          borderBottom={"1px solid var(--divider3)"}
-                          px={4}
-                          py={3}
-                          h={"52px"}
-                          pl={i === 0 ? 4 : ""}
-                          pr={i === columns.length - 1 ? 4 : ""}
-                          {...column.thContentProps}
-                        >
-                          <Text>{column.label}</Text>
-                        </HStack>
-                      ) : (
-                        <HStack
-                          justify={
-                            column.preferredTextAlign === "center"
-                              ? "center"
-                              : column.dataType === "numeric"
-                              ? "flex-end"
-                              : "space-between"
-                          }
-                          borderBottom={"1px solid var(--divider3)"}
-                          px={4}
-                          py={3}
-                          h={"52px"}
-                          pl={i === 0 ? 4 : ""}
-                          pr={i === columns.length - 1 ? 4 : ""}
-                          {...column.thContentProps}
-                        >
-                          <Text
-                            fontWeight={600}
-                            flexShrink={0}
-                            lineHeight={1.2}
-                          >
-                            {column.label}
-                          </Text>
-
-                          {sortConfig && sortConfig.key === column.key && (
-                            <>
-                              {sortConfig.direction === "asc" ? (
-                                <Icon
-                                  as={RiArrowUpLine}
-                                  color={"p.500"}
-                                  fontSize={16}
-                                />
-                              ) : (
-                                <Icon
-                                  as={RiArrowDownLine}
-                                  color={"p.500"}
-                                  fontSize={16}
-                                />
-                              )}
-                            </>
-                          )}
-                        </HStack>
-                      )}
-                    </Th>
-                  ))}
-
-                  {/* Kolom tetap di sebelah kanan */}
-                  <Th
-                    position={"sticky"}
-                    top={0}
-                    right={0}
-                    borderBottom={"none !important"}
-                    p={0}
-                    bg={bodyColor}
-                    zIndex={2}
-                  >
-                    <VStack
-                      px={4}
-                      py={3}
-                      zIndex={99}
-                      borderLeft={"1px solid var(--divider3)"}
-                      borderBottom={"1px solid var(--divider3)"}
-                      h={"52px"}
-                    ></VStack>
-                  </Th>
-                </Tr>
-              </Thead>
-
-              <Tbody>
-                {sortedData.map((row, i) => (
-                  <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
-                    <Td
                       position={"sticky"}
                       left={0}
                       p={0}
-                      bg={bodyColor}
-                      zIndex={2}
+                      borderBottom={"none !important"}
+                      zIndex={3}
                       w={"50px"}
                     >
                       <Center
-                        h={"72px"}
-                        w={"50px"}
-                        bg={i % 2 === 0 ? contentBgColor : bodyColor}
                         p={4}
+                        h={"52px"}
+                        w={"50px"}
                         borderRight={"1px solid var(--divider3)"}
+                        bg={bodyColor}
+                        borderBottom={"1px solid var(--divider3) !important"}
                       >
                         <Checkbox
                           colorScheme="ap"
-                          isChecked={checkedItems.includes(row.id)}
+                          isChecked={isCheckAll}
                           onChange={(e) => {
                             e.stopPropagation();
-                            handleCheckItem(row.id);
+                            handleCheckAll();
                           }}
                         />
                       </Center>
-                    </Td>
+                    </Th>
 
-                    <Td whiteSpace={"nowrap"}>{row.nama_premi}</Td>
-                    <Td whiteSpace={"nowrap"}>
-                      {row.jenis_premi === 0 ? "Persentase" : "Nominal"}
-                    </Td>
-                    <Td whiteSpace={"nowrap"} textAlign={"right"}>
-                      {row.jenis_premi === 0
-                        ? `${row.besaran_premi}%`
-                        : `Rp.${formatNumber(row.besaran_premi)}`}
-                    </Td>
+                    {columns.map((column, i) => (
+                      <Th
+                        key={i}
+                        whiteSpace={"nowrap"}
+                        onClick={() => {
+                          if (column.dataType !== "action") {
+                            sort(column.key);
+                          }
+                        }}
+                        cursor={"pointer"}
+                        borderBottom={"none !important"}
+                        bg={bodyColor}
+                        zIndex={2}
+                        p={0}
+                        {...column.thProps}
+                      >
+                        {column.dataType === "action" ? (
+                          <HStack
+                            justify={"center"}
+                            borderBottom={"1px solid var(--divider3)"}
+                            px={4}
+                            py={3}
+                            h={"52px"}
+                            pl={i === 0 ? 4 : ""}
+                            pr={i === columns.length - 1 ? 4 : ""}
+                            {...column.thContentProps}
+                          >
+                            <Text>{column.label}</Text>
+                          </HStack>
+                        ) : (
+                          <HStack
+                            justify={
+                              column.preferredTextAlign === "center"
+                                ? "center"
+                                : column.dataType === "numeric"
+                                ? "flex-end"
+                                : "space-between"
+                            }
+                            borderBottom={"1px solid var(--divider3)"}
+                            px={4}
+                            py={3}
+                            h={"52px"}
+                            pl={i === 0 ? 4 : ""}
+                            pr={i === columns.length - 1 ? 4 : ""}
+                            {...column.thContentProps}
+                          >
+                            <Text
+                              fontWeight={600}
+                              flexShrink={0}
+                              lineHeight={1.2}
+                            >
+                              {column.label}
+                            </Text>
+
+                            {sortConfig && sortConfig.key === column.key && (
+                              <>
+                                {sortConfig.direction === "asc" ? (
+                                  <Icon
+                                    as={RiArrowUpLine}
+                                    color={"p.500"}
+                                    fontSize={16}
+                                  />
+                                ) : (
+                                  <Icon
+                                    as={RiArrowDownLine}
+                                    color={"p.500"}
+                                    fontSize={16}
+                                  />
+                                )}
+                              </>
+                            )}
+                          </HStack>
+                        )}
+                      </Th>
+                    ))}
 
                     {/* Kolom tetap di sebelah kanan */}
-                    <Td
+                    <Th
                       position={"sticky"}
                       top={0}
                       right={0}
                       borderBottom={"none !important"}
                       p={0}
-                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                      zIndex={1}
-                      w={"50px"}
+                      bg={bodyColor}
+                      zIndex={2}
                     >
                       <VStack
+                        px={4}
+                        py={3}
+                        zIndex={99}
                         borderLeft={"1px solid var(--divider3)"}
-                        justify={"center"}
+                        borderBottom={"1px solid var(--divider3)"}
+                        h={"52px"}
+                      ></VStack>
+                    </Th>
+                  </Tr>
+                </Thead>
+
+                <Tbody>
+                  {sortedData.map((row, i) => (
+                    <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
+                      <Td
+                        position={"sticky"}
+                        left={0}
+                        p={0}
+                        bg={bodyColor}
+                        zIndex={2}
+                        w={"50px"}
                       >
-                        <IconButton
+                        <Center
                           h={"72px"}
                           w={"50px"}
-                          aria-label="Option Button"
-                          icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
-                          className="btn"
-                          borderRadius={0}
-                        />
-                      </VStack>
-                    </Td>
-                  </Tr>
-                ))}
-              </Tbody>
-            </Table>
+                          bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                          p={4}
+                          borderRight={"1px solid var(--divider3)"}
+                        >
+                          <Checkbox
+                            colorScheme="ap"
+                            isChecked={checkedItems.includes(row.id)}
+                            onChange={(e) => {
+                              e.stopPropagation();
+                              handleCheckItem(row.id);
+                            }}
+                          />
+                        </Center>
+                      </Td>
+
+                      <Td whiteSpace={"nowrap"}>{row.nama_premi}</Td>
+                      <Td whiteSpace={"nowrap"}>
+                        {row.jenis_premi === 0 ? "Persentase" : "Nominal"}
+                      </Td>
+                      <Td whiteSpace={"nowrap"} textAlign={"right"}>
+                        {row.jenis_premi === 0
+                          ? `${row.besaran_premi}%`
+                          : `Rp.${formatNumber(row.besaran_premi)}`}
+                      </Td>
+
+                      {/* Kolom tetap di sebelah kanan */}
+                      <Td
+                        position={"sticky"}
+                        top={0}
+                        right={0}
+                        borderBottom={"none !important"}
+                        p={0}
+                        bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                        zIndex={1}
+                        w={"50px"}
+                      >
+                        <VStack
+                          borderLeft={"1px solid var(--divider3)"}
+                          justify={"center"}
+                        >
+                          <IconButton
+                            h={"72px"}
+                            w={"50px"}
+                            aria-label="Option Button"
+                            icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
+                            className="btn"
+                            borderRadius={0}
+                          />
+                        </VStack>
+                      </Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            )}
           </TabelContainer>
         </>
       )}

@@ -52,7 +52,7 @@ export default function TabelShift({ filterConfig }: Props) {
   const [loading] = useState<boolean>(false);
 
   // Filter Config
-  const filteredData = data?.filter((d) => {
+  const fd = data?.filter((d) => {
     const searchTerm = filterConfig.search.toLowerCase();
     const ok =
       d.id.toString().toLowerCase().includes(searchTerm) ||
@@ -90,7 +90,7 @@ export default function TabelShift({ filterConfig }: Props) {
     key: string;
     direction: "asc" | "desc";
   } | null>({ key: columns[0].key, direction: "asc" });
-  const sortedData = filteredData && [...filteredData];
+  const sortedData = fd && [...fd];
   if (sortConfig !== null && sortedData) {
     sortedData.sort((a, b) => {
       //@ts-ignore
@@ -127,9 +127,9 @@ export default function TabelShift({ filterConfig }: Props) {
       {!loading && sortedData && (
         <>
           <TabelContainer noFooterConfig>
-            {filteredData && filteredData.length === 0 && <NoData />}
+            {fd && fd.length === 0 && <NoData />}
 
-            {filteredData && filteredData.length > 0 && (
+            {fd && fd.length > 0 && (
               <Table minW={"100%"}>
                 <Thead>
                   <Tr position={"sticky"} top={0} zIndex={3}>

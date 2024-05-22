@@ -25,6 +25,8 @@ import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import { iconSize } from "../../../../const/sizes";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
+import NoData from "../../../alert/NoData";
+import { dummyKelolaRole } from "../../../../const/dummy";
 
 interface Props {
   filterConfig?: any;
@@ -46,19 +48,23 @@ export default function TabelKelolaRole({ filterConfig }: Props) {
 
   //! DEBUG
   // console.log(filterConfig);
-  const dummy = [
-    { id: 1, name: "Super Admin", deskripsi: "mbuh pak mumet pokoke lhosss" },
-    { id: 2, name: "Direktur", deskripsi: "mbuh pak mumet pokoke lhosss" },
-    { id: 3, name: "Admin", deskripsi: "mbuh pak mumet pokoke lhosss" },
-    { id: 4, name: "Manager", deskripsi: "mbuh pak mumet pokoke lhosss" },
-    { id: 5, name: "Karyawan", deskripsi: "mbuh pak mumet pokoke lhosss" },
-  ];
+
   //! DEBUG
 
-  //TODO get karyawan
+  //TODO get data pengatuan kelola role
 
-  const [data] = useState<any[] | null>(dummy);
+  const [data] = useState<any[] | null>(dummyKelolaRole);
   const [loading] = useState<boolean>(false);
+
+  // Filter Config
+  const fd = data?.filter((d) => {
+    const searchTerm = filterConfig.search.toLowerCase();
+    const ok =
+      d.id.toString().toLowerCase().includes(searchTerm) ||
+      d.name.toLowerCase().includes(searchTerm);
+
+    return ok;
+  });
 
   // Check List Config
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
@@ -89,7 +95,7 @@ export default function TabelKelolaRole({ filterConfig }: Props) {
     key: string;
     direction: "asc" | "desc";
   } | null>({ key: columns[0].key, direction: "asc" });
-  const sortedData = data && [...data];
+  const sortedData = fd && [...fd];
   if (sortConfig !== null && sortedData) {
     sortedData.sort((a, b) => {
       //@ts-ignore
@@ -126,206 +132,213 @@ export default function TabelKelolaRole({ filterConfig }: Props) {
       {!loading && sortedData && (
         <>
           <TabelContainer noFooterConfig>
-            <Table minW={"100%"}>
-              <Thead>
-                <Tr position={"sticky"} top={0} zIndex={3}>
-                  <Th
-                    position={"sticky"}
-                    left={0}
-                    p={0}
-                    borderBottom={"none !important"}
-                    zIndex={3}
-                    w={"50px"}
-                  >
-                    <Center
-                      p={4}
-                      h={"52px"}
-                      w={"50px"}
-                      borderRight={"1px solid var(--divider3)"}
-                      bg={bodyColor}
-                      borderBottom={"1px solid var(--divider3) !important"}
-                    >
-                      <Checkbox
-                        colorScheme="ap"
-                        isChecked={isCheckAll}
-                        onChange={(e) => {
-                          e.stopPropagation();
-                          handleCheckAll();
-                        }}
-                      />
-                    </Center>
-                  </Th>
+            {fd && fd.length === 0 && <NoData />}
 
-                  {columns.map((column, i) => (
+            {fd && fd.length > 0 && (
+              <Table minW={"100%"}>
+                <Thead>
+                  <Tr position={"sticky"} top={0} zIndex={3}>
                     <Th
-                      key={i}
-                      whiteSpace={"nowrap"}
-                      onClick={() => {
-                        if (column.dataType !== "action") {
-                          sort(column.key);
-                        }
-                      }}
-                      cursor={"pointer"}
-                      borderBottom={"none !important"}
-                      bg={bodyColor}
-                      zIndex={2}
-                      p={0}
-                      {...column.thProps}
-                    >
-                      {column.dataType === "action" ? (
-                        <HStack
-                          justify={"center"}
-                          borderBottom={"1px solid var(--divider3)"}
-                          px={4}
-                          py={3}
-                          h={"52px"}
-                          pl={i === 0 ? 4 : ""}
-                          pr={i === columns.length - 1 ? 4 : ""}
-                          {...column.thContentProps}
-                        >
-                          <Text>{column.label}</Text>
-                        </HStack>
-                      ) : (
-                        <HStack
-                          justify={
-                            column.preferredTextAlign === "center"
-                              ? "center"
-                              : column.dataType === "numeric"
-                              ? "flex-end"
-                              : "space-between"
-                          }
-                          borderBottom={"1px solid var(--divider3)"}
-                          px={4}
-                          py={3}
-                          h={"52px"}
-                          pl={i === 0 ? 4 : ""}
-                          pr={i === columns.length - 1 ? 4 : ""}
-                          {...column.thContentProps}
-                        >
-                          <Text
-                            fontWeight={600}
-                            flexShrink={0}
-                            lineHeight={1.2}
-                          >
-                            {column.label}
-                          </Text>
-
-                          {sortConfig && sortConfig.key === column.key && (
-                            <>
-                              {sortConfig.direction === "asc" ? (
-                                <Icon
-                                  as={RiArrowUpLine}
-                                  color={"p.500"}
-                                  fontSize={16}
-                                />
-                              ) : (
-                                <Icon
-                                  as={RiArrowDownLine}
-                                  color={"p.500"}
-                                  fontSize={16}
-                                />
-                              )}
-                            </>
-                          )}
-                        </HStack>
-                      )}
-                    </Th>
-                  ))}
-
-                  {/* Kolom tetap di sebelah kanan */}
-                  <Th
-                    position={"sticky"}
-                    top={0}
-                    right={0}
-                    borderBottom={"none !important"}
-                    p={0}
-                    bg={bodyColor}
-                    zIndex={2}
-                  >
-                    <Center
-                      px={4}
-                      py={3}
-                      zIndex={99}
-                      borderLeft={"1px solid var(--divider3)"}
-                      borderBottom={"1px solid var(--divider3)"}
-                      h={"52px"}
-                    >
-                      <Text whiteSpace={"nowrap"}>Edit Akses</Text>
-                    </Center>
-                  </Th>
-                </Tr>
-              </Thead>
-
-              <Tbody>
-                {sortedData.map((row, i) => (
-                  <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
-                    <Td
                       position={"sticky"}
                       left={0}
                       p={0}
-                      bg={bodyColor}
-                      zIndex={2}
+                      borderBottom={"none !important"}
+                      zIndex={3}
                       w={"50px"}
                     >
                       <Center
-                        h={"72px"}
-                        w={"50px"}
-                        bg={i % 2 === 0 ? contentBgColor : bodyColor}
                         p={4}
+                        h={"52px"}
+                        w={"50px"}
                         borderRight={"1px solid var(--divider3)"}
+                        bg={bodyColor}
+                        borderBottom={"1px solid var(--divider3) !important"}
                       >
                         <Checkbox
                           colorScheme="ap"
-                          isChecked={checkedItems.includes(row.id)}
+                          isChecked={isCheckAll}
                           onChange={(e) => {
                             e.stopPropagation();
-                            handleCheckItem(row.id);
+                            handleCheckAll();
                           }}
                         />
                       </Center>
-                    </Td>
+                    </Th>
 
-                    <Td whiteSpace={"nowrap"}>{row.name}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.deskripsi}</Td>
+                    {columns.map((column, i) => (
+                      <Th
+                        key={i}
+                        whiteSpace={"nowrap"}
+                        onClick={() => {
+                          if (column.dataType !== "action") {
+                            sort(column.key);
+                          }
+                        }}
+                        cursor={"pointer"}
+                        borderBottom={"none !important"}
+                        bg={bodyColor}
+                        zIndex={2}
+                        p={0}
+                        {...column.thProps}
+                      >
+                        {column.dataType === "action" ? (
+                          <HStack
+                            justify={"center"}
+                            borderBottom={"1px solid var(--divider3)"}
+                            px={4}
+                            py={3}
+                            h={"52px"}
+                            pl={i === 0 ? 4 : ""}
+                            pr={i === columns.length - 1 ? 4 : ""}
+                            {...column.thContentProps}
+                          >
+                            <Text>{column.label}</Text>
+                          </HStack>
+                        ) : (
+                          <HStack
+                            justify={
+                              column.preferredTextAlign === "center"
+                                ? "center"
+                                : column.dataType === "numeric"
+                                ? "flex-end"
+                                : "space-between"
+                            }
+                            borderBottom={"1px solid var(--divider3)"}
+                            px={4}
+                            py={3}
+                            h={"52px"}
+                            pl={i === 0 ? 4 : ""}
+                            pr={i === columns.length - 1 ? 4 : ""}
+                            {...column.thContentProps}
+                          >
+                            <Text
+                              fontWeight={600}
+                              flexShrink={0}
+                              lineHeight={1.2}
+                            >
+                              {column.label}
+                            </Text>
+
+                            {sortConfig && sortConfig.key === column.key && (
+                              <>
+                                {sortConfig.direction === "asc" ? (
+                                  <Icon
+                                    as={RiArrowUpLine}
+                                    color={"p.500"}
+                                    fontSize={16}
+                                  />
+                                ) : (
+                                  <Icon
+                                    as={RiArrowDownLine}
+                                    color={"p.500"}
+                                    fontSize={16}
+                                  />
+                                )}
+                              </>
+                            )}
+                          </HStack>
+                        )}
+                      </Th>
+                    ))}
 
                     {/* Kolom tetap di sebelah kanan */}
-                    <Td
+                    <Th
                       position={"sticky"}
                       top={0}
                       right={0}
                       borderBottom={"none !important"}
                       p={0}
-                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                      zIndex={1}
-                      w={"150px"}
+                      bg={bodyColor}
+                      zIndex={2}
                     >
-                      <VStack
-                        borderLeft={"1px solid var(--divider3)"}
-                        w={"150px"}
-                        h={"72px"}
+                      <Center
                         px={4}
-                        align={"stretch"}
-                        justify={"center"}
+                        py={3}
+                        zIndex={99}
+                        borderLeft={"1px solid var(--divider3)"}
+                        borderBottom={"1px solid var(--divider3)"}
+                        h={"52px"}
                       >
-                        <Button
-                          pr={3}
-                          colorScheme="ap"
-                          variant={"ghost"}
-                          className=" clicky"
-                          as={Link}
-                          to={`/pengaturan/akun/kelola-role/${row.id}/${row.name}`}
-                          rightIcon={
-                            <Icon as={RiArrowRightSLine} fontSize={iconSize} />
-                          }
-                        >
-                          Keizinan
-                        </Button>
-                      </VStack>
-                    </Td>
+                        <Text whiteSpace={"nowrap"}>Edit Akses</Text>
+                      </Center>
+                    </Th>
                   </Tr>
-                ))}
-              </Tbody>
-            </Table>
+                </Thead>
+
+                <Tbody>
+                  {sortedData.map((row, i) => (
+                    <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
+                      <Td
+                        position={"sticky"}
+                        left={0}
+                        p={0}
+                        bg={bodyColor}
+                        zIndex={2}
+                        w={"50px"}
+                      >
+                        <Center
+                          h={"72px"}
+                          w={"50px"}
+                          bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                          p={4}
+                          borderRight={"1px solid var(--divider3)"}
+                        >
+                          <Checkbox
+                            colorScheme="ap"
+                            isChecked={checkedItems.includes(row.id)}
+                            onChange={(e) => {
+                              e.stopPropagation();
+                              handleCheckItem(row.id);
+                            }}
+                          />
+                        </Center>
+                      </Td>
+
+                      <Td whiteSpace={"nowrap"}>{row.name}</Td>
+                      <Td whiteSpace={"nowrap"}>{row.deskripsi}</Td>
+
+                      {/* Kolom tetap di sebelah kanan */}
+                      <Td
+                        position={"sticky"}
+                        top={0}
+                        right={0}
+                        borderBottom={"none !important"}
+                        p={0}
+                        bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                        zIndex={1}
+                        w={"150px"}
+                      >
+                        <VStack
+                          borderLeft={"1px solid var(--divider3)"}
+                          w={"150px"}
+                          h={"72px"}
+                          px={4}
+                          align={"stretch"}
+                          justify={"center"}
+                        >
+                          <Button
+                            pr={3}
+                            colorScheme="ap"
+                            variant={"ghost"}
+                            className=" clicky"
+                            as={Link}
+                            to={`/pengaturan/akun/kelola-role/${row.id}/${row.name}`}
+                            rightIcon={
+                              <Icon
+                                as={RiArrowRightSLine}
+                                fontSize={iconSize}
+                              />
+                            }
+                          >
+                            Keizinan
+                          </Button>
+                        </VStack>
+                      </Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            )}
           </TabelContainer>
         </>
       )}
