@@ -144,7 +144,7 @@ export default function TambahShift({ ...props }: Props) {
 
                     <Input
                       name="jam_from_minute"
-                      placeholder="hh"
+                      placeholder="mm"
                       onChange={(e) => {
                         const value = e.target.value;
                         if (
@@ -211,7 +211,7 @@ export default function TambahShift({ ...props }: Props) {
 
                     <Input
                       name="jam_to_minute"
-                      placeholder="hh"
+                      placeholder="mm"
                       onChange={(e) => {
                         const value = e.target.value;
                         if (
