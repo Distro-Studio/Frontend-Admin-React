@@ -102,7 +102,6 @@ export default function DateRangePicker({
     setSelected(defaultDateSelected);
     setBulan(today.getMonth() + 1);
     setTahun(today.getFullYear());
-    // setSelected(undefined);
   }
   function nextMonth() {
     const currentMonth = date.getMonth();
@@ -115,7 +114,6 @@ export default function DateRangePicker({
     setDate(nextMonth);
     setBulan(nextMonth.getMonth() + 1);
     setTahun(nextMonth.getFullYear());
-    // setSelected(undefined); // Hindari pemanggilan setSelected di sini
   }
   function prevMonth() {
     const currentMonth = date.getMonth();
@@ -128,7 +126,6 @@ export default function DateRangePicker({
     setDate(prevMonth);
     setBulan(prevMonth.getMonth() + 1);
     setTahun(prevMonth.getFullYear());
-    // setSelected(undefined); // Hindari pemanggilan setSelected di sini
   }
 
   const isBulanValid = (bulan: number) => {
@@ -236,8 +233,6 @@ export default function DateRangePicker({
                       if (value <= 12) {
                         setDate(new Date(tahun, value - 1));
                         setBulan(value);
-                        // setConfirm(false);
-                        setSelected(undefined);
                       }
                     }}
                     value={bulan === 0 ? "" : bulan}
@@ -258,8 +253,6 @@ export default function DateRangePicker({
                       const value = parseNumber(e.target.value);
                       setDate(new Date(value, bulan - 1));
                       setTahun(value);
-                      // setConfirm(false);
-                      setSelected(undefined);
                     }}
                     value={tahun === 0 ? "" : tahun}
                     onFocus={() => {

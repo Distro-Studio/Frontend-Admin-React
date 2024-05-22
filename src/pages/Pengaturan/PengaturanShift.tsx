@@ -1,7 +1,5 @@
 import { Button, Wrap } from "@chakra-ui/react";
-import { useFormik } from "formik";
 import { Link } from "react-router-dom";
-import * as yup from "yup";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
@@ -9,18 +7,6 @@ import pengaturanTopNavs from "../../const/pengaturanTopNavs";
 import { responsiveSpacing } from "../../const/sizes";
 
 export default function PengaturanShift() {
-  const formik = useFormik({
-    validateOnChange: false,
-    initialValues: { tanggal: "" },
-    validationSchema: yup
-      .object()
-      .shape({ tanggal: yup.string().required("Harus diisi") }),
-    onSubmit: (values, { resetForm }) => {
-      console.log(values);
-      //TODO simpan jadwal penggajian
-    },
-  });
-
   return (
     <>
       <CWrapper>

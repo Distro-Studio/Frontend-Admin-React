@@ -33,7 +33,7 @@ export default function ImportKaryawanModal() {
     validationSchema: yup.object().shape({
       file: yup
         .array()
-        .min(1, "File harus diisi")
+        .min(1, "Harus diisi")
         .test(
           "fileType",
           "Hanya file dengan ekstensi .csv, .xls, atau .xlsx yang diperbolehkan",
