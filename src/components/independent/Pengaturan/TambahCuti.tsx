@@ -5,6 +5,8 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
+  InputGroup,
+  InputRightElement,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -12,6 +14,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
@@ -20,7 +23,6 @@ import * as yup from "yup";
 import backOnClose from "../../../lib/backOnClose";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import FormRequired from "../../form/FormRequired";
-import DatePicker from "../../input/DatePicker";
 
 interface Props extends ButtonProps {}
 
@@ -33,33 +35,16 @@ export default function TambahCuti({ ...props }: Props) {
     validateOnChange: false,
     initialValues: {
       nama: "",
-      jam_from_hour: "" as any,
-      jam_from_minute: "" as any,
-      jam_to_hour: "" as any,
-      jam_to_minute: "" as any,
+      durasi: "" as any,
     },
     validationSchema: yup.object().shape({
       nama: yup.string().required("Harus diisi"),
-      jam_from_hour: yup.number().required("Harus diisi"),
-      jam_from_minute: yup.number().required("Harus diisi"),
-      jam_to_hour: yup.number().required("Harus diisi"),
-      jam_to_minute: yup.number().required("Harus diisi"),
+      durasi: yup.number().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
-      const jam_from = new Date(
-        Date.UTC(0, 0, 0, values.jam_from_hour, values.jam_from_minute)
-      );
-      const jam_to = new Date(
-        Date.UTC(0, 0, 0, values.jam_to_hour, values.jam_to_minute)
-      );
 
-      const payload = new FormData();
-      payload.append("nama", values.nama);
-      payload.append("jam_from", jam_from.toString());
-      payload.append("jam_to", jam_to.toString());
-
-      //TODO api tambah kelompok gaji
+      //TODO api tambah cuti
     },
   });
 
@@ -104,23 +89,21 @@ export default function TambahCuti({ ...props }: Props) {
                 </FormErrorMessage>
               </FormControl>
 
-              <FormControl
-                flex={"1 1"}
-                isInvalid={formik.errors.jam_from_hour ? true : false}
-              >
+              <FormControl isInvalid={formik.errors.durasi ? true : false}>
                 <FormLabel>
                   Maksimal Cuti (Hari)
                   <FormRequired />
                 </FormLabel>
-                <DatePicker
-                  name="tanggal"
-                  formik={formik}
-                  placeholder="Pilih tanggal hari libur"
-                  noUseBackOnClose
-                />
+
+                <InputGroup>
+                  <Input name="durasi" placeholder="5" pr={16} />
+                  <InputRightElement w={"fit-content"} flexShrink={0} px={4}>
+                    <Text>Hari</Text>
+                  </InputRightElement>
+                </InputGroup>
 
                 <FormErrorMessage>
-                  {formik.errors.jam_from_hour as string}
+                  {formik.errors.durasi as string}
                 </FormErrorMessage>
               </FormControl>
             </form>

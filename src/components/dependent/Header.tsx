@@ -11,7 +11,11 @@ import {
   StackProps,
   Text,
 } from "@chakra-ui/react";
-import { RiMenu4Line, RiNotification2Line } from "@remixicon/react";
+import {
+  RiMenu4Line,
+  RiNotification2Line,
+  RiRestartLine,
+} from "@remixicon/react";
 import { ColorModeSwitcher } from "../../ColorModeSwitcher";
 import { iconSize } from "../../const/sizes";
 import useScreenWidth from "../../lib/useScreenWidth";
@@ -61,6 +65,18 @@ export default function Header({
 
       {!smScreen && (
         <ButtonGroup>
+          <IconButton
+            aria-label="refresh button"
+            icon={
+              <Icon
+                as={RiRestartLine}
+                fontSize={20}
+                onClick={() => {
+                  window.location.reload();
+                }}
+              />
+            }
+          />
           <NotificationButton aria-label="Notification Button" />
           <ColorModeSwitcher />
           <AdminMiniProfile />
@@ -79,6 +95,17 @@ export default function Header({
             />
 
             <MenuList>
+              <MenuItem
+                onClick={() => {
+                  window.location.reload();
+                }}
+              >
+                <HStack>
+                  <Icon as={RiRestartLine} fontSize={iconSize} />
+                  <Text>Reload</Text>
+                </HStack>
+              </MenuItem>
+
               <MenuItem>
                 <HStack>
                   <Icon as={RiNotification2Line} fontSize={iconSize} />
