@@ -74,7 +74,7 @@ export const App = () => (
             <NavContainer
               active={1}
               title="Tambah Karyawan"
-              noNavs
+              // noNavs
               left={"back"}
               backLink="/karyawan"
               pb={responsiveSpacing}

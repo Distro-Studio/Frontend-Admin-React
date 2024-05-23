@@ -331,16 +331,20 @@ export default function PengaturanThr() {
                     w="50px"
                     overflow="hidden"
                     onChange={(e) => {
-                      formik.setFieldValue(
-                        "kriteria_karyawan_kontrak_bulan",
-                        parseNumber(e.target.value)
-                      );
+                      const newValue = parseNumber(e.target.value);
+                      //@ts-ignore
+                      if (newValue < 12) {
+                        formik.setFieldValue(
+                          "kriteria_karyawan_kontrak_bulan",
+                          parseNumber(e.target.value)
+                        );
+                      }
                     }}
                     value={formatNumber(
                       formik.values.kriteria_karyawan_kontrak_bulan
                     )}
                   />
-                  <Text>Bulan </Text>
+                  <Text>Bulan</Text>
                 </Wrap>
 
                 <FormErrorMessage>

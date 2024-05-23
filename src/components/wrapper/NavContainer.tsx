@@ -58,6 +58,7 @@ export default function NavContainer({
             justify={"space-between"}
             h={"100vh"}
             overflowY={"auto"}
+            overflowX={"clip"}
             position={"sticky"}
             top={0}
             flexShrink={0}
