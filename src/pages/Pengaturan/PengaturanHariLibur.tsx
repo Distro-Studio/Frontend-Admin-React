@@ -1,12 +1,29 @@
-import { Button, Wrap } from "@chakra-ui/react";
+import {
+  Button,
+  Icon,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Wrap,
+} from "@chakra-ui/react";
+import { RiDownloadLine, RiSearchLine, RiUploadLine } from "@remixicon/react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import TabelHariLibur from "../../components/dependent/Pengaturan/Tabel/TabelHariLibur";
+import TambahHariLibur from "../../components/independent/Pengaturan/TambahHariLibur";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import pengaturanTopNavs from "../../const/pengaturanTopNavs";
-import { responsiveSpacing } from "../../const/sizes";
+import { iconSize, responsiveSpacing } from "../../const/sizes";
 
 export default function PengaturanHariLibur() {
+  // Filter Config
+  const defaultFilterConfig = {
+    search: "",
+  };
+  const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
+
   return (
     <>
       <CWrapper>
@@ -41,7 +58,48 @@ export default function PengaturanHariLibur() {
             flex={"1 1 600px"}
             overflowX={"auto"}
           >
-            <p>Wakwaw</p>
+            <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
+              <InputGroup flex={"1 1 165px"}>
+                <InputLeftElement>
+                  <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
+                </InputLeftElement>
+                <Input
+                  placeholder="Pencarian"
+                  flex={"1 1 0"}
+                  onChange={(e) => {
+                    setFilterConfig((ps: any) => ({
+                      ...ps,
+                      search: e.target.value,
+                    }));
+                  }}
+                  value={filterConfig.search}
+                />
+              </InputGroup>
+
+              <Button
+                flex={"1 1 110px"}
+                variant={"outline"}
+                colorScheme="ap"
+                className="clicky"
+                rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
+              >
+                Export
+              </Button>
+
+              <Button
+                flex={"1 1 110px"}
+                variant={"outline"}
+                colorScheme="ap"
+                className="clicky"
+                rightIcon={<Icon as={RiDownloadLine} fontSize={iconSize} />}
+              >
+                Import
+              </Button>
+
+              <TambahHariLibur flex={"1 1 180px"} />
+            </Wrap>
+
+            <TabelHariLibur filterConfig={filterConfig} />
           </CContainer>
         </Wrap>
       </CWrapper>
