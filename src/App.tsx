@@ -21,10 +21,10 @@ import PekerjaKontrak from "./pages/Karyawan/PekerjaKontrak";
 import RekamJejak from "./pages/Karyawan/RekamJejak";
 import TambahKaryawan from "./pages/Karyawan/TambahKaryawan";
 import TransferKaryawan from "./pages/Karyawan/TransferKaryawan";
-import Keuangan from "./pages/Keuangan/Keuangan";
+import Penggajian from "./pages/Keuangan/Penggajian";
 import Login from "./pages/Login/Login";
 import PengaturanKelolaRole from "./pages/Pengaturan/PengaturanKelolaRole";
-import Perusahaan from "./pages/Perusahaan/Perusahaan";
+import Perusahaan from "./pages/Perusahaan/Diklat";
 import Presensi from "./pages/Presensi/Presensi";
 import PengaturanKeizinan from "./pages/Pengaturan/PengaturanKeizinan";
 import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi";
@@ -39,6 +39,10 @@ import PengaturanThr from "./pages/Pengaturan/PengaturanThr";
 import PengaturanShift from "./pages/Pengaturan/PengaturanShift";
 import PengaturanHariLibur from "./pages/Pengaturan/PengaturanHariLibur";
 import PengaturanCuti from "./pages/Pengaturan/PengaturanCuti";
+import keuanganTopNavs from "./const/keuanganTopNavs";
+import RiwayatPenggajian from "./pages/Keuangan/RiwayatPenggajian";
+import Thr from "./pages/Keuangan/Thr";
+import perusahaanTopNavs from "./const/perusahaanTopNavs";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
@@ -225,18 +229,54 @@ export const App = () => (
         />
 
         <Route
-          path="/keuangan"
+          path="/keuangan/penggajian"
           element={
-            <NavContainer active={4} title="Keuangan">
-              <Keuangan />
+            <NavContainer
+              active={4}
+              title="Penggajian"
+              topNavsData={keuanganTopNavs}
+              topNavActive={0}
+            >
+              <Penggajian />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/keuangan/riwayat-penggajian"
+          element={
+            <NavContainer
+              active={4}
+              title="Riwayat Penggajian"
+              topNavsData={keuanganTopNavs}
+              topNavActive={1}
+            >
+              <RiwayatPenggajian />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/keuangan/thr"
+          element={
+            <NavContainer
+              active={4}
+              title="THR"
+              topNavsData={keuanganTopNavs}
+              topNavActive={2}
+            >
+              <Thr />
             </NavContainer>
           }
         />
 
         <Route
-          path="/perusahaan"
+          path="/perusahaan/diklat"
           element={
-            <NavContainer active={5} title="Perusahaan">
+            <NavContainer
+              active={5}
+              title="Diklat"
+              topNavsData={perusahaanTopNavs}
+              topNavActive={0}
+            >
               <Perusahaan />
             </NavContainer>
           }

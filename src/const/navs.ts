@@ -31,12 +31,12 @@ const navs = [
   },
   {
     label: "Keuangan",
-    link: "/keuangan",
+    link: "/keuangan/penggajian",
     icon: RiMoneyDollarCircleFill,
   },
   {
     label: "Perusahaan",
-    link: "/perusahaan",
+    link: "/perusahaan/diklat",
     icon: RiBuilding2Fill,
   },
   {
