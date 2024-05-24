@@ -27,7 +27,6 @@ import PengaturanKelolaRole from "./pages/Pengaturan/PengaturanKelolaRole";
 import Perusahaan from "./pages/Perusahaan/Diklat";
 import Presensi from "./pages/Presensi/Presensi";
 import PengaturanKeizinan from "./pages/Pengaturan/PengaturanKeizinan";
-import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi";
 import PengaturanKelompokGaji from "./pages/Pengaturan/PengaturanKelompokGaji";
 import PengaturanJabatan from "./pages/Pengaturan/PengaturanJabatan";
 import PengaturanUnitKerja from "./pages/Pengaturan/PengaturanUnitKerja";
@@ -43,6 +42,7 @@ import keuanganTopNavs from "./const/keuanganTopNavs";
 import RiwayatPenggajian from "./pages/Keuangan/RiwayatPenggajian";
 import Thr from "./pages/Keuangan/Thr";
 import perusahaanTopNavs from "./const/perusahaanTopNavs";
+import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi";
 
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
