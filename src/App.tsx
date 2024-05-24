@@ -44,6 +44,8 @@ import Thr from "./pages/Keuangan/Thr";
 import perusahaanTopNavs from "./const/perusahaanTopNavs";
 import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi";
 
+// github pekok
+
 export const App = () => (
   <ChakraProvider theme={globalTheme}>
     <BrowserRouter>
