@@ -174,7 +174,7 @@ export default function PengaturanKeizinan() {
     if (checkAllPermissionsTrue(dataToArray)) {
       setSemuaIzin(true);
     }
-  }, []);
+  }, [dataToArray, role_id]);
 
   return (
     <>
