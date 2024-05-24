@@ -168,13 +168,13 @@ export default function PengaturanKeizinan() {
   };
 
   useEffect(() => {
-    //TODO get permission
+    //TODO get permission by role id
     console.log(role_id);
 
     if (checkAllPermissionsTrue(dataToArray)) {
       setSemuaIzin(true);
     }
-  }, [dataToArray, role_id]);
+  }, [role_id]);
 
   return (
     <>

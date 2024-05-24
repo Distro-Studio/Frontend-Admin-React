@@ -85,11 +85,13 @@ export default function TabelKeizinan({
     },
   });
 
+  console.log(formik.values.permissions);
+
   useEffect(() => {
     if (simpanTrigger !== null) {
       formik.handleSubmit();
     }
-  }, [simpanTrigger, formik]);
+  }, [simpanTrigger]);
 
   const handleCheckboxChange = (index: number, key: string) => {
     const updatedPermissions = [...formik.values.permissions];
@@ -112,7 +114,7 @@ export default function TabelKeizinan({
 
       formik.setFieldValue("permissions", updatedPermissions);
     }
-  }, [semuaIzin, formik]);
+  }, [semuaIzin]);
 
   // SX
   const contentBgColor = useContentBgColor();
