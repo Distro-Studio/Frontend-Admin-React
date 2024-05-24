@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as yup from "yup";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
 import { Tabel__Column__Interface } from "../../../../const/interfaces";
@@ -84,12 +84,15 @@ export default function TabelKeizinan({
       setSimpanLoading(true);
     },
   });
+  const formikRef = useRef(formik);
 
-  console.log(formik.values.permissions);
+  useEffect(() => {
+    formikRef.current = formik;
+  }, [formik]);
 
   useEffect(() => {
     if (simpanTrigger !== null) {
-      formik.handleSubmit();
+      formikRef.current.handleSubmit();
     }
   }, [simpanTrigger]);
 
@@ -102,17 +105,19 @@ export default function TabelKeizinan({
 
   useEffect(() => {
     if (semuaIzin !== null) {
-      const updatedPermissions = formik.values.permissions.map((item: any) => {
-        const updatedItem = { ...item };
-        Object.keys(updatedItem.permissions).forEach((key) => {
-          if (updatedItem.permissions[key] !== null) {
-            updatedItem.permissions[key] = semuaIzin;
-          }
-        });
-        return updatedItem;
-      });
+      const updatedPermissions = formikRef.current.values.permissions.map(
+        (item: any) => {
+          const updatedItem = { ...item };
+          Object.keys(updatedItem.permissions).forEach((key) => {
+            if (updatedItem.permissions[key] !== null) {
+              updatedItem.permissions[key] = semuaIzin;
+            }
+          });
+          return updatedItem;
+        }
+      );
 
-      formik.setFieldValue("permissions", updatedPermissions);
+      formikRef.current.setFieldValue("permissions", updatedPermissions);
     }
   }, [semuaIzin]);
 

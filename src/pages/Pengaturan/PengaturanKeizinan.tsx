@@ -1,5 +1,5 @@
 import { Button, Checkbox, HStack, Text, Wrap } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import TabelKeizinan from "../../components/dependent/Pengaturan/Tabel/TabelKeizinan";
 import CContainer from "../../components/wrapper/CContainer";
@@ -158,6 +158,7 @@ export default function PengaturanKeizinan() {
     group: key,
     permissions: data[key],
   }));
+  const dataToArrayRef = useRef(dataToArray);
 
   const checkAllPermissionsTrue = (permissionsArray: any) => {
     return permissionsArray.every((item: any) => {
@@ -171,7 +172,7 @@ export default function PengaturanKeizinan() {
     //TODO get permission by role id
     console.log(role_id);
 
-    if (checkAllPermissionsTrue(dataToArray)) {
+    if (checkAllPermissionsTrue(dataToArrayRef.current)) {
       setSemuaIzin(true);
     }
   }, [role_id]);
