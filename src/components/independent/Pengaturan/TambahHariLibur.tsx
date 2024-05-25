@@ -33,33 +33,14 @@ export default function TambahHariLibur({ ...props }: Props) {
     validateOnChange: false,
     initialValues: {
       nama: "",
-      jam_from_hour: "" as any,
-      jam_from_minute: "" as any,
-      jam_to_hour: "" as any,
-      jam_to_minute: "" as any,
+      tanggal: "",
     },
     validationSchema: yup.object().shape({
       nama: yup.string().required("Harus diisi"),
-      jam_from_hour: yup.number().required("Harus diisi"),
-      jam_from_minute: yup.number().required("Harus diisi"),
-      jam_to_hour: yup.number().required("Harus diisi"),
-      jam_to_minute: yup.number().required("Harus diisi"),
+      tanggal: yup.string().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
-      const jam_from = new Date(
-        Date.UTC(0, 0, 0, values.jam_from_hour, values.jam_from_minute)
-      );
-      const jam_to = new Date(
-        Date.UTC(0, 0, 0, values.jam_to_hour, values.jam_to_minute)
-      );
-
-      const payload = new FormData();
-      payload.append("nama", values.nama);
-      payload.append("jam_from", jam_from.toString());
-      payload.append("jam_to", jam_to.toString());
-
-      //TODO api tambah kelompok gaji
+      //TODO api tambah hari libur
     },
   });
 
@@ -106,7 +87,7 @@ export default function TambahHariLibur({ ...props }: Props) {
 
               <FormControl
                 flex={"1 1"}
-                isInvalid={formik.errors.jam_from_hour ? true : false}
+                isInvalid={formik.errors.tanggal ? true : false}
               >
                 <FormLabel>
                   Tanggal
@@ -120,7 +101,7 @@ export default function TambahHariLibur({ ...props }: Props) {
                 />
 
                 <FormErrorMessage>
-                  {formik.errors.jam_from_hour as string}
+                  {formik.errors.tanggal as string}
                 </FormErrorMessage>
               </FormControl>
             </form>
