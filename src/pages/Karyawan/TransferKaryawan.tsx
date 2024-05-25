@@ -14,6 +14,7 @@ import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
+import AjukanTransferKaryawan from "../../components/independent/Karyawan/AjukanTransferKaryawan";
 
 export default function TransferKaryawan() {
   // Filter Config
@@ -61,6 +62,8 @@ export default function TransferKaryawan() {
             >
               Export
             </Button>
+
+            <AjukanTransferKaryawan flex={"1 1 170px"} />
           </Wrap>
 
           <TabelTransferKarywan filterConfig={filterConfig} />

@@ -67,6 +67,7 @@ export default function Header({
         <ButtonGroup>
           <IconButton
             aria-label="refresh button"
+            className="btn-solid clicky"
             icon={
               <Icon
                 as={RiRestartLine}
