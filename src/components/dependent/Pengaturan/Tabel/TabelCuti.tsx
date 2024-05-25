@@ -16,10 +16,10 @@ import {
 import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
-import { dummyHariLibur } from "../../../../const/dummy";
+import { dummyCuti } from "../../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import { iconSize } from "../../../../const/sizes";
-import formatDate from "../../../../lib/formatDate";
+import formatNumber from "../../../../lib/formatNumber";
 import NoData from "../../../alert/NoData";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
@@ -27,17 +27,17 @@ interface Props {
   filterConfig?: any;
 }
 
-export default function TabelHariLibur({ filterConfig }: Props) {
+export default function TabelCuti({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
       key: "nama",
-      label: "Nama Hari Libur",
+      label: "Nama Cuti",
       dataType: "string",
     },
     {
-      key: "tanggal",
-      label: "Tanggal",
-      dataType: "date",
+      key: "durasi",
+      label: "Durasi (hari)",
+      dataType: "number",
     },
   ];
 
@@ -47,7 +47,7 @@ export default function TabelHariLibur({ filterConfig }: Props) {
 
   //TODO get data pengaturan shift
 
-  const [data] = useState<any[] | null>(dummyHariLibur);
+  const [data] = useState<any[] | null>(dummyCuti);
   const [loading] = useState<boolean>(false);
 
   // Filter Config
@@ -287,7 +287,9 @@ export default function TabelHariLibur({ filterConfig }: Props) {
                       </Td>
 
                       <Td whiteSpace={"nowrap"}>{row.nama}</Td>
-                      <Td whiteSpace={"nowrap"}>{formatDate(row.tanggal)}</Td>
+                      <Td whiteSpace={"nowrap"}>
+                        {formatNumber(row.durasi)} Hari
+                      </Td>
 
                       {/* Kolom tetap di sebelah kanan */}
                       <Td

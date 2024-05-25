@@ -9,7 +9,7 @@ import {
 import { RiDownloadLine, RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import TabelHariLibur from "../../components/dependent/Pengaturan/Tabel/TabelHariLibur";
+import TabelCuti from "../../components/dependent/Pengaturan/Tabel/TabelCuti";
 import TambahCuti from "../../components/independent/Pengaturan/TambahCuti";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -99,7 +99,7 @@ export default function PengaturanCuti() {
               <TambahCuti flex={"1 1 180px"} />
             </Wrap>
 
-            <TabelHariLibur filterConfig={filterConfig} />
+            <TabelCuti filterConfig={filterConfig} />
           </CContainer>
         </Wrap>
       </CWrapper>
