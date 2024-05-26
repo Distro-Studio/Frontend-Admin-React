@@ -59,8 +59,8 @@ export default function TabelPenggajian({ filterConfig }: Props) {
       dataType: "string",
     },
     {
-      key: "status_karyawan",
-      label: "Status Karyawan",
+      key: "status",
+      label: "Status",
       dataType: "badge",
     },
   ];
