@@ -2313,6 +2313,89 @@ const dummyCuti = [
   },
 ];
 
+const dummyRiwayatPenggajian = [
+  {
+    id: 1,
+    periode: "2023-11-26T11:40:02.000000Z",
+    updated_at: "2023-11-26T11:40:02.000000Z",
+    total_karyawan_terverifikasi: 982,
+    laporan: "mbuh",
+    status: "Siap Dipublikasi",
+  },
+  {
+    id: 2,
+    periode: "2023-11-27T11:40:02.000000Z",
+    updated_at: "2023-11-27T11:40:02.000000Z",
+    total_karyawan_terverifikasi: 945,
+    laporan: "gatau",
+    status: "Sukses",
+  },
+  {
+    id: 3,
+    periode: "2023-11-28T11:40:02.000000Z",
+    updated_at: "2023-11-28T11:40:02.000000Z",
+    total_karyawan_terverifikasi: 965,
+    laporan: "pengen",
+    status: "Belum sukses",
+  },
+  {
+    id: 4,
+    periode: "2023-11-29T11:40:02.000000Z",
+    updated_at: "2023-11-29T11:40:02.000000Z",
+    total_karyawan_terverifikasi: 912,
+    laporan: "beli",
+    status: "SUkses",
+  },
+  {
+    id: 5,
+    periode: "2023-11-30T11:40:02.000000Z",
+    updated_at: "2023-11-30T11:40:02.000000Z",
+    total_karyawan_terverifikasi: 951,
+    laporan: "truk",
+    status: "Belum Sukses",
+  },
+  {
+    id: 6,
+    periode: "2023-12-01T11:40:02.000000Z",
+    updated_at: "2023-12-01T11:40:02.000000Z",
+    total_karyawan_terverifikasi: 654,
+    laporan: "haduh",
+    status: "Sukses",
+  },
+  {
+    id: 7,
+    periode: "2023-12-02T11:40:02.000000Z",
+    updated_at: "2023-12-02T11:40:02.000000Z",
+    total_karyawan_terverifikasi: 652,
+    laporan: "duh",
+    status: "Belum",
+  },
+  {
+    id: 8,
+    periode: "2023-12-04T11:40:02.000000Z",
+    updated_at: "2023-12-04T11:40:02.000000Z",
+    total_karyawan_terverifikasi: 515,
+    laporan: "gaktau",
+    status: "Belum",
+  },
+  {
+    id: 9,
+    periode: "2023-12-05T11:40:02.000000Z",
+    updated_at: "2023-12-05T11:40:02.000000Z",
+    total_karyawan_terverifikasi: 982,
+    laporan: "mbuh",
+    status: "Siap Dipublikasi",
+  },
+  {
+    id: 10,
+    periode: "2023-11-26T11:40:02.000000Z",
+    updated_at: "2023-11-26T11:40:02.000000Z",
+    total_karyawan_terverifikasi: 982,
+    laporan: "mbuh",
+    status: "Siap Dipublikasi",
+  },
+];
+
 export {
   dummyTabelJadwalData,
   dummyKaryawanList,
@@ -2324,4 +2407,5 @@ export {
   dummyPremi,
   dummyHariLibur,
   dummyCuti,
+  dummyRiwayatPenggajian,
 };

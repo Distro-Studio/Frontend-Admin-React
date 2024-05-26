@@ -9,7 +9,7 @@ import {
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import PeriodeTahunRiwayatPenggajian from "../../components/dependent/Keuangan/PeriodeTahunRiwayatPenggajian";
-import TabelPenggajian from "../../components/dependent/Keuangan/Tabel/TabelPenggajian";
+import TabelRiwayatPenggajian from "../../components/dependent/Keuangan/Tabel/TabelRiwayatPenggajian";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -64,7 +64,7 @@ export default function RiwayatPenggajian() {
             <ImportKaryawanModal />
           </Wrap>
 
-          <TabelPenggajian filterConfig={filterConfig} />
+          <TabelRiwayatPenggajian filterConfig={filterConfig} />
         </CContainer>
       </CWrapper>
     </>

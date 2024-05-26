@@ -173,4 +173,13 @@ export interface Presensi__SUmmary__Interface {
   };
 }
 
+export interface Riwayat__Penggajian__Interface {
+  id: number;
+  periode: string;
+  updated_at: string;
+  total_karyawan_terverifikasi: number;
+  laporan: string;
+  status: string;
+}
+
 export interface Unit__Kerja__Interface {}
