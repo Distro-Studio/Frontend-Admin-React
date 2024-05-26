@@ -83,7 +83,6 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
         }}
         initialFocusRef={initialRef}
         isCentered
-        size={"lg"}
       >
         <ModalOverlay />
         <ModalContent ref={initialRef}>
@@ -99,7 +98,7 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
 
                 <Box>
                   <Text fontSize={14} opacity={0.6}>
-                    Nama Karyawan
+                    Nama
                   </Text>
                   <Text fontWeight={500}>{data.nama}</Text>
                 </Box>

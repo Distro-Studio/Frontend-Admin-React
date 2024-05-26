@@ -86,7 +86,6 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
         }}
         initialFocusRef={initialRef}
         isCentered
-        size={"lg"}
       >
         <ModalOverlay />
         <ModalContent>
