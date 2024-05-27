@@ -49,6 +49,7 @@ interface Props extends ButtonProps {
   dateFormatFromOptions?: any;
   dateFormatToOptions?: any;
   noBackOnClose?: boolean;
+  nullable?: boolean;
 }
 
 export default function DateRangePicker({
@@ -61,6 +62,7 @@ export default function DateRangePicker({
   dateFormatFromOptions,
   dateFormatToOptions,
   noBackOnClose,
+  nullable,
   ...props
 }: Props) {
   const initialRef = useRef(null);
@@ -71,14 +73,21 @@ export default function DateRangePicker({
   const [tahun, setTahun] = useState<number>(date.getFullYear());
   const [bulan, setBulan] = useState<number>(date.getMonth() + 1);
   const [selected, setSelected] = useState<any>();
+  console.log(selected);
   const confirmSelect = () => {
-    if (selected) {
-      if (formik && name) {
-        console.log("titit");
-        formik.setFieldValue(name, selected);
-      } else if (confirmDate) {
-        confirmDate(selected.from, selected.to);
+    let action = false;
+    if (nullable) {
+      action = true;
+    } else {
+      if (selected) {
+        action = true;
       }
+    }
+
+    if (action && formik && name) {
+      formik.setFieldValue(name, selected);
+    } else if (confirmDate) {
+      confirmDate(selected.from, selected.to);
     }
   };
 
@@ -392,7 +401,9 @@ export default function DateRangePicker({
                 className="btn-ap clicky"
                 w={"100%"}
                 isDisabled={
-                  selected && selected.from && selected.to ? false : true
+                  !nullable && selected && selected.from && selected.to
+                    ? false
+                    : true
                 }
                 onClick={() => {
                   confirmSelect();
