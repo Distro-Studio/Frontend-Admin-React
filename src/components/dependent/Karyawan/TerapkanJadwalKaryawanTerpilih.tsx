@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Badge,
   Box,
   Button,
   ButtonGroup,
@@ -16,7 +17,6 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  SimpleGrid,
   Text,
   useDisclosure,
   VStack,
@@ -26,11 +26,11 @@ import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
 import { useBodyColor, useWhiteDarkColor } from "../../../const/colors";
+import { responsiveSpacing } from "../../../const/sizes";
 import backOnClose from "../../../lib/backOnClose";
 import formatDate from "../../../lib/formatDate";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import FormRequired from "../../form/FormRequired";
-import { responsiveSpacing } from "../../../const/sizes";
 
 interface Props {
   data: any;
@@ -89,22 +89,22 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
           <ModalCloseButton />
           <ModalHeader>Terapkan Jadwal</ModalHeader>
           <ModalBody>
-            <SimpleGrid columns={[1, 2]} gap={responsiveSpacing}>
-              <HStack
-                gap={responsiveSpacing}
-                borderRight={[null, "1px solid var(--divider3)"]}
-              >
-                <Avatar size={"lg"} src={data.foto_profil} name={data.nama} />
+            <HStack gap={responsiveSpacing} pr={4} flexShrink={0} mb={4}>
+              <Avatar
+                mb={"auto"}
+                size={"xl"}
+                src={data.foto_profil}
+                name={data.nama}
+              />
 
+              <VStack align={"stretch"}>
                 <Box>
                   <Text fontSize={14} opacity={0.6}>
                     Nama
                   </Text>
                   <Text fontWeight={500}>{data.nama}</Text>
                 </Box>
-              </HStack>
 
-              <HStack>
                 <Box>
                   <Text fontSize={14} opacity={0.6}>
                     Tanggal
@@ -112,8 +112,24 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
                   {/* <Icon as={RiCalendarLine} opacity={0.6} mt={"1px"} /> */}
                   <Text>{formatDate(tgl as string)}</Text>
                 </Box>
-              </HStack>
-            </SimpleGrid>
+
+                <Box>
+                  <Text fontSize={14} opacity={0.6}>
+                    Jenis Karyawan
+                  </Text>
+                  {/* <Icon as={RiCalendarLine} opacity={0.6} mt={"1px"} /> */}
+                  <Badge
+                    colorScheme={
+                      data.unit_kerja.jenis_karyawan === 1 ? "ap" : "gray"
+                    }
+                  >
+                    {data.unit_kerja.jenis_karyawan === 1
+                      ? "Shift"
+                      : "Non-Shift"}
+                  </Badge>{" "}
+                </Box>
+              </VStack>
+            </HStack>
 
             <FormControl mt={6} isInvalid={formik.errors.shift ? true : false}>
               <FormLabel>

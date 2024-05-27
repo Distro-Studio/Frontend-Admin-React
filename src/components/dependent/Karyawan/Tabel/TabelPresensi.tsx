@@ -1,9 +1,11 @@
 import {
+  Avatar,
   Badge,
-  Button,
   Center,
+  Checkbox,
   HStack,
   Icon,
+  IconButton,
   Table,
   Tbody,
   Td,
@@ -13,20 +15,20 @@ import {
   Tr,
   VStack,
 } from "@chakra-ui/react";
-import {
-  RiArrowDownLine,
-  RiArrowUpLine,
-  RiFileList3Line,
-} from "@remixicon/react";
+import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
 import { useState } from "react";
-import { useBodyColor, useContentBgColor } from "../../../../const/colors";
-import { dummyRiwayatPenggajian } from "../../../../const/dummy";
 import {
-  Riwayat__Penggajian__Interface,
+  statusKaryawanColorScheme,
+  useBodyColor,
+  useContentBgColor,
+} from "../../../../const/colors";
+import { dummyKaryawanList } from "../../../../const/dummy";
+import {
+  Karyawan__Interface,
   Tabel__Column__Interface,
 } from "../../../../const/interfaces";
+import { iconSize } from "../../../../const/sizes";
 import formatDate from "../../../../lib/formatDate";
-import formatNumber from "../../../../lib/formatNumber";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
@@ -35,34 +37,47 @@ interface Props {
   filterConfig?: any;
 }
 
-export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
+export default function TabelPresensi({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
-      key: "periode",
-      label: "Periode",
-      dataType: "date",
+      key: "nama",
+      label: "Nama",
+      dataType: "avatarAndName",
     },
     {
-      key: "updated_at",
-      label: "Pembaruan Terakhir",
-      dataType: "date",
+      key: "shift",
+      label: "Shift",
+      dataType: "string",
     },
     {
-      key: "total_karyawan_terverifikasi",
-      label: "Total Karyawan Terverifikasi",
-      dataType: "number",
-      preferredTextAlign: "center",
+      key: "no_rm",
+      label: "RM",
+      dataType: "string",
     },
     {
-      key: "laporan",
-      label: "Laporan",
-      dataType: "link",
-      preferredTextAlign: "center",
+      key: "nik_ktp",
+      label: "NIK",
+      dataType: "string",
     },
     {
-      key: "status_penggajian",
-      label: "Status",
+      key: "unit_kerja",
+      label: "Unit Kerja",
+      dataType: "string",
+    },
+    {
+      key: "status_karyawan",
+      label: "Status Karyawan",
       dataType: "badge",
+    },
+    {
+      key: "tempat_lahir",
+      label: "Tempat Lahir",
+      dataType: "string",
+    },
+    {
+      key: "tgl_lahir",
+      label: "Tanggal Lahir",
+      dataType: "date",
     },
   ];
 
@@ -72,9 +87,7 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
 
   //TODO get karyawan
 
-  const [data] = useState<Riwayat__Penggajian__Interface[] | null>(
-    dummyRiwayatPenggajian
-  );
+  const [data] = useState<Karyawan__Interface[] | null>(dummyKaryawanList);
   const [loading] = useState<boolean>(false);
 
   // Limit Config
@@ -82,6 +95,30 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
 
   // Pagination Config
   const [pageConfig, setPageConfig] = useState<number>(1);
+
+  // Check List Config
+  const [checkedItems, setCheckedItems] = useState<number[]>([]);
+  const [isCheckAll, setIsCheckAll] = useState(false);
+  const handleCheckItem = (id: number) => {
+    let updatedCheckedItems;
+    if (checkedItems.includes(id)) {
+      updatedCheckedItems = checkedItems.filter((item) => item !== id);
+    } else {
+      updatedCheckedItems = [...checkedItems, id];
+    }
+    setCheckedItems(updatedCheckedItems);
+  };
+  const handleCheckAll = () => {
+    if (data) {
+      if (isCheckAll) {
+        setCheckedItems([]);
+      } else {
+        const allIds = data.map((item) => item.id);
+        setCheckedItems(allIds);
+      }
+      setIsCheckAll(!isCheckAll);
+    }
+  };
 
   // Sort Config
   const [sortConfig, setSortConfig] = useState<{
@@ -128,6 +165,33 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
             <Table minW={"100%"}>
               <Thead>
                 <Tr position={"sticky"} top={0} zIndex={3}>
+                  <Th
+                    position={"sticky"}
+                    left={0}
+                    p={0}
+                    borderBottom={"none !important"}
+                    zIndex={3}
+                    w={"50px"}
+                  >
+                    <Center
+                      p={4}
+                      h={"52px"}
+                      w={"50px"}
+                      borderRight={"1px solid var(--divider3)"}
+                      bg={bodyColor}
+                      borderBottom={"1px solid var(--divider3) !important"}
+                    >
+                      <Checkbox
+                        colorScheme="ap"
+                        isChecked={isCheckAll}
+                        onChange={(e) => {
+                          e.stopPropagation();
+                          handleCheckAll();
+                        }}
+                      />
+                    </Center>
+                  </Th>
+
                   {columns.map((column, i) => (
                     <Th
                       key={i}
@@ -214,16 +278,14 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
                     bg={bodyColor}
                     zIndex={2}
                   >
-                    <Center
+                    <VStack
                       px={4}
                       py={3}
                       zIndex={99}
                       borderLeft={"1px solid var(--divider3)"}
                       borderBottom={"1px solid var(--divider3)"}
                       h={"52px"}
-                    >
-                      <Text>Aksi</Text>
-                    </Center>
+                    ></VStack>
                   </Th>
                 </Tr>
               </Thead>
@@ -231,32 +293,61 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
               <Tbody>
                 {sortedData.map((row, i) => (
                   <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
-                    <Td whiteSpace={"nowrap"}>
-                      {formatDate(row.periode, {
-                        month: "short",
-                        year: "numeric",
-                      })}
-                    </Td>
-                    <Td whiteSpace={"nowrap"}>{formatDate(row.updated_at)}</Td>
-                    <Td whiteSpace={"nowrap"} textAlign={"center"}>
-                      {formatNumber(row.total_karyawan_terverifikasi)}
-                    </Td>
-                    <Td whiteSpace={"nowrap"}>
-                      <Button
-                        leftIcon={<Icon as={RiFileList3Line} />}
-                        colorScheme="ap"
-                        className="clicky"
-                        variant={"ghost"}
+                    <Td
+                      position={"sticky"}
+                      left={0}
+                      p={0}
+                      bg={bodyColor}
+                      zIndex={2}
+                      w={"50px"}
+                    >
+                      <Center
+                        h={"72px"}
+                        w={"50px"}
+                        bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                        p={4}
+                        borderRight={"1px solid var(--divider3)"}
                       >
-                        Lihat
-                      </Button>
+                        <Checkbox
+                          colorScheme="ap"
+                          isChecked={checkedItems.includes(row.id)}
+                          onChange={(e) => {
+                            e.stopPropagation();
+                            handleCheckItem(row.id);
+                          }}
+                        />
+                      </Center>
                     </Td>
                     <Td whiteSpace={"nowrap"}>
-                      <Badge w={"100%"} textAlign={"center"} colorScheme="ap">
-                        {row.status}
+                      <HStack>
+                        <Avatar
+                          size={"sm"}
+                          name={row.nama}
+                          src={row.foto_profil}
+                        />
+                        <Text>{row.nama}</Text>
+                      </HStack>
+                    </Td>
+                    <Td whiteSpace={"nowrap"}>{row.nik}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.no_rm}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.nik}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.unit_kerja}</Td>
+                    <Td whiteSpace={"nowrap"}>
+                      <Badge
+                        w={"100%"}
+                        textAlign={"center"}
+                        colorScheme={
+                          //@ts-ignore
+                          statusKaryawanColorScheme[row.status_karyawan]
+                        }
+                      >
+                        {row.status_karyawan}
                       </Badge>
                     </Td>
-
+                    <Td whiteSpace={"nowrap"}>{row.tempat_lahir}</Td>
+                    <Td whiteSpace={"nowrap"}>
+                      {formatDate(row.tgl_lahir as string)}
+                    </Td>
                     {/* Kolom tetap di sebelah kanan */}
                     <Td
                       position={"sticky"}
@@ -266,23 +357,20 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
                       p={0}
                       bg={i % 2 === 0 ? contentBgColor : bodyColor}
                       zIndex={1}
-                      w={"150px"}
+                      w={"50px"}
                     >
                       <VStack
                         borderLeft={"1px solid var(--divider3)"}
-                        w={"150px"}
-                        h={"72px"}
-                        px={4}
-                        align={"stretch"}
                         justify={"center"}
                       >
-                        <Button
-                          colorScheme="ap"
-                          variant={"outline"}
-                          className="clicky"
-                        >
-                          Publikasi
-                        </Button>
+                        <IconButton
+                          h={"72px"}
+                          w={"50px"}
+                          aria-label="Option Button"
+                          icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
+                          className="btn"
+                          borderRadius={0}
+                        />
                       </VStack>
                     </Td>
                   </Tr>

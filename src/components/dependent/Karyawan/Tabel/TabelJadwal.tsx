@@ -1,5 +1,7 @@
 import {
   Avatar,
+  Badge,
+  Box,
   Center,
   Checkbox,
   HStack,
@@ -234,14 +236,30 @@ export default function TabelJadwal({ onCheckItem, filterConfig }: Props) {
                       px={4}
                       py={2}
                       h={"94px"}
+                      gap={4}
                       borderRight={"1px solid var(--divider3)"}
                     >
                       <Avatar
                         src={row.foto_profil}
                         name={row.nama}
-                        size={"sm"}
+                        size={"md"}
                       />
-                      <Text>{row.nama}</Text>
+                      <Box w={"100%"}>
+                        <Text noOfLines={1} mb={2}>
+                          {row.nama}
+                        </Text>
+                        <Badge
+                          w={"100%"}
+                          textAlign={"center"}
+                          colorScheme={
+                            row.unit_kerja.jenis_karyawan === 1 ? "ap" : "gray"
+                          }
+                        >
+                          {row.unit_kerja.jenis_karyawan === 1
+                            ? "Shift"
+                            : "Non-Shift"}
+                        </Badge>
+                      </Box>
                     </HStack>
                   </Td>
 

@@ -11,8 +11,8 @@ export default function PresensiTotal({ ...props }: Props) {
   const dummy = {
     hadir: {
       tepat_waktu: 489,
+      hadir: 489 + 31,
       terlambat: 31,
-      masuk: 489 + 31,
     },
     tidak_hadir: {
       absen: 2,
@@ -49,7 +49,7 @@ export default function PresensiTotal({ ...props }: Props) {
           >
             <Text fontWeight={600}>Hadir</Text>
 
-            <HStack gap={4} justify={"space-between"} w={"100%"}>
+            <HStack gap={6} justify={"space-between"} w={"100%"}>
               <VStack align={"flex-start"} gap={0} flex={"1 1"}>
                 <Text fontSize={36} fontWeight={600} color={"p.500"}>
                   {formatNumber(data?.hadir.tepat_waktu)}
@@ -61,19 +61,19 @@ export default function PresensiTotal({ ...props }: Props) {
 
               <VStack align={"flex-start"} gap={0} flex={"1 1"}>
                 <Text fontSize={36} fontWeight={600} color={"p.500"}>
-                  {formatNumber(data?.hadir.terlambat)}
+                  {formatNumber(data?.hadir.hadir)}
                 </Text>
                 <Text fontSize={14} opacity={0.6} whiteSpace={"nowrap"}>
-                  Terlambat
+                  Hadir
                 </Text>
               </VStack>
 
               <VStack align={"flex-start"} gap={0} flex={"1 1"}>
                 <Text fontSize={36} fontWeight={600} color={"p.500"}>
-                  {formatNumber(data?.hadir.masuk)}
+                  {formatNumber(data?.hadir.terlambat)}
                 </Text>
                 <Text fontSize={14} opacity={0.6} whiteSpace={"nowrap"}>
-                  Masuk
+                  Terlambat
                 </Text>
               </VStack>
             </HStack>
@@ -90,7 +90,7 @@ export default function PresensiTotal({ ...props }: Props) {
           >
             <Text fontWeight={600}>Tidak Hadir</Text>
 
-            <HStack gap={4} justify={"space-between"} w={"100%"}>
+            <HStack gap={6} justify={"space-between"} w={"100%"}>
               <VStack align={"flex-start"} gap={0} flex={"1 1"}>
                 <Text fontSize={36} fontWeight={600} color={"red.400"}>
                   {formatNumber(data.tidak_hadir.absen)}
@@ -131,7 +131,7 @@ export default function PresensiTotal({ ...props }: Props) {
           >
             <Text fontWeight={600}>Libur</Text>
 
-            <HStack gap={4} justify={"space-between"} w={"100%"}>
+            <HStack gap={6} justify={"space-between"} w={"100%"}>
               <VStack align={"flex-start"} gap={0} flex={"1 1"}>
                 <Text
                   fontSize={36}
@@ -141,7 +141,7 @@ export default function PresensiTotal({ ...props }: Props) {
                   {formatNumber(data.libur.hari_libur)}
                 </Text>
                 <Text fontSize={14} opacity={0.6} whiteSpace={"nowrap"}>
-                  Hari Libur
+                  Libur
                 </Text>
               </VStack>
 

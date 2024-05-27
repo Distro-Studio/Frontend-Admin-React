@@ -160,7 +160,7 @@ export interface Presensi__SUmmary__Interface {
   hadir: {
     tepat_waktu: number;
     terlambat: number;
-    masuk: number;
+    hadir: number;
   };
   tidak_hadir: {
     absen: number;

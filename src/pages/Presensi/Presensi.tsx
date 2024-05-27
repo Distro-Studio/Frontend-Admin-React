@@ -8,10 +8,10 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import FilterTabelKaryawan from "../../components/dependent/Karyawan/Tabel/FilterTabelKaryawan";
+import FilterTabelPresensi from "../../components/dependent/Karyawan/Tabel/FilterTabelPresensi";
+import TabelPresensi from "../../components/dependent/Karyawan/Tabel/TabelPresensi";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
 import PresensiTotal from "../../components/independent/Karyawan/PresensiTotal";
-import TabelKaryawan from "../../components/dependent/Karyawan/Tabel/TabelKaryawan";
 import DatePicker from "../../components/input/DatePicker";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -69,7 +69,7 @@ export default function Presensi() {
               }}
             />
 
-            <FilterTabelKaryawan
+            <FilterTabelPresensi
               defaultFilterConfig={defaultFilterConfig}
               filterConfig={filterConfig}
               setFilterConfig={setFilterConfig}
@@ -88,7 +88,7 @@ export default function Presensi() {
             <ImportKaryawanModal />
           </Wrap>
 
-          <TabelKaryawan filterConfig={filterConfig} />
+          <TabelPresensi filterConfig={filterConfig} />
         </CContainer>
       </CWrapper>
     </>
