@@ -201,10 +201,7 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
                 </FormErrorMessage>
               </FormControl>
 
-              <FormControl
-                mb={4}
-                isInvalid={formik.errors.email ? true : false}
-              >
+              <FormControl isInvalid={formik.errors.email ? true : false}>
                 <FormLabel>
                   Email
                   <FormRequired />
