@@ -131,7 +131,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
                     </Box>
 
                     <Box>
-                      <Text fontSize={14} opacity={0.6}>
+                      <Text fontSize={14} opacity={0.6} mb={1}>
                         Jenis Karyawan
                       </Text>
                       {/* <Icon as={RiCalendarLine} opacity={0.6} mt={"1px"} /> */}

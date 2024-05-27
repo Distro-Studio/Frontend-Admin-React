@@ -19,13 +19,13 @@ import {
   VStack,
   Wrap,
 } from "@chakra-ui/react";
-import { useRef } from "react";
-import backOnClose from "../../../lib/backOnClose";
 import { useFormik } from "formik";
+import { useRef } from "react";
 import * as yup from "yup";
+import backOnClose from "../../../lib/backOnClose";
+import useBackOnClose from "../../../lib/useBackOnClose";
 import FormRequired from "../../form/FormRequired";
 import DatePicker from "../../input/DatePicker";
-import useBackOnClose from "../../../lib/useBackOnClose";
 
 interface Props extends ButtonProps {}
 
@@ -60,7 +60,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
     validationSchema: yup.object().shape({
       karyawan_list: yup.array().min(1, "Harus diisi").required("Harus diisi"),
       tgl_mulai: yup.string().required("Harus diisi"),
-      tgl_selesai: yup.string().required("Harus diisi"),
+      tgl_selesai: yup.string(),
       shift: yup.string().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
@@ -92,7 +92,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
           <ModalCloseButton />
           <ModalHeader ref={initialRef}>Terapkan Jadwal</ModalHeader>
           <ModalBody>
-            <form id="terapkanJadwalForm">
+            <form id="terapkanJadwalForm" onSubmit={formik.handleSubmit}>
               <FormControl
                 mb={4}
                 isInvalid={formik.errors.karyawan_list ? true : false}
@@ -117,21 +117,23 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
               </FormControl>
 
               <SimpleGrid columns={[1, 2]} gap={4}>
-                <FormControl
-                  mb={4}
-                  isInvalid={formik.errors.tgl_mulai ? true : false}
-                >
+                <FormControl mb={4} isInvalid={!!formik.errors.tgl_mulai}>
                   <FormLabel>
                     Tanggal Mulai
                     <FormRequired />
                   </FormLabel>
                   <DatePicker
                     formik={formik}
-                    name="tgl_masuk"
+                    name="tgl_mulai"
                     noUseBackOnClose
+                    dateFormatOptions={{
+                      day: "numeric",
+                      month: "numeric",
+                      year: "numeric",
+                    }}
                   />
                   <FormErrorMessage>
-                    {formik.errors.tgl_selesai as string}
+                    {formik.errors.tgl_mulai as string}
                   </FormErrorMessage>
                 </FormControl>
 
@@ -139,14 +141,16 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                   mb={4}
                   isInvalid={formik.errors.tgl_selesai ? true : false}
                 >
-                  <FormLabel>
-                    Tanggal Selesai
-                    <FormRequired />
-                  </FormLabel>
+                  <FormLabel>Tanggal Selesai</FormLabel>
                   <DatePicker
                     formik={formik}
                     name="tgl_selesai"
                     noUseBackOnClose
+                    dateFormatOptions={{
+                      day: "numeric",
+                      month: "numeric",
+                      year: "numeric",
+                    }}
                   />
                   <FormErrorMessage>
                     {formik.errors.tgl_selesai as string}
@@ -154,10 +158,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                 </FormControl>
               </SimpleGrid>
 
-              <FormControl
-                mb={4}
-                isInvalid={formik.errors.shift ? true : false}
-              >
+              <FormControl isInvalid={formik.errors.shift ? true : false}>
                 <FormLabel>
                   Pilih Shift
                   <FormRequired />
@@ -185,7 +186,13 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
               >
                 Batal
               </Button> */}
-              <Button w={"100%"} colorScheme="ap" className="btn-ap clicky">
+              <Button
+                type="submit"
+                form="terapkanJadwalForm"
+                w={"100%"}
+                colorScheme="ap"
+                className="btn-ap clicky"
+              >
                 Simpan
               </Button>
             </ButtonGroup>

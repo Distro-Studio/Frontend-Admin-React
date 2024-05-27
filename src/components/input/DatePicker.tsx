@@ -64,12 +64,10 @@ export default function DatePicker({
   const [bulan, setBulan] = useState<number>(date.getMonth() + 1);
   const [selected, setSelected] = useState<any>();
   const confirmSelect = () => {
-    if (selected) {
-      if (formik && name) {
-        formik.setFieldValue(name, selected);
-      } else if (confirmDate) {
-        confirmDate(selected);
-      }
+    if (formik && name) {
+      formik.setFieldValue(name, selected);
+    } else if (confirmDate) {
+      confirmDate(selected);
     }
   };
 
@@ -183,7 +181,7 @@ export default function DatePicker({
             : placeholder || `Pilih tanggal`}
         </Text>
 
-        <Icon as={RiCalendarLine} mb={"2px"} />
+        <Icon as={RiCalendarLine} mb={"1px"} />
       </Button>
 
       <Modal
@@ -335,7 +333,7 @@ export default function DatePicker({
                 <Text opacity={selected ? 1 : 0.6}>
                   {selected
                     ? `${formatDate(selected)}`
-                    : "Silahkan pilih tanggal"}
+                    : "Tanggal belum dipilih"}
                 </Text>
               </VStack>
 
@@ -343,7 +341,7 @@ export default function DatePicker({
                 colorScheme="ap"
                 className="btn-ap clicky"
                 w={"100%"}
-                isDisabled={selected ? false : true}
+                // isDisabled={selected ? false : true}
                 onClick={() => {
                   confirmSelect();
                   handleOnClose();
