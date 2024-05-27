@@ -99,7 +99,7 @@ export default function SelectStatusHidup({
           fontSize={14}
           fontWeight={400}
         >
-          {options[selectedValue].label || placeholder}
+          {(selectedValue && options[selectedValue].label) || placeholder}
         </Text>
 
         <Icon as={RiArrowDownSLine} />

@@ -156,20 +156,20 @@ export default function StaticSelect({
                 filteredOptions?.map((option, i) => (
                   <Button
                     bg={
-                      selectedValue.value === option.value
+                      selectedValue && selectedValue.value === option.value
                         ? "var(--p500a3) !important"
                         : ""
                     }
                     _hover={{
                       bg:
-                        selectedValue.value === option.value
+                        selectedValue && selectedValue.value === option.value
                           ? "var(--p500a3) !important"
                           : "var(--divider) !important",
                     }}
                     // color={selectedValue === option.value ? "p.500" : ""}
                     border={"1px solid var(--divider)"}
                     borderColor={
-                      selectedValue.value === option.value
+                      selectedValue && selectedValue.value === option.value
                         ? "var(--p500a1)"
                         : ""
                     }

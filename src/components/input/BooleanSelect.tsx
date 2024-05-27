@@ -1,5 +1,6 @@
 import {
   Button,
+  ButtonProps,
   HStack,
   Icon,
   Modal,
@@ -15,44 +16,31 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { RiArrowDownSLine } from "@remixicon/react";
-import { useRef } from "react";
-import { ButtonProps } from "react-day-picker";
-import { Select__Item__Interface } from "../../../const/interfaces";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import { useRef, useState } from "react";
+import { Select__Item__Interface } from "../../const/interfaces";
+import useBackOnClose from "../../lib/useBackOnClose";
+import ComponentSpinner from "../independent/ComponentSpinner";
 
 interface Props extends ButtonProps {
   formik?: any;
   name?: string;
   placeholder: string;
+  options: { value: any; label: string }[] | null;
   selectedValue: any;
-  noSearch?: boolean;
-  noUseBackOnClose?: boolean;
   confirmSelect?: (status: Select__Item__Interface) => void;
-  isBooleanOptions?: boolean;
+  noUseBackOnClose?: boolean;
 }
 
-export default function SelectJenisKaryawan({
+export default function BooleanSelect({
   formik,
   name,
   placeholder,
+  options,
   selectedValue,
-  noSearch,
-  noUseBackOnClose,
   confirmSelect,
-  isBooleanOptions,
+  noUseBackOnClose,
   ...props
 }: Props) {
-  const options = [
-    {
-      value: 0,
-      label: "Non-Shift",
-    },
-    {
-      value: 1,
-      label: "Shift",
-    },
-  ];
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const backOnClose = useBackOnClose;
   if (!noUseBackOnClose) {
@@ -65,12 +53,18 @@ export default function SelectJenisKaryawan({
     }
   };
   const initialRef = useRef(null);
+  const [search, setSearch] = useState<string>("");
+  const filteredOptions = options?.filter((option) =>
+    option.label.toLowerCase().includes(search.toLocaleLowerCase())
+  );
 
   // SX
   const selectOnError = useColorModeValue(
     "0 0 0 1px #E53E3E",
     "0 0 0 1px #FC8181"
   );
+
+  // console.log(selectedValue);
 
   return (
     <>
@@ -99,7 +93,7 @@ export default function SelectJenisKaryawan({
           fontSize={14}
           fontWeight={400}
         >
-          {(selectedValue && options[selectedValue].label) || placeholder}
+          {selectedValue ? selectedValue.label : placeholder}
         </Text>
 
         <Icon as={RiArrowDownSLine} />
@@ -128,40 +122,51 @@ export default function SelectJenisKaryawan({
               overflow={"clip"}
               // p={2}
             >
-              {options?.map((option, i) => (
-                <Button
-                  bg={
-                    selectedValue === option.value
-                      ? "var(--p500a3) !important"
-                      : ""
-                  }
-                  _hover={{
-                    bg:
-                      selectedValue === option.value
+              {!filteredOptions && <ComponentSpinner />}
+
+              {filteredOptions &&
+                filteredOptions?.length > 0 &&
+                filteredOptions?.map((option, i) => (
+                  <Button
+                    bg={
+                      selectedValue && selectedValue.value === option.value
                         ? "var(--p500a3) !important"
-                        : "var(--divider) !important",
-                  }}
-                  // color={selectedValue === option.value ? "p.500" : ""}
-                  border={"1px solid var(--divider)"}
-                  borderColor={
-                    selectedValue === option.value ? "var(--p500a1)" : ""
-                  }
-                  key={i}
-                  onClick={() => {
-                    if (formik) {
-                      formik.setFieldValue(name, option.value);
+                        : ""
                     }
-                    if (confirmSelect) {
-                      confirmSelect(option);
+                    _hover={{
+                      bg:
+                        selectedValue && selectedValue.value === option.value
+                          ? "var(--p500a3) !important"
+                          : "var(--divider) !important",
+                    }}
+                    // color={selectedValue === option.value ? "p.500" : ""}
+                    border={"1px solid var(--divider)"}
+                    borderColor={
+                      selectedValue && selectedValue.value === option.value
+                        ? "var(--p500a1)"
+                        : ""
                     }
-                    handleOnClose();
-                  }}
-                >
-                  <HStack justify={"center"} w={"100%"}>
-                    <Text>{option.label}</Text>
-                  </HStack>
-                </Button>
-              ))}
+                    key={i}
+                    onClick={() => {
+                      if (formik) {
+                        formik.setFieldValue(name, option);
+                      }
+                      if (confirmSelect) {
+                        confirmSelect(option);
+                      }
+                      handleOnClose();
+                      setSearch("");
+                    }}
+                  >
+                    <HStack justify={"center"} w={"100%"}>
+                      <Text>{option.label}</Text>
+                    </HStack>
+                  </Button>
+                ))}
+
+              {filteredOptions && filteredOptions.length === 0 && (
+                <Text textAlign={"center"}>Opsi tidak ditemukan</Text>
+              )}
             </VStack>
           </ModalBody>
 
