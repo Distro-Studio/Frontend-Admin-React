@@ -151,6 +151,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                       month: "numeric",
                       year: "numeric",
                     }}
+                    nullable
                   />
                   <FormErrorMessage>
                     {formik.errors.tgl_selesai as string}

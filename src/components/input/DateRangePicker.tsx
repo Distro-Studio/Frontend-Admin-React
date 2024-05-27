@@ -401,9 +401,11 @@ export default function DateRangePicker({
                 className="btn-ap clicky"
                 w={"100%"}
                 isDisabled={
-                  !nullable && selected && selected.from && selected.to
-                    ? false
-                    : true
+                  !nullable
+                    ? selected && selected.from && selected.to
+                      ? false
+                      : true
+                    : false
                 }
                 onClick={() => {
                   confirmSelect();

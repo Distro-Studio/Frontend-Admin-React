@@ -43,6 +43,7 @@ interface Props extends ButtonProps {
   defaultDateSelected?: Date;
   dateFormatOptions?: any;
   noUseBackOnClose?: boolean;
+  nullable?: boolean;
 }
 
 export default function DatePicker({
@@ -54,6 +55,7 @@ export default function DatePicker({
   defaultDateSelected,
   dateFormatOptions,
   noUseBackOnClose,
+  nullable,
   ...props
 }: Props) {
   const initialRef = useRef(null);
@@ -64,7 +66,16 @@ export default function DatePicker({
   const [bulan, setBulan] = useState<number>(date.getMonth() + 1);
   const [selected, setSelected] = useState<any>();
   const confirmSelect = () => {
-    if (formik && name) {
+    let action = false;
+    if (nullable) {
+      action = true;
+    } else {
+      if (selected) {
+        action = true;
+      }
+    }
+
+    if (action && formik && name) {
       formik.setFieldValue(name, selected);
     } else if (confirmDate) {
       confirmDate(selected);
@@ -341,7 +352,7 @@ export default function DatePicker({
                 colorScheme="ap"
                 className="btn-ap clicky"
                 w={"100%"}
-                // isDisabled={selected ? false : true}
+                isDisabled={!nullable ? (selected ? false : true) : false}
                 onClick={() => {
                   confirmSelect();
                   handleOnClose();
