@@ -35,6 +35,7 @@ interface Props extends ButtonProps {
   noUseBackOnClose?: boolean;
   confirmSelect?: (status: Select__Item__Interface) => void;
   isBooleanOptions?: boolean;
+  isLoading?: boolean;
 }
 
 export default function StaticSelect({
@@ -47,6 +48,7 @@ export default function StaticSelect({
   noUseBackOnClose,
   confirmSelect,
   isBooleanOptions,
+  isLoading,
   ...props
 }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -101,9 +103,10 @@ export default function StaticSelect({
           fontSize={14}
           fontWeight={400}
         >
-          {options && isBooleanOptions
+          {/* {options && isBooleanOptions
             ? options[selectedValue]?.label || placeholder
-            : options?.[selectedValue - 1]?.label || placeholder}
+            : options?.[selectedValue - 1]?.label || placeholder} */}
+          {selectedValue ? selectedValue.label : placeholder}
         </Text>
 
         <Icon as={RiArrowDownSLine} />
@@ -141,7 +144,7 @@ export default function StaticSelect({
             )}
           </ModalHeader>
 
-          <ModalBody className="scrollY">
+          <ModalBody className="scrollY" minH={"88px"}>
             <VStack
               align={"stretch"}
               // bg={"blackAlpha.200"}
@@ -151,32 +154,34 @@ export default function StaticSelect({
             >
               {!filteredOptions && <ComponentSpinner />}
 
-              {filteredOptions && filteredOptions?.length > 0 ? (
+              {filteredOptions &&
+                filteredOptions?.length > 0 &&
                 filteredOptions?.map((option, i) => (
                   <Button
                     bg={
-                      selectedValue === option.value
+                      selectedValue.value === option.value
                         ? "var(--p500a3) !important"
                         : ""
                     }
                     _hover={{
                       bg:
-                        selectedValue === option.value
+                        selectedValue.value === option.value
                           ? "var(--p500a3) !important"
                           : "var(--divider) !important",
                     }}
                     // color={selectedValue === option.value ? "p.500" : ""}
                     border={"1px solid var(--divider)"}
                     borderColor={
-                      selectedValue === option.value ? "var(--p500a1)" : ""
+                      selectedValue.value === option.value
+                        ? "var(--p500a1)"
+                        : ""
                     }
                     key={i}
                     onClick={() => {
                       if (formik) {
-                        formik.setFieldValue(name, option.value);
+                        formik.setFieldValue(name, option);
                       }
                       if (confirmSelect) {
-                        console.log(option);
                         confirmSelect(option);
                       }
                       handleOnClose();
@@ -187,8 +192,9 @@ export default function StaticSelect({
                       <Text>{option.label}</Text>
                     </HStack>
                   </Button>
-                ))
-              ) : (
+                ))}
+
+              {filteredOptions && filteredOptions.length === 0 && (
                 <Text textAlign={"center"}>Opsi tidak ditemukan</Text>
               )}
             </VStack>

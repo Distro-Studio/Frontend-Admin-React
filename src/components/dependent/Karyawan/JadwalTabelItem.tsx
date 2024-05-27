@@ -8,7 +8,6 @@ import {
   FormErrorMessage,
   FormLabel,
   HStack,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -30,6 +29,7 @@ import formatDate from "../../../lib/formatDate";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import DeletePermanentWarning from "../../alert/DeletePermanentWarning";
 import FormRequired from "../../form/FormRequired";
+import SelectShift from "../Jadwal/SelectShift";
 
 interface Props {
   data: any;
@@ -47,7 +47,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
 
   const formik = useFormik({
     validateOnChange: false,
-    initialValues: { shift: "" },
+    initialValues: { shift: data.shift },
     validationSchema: yup
       .object()
       .shape({ shift: yup.string().required("Harus diisi") }),
@@ -156,11 +156,12 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
                     Shift
                     <FormRequired />
                   </FormLabel>
-                  <Input
+                  <SelectShift
+                    formik={formik}
                     name="shift"
-                    placeholder="pilih"
-                    onChange={formik.handleChange}
-                    value={formik.values.shift}
+                    placeholder="Pilih shift"
+                    selectedValue={formik.values.shift}
+                    noUseBackOnClose
                   />
                   <FormErrorMessage>
                     {formik.errors.shift as string}

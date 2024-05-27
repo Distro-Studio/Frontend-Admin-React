@@ -26,6 +26,7 @@ import backOnClose from "../../../lib/backOnClose";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import FormRequired from "../../form/FormRequired";
 import DatePicker from "../../input/DatePicker";
+import SelectShift from "../../dependent/Jadwal/SelectShift";
 
 interface Props extends ButtonProps {}
 
@@ -164,11 +165,12 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                   Pilih Shift
                   <FormRequired />
                 </FormLabel>
-                <Input
+                <SelectShift
+                  formik={formik}
                   name="shift"
-                  placeholder="pilih"
-                  onChange={formik.handleChange}
-                  value={formik.values.shift}
+                  placeholder="Pilih shift"
+                  selectedValue={formik.values.shift}
+                  noUseBackOnClose
                 />
                 <FormErrorMessage>
                   {formik.errors.shift as string}
