@@ -106,7 +106,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
           <ModalBody>
             {!isDeleting && (
               <>
-                <HStack gap={responsiveSpacing} pr={4} flexShrink={0} mb={4}>
+                <VStack gap={responsiveSpacing} px={1} flexShrink={0} mb={4}>
                   <Avatar
                     mb={"auto"}
                     size={"xl"}
@@ -114,28 +114,31 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
                     name={data.nama}
                   />
 
-                  <VStack align={"stretch"}>
-                    <Box>
-                      <Text fontSize={14} opacity={0.6}>
+                  <VStack align={"stretch"} w={"100%"} gap={3}>
+                    <HStack justify={"space-between"}>
+                      <Text fontSize={14} w={"120px"} opacity={0.6}>
                         Nama
                       </Text>
-                      <Text fontWeight={500}>{data.nama}</Text>
-                    </Box>
+                      <Text textAlign={"right"} fontWeight={500}>
+                        {data.nama}
+                      </Text>
+                    </HStack>
 
-                    <Box>
-                      <Text fontSize={14} opacity={0.6}>
+                    <HStack justify={"space-between"}>
+                      <Text fontSize={14} w={"120px"} opacity={0.6}>
                         Tanggal
                       </Text>
-                      {/* <Icon as={RiCalendarLine} opacity={0.6} mt={"1px"} /> */}
-                      <Text>{formatDate(tgl as string)}</Text>
-                    </Box>
+                      <Text textAlign={"right"}>
+                        {formatDate(tgl as string)}
+                      </Text>
+                    </HStack>
 
-                    <Box>
-                      <Text fontSize={14} opacity={0.6} mb={1}>
+                    <HStack justify={"space-between"}>
+                      <Text fontSize={14} w={"120px"} opacity={0.6}>
                         Jenis Karyawan
                       </Text>
-                      {/* <Icon as={RiCalendarLine} opacity={0.6} mt={"1px"} /> */}
                       <Badge
+                        ml={"auto"}
                         colorScheme={
                           data.unit_kerja.jenis_karyawan === 1 ? "ap" : "gray"
                         }
@@ -143,10 +146,10 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
                         {data.unit_kerja.jenis_karyawan === 1
                           ? "Shift"
                           : "Non-Shift"}
-                      </Badge>{" "}
-                    </Box>
+                      </Badge>
+                    </HStack>
                   </VStack>
-                </HStack>
+                </VStack>
 
                 <FormControl
                   mt={6}
