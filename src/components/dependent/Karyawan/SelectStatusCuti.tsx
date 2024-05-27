@@ -24,7 +24,7 @@ export default function SelectStatusCuti({
 }: Props) {
   const options = [
     {
-      value: 1,
+      value: 0,
       label: "Semua Status",
     },
     {

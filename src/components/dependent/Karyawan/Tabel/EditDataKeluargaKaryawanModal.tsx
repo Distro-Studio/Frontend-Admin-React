@@ -59,6 +59,8 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
     },
   });
 
+  console.log(formik.values.status_hidup);
+
   return (
     <>
       <Button
@@ -173,6 +175,7 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
                   selectedValue={formik.values.status_hidup}
                   noSearch
                   noUseBackOnClose
+                  isBooleanOptions
                 />
                 <FormErrorMessage>
                   {formik.errors.status_hidup as string}

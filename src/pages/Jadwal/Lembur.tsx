@@ -20,14 +20,14 @@ export default function Lembur() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
-    status: 1,
+    status: { value: 1, label: "Semua Kompensasi" },
     kompensasi: "",
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
   const confirmSelectStatusPenukaranJadwal = (status: any) => {
     setFilterConfig((ps: any) => ({
       ...ps,
-      status: status.value,
+      status: status,
     }));
   };
 

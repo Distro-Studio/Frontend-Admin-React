@@ -21,14 +21,27 @@ export default function Cuti() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
-    status: 1,
+    tipe: {
+      value: 0,
+      label: "Semua Tipe Cuti",
+    },
+    status: {
+      value: 0,
+      label: "Semua Status",
+    },
     kompensasi: "",
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
-  const confirmSelectStatusPenukaranJadwal = (status: any) => {
+  const confirmTipeCuti = (tipe: any) => {
     setFilterConfig((ps: any) => ({
       ...ps,
-      status: status.value,
+      tipe: tipe,
+    }));
+  };
+  const confirmStatusCuti = (status: any) => {
+    setFilterConfig((ps: any) => ({
+      ...ps,
+      status: status,
     }));
   };
 
@@ -56,8 +69,8 @@ export default function Cuti() {
 
             <SelectTipeCuti
               placeholder="Pilih kompensasi"
-              selectedValue={filterConfig.status}
-              confirmSelect={confirmSelectStatusPenukaranJadwal}
+              selectedValue={filterConfig.tipe}
+              confirmSelect={confirmTipeCuti}
               noSearch
               flex={"1 1 160px"}
             />
@@ -65,7 +78,7 @@ export default function Cuti() {
             <SelectStatusCuti
               placeholder="Pilih kompensasi"
               selectedValue={filterConfig.status}
-              confirmSelect={confirmSelectStatusPenukaranJadwal}
+              confirmSelect={confirmStatusCuti}
               noSearch
               flex={"1 1 160px"}
             />

@@ -23,7 +23,6 @@ import backOnClose from "../../../lib/backOnClose";
 import formatNumber from "../../../lib/formatNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import FilterStatusKaryawan from "../FilterOptions/FilterStatusKaryawan";
-import FilterUnitKerja from "../FilterOptions/FilterUnitKerja";
 
 interface Props {
   defaultFilterConfig: any;
@@ -116,11 +115,6 @@ export default function FilterTabelJadwal({
 
           <ModalBody>
             <Accordion allowToggle>
-              <FilterUnitKerja
-                filterConfig={localFilterConfig}
-                setFilterConfig={setLocalFilterConfig}
-              />
-
               <FilterStatusKaryawan
                 filterConfig={localFilterConfig}
                 setFilterConfig={setLocalFilterConfig}

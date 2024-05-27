@@ -103,9 +103,6 @@ export default function StaticSelect({
           fontSize={14}
           fontWeight={400}
         >
-          {/* {options && isBooleanOptions
-            ? options[selectedValue]?.label || placeholder
-            : options?.[selectedValue - 1]?.label || placeholder} */}
           {selectedValue ? selectedValue.label : placeholder}
         </Text>
 

@@ -25,7 +25,7 @@ export default function SelectStatusPenukaranJadwal({
   const options = [
     {
       value: 1,
-      label: "Semua Status",
+      label: "Semua status",
     },
     {
       value: 2,
@@ -33,7 +33,7 @@ export default function SelectStatusPenukaranJadwal({
     },
     {
       value: 3,
-      label: "Tidak Disetujui",
+      label: "Tidak disetujui",
     },
   ];
 
