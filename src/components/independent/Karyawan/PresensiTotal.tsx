@@ -85,7 +85,7 @@ export default function PresensiTotal({ ...props }: Props) {
             py={[4, null, 5]}
             bg={"var(--reda)"}
             align={"flex-start"}
-            flex={"1 1 350px"}
+            flex={"1 1 300px"}
             h={"150px"}
           >
             <Text fontWeight={600}>Tidak Hadir</Text>
