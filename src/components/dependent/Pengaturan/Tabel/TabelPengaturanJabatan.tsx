@@ -16,12 +16,13 @@ import {
 import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
+import { dummyJabatan } from "../../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import { iconSize } from "../../../../const/sizes";
 import formatNumber from "../../../../lib/formatNumber";
+import NoData from "../../../alert/NoData";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
-import NoData from "../../../alert/NoData";
 
 interface Props {
   filterConfig?: any;
@@ -43,149 +44,11 @@ export default function TabelPengaturanJabatan({ filterConfig }: Props) {
 
   //! DEBUG
   // console.log(filterConfig);
-  const dummy = [
-    {
-      id: 1,
-      nama_jabatan: "HRD",
-      is_struktural: 1,
-      tunjangan: "0",
-      created_at: "2023-09-21T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-    {
-      id: 2,
-      nama_jabatan: "Bendahara",
-      is_struktural: 1,
-      tunjangan: "0",
-      created_at: "2023-08-11T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-    {
-      id: 3,
-      nama_jabatan: "Wakil Direktur",
-      is_struktural: 0,
-      tunjangan: "0",
-      created_at: "2023-08-29T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-    {
-      id: 4,
-      nama_jabatan: "Perawat",
-      is_struktural: 1,
-      tunjangan: "0",
-      created_at: "2023-10-13T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-    {
-      id: 5,
-      nama_jabatan: "Tenaga Kebersihan",
-      is_struktural: 1,
-      tunjangan: "0",
-      created_at: "2023-09-16T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-    {
-      id: 6,
-      nama_jabatan: "Dokter Umum",
-      is_struktural: 1,
-      tunjangan: "0",
-      created_at: "2023-11-10T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-    {
-      id: 7,
-      nama_jabatan: "Petugas Ambulans",
-      is_struktural: 1,
-      tunjangan: "0",
-      created_at: "2023-05-28T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-    {
-      id: 8,
-      nama_jabatan: "Pekerja Sosial",
-      is_struktural: 0,
-      tunjangan: "0",
-      created_at: "2024-04-05T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-    {
-      id: 9,
-      nama_jabatan: "Staf Tata Usaha",
-      is_struktural: 1,
-      tunjangan: "0",
-      created_at: "2023-07-09T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-    {
-      id: 10,
-      nama_jabatan: "Fisioterapis",
-      is_struktural: 1,
-      tunjangan: "0",
-      created_at: "2023-09-22T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-    {
-      id: 11,
-      nama_jabatan: "Tenaga Medis Darurat",
-      is_struktural: 1,
-      tunjangan: "0",
-      created_at: "2023-12-02T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-    {
-      id: 12,
-      nama_jabatan: "Humas",
-      is_struktural: 0,
-      tunjangan: "0",
-      created_at: "2023-09-03T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-    {
-      id: 13,
-      nama_jabatan: "Kabid Pelayanan Penunjang",
-      is_struktural: 0,
-      tunjangan: "0",
-      created_at: "2023-10-12T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-    {
-      id: 14,
-      nama_jabatan: "Kabid Keperawatan",
-      is_struktural: 1,
-      tunjangan: "0",
-      created_at: "2024-03-05T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-    {
-      id: 15,
-      nama_jabatan: "Dokter Spesialis",
-      is_struktural: 0,
-      tunjangan: "0",
-      created_at: "2024-02-14T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-    {
-      id: 16,
-      nama_jabatan: "Bidan",
-      is_struktural: 1,
-      tunjangan: "0",
-      created_at: "2024-01-08T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-    {
-      id: 17,
-      nama_jabatan: "Apoteker",
-      is_struktural: 1,
-      tunjangan: "0",
-      created_at: "2024-04-29T02:41:29.000000Z",
-      updated_at: "2024-05-07T02:41:29.000000Z",
-    },
-  ];
   //! DEBUG
 
   //TODO get karyawan
 
-  const [data] = useState<any[] | null>(dummy);
+  const [data] = useState<any[] | null>(dummyJabatan);
   const [loading] = useState<boolean>(false);
 
   // Filter Config

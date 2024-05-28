@@ -68,8 +68,8 @@ export default function FilterItemWrapper({
                     borderRadius={"full"}
                     colorScheme="red"
                     variant={"ghost"}
-                    opacity={0} // Set opacity 0 saat kondisi hover tidak terpenuhi
-                    _groupHover={{ opacity: 1 }} // Set opacity 1 saat tombol akordion dihover
+                    opacity={0} 
+                    _groupHover={{ opacity: 1 }} 
                     onClick={(e) => {
                       e.stopPropagation();
                       setFilterConfig((ps: any) => ({

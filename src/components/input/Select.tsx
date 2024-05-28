@@ -1,6 +1,8 @@
 import {
   Button,
+  ButtonGroup,
   ButtonProps,
+  HStack,
   Icon,
   Input,
   InputGroup,
@@ -21,6 +23,7 @@ import { RiArrowDownSLine, RiSearchLine } from "@remixicon/react";
 import { Dispatch, forwardRef, useImperativeHandle, useRef } from "react";
 import { iconSize } from "../../const/sizes";
 import capFirst from "../../lib/capFirst";
+import formatNumber from "../../lib/formatNumber";
 import useBackOnClose from "../../lib/useBackOnClose";
 
 interface Props extends ButtonProps {
@@ -93,6 +96,7 @@ const Select = forwardRef(
           border={"1px solid var(--divider3)"}
           boxShadow={formik && name && formik.errors[name] ? selectOnError : ""}
           borderRadius={8}
+          gap={2}
           _focus={{
             border: "1px solid var(--p500)",
             boxShadow: "none !important",
@@ -101,21 +105,100 @@ const Select = forwardRef(
           onClick={onOpen}
           justifyContent={"space-between"}
           w={"100%"}
+          pl={
+            isMultiSelect && selected && selected.length > 0
+              ? "6px !important"
+              : ""
+          }
+          role="group"
           {...props}
         >
-          <Text
-            opacity={
-              selected !== null && selected !== undefined && selected !== ""
-                ? 1
-                : 0.3
-            }
-            fontSize={14}
-            fontWeight={400}
-          >
-            {!isMultiSelect && selected
-              ? selected.label
-              : capFirst(placeholder)}
-          </Text>
+          {!isMultiSelect && (
+            <Text
+              opacity={
+                selected !== null && selected !== undefined && selected !== ""
+                  ? 1
+                  : 0.3
+              }
+              fontSize={14}
+              fontWeight={400}
+              overflow={"hidden"}
+              whiteSpace={"nowrap"}
+              textOverflow={"ellipsis"}
+            >
+              {!isMultiSelect && selected
+                ? selected.label
+                : capFirst(placeholder)}
+            </Text>
+          )}
+
+          {isMultiSelect && selected && selected.length > 0 && (
+            <HStack
+              w={"100%"}
+              overflow={"hidden"}
+              whiteSpace={"nowrap"}
+              spacing={2}
+            >
+              {selected.map((karyawan: any, i: number) => {
+                const ok = i < 2;
+                return (
+                  ok && (
+                    <HStack
+                      flex={"1 1 0"}
+                      textAlign={"center"}
+                      key={i}
+                      borderRadius={6}
+                      bg={"var(--p500a4)"}
+                      h={26}
+                      px={2}
+                      justify={"center"}
+                      overflow={"hidden"}
+                    >
+                      <Text
+                        fontSize={14}
+                        color={"p.500"}
+                        fontWeight={500}
+                        overflow={"hidden"}
+                        whiteSpace={"nowrap"}
+                        textOverflow={"ellipsis"}
+                      >
+                        {karyawan.label}
+                      </Text>
+                    </HStack>
+                  )
+                );
+              })}
+
+              {formik.values.karyawan_list.length > 2 && (
+                <HStack
+                  textAlign={"center"}
+                  borderRadius={6}
+                  bg={"var(--p500a4)"}
+                  h={26}
+                  px={2}
+                  justify={"center"}
+                  overflow={"hidden"}
+                >
+                  <Text
+                    fontSize={14}
+                    color={"p.500"}
+                    fontWeight={500}
+                    overflow={"hidden"}
+                    whiteSpace={"nowrap"}
+                    textOverflow={"ellipsis"}
+                  >
+                    +{formatNumber(formik.values.karyawan_list.length - 2)}
+                  </Text>
+                </HStack>
+              )}
+            </HStack>
+          )}
+
+          {isMultiSelect && selected && selected.length === 0 && (
+            <Text flexShrink={0} opacity={0.3} fontSize={14} fontWeight={400}>
+              {capFirst(placeholder)}
+            </Text>
+          )}
 
           <Icon as={RiArrowDownSLine} />
         </Button>
@@ -140,22 +223,24 @@ const Select = forwardRef(
             <ModalHeader pr={6}>
               <Text fontSize={20}>{placeholder}</Text>
               {!noSearch && setSearch && (
-                <InputGroup mt={6}>
-                  <InputLeftElement>
-                    <Icon as={RiSearchLine} fontSize={iconSize} />
-                  </InputLeftElement>
+                <HStack mt={6}>
+                  <InputGroup>
+                    <InputLeftElement>
+                      <Icon as={RiSearchLine} fontSize={iconSize} />
+                    </InputLeftElement>
 
-                  <Input
-                    ref={initialRef}
-                    w={"100%"}
-                    placeholder={"Pencarian"}
-                    boxShadow={"none !important"}
-                    onChange={(e) => {
-                      setSearch(e.target.value);
-                    }}
-                    value={search}
-                  />
-                </InputGroup>
+                    <Input
+                      ref={initialRef}
+                      w={"100%"}
+                      placeholder={"Pencarian"}
+                      boxShadow={"none !important"}
+                      onChange={(e) => {
+                        setSearch(e.target.value);
+                      }}
+                      value={search}
+                    />
+                  </InputGroup>
+                </HStack>
               )}
             </ModalHeader>
 
@@ -167,19 +252,32 @@ const Select = forwardRef(
 
             <ModalFooter pt={isMultiSelect ? "" : "0 !important"}>
               {isMultiSelect && (
-                <Button
-                  w={"100%"}
-                  className="btn-ap clicky"
-                  colorScheme="ap"
-                  onClick={() => {
-                    if (confirmMultiSelect) {
-                      confirmMultiSelect();
-                      handleOnClose();
-                    }
-                  }}
-                >
-                  Konfirmasi
-                </Button>
+                <ButtonGroup w={"100%"}>
+                  <Button
+                    w={"100%"}
+                    className="btn-solid clicky"
+                    onClick={() => {
+                      if (setSelected) {
+                        setSelected([]);
+                      }
+                    }}
+                  >
+                    Reset
+                  </Button>
+                  <Button
+                    w={"100%"}
+                    className="btn-ap clicky"
+                    colorScheme="ap"
+                    onClick={() => {
+                      if (confirmMultiSelect) {
+                        confirmMultiSelect();
+                        handleOnClose();
+                      }
+                    }}
+                  >
+                    Konfirmasi
+                  </Button>
+                </ButtonGroup>
               )}
             </ModalFooter>
           </ModalContent>

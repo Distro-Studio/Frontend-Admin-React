@@ -1,13 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button, ButtonProps, Text } from "@chakra-ui/react";
 import { Select__Item__Interface } from "../../../const/interfaces";
 import Select from "../../input/Select";
-import formatTime from "../../../const/formatTime";
-import { dummyShift } from "../../../const/dummy";
 
 interface Props extends ButtonProps {
   placeholder: string;
-  initialSelected?: any;
+  initialSelected?: Select__Item__Interface;
   formik?: any;
   name?: string;
   confirmSelect?: (newSelectedValue: any) => void;
@@ -16,7 +14,7 @@ interface Props extends ButtonProps {
   modalSize?: string;
 }
 
-export default function SelectTipeCuti({
+export default function SelectTipeTransfer({
   placeholder,
   initialSelected,
   formik,
@@ -28,18 +26,21 @@ export default function SelectTipeCuti({
   ...props
 }: Props) {
   const [search, setSearch] = useState<string>("");
-  const [options, setOptions] = useState<any | null>(null);
-  useEffect(() => {
-    const options = dummyShift.map((item) => ({
-      value: item.id,
-      label: item.nama,
-      jam_kerja: `${formatTime(item.jam_from)} - ${formatTime(item.jam_to)}`,
-    }));
-    setOptions([{ value: 0, label: "Libur" }, ...options]);
-    // TODO get shift list
-  }, []);
-
-  const filteredOptions = options?.filter((option: any) =>
+  const options = [
+    {
+      value: 1,
+      label: "Keadaan",
+    },
+    {
+      value: 2,
+      label: "Paksaan",
+    },
+    {
+      value: 3,
+      label: "Dia yang minta ya",
+    },
+  ];
+  const filteredOptions = options?.filter((option) =>
     option.label.toLowerCase().includes(search.toLocaleLowerCase())
   );
   const [selected, setSelected] = useState<Select__Item__Interface | null>(
@@ -67,7 +68,7 @@ export default function SelectTipeCuti({
       modalSize={modalSize}
       {...props}
     >
-      {filteredOptions?.map((option: any, i: number) => (
+      {filteredOptions?.map((option, i) => (
         <Button
           bg={
             selected && selected.value === option.value
@@ -92,14 +93,10 @@ export default function SelectTipeCuti({
             }
             handleOnClose();
           }}
-          gap={4}
-          justifyContent={"space-between"}
           fontWeight={500}
+          justifyContent={"space-between"}
         >
-          <Text>{option.label}</Text>
-          <Text opacity={0.6} fontSize={14}>
-            {option.jam_kerja}
-          </Text>
+          {option.label}
         </Button>
       ))}
 

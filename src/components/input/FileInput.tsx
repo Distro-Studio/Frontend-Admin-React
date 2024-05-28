@@ -19,7 +19,7 @@ export default function FileInput({ formik, name, accept }: Props) {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [fileName, setFileName] = useState(
-    "Seret & Letakkan atau Klik untuk Cari"
+    "Seret & letakkan atau klik untuk cari"
   );
   const [isDraggingOver, setIsDraggingOver] = useState(false);
 

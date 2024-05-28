@@ -1,12 +1,10 @@
 import {
-  Badge,
   Button,
   ButtonProps,
   Checkbox,
   FormControl,
   FormErrorMessage,
   FormLabel,
-  HStack,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -14,15 +12,12 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Text,
   useDisclosure,
-  VStack,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
 import backOnClose from "../../../lib/backOnClose";
-import formatNumber from "../../../lib/formatNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import MultiSelectKaryawan from "../../dependent/_Select/MultiSelectKaryawan";
 import FormRequired from "../../form/FormRequired";
@@ -81,54 +76,13 @@ export default function RunThr({ ...props }: Props) {
                   Karyawan
                   <FormRequired />
                 </FormLabel>
-                <VStack align={"stretch"}>
-                  {formik.values.karyawan_list.length > 0 && (
-                    <HStack>
-                      {formik.values.karyawan_list.map(
-                        (karyawan: any, i: number) => {
-                          const ok = i < 3;
-                          return (
-                            ok && (
-                              <HStack
-                                flex={"1 1 0"}
-                                textAlign={"center"}
-                                key={i}
-                                borderRadius={8}
-                                bg={"var(--p500a4)"}
-                                h={26}
-                                px={2}
-                                justify={"center"}
-                              >
-                                <Text
-                                  fontSize={14}
-                                  noOfLines={1}
-                                  color={"p.500"}
-                                  fontWeight={500}
-                                  mb={"1px"}
-                                >
-                                  {karyawan.nama}
-                                </Text>
-                              </HStack>
-                            )
-                          );
-                        }
-                      )}
-                      {formik.values.karyawan_list.length > 3 && (
-                        <Badge colorScheme="ap">
-                          +
-                          {formatNumber(formik.values.karyawan_list.length - 3)}
-                        </Badge>
-                      )}
-                    </HStack>
-                  )}
-                  <MultiSelectKaryawan
-                    formik={formik}
-                    name="karyawan_list"
-                    placeholder="Pilih Karyawan"
-                    initialSelected={formik.values.karyawan_list}
-                    noUseBackOnClose
-                  />
-                </VStack>
+                <MultiSelectKaryawan
+                  formik={formik}
+                  name="karyawan_list"
+                  placeholder="Pilih Multi Karyawan"
+                  initialSelected={formik.values.karyawan_list}
+                  noUseBackOnClose
+                />
                 <FormErrorMessage>
                   {formik.errors.karyawan_list as string}
                 </FormErrorMessage>

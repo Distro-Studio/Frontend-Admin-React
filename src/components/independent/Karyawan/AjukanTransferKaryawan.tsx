@@ -5,7 +5,6 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -22,6 +21,10 @@ import { useRef } from "react";
 import * as yup from "yup";
 import backOnClose from "../../../lib/backOnClose";
 import useBackOnClose from "../../../lib/useBackOnClose";
+import SelectJabatan from "../../dependent/_Select/SelectJabatan";
+import SelectKaryawan from "../../dependent/_Select/SelectKaryawan";
+import SelectTipeTransfer from "../../dependent/_Select/SelectTipeTransfer";
+import SelectUnitKerja from "../../dependent/_Select/SelectUnitKerja";
 import FormRequired from "../../form/FormRequired";
 import DatePicker from "../../input/DatePicker";
 import FileInput from "../../input/FileInput";
@@ -38,10 +41,10 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
     validateOnChange: false,
     initialValues: {
       nama: "",
-      tanggal: "",
+      tanggal_mulai: "",
       tipe: "",
-      unit_kerja: "",
-      jabatan: "",
+      unit_kerja_tujuan: "",
+      jabatan_tujuan: "",
       dokumen: "",
       alasan: "",
       beri_tahu_manager_direktur: "",
@@ -49,14 +52,14 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
     },
     validationSchema: yup.object().shape({
       nama: yup.string().required("Harus diisi"),
-      tanggal: yup.string().required("Harus diisi"),
+      tanggal_mulai: yup.string().required("Harus diisi"),
       tipe: yup.string().required("Harus diisi"),
-      unit_kerja: yup.string().required("Harus diisi"),
-      jabatan: yup.string().required("Harus diisi"),
+      unit_kerja_tujuan: yup.string().required("Harus diisi"),
+      jabatan_tujuan: yup.string().required("Harus diisi"),
       dokumen: yup.string().required("Harus diisi"),
       alasan: yup.string().required("Harus diisi"),
-      beri_tahu_manager_direktur: yup.string().required("Harus diisi"),
-      beri_tahu_karyawan: yup.string().required("Harus diisi"),
+      beri_tahu_manager_direktur: yup.boolean().required("Harus diisi"),
+      beri_tahu_karyawan: yup.boolean().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
@@ -78,6 +81,7 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
+          formik.resetForm();
         }}
         initialFocusRef={initialRef}
         isCentered
@@ -93,11 +97,11 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
                   Nama Karyawan
                   <FormRequired />
                 </FormLabel>
-                <Input
+                <SelectKaryawan
                   name="nama"
-                  placeholder="Jolitos Kurniawan"
-                  onChange={formik.handleChange}
-                  value={formik.values.nama}
+                  formik={formik}
+                  placeholder="Pilih Karyawan"
+                  noUseBackOnClose
                 />
                 <FormErrorMessage>
                   {formik.errors.nama as string}
@@ -105,29 +109,78 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
               </FormControl>
 
               <SimpleGrid columns={[1, 2]} gap={4}>
-                <FormControl mb={4} isInvalid={!!formik.errors.tanggal}>
+                <FormControl mb={4} isInvalid={!!formik.errors.tanggal_mulai}>
                   <FormLabel>
-                    Tanggal
+                    Tanggal Mulai
                     <FormRequired />
                   </FormLabel>
                   <DatePicker
-                    name="tanggal"
+                    name="tanggal_mulai"
                     formik={formik}
-                    dateValue={formik.values.tanggal}
+                    dateValue={formik.values.tanggal_mulai}
+                    dateFormatOptions={{
+                      day: "numeric",
+                      month: "numeric",
+                      year: "numeric",
+                    }}
+                    noUseBackOnClose
                   />
                   <FormErrorMessage>
-                    {formik.errors.tanggal as string}
+                    {formik.errors.tanggal_mulai as string}
                   </FormErrorMessage>
                 </FormControl>
 
                 <FormControl mb={4} isInvalid={!!formik.errors.tipe}>
                   <FormLabel>
-                    Tipe
+                    Tipe Transfer
                     <FormRequired />
                   </FormLabel>
-                  <Input />
+                  <SelectTipeTransfer
+                    name="tipe"
+                    formik={formik}
+                    placeholder="Pilih Tipe Transfer"
+                    noSearch
+                    noUseBackOnClose
+                  />
                   <FormErrorMessage>
                     {formik.errors.tipe as string}
+                  </FormErrorMessage>
+                </FormControl>
+              </SimpleGrid>
+
+              <SimpleGrid columns={[1, 2]} gap={4}>
+                <FormControl
+                  mb={4}
+                  isInvalid={!!formik.errors.unit_kerja_tujuan}
+                >
+                  <FormLabel>
+                    Unit Kerja Tujuan
+                    <FormRequired />
+                  </FormLabel>
+                  <SelectUnitKerja
+                    name="unit_kerja_tujuan"
+                    formik={formik}
+                    placeholder="Pilih Unit Kerja"
+                    noUseBackOnClose
+                  />
+                  <FormErrorMessage>
+                    {formik.errors.unit_kerja_tujuan as string}
+                  </FormErrorMessage>
+                </FormControl>
+
+                <FormControl mb={4} isInvalid={!!formik.errors.jabatan_tujuan}>
+                  <FormLabel>
+                    Jabatan Tujuan
+                    <FormRequired />
+                  </FormLabel>
+                  <SelectJabatan
+                    name="jabatan_tujuan"
+                    formik={formik}
+                    placeholder="Pilih Jabatan"
+                    noUseBackOnClose
+                  />
+                  <FormErrorMessage>
+                    {formik.errors.jabatan_tujuan as string}
                   </FormErrorMessage>
                 </FormControl>
               </SimpleGrid>
@@ -158,8 +211,8 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
                 </FormErrorMessage>
               </FormControl>
 
-              <FormControl mb={4}>
-                <Checkbox colorScheme="ap" gap={1}>
+              <FormControl mb={2}>
+                <Checkbox colorScheme="ap">
                   <Text fontSize={14}>
                     Beritahu Manajer Karyawan dan Direktur Melalui Email
                   </Text>
@@ -170,7 +223,7 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
               </FormControl>
 
               <FormControl>
-                <Checkbox colorScheme="ap" gap={1} className="checkbox">
+                <Checkbox colorScheme="ap" className="checkbox">
                   <Text fontSize={14}>Beritahu Karyawan Melalui Email</Text>
                 </Checkbox>
                 <FormErrorMessage>

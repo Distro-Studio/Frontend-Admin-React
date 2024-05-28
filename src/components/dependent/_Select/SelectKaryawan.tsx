@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
 import { Button, ButtonProps, Text } from "@chakra-ui/react";
+import { useEffect, useRef, useState } from "react";
+import { dummyKaryawanList } from "../../../const/dummy";
 import { Select__Item__Interface } from "../../../const/interfaces";
 import Select from "../../input/Select";
-import formatTime from "../../../const/formatTime";
-import { dummyShift } from "../../../const/dummy";
 
 interface Props extends ButtonProps {
   placeholder: string;
@@ -16,7 +15,7 @@ interface Props extends ButtonProps {
   modalSize?: string;
 }
 
-export default function SelectTipeCuti({
+export default function SelectKaryawan({
   placeholder,
   initialSelected,
   formik,
@@ -30,12 +29,12 @@ export default function SelectTipeCuti({
   const [search, setSearch] = useState<string>("");
   const [options, setOptions] = useState<any | null>(null);
   useEffect(() => {
-    const options = dummyShift.map((item) => ({
+    const options = dummyKaryawanList.map((item) => ({
       value: item.id,
       label: item.nama,
-      jam_kerja: `${formatTime(item.jam_from)} - ${formatTime(item.jam_to)}`,
+      unit_kerja: item.unit_kerja,
     }));
-    setOptions([{ value: 0, label: "Libur" }, ...options]);
+    setOptions(options);
     // TODO get shift list
   }, []);
 
@@ -98,7 +97,7 @@ export default function SelectTipeCuti({
         >
           <Text>{option.label}</Text>
           <Text opacity={0.6} fontSize={14}>
-            {option.jam_kerja}
+            {option.unit_kerja}
           </Text>
         </Button>
       ))}
