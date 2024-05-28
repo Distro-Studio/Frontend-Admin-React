@@ -6,7 +6,7 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Input,
+  HStack,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -15,18 +15,20 @@ import {
   ModalHeader,
   ModalOverlay,
   SimpleGrid,
+  Text,
   useDisclosure,
   VStack,
-  Wrap,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
 import backOnClose from "../../../lib/backOnClose";
+import formatNumber from "../../../lib/formatNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
+import MultiSelectKaryawan from "../../dependent/_Select/MultiSelectKaryawan";
+import SelectShift from "../../dependent/_Select/SelectShift";
 import FormRequired from "../../form/FormRequired";
 import DatePicker from "../../input/DatePicker";
-import SelectShift from "../../dependent/_Select/SelectShift";
 
 interface Props extends ButtonProps {}
 
@@ -35,37 +37,10 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
 
-  const dummy = [
-    {
-      id: 1,
-      nama: "Jolitos Kurniawan",
-    },
-    {
-      id: 2,
-      nama: "Wazawsky",
-    },
-    {
-      id: 3,
-      nama: "Rini Kasih",
-    },
-    {
-      id: 4,
-      nama: "Sambo",
-    },
-    {
-      id: 5,
-      nama: "Samyang",
-    },
-    {
-      id: 6,
-      nama: "Danarhadi",
-    },
-  ];
-
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      karyawan_list: dummy,
+      karyawan_list: [],
       tgl_mulai: "",
       tgl_selesai: "",
       shift: "",
@@ -108,26 +83,55 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
             <form id="terapkanJadwalForm" onSubmit={formik.handleSubmit}>
               <FormControl mb={4} isInvalid={!!formik.errors.karyawan_list}>
                 <FormLabel>
-                  Karywaan
+                  Karyawan
                   <FormRequired />
                 </FormLabel>
                 <VStack align={"stretch"}>
-                  <Wrap>
-                    {formik.values.karyawan_list.map((karyawan, i) => {
-                      const ok = i < 3;
-                      return (
-                        ok && (
-                          <Badge colorScheme="ap" key={i}>
-                            {karyawan.nama}
-                          </Badge>
-                        )
-                      );
-                    })}
-                  </Wrap>
-                  <Input
+                  {formik.values.karyawan_list.length > 0 && (
+                    <HStack>
+                      {formik.values.karyawan_list.map(
+                        (karyawan: any, i: number) => {
+                          const ok = i < 3;
+                          return (
+                            ok && (
+                              <HStack
+                                flex={"1 1 0"}
+                                textAlign={"center"}
+                                key={i}
+                                borderRadius={8}
+                                bg={"var(--p500a4)"}
+                                h={26}
+                                px={2}
+                                justify={"center"}
+                              >
+                                <Text
+                                  fontSize={14}
+                                  noOfLines={1}
+                                  color={"p.500"}
+                                  fontWeight={500}
+                                  mb={"1px"}
+                                >
+                                  {karyawan.nama}
+                                </Text>
+                              </HStack>
+                            )
+                          );
+                        }
+                      )}
+                      {formik.values.karyawan_list.length > 3 && (
+                        <Badge colorScheme="ap">
+                          +
+                          {formatNumber(formik.values.karyawan_list.length - 3)}
+                        </Badge>
+                      )}
+                    </HStack>
+                  )}
+                  <MultiSelectKaryawan
+                    formik={formik}
                     name="karyawan_list"
-                    placeholder="Cari karyawan"
-                    onChange={(e) => {}}
+                    placeholder="Pilih Karyawan"
+                    initialSelected={formik.values.karyawan_list}
+                    noUseBackOnClose
                   />
                 </VStack>
                 <FormErrorMessage>

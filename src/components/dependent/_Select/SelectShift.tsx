@@ -33,7 +33,7 @@ export default function SelectTipeCuti({
     const options = dummyShift.map((item) => ({
       value: item.id,
       label: `${item.nama}`,
-      jam_kerja: `(${formatTime(item.jam_from)} - ${formatTime(item.jam_to)})`,
+      jam_kerja: `${formatTime(item.jam_from)} - ${formatTime(item.jam_to)}`,
     }));
     setOptions([{ value: 0, label: "Libur" }, ...options]);
     // TODO get shift list
@@ -97,7 +97,9 @@ export default function SelectTipeCuti({
           fontWeight={500}
         >
           <Text>{option.label}</Text>
-          <Text>{option.jam_kerja}</Text>
+          <Text opacity={0.6} fontSize={14}>
+            {option.jam_kerja}
+          </Text>
         </Button>
       ))}
 
