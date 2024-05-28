@@ -44,7 +44,7 @@ export default function PresensiTotal({ ...props }: Props) {
             py={[4, null, 5]}
             bg={"var(--p500a4)"}
             align={"flex-start"}
-            flex={"1 1"}
+            flex={"1 1 400px"}
             h={"150px"}
           >
             <Text fontWeight={600}>Hadir</Text>
@@ -85,7 +85,7 @@ export default function PresensiTotal({ ...props }: Props) {
             py={[4, null, 5]}
             bg={"var(--reda)"}
             align={"flex-start"}
-            flex={"1 1"}
+            flex={"1 1 350px"}
             h={"150px"}
           >
             <Text fontWeight={600}>Tidak Hadir</Text>
@@ -126,7 +126,7 @@ export default function PresensiTotal({ ...props }: Props) {
             py={[4, null, 5]}
             bg={"var(--divider)"}
             align={"flex-start"}
-            flex={"1 1"}
+            flex={"1 1 200px"}
             h={"150px"}
           >
             <Text fontWeight={600}>Libur</Text>
