@@ -106,10 +106,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
           <ModalHeader ref={initialRef}>Terapkan Jadwal</ModalHeader>
           <ModalBody>
             <form id="terapkanJadwalForm" onSubmit={formik.handleSubmit}>
-              <FormControl
-                mb={4}
-                isInvalid={formik.errors.karyawan_list ? true : false}
-              >
+              <FormControl mb={4} isInvalid={!!formik.errors.karyawan_list}>
                 <FormLabel>
                   Karywaan
                   <FormRequired />
@@ -183,7 +180,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                 </FormControl>
               </SimpleGrid>
 
-              <FormControl isInvalid={formik.errors.shift ? true : false}>
+              <FormControl isInvalid={!!formik.errors.shift}>
                 <FormLabel>
                   Pilih Shift
                   <FormRequired />
