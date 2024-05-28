@@ -95,8 +95,7 @@ export default function TambahUnitKerja({ ...props }: Props) {
                 <SelectJenisKaryawan
                   name="jenis_karyawan"
                   formik={formik}
-                  placeholder="Pilih jenis karyawan"
-                  selectedValue={formik.values.jenis_karyawan}
+                  placeholder="Pilih Jenis Karyawan"
                   noUseBackOnClose
                   noSearch
                 />

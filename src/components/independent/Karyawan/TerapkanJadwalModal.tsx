@@ -171,7 +171,6 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                   formik={formik}
                   name="shift"
                   placeholder="Pilih shift"
-                  selectedValue={formik.values.shift}
                   noUseBackOnClose
                 />
                 <FormErrorMessage>

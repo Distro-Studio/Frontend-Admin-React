@@ -21,6 +21,7 @@ import { RiArrowDownSLine, RiSearchLine } from "@remixicon/react";
 import { Dispatch, forwardRef, useImperativeHandle, useRef } from "react";
 import { iconSize } from "../../const/sizes";
 import useBackOnClose from "../../lib/useBackOnClose";
+import capFirst from "../../lib/capFirst";
 
 interface Props extends ButtonProps {
   placeholder: string;
@@ -99,7 +100,7 @@ const Select = forwardRef(
             fontSize={14}
             fontWeight={400}
           >
-            {selected ? selected.label : placeholder}
+            {selected ? selected.label : capFirst(placeholder)}
           </Text>
 
           <Icon as={RiArrowDownSLine} />

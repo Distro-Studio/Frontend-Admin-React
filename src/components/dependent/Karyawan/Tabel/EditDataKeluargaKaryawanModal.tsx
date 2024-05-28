@@ -172,10 +172,12 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
                   formik={formik}
                   name="status_hidup"
                   placeholder="Pilih status hidup"
-                  selectedValue={formik.values.status_hidup}
+                  initialSelected={{
+                    value: formik.values.status_hidup,
+                    label: formik.values.status_hidup ? "Hidup" : "Meninggal",
+                  }}
                   noSearch
                   noUseBackOnClose
-                  isBooleanOptions
                 />
                 <FormErrorMessage>
                   {formik.errors.status_hidup as string}

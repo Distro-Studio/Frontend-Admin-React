@@ -106,8 +106,7 @@ export default function TambahKompetensi({ ...props }: Props) {
                 <SelectJenisKompetensi
                   name="jenis_kompetensi"
                   formik={formik}
-                  placeholder="Pilih jenis kompetensi"
-                  selectedValue={formik.values.jenis_kompetensi}
+                  placeholder="Pilih Jenis Kompetensi"
                   noUseBackOnClose
                   noSearch
                 />

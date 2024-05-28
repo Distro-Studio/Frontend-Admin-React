@@ -140,7 +140,6 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
                 formik={formik}
                 name="shift"
                 placeholder="Pilih shift"
-                selectedValue={formik.values.shift}
                 noUseBackOnClose
               />
               <FormErrorMessage>

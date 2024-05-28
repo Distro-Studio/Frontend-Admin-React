@@ -14,7 +14,7 @@ interface Props extends ButtonProps {
   modalSize?: string;
 }
 
-export default function SelectJenisKaryawan({
+export default function SelectPtkp({
   placeholder,
   initialSelected,
   formik,
@@ -28,12 +28,24 @@ export default function SelectJenisKaryawan({
   const [search, setSearch] = useState<string>("");
   const options = [
     {
-      value: 0,
-      label: "Non-Shift",
+      value: 1,
+      label: "TK/0",
     },
     {
-      value: 1,
-      label: "Shift",
+      value: 2,
+      label: "K/0",
+    },
+    {
+      value: 3,
+      label: "K/1",
+    },
+    {
+      value: 4,
+      label: "K/2",
+    },
+    {
+      value: 5,
+      label: "K/3",
     },
   ];
   const filteredOptions = options?.filter((option) =>

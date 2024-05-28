@@ -96,6 +96,7 @@ export default function SelectStatusPenukaranJadwal({
             }
             handleOnClose();
           }}
+          fontWeight={500}
         >
           {option.label}
         </Button>

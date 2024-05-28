@@ -107,8 +107,7 @@ export default function TambahPremi({ ...props }: Props) {
                 <SelectJenisPremi
                   name="jenis_premi"
                   formik={formik}
-                  placeholder="Pilih jenis kompetensi"
-                  selectedValue={formik.values.jenis_premi}
+                  placeholder="Pilih Jenis Premi"
                   noUseBackOnClose
                   noSearch
                 />

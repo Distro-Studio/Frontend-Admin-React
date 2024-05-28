@@ -100,6 +100,7 @@ export default function SelectTipeCuti({
             }
             handleOnClose();
           }}
+          fontWeight={500}
         >
           {option.label}
         </Button>

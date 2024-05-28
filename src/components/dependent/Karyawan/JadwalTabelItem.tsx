@@ -163,7 +163,11 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
                     formik={formik}
                     name="shift"
                     placeholder="Pilih shift"
-                    selectedValue={formik.values.shift}
+                    initialSelected={{
+                      value: jadwal.id,
+                      label: jadwal.label,
+                      jam_kerja: `${jadwal.jam_masuk} - ${jadwal.jam_keluar}`,
+                    }}
                     noUseBackOnClose
                   />
                   <FormErrorMessage>

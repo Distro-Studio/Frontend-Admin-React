@@ -26,7 +26,7 @@ import backOnClose from "../../../lib/backOnClose";
 import formatNumber from "../../../lib/formatNumber";
 import parseNumber from "../../../lib/parseNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import SelectJenisPremi from "../../dependent/Pengaturan/SelectJenisPremi";
+import SelectPtkp from "../../dependent/Pengaturan/SelectPtkp";
 import FormRequired from "../../form/FormRequired";
 
 interface Props extends ButtonProps {}
@@ -109,11 +109,10 @@ export default function TambahTerPph21({ ...props }: Props) {
                   PTKP
                   <FormRequired />
                 </FormLabel>
-                <SelectJenisPremi
+                <SelectPtkp
                   name="ptkp_id"
                   formik={formik}
                   placeholder="Pilih PTKP"
-                  selectedValue={formik.values.ptkp_id}
                   noUseBackOnClose
                   noSearch
                 />

@@ -1,47 +1,31 @@
-import {
-  Button,
-  HStack,
-  Icon,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Text,
-  useColorModeValue,
-  useDisclosure,
-  VStack,
-} from "@chakra-ui/react";
-import { RiArrowDownSLine } from "@remixicon/react";
-import { useRef } from "react";
-import { ButtonProps } from "react-day-picker";
+import React, { useRef, useState } from "react";
+import { Button, ButtonProps, Text } from "@chakra-ui/react";
 import { Select__Item__Interface } from "../../../const/interfaces";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import Select from "../../input/Select";
 
 interface Props extends ButtonProps {
+  placeholder: string;
+  initialSelected?: Select__Item__Interface;
   formik?: any;
   name?: string;
-  placeholder: string;
-  selectedValue: any;
-  noSearch?: boolean;
+  confirmSelect?: (newSelectedValue: any) => void;
   noUseBackOnClose?: boolean;
-  confirmSelect?: (status: Select__Item__Interface) => void;
-  isBooleanOptions?: boolean;
+  noSearch?: boolean;
+  modalSize?: string;
 }
 
 export default function SelectStatusHidup({
+  placeholder,
+  initialSelected,
   formik,
   name,
-  placeholder,
-  selectedValue,
-  noSearch,
-  noUseBackOnClose,
   confirmSelect,
-  isBooleanOptions,
+  noUseBackOnClose,
+  noSearch,
+  modalSize,
   ...props
 }: Props) {
+  const [search, setSearch] = useState<string>("");
   const options = [
     {
       value: 0,
@@ -52,122 +36,73 @@ export default function SelectStatusHidup({
       label: "Hidup",
     },
   ];
+  const filteredOptions = options?.filter((option) =>
+    option.label.toLowerCase().includes(search.toLocaleLowerCase())
+  );
+  const [selected, setSelected] = useState<Select__Item__Interface | null>(
+    initialSelected || null
+  );
+  const selectComponentRef = useRef<{ handleOnClose: () => void } | null>(null);
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const backOnClose = useBackOnClose;
-  if (!noUseBackOnClose) {
-    backOnClose(isOpen, onClose);
-  }
   const handleOnClose = () => {
-    onClose();
-    if (!noUseBackOnClose) {
-      window.history.back();
+    if (selectComponentRef.current) {
+      selectComponentRef.current.handleOnClose();
     }
   };
-  const initialRef = useRef(null);
-
-  // SX
-  const selectOnError = useColorModeValue(
-    "0 0 0 1px #E53E3E",
-    "0 0 0 1px #FC8181"
-  );
 
   return (
-    <>
-      <Button
-        className="btn-clear"
-        h={"40px"}
-        px={"16px !important"}
-        border={"1px solid var(--divider3)"}
-        boxShadow={formik && name && formik.errors[name] ? selectOnError : ""}
-        borderRadius={8}
-        _focus={{ border: "1px solid var(--p500)" }}
-        cursor={"pointer"}
-        onClick={onOpen}
-        justifyContent={"space-between"}
-        w={"100%"}
-        {...props}
-      >
-        <Text
-          opacity={
-            selectedValue !== null &&
-            selectedValue !== undefined &&
-            selectedValue !== ""
-              ? 1
-              : 0.3
+    <Select
+      ref={selectComponentRef}
+      placeholder={placeholder}
+      selected={selected}
+      formik={formik}
+      name={name}
+      noUseBackOnClose={noUseBackOnClose}
+      search={search}
+      setSearch={setSearch}
+      noSearch={noSearch}
+      modalSize={modalSize}
+      {...props}
+    >
+      {filteredOptions?.map((option, i) => (
+        <Button
+          bg={
+            selected && selected.value === option.value
+              ? "var(--p500a3) !important"
+              : ""
           }
-          fontSize={14}
-          fontWeight={400}
+          _hover={{
+            bg:
+              selected && selected.value === option.value
+                ? "var(--p500a3) !important"
+                : "var(--divider) !important",
+          }}
+          border={"1px solid var(--divider)"}
+          borderColor={
+            selected && selected.value === option.value ? "var(--p500a1)" : ""
+          }
+          key={i}
+          onClick={() => {
+            setSelected(option);
+            if (formik && name) {
+              formik.setFieldValue(name, option.value);
+            }
+            if (confirmSelect) {
+              confirmSelect(option.value);
+            }
+            handleOnClose();
+          }}
+          fontWeight={500}
         >
-          {(selectedValue && options[selectedValue].label) || placeholder}
+          {option.label}
+        </Button>
+      ))}
+
+      {filteredOptions && filteredOptions.length === 0 && (
+        <Text textAlign={"center"} mt={2}>
+          Opsi tidak ditemukan
         </Text>
-
-        <Icon as={RiArrowDownSLine} />
-      </Button>
-
-      <Modal
-        isOpen={isOpen}
-        onClose={handleOnClose}
-        scrollBehavior="inside"
-        initialFocusRef={initialRef}
-        isCentered
-      >
-        <ModalOverlay />
-        <ModalContent overflow={"clip"} borderRadius={12}>
-          <ModalCloseButton />
-
-          <ModalHeader pr={6}>
-            <Text fontSize={20}>{placeholder}</Text>
-          </ModalHeader>
-
-          <ModalBody className="scrollY" minH={"88px"}>
-            <VStack
-              align={"stretch"}
-              // bg={"blackAlpha.200"}
-              borderRadius={8}
-              overflow={"clip"}
-              // p={2}
-            >
-              {options?.map((option, i) => (
-                <Button
-                  bg={
-                    selectedValue === option.value
-                      ? "var(--p500a3) !important"
-                      : ""
-                  }
-                  _hover={{
-                    bg:
-                      selectedValue === option.value
-                        ? "var(--p500a3) !important"
-                        : "var(--divider) !important",
-                  }}
-                  // color={selectedValue === option.value ? "p.500" : ""}
-                  border={"1px solid var(--divider)"}
-                  borderColor={
-                    selectedValue === option.value ? "var(--p500a1)" : ""
-                  }
-                  key={i}
-                  onClick={() => {
-                    if (formik) {
-                      formik.setFieldValue(name, option.value);
-                    }
-                    if (confirmSelect) {
-                      confirmSelect(option);
-                    }
-                    handleOnClose();
-                  }}
-                >
-                  <HStack justify={"center"} w={"100%"}>
-                    <Text>{option.label}</Text>
-                  </HStack>
-                </Button>
-              ))}
-            </VStack>
-          </ModalBody>
-
-          <ModalFooter pt={"0 !important"}></ModalFooter>
-        </ModalContent>
-      </Modal>
-    </>
+      )}
+    </Select>
   );
 }

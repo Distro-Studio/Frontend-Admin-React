@@ -28,7 +28,7 @@ const dummyTabelJadwalData = [
         label: "Shift Pagi 2",
       },
       {
-        id: 4,
+        id: 1,
         tanggal: new Date(2024, 4, 16),
         jam_masuk: "2024-05-14T17:21:00.000Z",
         jam_keluar: "2024-05-14T17:09:00.000Z",
@@ -36,7 +36,7 @@ const dummyTabelJadwalData = [
       },
       null,
       {
-        id: 6,
+        id: 2,
         tanggal: new Date(2024, 4, 18),
         jam_masuk: "2024-05-14T17:07:00.000Z",
         jam_keluar: "2024-05-14T17:15:00.000Z",
@@ -112,7 +112,7 @@ const dummyTabelJadwalData = [
     jadwal_list: [
       null,
       {
-        id: 6,
+        id: 1,
         tanggal: new Date(2024, 4, 18),
         jam_masuk: "2024-05-14T17:07:00.000Z",
         jam_keluar: "2024-05-14T17:15:00.000Z",
@@ -126,7 +126,7 @@ const dummyTabelJadwalData = [
         label: "Shift Malam 2",
       },
       {
-        id: 5,
+        id: 3,
         tanggal: new Date(2024, 4, 17),
         jam_masuk: "2024-05-14T17:07:00.000Z",
         jam_keluar: "2024-05-14T17:15:00.000Z",
@@ -141,7 +141,7 @@ const dummyTabelJadwalData = [
       },
       null,
       {
-        id: 5,
+        id: 1,
         tanggal: new Date(2024, 4, 17),
         jam_masuk: "2024-05-14T17:07:00.000Z",
         jam_keluar: "2024-05-14T17:15:00.000Z",
@@ -163,14 +163,14 @@ const dummyTabelJadwalData = [
     avatar: "https://bit.ly/ryan-florence",
     jadwal_list: [
       {
-        id: 5,
+        id: 2,
         tanggal: new Date(2024, 4, 17),
         jam_masuk: "2024-05-14T17:07:00.000Z",
         jam_keluar: "2024-05-14T17:15:00.000Z",
         label: "Shift Pagi 1",
       },
       {
-        id: 5,
+        id: 1,
         tanggal: new Date(2024, 4, 17),
         jam_masuk: "2024-05-14T17:07:00.000Z",
         jam_keluar: "2024-05-14T17:15:00.000Z",
@@ -193,7 +193,7 @@ const dummyTabelJadwalData = [
       },
       null,
       {
-        id: 5,
+        id: 1,
         tanggal: new Date(2024, 4, 17),
         jam_masuk: "2024-05-14T17:07:00.000Z",
         jam_keluar: "2024-05-14T17:15:00.000Z",
@@ -215,14 +215,14 @@ const dummyTabelJadwalData = [
     avatar: "https://bit.ly/prosper-baba",
     jadwal_list: [
       {
-        id: 5,
+        id: 2,
         tanggal: new Date(2024, 4, 17),
         jam_masuk: "2024-05-14T17:07:00.000Z",
         jam_keluar: "2024-05-14T17:15:00.000Z",
         label: "Shift Pagi 1",
       },
       {
-        id: 4,
+        id: 1,
         tanggal: new Date(2024, 4, 16),
         jam_masuk: "2024-05-14T17:21:00.000Z",
         jam_keluar: "2024-05-14T17:09:00.000Z",
@@ -236,7 +236,7 @@ const dummyTabelJadwalData = [
         label: "Shift Pagi 2",
       },
       {
-        id: 4,
+        id: 3,
         tanggal: new Date(2024, 4, 16),
         jam_masuk: "2024-05-14T17:21:00.000Z",
         jam_keluar: "2024-05-14T17:09:00.000Z",
@@ -293,7 +293,7 @@ const dummyTabelJadwalData = [
         label: "Shift Malam 2",
       },
       {
-        id: 5,
+        id: 3,
         tanggal: new Date(2024, 4, 17),
         jam_masuk: "2024-05-14T17:07:00.000Z",
         jam_keluar: "2024-05-14T17:15:00.000Z",
@@ -307,7 +307,7 @@ const dummyTabelJadwalData = [
         label: "Shift Malam 2",
       },
       {
-        id: 6,
+        id: 3,
         tanggal: new Date(2024, 4, 18),
         jam_masuk: "2024-05-14T17:07:00.000Z",
         jam_keluar: "2024-05-14T17:15:00.000Z",
@@ -321,7 +321,7 @@ const dummyTabelJadwalData = [
         label: "Shift Malam 1",
       },
       {
-        id: 5,
+        id: 3,
         tanggal: new Date(2024, 4, 17),
         jam_masuk: "2024-05-14T17:07:00.000Z",
         jam_keluar: "2024-05-14T17:15:00.000Z",
@@ -343,14 +343,14 @@ const dummyTabelJadwalData = [
     avatar: "https://bit.ly/code-beast",
     jadwal_list: [
       {
-        id: 5,
+        id: 3,
         tanggal: new Date(2024, 4, 17),
         jam_masuk: "2024-05-14T17:07:00.000Z",
         jam_keluar: "2024-05-14T17:15:00.000Z",
         label: "Shift Pagi 1",
       },
       {
-        id: 4,
+        id: 3,
         tanggal: new Date(2024, 4, 16),
         jam_masuk: "2024-05-14T17:21:00.000Z",
         jam_keluar: "2024-05-14T17:09:00.000Z",
@@ -385,7 +385,7 @@ const dummyTabelJadwalData = [
         label: "Shift Malam 1",
       },
       {
-        id: 5,
+        id: 1,
         tanggal: new Date(2024, 4, 17),
         jam_masuk: "2024-05-14T17:07:00.000Z",
         jam_keluar: "2024-05-14T17:15:00.000Z",
