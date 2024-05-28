@@ -72,10 +72,7 @@ export default function SelectJenisKaryawan({
               : ""
           }
           _hover={{
-            bg:
-              selected && selected.value === option.value
-                ? "var(--p500a3) !important"
-                : "var(--divider) !important",
+            bg: "var(--divider) !important",
           }}
           border={"1px solid var(--divider)"}
           borderColor={
