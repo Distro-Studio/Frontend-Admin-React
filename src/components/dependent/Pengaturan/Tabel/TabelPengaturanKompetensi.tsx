@@ -28,7 +28,7 @@ interface Props {
   filterConfig?: any;
 }
 
-export default function TabelKompetensi({ filterConfig }: Props) {
+export default function TabelPengaturanKompetensi({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
       key: "nama_kompetensi",

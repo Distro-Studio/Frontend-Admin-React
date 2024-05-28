@@ -27,7 +27,7 @@ interface Props {
   setSimpanLoading: React.Dispatch<boolean>;
 }
 
-export default function TabelKeizinan({
+export default function TabelPengaturanKeizinan({
   data,
   loading,
   simpanTrigger,

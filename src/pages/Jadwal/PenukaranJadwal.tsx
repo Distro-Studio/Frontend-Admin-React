@@ -20,7 +20,7 @@ export default function PenukaranJadwal() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
-    status: { value: 1, label: "Semua status" },
+    status: 0,
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
   const confirmSelectStatusPenukaranJadwal = (status: any) => {
@@ -54,7 +54,10 @@ export default function PenukaranJadwal() {
 
             <SelectStatusPenukaranJadwal
               placeholder="Pilih status"
-              selectedValue={filterConfig.status}
+              initialSelected={{
+                value: filterConfig.status,
+                label: "Semua status",
+              }}
               confirmSelect={confirmSelectStatusPenukaranJadwal}
               noSearch
               flex={"1 1 160px"}

@@ -17,7 +17,7 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import { RiRepeatLine } from "@remixicon/react";
+import { RiArrowUpDownLine } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
@@ -69,7 +69,6 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
         }}
         initialFocusRef={initialRef}
         isCentered
-        size={"lg"}
       >
         <ModalOverlay />
         <ModalContent>
@@ -115,14 +114,14 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
               </FormControl>
 
               <HStack my={8}>
-                <Box w={"100%"} h={"2px"} bg={"var(--divider3)"} />
+                <Box w={"100%"} h={"2px"} bg={"var(--divider2)"} />
                 <Icon
-                  as={RiRepeatLine}
+                  as={RiArrowUpDownLine}
                   fontSize={20}
                   opacity={0.6}
-                  transform={"rotate(90deg)"}
+                  // transform={"rotate(90deg)"}
                 />
-                <Box w={"100%"} h={"2px"} bg={"var(--divider3)"} />
+                <Box w={"100%"} h={"2px"} bg={"var(--divider2)"} />
               </HStack>
 
               <FormControl
@@ -145,7 +144,6 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
               </FormControl>
 
               <FormControl
-                mb={4}
                 isInvalid={formik.errors.jadwal_ditukar ? true : false}
               >
                 <FormLabel>

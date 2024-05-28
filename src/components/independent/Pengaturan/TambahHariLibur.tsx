@@ -96,6 +96,7 @@ export default function TambahHariLibur({ ...props }: Props) {
                 <DatePicker
                   name="tanggal"
                   formik={formik}
+                  dateValue={formik.values.tanggal}
                   placeholder="Pilih tanggal hari libur"
                   noUseBackOnClose
                 />

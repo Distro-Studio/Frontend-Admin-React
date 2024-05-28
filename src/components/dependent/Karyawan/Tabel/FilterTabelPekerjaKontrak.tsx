@@ -52,8 +52,6 @@ export default function FilterTabelPekerjaKontrak({
   const adaFilter =
     filterConfig &&
     ((filterConfig.unit_kerja && filterConfig.unit_kerja.length > 0) ||
-      (filterConfig.status_karyawan &&
-        filterConfig.status_karyawan.length > 0) ||
       (filterConfig.tgl_masuk && filterConfig.tgl_masuk.length > 0));
 
   // SX
@@ -86,9 +84,7 @@ export default function FilterTabelPekerjaKontrak({
             >
               <Text color={bodyColor} fontSize={12} fontWeight={600}>
                 {formatNumber(
-                  filterConfig.unit_kerja.length +
-                    filterConfig.status_karyawan.length +
-                    filterConfig.tgl_masuk.length
+                  filterConfig.unit_kerja.length + filterConfig.tgl_masuk.length
                 )}
               </Text>
             </Center>

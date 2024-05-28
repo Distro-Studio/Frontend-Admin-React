@@ -75,9 +75,10 @@ export default function PengaturanJadwalPenggajian() {
                   <FormRequired />
                 </FormLabel>
                 <DatePicker
-                  name="tanggal"
-                  placeholder="Pilih tanggal penggajian"
                   formik={formik}
+                  name="tanggal"
+                  dateValue={formik.values.tanggal}
+                  placeholder="Pilih tanggal penggajian"
                 />
                 <FormErrorMessage>
                   {formik.errors.tanggal as string}

@@ -21,23 +21,28 @@ import { iconSize } from "../../../../const/sizes";
 import formatNumber from "../../../../lib/formatNumber";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
-import { dummyKelompokGaji } from "../../../../const/dummy";
+import { dummyPremi } from "../../../../const/dummy";
 import NoData from "../../../alert/NoData";
 
 interface Props {
   filterConfig?: any;
 }
 
-export default function TabelKelompokGaji({ filterConfig }: Props) {
+export default function TabelPengaturanPremi({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
-      key: "nama_kelompok",
-      label: "Nama Kelompok",
+      key: "nama_premi",
+      label: "Nama Premi",
       dataType: "string",
     },
     {
-      key: "besaran_gaji",
-      label: "Besaran Gaji",
+      key: "jenis_premi",
+      label: "Jenis Premi",
+      dataType: "string",
+    },
+    {
+      key: "besaran_premi",
+      label: "Rate Premi",
       dataType: "numeric",
     },
   ];
@@ -47,9 +52,9 @@ export default function TabelKelompokGaji({ filterConfig }: Props) {
 
   //! DEBUG
 
-  //TODO get pengaturan kelompok gaji
+  //TODO get karyawan
 
-  const [data] = useState<any[] | null>(dummyKelompokGaji);
+  const [data] = useState<any[] | null>(dummyPremi);
   const [loading] = useState<boolean>(false);
 
   // Filter Config
@@ -57,7 +62,7 @@ export default function TabelKelompokGaji({ filterConfig }: Props) {
     const searchTerm = filterConfig.search.toLowerCase();
     const ok =
       d.id.toString().toLowerCase().includes(searchTerm) ||
-      d.nama_kelompok.toLowerCase().includes(searchTerm);
+      d.nama_premi.toLowerCase().includes(searchTerm);
 
     return ok;
   });
@@ -288,9 +293,14 @@ export default function TabelKelompokGaji({ filterConfig }: Props) {
                         </Center>
                       </Td>
 
-                      <Td whiteSpace={"nowrap"}>{row.nama_kelompok}</Td>
+                      <Td whiteSpace={"nowrap"}>{row.nama_premi}</Td>
+                      <Td whiteSpace={"nowrap"}>
+                        {row.jenis_premi === 0 ? "Persentase" : "Nominal"}
+                      </Td>
                       <Td whiteSpace={"nowrap"} textAlign={"right"}>
-                        {formatNumber(row.besaran_gaji)}
+                        {row.jenis_premi === 0
+                          ? `${row.besaran_premi}%`
+                          : `Rp.${formatNumber(row.besaran_premi)}`}
                       </Td>
 
                       {/* Kolom tetap di sebelah kanan */}

@@ -10,7 +10,7 @@ import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import SelectStatusCuti from "../../components/dependent/Karyawan/SelectStatusCuti";
 import SelectTipeCuti from "../../components/dependent/Karyawan/SelectTipeCuti";
-import TabelLembur from "../../components/dependent/Karyawan/Tabel/TabelLembur";
+import TabelCuti from "../../components/dependent/Karyawan/Tabel/TabelCuti";
 import AjukanCutiModal from "../../components/independent/Karyawan/AjukanCutiModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -68,18 +68,20 @@ export default function Cuti() {
             </InputGroup>
 
             <SelectTipeCuti
-              placeholder="Pilih kompensasi"
-              selectedValue={filterConfig.tipe}
+              placeholder="Pilih tipe"
+              initialSelected={{ value: 0, label: "Semua Tipe" }}
               confirmSelect={confirmTipeCuti}
               noSearch
+              modalSize="sm"
               flex={"1 1 160px"}
             />
 
             <SelectStatusCuti
-              placeholder="Pilih kompensasi"
-              selectedValue={filterConfig.status}
+              placeholder="Pilih status"
+              initialSelected={{ value: 0, label: "Semua Status" }}
               confirmSelect={confirmStatusCuti}
               noSearch
+              modalSize="sm"
               flex={"1 1 160px"}
             />
 
@@ -96,7 +98,7 @@ export default function Cuti() {
             <AjukanCutiModal flex={"1 1 220px"} />
           </Wrap>
 
-          <TabelLembur filterConfig={filterConfig} />
+          <TabelCuti filterConfig={filterConfig} />
         </CContainer>
       </CWrapper>
     </>

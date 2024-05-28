@@ -1,9 +1,9 @@
 import {
+  Button,
   Center,
   Checkbox,
   HStack,
   Icon,
-  IconButton,
   Table,
   Tbody,
   Td,
@@ -13,42 +13,47 @@ import {
   Tr,
   VStack,
 } from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
+import {
+  RiArrowDownLine,
+  RiArrowRightSLine,
+  RiArrowUpLine,
+} from "@remixicon/react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
 import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import { iconSize } from "../../../../const/sizes";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
-import { dummyShift } from "../../../../const/dummy";
-import formatTime from "../../../../const/formatTime";
 import NoData from "../../../alert/NoData";
+import { dummyKelolaRole } from "../../../../const/dummy";
 
 interface Props {
   filterConfig?: any;
 }
 
-export default function TabelShift({ filterConfig }: Props) {
+export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
-      key: "nama",
-      label: "Nama Shift",
+      key: "name",
+      label: "Nama Role",
       dataType: "string",
     },
     {
-      key: "jam_from",
-      label: "Jam Kerja",
+      key: "deskripsi",
+      label: "Deskripsi",
       dataType: "string",
     },
   ];
 
   //! DEBUG
   // console.log(filterConfig);
+
   //! DEBUG
 
-  //TODO get data pengaturan shift
+  //TODO get data pengatuan kelola role
 
-  const [data] = useState<any[] | null>(dummyShift);
+  const [data] = useState<any[] | null>(dummyKelolaRole);
   const [loading] = useState<boolean>(false);
 
   // Filter Config
@@ -56,7 +61,7 @@ export default function TabelShift({ filterConfig }: Props) {
     const searchTerm = filterConfig.search.toLowerCase();
     const ok =
       d.id.toString().toLowerCase().includes(searchTerm) ||
-      d.nama.toLowerCase().includes(searchTerm);
+      d.name.toLowerCase().includes(searchTerm);
 
     return ok;
   });
@@ -246,14 +251,16 @@ export default function TabelShift({ filterConfig }: Props) {
                       bg={bodyColor}
                       zIndex={2}
                     >
-                      <VStack
+                      <Center
                         px={4}
                         py={3}
                         zIndex={99}
                         borderLeft={"1px solid var(--divider3)"}
                         borderBottom={"1px solid var(--divider3)"}
                         h={"52px"}
-                      ></VStack>
+                      >
+                        <Text whiteSpace={"nowrap"}>Edit Akses</Text>
+                      </Center>
                     </Th>
                   </Tr>
                 </Thead>
@@ -287,12 +294,8 @@ export default function TabelShift({ filterConfig }: Props) {
                         </Center>
                       </Td>
 
-                      <Td whiteSpace={"nowrap"}>{row.nama}</Td>
-                      <Td whiteSpace={"nowrap"}>
-                        {`${formatTime(row.jam_from)} - ${formatTime(
-                          row.jam_to
-                        )}`}
-                      </Td>
+                      <Td whiteSpace={"nowrap"}>{row.name}</Td>
+                      <Td whiteSpace={"nowrap"}>{row.deskripsi}</Td>
 
                       {/* Kolom tetap di sebelah kanan */}
                       <Td
@@ -303,20 +306,32 @@ export default function TabelShift({ filterConfig }: Props) {
                         p={0}
                         bg={i % 2 === 0 ? contentBgColor : bodyColor}
                         zIndex={1}
-                        w={"50px"}
+                        w={"150px"}
                       >
                         <VStack
                           borderLeft={"1px solid var(--divider3)"}
+                          w={"150px"}
+                          h={"72px"}
+                          px={4}
+                          align={"stretch"}
                           justify={"center"}
                         >
-                          <IconButton
-                            h={"72px"}
-                            w={"50px"}
-                            aria-label="Option Button"
-                            icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
-                            className="btn"
-                            borderRadius={0}
-                          />
+                          <Button
+                            pr={3}
+                            colorScheme="ap"
+                            variant={"ghost"}
+                            className=" clicky"
+                            as={Link}
+                            to={`/pengaturan/akun/kelola-role/${row.id}/${row.name}`}
+                            rightIcon={
+                              <Icon
+                                as={RiArrowRightSLine}
+                                fontSize={iconSize}
+                              />
+                            }
+                          >
+                            Keizinan
+                          </Button>
                         </VStack>
                       </Td>
                     </Tr>

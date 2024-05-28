@@ -9,7 +9,7 @@ import {
 import { RiDownloadLine, RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import TabelUnitKerja from "../../components/dependent/Pengaturan/Tabel/TabelUnitKerja";
+import TabelUnitKerja from "../../components/dependent/Pengaturan/Tabel/TabelPengaturanUnitKerja";
 import TambahUnitKerja from "../../components/independent/Pengaturan/TambahUnitKerja";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";

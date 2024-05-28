@@ -16,28 +16,29 @@ import {
 import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
-import { dummyHariLibur } from "../../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import { iconSize } from "../../../../const/sizes";
-import formatDate from "../../../../lib/formatDate";
-import NoData from "../../../alert/NoData";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
+import { dummyShift } from "../../../../const/dummy";
+import formatTime from "../../../../const/formatTime";
+import NoData from "../../../alert/NoData";
+
 interface Props {
   filterConfig?: any;
 }
 
-export default function TabelHariLibur({ filterConfig }: Props) {
+export default function TabelPengaturanShift({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
       key: "nama",
-      label: "Nama Hari Libur",
+      label: "Nama Shift",
       dataType: "string",
     },
     {
-      key: "tanggal",
-      label: "Tanggal",
-      dataType: "date",
+      key: "jam_from",
+      label: "Jam Kerja",
+      dataType: "string",
     },
   ];
 
@@ -47,7 +48,7 @@ export default function TabelHariLibur({ filterConfig }: Props) {
 
   //TODO get data pengaturan shift
 
-  const [data] = useState<any[] | null>(dummyHariLibur);
+  const [data] = useState<any[] | null>(dummyShift);
   const [loading] = useState<boolean>(false);
 
   // Filter Config
@@ -287,7 +288,11 @@ export default function TabelHariLibur({ filterConfig }: Props) {
                       </Td>
 
                       <Td whiteSpace={"nowrap"}>{row.nama}</Td>
-                      <Td whiteSpace={"nowrap"}>{formatDate(row.tanggal)}</Td>
+                      <Td whiteSpace={"nowrap"}>
+                        {`${formatTime(row.jam_from)} - ${formatTime(
+                          row.jam_to
+                        )}`}
+                      </Td>
 
                       {/* Kolom tetap di sebelah kanan */}
                       <Td

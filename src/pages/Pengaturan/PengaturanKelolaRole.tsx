@@ -9,7 +9,7 @@ import {
 import { RiDownloadLine, RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import TabelKelolaRole from "../../components/dependent/Pengaturan/Tabel/TabelKelolaRole";
+import TabelKelolaRole from "../../components/dependent/Pengaturan/Tabel/TabelPengaturanKelolaRole";
 import TambahRole from "../../components/independent/Pengaturan/TambahRole";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";

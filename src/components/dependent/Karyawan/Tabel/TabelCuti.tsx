@@ -17,13 +17,9 @@ import {
 import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
-import { dummyKaryawanList } from "../../../../const/dummy";
-import {
-  Karyawan__Interface,
-  Tabel__Column__Interface,
-} from "../../../../const/interfaces";
+import { dummyCuti } from "../../../../const/dummy";
+import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import { iconSize } from "../../../../const/sizes";
-import formatDate from "../../../../lib/formatDate";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
@@ -32,7 +28,7 @@ interface Props {
   filterConfig?: any;
 }
 
-export default function TabelPekerjaKontrak({ filterConfig }: Props) {
+export default function TabelCuti({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
       key: "nama",
@@ -42,23 +38,27 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
     {
       key: "unit_kerja",
       label: "Unit Kerja",
+      dataType: "date",
+    },
+    {
+      key: "tgl_pengajuan",
+      label: "Kompensasi",
       dataType: "string",
     },
     {
-      key: "tgl_mulai",
-      label: "Tanggal Mulai",
-      dataType: "date",
+      key: "tipe_cuti",
+      label: "Tipe Cuti",
+      dataType: "string",
     },
     {
-      key: "tgl_selesai",
-      label: "Tanggal Selesai",
-      dataType: "date",
+      key: "durasi",
+      label: "Durasi",
+      dataType: "string",
     },
     {
-      key: "laporan",
-      label: "Laporan",
-      dataType: "link",
-      link: `/laporan`,
+      key: "status",
+      label: "Status",
+      dataType: "badge",
     },
   ];
 
@@ -68,7 +68,7 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
 
   //TODO get karyawan
 
-  const [data] = useState<Karyawan__Interface[] | null>(dummyKaryawanList);
+  const [data] = useState<any[] | null>(dummyCuti);
   const [loading] = useState<boolean>(false);
 
   // Limit Config
@@ -273,7 +273,7 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
 
               <Tbody>
                 {sortedData.map((row, i) => (
-                  <Tr key={i} bg={i % 2 === 0 ? contentBgColor : ""}>
+                  <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
                     <Td
                       position={"sticky"}
                       left={0}
@@ -311,14 +311,12 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
                       </HStack>
                     </Td>
                     <Td whiteSpace={"nowrap"}>{row.unit_kerja}</Td>
-                    <Td whiteSpace={"nowrap"}>
-                      {formatDate(row.tgl_masuk as string)}
-                    </Td>
-                    <Td whiteSpace={"nowrap"}>
-                      {formatDate(row.tgl_masuk as string)}
-                    </Td>
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.kompensasi}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.tipe}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.durasi} Hari</Td>
+                    <Td whiteSpace={"nowrap"}>{row.status}</Td>
 
+                    {/* Kolom tetap di sebelah kanan */}
                     <Td
                       position={"sticky"}
                       top={0}

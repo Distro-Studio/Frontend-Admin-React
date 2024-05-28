@@ -64,7 +64,6 @@ export default function AjukanCutiModal({ ...props }: Props) {
         }}
         initialFocusRef={initialRef}
         isCentered
-        size={"lg"}
       >
         <ModalOverlay />
         <ModalContent>
@@ -110,10 +109,7 @@ export default function AjukanCutiModal({ ...props }: Props) {
                 </FormErrorMessage>
               </FormControl>
 
-              <FormControl
-                mb={4}
-                isInvalid={formik.errors.durasi ? true : false}
-              >
+              <FormControl isInvalid={formik.errors.durasi ? true : false}>
                 <FormLabel>
                   Durasi
                   <FormRequired />

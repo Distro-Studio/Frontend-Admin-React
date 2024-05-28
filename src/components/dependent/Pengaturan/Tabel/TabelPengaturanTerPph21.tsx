@@ -21,28 +21,34 @@ import { iconSize } from "../../../../const/sizes";
 import formatNumber from "../../../../lib/formatNumber";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
-import { dummyPremi } from "../../../../const/dummy";
+import { dummyTerPph21 } from "../../../../const/dummy";
 import NoData from "../../../alert/NoData";
 
 interface Props {
   filterConfig?: any;
 }
 
-export default function TabelPremi({ filterConfig }: Props) {
+export default function TabelPengaturanTerPph21({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
-      key: "nama_premi",
-      label: "Nama Premi",
+      key: "kategori_ter",
+      label: "Kategori TER",
       dataType: "string",
     },
     {
-      key: "jenis_premi",
-      label: "Jenis Premi",
+      key: "kode_ptkp",
+      label: "PTKP",
       dataType: "string",
     },
     {
-      key: "besaran_premi",
-      label: "Rate Premi",
+      key: "from_ter",
+      label: "Penghasilan Bruto Bulanan",
+      dataType: "number",
+      preferredTextAlign: "center",
+    },
+    {
+      key: "percentage_ter",
+      label: "Rate TER",
       dataType: "numeric",
     },
   ];
@@ -52,9 +58,9 @@ export default function TabelPremi({ filterConfig }: Props) {
 
   //! DEBUG
 
-  //TODO get karyawan
+  //TODO get data ter pph21
 
-  const [data] = useState<any[] | null>(dummyPremi);
+  const [data] = useState<any[] | null>(dummyTerPph21);
   const [loading] = useState<boolean>(false);
 
   // Filter Config
@@ -62,7 +68,7 @@ export default function TabelPremi({ filterConfig }: Props) {
     const searchTerm = filterConfig.search.toLowerCase();
     const ok =
       d.id.toString().toLowerCase().includes(searchTerm) ||
-      d.nama_premi.toLowerCase().includes(searchTerm);
+      d.kategori_ters?.nama_kategori_ter.toLowerCase().includes(searchTerm);
 
     return ok;
   });
@@ -99,12 +105,22 @@ export default function TabelPremi({ filterConfig }: Props) {
   const sortedData = fd && [...fd];
   if (sortConfig !== null && sortedData) {
     sortedData.sort((a, b) => {
-      //@ts-ignore
-      if (a[sortConfig.key] < b[sortConfig.key]) {
+      let aValue = a[sortConfig.key];
+      let bValue = b[sortConfig.key];
+
+      // Handle nested properties
+      if (sortConfig.key === "kode_ptkp") {
+        aValue = a.ptkps?.kode_ptkp;
+        bValue = b.ptkps?.kode_ptkp;
+      } else if (sortConfig.key === "kategori_ter") {
+        aValue = a.kategori_ters?.nama_kategori_ter;
+        bValue = b.kategori_ters?.nama_kategori_ter;
+      }
+
+      if (aValue < bValue) {
         return sortConfig.direction === "asc" ? -1 : 1;
       }
-      //@ts-ignore
-      if (a[sortConfig.key] > b[sortConfig.key]) {
+      if (aValue > bValue) {
         return sortConfig.direction === "asc" ? 1 : -1;
       }
       return 0;
@@ -293,14 +309,17 @@ export default function TabelPremi({ filterConfig }: Props) {
                         </Center>
                       </Td>
 
-                      <Td whiteSpace={"nowrap"}>{row.nama_premi}</Td>
                       <Td whiteSpace={"nowrap"}>
-                        {row.jenis_premi === 0 ? "Persentase" : "Nominal"}
+                        {row.kategori_ters.nama_kategori_ter}
+                      </Td>
+                      <Td whiteSpace={"nowrap"}>{row.ptkps.kode_ptkp}</Td>
+                      <Td whiteSpace={"nowrap"} textAlign={"center"}>
+                        {`Rp.${formatNumber(row.from_ter)} - Rp.${formatNumber(
+                          row.to_ter
+                        )}`}
                       </Td>
                       <Td whiteSpace={"nowrap"} textAlign={"right"}>
-                        {row.jenis_premi === 0
-                          ? `${row.besaran_premi}%`
-                          : `Rp.${formatNumber(row.besaran_premi)}`}
+                        {row.percentage_ter}%
                       </Td>
 
                       {/* Kolom tetap di sebelah kanan */}

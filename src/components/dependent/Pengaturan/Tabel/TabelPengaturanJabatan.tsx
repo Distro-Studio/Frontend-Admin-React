@@ -21,46 +21,171 @@ import { iconSize } from "../../../../const/sizes";
 import formatNumber from "../../../../lib/formatNumber";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
-import { dummyTerPph21 } from "../../../../const/dummy";
 import NoData from "../../../alert/NoData";
 
 interface Props {
   filterConfig?: any;
 }
 
-export default function TabelTerPph21({ filterConfig }: Props) {
+export default function TabelPengaturanJabatan({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
-      key: "kategori_ter",
-      label: "Kategori TER",
+      key: "nama_jabatan",
+      label: "Nama Jabatan",
       dataType: "string",
     },
     {
-      key: "kode_ptkp",
-      label: "PTKP",
-      dataType: "string",
-    },
-    {
-      key: "from_ter",
-      label: "Penghasilan Bruto Bulanan",
-      dataType: "number",
-      preferredTextAlign: "center",
-    },
-    {
-      key: "percentage_ter",
-      label: "Rate TER",
+      key: "tunjangan",
+      label: "Tunjangan",
       dataType: "numeric",
     },
   ];
 
   //! DEBUG
   // console.log(filterConfig);
-
+  const dummy = [
+    {
+      id: 1,
+      nama_jabatan: "HRD",
+      is_struktural: 1,
+      tunjangan: "0",
+      created_at: "2023-09-21T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+    {
+      id: 2,
+      nama_jabatan: "Bendahara",
+      is_struktural: 1,
+      tunjangan: "0",
+      created_at: "2023-08-11T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+    {
+      id: 3,
+      nama_jabatan: "Wakil Direktur",
+      is_struktural: 0,
+      tunjangan: "0",
+      created_at: "2023-08-29T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+    {
+      id: 4,
+      nama_jabatan: "Perawat",
+      is_struktural: 1,
+      tunjangan: "0",
+      created_at: "2023-10-13T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+    {
+      id: 5,
+      nama_jabatan: "Tenaga Kebersihan",
+      is_struktural: 1,
+      tunjangan: "0",
+      created_at: "2023-09-16T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+    {
+      id: 6,
+      nama_jabatan: "Dokter Umum",
+      is_struktural: 1,
+      tunjangan: "0",
+      created_at: "2023-11-10T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+    {
+      id: 7,
+      nama_jabatan: "Petugas Ambulans",
+      is_struktural: 1,
+      tunjangan: "0",
+      created_at: "2023-05-28T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+    {
+      id: 8,
+      nama_jabatan: "Pekerja Sosial",
+      is_struktural: 0,
+      tunjangan: "0",
+      created_at: "2024-04-05T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+    {
+      id: 9,
+      nama_jabatan: "Staf Tata Usaha",
+      is_struktural: 1,
+      tunjangan: "0",
+      created_at: "2023-07-09T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+    {
+      id: 10,
+      nama_jabatan: "Fisioterapis",
+      is_struktural: 1,
+      tunjangan: "0",
+      created_at: "2023-09-22T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+    {
+      id: 11,
+      nama_jabatan: "Tenaga Medis Darurat",
+      is_struktural: 1,
+      tunjangan: "0",
+      created_at: "2023-12-02T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+    {
+      id: 12,
+      nama_jabatan: "Humas",
+      is_struktural: 0,
+      tunjangan: "0",
+      created_at: "2023-09-03T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+    {
+      id: 13,
+      nama_jabatan: "Kabid Pelayanan Penunjang",
+      is_struktural: 0,
+      tunjangan: "0",
+      created_at: "2023-10-12T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+    {
+      id: 14,
+      nama_jabatan: "Kabid Keperawatan",
+      is_struktural: 1,
+      tunjangan: "0",
+      created_at: "2024-03-05T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+    {
+      id: 15,
+      nama_jabatan: "Dokter Spesialis",
+      is_struktural: 0,
+      tunjangan: "0",
+      created_at: "2024-02-14T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+    {
+      id: 16,
+      nama_jabatan: "Bidan",
+      is_struktural: 1,
+      tunjangan: "0",
+      created_at: "2024-01-08T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+    {
+      id: 17,
+      nama_jabatan: "Apoteker",
+      is_struktural: 1,
+      tunjangan: "0",
+      created_at: "2024-04-29T02:41:29.000000Z",
+      updated_at: "2024-05-07T02:41:29.000000Z",
+    },
+  ];
   //! DEBUG
 
-  //TODO get data ter pph21
+  //TODO get karyawan
 
-  const [data] = useState<any[] | null>(dummyTerPph21);
+  const [data] = useState<any[] | null>(dummy);
   const [loading] = useState<boolean>(false);
 
   // Filter Config
@@ -68,7 +193,7 @@ export default function TabelTerPph21({ filterConfig }: Props) {
     const searchTerm = filterConfig.search.toLowerCase();
     const ok =
       d.id.toString().toLowerCase().includes(searchTerm) ||
-      d.kategori_ters?.nama_kategori_ter.toLowerCase().includes(searchTerm);
+      d.nama_jabatan.toLowerCase().includes(searchTerm);
 
     return ok;
   });
@@ -105,22 +230,12 @@ export default function TabelTerPph21({ filterConfig }: Props) {
   const sortedData = fd && [...fd];
   if (sortConfig !== null && sortedData) {
     sortedData.sort((a, b) => {
-      let aValue = a[sortConfig.key];
-      let bValue = b[sortConfig.key];
-
-      // Handle nested properties
-      if (sortConfig.key === "kode_ptkp") {
-        aValue = a.ptkps?.kode_ptkp;
-        bValue = b.ptkps?.kode_ptkp;
-      } else if (sortConfig.key === "kategori_ter") {
-        aValue = a.kategori_ters?.nama_kategori_ter;
-        bValue = b.kategori_ters?.nama_kategori_ter;
-      }
-
-      if (aValue < bValue) {
+      //@ts-ignore
+      if (a[sortConfig.key] < b[sortConfig.key]) {
         return sortConfig.direction === "asc" ? -1 : 1;
       }
-      if (aValue > bValue) {
+      //@ts-ignore
+      if (a[sortConfig.key] > b[sortConfig.key]) {
         return sortConfig.direction === "asc" ? 1 : -1;
       }
       return 0;
@@ -309,17 +424,9 @@ export default function TabelTerPph21({ filterConfig }: Props) {
                         </Center>
                       </Td>
 
-                      <Td whiteSpace={"nowrap"}>
-                        {row.kategori_ters.nama_kategori_ter}
-                      </Td>
-                      <Td whiteSpace={"nowrap"}>{row.ptkps.kode_ptkp}</Td>
-                      <Td whiteSpace={"nowrap"} textAlign={"center"}>
-                        {`Rp.${formatNumber(row.from_ter)} - Rp.${formatNumber(
-                          row.to_ter
-                        )}`}
-                      </Td>
+                      <Td whiteSpace={"nowrap"}>{row.nama_jabatan}</Td>
                       <Td whiteSpace={"nowrap"} textAlign={"right"}>
-                        {row.percentage_ter}%
+                        {formatNumber(row.tunjangan)}
                       </Td>
 
                       {/* Kolom tetap di sebelah kanan */}

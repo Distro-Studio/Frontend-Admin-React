@@ -126,6 +126,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                   <DatePicker
                     formik={formik}
                     name="tgl_mulai"
+                    dateValue={formik.values.tgl_mulai}
                     noUseBackOnClose
                     dateFormatOptions={{
                       day: "numeric",
@@ -146,6 +147,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                   <DatePicker
                     formik={formik}
                     name="tgl_selesai"
+                    dateValue={formik.values.tgl_selesai}
                     noUseBackOnClose
                     dateFormatOptions={{
                       day: "numeric",

@@ -59,7 +59,6 @@ export default function AjukanLemburModal({ ...props }: Props) {
         }}
         initialFocusRef={initialRef}
         isCentered
-        size={"lg"}
       >
         <ModalOverlay />
         <ModalContent>

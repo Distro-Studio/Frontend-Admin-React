@@ -35,13 +35,13 @@ import parseNumber from "../../lib/parseNumber";
 import useBackOnClose from "../../lib/useBackOnClose";
 
 interface Props extends ButtonProps {
+  dateValue: string;
+  defaultDateSelected?: Date;
+  dateFormatOptions?: any;
   formik?: any;
   name?: string;
   placeholder?: string;
   confirmDate?: (date: any) => void;
-  dateValue?: string;
-  defaultDateSelected?: Date;
-  dateFormatOptions?: any;
   noUseBackOnClose?: boolean;
   nullable?: boolean;
 }
@@ -179,16 +179,9 @@ export default function DatePicker({
         _focus={{ border: "1px solid var(--p500)", boxShadow: "none" }}
         {...props}
       >
-        <Text
-          opacity={
-            (formik && name && formik.values[name]) || dateValue ? 1 : 0.3
-          }
-        >
-          {(formik && name && formik.values[name]) || dateValue
-            ? formatDate(
-                (formik && name && formik.values[name]) || dateValue,
-                dateFormatOptions
-              )
+        <Text opacity={dateValue ? 1 : 0.3}>
+          {dateValue
+            ? formatDate(dateValue, dateFormatOptions)
             : placeholder || `Pilih tanggal`}
         </Text>
 

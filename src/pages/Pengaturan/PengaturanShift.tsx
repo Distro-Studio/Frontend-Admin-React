@@ -9,7 +9,7 @@ import {
 import { RiDownloadLine, RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import TabelShift from "../../components/dependent/Pengaturan/Tabel/TabelShift";
+import TabelShift from "../../components/dependent/Pengaturan/Tabel/TabelPengaturanShift";
 import TambahShift from "../../components/independent/Pengaturan/TambahShift";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
