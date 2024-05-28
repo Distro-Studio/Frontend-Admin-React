@@ -63,6 +63,7 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
       key: "status_penggajian",
       label: "Status",
       dataType: "badge",
+      preferredTextAlign: "center",
     },
   ];
 
