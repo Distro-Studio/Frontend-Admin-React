@@ -48,6 +48,18 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
       id: 3,
       nama: "Rini Kasih",
     },
+    {
+      id: 4,
+      nama: "Sambo",
+    },
+    {
+      id: 5,
+      nama: "Samyang",
+    },
+    {
+      id: 6,
+      nama: "Danarhadi",
+    },
   ];
 
   const formik = useFormik({
@@ -104,13 +116,22 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                 </FormLabel>
                 <VStack align={"stretch"}>
                   <Wrap>
-                    {formik.values.karyawan_list.map((karyawan, i) => (
-                      <Badge colorScheme="ap" key={i}>
-                        {karyawan.nama}
-                      </Badge>
-                    ))}
+                    {formik.values.karyawan_list.map((karyawan, i) => {
+                      const ok = i < 3;
+                      return (
+                        ok && (
+                          <Badge colorScheme="ap" key={i}>
+                            {karyawan.nama}
+                          </Badge>
+                        )
+                      );
+                    })}
                   </Wrap>
-                  <Input name="karyawan_list" placeholder="Cari karyawan" />
+                  <Input
+                    name="karyawan_list"
+                    placeholder="Cari karyawan"
+                    onChange={(e) => {}}
+                  />
                 </VStack>
                 <FormErrorMessage>
                   {formik.errors.karyawan_list as string}
@@ -181,15 +202,6 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
           </ModalBody>
           <ModalFooter>
             <ButtonGroup w={"100%"}>
-              {/* <Button
-                w={"100%"}
-                className="btn-solid clicky"
-                onClick={() => {
-                  backOnClose(onClose);
-                }}
-              >
-                Batal
-              </Button> */}
               <Button
                 type="submit"
                 form="terapkanJadwalForm"

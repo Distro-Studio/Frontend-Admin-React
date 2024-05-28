@@ -38,6 +38,7 @@ export default function SelectTipeCuti({
     setOptions([{ value: 0, label: "Libur" }, ...options]);
     // TODO get shift list
   }, []);
+
   const filteredOptions = options?.filter((option: any) =>
     option.label.toLowerCase().includes(search.toLocaleLowerCase())
   );

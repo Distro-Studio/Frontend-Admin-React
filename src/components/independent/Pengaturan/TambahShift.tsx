@@ -113,7 +113,10 @@ export default function TambahShift({ ...props }: Props) {
               <Wrap spacing={4}>
                 <FormControl
                   flex={"1 1"}
-                  isInvalid={formik.errors.jam_from_hour ? true : false}
+                  isInvalid={
+                    !!formik.errors.jam_from_hour ||
+                    !!formik.errors.jam_from_minute
+                  }
                 >
                   <HStack>
                     <Input
@@ -170,7 +173,8 @@ export default function TambahShift({ ...props }: Props) {
                   </HStack>
 
                   <FormErrorMessage>
-                    {formik.errors.jam_from_hour as string}
+                    {(formik.errors.jam_from_hour as string) ||
+                      (formik.errors.jam_from_minute as string)}
                   </FormErrorMessage>
                 </FormControl>
 
@@ -180,7 +184,9 @@ export default function TambahShift({ ...props }: Props) {
 
                 <FormControl
                   flex={"1 1"}
-                  isInvalid={formik.errors.jam_to_hour ? true : false}
+                  isInvalid={
+                    !!formik.errors.jam_to_hour || !!formik.errors.jam_to_minute
+                  }
                 >
                   <HStack>
                     <Input
@@ -236,7 +242,8 @@ export default function TambahShift({ ...props }: Props) {
                     />
                   </HStack>
                   <FormErrorMessage>
-                    {formik.errors.jam_to_hour as string}
+                    {(formik.errors.jam_to_hour as string) ||
+                      (formik.errors.jam_to_minute as string)}
                   </FormErrorMessage>
                 </FormControl>
               </Wrap>
