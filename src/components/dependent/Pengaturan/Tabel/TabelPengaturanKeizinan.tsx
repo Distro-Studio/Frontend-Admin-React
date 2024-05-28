@@ -306,6 +306,11 @@ export default function TabelPengaturanKeizinan({
                       <Checkbox
                         colorScheme="ap"
                         size={"lg"}
+                        display={
+                          formik.values.permissions[i].permissions.view === null
+                            ? "none"
+                            : "block"
+                        }
                         opacity={
                           formik.values.permissions[i].permissions.view === null
                             ? 0
@@ -324,6 +329,12 @@ export default function TabelPengaturanKeizinan({
                       <Checkbox
                         colorScheme="ap"
                         size={"lg"}
+                        display={
+                          formik.values.permissions[i].permissions.create ===
+                          null
+                            ? "none"
+                            : "block"
+                        }
                         opacity={
                           formik.values.permissions[i].permissions.create ===
                           null
@@ -344,6 +355,11 @@ export default function TabelPengaturanKeizinan({
                       <Checkbox
                         colorScheme="ap"
                         size={"lg"}
+                        display={
+                          formik.values.permissions[i].permissions.edit === null
+                            ? "none"
+                            : "block"
+                        }
                         opacity={
                           formik.values.permissions[i].permissions.edit === null
                             ? 0
@@ -362,6 +378,12 @@ export default function TabelPengaturanKeizinan({
                       <Checkbox
                         colorScheme="ap"
                         size={"lg"}
+                        display={
+                          formik.values.permissions[i].permissions.delete ===
+                          null
+                            ? "none"
+                            : "block"
+                        }
                         opacity={
                           formik.values.permissions[i].permissions.delete ===
                           null
@@ -382,6 +404,12 @@ export default function TabelPengaturanKeizinan({
                       <Checkbox
                         colorScheme="ap"
                         size={"lg"}
+                        display={
+                          formik.values.permissions[i].permissions.export ===
+                          null
+                            ? "none"
+                            : "block"
+                        }
                         opacity={
                           formik.values.permissions[i].permissions.export ===
                           null
@@ -402,6 +430,12 @@ export default function TabelPengaturanKeizinan({
                       <Checkbox
                         colorScheme="ap"
                         size={"lg"}
+                        display={
+                          formik.values.permissions[i].permissions.import ===
+                          null
+                            ? "none"
+                            : "block"
+                        }
                         opacity={
                           formik.values.permissions[i].permissions.import ===
                           null
@@ -422,6 +456,12 @@ export default function TabelPengaturanKeizinan({
                       <Checkbox
                         colorScheme="ap"
                         size={"lg"}
+                        display={
+                          formik.values.permissions[i].permissions.reset ===
+                          null
+                            ? "none"
+                            : "block"
+                        }
                         opacity={
                           formik.values.permissions[i].permissions.reset ===
                           null
