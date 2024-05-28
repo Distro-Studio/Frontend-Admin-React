@@ -9,7 +9,7 @@ import {
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import PeriodeTahunRiwayatPenggajian from "../../components/dependent/Keuangan/PeriodeTahunRiwayatPenggajian";
-import TabelRiwayatPenggajian from "../../components/dependent/Keuangan/Tabel/TabelRiwayatPenggajian";
+import TabelThr from "../../components/dependent/Keuangan/Tabel/TabelThr";
 import RunThr from "../../components/independent/Keuangan/RunThr";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -64,7 +64,7 @@ export default function Thr() {
             <RunThr flex={"1 1 110px"} />
           </Wrap>
 
-          <TabelRiwayatPenggajian filterConfig={filterConfig} />
+          <TabelThr filterConfig={filterConfig} />
         </CContainer>
       </CWrapper>
     </>

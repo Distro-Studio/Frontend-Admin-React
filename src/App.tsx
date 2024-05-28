@@ -44,6 +44,7 @@ import Thr from "./pages/Keuangan/Thr";
 import perusahaanTopNavs from "./const/perusahaanTopNavs";
 import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi";
 import DetailLaporanRiwayatPenggajian from "./pages/Keuangan/DetailLaporanRiwayatPenggajian";
+import DetailLaporanThr from "./pages/Keuangan/DetailLaporanThr";
 
 // github pekok
 
@@ -262,7 +263,7 @@ export const App = () => (
           element={
             <NavContainer
               active={4}
-              title="Riwayat Penggajian"
+              title="Laporan Penggajian"
               left={"back"}
               backLink="/keuangan/riwayat-penggajian"
             >
@@ -280,6 +281,19 @@ export const App = () => (
               topNavActive={2}
             >
               <Thr />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/keuangan/thr/laporan/:thr_id"
+          element={
+            <NavContainer
+              active={4}
+              title="Laporan THR"
+              left={"back"}
+              backLink="/keuangan/thr"
+            >
+              <DetailLaporanThr />
             </NavContainer>
           }
         />
