@@ -68,21 +68,23 @@ export default function Cuti() {
             </InputGroup>
 
             <SelectTipeCuti
-              placeholder="Pilih tipe"
+              placeholder="Pilih Tipe"
               initialSelected={{ value: 0, label: "Semua Tipe" }}
               confirmSelect={confirmTipeCuti}
               noSearch
               modalSize="sm"
               flex={"1 1 160px"}
+              noReset
             />
 
             <SelectStatusCuti
-              placeholder="Pilih status"
+              placeholder="Pilih Status"
               initialSelected={{ value: 0, label: "Semua Status" }}
               confirmSelect={confirmStatusCuti}
               noSearch
               modalSize="sm"
               flex={"1 1 160px"}
+              noReset
             />
 
             <Button

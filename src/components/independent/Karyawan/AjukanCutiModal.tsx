@@ -5,6 +5,8 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
+  InputGroup,
+  InputRightElement,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -12,6 +14,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
@@ -19,8 +22,9 @@ import { useRef } from "react";
 import * as yup from "yup";
 import backOnClose from "../../../lib/backOnClose";
 import useBackOnClose from "../../../lib/useBackOnClose";
+import SelectKaryawan from "../../dependent/_Select/SelectKaryawan";
+import SelectTipeCuti from "../../dependent/_Select/SelectTipeCuti";
 import FormRequired from "../../form/FormRequired";
-import DateRangePicker from "../../input/DateRangePicker";
 
 interface Props extends ButtonProps {}
 
@@ -79,11 +83,11 @@ export default function AjukanCutiModal({ ...props }: Props) {
                   Karyawan
                   <FormRequired />
                 </FormLabel>
-                <Input
+                <SelectKaryawan
                   name="user_id"
-                  placeholder="pilih"
-                  onChange={formik.handleChange}
-                  value={formik.values.user_id}
+                  formik={formik}
+                  placeholder="Pilih Karyawan"
+                  noUseBackOnClose
                 />
                 <FormErrorMessage>
                   {formik.errors.user_id as string}
@@ -98,11 +102,11 @@ export default function AjukanCutiModal({ ...props }: Props) {
                   Tipe Cuti
                   <FormRequired />
                 </FormLabel>
-                <Input
+                <SelectTipeCuti
                   name="tipe_cuti_id"
-                  placeholder="pilih"
-                  onChange={formik.handleChange}
-                  value={formik.values.tipe_cuti_id}
+                  formik={formik}
+                  placeholder="Pilih Tipe Cuti"
+                  noUseBackOnClose
                 />
                 <FormErrorMessage>
                   {formik.errors.tipe_cuti_id as string}
@@ -114,7 +118,12 @@ export default function AjukanCutiModal({ ...props }: Props) {
                   Durasi
                   <FormRequired />
                 </FormLabel>
-                <DateRangePicker formik={formik} name="durasi" noBackOnClose />
+                <InputGroup>
+                  <Input name="durasi" placeholder="5" pr={16} />
+                  <InputRightElement w={"fit-content"} flexShrink={0} px={4}>
+                    <Text>Hari</Text>
+                  </InputRightElement>
+                </InputGroup>
                 <FormErrorMessage>
                   {formik.errors.durasi as string}
                 </FormErrorMessage>

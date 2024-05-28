@@ -79,6 +79,7 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
+          formik.resetForm();
         }}
         initialFocusRef={initialRef}
         isCentered

@@ -55,6 +55,7 @@ export default function SelectJenisKompetensi({
       ref={selectComponentRef}
       placeholder={placeholder}
       selected={selected}
+      setSelected={setSelected}
       formik={formik}
       name={name}
       noUseBackOnClose={noUseBackOnClose}
@@ -62,6 +63,7 @@ export default function SelectJenisKompetensi({
       setSearch={setSearch}
       noSearch={noSearch}
       modalSize={modalSize}
+      confirmSelect={confirmSelect}
       {...props}
     >
       {filteredOptions?.map((option, i) => (

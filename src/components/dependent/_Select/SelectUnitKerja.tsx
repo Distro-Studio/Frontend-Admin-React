@@ -56,6 +56,7 @@ export default function SelectUnitKerja({
       ref={selectComponentRef}
       placeholder={placeholder}
       selected={selected}
+      setSelected={setSelected}
       formik={formik}
       name={name}
       noUseBackOnClose={noUseBackOnClose}
@@ -63,6 +64,7 @@ export default function SelectUnitKerja({
       setSearch={setSearch}
       noSearch={noSearch}
       modalSize={modalSize}
+      confirmSelect={confirmSelect}
       {...props}
     >
       {filteredOptions?.map((option: any, i: number) => (

@@ -22,7 +22,6 @@ import {
 import { RiArrowDownSLine, RiSearchLine } from "@remixicon/react";
 import { Dispatch, forwardRef, useImperativeHandle, useRef } from "react";
 import { iconSize } from "../../const/sizes";
-import capFirst from "../../lib/capFirst";
 import formatNumber from "../../lib/formatNumber";
 import useBackOnClose from "../../lib/useBackOnClose";
 
@@ -33,8 +32,10 @@ interface Props extends ButtonProps {
   initialSelected?: any;
   formik?: any;
   name?: string;
+  confirmSelect?: any;
   noUseBackOnClose?: boolean;
   noSearch?: boolean;
+  noReset?: boolean;
   search?: string;
   setSearch?: Dispatch<string>;
   modalSize?: string;
@@ -52,8 +53,10 @@ const Select = forwardRef(
       initialSelected,
       formik,
       name,
+      confirmSelect,
       noUseBackOnClose,
       noSearch,
+      noReset,
       search,
       setSearch,
       modalSize,
@@ -96,7 +99,7 @@ const Select = forwardRef(
           border={"1px solid var(--divider3)"}
           boxShadow={formik && name && formik.errors[name] ? selectOnError : ""}
           borderRadius={8}
-          gap={2}
+          gap={3}
           _focus={{
             border: "1px solid var(--p500)",
             boxShadow: "none !important",
@@ -126,9 +129,7 @@ const Select = forwardRef(
               whiteSpace={"nowrap"}
               textOverflow={"ellipsis"}
             >
-              {!isMultiSelect && selected
-                ? selected.label
-                : capFirst(placeholder)}
+              {!isMultiSelect && selected ? selected.label : placeholder}
             </Text>
           )}
 
@@ -196,7 +197,7 @@ const Select = forwardRef(
 
           {isMultiSelect && selected && selected.length === 0 && (
             <Text flexShrink={0} opacity={0.3} fontSize={14} fontWeight={400}>
-              {capFirst(placeholder)}
+              {placeholder}
             </Text>
           )}
 
@@ -250,20 +251,33 @@ const Select = forwardRef(
               </VStack>
             </ModalBody>
 
-            <ModalFooter pt={isMultiSelect ? "" : "0 !important"}>
-              {isMultiSelect && (
-                <ButtonGroup w={"100%"}>
+            <ModalFooter pt={noReset && !isMultiSelect ? "0 !important" : ""}>
+              <ButtonGroup w={"100%"}>
+                {!noReset && (
                   <Button
                     w={"100%"}
                     className="btn-solid clicky"
                     onClick={() => {
                       if (setSelected) {
-                        setSelected([]);
+                        if (isMultiSelect) {
+                          setSelected([]);
+                        } else {
+                          setSelected(null);
+                          if (formik && name) {
+                            formik.setFieldValue(name, null);
+                          }
+                          if (confirmSelect) {
+                            confirmSelect(null);
+                          }
+                          handleOnClose();
+                        }
                       }
                     }}
                   >
                     Reset
                   </Button>
+                )}
+                {isMultiSelect && (
                   <Button
                     w={"100%"}
                     className="btn-ap clicky"
@@ -277,8 +291,8 @@ const Select = forwardRef(
                   >
                     Konfirmasi
                   </Button>
-                </ButtonGroup>
-              )}
+                )}
+              </ButtonGroup>
             </ModalFooter>
           </ModalContent>
         </Modal>

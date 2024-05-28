@@ -1,11 +1,12 @@
-import React, { useRef, useState } from "react";
 import { Button, ButtonProps, Text } from "@chakra-ui/react";
+import { useEffect, useRef, useState } from "react";
+import { dummyKelolaRole } from "../../../const/dummy";
 import { Select__Item__Interface } from "../../../const/interfaces";
 import Select from "../../input/Select";
 
 interface Props extends ButtonProps {
   placeholder: string;
-  initialSelected?: Select__Item__Interface;
+  initialSelected?: any;
   formik?: any;
   name?: string;
   confirmSelect?: (newSelectedValue: any) => void;
@@ -14,7 +15,7 @@ interface Props extends ButtonProps {
   modalSize?: string;
 }
 
-export default function SelectPtkp({
+export default function SelectRole({
   placeholder,
   initialSelected,
   formik,
@@ -26,29 +27,17 @@ export default function SelectPtkp({
   ...props
 }: Props) {
   const [search, setSearch] = useState<string>("");
-  const options = [
-    {
-      value: 1,
-      label: "TK/0",
-    },
-    {
-      value: 2,
-      label: "K/0",
-    },
-    {
-      value: 3,
-      label: "K/1",
-    },
-    {
-      value: 4,
-      label: "K/2",
-    },
-    {
-      value: 5,
-      label: "K/3",
-    },
-  ];
-  const filteredOptions = options?.filter((option) =>
+  const [options, setOptions] = useState<any | null>(null);
+  useEffect(() => {
+    const options = dummyKelolaRole.map((item) => ({
+      value: item.id,
+      label: item.name,
+    }));
+    setOptions(options);
+    // TODO get shift list
+  }, []);
+
+  const filteredOptions = options?.filter((option: any) =>
     option.label.toLowerCase().includes(search.toLocaleLowerCase())
   );
   const [selected, setSelected] = useState<Select__Item__Interface | null>(
@@ -78,7 +67,7 @@ export default function SelectPtkp({
       confirmSelect={confirmSelect}
       {...props}
     >
-      {filteredOptions?.map((option, i) => (
+      {filteredOptions?.map((option: any, i: number) => (
         <Button
           bg={
             selected && selected.value === option.value
@@ -103,8 +92,9 @@ export default function SelectPtkp({
             }
             handleOnClose();
           }}
-          fontWeight={500}
+          gap={4}
           justifyContent={"space-between"}
+          fontWeight={500}
         >
           {option.label}
         </Button>

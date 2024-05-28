@@ -7,7 +7,6 @@ import {
   FormLabel,
   HStack,
   Icon,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -23,6 +22,8 @@ import { useRef } from "react";
 import * as yup from "yup";
 import backOnClose from "../../../lib/backOnClose";
 import useBackOnClose from "../../../lib/useBackOnClose";
+import SelectKaryawan from "../../dependent/_Select/SelectKaryawan";
+import SelectShiftKaryawan from "../../dependent/_Select/SelectShiftKaryawan";
 import FormRequired from "../../form/FormRequired";
 
 interface Props extends ButtonProps {}
@@ -66,6 +67,7 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
+          formik.resetForm();
         }}
         initialFocusRef={initialRef}
         isCentered
@@ -75,7 +77,7 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
           <ModalCloseButton />
           <ModalHeader ref={initialRef}>Ajukan Penukaran Jadwal</ModalHeader>
           <ModalBody>
-            <form id="ajukanPenukaranJadwalForm">
+            <form id="ajukanPenukaranJadwalForm" onSubmit={formik.handleSubmit}>
               <FormControl
                 mb={4}
                 isInvalid={formik.errors.user_pengajuan ? true : false}
@@ -84,11 +86,11 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
                   Karyawan Pengajuan
                   <FormRequired />
                 </FormLabel>
-                <Input
+                <SelectKaryawan
                   name="user_pengajuan"
-                  placeholder="pilih"
-                  onChange={formik.handleChange}
-                  value={formik.values.user_pengajuan}
+                  formik={formik}
+                  placeholder="Pilih Karyawan"
+                  noUseBackOnClose
                 />
                 <FormErrorMessage>
                   {formik.errors.user_pengajuan as string}
@@ -102,11 +104,11 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
                   Jadwal Pengajuan
                   <FormRequired />
                 </FormLabel>
-                <Input
+                <SelectShiftKaryawan
                   name="jadwal_pengajuan"
-                  placeholder="pilih"
-                  onChange={formik.handleChange}
-                  value={formik.values.jadwal_pengajuan}
+                  formik={formik}
+                  placeholder="Pilih Shift Karyawan"
+                  noUseBackOnClose
                 />
                 <FormErrorMessage>
                   {formik.errors.jadwal_pengajuan as string}
@@ -118,7 +120,8 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
                 <Icon
                   as={RiArrowUpDownLine}
                   fontSize={20}
-                  opacity={0.6}
+                  color={"p.500"}
+                  // opacity={0.6}
                   // transform={"rotate(90deg)"}
                 />
                 <Box w={"100%"} h={"2px"} bg={"var(--divider2)"} />
@@ -132,11 +135,11 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
                   Karyawan Ditukar
                   <FormRequired />
                 </FormLabel>
-                <Input
+                <SelectKaryawan
                   name="user_ditukar"
-                  placeholder="pilih"
-                  onChange={formik.handleChange}
-                  value={formik.values.user_ditukar}
+                  formik={formik}
+                  placeholder="Pilih Karyawan"
+                  noUseBackOnClose
                 />
                 <FormErrorMessage>
                   {formik.errors.user_ditukar as string}
@@ -150,11 +153,11 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
                   Jadwal Ditukar
                   <FormRequired />
                 </FormLabel>
-                <Input
+                <SelectShiftKaryawan
                   name="jadwal_ditukar"
-                  placeholder="pilih"
-                  onChange={formik.handleChange}
-                  value={formik.values.jadwal_ditukar}
+                  formik={formik}
+                  placeholder="Pilih Shift Karyawan"
+                  noUseBackOnClose
                 />
                 <FormErrorMessage>
                   {formik.errors.jadwal_ditukar as string}
@@ -163,7 +166,13 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
             </form>
           </ModalBody>
           <ModalFooter>
-            <Button w={"100%"} colorScheme="ap" className="btn-ap clicky">
+            <Button
+              type={"submit"}
+              form="ajukanPenukaranJadwalForm"
+              w={"100%"}
+              colorScheme="ap"
+              className="btn-ap clicky"
+            >
               Tukar
             </Button>
           </ModalFooter>

@@ -57,6 +57,7 @@ export default function SelectKaryawan({
       ref={selectComponentRef}
       placeholder={placeholder}
       selected={selected}
+      setSelected={setSelected}
       formik={formik}
       name={name}
       noUseBackOnClose={noUseBackOnClose}
@@ -64,6 +65,7 @@ export default function SelectKaryawan({
       setSearch={setSearch}
       noSearch={noSearch}
       modalSize={modalSize}
+      confirmSelect={confirmSelect}
       {...props}
     >
       {filteredOptions?.map((option: any, i: number) => (

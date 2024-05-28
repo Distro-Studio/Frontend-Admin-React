@@ -6,6 +6,7 @@ import {
   FormErrorMessage,
   FormHelperText,
   FormLabel,
+  HStack,
   Input,
   InputGroup,
   InputLeftElement,
@@ -29,52 +30,36 @@ import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useScreenWidth from "../../lib/useScreenWidth";
-
-// validationSchema: yup.object().shape({
-//       nama_karyawan: yup.string().required("Harus diisi"),
-//       email: yup.string().email("Email tidak valid").required("Harus diisi"),
-//       rm: yup.string().required("Harus diisi"),
-//       no_manulife: yup.string().required("Harus diisi"),
-//       tgl_masuk: yup.string().required("Harus diisi"),
-//       unit_kerja: yup.string().required("Harus diisi"),
-//       jabatan: yup.string().required("Harus diisi"),
-//       kompetensi: yup.string().required("Harus diisi"),
-//       role: yup.string().required("Harus diisi"),
-//       kelompok_gaji: yup.string().required("Harus diisi"),
-//       no_rekening: yup.string().required("Harus diisi"),
-//       tunjangan_uang_lembur: yup.string().required("Harus diisi"),
-//       tunjangan_fungsional: yup.string().required("Harus diisi"),
-//       tunjangan_khusus: yup.string().required("Harus diisi"),
-//       tunjangan_lainnya: yup.string().required("Harus diisi"),
-//       uang_lembur: yup.string().required("Harus diisi"),
-//       uang_makan: yup.string().required("Harus diisi"),
-//       PTKP: yup.string().required("Harus diisi"),
-//       username: yup.string().required("Harus diisi"),
-//       password: yup.string().required("Harus diisi"),
-//     }),
+import DatePicker from "../../components/input/DatePicker";
+import SelectUnitKerja from "../../components/dependent/_Select/SelectUnitKerja";
+import SelectJabatan from "../../components/dependent/_Select/SelectJabatan";
+import SelectJenisKompetensi from "../../components/dependent/_Select/SelectJenisKompetensi";
+import SelectRole from "../../components/dependent/_Select/SelectRole";
+import SelectKelompokGaji from "../../components/dependent/_Select/SelectKelompokGaji";
+import SelectPtkp from "../../components/dependent/_Select/SelectPtkp";
 
 const validationSchemaStep1 = yup.object({
-  nama_karyawan: yup.string().required("Harus diisi"),
-  email: yup.string().email("Email tidak valid").required("Harus diisi"),
-  rm: yup.string().required("Harus diisi"),
-  no_manulife: yup.string().required("Harus diisi"),
-  tgl_masuk: yup.string().required("Harus diisi"),
-  unit_kerja: yup.string().required("Harus diisi"),
-  jabatan: yup.string().required("Harus diisi"),
-  kompetensi: yup.string().required("Harus diisi"),
-  role: yup.string().required("Harus diisi"),
+  // nama_karyawan: yup.string().required("Harus diisi"),
+  // email: yup.string().email("Email tidak valid").required("Harus diisi"),
+  // rm: yup.string().required("Harus diisi"),
+  // no_manulife: yup.string().required("Harus diisi"),
+  // tgl_masuk: yup.string().required("Harus diisi"),
+  // unit_kerja: yup.string().required("Harus diisi"),
+  // jabatan: yup.string().required("Harus diisi"),
+  // kompetensi: yup.string(),
+  // role: yup.string().required("Harus diisi"),
 });
 
 const validationSchemaStep2 = yup.object({
-  kelompok_gaji: yup.string().required("Harus diisi"),
-  no_rekening: yup.string().required("Harus diisi"),
-  tunjangan_uang_lembur: yup.string().required("Harus diisi"),
-  tunjangan_fungsional: yup.string().required("Harus diisi"),
-  tunjangan_khusus: yup.string().required("Harus diisi"),
-  tunjangan_lainnya: yup.string().required("Harus diisi"),
-  uang_lembur: yup.string().required("Harus diisi"),
-  uang_makan: yup.string().required("Harus diisi"),
-  PTKP: yup.string().required("Harus diisi"),
+  // kelompok_gaji: yup.string().required("Harus diisi"),
+  // no_rekening: yup.string().required("Harus diisi"),
+  // tunjangan_uang_lembur: yup.string().required("Harus diisi"),
+  // tunjangan_fungsional: yup.string().required("Harus diisi"),
+  // tunjangan_khusus: yup.string().required("Harus diisi"),
+  // tunjangan_lainnya: yup.string().required("Harus diisi"),
+  // uang_lembur: yup.string().required("Harus diisi"),
+  // uang_makan: yup.string().required("Harus diisi"),
+  // PTKP: yup.string().required("Harus diisi"),
 });
 
 const validationSchemaStep3 = yup.object({
@@ -238,11 +223,11 @@ export default function TambahKaryawan() {
             Tanggal Masuk
             <FormRequired />
           </FormLabel>
-          <Input
+          <DatePicker
             name="tgl_masuk"
-            placeholder="date picker"
-            onChange={formik.handleChange}
-            value={formik.values.tgl_masuk}
+            formik={formik}
+            placeholder="Pilih tanggal"
+            dateValue={formik.values.tgl_masuk}
           />
           <FormErrorMessage>{formik.errors.tgl_masuk}</FormErrorMessage>
         </FormControl>
@@ -256,11 +241,10 @@ export default function TambahKaryawan() {
             Unit Kerja
             <FormRequired />
           </FormLabel>
-          <Input
+          <SelectUnitKerja
             name="unit_kerja"
-            placeholder="pilih"
-            onChange={formik.handleChange}
-            value={formik.values.unit_kerja}
+            formik={formik}
+            placeholder="Pilih Unit kerja"
           />
           <FormErrorMessage>{formik.errors.unit_kerja}</FormErrorMessage>
         </FormControl>
@@ -274,11 +258,10 @@ export default function TambahKaryawan() {
             Jabatan
             <FormRequired />
           </FormLabel>
-          <Input
+          <SelectJabatan
             name="jabatan"
-            placeholder="pilih"
-            onChange={formik.handleChange}
-            value={formik.values.jabatan}
+            formik={formik}
+            placeholder="Pilih Jabatan"
           />
           <FormErrorMessage>{formik.errors.jabatan}</FormErrorMessage>
         </FormControl>
@@ -288,15 +271,12 @@ export default function TambahKaryawan() {
           flex={"1 1 300px"}
           isInvalid={!!formik.errors.kompetensi}
         >
-          <FormLabel>
-            Kompetensi Profesi
-            <FormRequired />
-          </FormLabel>
-          <Input
+          <FormLabel>Kompetensi Profesi</FormLabel>
+          <SelectJenisKompetensi
             name="kompetensi"
-            placeholder="pilih"
-            onChange={formik.handleChange}
-            value={formik.values.kompetensi}
+            formik={formik}
+            placeholder="Pilih Kompetensi"
+            noSearch
           />
           <FormHelperText opacity={0.4}>
             Jika karyawan tidak memiliki kompetensi atau profesi pilih tidak ada
@@ -309,12 +289,7 @@ export default function TambahKaryawan() {
             Role
             <FormRequired />
           </FormLabel>
-          <Input
-            name="role"
-            placeholder="pilih"
-            onChange={formik.handleChange}
-            value={formik.values.role}
-          />
+          <SelectRole name="role" formik={formik} placeholder="Pilih Role" />
           <FormErrorMessage>{formik.errors.role}</FormErrorMessage>
         </FormControl>
       </Wrap>
@@ -348,11 +323,10 @@ export default function TambahKaryawan() {
             Kelompok Gaji
             <FormRequired />
           </FormLabel>
-          <Input
+          <SelectKelompokGaji
             name="kelompok_gaji"
-            placeholder="pilih Kurniawan"
-            onChange={formik.handleChange}
-            value={formik.values.kelompok_gaji}
+            formik={formik}
+            placeholder="Pilih Kelompok Gaji"
           />
           <FormErrorMessage>{formik.errors.kelompok_gaji}</FormErrorMessage>
         </FormControl>
@@ -368,7 +342,7 @@ export default function TambahKaryawan() {
           </FormLabel>
           <Input
             name="no_rekening"
-            placeholder="Jolitos@gmail.com"
+            placeholder="09182*****"
             onChange={formik.handleChange}
             value={formik.values.no_rekening}
           />
@@ -522,12 +496,7 @@ export default function TambahKaryawan() {
             PTKP
             <FormRequired />
           </FormLabel>
-          <Input
-            name="PTKP"
-            placeholder="pilih"
-            onChange={formik.handleChange}
-            value={formik.values.PTKP}
-          />
+          <SelectPtkp name="PTKP" formik={formik} placeholder="Pilih PTKP" />
           <FormErrorMessage>{formik.errors.PTKP}</FormErrorMessage>
         </FormControl>
       </Wrap>
@@ -536,7 +505,7 @@ export default function TambahKaryawan() {
 
   const Step2Footer = () => {
     return (
-      <ButtonGroup mt={"auto"} w={"100%"} gap={4}>
+      <ButtonGroup mt={"auto"} w={"100%"}>
         <Button
           w={"100%"}
           className="btn-solid clicky"
@@ -567,12 +536,17 @@ export default function TambahKaryawan() {
             <FormRequired />
           </FormLabel>
           <InputGroup>
-            <Input
-              name="username"
-              placeholder="Username"
-              onChange={formik.handleChange}
-              value={formik.values.username}
-            />
+            <HStack w={"100%"}>
+              <Input
+                name="username"
+                placeholder="Username"
+                onChange={formik.handleChange}
+                value={formik.values.username}
+              />
+              <Button colorScheme="ap" variant={"outline"} className="clicky">
+                Generate
+              </Button>
+            </HStack>
           </InputGroup>
           <FormErrorMessage>{formik.errors.username}</FormErrorMessage>
         </FormControl>
@@ -582,13 +556,18 @@ export default function TambahKaryawan() {
             Password
             <FormRequired />
           </FormLabel>
-          <Input
-            name="password"
-            type="password"
-            placeholder="Password"
-            onChange={formik.handleChange}
-            value={formik.values.password}
-          />
+          <HStack w={"100%"}>
+            <Input
+              name="password"
+              type="password"
+              placeholder="Password"
+              onChange={formik.handleChange}
+              value={formik.values.password}
+            />
+            <Button colorScheme="ap" variant={"outline"} className="clicky">
+              Generate
+            </Button>
+          </HStack>
           <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
         </FormControl>
       </>
@@ -597,7 +576,7 @@ export default function TambahKaryawan() {
 
   const Step3Footer = () => {
     return (
-      <ButtonGroup mt={"auto"} w={"100%"} gap={4}>
+      <ButtonGroup mt={"auto"} w={"100%"}>
         <Button
           w={"100%"}
           className="btn-solid clicky"

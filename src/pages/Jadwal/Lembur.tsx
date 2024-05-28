@@ -58,6 +58,7 @@ export default function Lembur() {
               confirmSelect={confirmSelectStatusPenukaranJadwal}
               noSearch
               modalSize="sm"
+              noReset
               flex={"1 1 160px"}
             />
 

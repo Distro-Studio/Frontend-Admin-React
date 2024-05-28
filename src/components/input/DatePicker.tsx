@@ -179,7 +179,7 @@ export default function DatePicker({
         _focus={{ border: "1px solid var(--p500)", boxShadow: "none" }}
         {...props}
       >
-        <Text opacity={dateValue ? 1 : 0.3}>
+        <Text opacity={dateValue ? 1 : 0.3} fontSize={14}>
           {dateValue
             ? formatDate(dateValue, dateFormatOptions)
             : placeholder || `Pilih tanggal`}

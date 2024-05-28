@@ -55,6 +55,7 @@ export default function SelectStatusHidup({
       ref={selectComponentRef}
       placeholder={placeholder}
       selected={selected}
+      setSelected={setSelected}
       formik={formik}
       name={name}
       noUseBackOnClose={noUseBackOnClose}
@@ -62,6 +63,7 @@ export default function SelectStatusHidup({
       setSearch={setSearch}
       noSearch={noSearch}
       modalSize={modalSize}
+      confirmSelect={confirmSelect}
       {...props}
     >
       {filteredOptions?.map((option, i) => (
@@ -90,6 +92,7 @@ export default function SelectStatusHidup({
             handleOnClose();
           }}
           fontWeight={500}
+          justifyContent={"space-between"}
         >
           {option.label}
         </Button>

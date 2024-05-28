@@ -59,8 +59,6 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
     },
   });
 
-  console.log(formik.values.status_hidup);
-
   return (
     <>
       <Button
@@ -77,6 +75,7 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
+          formik.resetForm();
         }}
         initialFocusRef={initialRef}
         isCentered

@@ -73,7 +73,6 @@ export default function DateRangePicker({
   const [tahun, setTahun] = useState<number>(date.getFullYear());
   const [bulan, setBulan] = useState<number>(date.getMonth() + 1);
   const [selected, setSelected] = useState<any>();
-  console.log(selected);
   const confirmSelect = () => {
     let action = false;
     if (nullable) {
@@ -191,6 +190,7 @@ export default function DateRangePicker({
           opacity={
             (formik && name && formik.values[name]) || dateValue ? 1 : 0.3
           }
+          fontSize={14}
         >
           {(formik && name && formik.values[name]) || dateValue
             ? `${formatDate(

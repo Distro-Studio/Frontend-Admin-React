@@ -11,6 +11,7 @@ interface Props extends ButtonProps {
   confirmSelect?: (newSelectedValue: any) => void;
   noUseBackOnClose?: boolean;
   noSearch?: boolean;
+  noReset?: boolean;
   modalSize?: string;
 }
 
@@ -22,6 +23,7 @@ export default function SelectTipeCuti({
   confirmSelect,
   noUseBackOnClose,
   noSearch,
+  noReset,
   modalSize,
   ...props
 }: Props) {
@@ -63,6 +65,7 @@ export default function SelectTipeCuti({
       ref={selectComponentRef}
       placeholder={placeholder}
       selected={selected}
+      setSelected={setSelected}
       formik={formik}
       name={name}
       noUseBackOnClose={noUseBackOnClose}
@@ -70,6 +73,8 @@ export default function SelectTipeCuti({
       setSearch={setSearch}
       noSearch={noSearch}
       modalSize={modalSize}
+      confirmSelect={confirmSelect}
+      noReset={noReset}
       {...props}
     >
       {filteredOptions?.map((option, i) => (
@@ -98,6 +103,7 @@ export default function SelectTipeCuti({
             handleOnClose();
           }}
           fontWeight={500}
+          justifyContent={"space-between"}
         >
           {option.label}
         </Button>

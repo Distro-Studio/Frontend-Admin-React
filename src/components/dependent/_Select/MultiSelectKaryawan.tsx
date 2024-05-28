@@ -41,31 +41,17 @@ export default function MultiSelectKaryawan({
   const filteredOptions = options?.filter((option: any) =>
     option.label.toLowerCase().includes(search.toLocaleLowerCase())
   );
-  const [selected, setSelected] = useState<Select__Item__Interface[]>([]);
-  const [initialSelectedState, setInitialSelectedState] = useState<
-    Select__Item__Interface[]
-  >([]);
+  const [selected, setSelected] = useState<Select__Item__Interface[]>(
+    initialSelected || []
+  );
 
-  useEffect(() => {
-    if (initialSelected) {
-      const initialSelected2OptionsFormat = initialSelected.map(
-        (item: any) => ({
-          value: item.id,
-          label: item.nama,
-          unit_kerja: item.unit_kerja,
-        })
-      );
-      setSelected(initialSelected2OptionsFormat);
-      setInitialSelectedState(initialSelected2OptionsFormat);
-    }
-  }, [initialSelected]);
   const selectComponentRef = useRef<{ handleOnClose: () => void } | null>(null);
 
   return (
     <Select
       ref={selectComponentRef}
       placeholder={placeholder}
-      initialSelected={initialSelectedState}
+      initialSelected={initialSelected}
       selected={selected}
       setSelected={setSelected}
       formik={formik}
@@ -75,6 +61,7 @@ export default function MultiSelectKaryawan({
       setSearch={setSearch}
       noSearch={noSearch}
       modalSize={modalSize}
+      confirmSelect={confirmSelect}
       isMultiSelect
       confirmMultiSelect={() => {
         const formattedSelected = selected.map((item) => ({

@@ -95,6 +95,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
+          formik.resetForm();
         }}
         initialFocusRef={initialRef}
         isCentered
