@@ -1,7 +1,5 @@
 import {
-  Badge,
-  Button,
-  Center,
+  Avatar,
   HStack,
   Icon,
   Table,
@@ -10,62 +8,63 @@ import {
   Text,
   Th,
   Thead,
-  Tooltip,
   Tr,
-  VStack,
 } from "@chakra-ui/react";
-import {
-  RiArrowDownLine,
-  RiArrowUpLine,
-  RiFileList3Line,
-} from "@remixicon/react";
+import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
-import { dummyRiwayatPenggajian } from "../../../../const/dummy";
-import {
-  Riwayat__Penggajian__Interface,
-  Tabel__Column__Interface,
-} from "../../../../const/interfaces";
-import formatDate from "../../../../lib/formatDate";
-import formatNumber from "../../../../lib/formatNumber";
+import { dummyKaryawanList } from "../../../../const/dummy";
+import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
-import { Link } from "react-router-dom";
 
-interface Props {
-  filterConfig?: any;
-}
-
-export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
+export default function TabelDetailLaporanRiwayatPenggajian() {
   const columns: Tabel__Column__Interface[] = [
     {
-      key: "periode",
-      label: "Periode",
-      dataType: "date",
+      key: "nama",
+      label: "Nama",
+      dataType: "avatarAndName",
     },
     {
-      key: "updated_at",
-      label: "Pembaruan Terakhir",
-      dataType: "date",
+      key: "unit_kerja",
+      label: "Unit Kerja",
+      dataType: "string",
     },
     {
-      key: "total_karyawan_terverifikasi",
-      label: "Karyawan Terverifikasi",
+      key: "kelompok_gaji",
+      label: "Kelompok Gaji",
+      dataType: "string",
+    },
+    {
+      key: "gaji_bruto",
+      label: "Gaji Bruto",
       dataType: "number",
-      preferredTextAlign: "center",
     },
     {
-      key: "laporan",
-      label: "Laporan",
-      dataType: "link",
-      preferredTextAlign: "center",
+      key: "tunjangan_lainnya",
+      label: "Tunjangan Lainnya",
+      dataType: "number",
     },
     {
-      key: "status_penggajian",
-      label: "Status",
-      dataType: "badge",
-      preferredTextAlign: "center",
+      key: "total_premi",
+      label: "Total Premi",
+      dataType: "number",
+    },
+    {
+      key: "pph21",
+      label: "pph21",
+      dataType: "number",
+    },
+    {
+      key: "take_home_pay",
+      label: "Take Home Pay",
+      dataType: "number",
+    },
+    {
+      key: "reward",
+      label: "Reward",
+      dataType: "string",
     },
   ];
 
@@ -75,9 +74,7 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
 
   //TODO get karyawan
 
-  const [data] = useState<Riwayat__Penggajian__Interface[] | null>(
-    dummyRiwayatPenggajian
-  );
+  const [data] = useState<any | null>(dummyKaryawanList);
   const [loading] = useState<boolean>(false);
 
   // Limit Config
@@ -93,7 +90,7 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
   } | null>({ key: columns[0].key, direction: "asc" });
   const sortedData = data && [...data];
   if (sortConfig !== null && sortedData) {
-    sortedData.sort((a, b) => {
+    sortedData.sort((a: any, b: any) => {
       //@ts-ignore
       if (a[sortConfig.key] < b[sortConfig.key]) {
         return sortConfig.direction === "asc" ? -1 : 1;
@@ -127,7 +124,7 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
 
       {!loading && sortedData && (
         <>
-          <TabelContainer>
+          <TabelContainer noTopNavs customReducer={16}>
             <Table minW={"100%"}>
               <Thead>
                 <Tr position={"sticky"} top={0} zIndex={3}>
@@ -206,92 +203,30 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
                       )}
                     </Th>
                   ))}
-
-                  {/* Kolom tetap di sebelah kanan */}
-                  <Th
-                    position={"sticky"}
-                    top={0}
-                    right={0}
-                    borderBottom={"none !important"}
-                    p={0}
-                    bg={bodyColor}
-                    zIndex={2}
-                  >
-                    <Center
-                      px={4}
-                      py={3}
-                      zIndex={99}
-                      borderLeft={"1px solid var(--divider3)"}
-                      borderBottom={"1px solid var(--divider3)"}
-                      h={"52px"}
-                    >
-                      <Text>Aksi</Text>
-                    </Center>
-                  </Th>
                 </Tr>
               </Thead>
 
               <Tbody>
-                {sortedData.map((row, i) => (
+                {sortedData.map((row: any, i: number) => (
                   <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
-                    <Td whiteSpace={"nowrap"}>
-                      {formatDate(row.periode, {
-                        month: "short",
-                        year: "numeric",
-                      })}
+                    <Td h={"72px"} whiteSpace={"nowrap"}>
+                      <HStack>
+                        <Avatar
+                          size={"sm"}
+                          name={row.nama}
+                          src={row.foto_profil}
+                        />
+                        <Text>{row.nama}</Text>
+                      </HStack>
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{formatDate(row.updated_at)}</Td>
-                    <Td whiteSpace={"nowrap"} textAlign={"center"}>
-                      {formatNumber(row.total_karyawan_terverifikasi)}
-                    </Td>
-                    <Td whiteSpace={"nowrap"}>
-                      <Button
-                        leftIcon={<Icon as={RiFileList3Line} />}
-                        colorScheme="ap"
-                        className="clicky"
-                        variant={"ghost"}
-                        as={Link}
-                        to={`/keuangan/riwayat-penggajian/laporan/${row.laporan.id}`}
-                      >
-                        Lihat
-                      </Button>
-                    </Td>
-                    <Td whiteSpace={"nowrap"}>
-                      <Badge w={"100%"} textAlign={"center"} colorScheme="ap">
-                        {row.status}
-                      </Badge>
-                    </Td>
-
-                    {/* Kolom tetap di sebelah kanan */}
-                    <Td
-                      position={"sticky"}
-                      top={0}
-                      right={0}
-                      borderBottom={"none !important"}
-                      p={0}
-                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                      zIndex={1}
-                      w={"150px"}
-                    >
-                      <VStack
-                        borderLeft={"1px solid var(--divider3)"}
-                        w={"150px"}
-                        h={"72px"}
-                        px={4}
-                        align={"stretch"}
-                        justify={"center"}
-                      >
-                        <Tooltip label="Publikasi Payslip" openDelay={500}>
-                          <Button
-                            colorScheme="ap"
-                            variant={"outline"}
-                            className="clicky"
-                          >
-                            Publikasi
-                          </Button>
-                        </Tooltip>
-                      </VStack>
-                    </Td>
+                    <Td whiteSpace={"nowrap"}>{row.unit_kerja}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.kelompok_gaji}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.gaji_bruto}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.tunjangan_lainnya}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.total_premi}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.pph21}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.take_home_pay}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.reward}</Td>
                   </Tr>
                 ))}
               </Tbody>

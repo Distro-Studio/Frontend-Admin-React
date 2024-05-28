@@ -318,6 +318,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                         />
                       </Center>
                     </Td>
+                    
                     <Td whiteSpace={"nowrap"}>
                       <HStack>
                         <Avatar

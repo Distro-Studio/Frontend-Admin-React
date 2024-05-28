@@ -53,6 +53,7 @@ export default function PeriodeTahunRiwayatPenggajian({
           backOnClose(onClose);
         }}
         initialFocusRef={initialRef}
+        isCentered
       >
         <ModalOverlay />
         <ModalContent>

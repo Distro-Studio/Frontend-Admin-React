@@ -43,6 +43,7 @@ import RiwayatPenggajian from "./pages/Keuangan/RiwayatPenggajian";
 import Thr from "./pages/Keuangan/Thr";
 import perusahaanTopNavs from "./const/perusahaanTopNavs";
 import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi";
+import DetailLaporanRiwayatPenggajian from "./pages/Keuangan/DetailLaporanRiwayatPenggajian";
 
 // github pekok
 
@@ -257,6 +258,19 @@ export const App = () => (
           }
         />
         <Route
+          path="/keuangan/riwayat-penggajian/laporan/:laporan_id"
+          element={
+            <NavContainer
+              active={4}
+              title="Riwayat Penggajian"
+              left={"back"}
+              backLink="/keuangan/riwayat-penggajian"
+            >
+              <DetailLaporanRiwayatPenggajian />
+            </NavContainer>
+          }
+        />
+        <Route
           path="/keuangan/thr"
           element={
             <NavContainer
@@ -445,7 +459,7 @@ export const App = () => (
           element={
             <NavContainer
               active={6}
-              title="Pengaturan - Hari Libur"
+              title="Pengaturan - Hari Libur Karyawan Non-Shift"
               topNavsData={pengaturanTopNavs}
               topNavActive={3}
             >

@@ -15,7 +15,6 @@ import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
-import useScreenWidth from "../../lib/useScreenWidth";
 
 export default function DetailKeluargaKaryawan() {
   const dummy = {
@@ -70,7 +69,6 @@ export default function DetailKeluargaKaryawan() {
   const [loading] = useState<boolean>(false);
 
   // SX
-  const sw = useScreenWidth();
 
   return (
     <CWrapper>
@@ -91,10 +89,7 @@ export default function DetailKeluargaKaryawan() {
             >
               <Avatar size={"lg"} src={data.foto_profil} name={data.nama} />
 
-              <Box
-                borderRight={sw > 403 ? "1px solid var(--divider3)" : "none"}
-                pr={responsiveSpacing}
-              >
+              <Box pr={responsiveSpacing}>
                 <Text fontSize={14} opacity={0.6}>
                   Nama Karyawan
                 </Text>

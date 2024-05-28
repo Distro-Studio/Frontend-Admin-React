@@ -6,12 +6,14 @@ interface Props extends BoxProps {
   children: any;
   noFooterConfig?: boolean;
   noTopNavs?: boolean;
+  customReducer?: number;
 }
 
 export default function TabelContainer({
   children,
   noFooterConfig,
   noTopNavs,
+  customReducer,
   ...props
 }: Props) {
   const sh = useScreenHeight();
@@ -20,6 +22,7 @@ export default function TabelContainer({
   const baseReducer = 88 + spacings * 4;
   const noFooterConfigReducer = noFooterConfig ? 0 : spacings + 40;
   const noTopNavsReducer = noTopNavs ? 0 : spacings + 32;
+  const customReducerValue = customReducer ? customReducer : 0;
 
   return (
     <Box
@@ -32,7 +35,7 @@ export default function TabelContainer({
       //   null,
       //   `calc(100vh - 304px - ${tabelConfigH}px)`,
       // ]}
-      maxH={`calc(100vh - 40px - ${baseReducer}px - ${noFooterConfigReducer}px - ${noTopNavsReducer}px)`}
+      maxH={`calc(100vh - 40px - ${customReducerValue}px - ${baseReducer}px - ${noFooterConfigReducer}px - ${noTopNavsReducer}px)`}
       border={"1px solid var(--divider3)"}
       borderRadius={8}
       {...props}

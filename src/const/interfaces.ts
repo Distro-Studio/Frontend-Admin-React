@@ -178,7 +178,9 @@ export interface Riwayat__Penggajian__Interface {
   periode: string;
   updated_at: string;
   total_karyawan_terverifikasi: number;
-  laporan: string;
+  laporan: {
+    id: number;
+  };
   status: string;
 }
 

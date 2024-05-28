@@ -2319,7 +2319,9 @@ const dummyRiwayatPenggajian = [
     periode: "2023-11-26T11:40:02.000000Z",
     updated_at: "2023-11-26T11:40:02.000000Z",
     total_karyawan_terverifikasi: 982,
-    laporan: "mbuh",
+    laporan: {
+      id: 1,
+    },
     status: "Siap Dipublikasi",
   },
   {
@@ -2327,7 +2329,9 @@ const dummyRiwayatPenggajian = [
     periode: "2023-11-27T11:40:02.000000Z",
     updated_at: "2023-11-27T11:40:02.000000Z",
     total_karyawan_terverifikasi: 945,
-    laporan: "gatau",
+    laporan: {
+      id: 1,
+    },
     status: "Sukses",
   },
   {
@@ -2335,7 +2339,9 @@ const dummyRiwayatPenggajian = [
     periode: "2023-11-28T11:40:02.000000Z",
     updated_at: "2023-11-28T11:40:02.000000Z",
     total_karyawan_terverifikasi: 965,
-    laporan: "pengen",
+    laporan: {
+      id: 1,
+    },
     status: "Belum sukses",
   },
   {
@@ -2343,7 +2349,9 @@ const dummyRiwayatPenggajian = [
     periode: "2023-11-29T11:40:02.000000Z",
     updated_at: "2023-11-29T11:40:02.000000Z",
     total_karyawan_terverifikasi: 912,
-    laporan: "beli",
+    laporan: {
+      id: 1,
+    },
     status: "SUkses",
   },
   {
@@ -2351,7 +2359,9 @@ const dummyRiwayatPenggajian = [
     periode: "2023-11-30T11:40:02.000000Z",
     updated_at: "2023-11-30T11:40:02.000000Z",
     total_karyawan_terverifikasi: 951,
-    laporan: "truk",
+    laporan: {
+      id: 1,
+    },
     status: "Belum Sukses",
   },
   {
@@ -2359,7 +2369,9 @@ const dummyRiwayatPenggajian = [
     periode: "2023-12-01T11:40:02.000000Z",
     updated_at: "2023-12-01T11:40:02.000000Z",
     total_karyawan_terverifikasi: 654,
-    laporan: "haduh",
+    laporan: {
+      id: 1,
+    },
     status: "Sukses",
   },
   {
@@ -2367,7 +2379,9 @@ const dummyRiwayatPenggajian = [
     periode: "2023-12-02T11:40:02.000000Z",
     updated_at: "2023-12-02T11:40:02.000000Z",
     total_karyawan_terverifikasi: 652,
-    laporan: "duh",
+    laporan: {
+      id: 1,
+    },
     status: "Belum",
   },
   {
@@ -2375,7 +2389,9 @@ const dummyRiwayatPenggajian = [
     periode: "2023-12-04T11:40:02.000000Z",
     updated_at: "2023-12-04T11:40:02.000000Z",
     total_karyawan_terverifikasi: 515,
-    laporan: "gaktau",
+    laporan: {
+      id: 1,
+    },
     status: "Belum",
   },
   {
@@ -2383,7 +2399,9 @@ const dummyRiwayatPenggajian = [
     periode: "2023-12-05T11:40:02.000000Z",
     updated_at: "2023-12-05T11:40:02.000000Z",
     total_karyawan_terverifikasi: 982,
-    laporan: "mbuh",
+    laporan: {
+      id: 1,
+    },
     status: "Siap Dipublikasi",
   },
   {
@@ -2391,7 +2409,9 @@ const dummyRiwayatPenggajian = [
     periode: "2023-11-26T11:40:02.000000Z",
     updated_at: "2023-11-26T11:40:02.000000Z",
     total_karyawan_terverifikasi: 982,
-    laporan: "mbuh",
+    laporan: {
+      id: 1,
+    },
     status: "Siap Dipublikasi",
   },
 ];
