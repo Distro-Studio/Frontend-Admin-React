@@ -14,6 +14,7 @@ import {
   ModalHeader,
   ModalOverlay,
   SimpleGrid,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
@@ -80,7 +81,6 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
         }}
         initialFocusRef={initialRef}
         isCentered
-        size={"lg"}
       >
         <ModalOverlay />
         <ModalContent>
@@ -158,27 +158,20 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
                 </FormErrorMessage>
               </FormControl>
 
-              <FormControl
-                mb={4}
-                isInvalid={!!formik.errors.beri_tahu_manager_direktur}
-              >
-                <Checkbox
-                  colorScheme="ap"
-                  isInvalid={!!formik.errors.beri_tahu_manager_direktur}
-                >
-                  Beritahu Manajer Karyawan dan Direktur Melalui Email
+              <FormControl mb={4}>
+                <Checkbox colorScheme="ap" gap={1}>
+                  <Text fontSize={14}>
+                    Beritahu Manajer Karyawan dan Direktur Melalui Email
+                  </Text>
                 </Checkbox>
                 <FormErrorMessage>
                   {formik.errors.beri_tahu_manager_direktur as string}
                 </FormErrorMessage>
               </FormControl>
 
-              <FormControl isInvalid={!!formik.errors.beri_tahu_karyawan}>
-                <Checkbox
-                  colorScheme="ap"
-                  isInvalid={!!formik.errors.beri_tahu_karyawan}
-                >
-                  Beritahu Karyawan Melalui Email
+              <FormControl>
+                <Checkbox colorScheme="ap" gap={1} className="checkbox">
+                  <Text fontSize={14}>Beritahu Karyawan Melalui Email</Text>
                 </Checkbox>
                 <FormErrorMessage>
                   {formik.errors.beri_tahu_karyawan as string}
