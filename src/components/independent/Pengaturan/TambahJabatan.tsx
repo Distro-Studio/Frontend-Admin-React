@@ -33,12 +33,6 @@ export default function TambahJabatan({ ...props }: Props) {
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
 
-  // id;
-  // nama_kelompok;
-  // besaran_gaji;
-  // created_at;
-  // updated_at;
-
   const formik = useFormik({
     validateOnChange: false,
     initialValues: { nama_jabatan: "", tunjangan: "" as any },
@@ -66,6 +60,7 @@ export default function TambahJabatan({ ...props }: Props) {
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
+          formik.resetForm();
         }}
         initialFocusRef={initialRef}
         isCentered

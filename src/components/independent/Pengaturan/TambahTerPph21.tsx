@@ -28,6 +28,7 @@ import parseNumber from "../../../lib/parseNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import SelectPtkp from "../../dependent/_Select/SelectPtkp";
 import FormRequired from "../../form/FormRequired";
+import SelectKategoriTer from "../../dependent/_Select/SelectKategoriTer";
 
 interface Props extends ButtonProps {}
 
@@ -72,6 +73,7 @@ export default function TambahTerPph21({ ...props }: Props) {
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
+          formik.resetForm();
         }}
         initialFocusRef={initialRef}
         isCentered
@@ -90,11 +92,12 @@ export default function TambahTerPph21({ ...props }: Props) {
                   Kategori TER
                   <FormRequired />
                 </FormLabel>
-                <Input
+                <SelectKategoriTer
                   name="kategori_ter_id"
-                  placeholder="pilih"
-                  onChange={formik.handleChange}
-                  value={formik.values.kategori_ter_id}
+                  formik={formik}
+                  placeholder="Pilih Kategori TER"
+                  noUseBackOnClose
+                  noSearch
                 />
                 <FormErrorMessage>
                   {formik.errors.kategori_ter_id as string}

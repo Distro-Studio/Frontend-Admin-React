@@ -32,9 +32,16 @@ export default function RunThr({ ...props }: Props) {
 
   const formik = useFormik({
     validateOnChange: false,
-    initialValues: { karyawan_list: [], tanggal: "" },
+    initialValues: { semua_karyawan: false, karyawan_list: [], tanggal: "" },
     validationSchema: yup.object().shape({
-      karyawan_list: yup.array().min(1, "Harus diisi").required("Harus diisi"),
+      semua_karyawan: yup.boolean(),
+      karyawan_list: yup
+        .array()
+        .when("semua_karyawan", (semua_karyawan, schema) => {
+          return semua_karyawan
+            ? schema
+            : schema.min(1, "Harus diisi").required("Harus diisi");
+        }),
       tanggal: yup.string().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
@@ -57,6 +64,7 @@ export default function RunThr({ ...props }: Props) {
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
+          formik.resetForm();
         }}
         initialFocusRef={initialRef}
         isCentered
@@ -66,7 +74,13 @@ export default function RunThr({ ...props }: Props) {
           <ModalCloseButton />
           <ModalHeader ref={initialRef}>Run THR</ModalHeader>
           <ModalBody>
-            <Checkbox colorScheme="ap" mb={4}>
+            <Checkbox
+              name="semua_karyawan"
+              onChange={formik.handleChange}
+              isChecked={formik.values.semua_karyawan}
+              colorScheme="ap"
+              mb={4}
+            >
               Semua Karyawan
             </Checkbox>
 
@@ -82,6 +96,7 @@ export default function RunThr({ ...props }: Props) {
                   placeholder="Pilih Multi Karyawan"
                   initialSelected={formik.values.karyawan_list}
                   noUseBackOnClose
+                  isDisabled={formik.values.semua_karyawan}
                 />
                 <FormErrorMessage>
                   {formik.errors.karyawan_list as string}

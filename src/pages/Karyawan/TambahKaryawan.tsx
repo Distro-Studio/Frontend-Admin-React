@@ -24,20 +24,19 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import SelectJabatan from "../../components/dependent/_Select/SelectJabatan";
+import SelectKelompokGaji from "../../components/dependent/_Select/SelectKelompokGaji";
+import SelectKompetensi from "../../components/dependent/_Select/SelectKompetensi";
+import SelectPtkp from "../../components/dependent/_Select/SelectPtkp";
+import SelectRole from "../../components/dependent/_Select/SelectRole";
+import SelectUnitKerja from "../../components/dependent/_Select/SelectUnitKerja";
 import FormRequired from "../../components/form/FormRequired";
+import DatePicker from "../../components/input/DatePicker";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useScreenWidth from "../../lib/useScreenWidth";
-import DatePicker from "../../components/input/DatePicker";
-import SelectUnitKerja from "../../components/dependent/_Select/SelectUnitKerja";
-import SelectJabatan from "../../components/dependent/_Select/SelectJabatan";
-import SelectJenisKompetensi from "../../components/dependent/_Select/SelectJenisKompetensi";
-import SelectRole from "../../components/dependent/_Select/SelectRole";
-import SelectKelompokGaji from "../../components/dependent/_Select/SelectKelompokGaji";
-import SelectPtkp from "../../components/dependent/_Select/SelectPtkp";
-
 const validationSchemaStep1 = yup.object({
   // nama_karyawan: yup.string().required("Harus diisi"),
   // email: yup.string().email("Email tidak valid").required("Harus diisi"),
@@ -272,11 +271,10 @@ export default function TambahKaryawan() {
           isInvalid={!!formik.errors.kompetensi}
         >
           <FormLabel>Kompetensi Profesi</FormLabel>
-          <SelectJenisKompetensi
+          <SelectKompetensi
             name="kompetensi"
             formik={formik}
             placeholder="Pilih Kompetensi"
-            noSearch
           />
           <FormHelperText opacity={0.4}>
             Jika karyawan tidak memiliki kompetensi atau profesi pilih tidak ada
