@@ -132,10 +132,11 @@ export const globalTheme = extendTheme({
           color: props.colorMode === "dark" ? "wt" : "bt",
           boxShadow: "none",
           borderRadius: "16px",
+          border: "1px solid var(--divider)",
           mx: "16px",
         },
         overlay: {
-          // bg: "#5b5b5b50",
+          bg: "#00000011",
           backdropFilter: "blur(5px)",
         },
         header: {

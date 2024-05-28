@@ -2416,6 +2416,45 @@ const dummyRiwayatPenggajian = [
   },
 ];
 
+const dummyPresensi = [
+  {
+    id: 1,
+    nama: "Josepin Lee",
+    foto_profil: "https://bit.ly/dan-abramov",
+    unit_kerja: "Dokter Hewan",
+    shift: "Pagi 2",
+    jam_masuk: new Date().setHours(9),
+    jam_keluar: new Date().setHours(17),
+  },
+  {
+    id: 2,
+    nama: "Lee Cung Wey",
+    foto_profil: "https://bit.ly/dan-abramov",
+    unit_kerja: "Dokter Hewan",
+    shift: "Pagi 1",
+    jam_masuk: new Date().setHours(7),
+    jam_keluar: new Date().setHours(15),
+  },
+  {
+    id: 3,
+    nama: "Lala Bee",
+    foto_profil: "https://bit.ly/dan-abramov",
+    unit_kerja: "Dokter Bedah",
+    shift: "Pagi 2",
+    jam_masuk: new Date().setHours(9),
+    jam_keluar: new Date().setHours(17),
+  },
+  {
+    id: 4,
+    nama: "Jolitoz",
+    foto_profil: "https://bit.ly/dan-abramov",
+    unit_kerja: "Security",
+    shift: "Malam 1",
+    jam_masuk: new Date().setHours(19),
+    jam_keluar: new Date().setHours(2),
+  },
+];
+
 export {
   dummyTabelJadwalData,
   dummyKaryawanList,
@@ -2428,4 +2467,5 @@ export {
   dummyHariLibur,
   dummyCuti,
   dummyRiwayatPenggajian,
+  dummyPresensi,
 };

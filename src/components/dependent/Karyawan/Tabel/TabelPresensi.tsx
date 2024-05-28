@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Badge,
   Center,
   Checkbox,
   HStack,
@@ -17,18 +16,10 @@ import {
 } from "@chakra-ui/react";
 import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
 import { useState } from "react";
-import {
-  statusKaryawanColorScheme,
-  useBodyColor,
-  useContentBgColor,
-} from "../../../../const/colors";
-import { dummyKaryawanList } from "../../../../const/dummy";
-import {
-  Karyawan__Interface,
-  Tabel__Column__Interface,
-} from "../../../../const/interfaces";
+import { useBodyColor, useContentBgColor } from "../../../../const/colors";
+import { dummyPresensi } from "../../../../const/dummy";
+import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import { iconSize } from "../../../../const/sizes";
-import formatDate from "../../../../lib/formatDate";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
@@ -50,34 +41,19 @@ export default function TabelPresensi({ filterConfig }: Props) {
       dataType: "string",
     },
     {
-      key: "no_rm",
-      label: "RM",
-      dataType: "string",
-    },
-    {
-      key: "nik_ktp",
-      label: "NIK",
-      dataType: "string",
-    },
-    {
       key: "unit_kerja",
       label: "Unit Kerja",
       dataType: "string",
     },
     {
-      key: "status_karyawan",
-      label: "Status Karyawan",
-      dataType: "badge",
+      key: "jam_masuk",
+      label: "Presensi Masuk",
+      dataType: "time",
     },
     {
-      key: "tempat_lahir",
-      label: "Tempat Lahir",
-      dataType: "string",
-    },
-    {
-      key: "tgl_lahir",
-      label: "Tanggal Lahir",
-      dataType: "date",
+      key: "jam_keluar",
+      label: "Presensi Keluar",
+      dataType: "time",
     },
   ];
 
@@ -87,7 +63,7 @@ export default function TabelPresensi({ filterConfig }: Props) {
 
   //TODO get karyawan
 
-  const [data] = useState<Karyawan__Interface[] | null>(dummyKaryawanList);
+  const [data] = useState<any[] | null>(dummyPresensi);
   const [loading] = useState<boolean>(false);
 
   // Limit Config
@@ -328,26 +304,11 @@ export default function TabelPresensi({ filterConfig }: Props) {
                         <Text>{row.nama}</Text>
                       </HStack>
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{row.nik}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.no_rm}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.nik}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.shift}</Td>
                     <Td whiteSpace={"nowrap"}>{row.unit_kerja}</Td>
-                    <Td whiteSpace={"nowrap"}>
-                      <Badge
-                        w={"100%"}
-                        textAlign={"center"}
-                        colorScheme={
-                          //@ts-ignore
-                          statusKaryawanColorScheme[row.status_karyawan]
-                        }
-                      >
-                        {row.status_karyawan}
-                      </Badge>
-                    </Td>
-                    <Td whiteSpace={"nowrap"}>{row.tempat_lahir}</Td>
-                    <Td whiteSpace={"nowrap"}>
-                      {formatDate(row.tgl_lahir as string)}
-                    </Td>
+                    <Td whiteSpace={"nowrap"}>{row.jam_masuk}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.jam_keluar}</Td>
+
                     {/* Kolom tetap di sebelah kanan */}
                     <Td
                       position={"sticky"}
