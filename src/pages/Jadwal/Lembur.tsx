@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import SelectKompensasi from "../../components/dependent/Karyawan/SelectKompensasi";
+import SelectKompensasi from "../../components/dependent/_Select/SelectKompensasi";
 import TabelLembur from "../../components/dependent/Karyawan/Tabel/TabelLembur";
 import AjukanLemburModal from "../../components/independent/Karyawan/AjukanLemburModal";
 import CContainer from "../../components/wrapper/CContainer";

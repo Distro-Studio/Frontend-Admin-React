@@ -23,7 +23,7 @@ import { iconSize } from "../../../../const/sizes";
 import backOnClose from "../../../../lib/backOnClose";
 import useBackOnClose from "../../../../lib/useBackOnClose";
 import FormRequired from "../../../form/FormRequired";
-import SelectStatusHidup from "../SelectStatusHidup";
+import SelectStatusHidup from "../../_Select/SelectStatusHidup";
 
 interface Props {
   data: any;

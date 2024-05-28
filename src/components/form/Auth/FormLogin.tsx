@@ -9,8 +9,8 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-import PasswordInput from "../input/PasswordInput";
-import FormRequired from "./FormRequired";
+import PasswordInput from "../../input/PasswordInput";
+import FormRequired from "../FormRequired";
 
 export default function FormLogin() {
   const [loading, setLoading] = useState<boolean>(false);

@@ -26,7 +26,7 @@ import backOnClose from "../../../lib/backOnClose";
 import formatNumber from "../../../lib/formatNumber";
 import parseNumber from "../../../lib/parseNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import SelectPtkp from "../../dependent/Pengaturan/SelectPtkp";
+import SelectPtkp from "../../dependent/_Select/SelectPtkp";
 import FormRequired from "../../form/FormRequired";
 
 interface Props extends ButtonProps {}

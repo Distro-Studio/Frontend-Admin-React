@@ -29,7 +29,7 @@ import backOnClose from "../../../lib/backOnClose";
 import formatDate from "../../../lib/formatDate";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import FormRequired from "../../form/FormRequired";
-import SelectShift from "../Jadwal/SelectShift";
+import SelectShift from "../_Select/SelectShift";
 
 interface Props {
   data: any;

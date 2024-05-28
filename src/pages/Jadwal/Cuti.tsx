@@ -8,8 +8,8 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import SelectStatusCuti from "../../components/dependent/Karyawan/SelectStatusCuti";
-import SelectTipeCuti from "../../components/dependent/Karyawan/SelectTipeCuti";
+import SelectStatusCuti from "../../components/dependent/_Select/SelectStatusCuti";
+import SelectTipeCuti from "../../components/dependent/_Select/SelectTipeCuti";
 import TabelCuti from "../../components/dependent/Karyawan/Tabel/TabelCuti";
 import AjukanCutiModal from "../../components/independent/Karyawan/AjukanCutiModal";
 import CContainer from "../../components/wrapper/CContainer";

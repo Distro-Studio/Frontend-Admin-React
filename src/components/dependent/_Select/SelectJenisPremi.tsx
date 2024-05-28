@@ -83,6 +83,7 @@ export default function SelectJenisPremi({
             setSelected(option);
             if (formik && name) {
               formik.setFieldValue(name, option.value);
+              formik.setFieldValue("besaran_premi", "");
             }
             if (confirmSelect) {
               confirmSelect(option.value);

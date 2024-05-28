@@ -22,8 +22,8 @@ import { iconSize } from "../../../../const/sizes";
 import backOnClose from "../../../../lib/backOnClose";
 import formatNumber from "../../../../lib/formatNumber";
 import useBackOnClose from "../../../../lib/useBackOnClose";
-import FilterTglMasuk from "../../FilterOptions/FilterTglMasuk";
-import FilterUnitKerja from "../../FilterOptions/FilterUnitKerja";
+import FilterTglMasuk from "../../_FilterOptions/FilterTglMasuk";
+import FilterUnitKerja from "../../_FilterOptions/FilterUnitKerja";
 
 interface Props {
   filterConfig: any;

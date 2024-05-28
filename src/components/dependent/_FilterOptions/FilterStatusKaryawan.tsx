@@ -59,12 +59,10 @@ export default function FilterStatusKaryawan({
               cursor={"pointer"}
               onClick={() => {
                 setFilterConfig((ps: any) => {
-                  // Mengecek apakah data sudah ada dalam status_karyawan
                   const isDataExist =
                     ps.status_karyawan &&
                     ps.status_karyawan.some((unit: any) => unit.id === data.id);
 
-                  // Jika data sudah ada, maka hapus data dari status_karyawan
                   if (isDataExist) {
                     return {
                       ...ps,
@@ -73,7 +71,6 @@ export default function FilterStatusKaryawan({
                       ),
                     };
                   } else {
-                    // Jika data belum ada, maka tambahkan data ke status_karyawan
                     return {
                       ...ps,
                       status_karyawan: ps.status_karyawan

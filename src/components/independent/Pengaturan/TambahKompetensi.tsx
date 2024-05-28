@@ -25,7 +25,7 @@ import formatNumber from "../../../lib/formatNumber";
 import parseNumber from "../../../lib/parseNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import FormRequired from "../../form/FormRequired";
-import SelectJenisKompetensi from "../../dependent/Pengaturan/SelectJenisKompetensi";
+import SelectJenisKompetensi from "../../dependent/_Select/SelectJenisKompetensi";
 
 interface Props extends ButtonProps {}
 

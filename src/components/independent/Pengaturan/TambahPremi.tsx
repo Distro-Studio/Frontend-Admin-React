@@ -25,7 +25,7 @@ import backOnClose from "../../../lib/backOnClose";
 import formatNumber from "../../../lib/formatNumber";
 import parseNumber from "../../../lib/parseNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import SelectJenisPremi from "../../dependent/Pengaturan/SelectJenisPremi";
+import SelectJenisPremi from "../../dependent/_Select/SelectJenisPremi";
 import FormRequired from "../../form/FormRequired";
 
 interface Props extends ButtonProps {}
@@ -87,7 +87,7 @@ export default function TambahPremi({ ...props }: Props) {
                 </FormLabel>
                 <Input
                   name="nama_premi"
-                  placeholder="Human Resource"
+                  placeholder="Tapera"
                   onChange={formik.handleChange}
                   value={formik.values.nama_premi}
                 />
@@ -133,13 +133,23 @@ export default function TambahPremi({ ...props }: Props) {
                     name="besaran_premi"
                     isDisabled={formik.values.jenis_premi === ""}
                     placeholder={
-                      formik.values.jenis_premi === 0 ? "80" : "4.000.000"
+                      formik.values.jenis_premi === 0
+                        ? "80"
+                        : formik.values.jenis_premi === 1
+                        ? "4.000.000"
+                        : "Pilih jenis premi dahulu"
                     }
                     onChange={(e) => {
-                      formik.setFieldValue(
-                        "besaran_premi",
-                        parseNumber(e.target.value)
-                      );
+                      const numValue = parseNumber(e.target.value);
+                      if (formik.values.jenis_premi === 0) {
+                        if (numValue === null) {
+                          formik.setFieldValue("besaran_premi", "");
+                        } else if (numValue <= 100) {
+                          formik.setFieldValue("besaran_premi", numValue);
+                        }
+                      } else {
+                        formik.setFieldValue("besaran_premi", numValue);
+                      }
                     }}
                     value={formatNumber(formik.values.besaran_premi)}
                   />

@@ -22,7 +22,7 @@ import { iconSize } from "../../../const/sizes";
 import backOnClose from "../../../lib/backOnClose";
 import formatNumber from "../../../lib/formatNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import FilterStatusKaryawan from "../FilterOptions/FilterStatusKaryawan";
+import FilterStatusKaryawan from "../_FilterOptions/FilterStatusKaryawan";
 
 interface Props {
   defaultFilterConfig: any;
@@ -105,7 +105,6 @@ export default function FilterTabelJadwal({
         initialFocusRef={initialRef}
         isCentered
         scrollBehavior="inside"
-        variant={""}
       >
         <ModalOverlay />
 

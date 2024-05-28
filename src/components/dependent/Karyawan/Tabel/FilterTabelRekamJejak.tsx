@@ -22,9 +22,9 @@ import { iconSize } from "../../../../const/sizes";
 import backOnClose from "../../../../lib/backOnClose";
 import formatNumber from "../../../../lib/formatNumber";
 import useBackOnClose from "../../../../lib/useBackOnClose";
-import FilterMasaKerja from "../../FilterOptions/FilterMasaKerja";
-import FilterStatusKaryawan from "../../FilterOptions/FilterStatusKaryawan";
-import FilterUnitKerja from "../../FilterOptions/FilterUnitKerja";
+import FilterMasaKerja from "../../_FilterOptions/FilterMasaKerja";
+import FilterStatusKaryawan from "../../_FilterOptions/FilterStatusKaryawan";
+import FilterUnitKerja from "../../_FilterOptions/FilterUnitKerja";
 
 interface Props {
   defaultFilterConfig: any;

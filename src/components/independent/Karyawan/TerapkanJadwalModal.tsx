@@ -26,7 +26,7 @@ import backOnClose from "../../../lib/backOnClose";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import FormRequired from "../../form/FormRequired";
 import DatePicker from "../../input/DatePicker";
-import SelectShift from "../../dependent/Jadwal/SelectShift";
+import SelectShift from "../../dependent/_Select/SelectShift";
 
 interface Props extends ButtonProps {}
 

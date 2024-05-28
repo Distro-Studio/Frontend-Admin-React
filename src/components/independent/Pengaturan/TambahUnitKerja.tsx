@@ -19,7 +19,7 @@ import { useRef } from "react";
 import * as yup from "yup";
 import backOnClose from "../../../lib/backOnClose";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import SelectJenisKaryawan from "../../dependent/Pengaturan/SelectJenisKaryawan";
+import SelectJenisKaryawan from "../../dependent/_Select/SelectJenisKaryawan";
 import FormRequired from "../../form/FormRequired";
 
 interface Props extends ButtonProps {}

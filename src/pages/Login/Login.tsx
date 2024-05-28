@@ -1,5 +1,5 @@
 import { Box, Image, Stack, Text, VStack } from "@chakra-ui/react";
-import FormLogin from "../../components/form/FormLogin";
+import FormLogin from "../../components/form/Auth/FormLogin";
 import CContainer from "../../components/wrapper/CContainer";
 import Container from "../../components/wrapper/Container";
 
