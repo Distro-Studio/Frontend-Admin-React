@@ -86,13 +86,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                   formik={formik}
                   name="karyawan_list"
                   placeholder="Pilih Multi Karyawan"
-                  initialSelected={formik.values.karyawan_list.map(
-                    (item: any) => ({
-                      value: item.id,
-                      label: item.nama,
-                      unit_kerja: item.unit_kerja,
-                    })
-                  )}
+                  initialSelected={formik.values.karyawan_list}
                   noUseBackOnClose
                 />
                 <FormErrorMessage>
@@ -154,14 +148,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                   formik={formik}
                   name="shift"
                   placeholder="Pilih shift"
-                  initialSelected={
-                    formik.values.shift
-                      ? {
-                          value: formik.values.shift.id,
-                          label: formik.values.shift.label,
-                        }
-                      : undefined
-                  }
+                  initialSelected={formik.values.shift}
                   noUseBackOnClose
                 />
                 <FormErrorMessage>

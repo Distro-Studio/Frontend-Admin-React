@@ -31,7 +31,7 @@ export default function TambahUnitKerja({ ...props }: Props) {
 
   const formik = useFormik({
     validateOnChange: false,
-    initialValues: { nama_unit: "", jenis_karyawan: null },
+    initialValues: { nama_unit: "", jenis_karyawan: "" as any },
     validationSchema: yup.object().shape({
       nama_unit: yup.string().required("Harus diisi"),
       jenis_karyawan: yup.number().required("Harus diisi"),
@@ -97,6 +97,7 @@ export default function TambahUnitKerja({ ...props }: Props) {
                   name="jenis_karyawan"
                   formik={formik}
                   placeholder="Pilih Jenis Karyawan"
+                  initialSelected={formik.values.jenis_karyawan}
                   noUseBackOnClose
                   noSearch
                 />

@@ -486,7 +486,7 @@ export const App = () => (
           element={
             <NavContainer
               active={6}
-              title="Pengaturan - Cuti"
+              title="Pengaturan - Tipe Cuti"
               topNavsData={pengaturanTopNavs}
               topNavActive={3}
             >

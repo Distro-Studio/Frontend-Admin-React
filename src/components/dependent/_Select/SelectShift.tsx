@@ -52,7 +52,6 @@ export default function SelectShift({
       ref={selectComponentRef}
       placeholder={placeholder}
       selected={selected}
-      initialSelected={initialSelected}
       setSelected={setSelected}
       formik={formik}
       name={name}
@@ -62,6 +61,7 @@ export default function SelectShift({
       noSearch={noSearch}
       modalSize={modalSize}
       confirmSelect={confirmSelect}
+      initialSelected={initialSelected}
       {...props}
     >
       {filteredOptions?.map((option: any, i: number) => (

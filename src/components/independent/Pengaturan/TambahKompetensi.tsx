@@ -39,12 +39,12 @@ export default function TambahKompetensi({ ...props }: Props) {
     initialValues: {
       nama_jabatan: "",
       total_tunjangan: "" as any,
-      jenis_kompetensi: "",
+      jenis_kompetensi: "" as any,
     },
     validationSchema: yup.object().shape({
       nama_jabatan: yup.string().required("Harus diisi"),
       total_tunjangan: yup.number().required("Harus diisi"),
-      jenis_kompetensi: yup.number().required("Harus diisi"),
+      jenis_kompetensi: yup.object().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
@@ -108,6 +108,7 @@ export default function TambahKompetensi({ ...props }: Props) {
                   name="jenis_kompetensi"
                   formik={formik}
                   placeholder="Pilih Jenis Kompetensi"
+                  initialSelected={formik.values.jenis_kompetensi}
                   noUseBackOnClose
                   noSearch
                 />

@@ -44,7 +44,7 @@ export default function TambahPremi({ ...props }: Props) {
     },
     validationSchema: yup.object().shape({
       nama_premi: yup.string().required("Harus diisi"),
-      jenis_premi: yup.number().required("Harus diisi"),
+      jenis_premi: yup.object().required("Harus diisi"),
       besaran_premi: yup.number().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
@@ -109,6 +109,7 @@ export default function TambahPremi({ ...props }: Props) {
                   name="jenis_premi"
                   formik={formik}
                   placeholder="Pilih Jenis Premi"
+                  initialSelected={formik.values.jenis_premi}
                   noUseBackOnClose
                   noSearch
                 />
@@ -125,7 +126,7 @@ export default function TambahPremi({ ...props }: Props) {
                   <FormRequired />
                 </FormLabel>
                 <InputGroup>
-                  {formik.values.jenis_premi === 1 && (
+                  {formik.values.jenis_premi.value === 1 && (
                     <InputLeftElement>
                       <Text>Rp</Text>
                     </InputLeftElement>
@@ -134,15 +135,15 @@ export default function TambahPremi({ ...props }: Props) {
                     name="besaran_premi"
                     isDisabled={formik.values.jenis_premi === ""}
                     placeholder={
-                      formik.values.jenis_premi === 0
+                      formik.values.jenis_premi.value === 0
                         ? "80"
-                        : formik.values.jenis_premi === 1
+                        : formik.values.jenis_premi.value === 1
                         ? "4.000.000"
                         : "Pilih jenis premi dahulu"
                     }
                     onChange={(e) => {
                       const numValue = parseNumber(e.target.value);
-                      if (formik.values.jenis_premi === 0) {
+                      if (formik.values.jenis_premi.value === 0) {
                         if (numValue === null) {
                           formik.setFieldValue("besaran_premi", "");
                         } else if (numValue <= 100) {
@@ -154,7 +155,7 @@ export default function TambahPremi({ ...props }: Props) {
                     }}
                     value={formatNumber(formik.values.besaran_premi)}
                   />
-                  {formik.values.jenis_premi === 0 && (
+                  {formik.values.jenis_premi.value === 0 && (
                     <InputRightElement>
                       <Text>%</Text>
                     </InputRightElement>

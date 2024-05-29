@@ -62,6 +62,7 @@ export default function SelectTipeTransfer({
       noSearch={noSearch}
       modalSize={modalSize}
       confirmSelect={confirmSelect}
+      initialSelected={initialSelected}
       {...props}
     >
       {filteredOptions?.map((option, i) => (

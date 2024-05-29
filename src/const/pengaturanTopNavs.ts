@@ -71,7 +71,7 @@ const pengaturanTopNavs = [
       },
       {
         link: "/pengaturan/manajemen-waktu/cuti",
-        label: "Cuti",
+        label: "Tipe Cuti",
       },
     ],
   },

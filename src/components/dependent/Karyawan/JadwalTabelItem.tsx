@@ -47,20 +47,16 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
 
   const formik = useFormik({
     validateOnChange: false,
-    initialValues: { shift: data.shift },
+    initialValues: { shift: { value: jadwal.id, label: jadwal.label } },
     validationSchema: yup
       .object()
-      .shape({ shift: yup.string().required("Harus diisi") }),
+      .shape({ shift: yup.object().required("Harus diisi") }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
+      setLoadingUpdate(true);
+      //TODO api update pengumuman
     },
   });
-
-  function updateJadwal() {
-    setLoadingUpdate(true);
-
-    //TODO api update pengumuman
-  }
 
   function deleteJadwal() {
     setLoadingDelete(true);
@@ -152,39 +148,37 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
                   </VStack>
                 </VStack>
 
-                <FormControl
-                  mt={6}
-                  isInvalid={formik.errors.shift ? true : false}
-                >
-                  <FormLabel>
-                    Shift
-                    <FormRequired />
-                  </FormLabel>
-                  <SelectShift
-                    formik={formik}
-                    name="shift"
-                    placeholder="Pilih shift"
-                    initialSelected={{
-                      value: jadwal.id,
-                      label: jadwal.label,
-                      jam_kerja: `${jadwal.jam_masuk} - ${jadwal.jam_keluar}`,
-                    }}
-                    noUseBackOnClose
-                  />
-                  <FormErrorMessage>
-                    {formik.errors.shift as string}
-                  </FormErrorMessage>
-                </FormControl>
+                {data.unit_kerja.jenis_karyawan === 1 && (
+                  <form
+                    id="terapkanJadwalKaryawanTerpilihForm"
+                    onSubmit={formik.handleSubmit}
+                  >
+                    <FormControl mt={6} isInvalid={!!formik.errors.shift}>
+                      <FormLabel>
+                        Shift
+                        <FormRequired />
+                      </FormLabel>
+                      <SelectShift
+                        formik={formik}
+                        name="shift"
+                        placeholder="Pilih shift"
+                        initialSelected={formik.values.shift}
+                        noUseBackOnClose
+                      />
+                      <FormErrorMessage>
+                        {formik.errors.shift as string}
+                      </FormErrorMessage>
+                    </FormControl>
+                  </form>
+                )}
               </>
             )}
-
-            <form id="terapkanJadwa;KaryawanTerpilihForm"></form>
           </ModalBody>
           <ModalFooter pt={isDeleting ? "0 !important" : 6}>
-            {!isDeleting && (
+            {data.unit_kerja.jenis_karyawan === 1 && !isDeleting && (
               <ButtonGroup w={"100%"}>
                 <Button
-                  w={"50%"}
+                  w={"100%"}
                   className="clicky"
                   colorScheme="red"
                   variant={"ghost"}
@@ -198,15 +192,30 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
                   Hapus
                 </Button>
                 <Button
-                  w={"50%"}
+                  w={"100%"}
+                  type="submit"
+                  form="terapkanJadwalKaryawanTerpilihForm"
                   colorScheme="ap"
                   className="btn-ap clicky"
-                  onClick={updateJadwal}
                   isLoading={loadingUpdate}
                 >
                   Simpan
                 </Button>
               </ButtonGroup>
+            )}
+
+            {data.unit_kerja.jenis_karyawan === 0 && !isDeleting && (
+              <Button
+                w={"100%"}
+                className="btn-ap clicky"
+                colorScheme="ap"
+                onClick={() => {
+                  backOnClose(onClose);
+                  formik.resetForm();
+                }}
+              >
+                Mengerti
+              </Button>
             )}
 
             {isDeleting && (

@@ -11,7 +11,6 @@ interface Props extends ButtonProps {
   confirmSelect?: (newSelectedValue: any) => void;
   noUseBackOnClose?: boolean;
   noSearch?: boolean;
-  noReset?: boolean;
   modalSize?: string;
 }
 
@@ -23,7 +22,6 @@ export default function SelectKategoriTer({
   confirmSelect,
   noUseBackOnClose,
   noSearch,
-  noReset,
   modalSize,
   ...props
 }: Props) {
@@ -50,12 +48,6 @@ export default function SelectKategoriTer({
   );
   const selectComponentRef = useRef<{ handleOnClose: () => void } | null>(null);
 
-  const handleOnClose = () => {
-    if (selectComponentRef.current) {
-      selectComponentRef.current.handleOnClose();
-    }
-  };
-
   return (
     <Select
       ref={selectComponentRef}
@@ -70,7 +62,7 @@ export default function SelectKategoriTer({
       noSearch={noSearch}
       modalSize={modalSize}
       confirmSelect={confirmSelect}
-      noReset={noReset}
+      initialSelected={initialSelected}
       {...props}
     >
       {filteredOptions?.map((option, i) => (
@@ -90,13 +82,6 @@ export default function SelectKategoriTer({
           key={i}
           onClick={() => {
             setSelected(option);
-            if (formik && name) {
-              formik.setFieldValue(name, option.value);
-            }
-            if (confirmSelect) {
-              confirmSelect(option.value);
-            }
-            handleOnClose();
           }}
           fontWeight={500}
           justifyContent={"space-between"}

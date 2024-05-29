@@ -45,12 +45,6 @@ export default function SelectUnitKerja({
   );
   const selectComponentRef = useRef<{ handleOnClose: () => void } | null>(null);
 
-  const handleOnClose = () => {
-    if (selectComponentRef.current) {
-      selectComponentRef.current.handleOnClose();
-    }
-  };
-
   return (
     <Select
       ref={selectComponentRef}
@@ -65,6 +59,7 @@ export default function SelectUnitKerja({
       noSearch={noSearch}
       modalSize={modalSize}
       confirmSelect={confirmSelect}
+      initialSelected={initialSelected}
       {...props}
     >
       {filteredOptions?.map((option: any, i: number) => (
@@ -84,13 +79,6 @@ export default function SelectUnitKerja({
           key={i}
           onClick={() => {
             setSelected(option);
-            if (formik && name) {
-              formik.setFieldValue(name, option.value);
-            }
-            if (confirmSelect) {
-              confirmSelect(option.value);
-            }
-            handleOnClose();
           }}
           gap={4}
           justifyContent={"space-between"}

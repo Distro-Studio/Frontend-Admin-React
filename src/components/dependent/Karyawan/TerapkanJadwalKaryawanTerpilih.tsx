@@ -43,7 +43,7 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
 
   const formik = useFormik({
     validateOnChange: false,
-    initialValues: { shift: "" },
+    initialValues: { shift: "" as any },
     validationSchema: yup
       .object()
       .shape({ shift: yup.string().required("Harus diisi") }),
@@ -141,6 +141,7 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
                 formik={formik}
                 name="shift"
                 placeholder="Pilih shift"
+                initialSelected={formik.values.shift}
                 noUseBackOnClose
               />
               <FormErrorMessage>

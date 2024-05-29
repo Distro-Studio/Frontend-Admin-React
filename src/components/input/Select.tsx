@@ -117,7 +117,9 @@ const Select = forwardRef(
           {!isMultiSelect && (
             <Text
               opacity={
-                selected !== null && selected !== undefined && selected !== ""
+                initialSelected !== null &&
+                initialSelected !== undefined &&
+                initialSelected !== ""
                   ? 1
                   : 0.3
               }
@@ -127,7 +129,7 @@ const Select = forwardRef(
               whiteSpace={"nowrap"}
               textOverflow={"ellipsis"}
             >
-              {selected ? selected.label : placeholder}
+              {initialSelected ? initialSelected.label : placeholder}
             </Text>
           )}
 
@@ -262,7 +264,7 @@ const Select = forwardRef(
                         if (isMultiSelect) {
                           setSelected([]);
                         } else {
-                          setSelected(null);
+                          setSelected("");
                         }
                       }
                     }}
@@ -276,29 +278,19 @@ const Select = forwardRef(
                   colorScheme="ap"
                   onClick={() => {
                     if (isMultiSelect) {
-                      const formattedSelected = selected.map((item: any) => ({
-                        id: item.value,
-                        label: item.label,
-                      }));
                       if (formik && name) {
-                        formik.setFieldValue(name, formattedSelected);
+                        formik.setFieldValue(name, selected);
                       }
                       if (confirmSelect) {
-                        confirmSelect(formattedSelected);
+                        confirmSelect(selected);
                       }
                       handleOnClose();
                     } else {
-                      const formattedSelected = selected
-                        ? {
-                            id: selected.value,
-                            label: selected.label,
-                          }
-                        : undefined;
                       if (formik && name) {
-                        formik.setFieldValue(name, formattedSelected);
+                        formik.setFieldValue(name, selected);
                       }
                       if (confirmSelect) {
-                        confirmSelect(formattedSelected);
+                        confirmSelect(selected);
                       }
                       handleOnClose();
                     }

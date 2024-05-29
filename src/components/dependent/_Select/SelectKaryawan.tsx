@@ -46,12 +46,6 @@ export default function SelectKaryawan({
   );
   const selectComponentRef = useRef<{ handleOnClose: () => void } | null>(null);
 
-  const handleOnClose = () => {
-    if (selectComponentRef.current) {
-      selectComponentRef.current.handleOnClose();
-    }
-  };
-
   return (
     <Select
       ref={selectComponentRef}
@@ -85,13 +79,6 @@ export default function SelectKaryawan({
           key={i}
           onClick={() => {
             setSelected(option);
-            if (formik && name) {
-              formik.setFieldValue(name, option.value);
-            }
-            if (confirmSelect) {
-              confirmSelect(option.value);
-            }
-            handleOnClose();
           }}
           gap={4}
           justifyContent={"space-between"}

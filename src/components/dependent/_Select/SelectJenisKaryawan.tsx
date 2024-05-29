@@ -44,12 +44,6 @@ export default function SelectJenisKaryawan({
   );
   const selectComponentRef = useRef<{ handleOnClose: () => void } | null>(null);
 
-  const handleOnClose = () => {
-    if (selectComponentRef.current) {
-      selectComponentRef.current.handleOnClose();
-    }
-  };
-
   return (
     <Select
       ref={selectComponentRef}
@@ -64,6 +58,7 @@ export default function SelectJenisKaryawan({
       noSearch={noSearch}
       modalSize={modalSize}
       confirmSelect={confirmSelect}
+      initialSelected={initialSelected}
       {...props}
     >
       {filteredOptions?.map((option, i) => (
@@ -83,14 +78,8 @@ export default function SelectJenisKaryawan({
           key={i}
           onClick={() => {
             setSelected(option);
-            if (formik && name) {
-              formik.setFieldValue(name, option.value);
-            }
-            if (confirmSelect) {
-              confirmSelect(option.value);
-            }
-            handleOnClose();
           }}
+          justifyContent={"space-between"}
           fontWeight={500}
         >
           {option.label}

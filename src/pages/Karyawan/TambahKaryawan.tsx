@@ -58,7 +58,7 @@ const validationSchemaStep2 = yup.object({
   // tunjangan_lainnya: yup.string().required("Harus diisi"),
   // uang_lembur: yup.string().required("Harus diisi"),
   // uang_makan: yup.string().required("Harus diisi"),
-  // PTKP: yup.string().required("Harus diisi"),
+  // ptkp: yup.string().required("Harus diisi"),
 });
 
 const validationSchemaStep3 = yup.object({
@@ -85,11 +85,11 @@ export default function TambahKaryawan() {
       rm: "",
       no_manulife: "",
       tgl_masuk: "",
-      unit_kerja: "",
-      jabatan: "",
-      kompetensi: "",
-      role: "",
-      kelompok_gaji: "",
+      unit_kerja: "" as any,
+      jabatan: "" as any,
+      kompetensi: "" as any,
+      role: "" as any,
+      kelompok_gaji: "" as any,
       no_rekening: "",
       tunjangan_uang_lembur: "",
       tunjangan_fungsional: "",
@@ -97,7 +97,7 @@ export default function TambahKaryawan() {
       tunjangan_lainnya: "",
       uang_lembur: "",
       uang_makan: "",
-      PTKP: "",
+      ptkp: "" as any,
       username: "",
       password: "",
     },
@@ -244,8 +244,11 @@ export default function TambahKaryawan() {
             name="unit_kerja"
             formik={formik}
             placeholder="Pilih Unit kerja"
+            initialSelected={formik.values.unit_kerja}
           />
-          <FormErrorMessage>{formik.errors.unit_kerja}</FormErrorMessage>
+          <FormErrorMessage>
+            {formik.errors.unit_kerja as string}
+          </FormErrorMessage>
         </FormControl>
 
         <FormControl
@@ -261,8 +264,9 @@ export default function TambahKaryawan() {
             name="jabatan"
             formik={formik}
             placeholder="Pilih Jabatan"
+            initialSelected={formik.values.jabatan}
           />
-          <FormErrorMessage>{formik.errors.jabatan}</FormErrorMessage>
+          <FormErrorMessage>{formik.errors.jabatan as string}</FormErrorMessage>
         </FormControl>
 
         <FormControl
@@ -275,11 +279,14 @@ export default function TambahKaryawan() {
             name="kompetensi"
             formik={formik}
             placeholder="Pilih Kompetensi"
+            initialSelected={formik.values.kompetensi}
           />
           <FormHelperText opacity={0.4}>
             Jika karyawan tidak memiliki kompetensi atau profesi pilih tidak ada
           </FormHelperText>
-          <FormErrorMessage>{formik.errors.kompetensi}</FormErrorMessage>
+          <FormErrorMessage>
+            {formik.errors.kompetensi as string}
+          </FormErrorMessage>
         </FormControl>
 
         <FormControl mb={4} flex={"1 1 300px"} isInvalid={!!formik.errors.role}>
@@ -287,8 +294,13 @@ export default function TambahKaryawan() {
             Role
             <FormRequired />
           </FormLabel>
-          <SelectRole name="role" formik={formik} placeholder="Pilih Role" />
-          <FormErrorMessage>{formik.errors.role}</FormErrorMessage>
+          <SelectRole
+            name="role"
+            formik={formik}
+            placeholder="Pilih Role"
+            initialSelected={formik.values.role}
+          />
+          <FormErrorMessage>{formik.errors.role as string}</FormErrorMessage>
         </FormControl>
       </Wrap>
     );
@@ -325,8 +337,11 @@ export default function TambahKaryawan() {
             name="kelompok_gaji"
             formik={formik}
             placeholder="Pilih Kelompok Gaji"
+            initialSelected={formik.values.kelompok_gaji}
           />
-          <FormErrorMessage>{formik.errors.kelompok_gaji}</FormErrorMessage>
+          <FormErrorMessage>
+            {formik.errors.kelompok_gaji as string}
+          </FormErrorMessage>
         </FormControl>
 
         <FormControl
@@ -489,13 +504,18 @@ export default function TambahKaryawan() {
           <FormErrorMessage>{formik.errors.uang_makan}</FormErrorMessage>
         </FormControl>
 
-        <FormControl mb={4} flex={"1 1 300px"} isInvalid={!!formik.errors.PTKP}>
+        <FormControl mb={4} flex={"1 1 300px"} isInvalid={!!formik.errors.ptkp}>
           <FormLabel>
             PTKP
             <FormRequired />
           </FormLabel>
-          <SelectPtkp name="PTKP" formik={formik} placeholder="Pilih PTKP" />
-          <FormErrorMessage>{formik.errors.PTKP}</FormErrorMessage>
+          <SelectPtkp
+            name="ptkp"
+            formik={formik}
+            placeholder="Pilih PTKP"
+            initialSelected={formik.values.ptkp}
+          />
+          <FormErrorMessage>{formik.errors.ptkp as string}</FormErrorMessage>
         </FormControl>
       </Wrap>
     );

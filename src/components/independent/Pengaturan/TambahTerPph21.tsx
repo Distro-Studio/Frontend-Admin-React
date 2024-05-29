@@ -40,15 +40,15 @@ export default function TambahTerPph21({ ...props }: Props) {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      kategori_ter_id: "" as any,
-      ptkp_id: "" as any,
+      kategori_ter: "" as any,
+      ptkp: "" as any,
       from_ter: "" as any,
       to_ter: "" as any,
       percentage_ter: "" as any,
     },
     validationSchema: yup.object().shape({
-      kategori_ter_id: yup.string().required("Harus diisi"),
-      ptkp_id: yup.number().required("Harus diisi"),
+      kategori_ter: yup.string().required("Harus diisi"),
+      ptkp: yup.number().required("Harus diisi"),
       from_ter: yup.number().required("Harus diisi"),
       to_ter: yup.number().required("Harus diisi"),
       percentage_ter: yup.number().required("Harus diisi"),
@@ -86,41 +86,40 @@ export default function TambahTerPph21({ ...props }: Props) {
             <form id="tambahJabatanForm" onSubmit={formik.handleSubmit}>
               <FormControl
                 mb={4}
-                isInvalid={formik.errors.kategori_ter_id ? true : false}
+                isInvalid={formik.errors.kategori_ter ? true : false}
               >
                 <FormLabel>
                   Kategori TER
                   <FormRequired />
                 </FormLabel>
                 <SelectKategoriTer
-                  name="kategori_ter_id"
+                  name="kategori_ter"
                   formik={formik}
                   placeholder="Pilih Kategori TER"
+                  initialSelected={formik.values.kategori_ter}
                   noUseBackOnClose
                   noSearch
                 />
                 <FormErrorMessage>
-                  {formik.errors.kategori_ter_id as string}
+                  {formik.errors.kategori_ter as string}
                 </FormErrorMessage>
               </FormControl>
 
-              <FormControl
-                mb={4}
-                isInvalid={formik.errors.ptkp_id ? true : false}
-              >
+              <FormControl mb={4} isInvalid={formik.errors.ptkp ? true : false}>
                 <FormLabel>
                   PTKP
                   <FormRequired />
                 </FormLabel>
                 <SelectPtkp
-                  name="ptkp_id"
+                  name="ptkp"
                   formik={formik}
                   placeholder="Pilih PTKP"
+                  initialSelected={formik.values.ptkp}
                   noUseBackOnClose
                   noSearch
                 />
                 <FormErrorMessage>
-                  {formik.errors.ptkp_id as string}
+                  {formik.errors.ptkp as string}
                 </FormErrorMessage>
               </FormControl>
 

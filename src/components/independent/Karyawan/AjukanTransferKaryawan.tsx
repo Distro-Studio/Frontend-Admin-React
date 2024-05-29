@@ -42,9 +42,9 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
     initialValues: {
       nama: "",
       tanggal_mulai: "",
-      tipe: "",
-      unit_kerja_id_tujuan: "",
-      jabatan_id_tujuan: "",
+      tipe: "" as any,
+      unit_kerja_tujuan: "" as any,
+      jabatan_tujuan: "" as any,
       dokumen: "",
       alasan: "",
       beri_tahu_manager_direktur: false,
@@ -54,8 +54,8 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
       nama: yup.string().required("Harus diisi"),
       tanggal_mulai: yup.string().required("Harus diisi"),
       tipe: yup.string().required("Harus diisi"),
-      unit_kerja_id_tujuan: yup.string().required("Harus diisi"),
-      jabatan_id_tujuan: yup.string().required("Harus diisi"),
+      unit_kerja_tujuan: yup.string().required("Harus diisi"),
+      jabatan_tujuan: yup.string().required("Harus diisi"),
       dokumen: yup.array().min(1, "Harus diisi").required("Harus diisi"),
       alasan: yup.string().required("Harus diisi"),
       beri_tahu_manager_direktur: yup.boolean().required("Harus diisi"),
@@ -139,6 +139,7 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
                     name="tipe"
                     formik={formik}
                     placeholder="Pilih Tipe Transfer"
+                    initialSelected={formik.values.tipe}
                     noSearch
                     noUseBackOnClose
                   />
@@ -151,39 +152,38 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
               <SimpleGrid columns={[1, 2]} gap={4}>
                 <FormControl
                   mb={4}
-                  isInvalid={!!formik.errors.unit_kerja_id_tujuan}
+                  isInvalid={!!formik.errors.unit_kerja_tujuan}
                 >
                   <FormLabel>
                     Unit Kerja Tujuan
                     <FormRequired />
                   </FormLabel>
                   <SelectUnitKerja
-                    name="unit_kerja_id_tujuan"
+                    name="unit_kerja_tujuan"
                     formik={formik}
                     placeholder="Pilih Unit Kerja"
+                    initialSelected={formik.values.unit_kerja_tujuan}
                     noUseBackOnClose
                   />
                   <FormErrorMessage>
-                    {formik.errors.unit_kerja_id_tujuan as string}
+                    {formik.errors.unit_kerja_tujuan as string}
                   </FormErrorMessage>
                 </FormControl>
 
-                <FormControl
-                  mb={4}
-                  isInvalid={!!formik.errors.jabatan_id_tujuan}
-                >
+                <FormControl mb={4} isInvalid={!!formik.errors.jabatan_tujuan}>
                   <FormLabel>
                     Jabatan Tujuan
                     <FormRequired />
                   </FormLabel>
                   <SelectJabatan
-                    name="jabatan_id_tujuan"
+                    name="jabatan_tujuan"
                     formik={formik}
                     placeholder="Pilih Jabatan"
+                    initialSelected={formik.values.jabatan_tujuan}
                     noUseBackOnClose
                   />
                   <FormErrorMessage>
-                    {formik.errors.jabatan_id_tujuan as string}
+                    {formik.errors.jabatan_tujuan as string}
                   </FormErrorMessage>
                 </FormControl>
               </SimpleGrid>
