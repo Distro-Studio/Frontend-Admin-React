@@ -63,18 +63,6 @@ export default function MultiSelectKaryawan({
       modalSize={modalSize}
       confirmSelect={confirmSelect}
       isMultiSelect
-      confirmMultiSelect={() => {
-        const formattedSelected = selected.map((item) => ({
-          id: item.value,
-          nama: item.label,
-        }));
-        if (formik && name) {
-          formik.setFieldValue(name, formattedSelected);
-        }
-        if (confirmSelect) {
-          confirmSelect(formattedSelected);
-        }
-      }}
       {...props}
     >
       {filteredOptions?.map((option: any, i: number) => (

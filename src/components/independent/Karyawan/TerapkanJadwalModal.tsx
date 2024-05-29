@@ -38,13 +38,13 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
       karyawan_list: [],
       tgl_mulai: "",
       tgl_selesai: "",
-      shift: "",
+      shift: "" as any,
     },
     validationSchema: yup.object().shape({
       karyawan_list: yup.array().min(1, "Harus diisi").required("Harus diisi"),
       tgl_mulai: yup.string().required("Harus diisi"),
       tgl_selesai: yup.string(),
-      shift: yup.string().required("Harus diisi"),
+      shift: yup.object().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
@@ -154,6 +154,14 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                   formik={formik}
                   name="shift"
                   placeholder="Pilih shift"
+                  initialSelected={
+                    formik.values.shift
+                      ? {
+                          value: formik.values.shift.id,
+                          label: formik.values.shift.label,
+                        }
+                      : undefined
+                  }
                   noUseBackOnClose
                 />
                 <FormErrorMessage>

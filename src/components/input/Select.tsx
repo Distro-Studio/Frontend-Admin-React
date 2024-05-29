@@ -40,7 +40,6 @@ interface Props extends ButtonProps {
   setSearch?: Dispatch<string>;
   modalSize?: string;
   isMultiSelect?: boolean;
-  confirmMultiSelect?: any;
   setSelected?: Dispatch<any>;
 }
 
@@ -61,7 +60,6 @@ const Select = forwardRef(
       setSearch,
       modalSize,
       isMultiSelect,
-      confirmMultiSelect,
       setSelected,
       ...props
     }: Props,
@@ -129,7 +127,7 @@ const Select = forwardRef(
               whiteSpace={"nowrap"}
               textOverflow={"ellipsis"}
             >
-              {!isMultiSelect && selected ? selected.label : placeholder}
+              {selected ? selected.label : placeholder}
             </Text>
           )}
 
@@ -208,7 +206,7 @@ const Select = forwardRef(
           isOpen={isOpen}
           onClose={() => {
             handleOnClose();
-            if (isMultiSelect && setSelected) {
+            if (setSelected) {
               setSelected(initialSelected);
             }
           }}
@@ -251,7 +249,9 @@ const Select = forwardRef(
               </VStack>
             </ModalBody>
 
-            <ModalFooter pt={noReset && !isMultiSelect ? "0 !important" : ""}>
+            <ModalFooter
+            // pt={noReset && !isMultiSelect ? "0 !important" : ""}
+            >
               <ButtonGroup w={"100%"}>
                 {!noReset && (
                   <Button
@@ -263,13 +263,6 @@ const Select = forwardRef(
                           setSelected([]);
                         } else {
                           setSelected(null);
-                          if (formik && name) {
-                            formik.setFieldValue(name, null);
-                          }
-                          if (confirmSelect) {
-                            confirmSelect(null);
-                          }
-                          handleOnClose();
                         }
                       }
                     }}
@@ -277,21 +270,42 @@ const Select = forwardRef(
                     Reset
                   </Button>
                 )}
-                {isMultiSelect && (
-                  <Button
-                    w={"100%"}
-                    className="btn-ap clicky"
-                    colorScheme="ap"
-                    onClick={() => {
-                      if (confirmMultiSelect) {
-                        confirmMultiSelect();
-                        handleOnClose();
+                <Button
+                  w={"100%"}
+                  className="btn-ap clicky"
+                  colorScheme="ap"
+                  onClick={() => {
+                    if (isMultiSelect) {
+                      const formattedSelected = selected.map((item: any) => ({
+                        id: item.value,
+                        label: item.label,
+                      }));
+                      if (formik && name) {
+                        formik.setFieldValue(name, formattedSelected);
                       }
-                    }}
-                  >
-                    Konfirmasi
-                  </Button>
-                )}
+                      if (confirmSelect) {
+                        confirmSelect(formattedSelected);
+                      }
+                      handleOnClose();
+                    } else {
+                      const formattedSelected = selected
+                        ? {
+                            id: selected.value,
+                            label: selected.label,
+                          }
+                        : undefined;
+                      if (formik && name) {
+                        formik.setFieldValue(name, formattedSelected);
+                      }
+                      if (confirmSelect) {
+                        confirmSelect(formattedSelected);
+                      }
+                      handleOnClose();
+                    }
+                  }}
+                >
+                  Konfirmasi
+                </Button>
               </ButtonGroup>
             </ModalFooter>
           </ModalContent>

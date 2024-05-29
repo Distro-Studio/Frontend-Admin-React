@@ -47,17 +47,12 @@ export default function SelectShift({
   );
   const selectComponentRef = useRef<{ handleOnClose: () => void } | null>(null);
 
-  const handleOnClose = () => {
-    if (selectComponentRef.current) {
-      selectComponentRef.current.handleOnClose();
-    }
-  };
-
   return (
     <Select
       ref={selectComponentRef}
       placeholder={placeholder}
       selected={selected}
+      initialSelected={initialSelected}
       setSelected={setSelected}
       formik={formik}
       name={name}
@@ -86,13 +81,6 @@ export default function SelectShift({
           key={i}
           onClick={() => {
             setSelected(option);
-            if (formik && name) {
-              formik.setFieldValue(name, option.value);
-            }
-            if (confirmSelect) {
-              confirmSelect(option.value);
-            }
-            handleOnClose();
           }}
           gap={4}
           justifyContent={"space-between"}

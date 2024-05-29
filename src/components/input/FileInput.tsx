@@ -2,12 +2,15 @@ import {
   Box,
   Button,
   HStack,
+  Icon,
   Input,
   Text,
   Tooltip,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { RiUploadCloud2Line } from "@remixicon/react";
 import React, { useRef, useState } from "react";
+import { iconSize } from "../../const/sizes";
 
 interface Props {
   formik: any;
@@ -59,7 +62,7 @@ export default function FileInput({ formik, name, accept }: Props) {
           if (files && files.length > 0) {
             const file = files[0];
             setFileName(file.name);
-            formik.setFieldValue(name, [file]); // Setel ke array dengan satu file
+            formik.setFieldValue(name, [file]);
           }
           // console.log(files);
         }}
@@ -88,7 +91,7 @@ export default function FileInput({ formik, name, accept }: Props) {
           }
         }}
         onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave} // Tambahkan event handler untuk menangani event drag leave
+        onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
         <HStack gap={0} w={"100%"}>
@@ -102,21 +105,24 @@ export default function FileInput({ formik, name, accept }: Props) {
                   : ""
               }
             >
-              <Text
-                w={"100%"}
-                noOfLines={1}
-                fontSize={[12, null, 14]}
-                whiteSpace={"normal"}
-                textAlign={"center"}
+              <HStack
+                justify={"center"}
                 opacity={formik.values[name].length > 0 ? 1 : 0.3}
               >
-                {fileName}
-                {/* {formik.values[name].length > 0
+                <Icon as={RiUploadCloud2Line} fontSize={iconSize} />
+                <Text
+                  noOfLines={1}
+                  fontSize={[12, null, 14]}
+                  whiteSpace={"normal"}
+                >
+                  {fileName}
+                  {/* {formik.values[name].length > 0
                   ? formik.values[name]
                       .map((file: File) => file.name)
                       .join(", ")
                   : "Pilih File"} */}
-              </Text>
+                </Text>
+              </HStack>
             </Tooltip>
           </Box>
         </HStack>
