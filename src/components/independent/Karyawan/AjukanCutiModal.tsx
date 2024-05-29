@@ -36,13 +36,13 @@ export default function AjukanCutiModal({ ...props }: Props) {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      user_id: "",
-      tipe_cuti_id: "",
+      karyawan: "" as any,
+      tipe_cuti: "" as any,
       durasi: "",
     },
     validationSchema: yup.object().shape({
-      user_id: yup.string().required("Harus diisi"),
-      tipe_cuti_id: yup.string().required("Harus diisi"),
+      karyawan: yup.object().required("Harus diisi"),
+      tipe_cuti: yup.object().required("Harus diisi"),
       durasi: yup.string().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
@@ -65,6 +65,7 @@ export default function AjukanCutiModal({ ...props }: Props) {
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
+          formik.resetForm();
         }}
         initialFocusRef={initialRef}
         isCentered
@@ -74,42 +75,44 @@ export default function AjukanCutiModal({ ...props }: Props) {
           <ModalCloseButton />
           <ModalHeader ref={initialRef}>Ajukan Cuti</ModalHeader>
           <ModalBody>
-            <form id="ajukanCutiForm">
+            <form id="ajukanCutiForm" onSubmit={formik.handleSubmit}>
               <FormControl
                 mb={4}
-                isInvalid={formik.errors.user_id ? true : false}
+                isInvalid={formik.errors.karyawan ? true : false}
               >
                 <FormLabel>
                   Karyawan
                   <FormRequired />
                 </FormLabel>
                 <SelectKaryawan
-                  name="user_id"
+                  name="karyawan"
                   formik={formik}
                   placeholder="Pilih Karyawan"
+                  initialSelected={formik.values.karyawan}
                   noUseBackOnClose
                 />
                 <FormErrorMessage>
-                  {formik.errors.user_id as string}
+                  {formik.errors.karyawan as string}
                 </FormErrorMessage>
               </FormControl>
 
               <FormControl
                 mb={4}
-                isInvalid={formik.errors.tipe_cuti_id ? true : false}
+                isInvalid={formik.errors.tipe_cuti ? true : false}
               >
                 <FormLabel>
                   Tipe Cuti
                   <FormRequired />
                 </FormLabel>
                 <SelectTipeCuti
-                  name="tipe_cuti_id"
+                  name="tipe_cuti"
                   formik={formik}
                   placeholder="Pilih Tipe Cuti"
+                  initialSelected={formik.values.tipe_cuti}
                   noUseBackOnClose
                 />
                 <FormErrorMessage>
-                  {formik.errors.tipe_cuti_id as string}
+                  {formik.errors.tipe_cuti as string}
                 </FormErrorMessage>
               </FormControl>
 
@@ -131,7 +134,13 @@ export default function AjukanCutiModal({ ...props }: Props) {
             </form>
           </ModalBody>
           <ModalFooter>
-            <Button w={"100%"} colorScheme="ap" className="btn-ap clicky">
+            <Button
+              type="submit"
+              form="ajukanCutiForm"
+              w={"100%"}
+              colorScheme="ap"
+              className="btn-ap clicky"
+            >
               Simpan
             </Button>
           </ModalFooter>

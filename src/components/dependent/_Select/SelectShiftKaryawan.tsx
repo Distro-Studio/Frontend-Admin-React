@@ -61,6 +61,7 @@ export default function SelectShiftKaryawan({
       noSearch={noSearch}
       modalSize={modalSize}
       confirmSelect={confirmSelect}
+      initialSelected={initialSelected}
       {...props}
     >
       {filteredOptions?.map((option: any, i: number) => (

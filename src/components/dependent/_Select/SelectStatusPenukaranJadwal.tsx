@@ -64,6 +64,7 @@ export default function SelectStatusPenukaranJadwal({
       noSearch={noSearch}
       modalSize={modalSize}
       confirmSelect={confirmSelect}
+      initialSelected={initialSelected}
       noReset={noReset}
       {...props}
     >

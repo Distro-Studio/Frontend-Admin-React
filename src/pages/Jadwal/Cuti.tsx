@@ -32,16 +32,16 @@ export default function Cuti() {
     kompensasi: "",
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
-  const confirmTipeCuti = (tipe: any) => {
+  const confirmTipeCuti = (newTipe: any) => {
     setFilterConfig((ps: any) => ({
       ...ps,
-      tipe: tipe,
+      tipe: newTipe,
     }));
   };
-  const confirmStatusCuti = (status: any) => {
+  const confirmStatusCuti = (newStatus: any) => {
     setFilterConfig((ps: any) => ({
       ...ps,
-      status: status,
+      status: newStatus,
     }));
   };
 
@@ -69,20 +69,18 @@ export default function Cuti() {
 
             <SelectTipeCuti
               placeholder="Pilih Tipe"
-              initialSelected={{ value: 0, label: "Semua Tipe" }}
+              initialSelected={filterConfig.tipe}
               confirmSelect={confirmTipeCuti}
               noSearch
-              modalSize="sm"
               flex={"1 1 160px"}
               noReset
             />
 
             <SelectStatusCuti
               placeholder="Pilih Status"
-              initialSelected={{ value: 0, label: "Semua Status" }}
+              initialSelected={filterConfig.status}
               confirmSelect={confirmStatusCuti}
               noSearch
-              modalSize="sm"
               flex={"1 1 160px"}
               noReset
             />

@@ -68,6 +68,7 @@ export default function SelectKompensasi({
       noSearch={noSearch}
       modalSize={modalSize}
       confirmSelect={confirmSelect}
+      initialSelected={initialSelected}
       noReset={noReset}
       {...props}
     >

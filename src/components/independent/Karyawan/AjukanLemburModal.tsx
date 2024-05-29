@@ -38,19 +38,19 @@ export default function AjukanLemburModal({ ...props }: Props) {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      user_id: "",
-      shift: "",
-      kompensasi: "",
-      tipe: "",
+      karyawan: "",
+      shift: "" as any,
+      kompensasi: "" as any,
+      tipe: "" as any,
       durasi_jam: "" as any,
       durasi_menit: "" as any,
       catatan: "",
     },
     validationSchema: yup.object().shape({
-      user_id: yup.string().required("Harus diisi"),
-      shift: yup.string().required("Harus diisi"),
-      kompensasi: yup.string().required("Harus diisi"),
-      tipe: yup.string().required("Harus diisi"),
+      karyawan: yup.object().required("Harus diisi"),
+      shift: yup.object().required("Harus diisi"),
+      kompensasi: yup.object().required("Harus diisi"),
+      tipe: yup.object().required("Harus diisi"),
       durasi_jam: yup.string().required("Harus diisi"),
       durasi_menit: yup.string().required("Harus diisi"),
       catatan: yup.string().required("Harus diisi"),
@@ -75,6 +75,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
+          formik.resetForm();
         }}
         initialFocusRef={initialRef}
         isCentered
@@ -84,20 +85,21 @@ export default function AjukanLemburModal({ ...props }: Props) {
           <ModalCloseButton />
           <ModalHeader ref={initialRef}>Ajukan Lembur</ModalHeader>
           <ModalBody>
-            <form id="ajukanLemburForm">
-              <FormControl mb={4} isInvalid={!!formik.errors.user_id}>
+            <form id="ajukanLemburForm" onSubmit={formik.handleSubmit}>
+              <FormControl mb={4} isInvalid={!!formik.errors.karyawan}>
                 <FormLabel>
                   Karyawan
                   <FormRequired />
                 </FormLabel>
                 <SelectKaryawan
-                  name="user_id"
+                  name="karyawan"
                   formik={formik}
                   placeholder="Pilih Karyawan"
+                  initialSelected={formik.values.karyawan}
                   noUseBackOnClose
                 />
                 <FormErrorMessage>
-                  {formik.errors.user_id as string}
+                  {formik.errors.karyawan as string}
                 </FormErrorMessage>
               </FormControl>
 
@@ -110,6 +112,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
                   name="shift"
                   formik={formik}
                   placeholder="Pilih Shift"
+                  initialSelected={formik.values.shift}
                   noUseBackOnClose
                 />
                 <FormErrorMessage>
@@ -126,6 +129,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
                   name="kompensasi"
                   formik={formik}
                   placeholder="Pilih Kompensasi"
+                  initialSelected={formik.values.kompensasi}
                   noUseBackOnClose
                 />
                 <FormErrorMessage>
@@ -143,6 +147,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
                     name="tipe"
                     formik={formik}
                     placeholder="Pilih Tipe"
+                    initialSelected={formik.values.tipe}
                     noUseBackOnClose
                   />
                   <FormErrorMessage>
@@ -229,7 +234,13 @@ export default function AjukanLemburModal({ ...props }: Props) {
             </form>
           </ModalBody>
           <ModalFooter>
-            <Button w={"100%"} colorScheme="ap" className="btn-ap clicky">
+            <Button
+              type="submit"
+              form="ajukanLemburForm"
+              w={"100%"}
+              colorScheme="ap"
+              className="btn-ap clicky"
+            >
               Simpan
             </Button>
           </ModalFooter>

@@ -36,16 +36,16 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      user_pengajuan: "",
-      jadwal_pengajuan: "",
-      user_ditukar: "",
-      jadwal_ditukar: "",
+      user_pengajuan: "" as any,
+      jadwal_pengajuan: "" as any,
+      user_ditukar: "" as any,
+      jadwal_ditukar: "" as any,
     },
     validationSchema: yup.object().shape({
-      user_pengajuan: yup.string().required("Harus diisi"),
-      jadwal_pengajuan: yup.string().required("Harus diisi"),
-      user_ditukar: yup.string().required("Harus diisi"),
-      jadwal_ditukar: yup.string().required("Harus diisi"),
+      user_pengajuan: yup.object().required("Harus diisi"),
+      jadwal_pengajuan: yup.object().required("Harus diisi"),
+      user_ditukar: yup.object().required("Harus diisi"),
+      jadwal_ditukar: yup.object().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
@@ -90,6 +90,7 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
                   name="user_pengajuan"
                   formik={formik}
                   placeholder="Pilih Karyawan"
+                  initialSelected={formik.values.user_pengajuan}
                   noUseBackOnClose
                 />
                 <FormErrorMessage>
@@ -108,6 +109,7 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
                   name="jadwal_pengajuan"
                   formik={formik}
                   placeholder="Pilih Shift Karyawan"
+                  initialSelected={formik.values.jadwal_pengajuan}
                   noUseBackOnClose
                 />
                 <FormErrorMessage>
@@ -117,13 +119,7 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
 
               <HStack my={8}>
                 <Box w={"100%"} h={"2px"} bg={"var(--divider2)"} />
-                <Icon
-                  as={RiArrowUpDownLine}
-                  fontSize={20}
-                  color={"p.500"}
-                  // opacity={0.6}
-                  // transform={"rotate(90deg)"}
-                />
+                <Icon as={RiArrowUpDownLine} fontSize={20} color={"p.500"} />
                 <Box w={"100%"} h={"2px"} bg={"var(--divider2)"} />
               </HStack>
 
@@ -139,6 +135,7 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
                   name="user_ditukar"
                   formik={formik}
                   placeholder="Pilih Karyawan"
+                  initialSelected={formik.values.user_ditukar}
                   noUseBackOnClose
                 />
                 <FormErrorMessage>
@@ -157,6 +154,7 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
                   name="jadwal_ditukar"
                   formik={formik}
                   placeholder="Pilih Shift Karyawan"
+                  initialSelected={formik.values.jadwal_ditukar}
                   noUseBackOnClose
                 />
                 <FormErrorMessage>

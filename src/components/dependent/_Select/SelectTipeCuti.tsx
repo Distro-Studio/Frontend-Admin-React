@@ -69,6 +69,7 @@ export default function SelectTipeCuti({
       modalSize={modalSize}
       confirmSelect={confirmSelect}
       noReset={noReset}
+      initialSelected={initialSelected}
       {...props}
     >
       {filteredOptions?.map((option, i) => (

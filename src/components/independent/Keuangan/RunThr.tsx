@@ -15,7 +15,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import * as yup from "yup";
 import backOnClose from "../../../lib/backOnClose";
 import useBackOnClose from "../../../lib/useBackOnClose";
@@ -30,18 +30,16 @@ export default function RunThr({ ...props }: Props) {
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
 
+  const [semuaKaryawan, setSemuaKaryawan] = useState<boolean>(false);
+
   const formik = useFormik({
-    validateOnChange: false,
+    validateOnChange: semuaKaryawan,
     initialValues: { semua_karyawan: false, karyawan_list: [], tanggal: "" },
     validationSchema: yup.object().shape({
       semua_karyawan: yup.boolean(),
-      karyawan_list: yup
-        .array()
-        .when("semua_karyawan", (semua_karyawan, schema) => {
-          return semua_karyawan
-            ? schema
-            : schema.min(1, "Harus diisi").required("Harus diisi");
-        }),
+      karyawan_list: semuaKaryawan
+        ? yup.mixed()
+        : yup.array().min(1, "Harus diisi").required("Harus diisi"),
       tanggal: yup.string().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
@@ -76,8 +74,10 @@ export default function RunThr({ ...props }: Props) {
           <ModalBody>
             <Checkbox
               name="semua_karyawan"
-              onChange={formik.handleChange}
-              isChecked={formik.values.semua_karyawan}
+              onChange={() => {
+                setSemuaKaryawan((ps) => !ps);
+              }}
+              isChecked={semuaKaryawan}
               colorScheme="ap"
               mb={4}
             >

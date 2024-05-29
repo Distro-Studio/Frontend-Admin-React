@@ -20,13 +20,16 @@ export default function Lembur() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
-    kompensasi: 0,
+    kompensasi: {
+      value: 0,
+      label: "Semua kompensasi",
+    },
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
-  const confirmSelectStatusPenukaranJadwal = (status: any) => {
+  const confirmSelectStatusPenukaranJadwal = (newKompensasi: any) => {
     setFilterConfig((ps: any) => ({
       ...ps,
-      status: status,
+      kompensasi: newKompensasi,
     }));
   };
 
@@ -54,10 +57,9 @@ export default function Lembur() {
 
             <SelectKompensasi
               placeholder="Pilih Kompensasi"
-              initialSelected={{ value: 0, label: "Semua kompensasi" }}
+              initialSelected={filterConfig.kompensasi}
               confirmSelect={confirmSelectStatusPenukaranJadwal}
               noSearch
-              modalSize="sm"
               noReset
               flex={"1 1 160px"}
             />
