@@ -21,7 +21,7 @@ import { iconSize } from "../../../../const/sizes";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import { dummyShift } from "../../../../const/dummy";
-import formatTime from "../../../../const/formatTime";
+import formatTime from "../../../../lib/formatTime";
 import NoData from "../../../alert/NoData";
 
 interface Props {

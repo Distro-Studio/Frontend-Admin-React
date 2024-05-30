@@ -22,7 +22,7 @@ import {
 import { useFormik } from "formik";
 import { useRef, useState } from "react";
 import * as yup from "yup";
-import formatTime from "../../../const/formatTime";
+import formatTime from "../../../lib/formatTime";
 import { responsiveSpacing } from "../../../const/sizes";
 import backOnClose from "../../../lib/backOnClose";
 import formatDate from "../../../lib/formatDate";

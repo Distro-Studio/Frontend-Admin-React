@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Button, ButtonProps, Text } from "@chakra-ui/react";
 import { Select__Item__Interface } from "../../../const/interfaces";
 import Select from "../../input/Select";
-import formatTime from "../../../const/formatTime";
+import formatTime from "../../../lib/formatTime";
 import { dummyShift } from "../../../const/dummy";
 
 interface Props extends ButtonProps {
