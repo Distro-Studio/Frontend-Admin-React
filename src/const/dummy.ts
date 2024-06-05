@@ -2805,6 +2805,9 @@ const dummyTransferKaryawan = [
       updated_at: "2024-05-07T02:41:29.000000Z",
     },
     alasan: "Ga ada",
+    beri_tahu_manager_direktur: true,
+    beri_tahu_karyawan: true,
+    dokumen: "",
   },
   {
     id: 2,
@@ -2858,7 +2861,10 @@ const dummyTransferKaryawan = [
       created_at: "2023-08-11T02:41:29.000000Z",
       updated_at: "2024-05-07T02:41:29.000000Z",
     },
-    alasan: "Ga ada ",
+    alasan: "Ga ada",
+    beri_tahu_manager_direktur: true,
+    beri_tahu_karyawan: true,
+    dokumen: "",
   },
 ];
 

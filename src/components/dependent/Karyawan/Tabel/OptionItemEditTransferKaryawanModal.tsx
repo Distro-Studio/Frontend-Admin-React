@@ -61,8 +61,8 @@ export default function OptionItemEditTransferKaryawanModal({ data }: Props) {
       jabatan_tujuan: yup.mixed().required("Harus diisi"),
       dokumen: yup.array().min(1, "Harus diisi").required("Harus diisi"),
       alasan: yup.string().required("Harus diisi"),
-      beri_tahu_manager_direktur: yup.boolean().required("Harus diisi"),
-      beri_tahu_karyawan: yup.boolean().required("Harus diisi"),
+      beri_tahu_manager_direktur: yup.boolean(),
+      beri_tahu_karyawan: yup.boolean(),
     }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
