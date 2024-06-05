@@ -89,7 +89,7 @@ export default function DetailKeluargaKaryawan() {
             >
               <Avatar size={"lg"} src={data.foto_profil} name={data.nama} />
 
-              <Box pr={responsiveSpacing}>
+              <Box>
                 <Text fontSize={14} opacity={0.6}>
                   Nama Karyawan
                 </Text>

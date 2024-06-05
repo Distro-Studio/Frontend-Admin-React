@@ -17,7 +17,11 @@ const formatDate = (dateString: string, options?: any) => {
         }
   );
 
-  return formattedDate;
+  if (dateString) {
+    return formattedDate;
+  } else {
+    return "-";
+  }
 };
 
 export default formatDate;

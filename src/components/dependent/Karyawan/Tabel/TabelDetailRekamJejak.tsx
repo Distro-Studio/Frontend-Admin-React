@@ -1,6 +1,4 @@
 import {
-  Badge,
-  Center,
   HStack,
   Icon,
   Table,
@@ -10,7 +8,6 @@ import {
   Th,
   Thead,
   Tr,
-  VStack,
 } from "@chakra-ui/react";
 import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useState } from "react";
@@ -19,47 +16,26 @@ import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
-import EditDataKeluargaKaryawanModal from "./EditDataKeluargaKaryawanModal";
 
 interface Props {
   data: any;
 }
 
-export default function TabelDetailKeluargaKaryawan({ data }: Props) {
+export default function TabelDetailRekamJejak({ data }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
-      key: "nama",
-      label: "Nama",
+      key: "promosi",
+      label: "Promosi Jabatan",
       dataType: "string",
     },
     {
-      key: "hubungan",
-      label: "Status Hubungan",
+      key: "mutasi",
+      label: "Mutasi Unit Kerja",
       dataType: "string",
     },
     {
-      key: "pendidikan_terakhir",
-      label: "Pendidikan Terakhir",
-      dataType: "string",
-    },
-    {
-      key: "pekerjaan",
-      label: "Pekerjaan",
-      dataType: "string",
-    },
-    {
-      key: "status_hidup",
-      label: "Status Hidup",
-      dataType: "badge",
-    },
-    {
-      key: "no_hp",
-      label: "No. Telepon",
-      dataType: "string",
-    },
-    {
-      key: "email",
-      label: "Email",
+      key: "penghargaan",
+      label: "Penghargaan",
       dataType: "string",
     },
   ];
@@ -168,27 +144,6 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
                     </HStack>
                   </Th>
                 ))}
-
-                <Th
-                  position={"sticky"}
-                  top={0}
-                  right={0}
-                  borderBottom={"none !important"}
-                  p={0}
-                  bg={bodyColor}
-                  zIndex={2}
-                >
-                  <Center
-                    px={4}
-                    py={3}
-                    zIndex={99}
-                    borderLeft={"1px solid var(--divider3)"}
-                    borderBottom={"1px solid var(--divider3)"}
-                    h={"52px"}
-                  >
-                    <Text>Edit</Text>
-                  </Center>
-                </Th>
               </Tr>
             </Thead>
 
@@ -198,47 +153,11 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
                   key={row.id}
                   bg={rowIndex % 2 === 0 ? contentBgColor : bodyColor}
                 >
-                  <Td pl={4} whiteSpace={"nowrap"}>
-                    {row.nama}
+                  <Td h={"72px"} pl={4} whiteSpace={"nowrap"}>
+                    {row.promosi}
                   </Td>
-                  <Td whiteSpace={"nowrap"}>{row.hubungan}</Td>
-                  <Td whiteSpace={"nowrap"}>{row.pendidikan_terakhir}</Td>
-                  <Td whiteSpace={"nowrap"}>{row.pekerjaan}</Td>
-                  <Td whiteSpace={"nowrap"}>
-                    <Badge
-                      w={"100%"}
-                      textAlign={"center"}
-                      colorScheme={row.status_hidup === 1 ? "teal" : "gray"}
-                    >
-                      {row.status_hidup === 1 ? "Hidup" : "Meninggal"}
-                    </Badge>
-                  </Td>
-                  <Td whiteSpace={"nowrap"}>{row.no_hp}</Td>
-                  <Td whiteSpace={"nowrap"} pr={4}>
-                    {row.email}
-                  </Td>
-
-                  <Td
-                    position={"sticky"}
-                    top={0}
-                    right={0}
-                    borderBottom={"none !important"}
-                    p={0}
-                    bg={rowIndex % 2 === 0 ? contentBgColor : bodyColor}
-                    zIndex={1}
-                    w={"150px"}
-                  >
-                    <VStack
-                      borderLeft={"1px solid var(--divider3)"}
-                      w={"150px"}
-                      h={"72px"}
-                      px={4}
-                      align={"stretch"}
-                      justify={"center"}
-                    >
-                      <EditDataKeluargaKaryawanModal data={row} />
-                    </VStack>
-                  </Td>
+                  <Td whiteSpace={"nowrap"}>{row.mutasi}</Td>
+                  <Td whiteSpace={"nowrap"}>{row.penghargaan}</Td>
                 </Tr>
               ))}
             </Tbody>

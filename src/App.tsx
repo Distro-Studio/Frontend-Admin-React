@@ -45,6 +45,7 @@ import perusahaanTopNavs from "./const/perusahaanTopNavs";
 import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi";
 import DetailLaporanRiwayatPenggajian from "./pages/Keuangan/DetailLaporanRiwayatPenggajian";
 import DetailLaporanThr from "./pages/Keuangan/DetailLaporanThr";
+import DetailRekamJejak from "./pages/Karyawan/DetailRekamJejak";
 
 // github pekok
 
@@ -153,6 +154,19 @@ export const App = () => (
               topNavActive={4}
             >
               <RekamJejak />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/karyawan/rekam-jejak/:karyawanId"
+          element={
+            <NavContainer
+              active={1}
+              title="Detail Rekam Jejak"
+              left={"back"}
+              backLink="/karyawan/rekam-jejak"
+            >
+              <DetailRekamJejak />
             </NavContainer>
           }
         />
