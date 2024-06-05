@@ -8,6 +8,7 @@ import {
   FormErrorMessage,
   FormLabel,
   HStack,
+  Icon,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -30,6 +31,7 @@ import useBackOnClose from "../../../lib/useBackOnClose";
 import DeletePermanentWarning from "../../alert/DeletePermanentWarning";
 import FormRequired from "../../form/FormRequired";
 import SelectShift from "../_Select/SelectShift";
+import { RiEditBoxLine } from "@remixicon/react";
 
 interface Props {
   data: any;
@@ -77,14 +79,23 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
         cursor={"pointer"}
         onClick={onOpen}
       >
-        <Box>
-          <Text noOfLines={1} mb={1} fontSize={14}>
-            {jadwal.label}
-          </Text>
-          <Text whiteSpace={"nowrap"} fontSize={14}>
-            {formatTime(jadwal.jam_masuk)} - {formatTime(jadwal.jam_keluar)}
-          </Text>
-        </Box>
+        <HStack justify={"space-between"}>
+          <Box>
+            <Text noOfLines={1} mb={1} fontSize={14} fontWeight={500}>
+              {jadwal.label}
+            </Text>
+            <Text fontWeight={500} fontSize={14} whiteSpace={"nowrap"}>
+              {formatTime(jadwal.jam_masuk)} - {formatTime(jadwal.jam_keluar)}
+            </Text>
+          </Box>
+
+          <Icon
+            as={RiEditBoxLine}
+            fontSize={20}
+            alignSelf={"flex-start"}
+            opacity={0.6}
+          />
+        </HStack>
       </VStack>
 
       <Modal

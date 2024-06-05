@@ -36,7 +36,7 @@ export default function TabelPengaturanCuti({ filterConfig }: Props) {
     },
     {
       key: "durasi",
-      label: "Durasi (hari)",
+      label: "Maksimal Durasi",
       dataType: "number",
     },
   ];
