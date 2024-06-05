@@ -1,10 +1,12 @@
 import {
-  Button,
-  ButtonProps,
   Checkbox,
   FormControl,
   FormErrorMessage,
   FormLabel,
+  HStack,
+  Icon,
+  Input,
+  MenuItem,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -16,23 +18,25 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { RiEditFill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
-import useBackOnClose from "../../../lib/useBackOnClose";
-import SelectJabatan from "../../dependent/_Select/SelectJabatan";
-import SelectKaryawan from "../../dependent/_Select/SelectKaryawan";
-import SelectTipeTransfer from "../../dependent/_Select/SelectTipeTransfer";
-import SelectUnitKerja from "../../dependent/_Select/SelectUnitKerja";
-import FormRequired from "../../form/FormRequired";
-import DatePicker from "../../input/DatePicker";
-import FileInput from "../../input/FileInput";
-import Textarea from "../../input/Textarea";
+import backOnClose from "../../../../lib/backOnClose";
+import useBackOnClose from "../../../../lib/useBackOnClose";
+import FormRequired from "../../../form/FormRequired";
+import DatePicker from "../../../input/DatePicker";
+import FileInput from "../../../input/FileInput";
+import Textarea from "../../../input/Textarea";
+import SelectJabatan from "../../_Select/SelectJabatan";
+import SelectTipeTransfer from "../../_Select/SelectTipeTransfer";
+import SelectUnitKerja from "../../_Select/SelectUnitKerja";
 
-interface Props extends ButtonProps {}
+interface Props {
+  data: any;
+}
 
-export default function AjukanTransferKaryawan({ ...props }: Props) {
+export default function OptionItemEditTransferKaryawanModal({ data }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
@@ -40,18 +44,16 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      nama: "",
-      tgl_mulai: "",
-      tipe: "" as any,
-      unit_kerja_tujuan: "" as any,
-      jabatan_tujuan: "" as any,
-      dokumen: "",
-      alasan: "",
-      beri_tahu_manager_direktur: false,
-      beri_tahu_karyawan: false,
+      tgl_mulai: data.tgl_mulai,
+      tipe: data.tipe as any,
+      unit_kerja_tujuan: data.unit_kerja_tujuan as any,
+      jabatan_tujuan: data.jabatan_tujuan as any,
+      dokumen: data.dokumen as File[],
+      alasan: data.alasan,
+      beri_tahu_manager_direktur: data.beri_tahu_manajer,
+      beri_tahu_karyawan: data.beri_tahu_karyawan,
     },
     validationSchema: yup.object().shape({
-      nama: yup.string().required("Harus diisi"),
       tgl_mulai: yup.string().required("Harus diisi"),
       tipe: yup.string().required("Harus diisi"),
       unit_kerja_tujuan: yup.string().required("Harus diisi"),
@@ -68,20 +70,17 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
 
   return (
     <>
-      <Button
-        colorScheme="ap"
-        className="btn-ap clicky"
-        onClick={onOpen}
-        {...props}
-      >
-        Ajukan Transfer
-      </Button>
+      <MenuItem onClick={onOpen}>
+        <HStack justify={"center"} w={"100%"} pr={2}>
+          <Icon as={RiEditFill} />
+          <Text>Edit</Text>
+        </HStack>
+      </MenuItem>
 
       <Modal
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
-          formik.resetForm();
         }}
         initialFocusRef={initialRef}
         isCentered
@@ -89,23 +88,15 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Ajukan Transfer Karyawan</ModalHeader>
+          <ModalHeader ref={initialRef}>Edit Transfer Karyawan</ModalHeader>
           <ModalBody>
-            <form id="transferKaryawanForm" onSubmit={formik.handleSubmit}>
-              <FormControl mb={4} isInvalid={!!formik.errors.nama}>
+            <form id="editTransferKaryawanForm" onSubmit={formik.handleSubmit}>
+              <FormControl mb={4}>
                 <FormLabel>
                   Nama Karyawan
                   <FormRequired />
                 </FormLabel>
-                <SelectKaryawan
-                  name="nama"
-                  formik={formik}
-                  placeholder="Pilih Karyawan"
-                  noUseBackOnClose
-                />
-                <FormErrorMessage>
-                  {formik.errors.nama as string}
-                </FormErrorMessage>
+                <Input defaultValue={data.user.nama} isDisabled />
               </FormControl>
 
               <SimpleGrid columns={[1, 2]} gap={4}>
@@ -118,6 +109,7 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
                     name="tgl_mulai"
                     formik={formik}
                     dateValue={formik.values.tgl_mulai}
+                    defaultDateSelected={formik.values.tgl_mulai}
                     dateFormatOptions={{
                       day: "numeric",
                       month: "numeric",
@@ -139,7 +131,10 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
                     name="tipe"
                     formik={formik}
                     placeholder="Pilih Tipe Transfer"
-                    initialSelected={formik.values.tipe}
+                    initialSelected={{
+                      value: formik.values.tipe.id,
+                      label: formik.values.tipe.label,
+                    }}
                     noSearch
                     noUseBackOnClose
                   />
@@ -162,7 +157,10 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
                     name="unit_kerja_tujuan"
                     formik={formik}
                     placeholder="Pilih Unit Kerja"
-                    initialSelected={formik.values.unit_kerja_tujuan}
+                    initialSelected={{
+                      value: formik.values.unit_kerja_tujuan.id,
+                      label: formik.values.unit_kerja_tujuan.nama_unit,
+                    }}
                     noUseBackOnClose
                   />
                   <FormErrorMessage>
@@ -179,7 +177,10 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
                     name="jabatan_tujuan"
                     formik={formik}
                     placeholder="Pilih Jabatan"
-                    initialSelected={formik.values.jabatan_tujuan}
+                    initialSelected={{
+                      value: formik.values.jabatan_tujuan.id,
+                      label: formik.values.jabatan_tujuan.nama_jabatan,
+                    }}
                     noUseBackOnClose
                   />
                   <FormErrorMessage>
@@ -238,17 +239,7 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
               </FormControl>
             </form>
           </ModalBody>
-          <ModalFooter>
-            <Button
-              type="submit"
-              form="transferKaryawanForm"
-              w={"100%"}
-              colorScheme="ap"
-              className="btn-ap clicky"
-            >
-              Simpan
-            </Button>
-          </ModalFooter>
+          <ModalFooter></ModalFooter>
         </ModalContent>
       </Modal>
     </>

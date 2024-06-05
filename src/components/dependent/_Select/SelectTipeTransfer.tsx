@@ -29,15 +29,11 @@ export default function SelectTipeTransfer({
   const options = [
     {
       value: 1,
-      label: "Keadaan",
+      label: "Promosi",
     },
     {
       value: 2,
-      label: "Paksaan",
-    },
-    {
-      value: 3,
-      label: "Dia yang minta ya",
+      label: "Mutasi",
     },
   ];
   const filteredOptions = options?.filter((option) =>

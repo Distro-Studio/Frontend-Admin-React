@@ -98,7 +98,7 @@ export default function FileInput({ formik, name, accept }: Props) {
           <Box px={4} py={2} w={"100%"}>
             <Tooltip
               label={
-                formik.values[name].length > 0
+                formik.values[name]?.length > 0
                   ? formik.values[name]
                       .map((file: File) => file.name)
                       .join(", ")
@@ -107,7 +107,7 @@ export default function FileInput({ formik, name, accept }: Props) {
             >
               <HStack
                 justify={"center"}
-                opacity={formik.values[name].length > 0 ? 1 : 0.3}
+                opacity={formik.values[name]?.length > 0 ? 1 : 0.3}
               >
                 <Icon as={RiUploadCloud2Line} fontSize={iconSize} />
                 <Text

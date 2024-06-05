@@ -89,12 +89,14 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
             </Text>
           </Box>
 
-          <Icon
-            as={RiEditBoxLine}
-            fontSize={20}
-            alignSelf={"flex-start"}
-            opacity={0.6}
-          />
+          {data.unit_kerja.jenis_karyawan === 1 && (
+            <Icon
+              as={RiEditBoxLine}
+              fontSize={20}
+              alignSelf={"flex-start"}
+              opacity={0.6}
+            />
+          )}
         </HStack>
       </VStack>
 

@@ -1,10 +1,10 @@
 import {
   Avatar,
+  Badge,
   Center,
   Checkbox,
   HStack,
   Icon,
-  IconButton,
   Table,
   Tbody,
   Td,
@@ -14,19 +14,16 @@ import {
   Tr,
   VStack,
 } from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
+import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
-import { dummyKaryawanList } from "../../../../const/dummy";
-import {
-  Karyawan__Interface,
-  Tabel__Column__Interface,
-} from "../../../../const/interfaces";
-import { iconSize } from "../../../../const/sizes";
+import { dummyTransferKaryawan } from "../../../../const/dummy";
+import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import formatDate from "../../../../lib/formatDate";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
+import OptionModalTransferKaryawan from "./OptionModalTransferKaryawan";
 
 interface Props {
   filterConfig?: any;
@@ -40,13 +37,8 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       dataType: "avatarAndName",
     },
     {
-      key: "no_induk_karyawan",
-      label: "No. Induk Karyawan",
-      dataType: "string",
-    },
-    {
-      key: "tgl",
-      label: "Tanggal",
+      key: "tgl_mulai",
+      label: "Tanggal Mulai",
       dataType: "date",
     },
     {
@@ -55,18 +47,18 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       dataType: "string",
     },
     {
-      key: "unit_kerja",
-      label: "Unit Kerja",
+      key: "unit_kerja_tujuan",
+      label: "Unit Kerja Tujuan",
       dataType: "string",
     },
     {
-      key: "jabatan",
-      label: "Jabatan",
+      key: "jabatan_tujuan",
+      label: "Jabatan Tujuan",
       dataType: "string",
     },
     {
-      key: "status_karyawan",
-      label: "Pengharagaan",
+      key: "status",
+      label: "Status",
       dataType: "badge",
     },
   ];
@@ -77,7 +69,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
 
   //TODO get karyawan
 
-  const [data] = useState<Karyawan__Interface[] | null>(dummyKaryawanList);
+  const [data] = useState<any[] | null>(dummyTransferKaryawan);
   const [loading] = useState<boolean>(false);
 
   // Limit Config
@@ -119,11 +111,29 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
   if (sortConfig !== null && sortedData) {
     sortedData.sort((a, b) => {
       //@ts-ignore
-      if (a[sortConfig.key] < b[sortConfig.key]) {
+      let aValue = a[sortConfig.key];
+      //@ts-ignore
+      let bValue = b[sortConfig.key];
+
+      // Handle nested properties
+      if (sortConfig.key === "nama") {
+        aValue = a.user?.nama;
+        bValue = b.user?.nama;
+      } else if (sortConfig.key === "tipe") {
+        aValue = a.tipe?.label;
+        bValue = b.tipe?.label;
+      } else if (sortConfig.key === "unit_kerja_tujuan") {
+        aValue = a.unit_kerja_tujuan?.nama_unit;
+        bValue = b.unit_kerja_tujuan?.nama_unit;
+      } else if (sortConfig.key === "jabatan_tujuan") {
+        aValue = a.jabatan_tujuan?.nama_jabatan;
+        bValue = b.jabatan_tujuan?.nama_jabatan;
+      }
+
+      if (aValue < bValue) {
         return sortConfig.direction === "asc" ? -1 : 1;
       }
-      //@ts-ignore
-      if (a[sortConfig.key] > b[sortConfig.key]) {
+      if (aValue > bValue) {
         return sortConfig.direction === "asc" ? 1 : -1;
       }
       return 0;
@@ -313,20 +323,28 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
                       <HStack>
                         <Avatar
                           size={"sm"}
-                          name={row.nama}
-                          src={row.foto_profil}
+                          name={row.user.nama}
+                          src={row.user.foto_profil}
                         />
-                        <Text>{row.nama}</Text>
+                        <Text>{row.user.nama}</Text>
                       </HStack>
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{row.nik}</Td>
                     <Td whiteSpace={"nowrap"}>
-                      {formatDate(row.tgl_masuk as string)}
+                      {formatDate(row.tgl_mulai as string)}
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{row.status_karyawan}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.jabatan}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.penghargaan}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.tipe.label}</Td>
+                    <Td whiteSpace={"nowrap"}>
+                      {row.user.unit_kerja.nama_unit}
+                    </Td>
+                    <Td whiteSpace={"nowrap"}>
+                      {row.user.jabatan.nama_jabatan}
+                    </Td>
+                    <Td whiteSpace={"nowrap"}>
+                      <Badge w={"100%"} textAlign={"center"}>
+                        {row.status}
+                      </Badge>
+                    </Td>
+
                     {/* Kolom tetap di sebelah kanan */}
                     <Td
                       position={"sticky"}
@@ -342,14 +360,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
                         borderLeft={"1px solid var(--divider3)"}
                         justify={"center"}
                       >
-                        <IconButton
-                          h={"72px"}
-                          w={"50px"}
-                          aria-label="Option Button"
-                          icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
-                          className="btn"
-                          borderRadius={0}
-                        />
+                        <OptionModalTransferKaryawan data={row} />
                       </VStack>
                     </Td>
                   </Tr>
