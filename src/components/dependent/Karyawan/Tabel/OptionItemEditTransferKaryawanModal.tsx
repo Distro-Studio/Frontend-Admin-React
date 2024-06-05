@@ -1,4 +1,5 @@
 import {
+  Button,
   Checkbox,
   FormControl,
   FormErrorMessage,
@@ -55,9 +56,9 @@ export default function OptionItemEditTransferKaryawanModal({ data }: Props) {
     },
     validationSchema: yup.object().shape({
       tgl_mulai: yup.string().required("Harus diisi"),
-      tipe: yup.string().required("Harus diisi"),
-      unit_kerja_tujuan: yup.string().required("Harus diisi"),
-      jabatan_tujuan: yup.string().required("Harus diisi"),
+      tipe: yup.mixed().required("Harus diisi"),
+      unit_kerja_tujuan: yup.mixed().required("Harus diisi"),
+      jabatan_tujuan: yup.mixed().required("Harus diisi"),
       dokumen: yup.array().min(1, "Harus diisi").required("Harus diisi"),
       alasan: yup.string().required("Harus diisi"),
       beri_tahu_manager_direktur: yup.boolean().required("Harus diisi"),
@@ -81,6 +82,7 @@ export default function OptionItemEditTransferKaryawanModal({ data }: Props) {
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
+          formik.resetForm();
         }}
         initialFocusRef={initialRef}
         isCentered
@@ -109,11 +111,11 @@ export default function OptionItemEditTransferKaryawanModal({ data }: Props) {
                     name="tgl_mulai"
                     formik={formik}
                     dateValue={formik.values.tgl_mulai}
-                    defaultDateSelected={formik.values.tgl_mulai}
+                    defaultDateSelected={new Date(formik.values.tgl_mulai)}
                     dateFormatOptions={{
-                      day: "numeric",
-                      month: "numeric",
                       year: "numeric",
+                      month: "numeric",
+                      day: "numeric",
                     }}
                     noUseBackOnClose
                   />
@@ -239,7 +241,17 @@ export default function OptionItemEditTransferKaryawanModal({ data }: Props) {
               </FormControl>
             </form>
           </ModalBody>
-          <ModalFooter></ModalFooter>
+          <ModalFooter>
+            <Button
+              type="submit"
+              form="editTransferKaryawanForm"
+              w={"100%"}
+              className="btn-ap clicky"
+              colorScheme="ap"
+            >
+              Simpan
+            </Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </>

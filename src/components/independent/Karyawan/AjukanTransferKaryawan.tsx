@@ -53,9 +53,9 @@ export default function AjukanTransferKaryawan({ ...props }: Props) {
     validationSchema: yup.object().shape({
       nama: yup.string().required("Harus diisi"),
       tgl_mulai: yup.string().required("Harus diisi"),
-      tipe: yup.string().required("Harus diisi"),
-      unit_kerja_tujuan: yup.string().required("Harus diisi"),
-      jabatan_tujuan: yup.string().required("Harus diisi"),
+      tipe: yup.mixed().required("Harus diisi"),
+      unit_kerja_tujuan: yup.mixed().required("Harus diisi"),
+      jabatan_tujuan: yup.mixed().required("Harus diisi"),
       dokumen: yup.array().min(1, "Harus diisi").required("Harus diisi"),
       alasan: yup.string().required("Harus diisi"),
       beri_tahu_manager_direktur: yup.boolean().required("Harus diisi"),
