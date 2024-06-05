@@ -59,7 +59,7 @@ export default function OptionItemEditTransferKaryawanModal({ data }: Props) {
       tipe: yup.mixed().required("Harus diisi"),
       unit_kerja_tujuan: yup.mixed().required("Harus diisi"),
       jabatan_tujuan: yup.mixed().required("Harus diisi"),
-      dokumen: yup.array().min(1, "Harus diisi").required("Harus diisi"),
+      dokumen: yup.array().min(1, "Harus diisi"),
       alasan: yup.string().required("Harus diisi"),
       beri_tahu_manager_direktur: yup.boolean(),
       beri_tahu_karyawan: yup.boolean(),
@@ -197,6 +197,11 @@ export default function OptionItemEditTransferKaryawanModal({ data }: Props) {
                   <FormRequired />
                 </FormLabel>
                 <FileInput name="dokumen" formik={formik} />
+                <Text
+                  mt={1}
+                  opacity={0.6}
+                  fontSize={14}
+                >{`Dokumen sebelumnya : ${data.initialDokumenName}`}</Text>
                 <FormErrorMessage>
                   {formik.errors.dokumen as string}
                 </FormErrorMessage>

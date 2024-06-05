@@ -16,13 +16,19 @@ interface Props {
   formik: any;
   name: string;
   accept?: string;
+  defaultName?: string;
 }
 
-export default function FileInput({ formik, name, accept }: Props) {
+export default function FileInput({
+  formik,
+  name,
+  accept,
+  defaultName,
+}: Props) {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [fileName, setFileName] = useState(
-    "Seret & letakkan atau klik untuk cari"
+    defaultName || "Seret & letakkan atau klik untuk cari"
   );
   const [isDraggingOver, setIsDraggingOver] = useState(false);
 
@@ -98,7 +104,9 @@ export default function FileInput({ formik, name, accept }: Props) {
           <Box px={4} py={2} w={"100%"}>
             <Tooltip
               label={
-                formik.values[name]?.length > 0
+                defaultName
+                  ? defaultName
+                  : formik.values[name]?.length > 0
                   ? formik.values[name]
                       .map((file: File) => file.name)
                       .join(", ")

@@ -2807,7 +2807,7 @@ const dummyTransferKaryawan = [
     alasan: "Ga ada",
     beri_tahu_manager_direktur: true,
     beri_tahu_karyawan: true,
-    dokumen: "",
+    initialDokumenName: "Initial File Name.pdf",
   },
   {
     id: 2,
@@ -2864,7 +2864,7 @@ const dummyTransferKaryawan = [
     alasan: "Ga ada",
     beri_tahu_manager_direktur: true,
     beri_tahu_karyawan: true,
-    dokumen: "",
+    initialDokumenName: "Initial File Name.pdf",
   },
 ];
 
