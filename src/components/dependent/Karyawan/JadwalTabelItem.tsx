@@ -75,7 +75,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
         w={"180px"}
         h={"70px"}
         align={"stretch"}
-        className="btn-apa clicky"
+        className="btn-solid clicky"
         cursor={"pointer"}
         onClick={onOpen}
       >
@@ -94,7 +94,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
               as={RiEditBoxLine}
               fontSize={20}
               alignSelf={"flex-start"}
-              opacity={0.6}
+              color={"p.500"}
             />
           )}
         </HStack>
