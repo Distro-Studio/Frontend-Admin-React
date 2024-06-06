@@ -1,11 +1,10 @@
 import {
   Avatar,
   Badge,
+  Button,
   Center,
-  Checkbox,
   HStack,
   Icon,
-  IconButton,
   Table,
   Tbody,
   Td,
@@ -15,8 +14,13 @@ import {
   Tr,
   VStack,
 } from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
+import {
+  RiArrowDownLine,
+  RiArrowRightSLine,
+  RiArrowUpLine,
+} from "@remixicon/react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   statusKaryawanColorScheme,
   useBodyColor,
@@ -24,7 +28,6 @@ import {
 } from "../../../../const/colors";
 import { dummyKaryawanList } from "../../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../../const/interfaces";
-import { iconSize } from "../../../../const/sizes";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
@@ -78,28 +81,28 @@ export default function TabelKaryawan({ filterConfig }: Props) {
   const [pageConfig, setPageConfig] = useState<number>(1);
 
   // Check List Config
-  const [checkedItems, setCheckedItems] = useState<number[]>([]);
-  const [isCheckAll, setIsCheckAll] = useState(false);
-  const handleCheckItem = (id: number) => {
-    let updatedCheckedItems;
-    if (checkedItems.includes(id)) {
-      updatedCheckedItems = checkedItems.filter((item) => item !== id);
-    } else {
-      updatedCheckedItems = [...checkedItems, id];
-    }
-    setCheckedItems(updatedCheckedItems);
-  };
-  const handleCheckAll = () => {
-    if (data) {
-      if (isCheckAll) {
-        setCheckedItems([]);
-      } else {
-        const allIds = data.map((item) => item.id);
-        setCheckedItems(allIds);
-      }
-      setIsCheckAll(!isCheckAll);
-    }
-  };
+  // const [checkedItems, setCheckedItems] = useState<number[]>([]);
+  // const [isCheckAll, setIsCheckAll] = useState(false);
+  // const handleCheckItem = (id: number) => {
+  //   let updatedCheckedItems;
+  //   if (checkedItems.includes(id)) {
+  //     updatedCheckedItems = checkedItems.filter((item) => item !== id);
+  //   } else {
+  //     updatedCheckedItems = [...checkedItems, id];
+  //   }
+  //   setCheckedItems(updatedCheckedItems);
+  // };
+  // const handleCheckAll = () => {
+  //   if (data) {
+  //     if (isCheckAll) {
+  //       setCheckedItems([]);
+  //     } else {
+  //       const allIds = data.map((item) => item.id);
+  //       setCheckedItems(allIds);
+  //     }
+  //     setIsCheckAll(!isCheckAll);
+  //   }
+  // };
 
   // Sort Config
   const [sortConfig, setSortConfig] = useState<{
@@ -164,33 +167,6 @@ export default function TabelKaryawan({ filterConfig }: Props) {
             <Table minW={"100%"}>
               <Thead>
                 <Tr position={"sticky"} top={0} zIndex={3}>
-                  <Th
-                    position={"sticky"}
-                    left={0}
-                    p={0}
-                    borderBottom={"none !important"}
-                    zIndex={3}
-                    w={"50px"}
-                  >
-                    <Center
-                      p={4}
-                      h={"52px"}
-                      w={"50px"}
-                      borderRight={"1px solid var(--divider3)"}
-                      bg={bodyColor}
-                      borderBottom={"1px solid var(--divider3) !important"}
-                    >
-                      <Checkbox
-                        colorScheme="ap"
-                        isChecked={isCheckAll}
-                        onChange={(e) => {
-                          e.stopPropagation();
-                          handleCheckAll();
-                        }}
-                      />
-                    </Center>
-                  </Th>
-
                   {columns.map((column, i) => (
                     <Th
                       key={i}
@@ -278,14 +254,16 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                     bg={bodyColor}
                     zIndex={2}
                   >
-                    <VStack
+                    <Center
                       px={4}
                       py={3}
                       zIndex={99}
                       borderLeft={"1px solid var(--divider3)"}
                       borderBottom={"1px solid var(--divider3)"}
                       h={"52px"}
-                    ></VStack>
+                    >
+                      <Text>Detail</Text>
+                    </Center>
                   </Th>
                 </Tr>
               </Thead>
@@ -293,32 +271,6 @@ export default function TabelKaryawan({ filterConfig }: Props) {
               <Tbody>
                 {sortedData.map((row, i) => (
                   <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
-                    <Td
-                      position={"sticky"}
-                      left={0}
-                      p={0}
-                      bg={bodyColor}
-                      zIndex={2}
-                      w={"50px"}
-                    >
-                      <Center
-                        h={"72px"}
-                        w={"50px"}
-                        bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                        p={4}
-                        borderRight={"1px solid var(--divider3)"}
-                      >
-                        <Checkbox
-                          colorScheme="ap"
-                          isChecked={checkedItems.includes(row.id)}
-                          onChange={(e) => {
-                            e.stopPropagation();
-                            handleCheckItem(row.id);
-                          }}
-                        />
-                      </Center>
-                    </Td>
-
                     <Td whiteSpace={"nowrap"}>
                       <HStack>
                         <Avatar
@@ -357,20 +309,29 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       p={0}
                       bg={i % 2 === 0 ? contentBgColor : bodyColor}
                       zIndex={1}
-                      w={"50px"}
+                      w={"150px"}
                     >
                       <VStack
                         borderLeft={"1px solid var(--divider3)"}
+                        w={"150px"}
+                        h={"72px"}
+                        px={4}
+                        align={"stretch"}
                         justify={"center"}
                       >
-                        <IconButton
-                          h={"72px"}
-                          w={"50px"}
-                          aria-label="Option Button"
-                          icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
-                          className="btn"
-                          borderRadius={0}
-                        />
+                        <Button
+                          colorScheme="ap"
+                          variant={"ghost"}
+                          className="clicky"
+                          as={Link}
+                          to={`/karyawan/${row.id}`}
+                          rightIcon={
+                            <Icon as={RiArrowRightSLine} fontSize={20} />
+                          }
+                          pr={3}
+                        >
+                          Detail
+                        </Button>
                       </VStack>
                     </Td>
                   </Tr>

@@ -30,7 +30,7 @@ export default function SelectStatusPekerjaKontrak({
   const [search, setSearch] = useState<string>("");
   const options = [
     {
-      value: -1,
+      value: null,
       label: "Semua status",
     },
     {

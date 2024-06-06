@@ -2,22 +2,24 @@ import {
   Avatar,
   Box,
   HStack,
+  Icon,
   Image,
   Text,
   VStack,
   Wrap,
 } from "@chakra-ui/react";
+import { RiUser3Fill } from "@remixicon/react";
 import { useRef, useState } from "react";
+import JenisKaryawanBadge from "../../components/dependent/JenisKaryawanBadge";
 import ComponentSpinner from "../../components/independent/ComponentSpinner";
+import FlexLine from "../../components/independent/FlexLine";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { responsiveSpacing, responsiveSpacing2 } from "../../const/sizes";
 import formatDate from "../../lib/formatDate";
-import FlexLine from "../../components/independent/FlexLine";
-import JenisKaryawanBadge from "../../components/dependent/JenisKaryawanBadge";
-import formatTime from "../../lib/formatTime";
 import formatDuration from "../../lib/formatDuration";
+import formatTime from "../../lib/formatTime";
 
 export default function DetailPresensi() {
   const dummy = {
@@ -53,7 +55,8 @@ export default function DetailPresensi() {
     durasi: 8 * 3600 + 348,
     lat: "33.749358",
     long: "-84.38842",
-    foto: "/reza.jpg",
+    foto_masuk: null,
+    foto_keluar: null,
     absensi: "Izin",
     kategori: "Terlambat",
     created_at: "2024-05-30T10:27:14.000000Z",
@@ -166,13 +169,24 @@ export default function DetailPresensi() {
                     Foto Presensi
                   </Text>
 
-                  <Image
-                    aspectRatio={3 / 4}
-                    objectFit={"cover"}
-                    maxH={dataPresensiRef?.current?.offsetHeight || "312px"}
-                    src={data.foto}
-                    borderRadius={4}
-                  />
+                  {data.foto ? (
+                    <Image
+                      objectFit={"cover"}
+                      aspectRatio={3 / 4}
+                      maxH={dataPresensiRef?.current?.offsetHeight || "312px"}
+                      src={data.foto}
+                      borderRadius={4}
+                    />
+                  ) : (
+                    <VStack
+                      aspectRatio={3 / 4}
+                      maxH={dataPresensiRef?.current?.offsetHeight || "312px"}
+                      overflow={"clip"}
+                      justify={"flex-end"}
+                    >
+                      <Icon as={RiUser3Fill} fontSize={300} opacity={0.2} />
+                    </VStack>
+                  )}
                 </Box>
 
                 <Box flex={1}>

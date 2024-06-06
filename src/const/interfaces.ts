@@ -19,7 +19,7 @@ export interface User__Data__Interface {
 }
 
 export interface Select__Item__Interface {
-  value: number;
+  value?: number | null;
   label: string;
 }
 

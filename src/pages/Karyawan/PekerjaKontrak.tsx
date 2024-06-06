@@ -23,7 +23,7 @@ export default function PekerjaKontrak() {
     unit_kerja: [],
     tgl_masuk: [],
     status: {
-      value: -1,
+      value: null,
       label: "Semua status",
     },
   };
@@ -57,12 +57,6 @@ export default function PekerjaKontrak() {
               />
             </InputGroup>
 
-            <FilterTabelPekerjaKontrak
-              defaultFilterConfig={defaultFilterConfig}
-              filterConfig={filterConfig}
-              setFilterConfig={setFilterConfig}
-            />
-
             <SelectStatusPekerjaKontrak
               placeholder="Pilih Status"
               initialSelected={filterConfig.status}
@@ -70,6 +64,12 @@ export default function PekerjaKontrak() {
               noSearch
               noReset
               flex={"1 1 110px"}
+            />
+
+            <FilterTabelPekerjaKontrak
+              defaultFilterConfig={defaultFilterConfig}
+              filterConfig={filterConfig}
+              setFilterConfig={setFilterConfig}
             />
 
             <Button
