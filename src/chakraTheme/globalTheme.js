@@ -108,7 +108,7 @@ export const globalTheme = extendTheme({
     Badge: {
       baseStyle: (props) => ({
         p: "4px 16px",
-        borderRadius: 8,
+        borderRadius: 6,
         textTransform: "none",
       }),
     },
