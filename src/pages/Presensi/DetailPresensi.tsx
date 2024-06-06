@@ -169,7 +169,7 @@ export default function DetailPresensi() {
                   <Image
                     aspectRatio={3 / 4}
                     objectFit={"cover"}
-                    maxH={dataPresensiRef?.current?.offsetHeight || "240px"}
+                    maxH={dataPresensiRef?.current?.offsetHeight || "312px"}
                     src={data.foto}
                     borderRadius={4}
                   />
@@ -192,6 +192,22 @@ export default function DetailPresensi() {
                       <FlexLine />
                       <Text fontWeight={500}>
                         {formatTime(data.jam_keluar)}
+                      </Text>
+                    </HStack>
+
+                    <HStack justify={"space-between"}>
+                      <Text opacity={0.6}>Tanggal Masuk</Text>
+                      <FlexLine />
+                      <Text fontWeight={500}>
+                        {formatDate(data.jam_masuk, "short")}
+                      </Text>
+                    </HStack>
+
+                    <HStack justify={"space-between"}>
+                      <Text opacity={0.6}>Tanggal Keluar</Text>
+                      <FlexLine />
+                      <Text fontWeight={500}>
+                        {formatDate(data.jam_keluar, "short")}
                       </Text>
                     </HStack>
 
