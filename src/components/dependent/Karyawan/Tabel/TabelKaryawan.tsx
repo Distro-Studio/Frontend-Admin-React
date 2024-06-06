@@ -167,6 +167,33 @@ export default function TabelKaryawan({ filterConfig }: Props) {
             <Table minW={"100%"}>
               <Thead>
                 <Tr position={"sticky"} top={0} zIndex={3}>
+                  {/* <Th
+                    position={"sticky"}
+                    left={0}
+                    p={0}
+                    borderBottom={"none !important"}
+                    zIndex={3}
+                    w={"50px"}
+                  >
+                    <Center
+                      p={4}
+                      h={"52px"}
+                      w={"50px"}
+                      borderRight={"1px solid var(--divider3)"}
+                      bg={bodyColor}
+                      borderBottom={"1px solid var(--divider3) !important"}
+                    >
+                      <Checkbox
+                        colorScheme="ap"
+                        isChecked={isCheckAll}
+                        onChange={(e) => {
+                          e.stopPropagation();
+                          handleCheckAll();
+                        }}
+                      />
+                    </Center>
+                  </Th> */}
+
                   {columns.map((column, i) => (
                     <Th
                       key={i}
@@ -271,6 +298,32 @@ export default function TabelKaryawan({ filterConfig }: Props) {
               <Tbody>
                 {sortedData.map((row, i) => (
                   <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
+                    {/* <Td
+                      position={"sticky"}
+                      left={0}
+                      p={0}
+                      bg={bodyColor}
+                      zIndex={2}
+                      w={"50px"}
+                    >
+                      <Center
+                        h={"72px"}
+                        w={"50px"}
+                        bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                        p={4}
+                        borderRight={"1px solid var(--divider3)"}
+                      >
+                        <Checkbox
+                          colorScheme="ap"
+                          isChecked={checkedItems.includes(row.id)}
+                          onChange={(e) => {
+                            e.stopPropagation();
+                            handleCheckItem(row.id);
+                          }}
+                        />
+                      </Center>
+                    </Td> */}
+
                     <Td whiteSpace={"nowrap"}>
                       <HStack>
                         <Avatar
