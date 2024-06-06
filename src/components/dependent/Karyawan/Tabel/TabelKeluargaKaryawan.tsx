@@ -246,11 +246,9 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
                       p={0}
                       bg={i % 2 === 0 ? contentBgColor : bodyColor}
                       zIndex={1}
-                      w={"150px"}
                     >
                       <VStack
                         borderLeft={"1px solid var(--divider3)"}
-                        w={"150px"}
                         h={"72px"}
                         px={4}
                         align={"stretch"}

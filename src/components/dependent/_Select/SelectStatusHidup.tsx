@@ -58,6 +58,7 @@ export default function SelectStatusHidup({
       noSearch={noSearch}
       modalSize={modalSize}
       confirmSelect={confirmSelect}
+      initialSelected={initialSelected}
       {...props}
     >
       {filteredOptions?.map((option, i) => (
