@@ -25,7 +25,6 @@ import {
 import { dummyKaryawanList } from "../../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import { iconSize } from "../../../../const/sizes";
-import formatDate from "../../../../lib/formatDate";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
@@ -52,11 +51,6 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       dataType: "string",
     },
     {
-      key: "nik_ktp",
-      label: "NIK",
-      dataType: "string",
-    },
-    {
       key: "unit_kerja",
       label: "Unit Kerja",
       dataType: "string",
@@ -65,16 +59,6 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       key: "status_karyawan",
       label: "Status Karyawan",
       dataType: "badge",
-    },
-    {
-      key: "tempat_lahir",
-      label: "Tempat Lahir",
-      dataType: "string",
-    },
-    {
-      key: "tgl_lahir",
-      label: "Tanggal Lahir",
-      dataType: "date",
     },
   ];
 
@@ -126,11 +110,29 @@ export default function TabelKaryawan({ filterConfig }: Props) {
   if (sortConfig !== null && sortedData) {
     sortedData.sort((a, b) => {
       //@ts-ignore
-      if (a[sortConfig.key] < b[sortConfig.key]) {
+      let aValue = a[sortConfig.key];
+      //@ts-ignore
+      let bValue = b[sortConfig.key];
+
+      // Handle nested properties
+      if (sortConfig.key === "nama") {
+        aValue = a.user?.nama;
+        bValue = b.user?.nama;
+      } else if (sortConfig.key === "unit_kerja") {
+        aValue = a.unit_kerja?.nama_unit;
+        bValue = b.unit_kerja?.nama_unit;
+      } else if (sortConfig.key === "status") {
+        aValue = !a.tgl_keluar ? 1 : 0;
+        bValue = !b.tgl_keluar ? 1 : 0;
+      } else if (sortConfig.key === "tgl_keluar") {
+        aValue = a.tgl_keluar;
+        bValue = b.tgl_keluar;
+      }
+
+      if (aValue < bValue) {
         return sortConfig.direction === "asc" ? -1 : 1;
       }
-      //@ts-ignore
-      if (a[sortConfig.key] > b[sortConfig.key]) {
+      if (aValue > bValue) {
         return sortConfig.direction === "asc" ? 1 : -1;
       }
       return 0;
@@ -329,24 +331,23 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                     </Td>
                     <Td whiteSpace={"nowrap"}>{row.nik}</Td>
                     <Td whiteSpace={"nowrap"}>{row.no_rm}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.nik}</Td>
                     <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
                     <Td whiteSpace={"nowrap"}>
-                      <Badge
-                        w={"100%"}
-                        textAlign={"center"}
-                        colorScheme={
-                          //@ts-ignore
-                          statusKaryawanColorScheme[row.status_karyawan]
-                        }
-                      >
-                        {row.status_karyawan}
-                      </Badge>
+                      <VStack>
+                        <Badge
+                          w={"100%"}
+                          maxW={"100px"}
+                          textAlign={"center"}
+                          colorScheme={
+                            //@ts-ignore
+                            statusKaryawanColorScheme[row.status_karyawan]
+                          }
+                        >
+                          {row.status_karyawan}
+                        </Badge>
+                      </VStack>
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{row.tempat_lahir}</Td>
-                    <Td whiteSpace={"nowrap"}>
-                      {formatDate(row.tgl_lahir as string)}
-                    </Td>
+
                     {/* Kolom tetap di sebelah kanan */}
                     <Td
                       position={"sticky"}

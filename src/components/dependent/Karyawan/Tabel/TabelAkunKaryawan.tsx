@@ -17,11 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
 import { useState } from "react";
-import {
-  statusKaryawanColorScheme,
-  useBodyColor,
-  useContentBgColor,
-} from "../../../../const/colors";
+import { useBodyColor, useContentBgColor } from "../../../../const/colors";
 import { dummyAkunKaryawan } from "../../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import { iconSize } from "../../../../const/sizes";
@@ -41,7 +37,7 @@ export default function TabelAkunKaryawan({ filterConfig }: Props) {
       dataType: "avatarAndName",
     },
     {
-      key: "no_induk_karyawan",
+      key: "nik",
       label: "No. Induk Karyawan",
       dataType: "string",
     },
@@ -56,9 +52,10 @@ export default function TabelAkunKaryawan({ filterConfig }: Props) {
       dataType: "string",
     },
     {
-      key: "status_karyawan",
-      label: "Status Karyawan",
+      key: "status_aktif",
+      label: "Status Aktif",
       dataType: "badge",
+      preferredTextAlign: "center",
     },
   ];
 
@@ -315,16 +312,17 @@ export default function TabelAkunKaryawan({ filterConfig }: Props) {
                     <Td whiteSpace={"nowrap"}>{row.email}</Td>
                     <Td whiteSpace={"nowrap"}>{row.username}</Td>
                     <Td whiteSpace={"nowrap"}>
-                      <Badge
-                        w={"100%"}
-                        textAlign={"center"}
-                        colorScheme={
-                          //@ts-ignore
-                          statusKaryawanColorScheme[row.status_karyawan]
-                        }
-                      >
-                        {row.status_karyawan}
-                      </Badge>
+                      <VStack>
+                        <Badge
+                          w={"100%"}
+                          maxW={"100px"}
+                          mx={"auto"}
+                          textAlign={"center"}
+                          colorScheme={row.status_aktif ? "ap" : "red"}
+                        >
+                          {row.status_aktif ? "Aktif" : "Tidak Aktif"}
+                        </Badge>
+                      </VStack>
                     </Td>
 
                     {/* Kolom tetap di sebelah kanan */}

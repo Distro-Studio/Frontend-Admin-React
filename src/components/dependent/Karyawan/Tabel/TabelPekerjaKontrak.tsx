@@ -53,9 +53,10 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       dataType: "date",
     },
     {
-      key: "status",
-      label: "Status",
+      key: "status_aktif",
+      label: "Status Aktif",
       dataType: "badge",
+      preferredTextAlign: "center",
     },
     // {
     //   key: "laporan",
@@ -123,7 +124,7 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       } else if (sortConfig.key === "unit_kerja") {
         aValue = a.unit_kerja?.nama_unit;
         bValue = b.unit_kerja?.nama_unit;
-      } else if (sortConfig.key === "status") {
+      } else if (sortConfig.key === "status_aktif") {
         aValue = !a.tgl_keluar ? 1 : 0;
         bValue = !b.tgl_keluar ? 1 : 0;
       } else if (sortConfig.key === "tgl_keluar") {
