@@ -4,6 +4,7 @@ const formatDate = (dateString: string, options?: any) => {
     month: "numeric",
     day: "numeric",
   };
+  
   const date = new Date(dateString);
   const formattedDate = date.toLocaleDateString(
     "id-ID",

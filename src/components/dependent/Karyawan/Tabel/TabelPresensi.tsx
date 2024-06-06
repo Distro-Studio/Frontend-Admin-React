@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Button,
   Center,
   Checkbox,
   HStack,
@@ -14,7 +15,12 @@ import {
   Tr,
   VStack,
 } from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
+import {
+  RiArrowDownLine,
+  RiArrowRightSLine,
+  RiArrowUpLine,
+  RiMore2Fill,
+} from "@remixicon/react";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
 import { dummyPresensi } from "../../../../const/dummy";
@@ -23,6 +29,9 @@ import { iconSize } from "../../../../const/sizes";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
+import formatTime from "../../../../lib/formatTime";
+import DetailPresensiModal from "../../Presensi/DetailPresensiModal";
+import { Link } from "react-router-dom";
 
 interface Props {
   filterConfig?: any;
@@ -36,8 +45,8 @@ export default function TabelPresensi({ filterConfig }: Props) {
       dataType: "avatarAndName",
     },
     {
-      key: "shift",
-      label: "Shift",
+      key: "jadwal",
+      label: "Jadwal",
       dataType: "string",
     },
     {
@@ -49,11 +58,13 @@ export default function TabelPresensi({ filterConfig }: Props) {
       key: "jam_masuk",
       label: "Presensi Masuk",
       dataType: "time",
+      preferredTextAlign: "center",
     },
     {
       key: "jam_keluar",
       label: "Presensi Keluar",
       dataType: "time",
+      preferredTextAlign: "center",
     },
   ];
 
@@ -72,30 +83,6 @@ export default function TabelPresensi({ filterConfig }: Props) {
   // Pagination Config
   const [pageConfig, setPageConfig] = useState<number>(1);
 
-  // Check List Config
-  const [checkedItems, setCheckedItems] = useState<number[]>([]);
-  const [isCheckAll, setIsCheckAll] = useState(false);
-  const handleCheckItem = (id: number) => {
-    let updatedCheckedItems;
-    if (checkedItems.includes(id)) {
-      updatedCheckedItems = checkedItems.filter((item) => item !== id);
-    } else {
-      updatedCheckedItems = [...checkedItems, id];
-    }
-    setCheckedItems(updatedCheckedItems);
-  };
-  const handleCheckAll = () => {
-    if (data) {
-      if (isCheckAll) {
-        setCheckedItems([]);
-      } else {
-        const allIds = data.map((item) => item.id);
-        setCheckedItems(allIds);
-      }
-      setIsCheckAll(!isCheckAll);
-    }
-  };
-
   // Sort Config
   const [sortConfig, setSortConfig] = useState<{
     key: string;
@@ -105,11 +92,26 @@ export default function TabelPresensi({ filterConfig }: Props) {
   if (sortConfig !== null && sortedData) {
     sortedData.sort((a, b) => {
       //@ts-ignore
-      if (a[sortConfig.key] < b[sortConfig.key]) {
+      let aValue = a[sortConfig.key];
+      //@ts-ignore
+      let bValue = b[sortConfig.key];
+
+      // Handle nested properties
+      if (sortConfig.key === "nama") {
+        aValue = a.user?.nama;
+        bValue = b.user?.nama;
+      } else if (sortConfig.key === "jadwal") {
+        aValue = a.jadwal?.nama;
+        bValue = b.jadwal?.nama;
+      } else if (sortConfig.key === "unit_kerja") {
+        aValue = a.unit_kerja?.nama_unit;
+        bValue = b.unit_kerja?.nama_unit;
+      }
+
+      if (aValue < bValue) {
         return sortConfig.direction === "asc" ? -1 : 1;
       }
-      //@ts-ignore
-      if (a[sortConfig.key] > b[sortConfig.key]) {
+      if (aValue > bValue) {
         return sortConfig.direction === "asc" ? 1 : -1;
       }
       return 0;
@@ -141,33 +143,6 @@ export default function TabelPresensi({ filterConfig }: Props) {
             <Table minW={"100%"}>
               <Thead>
                 <Tr position={"sticky"} top={0} zIndex={3}>
-                  <Th
-                    position={"sticky"}
-                    left={0}
-                    p={0}
-                    borderBottom={"none !important"}
-                    zIndex={3}
-                    w={"50px"}
-                  >
-                    <Center
-                      p={4}
-                      h={"52px"}
-                      w={"50px"}
-                      borderRight={"1px solid var(--divider3)"}
-                      bg={bodyColor}
-                      borderBottom={"1px solid var(--divider3) !important"}
-                    >
-                      <Checkbox
-                        colorScheme="ap"
-                        isChecked={isCheckAll}
-                        onChange={(e) => {
-                          e.stopPropagation();
-                          handleCheckAll();
-                        }}
-                      />
-                    </Center>
-                  </Th>
-
                   {columns.map((column, i) => (
                     <Th
                       key={i}
@@ -254,14 +229,16 @@ export default function TabelPresensi({ filterConfig }: Props) {
                     bg={bodyColor}
                     zIndex={2}
                   >
-                    <VStack
+                    <Center
                       px={4}
                       py={3}
                       zIndex={99}
                       borderLeft={"1px solid var(--divider3)"}
                       borderBottom={"1px solid var(--divider3)"}
                       h={"52px"}
-                    ></VStack>
+                    >
+                      <Text>Detail</Text>
+                    </Center>
                   </Th>
                 </Tr>
               </Thead>
@@ -269,45 +246,24 @@ export default function TabelPresensi({ filterConfig }: Props) {
               <Tbody>
                 {sortedData.map((row, i) => (
                   <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
-                    <Td
-                      position={"sticky"}
-                      left={0}
-                      p={0}
-                      bg={bodyColor}
-                      zIndex={2}
-                      w={"50px"}
-                    >
-                      <Center
-                        h={"72px"}
-                        w={"50px"}
-                        bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                        p={4}
-                        borderRight={"1px solid var(--divider3)"}
-                      >
-                        <Checkbox
-                          colorScheme="ap"
-                          isChecked={checkedItems.includes(row.id)}
-                          onChange={(e) => {
-                            e.stopPropagation();
-                            handleCheckItem(row.id);
-                          }}
-                        />
-                      </Center>
-                    </Td>
                     <Td whiteSpace={"nowrap"}>
                       <HStack>
                         <Avatar
                           size={"sm"}
-                          name={row.nama}
-                          src={row.foto_profil}
+                          name={row.user.nama}
+                          src={row.user.foto_profil}
                         />
-                        <Text>{row.nama}</Text>
+                        <Text>{row.user.nama}</Text>
                       </HStack>
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{row.shift}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.jam_masuk}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.jam_keluar}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.jadwal.nama}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
+                    <Td whiteSpace={"nowrap"} textAlign={"center"}>
+                      {formatTime(row.jam_masuk)}
+                    </Td>
+                    <Td whiteSpace={"nowrap"} textAlign={"center"}>
+                      {formatTime(row.jam_keluar)}
+                    </Td>
 
                     {/* Kolom tetap di sebelah kanan */}
                     <Td
@@ -323,15 +279,22 @@ export default function TabelPresensi({ filterConfig }: Props) {
                       <VStack
                         borderLeft={"1px solid var(--divider3)"}
                         justify={"center"}
+                        h={"72px"}
+                        px={4}
                       >
-                        <IconButton
-                          h={"72px"}
-                          w={"50px"}
-                          aria-label="Option Button"
-                          icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
-                          className="btn"
-                          borderRadius={0}
-                        />
+                        <Button
+                          colorScheme="ap"
+                          variant={"ghost"}
+                          className="clicky"
+                          as={Link}
+                          to={`/presensi/${row.id}`}
+                          rightIcon={
+                            <Icon as={RiArrowRightSLine} fontSize={20} />
+                          }
+                          pr={3}
+                        >
+                          Detail
+                        </Button>
                       </VStack>
                     </Td>
                   </Tr>

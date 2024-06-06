@@ -46,6 +46,7 @@ import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi"
 import DetailLaporanRiwayatPenggajian from "./pages/Keuangan/DetailLaporanRiwayatPenggajian";
 import DetailLaporanThr from "./pages/Keuangan/DetailLaporanThr";
 import DetailRekamJejak from "./pages/Karyawan/DetailRekamJejak";
+import DetailPresensi from "./pages/Presensi/DetailPresensi";
 
 // github pekok
 
@@ -189,6 +190,19 @@ export const App = () => (
           element={
             <NavContainer active={2} title="Presensi">
               <Presensi />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/presensi/:presensiId"
+          element={
+            <NavContainer
+              active={2}
+              title="Detail Presensi"
+              left={"back"}
+              backLink="/presensi"
+            >
+              <DetailPresensi />
             </NavContainer>
           }
         />

@@ -7,6 +7,7 @@ import {
   dashboardItemHeight,
   dashboardItemMinWidth,
 } from "../../../const/sizes";
+import FlexLine from "../FlexLine";
 
 interface Props extends StackProps {}
 
@@ -111,7 +112,7 @@ export default function DashboardJabatan({ ...props }: Props) {
                 <Text fontSize={14} flexShrink={0}>
                   {jabatan.nama}
                 </Text>
-                <Box w={"100%"} h={"1px"} bg={"var(--divider)"} mx={4} />
+                <FlexLine />
                 <Text fontSize={14}>{jabatan.jumlah}</Text>
               </HStack>
             ))}

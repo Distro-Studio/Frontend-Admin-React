@@ -10,6 +10,8 @@ const dashboardItemMinWidth = "300px";
 
 const responsiveSpacing = [4, null, 6];
 
+const responsiveSpacing2 = [6, null, 8];
+
 export {
   iconSize,
   textSize,
@@ -17,4 +19,5 @@ export {
   dashboardItemHeight,
   dashboardItemMinWidth,
   responsiveSpacing,
+  responsiveSpacing2,
 };

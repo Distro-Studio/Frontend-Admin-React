@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Badge,
   Box,
   Center,
   Checkbox,
@@ -21,6 +20,7 @@ import { useBodyColor, useContentBgColor } from "../../../../const/colors";
 import { dummyTabelJadwalData } from "../../../../const/dummy";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
+import JenisKaryawanBadge from "../../JenisKaryawanBadge";
 import TabelFooterConfig from "../../TabelFooterConfig";
 import TabelJadwalItem from "../JadwalTabelItem";
 import TerapkanJadwalKaryawanTerpilih from "../TerapkanJadwalKaryawanTerpilih";
@@ -248,17 +248,10 @@ export default function TabelJadwal({ onCheckItem, filterConfig }: Props) {
                         <Text noOfLines={1} mb={2}>
                           {row.nama}
                         </Text>
-                        <Badge
+                        <JenisKaryawanBadge
+                          data={row.unit_kerja.jenis_karyawan}
                           w={"100%"}
-                          textAlign={"center"}
-                          colorScheme={
-                            row.unit_kerja.jenis_karyawan === 1 ? "ap" : "gray"
-                          }
-                        >
-                          {row.unit_kerja.jenis_karyawan === 1
-                            ? "Shift"
-                            : "Non-Shift"}
-                        </Badge>
+                        />
                       </Box>
                     </HStack>
                   </Td>

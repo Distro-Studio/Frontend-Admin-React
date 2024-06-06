@@ -1,10 +1,10 @@
 import {
   Avatar,
-  Box,
   Button,
   HStack,
   Icon,
   Text,
+  VStack,
   Wrap,
 } from "@chakra-ui/react";
 import { RiErrorWarningFill } from "@remixicon/react";
@@ -89,19 +89,19 @@ export default function DetailKeluargaKaryawan() {
             >
               <Avatar size={"lg"} src={data.foto_profil} name={data.nama} />
 
-              <Box>
+              <VStack align={"stretch"}>
                 <Text fontSize={14} opacity={0.6}>
                   Nama Karyawan
                 </Text>
                 <Text fontWeight={500}>{data.nama}</Text>
-              </Box>
+              </VStack>
 
-              <Box>
+              <VStack align={"stretch"}>
                 <Text fontSize={14} opacity={0.6}>
                   Jumlah Keluarga
                 </Text>
                 <Text fontWeight={500}>{data.jumlah_keluarga} Anggota</Text>
-              </Box>
+              </VStack>
 
               <HStack ml={"auto"}>
                 <Button
