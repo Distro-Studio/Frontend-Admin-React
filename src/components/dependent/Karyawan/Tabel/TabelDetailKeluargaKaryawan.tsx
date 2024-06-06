@@ -205,13 +205,17 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
                   <Td whiteSpace={"nowrap"}>{row.pendidikan_terakhir}</Td>
                   <Td whiteSpace={"nowrap"}>{row.pekerjaan}</Td>
                   <Td whiteSpace={"nowrap"}>
-                    <Badge
-                      w={"100%"}
-                      textAlign={"center"}
-                      colorScheme={row.status_hidup === 1 ? "teal" : "gray"}
-                    >
-                      {row.status_hidup === 1 ? "Hidup" : "Meninggal"}
-                    </Badge>
+                    <VStack>
+                      <Badge
+                        w={"100%"}
+                        maxW={"100px"}
+                        mx={"auto"}
+                        textAlign={"center"}
+                        colorScheme={row.status_hidup === 1 ? "teal" : "gray"}
+                      >
+                        {row.status_hidup === 1 ? "Hidup" : "Meninggal"}
+                      </Badge>
+                    </VStack>
                   </Td>
                   <Td whiteSpace={"nowrap"}>{row.no_hp}</Td>
                   <Td whiteSpace={"nowrap"} pr={4}>
