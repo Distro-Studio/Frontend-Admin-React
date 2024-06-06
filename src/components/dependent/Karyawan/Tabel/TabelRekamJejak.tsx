@@ -22,10 +22,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
 import { dummyKaryawanList } from "../../../../const/dummy";
-import {
-  Karyawan__Interface,
-  Tabel__Column__Interface,
-} from "../../../../const/interfaces";
+import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import formatDate from "../../../../lib/formatDate";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
@@ -80,7 +77,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
 
   //TODO get karyawan
 
-  const [data] = useState<Karyawan__Interface[] | null>(dummyKaryawanList);
+  const [data] = useState<any[] | null>(dummyKaryawanList);
   const [loading] = useState<boolean>(false);
 
   // Limit Config
@@ -150,7 +147,8 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
                       p={0}
                       {...column.thProps}
                     >
-                      {column.dataType === "action" ? (
+                      {column.dataType === "action" ||
+                      column.dataType === "link" ? (
                         <HStack
                           justify={"center"}
                           borderBottom={"1px solid var(--divider3)"}

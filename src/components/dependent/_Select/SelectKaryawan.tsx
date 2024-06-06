@@ -31,8 +31,8 @@ export default function SelectKaryawan({
   useEffect(() => {
     const options = dummyKaryawanList.map((item) => ({
       value: item.id,
-      label: item.nama,
-      unit_kerja: item.unit_kerja,
+      label: item.user.nama,
+      unit_kerja: item.unit_kerja.nama_unit,
     }));
     setOptions(options);
     // TODO get shift list

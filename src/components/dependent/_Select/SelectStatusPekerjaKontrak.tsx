@@ -1,21 +1,21 @@
+import React, { useRef, useState } from "react";
 import { Button, ButtonProps, Text } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
-import { dummyKaryawanList } from "../../../const/dummy";
 import { Select__Item__Interface } from "../../../const/interfaces";
 import Select from "../../input/Select";
 
 interface Props extends ButtonProps {
   placeholder: string;
-  initialSelected?: any;
+  initialSelected?: Select__Item__Interface;
   formik?: any;
   name?: string;
   confirmSelect?: (newSelectedValue: any) => void;
   noUseBackOnClose?: boolean;
   noSearch?: boolean;
+  noReset?: boolean;
   modalSize?: string;
 }
 
-export default function MultiSelectKaryawan({
+export default function SelectStatusPekerjaKontrak({
   placeholder,
   initialSelected,
   formik,
@@ -23,35 +23,37 @@ export default function MultiSelectKaryawan({
   confirmSelect,
   noUseBackOnClose,
   noSearch,
+  noReset,
   modalSize,
   ...props
 }: Props) {
   const [search, setSearch] = useState<string>("");
-  const [options, setOptions] = useState<any | null>(null);
-  useEffect(() => {
-    const selectOptions = dummyKaryawanList.map((item) => ({
-      value: item.id,
-      label: item.user.nama,
-      unit_kerja: item.unit_kerja.nama_unit,
-    }));
-    setOptions(selectOptions);
-    // TODO get shift list
-  }, []);
-
-  const filteredOptions = options?.filter((option: any) =>
+  const options = [
+    {
+      value: -1,
+      label: "Semua status",
+    },
+    {
+      value: 1,
+      label: "Aktif",
+    },
+    {
+      value: 0,
+      label: "Tidak aktif",
+    },
+  ];
+  const filteredOptions = options?.filter((option) =>
     option.label.toLowerCase().includes(search.toLocaleLowerCase())
   );
-  const [selected, setSelected] = useState<Select__Item__Interface[]>(
-    initialSelected || []
+  const [selected, setSelected] = useState<Select__Item__Interface | null>(
+    initialSelected || null
   );
-
   const selectComponentRef = useRef<{ handleOnClose: () => void } | null>(null);
 
   return (
     <Select
       ref={selectComponentRef}
       placeholder={placeholder}
-      initialSelected={initialSelected}
       selected={selected}
       setSelected={setSelected}
       formik={formik}
@@ -62,13 +64,14 @@ export default function MultiSelectKaryawan({
       noSearch={noSearch}
       modalSize={modalSize}
       confirmSelect={confirmSelect}
-      isMultiSelect
+      initialSelected={initialSelected}
+      noReset={noReset}
       {...props}
     >
-      {filteredOptions?.map((option: any, i: number) => (
+      {filteredOptions?.map((option, i) => (
         <Button
           bg={
-            selected.some((item) => item.value === option.value)
+            selected && selected.value === option.value
               ? "var(--p500a3) !important"
               : ""
           }
@@ -77,35 +80,16 @@ export default function MultiSelectKaryawan({
           }}
           border={"1px solid var(--divider)"}
           borderColor={
-            selected.some((item) => item.value === option.value)
-              ? "var(--p500a1)"
-              : ""
+            selected && selected.value === option.value ? "var(--p500a1)" : ""
           }
           key={i}
           onClick={() => {
-            const isSelected = selected.some(
-              (item) => item.value === option.value
-            );
-            let newSelected;
-
-            if (isSelected) {
-              newSelected = selected.filter(
-                (item) => item.value !== option.value
-              );
-            } else {
-              newSelected = [...selected, option];
-            }
-
-            setSelected(newSelected);
+            setSelected(option);
           }}
-          gap={4}
-          justifyContent={"space-between"}
           fontWeight={500}
+          justifyContent={"space-between"}
         >
-          <Text>{option.label}</Text>
-          <Text opacity={0.6} fontWeight={400} fontSize={14}>
-            {option.unit_kerja}
-          </Text>
+          {option.label}
         </Button>
       ))}
 

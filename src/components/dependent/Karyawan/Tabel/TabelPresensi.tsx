@@ -2,10 +2,8 @@ import {
   Avatar,
   Button,
   Center,
-  Checkbox,
   HStack,
   Icon,
-  IconButton,
   Table,
   Tbody,
   Td,
@@ -19,19 +17,16 @@ import {
   RiArrowDownLine,
   RiArrowRightSLine,
   RiArrowUpLine,
-  RiMore2Fill,
 } from "@remixicon/react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
 import { dummyPresensi } from "../../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../../const/interfaces";
-import { iconSize } from "../../../../const/sizes";
+import formatTime from "../../../../lib/formatTime";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
-import formatTime from "../../../../lib/formatTime";
-import DetailPresensiModal from "../../Presensi/DetailPresensiModal";
-import { Link } from "react-router-dom";
 
 interface Props {
   filterConfig?: any;
@@ -159,7 +154,8 @@ export default function TabelPresensi({ filterConfig }: Props) {
                       p={0}
                       {...column.thProps}
                     >
-                      {column.dataType === "action" ? (
+                      {column.dataType === "action" ||
+                      column.dataType === "link" ? (
                         <HStack
                           justify={"center"}
                           borderBottom={"1px solid var(--divider3)"}

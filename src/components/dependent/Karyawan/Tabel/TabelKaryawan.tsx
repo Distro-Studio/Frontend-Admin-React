@@ -23,10 +23,7 @@ import {
   useContentBgColor,
 } from "../../../../const/colors";
 import { dummyKaryawanList } from "../../../../const/dummy";
-import {
-  Karyawan__Interface,
-  Tabel__Column__Interface,
-} from "../../../../const/interfaces";
+import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import { iconSize } from "../../../../const/sizes";
 import formatDate from "../../../../lib/formatDate";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
@@ -87,7 +84,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
 
   //TODO get karyawan
 
-  const [data] = useState<Karyawan__Interface[] | null>(dummyKaryawanList);
+  const [data] = useState<any[] | null>(dummyKaryawanList);
   const [loading] = useState<boolean>(false);
 
   // Limit Config
@@ -208,7 +205,8 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       p={0}
                       {...column.thProps}
                     >
-                      {column.dataType === "action" ? (
+                      {column.dataType === "action" ||
+                      column.dataType === "link" ? (
                         <HStack
                           justify={"center"}
                           borderBottom={"1px solid var(--divider3)"}
@@ -323,16 +321,16 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       <HStack>
                         <Avatar
                           size={"sm"}
-                          name={row.nama}
-                          src={row.foto_profil}
+                          name={row.user.nama}
+                          src={row.user.foto_profil}
                         />
-                        <Text>{row.nama}</Text>
+                        <Text>{row.user.nama}</Text>
                       </HStack>
                     </Td>
                     <Td whiteSpace={"nowrap"}>{row.nik}</Td>
                     <Td whiteSpace={"nowrap"}>{row.no_rm}</Td>
                     <Td whiteSpace={"nowrap"}>{row.nik}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
                     <Td whiteSpace={"nowrap"}>
                       <Badge
                         w={"100%"}

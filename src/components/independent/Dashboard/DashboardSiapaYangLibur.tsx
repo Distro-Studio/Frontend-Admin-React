@@ -12,18 +12,17 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import { RiArrowDownSLine } from "@remixicon/react";
 import { useEffect, useState } from "react";
 import { useBodyColor } from "../../../const/colors";
-import { Karyawan__Interface } from "../../../const/interfaces";
-import Skeleton from "../Skeleton";
-import { RiArrowDownSLine } from "@remixicon/react";
+import { dummyKaryawanList } from "../../../const/dummy";
 import {
   dashboardItemHeight,
   dashboardItemMinWidth,
   iconSize,
 } from "../../../const/sizes";
 import whosOffPeriode from "../../../const/whosOffPeriode";
-import { dummyKaryawanList } from "../../../const/dummy";
+import Skeleton from "../Skeleton";
 
 interface Props extends StackProps {}
 
@@ -32,7 +31,7 @@ export default function DashboardSiapaYangLibur({ ...props }: Props) {
   //! DEBUG
 
   const [periode, setPeriode] = useState<number>(0);
-  const [data] = useState<Karyawan__Interface[] | null>(dummyKaryawanList);
+  const [data] = useState<any[] | null>(dummyKaryawanList);
   const [loading] = useState<boolean>(false);
   useEffect(() => {
     //TODO api get data dashboard jenis kelamin
@@ -98,9 +97,9 @@ export default function DashboardSiapaYangLibur({ ...props }: Props) {
               <HStack key={i}>
                 <Avatar name={user.nama} src={user.foto_profil} />
                 <Box>
-                  <Text mb={1}>{user.nama}</Text>
+                  <Text mb={1}>{user.user.nama}</Text>
                   <Text opacity={0.6} fontSize={12}>
-                    {user.unit_kerja}
+                    {user.unit_kerja.nama_unit}
                   </Text>
                 </Box>
               </HStack>

@@ -61,7 +61,7 @@ export default function Lembur() {
               confirmSelect={confirmSelectStatusPenukaranJadwal}
               noSearch
               noReset
-              flex={"1 1 160px"}
+              flex={"1 1 110px"}
             />
 
             <Button

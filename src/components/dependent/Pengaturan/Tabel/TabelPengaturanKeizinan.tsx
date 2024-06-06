@@ -150,7 +150,8 @@ export default function TabelPengaturanKeizinan({
                       p={0}
                       {...column.thProps}
                     >
-                      {column.dataType === "action" ? (
+                      {column.dataType === "action" ||
+                      column.dataType === "link" ? (
                         <HStack
                           justify={"center"}
                           borderBottom={"1px solid var(--divider3)"}

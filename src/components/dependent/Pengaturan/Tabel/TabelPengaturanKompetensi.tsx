@@ -182,7 +182,8 @@ export default function TabelPengaturanKompetensi({ filterConfig }: Props) {
                         p={0}
                         {...column.thProps}
                       >
-                        {column.dataType === "action" ? (
+                        {column.dataType === "action" ||
+                        column.dataType === "link" ? (
                           <HStack
                             justify={"center"}
                             borderBottom={"1px solid var(--divider3)"}

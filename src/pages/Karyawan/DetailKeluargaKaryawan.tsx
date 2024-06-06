@@ -15,57 +15,10 @@ import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { dummyDetailKeluargaKaryawan } from "../../const/dummy";
 
 export default function DetailKeluargaKaryawan() {
-  const dummy = {
-    nama: "Jolitos Kurniawan",
-    foto_profil: "https://bit.ly/dan-abramov",
-    jumlah_keluarga: 4,
-    keluarga: [
-      {
-        id: 1,
-        hubungan: "Ayah",
-        nama: "Karlitos Kurniawan",
-        pendidikan_terakhir: "S1 Teknik Sipil",
-        pekerjaan: "Mandor",
-        status_hidup: 0,
-        no_hp: "098172637162",
-        email: "emailBapak@gmail.com",
-      },
-      {
-        id: 2,
-        hubungan: "Ibu",
-        nama: "Sri Lanxka",
-        pendidikan_terakhir: "SMA",
-        pekerjaan: "Ibu Rumah Tangga",
-        status_hidup: 1,
-        no_hp: "09198276334",
-        email: "emailIbu@gmail.com",
-      },
-      {
-        id: 3,
-        hubungan: "Anak",
-        nama: "Jolitos Junior I",
-        pendidikan_terakhir: "SMA",
-        pekerjaan: "Pelajar",
-        status_hidup: 1,
-        no_hp: "08076175623",
-        email: "jolijubior@gmail.com",
-      },
-      {
-        id: 4,
-        hubungan: "Istri",
-        nama: "Annisa Sarah",
-        pendidikan_terakhir: "S1 Hukum",
-        pekerjaan: "Jaksa",
-        status_hidup: 1,
-        no_hp: "089120831",
-        email: "annsar@gmail.com",
-      },
-    ],
-  };
-
-  const [data] = useState<any | null>(dummy);
+  const [data] = useState<any | null>(dummyDetailKeluargaKaryawan);
   const [loading] = useState<boolean>(false);
 
   // SX
@@ -87,20 +40,26 @@ export default function DetailKeluargaKaryawan() {
               mb={responsiveSpacing}
               align={"center"}
             >
-              <Avatar size={"lg"} src={data.foto_profil} name={data.nama} />
+              <Avatar
+                size={"lg"}
+                src={data.user.foto_profil}
+                name={data.user.nama}
+              />
 
               <VStack align={"stretch"}>
                 <Text fontSize={14} opacity={0.6}>
                   Nama Karyawan
                 </Text>
-                <Text fontWeight={500}>{data.nama}</Text>
+                <Text fontWeight={500}>{data.user.nama}</Text>
               </VStack>
 
               <VStack align={"stretch"}>
                 <Text fontSize={14} opacity={0.6}>
                   Jumlah Keluarga
                 </Text>
-                <Text fontWeight={500}>{data.jumlah_keluarga} Anggota</Text>
+                <Text fontWeight={500}>
+                  {data.data_karyawan.data_keluargas.length} Anggota
+                </Text>
               </VStack>
 
               <HStack ml={"auto"}>
@@ -118,7 +77,9 @@ export default function DetailKeluargaKaryawan() {
               </HStack>
             </Wrap>
 
-            <TabelDetailKeluargaKaryawan data={data.keluarga} />
+            <TabelDetailKeluargaKaryawan
+              data={data.data_karyawan.data_keluargas}
+            />
           </>
         )}
       </CContainer>

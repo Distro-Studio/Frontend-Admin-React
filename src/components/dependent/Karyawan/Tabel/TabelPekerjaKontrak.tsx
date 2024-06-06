@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Badge,
   Center,
   Checkbox,
   HStack,
@@ -17,11 +18,8 @@ import {
 import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
-import { dummyKaryawanList } from "../../../../const/dummy";
-import {
-  Karyawan__Interface,
-  Tabel__Column__Interface,
-} from "../../../../const/interfaces";
+import { dummyPekerjaKontrak } from "../../../../const/dummy";
+import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import { iconSize } from "../../../../const/sizes";
 import formatDate from "../../../../lib/formatDate";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
@@ -45,21 +43,25 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       dataType: "string",
     },
     {
-      key: "tgl_mulai",
-      label: "Tanggal Mulai",
+      key: "tgl_masuk",
+      label: "Tanggal Masuk",
       dataType: "date",
     },
     {
-      key: "tgl_selesai",
-      label: "Tanggal Selesai",
+      key: "tgl_keluar",
+      label: "Tanggal Keluar",
       dataType: "date",
     },
     {
-      key: "laporan",
-      label: "Laporan",
-      dataType: "link",
-      link: `/laporan`,
+      key: "status",
+      label: "Status",
+      dataType: "badge",
     },
+    // {
+    //   key: "laporan",
+    //   label: "Laporan",
+    //   dataType: "link",
+    // },
   ];
 
   //! DEBUG
@@ -68,7 +70,7 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
 
   //TODO get karyawan
 
-  const [data] = useState<Karyawan__Interface[] | null>(dummyKaryawanList);
+  const [data] = useState<any[] | null>(dummyPekerjaKontrak);
   const [loading] = useState<boolean>(false);
 
   // Limit Config
@@ -110,11 +112,29 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
   if (sortConfig !== null && sortedData) {
     sortedData.sort((a, b) => {
       //@ts-ignore
-      if (a[sortConfig.key] < b[sortConfig.key]) {
+      let aValue = a[sortConfig.key];
+      //@ts-ignore
+      let bValue = b[sortConfig.key];
+
+      // Handle nested properties
+      if (sortConfig.key === "nama") {
+        aValue = a.user?.nama;
+        bValue = b.user?.nama;
+      } else if (sortConfig.key === "unit_kerja") {
+        aValue = a.unit_kerja?.nama_unit;
+        bValue = b.unit_kerja?.nama_unit;
+      } else if (sortConfig.key === "status") {
+        aValue = !a.tgl_keluar ? 1 : 0;
+        bValue = !b.tgl_keluar ? 1 : 0;
+      } else if (sortConfig.key === "tgl_keluar") {
+        aValue = a.tgl_keluar;
+        bValue = b.tgl_keluar;
+      }
+
+      if (aValue < bValue) {
         return sortConfig.direction === "asc" ? -1 : 1;
       }
-      //@ts-ignore
-      if (a[sortConfig.key] > b[sortConfig.key]) {
+      if (aValue > bValue) {
         return sortConfig.direction === "asc" ? 1 : -1;
       }
       return 0;
@@ -189,7 +209,8 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
                       p={0}
                       {...column.thProps}
                     >
-                      {column.dataType === "action" ? (
+                      {column.dataType === "action" ||
+                      column.dataType === "link" ? (
                         <HStack
                           justify={"center"}
                           borderBottom={"1px solid var(--divider3)"}
@@ -304,20 +325,41 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
                       <HStack>
                         <Avatar
                           size={"sm"}
-                          name={row.nama}
-                          src={row.foto_profil}
+                          name={row.user.nama}
+                          src={row.user.foto_profil}
                         />
-                        <Text>{row.nama}</Text>
+                        <Text>{row.user.nama}</Text>
                       </HStack>
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
                     <Td whiteSpace={"nowrap"}>
                       {formatDate(row.tgl_masuk as string)}
                     </Td>
                     <Td whiteSpace={"nowrap"}>
-                      {formatDate(row.tgl_masuk as string)}
+                      {formatDate(row.tgl_keluar as string)}
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja}</Td>
+                    <Td whiteSpace={"nowrap"}>
+                      <Badge
+                        w={"100%"}
+                        colorScheme={!row.tgl_keluar ? "ap" : "red"}
+                        textAlign={"center"}
+                      >
+                        {!row.tgl_keluar ? "Aktif" : "Tidak Aktif"}
+                      </Badge>
+                    </Td>
+
+                    {/* <Td whiteSpace={"nowrap"}>
+                      <Button
+                        leftIcon={<Icon as={RiFileList3Line} />}
+                        colorScheme="ap"
+                        className="clicky"
+                        variant={"ghost"}
+                        as={Link}
+                        to={`/pekerja-kontrak/laporan/${0}`}
+                      >
+                        Lihat
+                      </Button>
+                    </Td> */}
 
                     <Td
                       position={"sticky"}

@@ -21,11 +21,8 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
-import { dummyKaryawanList } from "../../../../const/dummy";
-import {
-  Karyawan__Interface,
-  Tabel__Column__Interface,
-} from "../../../../const/interfaces";
+import { dummyKeluargaKaryawan } from "../../../../const/dummy";
+import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
@@ -42,12 +39,12 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
       dataType: "avatarAndName",
     },
     {
-      key: "ayah",
+      key: "nama_ayah",
       label: "Ayah",
       dataType: "string",
     },
     {
-      key: "ibu",
+      key: "nama_ibu",
       label: "Ibu",
       dataType: "string",
     },
@@ -66,7 +63,7 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
 
   //TODO get karyawan
 
-  const [data] = useState<Karyawan__Interface[] | null>(dummyKaryawanList);
+  const [data] = useState<any[] | null>(dummyKeluargaKaryawan);
   const [loading] = useState<boolean>(false);
 
   // Limit Config
@@ -84,11 +81,20 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
   if (sortConfig !== null && sortedData) {
     sortedData.sort((a, b) => {
       //@ts-ignore
-      if (a[sortConfig.key] < b[sortConfig.key]) {
+      let aValue = a[sortConfig.key];
+      //@ts-ignore
+      let bValue = b[sortConfig.key];
+
+      // Handle nested properties
+      if (sortConfig.key === "nama") {
+        aValue = a.data_karyawan?.nama;
+        bValue = b.data_karyawan?.nama;
+      }
+
+      if (aValue < bValue) {
         return sortConfig.direction === "asc" ? -1 : 1;
       }
-      //@ts-ignore
-      if (a[sortConfig.key] > b[sortConfig.key]) {
+      if (aValue > bValue) {
         return sortConfig.direction === "asc" ? 1 : -1;
       }
       return 0;
@@ -136,7 +142,8 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
                       p={0}
                       {...column.thProps}
                     >
-                      {column.dataType === "action" ? (
+                      {column.dataType === "action" ||
+                      column.dataType === "link" ? (
                         <HStack
                           justify={"center"}
                           borderBottom={"1px solid var(--divider3)"}
@@ -226,14 +233,14 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
                       <HStack>
                         <Avatar
                           size={"sm"}
-                          name={row.nama}
-                          src={row.foto_profil}
+                          name={row.data_karyawan.nama}
+                          src={row.data_karyawan.foto_profil}
                         />
-                        <Text>{row.nama}</Text>
+                        <Text>{row.data_karyawan.nama}</Text>
                       </HStack>
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{row.ayah}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.ibu}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.nama_ayah}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.nama_ibu}</Td>
                     <Td whiteSpace={"nowrap"} textAlign={"center"}>
                       {row.jumlah_keluarga}
                     </Td>
@@ -246,9 +253,11 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
                       p={0}
                       bg={i % 2 === 0 ? contentBgColor : bodyColor}
                       zIndex={1}
+                      w={"150px"}
                     >
                       <VStack
                         borderLeft={"1px solid var(--divider3)"}
+                        w={"150px"}
                         h={"72px"}
                         px={4}
                         align={"stretch"}

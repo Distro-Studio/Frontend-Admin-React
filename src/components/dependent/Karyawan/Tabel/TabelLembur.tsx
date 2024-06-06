@@ -18,10 +18,7 @@ import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../../const/colors";
 import { dummyKaryawanList } from "../../../../const/dummy";
-import {
-  Karyawan__Interface,
-  Tabel__Column__Interface,
-} from "../../../../const/interfaces";
+import { Tabel__Column__Interface } from "../../../../const/interfaces";
 import { iconSize } from "../../../../const/sizes";
 import formatDate from "../../../../lib/formatDate";
 import formatDurationShort from "../../../../lib/formatDurationShort";
@@ -63,7 +60,7 @@ export default function TabelLembur({ filterConfig }: Props) {
 
   //TODO get karyawan
 
-  const [data] = useState<Karyawan__Interface[] | null>(dummyKaryawanList);
+  const [data] = useState<any[] | null>(dummyKaryawanList);
   const [loading] = useState<boolean>(false);
 
   // Limit Config
@@ -184,7 +181,8 @@ export default function TabelLembur({ filterConfig }: Props) {
                       p={0}
                       {...column.thProps}
                     >
-                      {column.dataType === "action" ? (
+                      {column.dataType === "action" ||
+                      column.dataType === "link" ? (
                         <HStack
                           justify={"center"}
                           borderBottom={"1px solid var(--divider3)"}

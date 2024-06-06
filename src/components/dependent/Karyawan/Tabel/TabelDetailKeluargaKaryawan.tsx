@@ -199,7 +199,7 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
                   bg={rowIndex % 2 === 0 ? contentBgColor : bodyColor}
                 >
                   <Td pl={4} whiteSpace={"nowrap"}>
-                    {row.nama}
+                    {row.nama_keluarga}
                   </Td>
                   <Td whiteSpace={"nowrap"}>{row.hubungan}</Td>
                   <Td whiteSpace={"nowrap"}>{row.pendidikan_terakhir}</Td>

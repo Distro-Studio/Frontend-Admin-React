@@ -14,6 +14,7 @@ import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
+import SelectStatusPekerjaKontrak from "../../components/dependent/_Select/SelectStatusPekerjaKontrak";
 
 export default function PekerjaKontrak() {
   // Filter Config
@@ -21,6 +22,16 @@ export default function PekerjaKontrak() {
     search: "",
     unit_kerja: [],
     tgl_masuk: [],
+    status: {
+      value: -1,
+      label: "Semua status",
+    },
+  };
+  const confirmSelectStatusPekerjaKontrak = (newStatus: any) => {
+    setFilterConfig((ps: any) => ({
+      ...ps,
+      status: newStatus,
+    }));
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
 
@@ -50,6 +61,15 @@ export default function PekerjaKontrak() {
               defaultFilterConfig={defaultFilterConfig}
               filterConfig={filterConfig}
               setFilterConfig={setFilterConfig}
+            />
+
+            <SelectStatusPekerjaKontrak
+              placeholder="Pilih Status"
+              initialSelected={filterConfig.status}
+              confirmSelect={confirmSelectStatusPekerjaKontrak}
+              noSearch
+              noReset
+              flex={"1 1 110px"}
             />
 
             <Button
