@@ -47,24 +47,26 @@ export default function PresensiTotal({ ...props }: Props) {
             flex={"1 1 400px"}
             h={"150px"}
           >
-            <Text fontWeight={600}>Hadir</Text>
+            <Text fontWeight={600} color="p.500">
+              Kehadiran
+            </Text>
 
             <HStack gap={6} justify={"space-between"} w={"100%"}>
-              <VStack align={"flex-start"} gap={0} flex={"1 1"}>
-                <Text fontSize={36} fontWeight={600} color={"p.500"}>
-                  {formatNumber(data?.hadir.tepat_waktu)}
-                </Text>
-                <Text fontSize={14} opacity={0.6} whiteSpace={"nowrap"}>
-                  Tepat Waktu
-                </Text>
-              </VStack>
-
               <VStack align={"flex-start"} gap={0} flex={"1 1"}>
                 <Text fontSize={36} fontWeight={600} color={"p.500"}>
                   {formatNumber(data?.hadir.hadir)}
                 </Text>
                 <Text fontSize={14} opacity={0.6} whiteSpace={"nowrap"}>
                   Hadir
+                </Text>
+              </VStack>
+
+              <VStack align={"flex-start"} gap={0} flex={"1 1"}>
+                <Text fontSize={36} fontWeight={600} color={"p.500"}>
+                  {formatNumber(data?.hadir.tepat_waktu)}
+                </Text>
+                <Text fontSize={14} opacity={0.6} whiteSpace={"nowrap"}>
+                  Tepat Waktu
                 </Text>
               </VStack>
 
@@ -88,7 +90,9 @@ export default function PresensiTotal({ ...props }: Props) {
             flex={"1 1 300px"}
             h={"150px"}
           >
-            <Text fontWeight={600}>Tidak Hadir</Text>
+            <Text fontWeight={600} color={"red.400"}>
+              Tidak Hadir
+            </Text>
 
             <HStack gap={6} justify={"space-between"} w={"100%"}>
               <VStack align={"flex-start"} gap={0} flex={"1 1"}>
@@ -129,7 +133,9 @@ export default function PresensiTotal({ ...props }: Props) {
             flex={"1 1 200px"}
             h={"150px"}
           >
-            <Text fontWeight={600}>Libur</Text>
+            <Text fontWeight={600} color={"var(--divider-text)"}>
+              Libur
+            </Text>
 
             <HStack gap={6} justify={"space-between"} w={"100%"}>
               <VStack align={"flex-start"} gap={0} flex={"1 1"}>
