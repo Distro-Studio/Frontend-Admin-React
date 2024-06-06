@@ -39,12 +39,12 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
       dataType: "avatarAndName",
     },
     {
-      key: "nama_ayah",
+      key: "ayah",
       label: "Ayah",
       dataType: "string",
     },
     {
-      key: "nama_ibu",
+      key: "ibu",
       label: "Ibu",
       dataType: "string",
     },
@@ -87,8 +87,8 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
 
       // Handle nested properties
       if (sortConfig.key === "nama") {
-        aValue = a.data_karyawan?.nama;
-        bValue = b.data_karyawan?.nama;
+        aValue = a.user?.nama;
+        bValue = b.user?.nama;
       }
 
       if (aValue < bValue) {
@@ -233,14 +233,14 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
                       <HStack>
                         <Avatar
                           size={"sm"}
-                          name={row.data_karyawan.nama}
-                          src={row.data_karyawan.foto_profil}
+                          name={row.user.nama}
+                          src={row.user.foto_profil}
                         />
-                        <Text>{row.data_karyawan.nama}</Text>
+                        <Text>{row.user.nama}</Text>
                       </HStack>
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{row.nama_ayah}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.nama_ibu}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.ayah}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.ibu}</Td>
                     <Td whiteSpace={"nowrap"} textAlign={"center"}>
                       {row.jumlah_keluarga}
                     </Td>
