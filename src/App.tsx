@@ -4,7 +4,9 @@ import { globalTheme } from "./chakraTheme/globalTheme";
 import NavContainer from "./components/wrapper/NavContainer";
 import jadwalTopNavs from "./const/jadwalTopNavs";
 import karyawanTopNavs from "./const/karyawanTopNavs";
+import keuanganTopNavs from "./const/keuanganTopNavs";
 import pengaturanTopNavs from "./const/pengaturanTopNavs";
+import perusahaanTopNavs from "./const/perusahaanTopNavs";
 import { responsiveSpacing } from "./const/sizes";
 import "./globalStyle.css";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -14,39 +16,38 @@ import Jadwal from "./pages/Jadwal/Jadwal";
 import Lembur from "./pages/Jadwal/Lembur";
 import PenukaranJadwal from "./pages/Jadwal/PenukaranJadwal";
 import AkunKaryawan from "./pages/Karyawan/AkunKaryawan";
+import DetailKaryawan from "./pages/Karyawan/DetailKaryawan";
 import DetailKeluargaKaryawan from "./pages/Karyawan/DetailKeluargaKaryawan";
+import DetailRekamJejak from "./pages/Karyawan/DetailRekamJejak";
 import Karyawan from "./pages/Karyawan/Karyawan";
 import KeluargaKaryawan from "./pages/Karyawan/KeluargaKaryawan";
 import PekerjaKontrak from "./pages/Karyawan/PekerjaKontrak";
 import RekamJejak from "./pages/Karyawan/RekamJejak";
 import TambahKaryawan from "./pages/Karyawan/TambahKaryawan";
 import TransferKaryawan from "./pages/Karyawan/TransferKaryawan";
-import Penggajian from "./pages/Keuangan/Penggajian";
-import Login from "./pages/Login/Login";
-import PengaturanKelolaRole from "./pages/Pengaturan/PengaturanKelolaRole";
-import Perusahaan from "./pages/Perusahaan/Diklat";
-import Presensi from "./pages/Presensi/Presensi";
-import PengaturanKeizinan from "./pages/Pengaturan/PengaturanKeizinan";
-import PengaturanKelompokGaji from "./pages/Pengaturan/PengaturanKelompokGaji";
-import PengaturanJabatan from "./pages/Pengaturan/PengaturanJabatan";
-import PengaturanUnitKerja from "./pages/Pengaturan/PengaturanUnitKerja";
-import PengaturanKompetensi from "./pages/Pengaturan/PengaturanKompetensi";
-import PengaturanPremi from "./pages/Pengaturan/PengaturanPremi";
-import PengaturanTerPph21 from "./pages/Pengaturan/PengaturanTerPph21";
-import PengaturanJadwalPenggajian from "./pages/Pengaturan/PengaturanJadwalPenggajian";
-import PengaturanThr from "./pages/Pengaturan/PengaturanThr";
-import PengaturanShift from "./pages/Pengaturan/PengaturanShift";
-import PengaturanHariLibur from "./pages/Pengaturan/PengaturanHariLibur";
-import PengaturanCuti from "./pages/Pengaturan/PengaturanCuti";
-import keuanganTopNavs from "./const/keuanganTopNavs";
-import RiwayatPenggajian from "./pages/Keuangan/RiwayatPenggajian";
-import Thr from "./pages/Keuangan/Thr";
-import perusahaanTopNavs from "./const/perusahaanTopNavs";
-import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi";
 import DetailLaporanRiwayatPenggajian from "./pages/Keuangan/DetailLaporanRiwayatPenggajian";
 import DetailLaporanThr from "./pages/Keuangan/DetailLaporanThr";
-import DetailRekamJejak from "./pages/Karyawan/DetailRekamJejak";
+import Penggajian from "./pages/Keuangan/Penggajian";
+import RiwayatPenggajian from "./pages/Keuangan/RiwayatPenggajian";
+import Thr from "./pages/Keuangan/Thr";
+import Login from "./pages/Login/Login";
+import PengaturanCuti from "./pages/Pengaturan/PengaturanCuti";
+import PengaturanHariLibur from "./pages/Pengaturan/PengaturanHariLibur";
+import PengaturanJabatan from "./pages/Pengaturan/PengaturanJabatan";
+import PengaturanJadwalPenggajian from "./pages/Pengaturan/PengaturanJadwalPenggajian";
+import PengaturanKeizinan from "./pages/Pengaturan/PengaturanKeizinan";
+import PengaturanKelolaRole from "./pages/Pengaturan/PengaturanKelolaRole";
+import PengaturanKelompokGaji from "./pages/Pengaturan/PengaturanKelompokGaji";
+import PengaturanKompetensi from "./pages/Pengaturan/PengaturanKompetensi";
+import PengaturanPremi from "./pages/Pengaturan/PengaturanPremi";
+import PengaturanShift from "./pages/Pengaturan/PengaturanShift";
+import PengaturanTerPph21 from "./pages/Pengaturan/PengaturanTerPph21";
+import PengaturanThr from "./pages/Pengaturan/PengaturanThr";
+import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi";
+import PengaturanUnitKerja from "./pages/Pengaturan/PengaturanUnitKerja";
+import Perusahaan from "./pages/Perusahaan/Diklat";
 import DetailPresensi from "./pages/Presensi/DetailPresensi";
+import Presensi from "./pages/Presensi/Presensi";
 
 // github pekok
 
@@ -75,6 +76,19 @@ export const App = () => (
               topNavActive={0}
             >
               <Karyawan />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/karyawan/:karyawanId"
+          element={
+            <NavContainer
+              active={1}
+              title="Detail Karyawan"
+              left={"back"}
+              backLink="/karyawan"
+            >
+              <DetailKaryawan />
             </NavContainer>
           }
         />
