@@ -16,7 +16,7 @@ import Jadwal from "./pages/Jadwal/Jadwal";
 import Lembur from "./pages/Jadwal/Lembur";
 import PenukaranJadwal from "./pages/Jadwal/PenukaranJadwal";
 import AkunKaryawan from "./pages/Karyawan/AkunKaryawan";
-import DetailKaryawan from "./pages/Karyawan/DetailKaryawan";
+import DetailKaryawan2 from "./pages/Karyawan/DetailKaryawan2";
 import DetailKeluargaKaryawan from "./pages/Karyawan/DetailKeluargaKaryawan";
 import DetailRekamJejak from "./pages/Karyawan/DetailRekamJejak";
 import Karyawan from "./pages/Karyawan/Karyawan";
@@ -88,7 +88,7 @@ export const App = () => (
               left={"back"}
               // backLink="/karyawan"
             >
-              <DetailKaryawan />
+              <DetailKaryawan2 />
             </NavContainer>
           }
         />

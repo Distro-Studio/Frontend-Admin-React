@@ -15,12 +15,14 @@ interface Props extends InputGroupProps {
   search: string;
   setSearch: Dispatch<string>;
   resetSearch?: () => void;
+  placeholder?: string;
 }
 
 export default function SearchComponent({
   search,
   setSearch,
   resetSearch,
+  placeholder,
   ...props
 }: Props) {
   return (
@@ -29,7 +31,7 @@ export default function SearchComponent({
         <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
       </InputLeftElement>
       <Input
-        placeholder="Pencarian atau highlight"
+        placeholder={placeholder || "Pencarian"}
         flex={"1 1 0"}
         pr={"36px"}
         onChange={(e) => {
