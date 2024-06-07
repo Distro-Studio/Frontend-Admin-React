@@ -29,9 +29,11 @@ import { iconSize, responsiveSpacing } from "../../const/sizes";
 import formatDate from "../../lib/formatDate";
 import formatMasaKerja from "../../lib/formatMasaKerja";
 import formatNumber from "../../lib/formatNumber";
-import SImpleLink from "../../components/dependent/SImpleLink";
 import { RiEditBoxFill, RiSearchLine, RiUserHeartFill } from "@remixicon/react";
 import { Link } from "react-router-dom";
+import Highlighter from "react-highlight-words";
+import SimpleLink from "../../components/dependent/SimpleLink";
+
 export default function DetailKaryawan() {
   const [data] = useState<any | null>(dummyDetailKaryawan);
   const [loading] = useState<boolean>(false);
@@ -91,30 +93,32 @@ export default function DetailKaryawan() {
               borderRadius={12}
             >
               <VStack flex={1}>
-                <Avatar
-                  w={"250px"}
-                  h={"250px"}
-                  size={"xxl"}
-                  fontSize={"80px !important"}
-                  src={data.user.foto_profil}
-                  name={data.user.nama}
-                  mb={2}
-                />
+                <VStack>
+                  <Avatar
+                    w={"250px"}
+                    h={"250px"}
+                    size={"xxl"}
+                    fontSize={"80px !important"}
+                    src={data.user.foto_profil}
+                    name={data.user.nama}
+                    mb={2}
+                  />
 
-                <Text
-                  fontWeight={600}
-                  fontSize={22}
-                  maxW={"280px"}
-                  textAlign={"center"}
-                  mb={1}
-                >
-                  {data.user.nama}
-                </Text>
+                  <Text
+                    fontWeight={600}
+                    fontSize={22}
+                    maxW={"280px"}
+                    textAlign={"center"}
+                    mb={1}
+                  >
+                    {data.user.nama}
+                  </Text>
 
-                <JenisKaryawanBadge
-                  data={data.unit_kerja.jenis_karyawan}
-                  mb={responsiveSpacing}
-                />
+                  <JenisKaryawanBadge
+                    data={data.unit_kerja.jenis_karyawan}
+                    mb={responsiveSpacing}
+                  />
+                </VStack>
 
                 <VStack align={"stretch"} w={"100%"} gap={4}>
                   <HStack justify={"space-between"}>
@@ -129,7 +133,7 @@ export default function DetailKaryawan() {
                     <Text opacity={0.6}>NIK KTP</Text>
                     <FlexLine />
                     <HStack>
-                      <SImpleLink to="#">Lihat</SImpleLink>
+                      <SimpleLink to="#">Lihat</SimpleLink>
                       <Text fontWeight={500} textAlign={"right"}>
                         {data.nik_ktp}
                       </Text>
@@ -140,7 +144,7 @@ export default function DetailKaryawan() {
                     <Text opacity={0.6}>No. KK</Text>
                     <FlexLine />
                     <HStack>
-                      <SImpleLink to="#">Lihat</SImpleLink>
+                      <SimpleLink to="#">Lihat</SimpleLink>
                       <Text fontWeight={500} textAlign={"right"}>
                         {data.no_kk}
                       </Text>
@@ -272,7 +276,7 @@ export default function DetailKaryawan() {
                       <Text opacity={0.6}>No. BPJS Kesehatan</Text>
                       <FlexLine />
                       <HStack>
-                        <SImpleLink to="#">Lihat</SImpleLink>
+                        <SimpleLink to="#">Lihat</SimpleLink>
                         <Text fontWeight={500} textAlign={"right"}>
                           {data.no_bpjsksh}
                         </Text>
@@ -425,7 +429,7 @@ export default function DetailKaryawan() {
                   <Text opacity={0.6}>No. Ijazah</Text>
                   <FlexLine />
                   <HStack>
-                    <SImpleLink to="#">Lihat</SImpleLink>
+                    <SimpleLink to="#">Lihat</SimpleLink>
                     <Text fontWeight={500} textAlign={"right"}>
                       {data.no_ijazah}
                     </Text>
@@ -444,7 +448,7 @@ export default function DetailKaryawan() {
                   <Text opacity={0.6}>No. STR</Text>
                   <FlexLine />
                   <HStack>
-                    <SImpleLink to="#">Lihat</SImpleLink>
+                    <SimpleLink to="#">Lihat</SimpleLink>
                     <Text fontWeight={500} textAlign={"right"}>
                       {data.no_str}
                     </Text>
@@ -463,7 +467,7 @@ export default function DetailKaryawan() {
                   <Text opacity={0.6}>No. SIP</Text>
                   <FlexLine />
                   <HStack>
-                    <SImpleLink to="#">Lihat</SImpleLink>
+                    <SimpleLink to="#">Lihat</SimpleLink>
                     <Text fontWeight={500} textAlign={"right"}>
                       {data.no_sip}
                     </Text>

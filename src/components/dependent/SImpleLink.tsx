@@ -5,7 +5,7 @@ interface Props extends ButtonProps {
   children: any;
 }
 
-export default function SImpleLink({ to, children, ...props }: Props) {
+export default function SimpleLink({ to, children, ...props }: Props) {
   return (
     <Button
       colorScheme="ap"

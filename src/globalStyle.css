@@ -601,6 +601,10 @@ img[alt="Google"] {
   animation: flashing 1s ease-out infinite;
 }
 
+.hw{
+  
+}
+
 @keyframes flashing {
   0% {
     opacity: 1;
