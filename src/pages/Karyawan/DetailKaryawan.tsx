@@ -3,9 +3,6 @@ import {
   Button,
   HStack,
   Icon,
-  Input,
-  InputGroup,
-  InputLeftElement,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -17,11 +14,12 @@ import {
   VStack,
   Wrap,
 } from "@chakra-ui/react";
-import { RiEditBoxFill, RiSearchLine, RiUserHeartFill } from "@remixicon/react";
+import { RiEditBoxFill, RiUserHeartFill } from "@remixicon/react";
 import { useEffect, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { Link } from "react-router-dom";
 import JenisKaryawanBadge from "../../components/dependent/JenisKaryawanBadge";
+import SearchComponent from "../../components/dependent/SearchComponent";
 import SmallLink from "../../components/dependent/SmallLink";
 import ComponentSpinner from "../../components/independent/ComponentSpinner";
 import FlexLine from "../../components/independent/FlexLine";
@@ -46,6 +44,8 @@ export default function DetailKaryawan() {
       acc.push(word);
       if (word.toLowerCase() === "nomor") {
         acc.push("no.");
+      } else if (word.toLowerCase() === "nik") {
+        acc.push("no. induk karyawan");
       }
       return acc;
     }, []);
@@ -61,19 +61,7 @@ export default function DetailKaryawan() {
       {!loading && data && (
         <>
           <Wrap mb={responsiveSpacing}>
-            <InputGroup flex={"1 1 165px"}>
-              <InputLeftElement>
-                <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
-              </InputLeftElement>
-              <Input
-                placeholder="Pencarian atau highlight"
-                flex={"1 1 0"}
-                onChange={(e) => {
-                  setSearch(e.target.value.toLowerCase());
-                }}
-                value={search}
-              />
-            </InputGroup>
+            <SearchComponent search={search} setSearch={setSearch} />
 
             <Button
               flex={"1 1 110px"}
