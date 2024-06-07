@@ -62,6 +62,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       key: "status_karyawan",
       label: "Status Karyawan",
       dataType: "badge",
+      preferredTextAlign: "center",
     },
   ];
 
