@@ -27,6 +27,7 @@ import formatDate from "../../../../lib/formatDate";
 import ComponentSpinner from "../../../independent/ComponentSpinner";
 import TabelContainer from "../../../wrapper/TabelContainer";
 import TabelFooterConfig from "../../TabelFooterConfig";
+import formatMasaKerja from "../../../../lib/formatMasaKerja";
 
 interface Props {
   filterConfig?: any;
@@ -52,7 +53,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
     {
       key: "masa_kerja",
       label: "Masa Kerja",
-      dataType: "string",
+      dataType: "number",
     },
     {
       key: "promosi",
@@ -94,12 +95,30 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
   const sortedData = data && [...data];
   if (sortConfig !== null && sortedData) {
     sortedData.sort((a, b) => {
+      let aValue, bValue;
+
+      // Tangani properti bersarang
+      if (sortConfig.key === "nama") {
+        aValue = a.user?.nama;
+        bValue = b.user?.nama;
+      } else {
+        // Kasus default: langsung gunakan kunci untuk perbandingan
+        //@ts-ignore
+        aValue = a[sortConfig.key];
+        //@ts-ignore
+        bValue = b[sortConfig.key];
+      }
+
+      if (aValue === null && bValue === null) return 0;
+      if (aValue === null) return 1; // Nilai null di bawah
+      if (bValue === null) return -1; // Nilai null di bawah
+
       //@ts-ignore
-      if (a[sortConfig.key] < b[sortConfig.key]) {
+      if (aValue < bValue) {
         return sortConfig.direction === "asc" ? -1 : 1;
       }
       //@ts-ignore
-      if (a[sortConfig.key] > b[sortConfig.key]) {
+      if (aValue > bValue) {
         return sortConfig.direction === "asc" ? 1 : -1;
       }
       return 0;
@@ -239,10 +258,10 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
                       <HStack>
                         <Avatar
                           size={"sm"}
-                          name={row.nama}
-                          src={row.foto_profil}
+                          name={row.user.nama}
+                          src={row.user.foto_profil}
                         />
-                        <Text>{row.nama}</Text>
+                        <Text>{row.user.nama}</Text>
                       </HStack>
                     </Td>
                     <Td whiteSpace={"nowrap"}>
@@ -251,7 +270,9 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
                     <Td whiteSpace={"nowrap"}>
                       {formatDate(row.tgl_keluar as string)}
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{row.masa_kerja}</Td>
+                    <Td whiteSpace={"nowrap"}>
+                      {formatMasaKerja(row.masa_kerja)}
+                    </Td>
                     <Td whiteSpace={"nowrap"}>{row.promosi}</Td>
                     <Td whiteSpace={"nowrap"}>{row.mutasi}</Td>
                     <Td whiteSpace={"nowrap"}>{row.penghargaan}</Td>

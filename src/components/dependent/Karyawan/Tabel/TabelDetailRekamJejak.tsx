@@ -56,12 +56,33 @@ export default function TabelDetailRekamJejak({ data }: Props) {
   const sortedData = [...data];
   if (sortConfig !== null) {
     sortedData.sort((a, b) => {
-      if (a[sortConfig.key] < b[sortConfig.key]) {
+      let aValue, bValue;
+
+      // Tangani properti bersarang
+      if (sortConfig.key === "nama") {
+        aValue = a.user?.nama;
+        bValue = b.user?.nama;
+      } else {
+        // Kasus default: langsung gunakan kunci untuk perbandingan
+        //@ts-ignore
+        aValue = a[sortConfig.key];
+        //@ts-ignore
+        bValue = b[sortConfig.key];
+      }
+
+      if (aValue === null && bValue === null) return 0;
+      if (aValue === null) return 1; // Nilai null di bawah
+      if (bValue === null) return -1; // Nilai null di bawah
+
+      //@ts-ignore
+      if (aValue < bValue) {
         return sortConfig.direction === "asc" ? -1 : 1;
       }
-      if (a[sortConfig.key] > b[sortConfig.key]) {
+      //@ts-ignore
+      if (aValue > bValue) {
         return sortConfig.direction === "asc" ? 1 : -1;
       }
+      return 0;
       return 0;
     });
   }
@@ -150,7 +171,7 @@ export default function TabelDetailRekamJejak({ data }: Props) {
             <Tbody>
               {sortedData.map((row, rowIndex) => (
                 <Tr
-                  key={row.id}
+                  key={rowIndex}
                   bg={rowIndex % 2 === 0 ? contentBgColor : bodyColor}
                 >
                   <Td h={"72px"} pl={4} whiteSpace={"nowrap"}>

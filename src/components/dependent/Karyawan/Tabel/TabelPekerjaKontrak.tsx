@@ -1,8 +1,6 @@
 import {
   Avatar,
   Badge,
-  Center,
-  Checkbox,
   HStack,
   Icon,
   IconButton,
@@ -58,11 +56,6 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       dataType: "badge",
       preferredTextAlign: "center",
     },
-    // {
-    //   key: "laporan",
-    //   label: "Laporan",
-    //   dataType: "link",
-    // },
   ];
 
   //! DEBUG
@@ -80,30 +73,6 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
   // Pagination Config
   const [pageConfig, setPageConfig] = useState<number>(1);
 
-  // Check List Config
-  const [checkedItems, setCheckedItems] = useState<number[]>([]);
-  const [isCheckAll, setIsCheckAll] = useState(false);
-  const handleCheckItem = (id: number) => {
-    let updatedCheckedItems;
-    if (checkedItems.includes(id)) {
-      updatedCheckedItems = checkedItems.filter((item) => item !== id);
-    } else {
-      updatedCheckedItems = [...checkedItems, id];
-    }
-    setCheckedItems(updatedCheckedItems);
-  };
-  const handleCheckAll = () => {
-    if (data) {
-      if (isCheckAll) {
-        setCheckedItems([]);
-      } else {
-        const allIds = data.map((item) => item.id);
-        setCheckedItems(allIds);
-      }
-      setIsCheckAll(!isCheckAll);
-    }
-  };
-
   // Sort Config
   const [sortConfig, setSortConfig] = useState<{
     key: string;
@@ -112,12 +81,9 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
   const sortedData = data && [...data];
   if (sortConfig !== null && sortedData) {
     sortedData.sort((a, b) => {
-      //@ts-ignore
-      let aValue = a[sortConfig.key];
-      //@ts-ignore
-      let bValue = b[sortConfig.key];
+      let aValue, bValue;
 
-      // Handle nested properties
+      // Tangani properti bersarang
       if (sortConfig.key === "nama") {
         aValue = a.user?.nama;
         bValue = b.user?.nama;
@@ -127,10 +93,23 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
       } else if (sortConfig.key === "status_aktif") {
         aValue = !a.tgl_keluar ? 1 : 0;
         bValue = !b.tgl_keluar ? 1 : 0;
-      } else if (sortConfig.key === "tgl_keluar") {
-        aValue = a.tgl_keluar;
-        bValue = b.tgl_keluar;
+      } else {
+        // Kasus default: langsung gunakan kunci untuk perbandingan
+        //@ts-ignore
+        aValue = a[sortConfig.key];
+        //@ts-ignore
+        bValue = b[sortConfig.key];
       }
+
+      // Penanganan khusus untuk tanggal dan nilai null
+      if (sortConfig.key === "tgl_keluar") {
+        aValue = a.tgl_keluar ? new Date(a.tgl_keluar) : null;
+        bValue = b.tgl_keluar ? new Date(b.tgl_keluar) : null;
+      }
+
+      if (aValue === null && bValue === null) return 0;
+      if (aValue === null) return 1; // Nilai null di bawah
+      if (bValue === null) return -1; // Nilai null di bawah
 
       if (aValue < bValue) {
         return sortConfig.direction === "asc" ? -1 : 1;
@@ -167,33 +146,6 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
             <Table minW={"100%"}>
               <Thead>
                 <Tr position={"sticky"} top={0} zIndex={3}>
-                  <Th
-                    position={"sticky"}
-                    left={0}
-                    p={0}
-                    borderBottom={"none !important"}
-                    zIndex={3}
-                    w={"50px"}
-                  >
-                    <Center
-                      p={4}
-                      h={"52px"}
-                      w={"50px"}
-                      borderRight={"1px solid var(--divider3)"}
-                      bg={bodyColor}
-                      borderBottom={"1px solid var(--divider3) !important"}
-                    >
-                      <Checkbox
-                        colorScheme="ap"
-                        isChecked={isCheckAll}
-                        onChange={(e) => {
-                          e.stopPropagation();
-                          handleCheckAll();
-                        }}
-                      />
-                    </Center>
-                  </Th>
-
                   {columns.map((column, i) => (
                     <Th
                       key={i}
@@ -296,32 +248,6 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
               <Tbody>
                 {sortedData.map((row, i) => (
                   <Tr key={i} bg={i % 2 === 0 ? contentBgColor : ""}>
-                    <Td
-                      position={"sticky"}
-                      left={0}
-                      p={0}
-                      bg={bodyColor}
-                      zIndex={2}
-                      w={"50px"}
-                    >
-                      <Center
-                        h={"72px"}
-                        w={"50px"}
-                        bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                        p={4}
-                        borderRight={"1px solid var(--divider3)"}
-                      >
-                        <Checkbox
-                          colorScheme="ap"
-                          isChecked={checkedItems.includes(row.id)}
-                          onChange={(e) => {
-                            e.stopPropagation();
-                            handleCheckItem(row.id);
-                          }}
-                        />
-                      </Center>
-                    </Td>
-
                     <Td whiteSpace={"nowrap"}>
                       <HStack>
                         <Avatar
@@ -348,19 +274,6 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
                         {!row.tgl_keluar ? "Aktif" : "Tidak Aktif"}
                       </Badge>
                     </Td>
-
-                    {/* <Td whiteSpace={"nowrap"}>
-                      <Button
-                        leftIcon={<Icon as={RiFileList3Line} />}
-                        colorScheme="ap"
-                        className="clicky"
-                        variant={"ghost"}
-                        as={Link}
-                        to={`/pekerja-kontrak/laporan/${0}`}
-                      >
-                        Lihat
-                      </Button>
-                    </Td> */}
 
                     <Td
                       position={"sticky"}

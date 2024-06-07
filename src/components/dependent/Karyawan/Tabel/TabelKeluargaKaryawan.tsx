@@ -91,6 +91,10 @@ export default function TabelKeluargaKaryawan({ filterConfig }: Props) {
         bValue = b.user?.nama;
       }
 
+      if (aValue === null && bValue === null) return 0;
+      if (aValue === null) return 1; // Nilai null di bawah
+      if (bValue === null) return -1; // Nilai null di bawah
+
       if (aValue < bValue) {
         return sortConfig.direction === "asc" ? -1 : 1;
       }
