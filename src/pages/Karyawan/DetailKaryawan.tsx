@@ -24,6 +24,7 @@ import { responsiveSpacing } from "../../const/sizes";
 import formatDate from "../../lib/formatDate";
 import formatMasaKerja from "../../lib/formatMasaKerja";
 import formatNumber from "../../lib/formatNumber";
+import SImpleLink from "../../components/dependent/SImpleLink";
 export default function DetailKaryawan() {
   const [data] = useState<any | null>(dummyDetailKaryawan);
   const [loading] = useState<boolean>(false);
@@ -82,17 +83,23 @@ export default function DetailKaryawan() {
                   <HStack justify={"space-between"}>
                     <Text opacity={0.6}>NIK KTP</Text>
                     <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      {data.nik_ktp}
-                    </Text>
+                    <HStack>
+                      <SImpleLink to="#">Lihat</SImpleLink>
+                      <Text fontWeight={500} textAlign={"right"}>
+                        {data.nik_ktp}
+                      </Text>
+                    </HStack>
                   </HStack>
 
                   <HStack justify={"space-between"}>
                     <Text opacity={0.6}>No. KK</Text>
                     <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      {data.no_kk}
-                    </Text>
+                    <HStack>
+                      <SImpleLink to="#">Lihat</SImpleLink>
+                      <Text fontWeight={500} textAlign={"right"}>
+                        {data.no_kk}
+                      </Text>
+                    </HStack>
                   </HStack>
 
                   <HStack justify={"space-between"}>
@@ -219,9 +226,12 @@ export default function DetailKaryawan() {
                     <HStack justify={"space-between"}>
                       <Text opacity={0.6}>No. BPJS Kesehatan</Text>
                       <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {data.no_bpjsksh}
-                      </Text>
+                      <HStack>
+                        <SImpleLink to="#">Lihat</SImpleLink>
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {data.no_bpjsksh}
+                        </Text>
+                      </HStack>
                     </HStack>
 
                     <HStack justify={"space-between"}>
@@ -369,9 +379,12 @@ export default function DetailKaryawan() {
                 <HStack justify={"space-between"}>
                   <Text opacity={0.6}>No. Ijazah</Text>
                   <FlexLine />
-                  <Text fontWeight={500} textAlign={"right"}>
-                    {data.no_ijazah}
-                  </Text>
+                  <HStack>
+                    <SImpleLink to="#">Lihat</SImpleLink>
+                    <Text fontWeight={500} textAlign={"right"}>
+                      {data.no_ijazah}
+                    </Text>
+                  </HStack>
                 </HStack>
 
                 <HStack justify={"space-between"}>
@@ -385,9 +398,12 @@ export default function DetailKaryawan() {
                 <HStack justify={"space-between"}>
                   <Text opacity={0.6}>No. STR</Text>
                   <FlexLine />
-                  <Text fontWeight={500} textAlign={"right"}>
-                    {data.no_str}
-                  </Text>
+                  <HStack>
+                    <SImpleLink to="#">Lihat</SImpleLink>
+                    <Text fontWeight={500} textAlign={"right"}>
+                      {data.no_str}
+                    </Text>
+                  </HStack>
                 </HStack>
 
                 <HStack justify={"space-between"}>
@@ -401,9 +417,12 @@ export default function DetailKaryawan() {
                 <HStack justify={"space-between"}>
                   <Text opacity={0.6}>No. SIP</Text>
                   <FlexLine />
-                  <Text fontWeight={500} textAlign={"right"}>
-                    {data.no_sip}
-                  </Text>
+                  <HStack>
+                    <SImpleLink to="#">Lihat</SImpleLink>
+                    <Text fontWeight={500} textAlign={"right"}>
+                      {data.no_sip}
+                    </Text>
+                  </HStack>
                 </HStack>
 
                 <HStack justify={"space-between"}>
