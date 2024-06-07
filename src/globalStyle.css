@@ -609,6 +609,10 @@ img[alt="Google"] {
   opacity: 0.6 !important;
 }
 
+.chakra-popover__body {
+  padding-right: 36px !important;
+}
+
 @keyframes flashing {
   0% {
     opacity: 1;

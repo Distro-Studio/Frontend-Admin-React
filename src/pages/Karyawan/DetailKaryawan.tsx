@@ -306,9 +306,7 @@ export default function DetailKaryawan() {
                           <PopoverArrow />
                           <PopoverCloseButton />
                           <PopoverBody>
-                            <Text fontWeight={500} textAlign={"right"}>
-                              {data.alamat}
-                            </Text>
+                            <Text fontWeight={500}>{data.alamat}</Text>
                           </PopoverBody>
                         </PopoverContent>
                       </Portal>
