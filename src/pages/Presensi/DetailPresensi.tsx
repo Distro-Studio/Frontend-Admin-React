@@ -93,7 +93,7 @@ export default function DetailPresensi() {
                 />
 
                 <Box>
-                  <Text fontWeight={600} fontSize={20} mb={2}>
+                  <Text fontWeight={600} fontSize={22} mb={2}>
                     {data.user.nama}
                   </Text>
                   <Text mb={4} opacity={0.6} fontSize={14}>
@@ -111,11 +111,11 @@ export default function DetailPresensi() {
               borderRadius={12}
             >
               <VStack align={"stretch"} gap={0}>
-                <Text fontSize={18} fontWeight={600} mb={responsiveSpacing}>
+                <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
                   Data Jadwal
                 </Text>
 
-                <VStack align={"stretch"} gap={3}>
+                <VStack align={"stretch"} gap={4}>
                   <HStack justify={"space-between"}>
                     <Text opacity={0.6}>Label</Text>
                     <FlexLine />
@@ -165,7 +165,7 @@ export default function DetailPresensi() {
             >
               <Wrap spacing={responsiveSpacing2}>
                 <Box>
-                  <Text fontSize={18} fontWeight={600} mb={responsiveSpacing}>
+                  <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
                     Foto Presensi
                   </Text>
 
@@ -173,14 +173,14 @@ export default function DetailPresensi() {
                     <Image
                       objectFit={"cover"}
                       aspectRatio={3 / 4}
-                      maxH={dataPresensiRef?.current?.offsetHeight || "312px"}
+                      maxH={dataPresensiRef?.current?.offsetHeight || "344px"}
                       src={data.foto}
                       borderRadius={4}
                     />
                   ) : (
                     <VStack
                       aspectRatio={3 / 4}
-                      maxH={dataPresensiRef?.current?.offsetHeight || "312px"}
+                      maxH={dataPresensiRef?.current?.offsetHeight || "344px"}
                       overflow={"clip"}
                       justify={"flex-end"}
                     >
@@ -190,11 +190,11 @@ export default function DetailPresensi() {
                 </Box>
 
                 <Box flex={1}>
-                  <Text fontSize={18} fontWeight={600} mb={responsiveSpacing}>
+                  <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
                     Data Presensi
                   </Text>
 
-                  <VStack align={"stretch"} gap={3} ref={dataPresensiRef}>
+                  <VStack align={"stretch"} gap={4} ref={dataPresensiRef}>
                     <HStack justify={"space-between"}>
                       <Text opacity={0.6}>Presensi Masuk</Text>
                       <FlexLine />
