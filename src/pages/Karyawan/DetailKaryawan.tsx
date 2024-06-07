@@ -1,6 +1,11 @@
 import {
   Avatar,
+  Button,
   HStack,
+  Icon,
+  Input,
+  InputGroup,
+  InputLeftElement,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -20,14 +25,17 @@ import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { dummyDetailKaryawan } from "../../const/dummy";
-import { responsiveSpacing } from "../../const/sizes";
+import { iconSize, responsiveSpacing } from "../../const/sizes";
 import formatDate from "../../lib/formatDate";
 import formatMasaKerja from "../../lib/formatMasaKerja";
 import formatNumber from "../../lib/formatNumber";
 import SImpleLink from "../../components/dependent/SImpleLink";
+import { RiEditBoxFill, RiSearchLine, RiUserHeartFill } from "@remixicon/react";
+import { Link } from "react-router-dom";
 export default function DetailKaryawan() {
   const [data] = useState<any | null>(dummyDetailKaryawan);
   const [loading] = useState<boolean>(false);
+  const [search, setSearch] = useState<string>("");
 
   // SX
   const bodyColor = useBodyColor();
@@ -35,10 +43,47 @@ export default function DetailKaryawan() {
   return (
     <CWrapper>
       {loading && <ComponentSpinner minH={"400px"} flex={1} />}
+      {!loading && data && (
+        <>
+          <Wrap mb={responsiveSpacing}>
+            <InputGroup flex={"1 1 165px"}>
+              <InputLeftElement>
+                <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
+              </InputLeftElement>
+              <Input
+                placeholder="Pencarian atau highlight"
+                flex={"1 1 0"}
+                onChange={(e) => {
+                  setSearch(e.target.value.toLowerCase());
+                }}
+                value={search}
+              />
+            </InputGroup>
 
-      <Wrap spacing={responsiveSpacing} align={"stretch"}>
-        {!loading && data && (
-          <>
+            <Button
+              flex={"1 1 110px"}
+              leftIcon={<Icon as={RiUserHeartFill} fontSize={iconSize} />}
+              colorScheme="ap"
+              variant={"outline"}
+              as={Link}
+              to={`/karyawan/keluarga-karyawan/${data.id}`}
+              className="clicky"
+            >
+              Data Keluarga
+            </Button>
+            <Button
+              flex={"1 1 110px"}
+              leftIcon={<Icon as={RiEditBoxFill} fontSize={iconSize} />}
+              colorScheme="ap"
+              className="btn-ap clicky"
+              as={Link}
+              to={`/karyawan/${data.id}/edit`}
+            >
+              Edit Data Karyawan
+            </Button>
+          </Wrap>
+
+          <Wrap spacing={responsiveSpacing} align={"stretch"}>
             <CContainer
               p={responsiveSpacing}
               flex={"1 1 350px"}
@@ -548,9 +593,9 @@ export default function DetailKaryawan() {
                 </HStack>
               </VStack>
             </CContainer>
-          </>
-        )}
-      </Wrap>
+          </Wrap>
+        </>
+      )}
     </CWrapper>
   );
 }

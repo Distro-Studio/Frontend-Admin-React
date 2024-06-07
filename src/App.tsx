@@ -86,7 +86,7 @@ export const App = () => (
               active={1}
               title="Detail Karyawan"
               left={"back"}
-              backLink="/karyawan"
+              // backLink="/karyawan"
             >
               <DetailKaryawan />
             </NavContainer>
@@ -100,7 +100,7 @@ export const App = () => (
               title="Tambah Karyawan"
               // noNavs
               left={"back"}
-              backLink="/karyawan"
+              // backLink="/karyawan"
               pb={responsiveSpacing}
             >
               <TambahKaryawan />
@@ -140,7 +140,7 @@ export const App = () => (
               active={1}
               title="Detail Keluarga Karyawan"
               left={"back"}
-              backLink="/karyawan/keluarga-karyawan"
+              // backLink="/karyawan/keluarga-karyawan"
             >
               <DetailKeluargaKaryawan />
             </NavContainer>
@@ -179,7 +179,7 @@ export const App = () => (
               active={1}
               title="Detail Rekam Jejak"
               left={"back"}
-              backLink="/karyawan/rekam-jejak"
+              // backLink="/karyawan/rekam-jejak"
             >
               <DetailRekamJejak />
             </NavContainer>
@@ -214,7 +214,7 @@ export const App = () => (
               active={2}
               title="Detail Presensi"
               left={"back"}
-              backLink="/presensi"
+              // backLink="/presensi"
             >
               <DetailPresensi />
             </NavContainer>
@@ -307,7 +307,7 @@ export const App = () => (
               active={4}
               title="Laporan Penggajian"
               left={"back"}
-              backLink="/keuangan/riwayat-penggajian"
+              // backLink="/keuangan/riwayat-penggajian"
             >
               <DetailLaporanRiwayatPenggajian />
             </NavContainer>
@@ -333,7 +333,7 @@ export const App = () => (
               active={4}
               title="Laporan THR"
               left={"back"}
-              backLink="/keuangan/thr"
+              // backLink="/keuangan/thr"
             >
               <DetailLaporanThr />
             </NavContainer>
@@ -374,7 +374,7 @@ export const App = () => (
               active={6}
               title="Atur Keizinan"
               left={"back"}
-              backLink="/pengaturan/akun/kelola-role"
+              // backLink="/pengaturan/akun/kelola-role"
             >
               <PengaturanKeizinan />
             </NavContainer>
