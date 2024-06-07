@@ -4,6 +4,7 @@ export const globalTheme = extendTheme({
   config: {
     initialColorMode: "light",
   },
+
   colors: {
     p: {
       50: "#E9FFF6",
@@ -112,6 +113,7 @@ export const globalTheme = extendTheme({
         textTransform: "none",
       }),
     },
+
     Drawer: {
       baseStyle: (props) => ({
         dialog: {

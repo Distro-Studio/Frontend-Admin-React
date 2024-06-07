@@ -83,7 +83,6 @@ export default function TabelDetailRekamJejak({ data }: Props) {
         return sortConfig.direction === "asc" ? 1 : -1;
       }
       return 0;
-      return 0;
     });
   }
   const sort = (key: string) => {

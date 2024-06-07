@@ -6,7 +6,12 @@ interface Props extends BadgeProps {
 
 export default function JenisKaryawanBadge({ data, ...props }: Props) {
   return (
-    <Badge textAlign={"center"} colorScheme={data ? "ap" : "gray"} {...props}>
+    <Badge
+      textAlign={"center"}
+      colorScheme={data ? "ap" : "gray"}
+      bg={data ? "" : "var(--divider)"}
+      {...props}
+    >
       {data ? "Shift" : "Non-Shift"}
     </Badge>
   );

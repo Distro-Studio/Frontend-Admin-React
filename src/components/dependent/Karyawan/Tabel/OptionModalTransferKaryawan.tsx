@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { RiMore2Fill } from "@remixicon/react";
 import { iconSize } from "../../../../const/sizes";
-import OptionItemEditTransferKaryawanModal from "./OptionItemEditTransferKaryawanModal";
+import EditTransferKaryawanModal from "./EditTransferKaryawanModal";
 
 interface Props {
   data: any;
@@ -30,7 +30,7 @@ export default function OptionModalTransferKaryawan({ data }: Props) {
       </MenuButton>
       <Portal>
         <MenuList minW={"140px"} zIndex={99}>
-          <OptionItemEditTransferKaryawanModal data={data} />
+          <EditTransferKaryawanModal data={data} />
         </MenuList>
       </Portal>
     </Menu>

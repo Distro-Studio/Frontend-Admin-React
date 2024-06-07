@@ -4,10 +4,8 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  HStack,
   Icon,
   Input,
-  MenuItem,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -32,12 +30,13 @@ import Textarea from "../../../input/Textarea";
 import SelectJabatan from "../../_Select/SelectJabatan";
 import SelectTipeTransfer from "../../_Select/SelectTipeTransfer";
 import SelectUnitKerja from "../../_Select/SelectUnitKerja";
+import { iconSize } from "../../../../const/sizes";
 
 interface Props {
   data: any;
 }
 
-export default function OptionItemEditTransferKaryawanModal({ data }: Props) {
+export default function EditTransferKaryawanModal({ data }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
@@ -71,12 +70,15 @@ export default function OptionItemEditTransferKaryawanModal({ data }: Props) {
 
   return (
     <>
-      <MenuItem onClick={onOpen}>
-        <HStack justify={"center"} w={"100%"} pr={2}>
-          <Icon as={RiEditFill} />
-          <Text>Edit</Text>
-        </HStack>
-      </MenuItem>
+      <Button
+        colorScheme="ap"
+        variant={"ghost"}
+        className=" clicky"
+        leftIcon={<Icon as={RiEditFill} fontSize={iconSize} />}
+        onClick={onOpen}
+      >
+        Edit
+      </Button>
 
       <Modal
         isOpen={isOpen}
