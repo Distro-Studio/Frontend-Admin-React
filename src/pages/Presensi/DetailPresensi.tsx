@@ -79,102 +79,104 @@ export default function DetailPresensi() {
       <Wrap spacing={responsiveSpacing}>
         {!loading && data && (
           <>
-            <CContainer
-              p={responsiveSpacing}
-              flex={"1 1 400px"}
-              bg={bodyColor}
-              borderRadius={12}
-            >
-              <Button
-                className="btn-clear clicky"
-                w={"fit-content"}
-                h={"fit-content"}
-                color={"p.500"}
-                ml={"auto"}
-                size={"sm"}
-                as={Link}
-                to={`/karyawan/${data.id}`}
-                rightIcon={<Icon as={RiArrowRightSLine} fontSize={20} />}
-                pr={3}
+            <Wrap flex={"1 1 500px"} spacing={responsiveSpacing}>
+              <CContainer
+                p={responsiveSpacing}
+                flex={"1 1 400px"}
+                bg={bodyColor}
+                borderRadius={12}
               >
-                Detail
-              </Button>
+                <Button
+                  className="btn-clear clicky"
+                  w={"fit-content"}
+                  h={"fit-content"}
+                  color={"p.500"}
+                  ml={"auto"}
+                  size={"sm"}
+                  as={Link}
+                  to={`/karyawan/${data.id}`}
+                  rightIcon={<Icon as={RiArrowRightSLine} fontSize={20} />}
+                  pr={3}
+                >
+                  Detail
+                </Button>
 
-              <HStack flex={1} gap={responsiveSpacing} mb={"20px"}>
-                <Avatar
-                  w={"130px"}
-                  h={"130px"}
-                  size={"xl"}
-                  src={data.user.foto_profil}
-                  name={data.user.nama}
-                />
+                <HStack flex={1} gap={responsiveSpacing} mb={"20px"}>
+                  <Avatar
+                    w={"130px"}
+                    h={"130px"}
+                    size={"xl"}
+                    src={data.user.foto_profil}
+                    name={data.user.nama}
+                  />
 
-                <Box>
-                  <Text fontWeight={600} fontSize={22} mb={2}>
-                    {data.user.nama}
+                  <Box>
+                    <Text fontWeight={600} fontSize={22} mb={2}>
+                      {data.user.nama}
+                    </Text>
+                    <Text mb={4} opacity={0.6} fontSize={14}>
+                      {data.unit_kerja.nama_unit}
+                    </Text>
+                    <JenisKaryawanBadge data={data.unit_kerja.jenis_karyawan} />
+                  </Box>
+                </HStack>
+              </CContainer>
+
+              <CContainer
+                p={responsiveSpacing}
+                flex={"1 1 350px"}
+                bg={bodyColor}
+                borderRadius={12}
+              >
+                <VStack align={"stretch"} gap={0}>
+                  <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
+                    Data Jadwal
                   </Text>
-                  <Text mb={4} opacity={0.6} fontSize={14}>
-                    {data.unit_kerja.nama_unit}
-                  </Text>
-                  <JenisKaryawanBadge data={data.unit_kerja.jenis_karyawan} />
-                </Box>
-              </HStack>
-            </CContainer>
 
-            <CContainer
-              p={responsiveSpacing}
-              flex={"1 1 350px"}
-              bg={bodyColor}
-              borderRadius={12}
-            >
-              <VStack align={"stretch"} gap={0}>
-                <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
-                  Data Jadwal
-                </Text>
+                  <VStack align={"stretch"} gap={4}>
+                    <HStack justify={"space-between"}>
+                      <Text opacity={0.6}>Label</Text>
+                      <FlexLine />
+                      <Text fontWeight={500} textAlign={"right"}>
+                        {data.jadwal.nama}
+                      </Text>
+                    </HStack>
 
-                <VStack align={"stretch"} gap={4}>
-                  <HStack justify={"space-between"}>
-                    <Text opacity={0.6}>Label</Text>
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      {data.jadwal.nama}
-                    </Text>
-                  </HStack>
+                    <HStack justify={"space-between"}>
+                      <Text opacity={0.6}>Jadwal Masuk</Text>
+                      <FlexLine />
+                      <Text fontWeight={500} textAlign={"right"}>
+                        {formatTime(data.jadwal.jam_from)}
+                      </Text>
+                    </HStack>
 
-                  <HStack justify={"space-between"}>
-                    <Text opacity={0.6}>Jadwal Masuk</Text>
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      {formatTime(data.jadwal.jam_from)}
-                    </Text>
-                  </HStack>
+                    <HStack justify={"space-between"}>
+                      <Text opacity={0.6}>Jadwal Keluar</Text>
+                      <FlexLine />
+                      <Text fontWeight={500} textAlign={"right"}>
+                        {formatTime(data.jadwal.jam_to)}
+                      </Text>
+                    </HStack>
 
-                  <HStack justify={"space-between"}>
-                    <Text opacity={0.6}>Jadwal Keluar</Text>
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      {formatTime(data.jadwal.jam_to)}
-                    </Text>
-                  </HStack>
+                    <HStack justify={"space-between"}>
+                      <Text opacity={0.6}>Tanggal Masuk</Text>
+                      <FlexLine />
+                      <Text fontWeight={500} textAlign={"right"}>
+                        {formatDate(data.jadwal.jam_from, "short")}
+                      </Text>
+                    </HStack>
 
-                  <HStack justify={"space-between"}>
-                    <Text opacity={0.6}>Tanggal Masuk</Text>
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      {formatDate(data.jadwal.jam_from, "short")}
-                    </Text>
-                  </HStack>
-
-                  <HStack justify={"space-between"}>
-                    <Text opacity={0.6}>Tanggal Keluar</Text>
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      {formatDate(data.jadwal.jam_to, "short")}
-                    </Text>
-                  </HStack>
+                    <HStack justify={"space-between"}>
+                      <Text opacity={0.6}>Tanggal Keluar</Text>
+                      <FlexLine />
+                      <Text fontWeight={500} textAlign={"right"}>
+                        {formatDate(data.jadwal.jam_to, "short")}
+                      </Text>
+                    </HStack>
+                  </VStack>
                 </VStack>
-              </VStack>
-            </CContainer>
+              </CContainer>
+            </Wrap>
 
             <CContainer
               p={responsiveSpacing}

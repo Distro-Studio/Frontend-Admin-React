@@ -77,7 +77,7 @@ export default function DetailKaryawan() {
               overflowY={"auto"}
               className="noScroll"
             >
-              <VStack flex={1} overflowY={"auto"}>
+              <VStack flex={1} overflowY={"auto"} className="scrollY">
                 <VStack>
                   <Avatar
                     w={"250px"}
@@ -109,9 +109,8 @@ export default function DetailKaryawan() {
                   align={"stretch"}
                   w={"100%"}
                   gap={4}
-                  overflowY={"auto"}
-                  className="scrollY"
                   px={responsiveSpacing}
+                  minH={"150px"}
                   // bg={"red"}
                 >
                   <HStack justify={"space-between"}>
@@ -313,6 +312,7 @@ export default function DetailKaryawan() {
               gap={responsiveSpacing}
               borderRadius={12}
               overflowY={"auto"}
+              minH={"300px"}
               maxH={"calc(100vh - 88px - 24px)"}
               className="noScroll"
             >
@@ -327,17 +327,17 @@ export default function DetailKaryawan() {
                   <SearchComponent search={search} setSearch={setSearch} />
 
                   <Button
-                    flex={"1 1 110px"}
+                    flex={"1 1 120px"}
                     leftIcon={<Icon as={RiUserHeartFill} fontSize={iconSize} />}
                     colorScheme="ap"
                     variant={"outline"}
                     as={Link}
                     to={`/karyawan/keluarga-karyawan/${data.id}`}
                     className="clicky"
-                    pl={3}
                   >
                     Data Keluarga
                   </Button>
+
                   <Button
                     flex={"1 1 80px"}
                     leftIcon={<Icon as={RiEditBoxFill} fontSize={iconSize} />}
