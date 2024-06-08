@@ -359,7 +359,7 @@ export default function DetailKaryawan() {
                   px={responsiveSpacing}
                 >
                   <VStack align={"stretch"} gap={0}>
-                    <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
+                    <Text fontSize={20} fontWeight={600} mb={4}>
                       Data Kesehatan
                     </Text>
 
@@ -475,7 +475,7 @@ export default function DetailKaryawan() {
                   </VStack>
 
                   <VStack align={"stretch"} gap={0}>
-                    <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
+                    <Text fontSize={20} fontWeight={600} mb={4}>
                       Data Pekerjaan
                     </Text>
 
@@ -633,7 +633,7 @@ export default function DetailKaryawan() {
                   </VStack>
 
                   <VStack align={"stretch"} gap={0}>
-                    <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
+                    <Text fontSize={20} fontWeight={600} mb={4}>
                       Data Pendidikan dan Sertifikat
                     </Text>
 
@@ -740,7 +740,7 @@ export default function DetailKaryawan() {
                   </VStack>
 
                   <VStack align={"stretch"} gap={0}>
-                    <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
+                    <Text fontSize={20} fontWeight={600} mb={4}>
                       Data Keuangan
                     </Text>
 
@@ -853,7 +853,7 @@ export default function DetailKaryawan() {
                   </VStack>
 
                   <VStack align={"stretch"} gap={0}>
-                    <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
+                    <Text fontSize={20} fontWeight={600} mb={4}>
                       Data Tunjangan
                     </Text>
 
