@@ -37,17 +37,20 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
+      nama_keluarga: data.nama_keluarga,
       hubungan: data.hubungan,
-      nama: data.nama,
       pendidikan_terakhir: data.pendidikan_terakhir,
       pekerjaan: data.pekerjaan,
-      status_hidup: data.status_hidup,
+      status_hidup: {
+        value: data.status_hidup,
+        label: data.status_hidup ? "Hidup" : "Meninggal",
+      },
       no_hp: data.no_hp,
       email: data.email,
     },
     validationSchema: yup.object().shape({
       hubungan: yup.string().required("Harus diisi"),
-      nama: yup.string().required("Harus diisi"),
+      nama_keluarga: yup.string().required("Harus diisi"),
       pendidikan_terakhir: yup.string().required("Harus diisi"),
       pekerjaan: yup.string().required("Harus diisi"),
       status_hidup: yup.string().required("Harus diisi"),
@@ -85,20 +88,23 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
           <ModalCloseButton />
           <ModalHeader ref={initialRef}>Edit Data Keluarga</ModalHeader>
           <ModalBody>
-            <form id="editKeluargaKaryawanForm">
-              <FormControl mb={4} isInvalid={formik.errors.nama ? true : false}>
+            <form id="editKeluargaKaryawanForm" onSubmit={formik.handleSubmit}>
+              <FormControl
+                mb={4}
+                isInvalid={formik.errors.nama_keluarga ? true : false}
+              >
                 <FormLabel>
                   Nama Anggota Keluarga
                   <FormRequired />
                 </FormLabel>
                 <Input
-                  name="nama"
+                  name="nama_keluarga"
                   placeholder="Jolitos Kurniawan"
                   onChange={formik.handleChange}
-                  value={formik.values.nama}
+                  value={formik.values.nama_keluarga}
                 />
                 <FormErrorMessage>
-                  {formik.errors.nama as string}
+                  {formik.errors.nama_keluarga as string}
                 </FormErrorMessage>
               </FormControl>
 
@@ -171,10 +177,7 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
                   formik={formik}
                   name="status_hidup"
                   placeholder="Pilih status hidup"
-                  initialSelected={{
-                    value: formik.values.status_hidup,
-                    label: formik.values.status_hidup ? "Hidup" : "Meninggal",
-                  }}
+                  initialSelected={formik.values.status_hidup}
                   noSearch
                   noUseBackOnClose
                 />
@@ -188,7 +191,7 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
                 isInvalid={formik.errors.no_hp ? true : false}
               >
                 <FormLabel>
-                  Bo. Telepon
+                  No. Telepon
                   <FormRequired />
                 </FormLabel>
                 <Input
@@ -230,7 +233,13 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
               >
                 Batal
               </Button> */}
-              <Button w={"100%"} className="btn-ap clicky" colorScheme="ap">
+              <Button
+                type="submit"
+                form="editKeluargaKaryawanForm"
+                w={"100%"}
+                className="btn-ap clicky"
+                colorScheme="ap"
+              >
                 Simpan
               </Button>
             </ButtonGroup>

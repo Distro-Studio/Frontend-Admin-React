@@ -45,9 +45,18 @@ export default function EditTransferKaryawanModal({ data }: Props) {
     validateOnChange: false,
     initialValues: {
       tgl_mulai: data.tgl_mulai,
-      tipe: data.tipe as any,
-      unit_kerja_tujuan: data.unit_kerja_tujuan as any,
-      jabatan_tujuan: data.jabatan_tujuan as any,
+      tipe: {
+        value: data.tipe.id,
+        label: data.tipe.label,
+      } as any,
+      unit_kerja_tujuan: {
+        value: data.unit_kerja_tujuan.id,
+        label: data.unit_kerja_tujuan.nama_unit,
+      } as any,
+      jabatan_tujuan: {
+        value: data.jabatan_tujuan.id,
+        label: data.jabatan_tujuan.nama_jabatan,
+      } as any,
       dokumen: data.dokumen as File[],
       alasan: data.alasan,
       beri_tahu_manager_direktur: data.beri_tahu_manajer,
@@ -135,10 +144,7 @@ export default function EditTransferKaryawanModal({ data }: Props) {
                     name="tipe"
                     formik={formik}
                     placeholder="Pilih Tipe Transfer"
-                    initialSelected={{
-                      value: formik.values.tipe.id,
-                      label: formik.values.tipe.label,
-                    }}
+                    initialSelected={formik.values.tipe}
                     noSearch
                     noUseBackOnClose
                   />
@@ -161,10 +167,7 @@ export default function EditTransferKaryawanModal({ data }: Props) {
                     name="unit_kerja_tujuan"
                     formik={formik}
                     placeholder="Pilih Unit Kerja"
-                    initialSelected={{
-                      value: formik.values.unit_kerja_tujuan.id,
-                      label: formik.values.unit_kerja_tujuan.nama_unit,
-                    }}
+                    initialSelected={formik.values.unit_kerja_tujuan}
                     noUseBackOnClose
                   />
                   <FormErrorMessage>
@@ -181,10 +184,7 @@ export default function EditTransferKaryawanModal({ data }: Props) {
                     name="jabatan_tujuan"
                     formik={formik}
                     placeholder="Pilih Jabatan"
-                    initialSelected={{
-                      value: formik.values.jabatan_tujuan.id,
-                      label: formik.values.jabatan_tujuan.nama_jabatan,
-                    }}
+                    initialSelected={formik.values.jabatan_tujuan}
                     noUseBackOnClose
                   />
                   <FormErrorMessage>

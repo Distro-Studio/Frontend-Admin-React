@@ -134,7 +134,7 @@ export const globalTheme = extendTheme({
           color: props.colorMode === "dark" ? "wt" : "bt",
           boxShadow: "none",
           borderRadius: "16px",
-          border: "1px solid var(--divider)",
+          // border: "1px solid var(--divider)",
           mx: "16px",
         },
         overlay: {

@@ -272,6 +272,7 @@ const Select = forwardRef(
                     Reset
                   </Button>
                 )}
+
                 <Button
                   w={"100%"}
                   className="btn-ap clicky"
