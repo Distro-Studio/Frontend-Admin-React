@@ -9,8 +9,9 @@ import {
   VStack,
   Wrap,
 } from "@chakra-ui/react";
-import { RiArrowRightSLine, RiUser3Fill } from "@remixicon/react";
+import { RiArrowRightSLine, RiUserUnfollowFill } from "@remixicon/react";
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import JenisKaryawanBadge from "../../components/dependent/JenisKaryawanBadge";
 import ComponentSpinner from "../../components/independent/ComponentSpinner";
 import FlexLine from "../../components/independent/FlexLine";
@@ -21,7 +22,6 @@ import { responsiveSpacing, responsiveSpacing2 } from "../../const/sizes";
 import formatDate from "../../lib/formatDate";
 import formatDuration from "../../lib/formatDuration";
 import formatTime from "../../lib/formatTime";
-import { Link } from "react-router-dom";
 
 export default function DetailPresensi() {
   const dummy = {
@@ -204,8 +204,13 @@ export default function DetailPresensi() {
                       justify={"center"}
                       bg={"var(--divider)"}
                       borderRadius={6}
+                      p={responsiveSpacing}
                     >
-                      <Icon as={RiUser3Fill} fontSize={300} opacity={0.2} />
+                      <Icon
+                        as={RiUserUnfollowFill}
+                        fontSize={240}
+                        opacity={0.2}
+                      />
                     </VStack>
                   )}
                 </Box>
