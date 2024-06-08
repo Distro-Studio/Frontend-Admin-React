@@ -56,44 +56,28 @@ export default function DetailKaryawan() {
   const bodyColor = useBodyColor();
 
   return (
-    <CWrapper>
+    <CWrapper
+      overflowY={"auto"}
+      // className="scrollY"
+    >
       {loading && <ComponentSpinner minH={"400px"} flex={1} />}
+
       {!loading && data && (
         <>
-          <Wrap mb={responsiveSpacing}>
-            <SearchComponent search={search} setSearch={setSearch} />
-
-            <Button
-              flex={"1 1 110px"}
-              leftIcon={<Icon as={RiUserHeartFill} fontSize={iconSize} />}
-              colorScheme="ap"
-              variant={"outline"}
-              as={Link}
-              to={`/karyawan/keluarga-karyawan/${data.id}`}
-              className="clicky"
-            >
-              Data Keluarga
-            </Button>
-            <Button
-              flex={"1 1 110px"}
-              leftIcon={<Icon as={RiEditBoxFill} fontSize={iconSize} />}
-              colorScheme="ap"
-              className="btn-ap clicky"
-              as={Link}
-              to={`/karyawan/${data.id}/edit`}
-            >
-              Edit Data Karyawan
-            </Button>
-          </Wrap>
-
-          <Wrap spacing={responsiveSpacing} align={"stretch"}>
+          <Wrap spacing={responsiveSpacing} overflowY={"auto"}>
             <CContainer
-              p={responsiveSpacing}
+              py={responsiveSpacing}
               flex={"1 1 350px"}
               bg={bodyColor}
               borderRadius={12}
+              position={"sticky"}
+              top={"0"}
+              h={"fit-content !important"}
+              maxH={"calc(100vh - 88px - 24px)"}
+              overflowY={"auto"}
+              className="noScroll"
             >
-              <VStack flex={1}>
+              <VStack flex={1} overflowY={"auto"}>
                 <VStack>
                   <Avatar
                     w={"250px"}
@@ -121,7 +105,15 @@ export default function DetailKaryawan() {
                   />
                 </VStack>
 
-                <VStack align={"stretch"} w={"100%"} gap={4}>
+                <VStack
+                  align={"stretch"}
+                  w={"100%"}
+                  gap={4}
+                  overflowY={"auto"}
+                  className="scrollY"
+                  px={responsiveSpacing}
+                  // bg={"red"}
+                >
                   <HStack justify={"space-between"}>
                     {/* <Text opacity={0.6}>No. Induk Karyawan</Text> */}
                     <Highlighter
@@ -316,608 +308,620 @@ export default function DetailKaryawan() {
               </VStack>
             </CContainer>
 
-            <Wrap
-              flex={"1 1 350px"}
-              align={"stretch"}
-              spacing={responsiveSpacing}
+            <VStack
+              flex={"1 1 500px"}
+              gap={responsiveSpacing}
+              borderRadius={12}
+              overflowY={"auto"}
+              maxH={"calc(100vh - 88px - 24px)"}
+              className="noScroll"
             >
               <CContainer
-                flex={"1 1 350px"}
-                p={responsiveSpacing}
+                py={responsiveSpacing}
                 bg={bodyColor}
                 borderRadius={12}
+                gap={responsiveSpacing}
+                overflowY={"auto"}
               >
-                <VStack align={"stretch"} gap={0}>
-                  <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
-                    Data Kesehatan
-                  </Text>
+                <Wrap px={responsiveSpacing}>
+                  <SearchComponent search={search} setSearch={setSearch} />
 
-                  <VStack align={"stretch"} gap={4}>
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>No. Rekam Medis</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="No. Rekam Medis"
-                      />
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {data.no_rm}
-                      </Text>
-                    </HStack>
+                  <Button
+                    flex={"1 1 110px"}
+                    leftIcon={<Icon as={RiUserHeartFill} fontSize={iconSize} />}
+                    colorScheme="ap"
+                    variant={"outline"}
+                    as={Link}
+                    to={`/karyawan/keluarga-karyawan/${data.id}`}
+                    className="clicky"
+                    pl={3}
+                  >
+                    Data Keluarga
+                  </Button>
+                  <Button
+                    flex={"1 1 80px"}
+                    leftIcon={<Icon as={RiEditBoxFill} fontSize={iconSize} />}
+                    colorScheme="ap"
+                    className="btn-ap clicky"
+                    as={Link}
+                    to={`/karyawan/${data.id}/edit`}
+                    pl={3}
+                  >
+                    Edit
+                  </Button>
+                </Wrap>
 
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>No. Manulife</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="No. Manulife"
-                      />
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {data.no_manulife}
-                      </Text>
-                    </HStack>
+                <VStack
+                  align={"stretch"}
+                  gap={responsiveSpacing}
+                  overflowY={"auto"}
+                  className="scrollY"
+                  px={responsiveSpacing}
+                >
+                  <VStack align={"stretch"} gap={0}>
+                    <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
+                      Data Kesehatan
+                    </Text>
 
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>No. BPJS Kesehatan</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="No. BPJS Kesehatan"
-                      />
-                      <FlexLine />
-                      <HStack>
-                        <SmallLink to="#">Lihat</SmallLink>
+                    <VStack align={"stretch"} gap={4}>
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>No. Rekam Medis</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="No. Rekam Medis"
+                        />
+                        <FlexLine />
                         <Text fontWeight={500} textAlign={"right"}>
-                          {data.no_bpjsksh}
+                          {data.no_rm}
                         </Text>
                       </HStack>
-                    </HStack>
 
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>No. BPJS Ketenagakerjaan</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="No. BPJS Ketenagakerjaan"
-                      />
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {data.no_bpjsktk}
-                      </Text>
-                    </HStack>
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>No. Manulife</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="No. Manulife"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {data.no_manulife}
+                        </Text>
+                      </HStack>
 
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>Tinggi Badan</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="Tinggi Badan"
-                      />
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {data.tinggi_badan} cm
-                      </Text>
-                    </HStack>
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>No. BPJS Kesehatan</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="No. BPJS Kesehatan"
+                        />
+                        <FlexLine />
+                        <HStack>
+                          <SmallLink to="#">Lihat</SmallLink>
+                          <Text fontWeight={500} textAlign={"right"}>
+                            {data.no_bpjsksh}
+                          </Text>
+                        </HStack>
+                      </HStack>
 
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>Berat Badan</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="Berat Badan"
-                      />
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {data.berat_badan} kg
-                      </Text>
-                    </HStack>
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>No. BPJS Ketenagakerjaan</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="No. BPJS Ketenagakerjaan"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {data.no_bpjsktk}
+                        </Text>
+                      </HStack>
 
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>Golongan Darah</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="Golongan Darah"
-                      />
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {data.golongan_darah}
-                      </Text>
-                    </HStack>
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Tinggi Badan</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Tinggi Badan"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {data.tinggi_badan} cm
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Berat Badan</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Berat Badan"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {data.berat_badan} kg
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Golongan Darah</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Golongan Darah"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {data.golongan_darah}
+                        </Text>
+                      </HStack>
+                    </VStack>
+                  </VStack>
+
+                  <VStack align={"stretch"} gap={0}>
+                    <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
+                      Data Pekerjaan
+                    </Text>
+
+                    <VStack align={"stretch"} gap={4}>
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Tanggal Masuk</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Tanggal Masuk"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {formatDate(data.tgl_masuk)}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Tanggal Keluar</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Tanggal Keluar"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {formatDate(data.tgl_keluar)}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Tanggal Diangkat</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Tanggal Diangkat"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {formatDate(data.tgl_diangkat)}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Masa Kerja</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Masa Kerja"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {formatMasaKerja(data.masa_kerja)}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Unit Kerja</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Unit Kerja"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {data.unit_kerja.nama_unit}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Jabatan</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Jabatan"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {data.jabatan.nama_jabatan}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Kompetensi</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Kompetensi"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {data.kompetensi.nama_kompetensi}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Status Karyawan</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Status Karyawan"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {data.status_karyawan}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Tanggal Berakhir PKS</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Tanggal Berakhir PKS"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {formatDate(data.tgl_berakhir_pks)}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Masa Diklat</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Masa Diklat"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {formatMasaKerja(data.masa_diklat)}
+                        </Text>
+                      </HStack>
+                    </VStack>
+                  </VStack>
+
+                  <VStack align={"stretch"} gap={0}>
+                    <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
+                      Data Pendidikan dan Sertifikat
+                    </Text>
+
+                    <VStack align={"stretch"} gap={4}>
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>No. Ijazah</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="No. Ijazah"
+                        />
+                        <FlexLine />
+                        <HStack>
+                          <SmallLink to="#">Lihat</SmallLink>
+                          <Text fontWeight={500} textAlign={"right"}>
+                            {data.no_ijazah}
+                          </Text>
+                        </HStack>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Tahun Lulus</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Tahun Lulus"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {data.tahun_lulus}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>No. STR</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="No. STR"
+                        />
+                        <FlexLine />
+                        <HStack>
+                          <SmallLink to="#">Lihat</SmallLink>
+                          <Text fontWeight={500} textAlign={"right"}>
+                            {data.no_str}
+                          </Text>
+                        </HStack>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Masa Berlaku STR</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Masa Berlaku STR"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {formatDate(data.masa_berlaku_str)}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>No. SIP</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="No. SIP"
+                        />
+                        <FlexLine />
+                        <HStack>
+                          <SmallLink to="#">Lihat</SmallLink>
+                          <Text fontWeight={500} textAlign={"right"}>
+                            {data.no_sip}
+                          </Text>
+                        </HStack>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Masa Berlaku SIP</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Masa Berlaku SIP"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {formatDate(data.masa_berlaku_sip)}
+                        </Text>
+                      </HStack>
+                    </VStack>
+                  </VStack>
+
+                  <VStack align={"stretch"} gap={0}>
+                    <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
+                      Data Keuangan
+                    </Text>
+
+                    <VStack align={"stretch"} gap={4}>
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Kelompok Gaji</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Kelompok Gaji"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {data.kelompok_gaji.nama_kelompok}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Gaji</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Gaji"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          Rp {formatNumber(data.kelompok_gaji.besaran_gaji)}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>NPWP</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="NPWP"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {data.npwp}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>No. Rekening</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="No. Rekening"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {data.no_rekening}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Kode PTKP</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Kode PTKP"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          {data.ptkp.kode_ptkp}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Uang Makan</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Uang Makan"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          Rp {formatNumber(data.uang_makan)}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Uang Lembur</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Uang Lembur"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          Rp {formatNumber(data.uang_lembur)}
+                        </Text>
+                      </HStack>
+                    </VStack>
+                  </VStack>
+
+                  <VStack align={"stretch"} gap={0}>
+                    <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
+                      Data Tunjangan
+                    </Text>
+
+                    <VStack align={"stretch"} gap={4}>
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Jabatan</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Jabatan"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          Rp {formatNumber(data.tunjangan_jabatan)}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Fungsional</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Fungsional"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          Rp {formatNumber(data.tunjangan_fungsional)}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Khusus</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Khusus"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          Rp {formatNumber(data.tunjangan_khusus)}
+                        </Text>
+                      </HStack>
+
+                      <HStack justify={"space-between"}>
+                        {/* <Text opacity={0.6}>Lainnya</Text> */}
+                        <Highlighter
+                          highlightClassName="hw"
+                          unhighlightClassName="uw"
+                          searchWords={searchQuery}
+                          autoEscape={true}
+                          textToHighlight="Lainnya"
+                        />
+                        <FlexLine />
+                        <Text fontWeight={500} textAlign={"right"}>
+                          Rp {formatNumber(data.tunjangan_lainnya)}
+                        </Text>
+                      </HStack>
+                    </VStack>
                   </VStack>
                 </VStack>
               </CContainer>
-
-              <CContainer
-                flex={"1 1 350px"}
-                p={responsiveSpacing}
-                bg={bodyColor}
-                borderRadius={12}
-              >
-                <VStack align={"stretch"} gap={0}>
-                  <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
-                    Data Pekerjaan
-                  </Text>
-
-                  <VStack align={"stretch"} gap={4}>
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>Tanggal Masuk</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="Tanggal Masuk"
-                      />
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {formatDate(data.tgl_masuk)}
-                      </Text>
-                    </HStack>
-
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>Tanggal Keluar</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="Tanggal Keluar"
-                      />
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {formatDate(data.tgl_keluar)}
-                      </Text>
-                    </HStack>
-
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>Tanggal Diangkat</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="Tanggal Diangkat"
-                      />
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {formatDate(data.tgl_diangkat)}
-                      </Text>
-                    </HStack>
-
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>Masa Kerja</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="Masa Kerja"
-                      />
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {formatMasaKerja(data.masa_kerja)}
-                      </Text>
-                    </HStack>
-
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>Unit Kerja</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="Unit Kerja"
-                      />
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {data.unit_kerja.nama_unit}
-                      </Text>
-                    </HStack>
-
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>Jabatan</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="Jabatan"
-                      />
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {data.jabatan.nama_jabatan}
-                      </Text>
-                    </HStack>
-
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>Kompetensi</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="Kompetensi"
-                      />
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {data.kompetensi.nama_kompetensi}
-                      </Text>
-                    </HStack>
-
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>Status Karyawan</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="Status Karyawan"
-                      />
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {data.status_karyawan}
-                      </Text>
-                    </HStack>
-
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>Tanggal Berakhir PKS</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="Tanggal Berakhir PKS"
-                      />
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {formatDate(data.tgl_berakhir_pks)}
-                      </Text>
-                    </HStack>
-
-                    <HStack justify={"space-between"}>
-                      {/* <Text opacity={0.6}>Masa Diklat</Text> */}
-                      <Highlighter
-                        highlightClassName="hw"
-                        unhighlightClassName="uw"
-                        searchWords={searchQuery}
-                        autoEscape={true}
-                        textToHighlight="Masa Diklat"
-                      />
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {formatMasaKerja(data.masa_diklat)}
-                      </Text>
-                    </HStack>
-                  </VStack>
-                </VStack>
-              </CContainer>
-            </Wrap>
-
-            <Wrap
-              flex={"1 1 350px"}
-              align={"stretch"}
-              spacing={responsiveSpacing}
-            >
-              <CContainer
-                p={responsiveSpacing}
-                flex={"1 0 350px"}
-                bg={bodyColor}
-                borderRadius={12}
-              >
-                <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
-                  Data Pendidikan dan Sertifikat
-                </Text>
-
-                <VStack align={"stretch"} gap={4}>
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>No. Ijazah</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="No. Ijazah"
-                    />
-                    <FlexLine />
-                    <HStack>
-                      <SmallLink to="#">Lihat</SmallLink>
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {data.no_ijazah}
-                      </Text>
-                    </HStack>
-                  </HStack>
-
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>Tahun Lulus</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="Tahun Lulus"
-                    />
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      {data.tahun_lulus}
-                    </Text>
-                  </HStack>
-
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>No. STR</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="No. STR"
-                    />
-                    <FlexLine />
-                    <HStack>
-                      <SmallLink to="#">Lihat</SmallLink>
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {data.no_str}
-                      </Text>
-                    </HStack>
-                  </HStack>
-
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>Masa Berlaku STR</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="Masa Berlaku STR"
-                    />
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      {formatDate(data.masa_berlaku_str)}
-                    </Text>
-                  </HStack>
-
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>No. SIP</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="No. SIP"
-                    />
-                    <FlexLine />
-                    <HStack>
-                      <SmallLink to="#">Lihat</SmallLink>
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {data.no_sip}
-                      </Text>
-                    </HStack>
-                  </HStack>
-
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>Masa Berlaku SIP</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="Masa Berlaku SIP"
-                    />
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      {formatDate(data.masa_berlaku_sip)}
-                    </Text>
-                  </HStack>
-                </VStack>
-              </CContainer>
-
-              <CContainer
-                p={responsiveSpacing}
-                flex={"1 0 350px"}
-                bg={bodyColor}
-                borderRadius={12}
-              >
-                <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
-                  Data Keuangan
-                </Text>
-
-                <VStack align={"stretch"} gap={4}>
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>Kelompok Gaji</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="Kelompok Gaji"
-                    />
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      {data.kelompok_gaji.nama_kelompok}
-                    </Text>
-                  </HStack>
-
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>Gaji</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="Gaji"
-                    />
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      Rp {formatNumber(data.kelompok_gaji.besaran_gaji)}
-                    </Text>
-                  </HStack>
-
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>NPWP</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="NPWP"
-                    />
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      {data.npwp}
-                    </Text>
-                  </HStack>
-
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>No. Rekening</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="No. Rekening"
-                    />
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      {data.no_rekening}
-                    </Text>
-                  </HStack>
-
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>Kode PTKP</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="Kode PTKP"
-                    />
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      {data.ptkp.kode_ptkp}
-                    </Text>
-                  </HStack>
-
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>Uang Makan</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="Uang Makan"
-                    />
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      Rp {formatNumber(data.uang_makan)}
-                    </Text>
-                  </HStack>
-
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>Uang Lembur</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="Uang Lembur"
-                    />
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      Rp {formatNumber(data.uang_lembur)}
-                    </Text>
-                  </HStack>
-                </VStack>
-              </CContainer>
-
-              <CContainer
-                p={responsiveSpacing}
-                flex={"1 0 350px"}
-                bg={bodyColor}
-                borderRadius={12}
-              >
-                <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
-                  Data Tunjangan
-                </Text>
-
-                <VStack align={"stretch"} gap={4}>
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>Jabatan</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="Jabatan"
-                    />
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      Rp {formatNumber(data.tunjangan_jabatan)}
-                    </Text>
-                  </HStack>
-
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>Fungsional</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="Fungsional"
-                    />
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      Rp {formatNumber(data.tunjangan_fungsional)}
-                    </Text>
-                  </HStack>
-
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>Khusus</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="Khusus"
-                    />
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      Rp {formatNumber(data.tunjangan_khusus)}
-                    </Text>
-                  </HStack>
-
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>Lainnya</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="Lainnya"
-                    />
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      Rp {formatNumber(data.tunjangan_lainnya)}
-                    </Text>
-                  </HStack>
-                </VStack>
-              </CContainer>
-            </Wrap>
+            </VStack>
           </Wrap>
         </>
       )}
