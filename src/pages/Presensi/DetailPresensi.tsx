@@ -1,6 +1,7 @@
 import {
   Avatar,
   Box,
+  Button,
   HStack,
   Icon,
   Image,
@@ -8,7 +9,7 @@ import {
   VStack,
   Wrap,
 } from "@chakra-ui/react";
-import { RiUser3Fill } from "@remixicon/react";
+import { RiArrowRightSLine, RiUser3Fill } from "@remixicon/react";
 import { useRef, useState } from "react";
 import JenisKaryawanBadge from "../../components/dependent/JenisKaryawanBadge";
 import ComponentSpinner from "../../components/independent/ComponentSpinner";
@@ -20,6 +21,7 @@ import { responsiveSpacing, responsiveSpacing2 } from "../../const/sizes";
 import formatDate from "../../lib/formatDate";
 import formatDuration from "../../lib/formatDuration";
 import formatTime from "../../lib/formatTime";
+import { Link } from "react-router-dom";
 
 export default function DetailPresensi() {
   const dummy = {
@@ -74,16 +76,31 @@ export default function DetailPresensi() {
     <CWrapper>
       {loading && <ComponentSpinner minH={"400px"} flex={1} />}
 
-      <Wrap spacing={responsiveSpacing} align={"stretch"}>
+      <Wrap spacing={responsiveSpacing}>
         {!loading && data && (
           <>
             <CContainer
               p={responsiveSpacing}
-              flex={"1 1 300px"}
+              flex={"1 1 400px"}
               bg={bodyColor}
               borderRadius={12}
             >
-              <HStack flex={1} gap={responsiveSpacing}>
+              <Button
+                className="btn-clear clicky"
+                w={"fit-content"}
+                h={"fit-content"}
+                color={"p.500"}
+                ml={"auto"}
+                size={"sm"}
+                as={Link}
+                to={`/karyawan/${data.id}`}
+                rightIcon={<Icon as={RiArrowRightSLine} fontSize={20} />}
+                pr={3}
+              >
+                Detail
+              </Button>
+
+              <HStack flex={1} gap={responsiveSpacing} mb={"20px"}>
                 <Avatar
                   w={"130px"}
                   h={"130px"}
@@ -119,13 +136,15 @@ export default function DetailPresensi() {
                   <HStack justify={"space-between"}>
                     <Text opacity={0.6}>Label</Text>
                     <FlexLine />
-                    <Text fontWeight={500}>{data.jadwal.nama}</Text>
+                    <Text fontWeight={500} textAlign={"right"}>
+                      {data.jadwal.nama}
+                    </Text>
                   </HStack>
 
                   <HStack justify={"space-between"}>
                     <Text opacity={0.6}>Jadwal Masuk</Text>
                     <FlexLine />
-                    <Text fontWeight={500}>
+                    <Text fontWeight={500} textAlign={"right"}>
                       {formatTime(data.jadwal.jam_from)}
                     </Text>
                   </HStack>
@@ -133,7 +152,7 @@ export default function DetailPresensi() {
                   <HStack justify={"space-between"}>
                     <Text opacity={0.6}>Jadwal Keluar</Text>
                     <FlexLine />
-                    <Text fontWeight={500}>
+                    <Text fontWeight={500} textAlign={"right"}>
                       {formatTime(data.jadwal.jam_to)}
                     </Text>
                   </HStack>
@@ -141,7 +160,7 @@ export default function DetailPresensi() {
                   <HStack justify={"space-between"}>
                     <Text opacity={0.6}>Tanggal Masuk</Text>
                     <FlexLine />
-                    <Text fontWeight={500}>
+                    <Text fontWeight={500} textAlign={"right"}>
                       {formatDate(data.jadwal.jam_from, "short")}
                     </Text>
                   </HStack>
@@ -149,7 +168,7 @@ export default function DetailPresensi() {
                   <HStack justify={"space-between"}>
                     <Text opacity={0.6}>Tanggal Keluar</Text>
                     <FlexLine />
-                    <Text fontWeight={500}>
+                    <Text fontWeight={500} textAlign={"right"}>
                       {formatDate(data.jadwal.jam_to, "short")}
                     </Text>
                   </HStack>
@@ -175,14 +194,16 @@ export default function DetailPresensi() {
                       aspectRatio={3 / 4}
                       maxH={dataPresensiRef?.current?.offsetHeight || "344px"}
                       src={data.foto}
-                      borderRadius={4}
+                      borderRadius={6}
                     />
                   ) : (
                     <VStack
                       aspectRatio={3 / 4}
                       maxH={dataPresensiRef?.current?.offsetHeight || "344px"}
                       overflow={"clip"}
-                      justify={"flex-end"}
+                      justify={"center"}
+                      bg={"var(--divider)"}
+                      borderRadius={6}
                     >
                       <Icon as={RiUser3Fill} fontSize={300} opacity={0.2} />
                     </VStack>
@@ -198,13 +219,15 @@ export default function DetailPresensi() {
                     <HStack justify={"space-between"}>
                       <Text opacity={0.6}>Presensi Masuk</Text>
                       <FlexLine />
-                      <Text fontWeight={500}>{formatTime(data.jam_masuk)}</Text>
+                      <Text fontWeight={500} textAlign={"right"}>
+                        {formatTime(data.jam_masuk)}
+                      </Text>
                     </HStack>
 
                     <HStack justify={"space-between"}>
                       <Text opacity={0.6}>Presensi Keluar</Text>
                       <FlexLine />
-                      <Text fontWeight={500}>
+                      <Text fontWeight={500} textAlign={"right"}>
                         {formatTime(data.jam_keluar)}
                       </Text>
                     </HStack>
@@ -212,7 +235,7 @@ export default function DetailPresensi() {
                     <HStack justify={"space-between"}>
                       <Text opacity={0.6}>Tanggal Masuk</Text>
                       <FlexLine />
-                      <Text fontWeight={500}>
+                      <Text fontWeight={500} textAlign={"right"}>
                         {formatDate(data.jam_masuk, "short")}
                       </Text>
                     </HStack>
@@ -220,7 +243,7 @@ export default function DetailPresensi() {
                     <HStack justify={"space-between"}>
                       <Text opacity={0.6}>Tanggal Keluar</Text>
                       <FlexLine />
-                      <Text fontWeight={500}>
+                      <Text fontWeight={500} textAlign={"right"}>
                         {formatDate(data.jam_keluar, "short")}
                       </Text>
                     </HStack>
@@ -228,7 +251,7 @@ export default function DetailPresensi() {
                     <HStack justify={"space-between"}>
                       <Text opacity={0.6}>Durasi Kerja</Text>
                       <FlexLine />
-                      <Text fontWeight={500}>
+                      <Text fontWeight={500} textAlign={"right"}>
                         {formatDuration(data.durasi)}
                       </Text>
                     </HStack>
@@ -236,25 +259,33 @@ export default function DetailPresensi() {
                     <HStack justify={"space-between"}>
                       <Text opacity={0.6}>Kategori</Text>
                       <FlexLine />
-                      <Text fontWeight={500}>{data.kategori || "-"}</Text>
+                      <Text fontWeight={500} textAlign={"right"}>
+                        {data.kategori || "-"}
+                      </Text>
                     </HStack>
 
                     <HStack justify={"space-between"}>
                       <Text opacity={0.6}>Absen</Text>
                       <FlexLine />
-                      <Text fontWeight={500}>{data.absensi || "-"}</Text>
+                      <Text fontWeight={500} textAlign={"right"}>
+                        {data.absensi || "-"}
+                      </Text>
                     </HStack>
 
                     <HStack justify={"space-between"}>
                       <Text opacity={0.6}>Latitude</Text>
                       <FlexLine />
-                      <Text fontWeight={500}>{data.lat || "-"}</Text>
+                      <Text fontWeight={500} textAlign={"right"}>
+                        {data.lat || "-"}
+                      </Text>
                     </HStack>
 
                     <HStack justify={"space-between"}>
                       <Text opacity={0.6}>Longitude</Text>
                       <FlexLine />
-                      <Text fontWeight={500}>{data.long || "-"}</Text>
+                      <Text fontWeight={500} textAlign={"right"}>
+                        {data.long || "-"}
+                      </Text>
                     </HStack>
                   </VStack>
                 </Box>

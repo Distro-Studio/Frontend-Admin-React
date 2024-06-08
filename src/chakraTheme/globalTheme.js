@@ -110,7 +110,7 @@ export const globalTheme = extendTheme({
       baseStyle: (props) => ({
         p: "4px 16px",
         borderRadius: 6,
-        textTransform: "none",
+        // textTransform: "none",
       }),
     },
 

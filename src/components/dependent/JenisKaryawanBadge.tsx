@@ -9,7 +9,7 @@ export default function JenisKaryawanBadge({ data, ...props }: Props) {
     <Badge
       textAlign={"center"}
       colorScheme={data ? "ap" : "gray"}
-      bg={data ? "" : "var(--divider)"}
+      bg={data ? "var(--p500a4)" : "var(--divider)"}
       {...props}
     >
       {data ? "Shift" : "Non-Shift"}
