@@ -81,10 +81,10 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
       >
         <HStack justify={"space-between"}>
           <Box>
-            <Text noOfLines={1} mb={1} fontSize={14} fontWeight={500}>
+            <Text noOfLines={1} mb={1} fontSize={14}>
               {jadwal.label}
             </Text>
-            <Text fontWeight={500} fontSize={14} whiteSpace={"nowrap"}>
+            <Text fontSize={14} whiteSpace={"nowrap"}>
               {formatTime(jadwal.jam_masuk)} - {formatTime(jadwal.jam_keluar)}
             </Text>
           </Box>
