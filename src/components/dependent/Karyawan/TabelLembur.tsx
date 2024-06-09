@@ -1,10 +1,7 @@
 import {
   Avatar,
-  Center,
-  Checkbox,
   HStack,
   Icon,
-  IconButton,
   Table,
   Tbody,
   Td,
@@ -12,14 +9,12 @@ import {
   Th,
   Thead,
   Tr,
-  VStack,
 } from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
+import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { dummyKaryawanList } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
-import { iconSize } from "../../../const/sizes";
 import formatDate from "../../../lib/formatDate";
 import formatDurationShort from "../../../lib/formatDurationShort";
 import ComponentSpinner from "../../independent/ComponentSpinner";
@@ -69,30 +64,6 @@ export default function TabelLembur({ filterConfig }: Props) {
   // Pagination Config
   const [pageConfig, setPageConfig] = useState<number>(1);
 
-  // Check List Config
-  const [checkedItems, setCheckedItems] = useState<number[]>([]);
-  const [isCheckAll, setIsCheckAll] = useState(false);
-  const handleCheckItem = (id: number) => {
-    let updatedCheckedItems;
-    if (checkedItems.includes(id)) {
-      updatedCheckedItems = checkedItems.filter((item) => item !== id);
-    } else {
-      updatedCheckedItems = [...checkedItems, id];
-    }
-    setCheckedItems(updatedCheckedItems);
-  };
-  const handleCheckAll = () => {
-    if (data) {
-      if (isCheckAll) {
-        setCheckedItems([]);
-      } else {
-        const allIds = data.map((item) => item.id);
-        setCheckedItems(allIds);
-      }
-      setIsCheckAll(!isCheckAll);
-    }
-  };
-
   // Sort Config
   const [sortConfig, setSortConfig] = useState<{
     key: string;
@@ -102,11 +73,33 @@ export default function TabelLembur({ filterConfig }: Props) {
   if (sortConfig !== null && sortedData) {
     sortedData.sort((a, b) => {
       //@ts-ignore
-      if (a[sortConfig.key] < b[sortConfig.key]) {
+      let aValue = a[sortConfig.key];
+      //@ts-ignore
+      let bValue = b[sortConfig.key];
+
+      // Handle nested properties
+      if (sortConfig.key === "nama") {
+        aValue = a.user?.nama;
+        bValue = b.user?.nama;
+      } else if (sortConfig.key === "unit_kerja") {
+        aValue = a.unit_kerja?.nama_unit;
+        bValue = b.unit_kerja?.nama_unit;
+      } else if (sortConfig.key === "status") {
+        aValue = !a.tgl_keluar ? 1 : 0;
+        bValue = !b.tgl_keluar ? 1 : 0;
+      } else if (sortConfig.key === "tgl_keluar") {
+        aValue = a.tgl_keluar;
+        bValue = b.tgl_keluar;
+      }
+
+      if (aValue === null && bValue === null) return 0;
+      if (aValue === null) return 1; // Nilai null di bawah
+      if (bValue === null) return -1; // Nilai null di bawah
+
+      if (aValue < bValue) {
         return sortConfig.direction === "asc" ? -1 : 1;
       }
-      //@ts-ignore
-      if (a[sortConfig.key] > b[sortConfig.key]) {
+      if (aValue > bValue) {
         return sortConfig.direction === "asc" ? 1 : -1;
       }
       return 0;
@@ -138,33 +131,6 @@ export default function TabelLembur({ filterConfig }: Props) {
             <Table minW={"100%"}>
               <Thead>
                 <Tr position={"sticky"} top={0} zIndex={3}>
-                  <Th
-                    position={"sticky"}
-                    left={0}
-                    p={0}
-                    borderBottom={"none !important"}
-                    zIndex={3}
-                    w={"50px"}
-                  >
-                    <Center
-                      p={4}
-                      h={"52px"}
-                      w={"50px"}
-                      borderRight={"1px solid var(--divider3)"}
-                      bg={bodyColor}
-                      borderBottom={"1px solid var(--divider3) !important"}
-                    >
-                      <Checkbox
-                        colorScheme="ap"
-                        isChecked={isCheckAll}
-                        onChange={(e) => {
-                          e.stopPropagation();
-                          handleCheckAll();
-                        }}
-                      />
-                    </Center>
-                  </Th>
-
                   {columns.map((column, i) => (
                     <Th
                       key={i}
@@ -241,65 +207,24 @@ export default function TabelLembur({ filterConfig }: Props) {
                       )}
                     </Th>
                   ))}
-
-                  {/* Kolom tetap di sebelah kanan */}
-                  <Th
-                    position={"sticky"}
-                    top={0}
-                    right={0}
-                    borderBottom={"none !important"}
-                    p={0}
-                    bg={bodyColor}
-                    zIndex={2}
-                  >
-                    <VStack
-                      px={4}
-                      py={3}
-                      zIndex={99}
-                      borderLeft={"1px solid var(--divider3)"}
-                      borderBottom={"1px solid var(--divider3)"}
-                      h={"52px"}
-                    ></VStack>
-                  </Th>
                 </Tr>
               </Thead>
 
               <Tbody>
                 {sortedData.map((row, i) => (
-                  <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
-                    <Td
-                      position={"sticky"}
-                      left={0}
-                      p={0}
-                      bg={bodyColor}
-                      zIndex={2}
-                      w={"50px"}
-                    >
-                      <Center
-                        h={"72px"}
-                        w={"50px"}
-                        bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                        p={4}
-                        borderRight={"1px solid var(--divider3)"}
-                      >
-                        <Checkbox
-                          colorScheme="ap"
-                          isChecked={checkedItems.includes(row.id)}
-                          onChange={(e) => {
-                            e.stopPropagation();
-                            handleCheckItem(row.id);
-                          }}
-                        />
-                      </Center>
-                    </Td>
+                  <Tr
+                    h={"72px"}
+                    key={i}
+                    bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                  >
                     <Td whiteSpace={"nowrap"}>
                       <HStack>
                         <Avatar
                           size={"sm"}
-                          name={row.nama}
-                          src={row.foto_profil}
+                          name={row.user.nama}
+                          src={row.user.foto_profil}
                         />
-                        <Text>{row.nama}</Text>
+                        <Text>{row.user.nama}</Text>
                       </HStack>
                     </Td>
                     <Td whiteSpace={"nowrap"}>
@@ -308,32 +233,6 @@ export default function TabelLembur({ filterConfig }: Props) {
                     <Td whiteSpace={"nowrap"}>{row.ayah}</Td>
                     <Td whiteSpace={"nowrap"}>
                       {formatDurationShort(parseInt(row.no_rm as string))}
-                    </Td>
-
-                    {/* Kolom tetap di sebelah kanan */}
-                    <Td
-                      position={"sticky"}
-                      top={0}
-                      right={0}
-                      borderBottom={"none !important"}
-                      p={0}
-                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                      zIndex={1}
-                      w={"50px"}
-                    >
-                      <VStack
-                        borderLeft={"1px solid var(--divider3)"}
-                        justify={"center"}
-                      >
-                        <IconButton
-                          h={"72px"}
-                          w={"50px"}
-                          aria-label="Option Button"
-                          icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
-                          className="btn"
-                          borderRadius={0}
-                        />
-                      </VStack>
                     </Td>
                   </Tr>
                 ))}
