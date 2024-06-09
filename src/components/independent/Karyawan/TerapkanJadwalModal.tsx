@@ -43,7 +43,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
     validationSchema: yup.object().shape({
       karyawan_list: yup.array().min(1, "Harus diisi").required("Harus diisi"),
       tgl_mulai: yup.string().required("Harus diisi"),
-      tgl_selesai: yup.string(),
+      tgl_selesai: yup.string().required("Harus diisi"),
       shift: yup.object().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
