@@ -281,6 +281,8 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
                         colorScheme={
                           isDatePassed(row.tgl_mulai, true) ? "ap" : "orange"
                         }
+                        w={"100%"}
+                        maxW={"120px"}
                       />
                     </Td>
 

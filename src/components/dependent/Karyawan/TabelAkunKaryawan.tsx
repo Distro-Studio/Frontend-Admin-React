@@ -225,6 +225,8 @@ export default function TabelAkunKaryawan({ filterConfig }: Props) {
                           data={row.status_akun}
                           trueValue="Aktif"
                           falseValue="Tidak Aktif"
+                          w={"100%"}
+                          maxW={"120px"}
                         />
                       </VStack>
                     </Td>

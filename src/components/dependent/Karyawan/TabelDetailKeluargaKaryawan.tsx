@@ -221,6 +221,8 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
                         data={row.status_hidup}
                         trueValue="Hidup"
                         falseValue="Meninggal"
+                        w={"100%"}
+                        maxW={"120px"}
                       />
                     </VStack>
                   </Td>

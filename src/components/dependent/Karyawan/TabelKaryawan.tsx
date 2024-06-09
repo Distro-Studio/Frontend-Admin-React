@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Badge,
   Button,
   Center,
   HStack,
@@ -21,16 +20,13 @@ import {
 } from "@remixicon/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  statusKaryawanColorScheme,
-  useBodyColor,
-  useContentBgColor,
-} from "../../../const/colors";
+import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { dummyKaryawanList } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
+import StatusKaryawanBadge from "./StatusKaryawanBadge";
 
 interface Props {
   filterConfig?: any;
@@ -344,17 +340,11 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                     <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
                     <Td whiteSpace={"nowrap"}>
                       <VStack>
-                        <Badge
+                        <StatusKaryawanBadge
+                          data={row.status_karyawan}
                           w={"100%"}
-                          maxW={"100px"}
-                          textAlign={"center"}
-                          colorScheme={
-                            //@ts-ignore
-                            statusKaryawanColorScheme[row.status_karyawan]
-                          }
-                        >
-                          {row.status_karyawan}
-                        </Badge>
+                          maxW={"120px"}
+                        />
                       </VStack>
                     </Td>
 

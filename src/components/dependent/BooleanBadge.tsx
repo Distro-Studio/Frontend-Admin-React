@@ -13,13 +13,7 @@ export default function BooleanBadge({
   ...props
 }: Props) {
   return (
-    <Badge
-      textAlign={"center"}
-      w={"100%"}
-      maxW={"120px"}
-      colorScheme={data ? "ap" : "red"}
-      {...props}
-    >
+    <Badge textAlign={"center"} colorScheme={data ? "ap" : "red"} {...props}>
       {data ? trueValue : falseValue}
     </Badge>
   );

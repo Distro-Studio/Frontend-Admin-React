@@ -246,6 +246,8 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
                         data={!row.tgl_keluar}
                         trueValue="Aktif"
                         falseValue="Tidak Aktif"
+                        w={"100%"}
+                        maxW={"120px"}
                       />
                     </Td>
                   </Tr>
