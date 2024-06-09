@@ -57,7 +57,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       dataType: "string",
     },
     {
-      key: "status",
+      key: "status_transfer",
       label: "Status Transfer",
       dataType: "badge",
       preferredTextAlign: "center",
@@ -105,6 +105,9 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       } else if (sortConfig.key === "jabatan_tujuan") {
         aValue = a.jabatan_tujuan?.nama_jabatan;
         bValue = b.jabatan_tujuan?.nama_jabatan;
+      } else if (sortConfig.key === "status_transfer") {
+        aValue = isDatePassed(a.tgl_mulai, true) ? 1 : 0;
+        bValue = isDatePassed(b.tgl_mulai, true) ? 1 : 0;
       }
 
       if (aValue === null && bValue === null) return 0;
@@ -276,12 +279,10 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
                         maxW={"100px"}
                         textAlign={"center"}
                         colorScheme={
-                          isDatePassed(row.tanggal_mulai, true)
-                            ? "ap"
-                            : "orange"
+                          isDatePassed(row.tgl_mulai, true) ? "ap" : "orange"
                         }
                       >
-                        {isDatePassed(row.tanggal_mulai, true)
+                        {isDatePassed(row.tgl_mulai, true)
                           ? "Sukses"
                           : "Menunggu"}
                       </Badge>

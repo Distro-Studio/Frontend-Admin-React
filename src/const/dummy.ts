@@ -4283,7 +4283,7 @@ const dummyTransferKaryawan = [
       updated_at: "2024-05-25T07:43:42.000000Z",
       data_karyawans: null,
     },
-    tanggal_mulai: null,
+    tgl_mulai: "2024-09-15 00:00:00",
     nik: null,
     unit_kerja_asal: {
       id: 12,
@@ -4386,7 +4386,7 @@ const dummyTransferKaryawan = [
         updated_at: "2024-05-25T07:43:43.000000Z",
       },
     },
-    tanggal_mulai: "2024-09-15 00:00:00",
+    tgl_mulai: "2024-09-15 00:00:00",
     nik: "397715",
     unit_kerja_asal: {
       id: 17,
@@ -4489,7 +4489,7 @@ const dummyTransferKaryawan = [
         updated_at: "2024-05-25T07:43:43.000000Z",
       },
     },
-    tanggal_mulai: "2024-06-05 00:00:00",
+    tgl_mulai: "2024-06-05 00:00:00",
     nik: "3260947",
     unit_kerja_asal: {
       id: 9,
@@ -4592,7 +4592,7 @@ const dummyTransferKaryawan = [
         updated_at: "2024-05-25T07:43:46.000000Z",
       },
     },
-    tanggal_mulai: "2024-07-03 00:00:00",
+    tgl_mulai: "2024-07-03 00:00:00",
     nik: "3081010",
     unit_kerja_asal: {
       id: 15,
@@ -4695,7 +4695,7 @@ const dummyTransferKaryawan = [
         updated_at: "2024-05-25T07:43:46.000000Z",
       },
     },
-    tanggal_mulai: "2024-05-27 00:00:00",
+    tgl_mulai: "2024-05-27 00:00:00",
     nik: "4963924",
     unit_kerja_asal: {
       id: 9,
@@ -4798,7 +4798,7 @@ const dummyTransferKaryawan = [
         updated_at: "2024-05-25T07:43:47.000000Z",
       },
     },
-    tanggal_mulai: "2024-04-09 00:00:00",
+    tgl_mulai: "2024-04-09 00:00:00",
     nik: "1045120",
     unit_kerja_asal: {
       id: 22,
@@ -4901,7 +4901,7 @@ const dummyTransferKaryawan = [
         updated_at: "2024-05-25T07:43:47.000000Z",
       },
     },
-    tanggal_mulai: null,
+    tgl_mulai: "2024-09-15 00:00:00",
     nik: "2074933",
     unit_kerja_asal: {
       id: 15,
@@ -5004,7 +5004,7 @@ const dummyTransferKaryawan = [
         updated_at: "2024-05-25T07:43:47.000000Z",
       },
     },
-    tanggal_mulai: "2024-12-11 00:00:00",
+    tgl_mulai: "2024-12-11 00:00:00",
     nik: "3377890",
     unit_kerja_asal: {
       id: 11,
@@ -5107,7 +5107,7 @@ const dummyTransferKaryawan = [
         updated_at: "2024-05-25T07:43:48.000000Z",
       },
     },
-    tanggal_mulai: "2024-06-30 00:00:00",
+    tgl_mulai: "2024-06-30 00:00:00",
     nik: "3312621",
     unit_kerja_asal: {
       id: 4,
@@ -5210,7 +5210,7 @@ const dummyTransferKaryawan = [
         updated_at: "2024-05-25T07:43:48.000000Z",
       },
     },
-    tanggal_mulai: "2024-04-21 00:00:00",
+    tgl_mulai: "2024-04-21 00:00:00",
     nik: "971948",
     unit_kerja_asal: {
       id: 19,

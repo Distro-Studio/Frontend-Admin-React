@@ -94,7 +94,6 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
         aValue = !a.tgl_keluar ? 1 : 0;
         bValue = !b.tgl_keluar ? 1 : 0;
       } else {
-        // Kasus default: langsung gunakan kunci untuk perbandingan
         //@ts-ignore
         aValue = a[sortConfig.key];
         //@ts-ignore
