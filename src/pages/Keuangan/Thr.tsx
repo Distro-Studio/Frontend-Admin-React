@@ -10,7 +10,6 @@ import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import PeriodeTahunRiwayatPenggajian from "../../components/dependent/Keuangan/PeriodeTahunRiwayatPenggajian";
 import TabelThr from "../../components/dependent/Keuangan/TabelThr";
-import RunThr from "../../components/independent/Keuangan/RunThr";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
@@ -60,8 +59,6 @@ export default function Thr() {
             >
               Export
             </Button>
-
-            <RunThr flex={"1 1 110px"} />
           </Wrap>
 
           <TabelThr filterConfig={filterConfig} />

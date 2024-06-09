@@ -196,7 +196,11 @@ export default function TabelPenggajian({ filterConfig }: Props) {
 
               <Tbody>
                 {sortedData.map((row, i) => (
-                  <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
+                  <Tr
+                    h={"72px"}
+                    key={i}
+                    bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                  >
                     <Td whiteSpace={"nowrap"}>
                       <HStack>
                         <Avatar
