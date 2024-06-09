@@ -279,7 +279,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
                         trueValue="Sukses"
                         falseValue="Menunggu"
                         colorScheme={
-                          isDatePassed(row.tgl_mulai, true) ? "ap" : "orange"
+                          isDatePassed(row.tgl_mulai, true) ? "green" : "orange"
                         }
                         w={"100%"}
                         maxW={"120px"}

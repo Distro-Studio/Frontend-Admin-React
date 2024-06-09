@@ -1,5 +1,7 @@
 import {
   Avatar,
+  Button,
+  Center,
   HStack,
   Icon,
   Table,
@@ -9,8 +11,13 @@ import {
   Th,
   Thead,
   Tr,
+  VStack,
 } from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
+import {
+  RiArrowDownLine,
+  RiArrowRightSLine,
+  RiArrowUpLine,
+} from "@remixicon/react";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { dummyKaryawanList } from "../../../const/dummy";
@@ -21,6 +28,7 @@ import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
 import BooleanBadge from "../BooleanBadge";
+import { Link } from "react-router-dom";
 
 interface Props {
   filterConfig?: any;
@@ -219,6 +227,28 @@ export default function TabelLembur({ filterConfig }: Props) {
                       )}
                     </Th>
                   ))}
+
+                  {/* Kolom tetap di sebelah kanan */}
+                  <Th
+                    position={"sticky"}
+                    top={0}
+                    right={0}
+                    borderBottom={"none !important"}
+                    p={0}
+                    bg={bodyColor}
+                    zIndex={2}
+                  >
+                    <Center
+                      px={4}
+                      py={3}
+                      zIndex={99}
+                      borderLeft={"1px solid var(--divider3)"}
+                      borderBottom={"1px solid var(--divider3)"}
+                      h={"52px"}
+                    >
+                      <Text>Detail</Text>
+                    </Center>
+                  </Th>
                 </Tr>
               </Thead>
 
@@ -257,6 +287,41 @@ export default function TabelLembur({ filterConfig }: Props) {
                         w={"100%"}
                         maxW={"120px"}
                       />
+                    </Td>
+
+                    {/* Kolom tetap di sebelah kanan */}
+                    <Td
+                      position={"sticky"}
+                      top={0}
+                      right={0}
+                      borderBottom={"none !important"}
+                      p={0}
+                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                      zIndex={1}
+                      w={"150px"}
+                    >
+                      <VStack
+                        borderLeft={"1px solid var(--divider3)"}
+                        w={"150px"}
+                        h={"72px"}
+                        px={4}
+                        align={"stretch"}
+                        justify={"center"}
+                      >
+                        <Button
+                          colorScheme="ap"
+                          variant={"ghost"}
+                          className="clicky"
+                          as={Link}
+                          to={`/karyawan/${row.id}`}
+                          rightIcon={
+                            <Icon as={RiArrowRightSLine} fontSize={20} />
+                          }
+                          pr={3}
+                        >
+                          Detail
+                        </Button>
+                      </VStack>
                     </Td>
                   </Tr>
                 ))}
