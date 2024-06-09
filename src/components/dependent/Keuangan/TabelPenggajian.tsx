@@ -26,6 +26,8 @@ import { iconSize } from "../../../const/sizes";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
+import StatusKaryawanBadge from "../Karyawan/StatusKaryawanBadge";
+import formatNumber from "../../../lib/formatNumber";
 
 interface Props {
   filterConfig?: any;
@@ -55,7 +57,7 @@ export default function TabelPenggajian({ filterConfig }: Props) {
     },
     {
       key: "status",
-      label: "Status",
+      label: "Status Karyawan",
       dataType: "badge",
       preferredTextAlign: "center",
     },
@@ -235,18 +237,15 @@ export default function TabelPenggajian({ filterConfig }: Props) {
                     </Td>
                     <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
                     <Td whiteSpace={"nowrap"}>{row.kelompok_gaji}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.no_bpjsksh}</Td>
                     <Td whiteSpace={"nowrap"}>
-                      <Badge
+                      Rp {formatNumber(row.no_bpjsksh)}
+                    </Td>
+                    <Td whiteSpace={"nowrap"} textAlign={"center"}>
+                      <StatusKaryawanBadge
+                        data={row.status_karyawan}
                         w={"100%"}
-                        textAlign={"center"}
-                        colorScheme={
-                          //@ts-ignore
-                          statusKaryawanColorScheme[row.status_karyawan]
-                        }
-                      >
-                        {row.status_karyawan}
-                      </Badge>
+                        maxW={"120px"}
+                      />
                     </Td>
 
                     {/* Kolom tetap di sebelah kanan */}
