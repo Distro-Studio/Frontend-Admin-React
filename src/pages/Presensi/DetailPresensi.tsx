@@ -76,10 +76,10 @@ export default function DetailPresensi() {
     <CWrapper>
       {loading && <ComponentSpinner minH={"400px"} flex={1} />}
 
-      <Wrap spacing={responsiveSpacing}>
+      <VStack spacing={responsiveSpacing} align={"stretch"}>
         {!loading && data && (
           <>
-            <Wrap flex={"1 1 500px"} spacing={responsiveSpacing}>
+            <Wrap flex={"1 1 0"} spacing={responsiveSpacing}>
               <CContainer
                 p={responsiveSpacing}
                 flex={"1 1 400px"}
@@ -300,7 +300,7 @@ export default function DetailPresensi() {
             </CContainer>
           </>
         )}
-      </Wrap>
+      </VStack>
     </CWrapper>
   );
 }

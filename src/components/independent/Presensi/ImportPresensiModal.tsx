@@ -22,7 +22,7 @@ import backOnClose from "../../../lib/backOnClose";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import FileInputBig from "../../input/FileInputBig";
 
-export default function ImportKaryawanModal() {
+export default function ImportPresensiModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
@@ -79,7 +79,7 @@ export default function ImportKaryawanModal() {
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Import Data Karyawan</ModalHeader>
+          <ModalHeader ref={initialRef}>Import Data Presensi</ModalHeader>
           <ModalBody>
             <form id="importDataKaryawanForm" onSubmit={formik.handleSubmit}>
               <FormControl isInvalid={formik.errors.file ? true : false}>

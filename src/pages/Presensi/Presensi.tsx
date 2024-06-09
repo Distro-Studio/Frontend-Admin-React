@@ -10,8 +10,8 @@ import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import FilterTabelPresensi from "../../components/dependent/Karyawan/FilterTabelPresensi";
 import TabelPresensi from "../../components/dependent/Karyawan/TabelPresensi";
-import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
 import PresensiTotal from "../../components/independent/Karyawan/PresensiTotal";
+import ImportPresensiModal from "../../components/independent/Presensi/ImportPresensiModal";
 import DatePicker from "../../components/input/DatePicker";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -85,7 +85,7 @@ export default function Presensi() {
               Export
             </Button>
 
-            <ImportKaryawanModal />
+            <ImportPresensiModal />
           </Wrap>
 
           <TabelPresensi filterConfig={filterConfig} />

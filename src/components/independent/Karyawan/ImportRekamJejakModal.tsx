@@ -94,16 +94,6 @@ export default function ImportRekamJejakModal() {
           </ModalBody>
           <ModalFooter>
             <ButtonGroup w={"100%"}>
-              {/* <Button
-                w={"100%"}
-                onClick={() => {
-                  backOnClose(onClose);
-                }}
-                className="btn-solid clicky"
-                bg={"var(--reda)"}
-              >
-                Batal
-              </Button> */}
               <Button
                 w={"100%"}
                 type="submit"
