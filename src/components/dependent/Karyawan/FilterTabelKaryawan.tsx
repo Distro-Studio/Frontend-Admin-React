@@ -103,7 +103,7 @@ export default function FilterTabelKaryawan({
         }}
         initialFocusRef={initialRef}
         isCentered
-        scrollBehavior="inside"
+        // scrollBehavior="inside"
         variant={""}
       >
         <ModalOverlay />

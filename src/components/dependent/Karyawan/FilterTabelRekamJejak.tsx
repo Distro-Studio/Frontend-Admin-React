@@ -106,7 +106,7 @@ export default function FilterTabelRekamJejak({
         }}
         initialFocusRef={initialRef}
         isCentered
-        scrollBehavior="inside"
+        // scrollBehavior="inside"
       >
         <ModalOverlay />
 

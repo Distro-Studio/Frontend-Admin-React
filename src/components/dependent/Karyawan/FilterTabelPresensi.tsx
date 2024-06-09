@@ -103,7 +103,7 @@ export default function FilterTabelPresensi({
         }}
         initialFocusRef={initialRef}
         isCentered
-        scrollBehavior="inside"
+        // scrollBehavior="inside"
         variant={""}
       >
         <ModalOverlay />

@@ -212,7 +212,7 @@ const Select = forwardRef(
               setSelected(initialSelected);
             }
           }}
-          scrollBehavior="inside"
+          // scrollBehavior="inside"
           initialFocusRef={initialRef}
           isCentered
           size={modalSize}

@@ -102,7 +102,7 @@ export default function FilterTabelPekerjaKontrak({
         }}
         initialFocusRef={initialRef}
         isCentered
-        scrollBehavior="inside"
+        // scrollBehavior="inside"
         variant={""}
       >
         <ModalOverlay />

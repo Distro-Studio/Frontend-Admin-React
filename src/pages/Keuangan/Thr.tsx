@@ -14,6 +14,7 @@ import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
+import RunThr from "../../components/independent/Keuangan/RunThr";
 
 export default function Thr() {
   // Filter Config
@@ -59,6 +60,8 @@ export default function Thr() {
             >
               Export
             </Button>
+
+            <RunThr flex={"1 1 110px"} />
           </Wrap>
 
           <TabelThr filterConfig={filterConfig} />

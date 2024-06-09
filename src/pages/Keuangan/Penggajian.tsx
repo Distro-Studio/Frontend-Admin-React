@@ -15,7 +15,6 @@ import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
-import RunThr from "../../components/independent/Keuangan/RunThr";
 
 export default function Penggajian() {
   // Filter Config
@@ -65,8 +64,6 @@ export default function Penggajian() {
             </Button>
 
             <ImportKaryawanModal />
-
-            <RunThr flex={"1 1 110px"} />
           </Wrap>
 
           <TabelPenggajian filterConfig={filterConfig} />

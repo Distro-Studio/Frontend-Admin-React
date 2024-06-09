@@ -1,6 +1,6 @@
 const keuanganTopNavs = [
   {
-    label: "Penggajian & THR",
+    label: "Penggajian",
     link: "/keuangan/penggajian",
   },
   {
@@ -8,8 +8,8 @@ const keuanganTopNavs = [
     link: "/keuangan/riwayat-penggajian",
   },
   {
-    label: "Riwayat THR",
-    link: "/keuangan/riwayat-thr",
+    label: "THR",
+    link: "/keuangan/thr",
   },
 ];
 

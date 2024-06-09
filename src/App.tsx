@@ -295,7 +295,7 @@ export const App = () => (
           element={
             <NavContainer
               active={4}
-              title="Penggajian & THR"
+              title="Penggajian"
               topNavsData={keuanganTopNavs}
               topNavActive={0}
             >
@@ -330,7 +330,7 @@ export const App = () => (
           }
         />
         <Route
-          path="/keuangan/riwayat-thr"
+          path="/keuangan/thr"
           element={
             <NavContainer
               active={4}

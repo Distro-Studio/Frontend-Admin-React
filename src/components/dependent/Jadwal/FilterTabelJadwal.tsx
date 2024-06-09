@@ -104,7 +104,7 @@ export default function FilterTabelJadwal({
         }}
         initialFocusRef={initialRef}
         isCentered
-        scrollBehavior="inside"
+        // scrollBehavior="inside"
       >
         <ModalOverlay />
 
