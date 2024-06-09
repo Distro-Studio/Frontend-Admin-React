@@ -1,9 +1,7 @@
 import {
   Avatar,
-  Badge,
   HStack,
   Icon,
-  IconButton,
   Table,
   Tbody,
   Td,
@@ -11,23 +9,17 @@ import {
   Th,
   Thead,
   Tr,
-  VStack,
 } from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
+import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useState } from "react";
-import {
-  statusKaryawanColorScheme,
-  useBodyColor,
-  useContentBgColor,
-} from "../../../const/colors";
+import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { dummyKaryawanList } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
-import { iconSize } from "../../../const/sizes";
+import formatNumber from "../../../lib/formatNumber";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
-import TabelFooterConfig from "../TabelFooterConfig";
 import StatusKaryawanBadge from "../Karyawan/StatusKaryawanBadge";
-import formatNumber from "../../../lib/formatNumber";
+import TabelFooterConfig from "../TabelFooterConfig";
 
 interface Props {
   filterConfig?: any;
@@ -199,26 +191,6 @@ export default function TabelPenggajian({ filterConfig }: Props) {
                       )}
                     </Th>
                   ))}
-
-                  {/* Kolom tetap di sebelah kanan */}
-                  <Th
-                    position={"sticky"}
-                    top={0}
-                    right={0}
-                    borderBottom={"none !important"}
-                    p={0}
-                    bg={bodyColor}
-                    zIndex={2}
-                  >
-                    <VStack
-                      px={4}
-                      py={3}
-                      zIndex={99}
-                      borderLeft={"1px solid var(--divider3)"}
-                      borderBottom={"1px solid var(--divider3)"}
-                      h={"52px"}
-                    ></VStack>
-                  </Th>
                 </Tr>
               </Thead>
 
@@ -246,32 +218,6 @@ export default function TabelPenggajian({ filterConfig }: Props) {
                         w={"100%"}
                         maxW={"120px"}
                       />
-                    </Td>
-
-                    {/* Kolom tetap di sebelah kanan */}
-                    <Td
-                      position={"sticky"}
-                      top={0}
-                      right={0}
-                      borderBottom={"none !important"}
-                      p={0}
-                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                      zIndex={1}
-                      w={"50px"}
-                    >
-                      <VStack
-                        borderLeft={"1px solid var(--divider3)"}
-                        justify={"center"}
-                      >
-                        <IconButton
-                          h={"72px"}
-                          w={"50px"}
-                          aria-label="Option Button"
-                          icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
-                          className="btn"
-                          borderRadius={0}
-                        />
-                      </VStack>
                     </Td>
                   </Tr>
                 ))}
