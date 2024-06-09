@@ -10,7 +10,7 @@ import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import SelectStatusCuti from "../../components/dependent/_Select/SelectStatusCuti";
 import SelectTipeCuti from "../../components/dependent/_Select/SelectTipeCuti";
-import TabelCuti from "../../components/dependent/Karyawan/Tabel/TabelCuti";
+import TabelCuti from "../../components/dependent/Karyawan/TabelCuti";
 import AjukanCutiModal from "../../components/independent/Karyawan/AjukanCutiModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";

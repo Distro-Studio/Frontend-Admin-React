@@ -8,8 +8,8 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import FilterTabelPresensi from "../../components/dependent/Karyawan/Tabel/FilterTabelPresensi";
-import TabelPresensi from "../../components/dependent/Karyawan/Tabel/TabelPresensi";
+import FilterTabelPresensi from "../../components/dependent/Karyawan/FilterTabelPresensi";
+import TabelPresensi from "../../components/dependent/Karyawan/TabelPresensi";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
 import PresensiTotal from "../../components/independent/Karyawan/PresensiTotal";
 import DatePicker from "../../components/input/DatePicker";

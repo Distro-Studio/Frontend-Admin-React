@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Badge,
   Box,
   Button,
   ButtonGroup,
@@ -20,18 +19,19 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
+import { RiEditBoxLine } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef, useState } from "react";
 import * as yup from "yup";
-import formatTime from "../../../lib/formatTime";
 import { responsiveSpacing } from "../../../const/sizes";
 import backOnClose from "../../../lib/backOnClose";
 import formatDate from "../../../lib/formatDate";
+import formatTime from "../../../lib/formatTime";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import DeletePermanentWarning from "../../alert/DeletePermanentWarning";
 import FormRequired from "../../form/FormRequired";
 import SelectShift from "../_Select/SelectShift";
-import { RiEditBoxLine } from "@remixicon/react";
+import JenisKaryawanBadge from "../JenisKaryawanBadge";
 
 interface Props {
   data: any;
@@ -72,7 +72,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
         p={3}
         gap={1}
         borderRadius={8}
-        w={"180px"}
+        w={"100%"}
         h={"70px"}
         align={"stretch"}
         className="btn-solid clicky"
@@ -147,16 +147,9 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
                       <Text fontSize={14} w={"120px"} opacity={0.6}>
                         Jenis Karyawan
                       </Text>
-                      <Badge
-                        ml={"auto"}
-                        colorScheme={
-                          data.unit_kerja.jenis_karyawan === 1 ? "ap" : "gray"
-                        }
-                      >
-                        {data.unit_kerja.jenis_karyawan === 1
-                          ? "Shift"
-                          : "Non-Shift"}
-                      </Badge>
+                      <JenisKaryawanBadge
+                        data={data.unit_kerja.jenis_karyawan}
+                      />
                     </HStack>
                   </VStack>
                 </VStack>

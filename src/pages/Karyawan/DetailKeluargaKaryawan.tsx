@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { RiErrorWarningFill } from "@remixicon/react";
 import { useState } from "react";
-import TabelDetailKeluargaKaryawan from "../../components/dependent/Karyawan/Tabel/TabelDetailKeluargaKaryawan";
+import TabelDetailKeluargaKaryawan from "../../components/dependent/Karyawan/TabelDetailKeluargaKaryawan";
 import ComponentSpinner from "../../components/independent/ComponentSpinner";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";

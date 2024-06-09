@@ -8,8 +8,8 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import FilterTabelKaryawan from "../../components/dependent/Karyawan/Tabel/FilterTabelKaryawan";
-import TabelTransferKarywan from "../../components/dependent/Karyawan/Tabel/TabelTransferKaryawan";
+import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
+import TabelTransferKarywan from "../../components/dependent/Karyawan/TabelTransferKaryawan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";

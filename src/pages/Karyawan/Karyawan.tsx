@@ -9,9 +9,9 @@ import {
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import FilterTabelKaryawan from "../../components/dependent/Karyawan/Tabel/FilterTabelKaryawan";
+import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
-import TabelKaryawan from "../../components/dependent/Karyawan/Tabel/TabelKaryawan";
+import TabelKaryawan from "../../components/dependent/Karyawan/TabelKaryawan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";

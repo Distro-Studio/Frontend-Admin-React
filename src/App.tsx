@@ -48,6 +48,7 @@ import PengaturanUnitKerja from "./pages/Pengaturan/PengaturanUnitKerja";
 import Perusahaan from "./pages/Perusahaan/Diklat";
 import DetailPresensi from "./pages/Presensi/DetailPresensi";
 import Presensi from "./pages/Presensi/Presensi";
+import EditKaryawan from "./pages/Karyawan/EditKaryawan";
 
 // github pekok
 
@@ -104,6 +105,21 @@ export const App = () => (
               pb={responsiveSpacing}
             >
               <TambahKaryawan />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/karyawan/:karyawanId/edit"
+          element={
+            <NavContainer
+              active={1}
+              title="Edit Karyawan"
+              // noNavs
+              left={"back"}
+              // backLink="/karyawan"
+              pb={responsiveSpacing}
+            >
+              <EditKaryawan />
             </NavContainer>
           }
         />

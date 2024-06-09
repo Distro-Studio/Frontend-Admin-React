@@ -9,7 +9,7 @@ import {
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import SelectStatusPenukaranJadwal from "../../components/dependent/_Select/SelectStatusPenukaranJadwal";
-import TabelTukarJadwal from "../../components/dependent/Karyawan/Tabel/TabelTukarJadwal";
+import TabelTukarJadwal from "../../components/dependent/Karyawan/TabelTukarJadwal";
 import AjukanPenukaranJadwalModal from "../../components/independent/Karyawan/AjukanPenukaranJadwalModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";

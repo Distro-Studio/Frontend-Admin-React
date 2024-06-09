@@ -9,7 +9,7 @@ import {
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import PeriodeTahunRiwayatPenggajian from "../../components/dependent/Keuangan/PeriodeTahunRiwayatPenggajian";
-import TabelRiwayatPenggajian from "../../components/dependent/Keuangan/Tabel/TabelRiwayatPenggajian";
+import TabelRiwayatPenggajian from "../../components/dependent/Keuangan/TabelRiwayatPenggajian";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";

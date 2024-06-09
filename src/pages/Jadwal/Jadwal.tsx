@@ -10,7 +10,7 @@ import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { endOfWeek, startOfWeek } from "date-fns";
 import { useState } from "react";
 import FilterTabelJadwal from "../../components/dependent/Jadwal/FilterTabelJadwal";
-import TabelJadwal from "../../components/dependent/Karyawan/Tabel/TabelJadwal";
+import TabelJadwal from "../../components/dependent/Karyawan/TabelJadwal";
 import ImportJadwalKaryawanModal from "../../components/independent/Karyawan/ImportJadwalKaryawanModal";
 import DateRangePicker from "../../components/input/DateRangePicker";
 import CContainer from "../../components/wrapper/CContainer";

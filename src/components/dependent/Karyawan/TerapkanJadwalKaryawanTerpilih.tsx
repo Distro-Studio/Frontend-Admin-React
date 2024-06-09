@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Badge,
   Button,
   ButtonGroup,
   FormControl,
@@ -30,6 +29,7 @@ import formatDate from "../../../lib/formatDate";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import FormRequired from "../../form/FormRequired";
 import SelectShift from "../_Select/SelectShift";
+import JenisKaryawanBadge from "../JenisKaryawanBadge";
 
 interface Props {
   data: any;
@@ -62,13 +62,14 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
         p={3}
         gap={1}
         borderRadius={8}
-        w={"180px"}
+        w={"100%"}
         h={"70px"}
         cursor={"pointer"}
         bg={bodyColor}
         color={whiteDarkColor}
         className="btn-ap clicky"
         onClick={onOpen}
+        justify={"center"}
         // border={"1px solid var(--divider3) !important"}
       >
         <Icon as={RiEditBoxLine} fontSize={20} />
@@ -118,16 +119,7 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
                   <Text fontSize={14} w={"120px"} opacity={0.6}>
                     Jenis Karyawan
                   </Text>
-                  <Badge
-                    ml={"auto"}
-                    colorScheme={
-                      data.unit_kerja.jenis_karyawan === 1 ? "ap" : "gray"
-                    }
-                  >
-                    {data.unit_kerja.jenis_karyawan === 1
-                      ? "Shift"
-                      : "Non-Shift"}
-                  </Badge>
+                  <JenisKaryawanBadge data={data.unit_kerja.jenis_karyawan} />
                 </HStack>
               </VStack>
             </VStack>

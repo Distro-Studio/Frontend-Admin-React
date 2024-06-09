@@ -1,7 +1,7 @@
 import { Button, Checkbox, HStack, Text, Wrap } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import TabelKeizinan from "../../components/dependent/Pengaturan/Tabel/TabelPengaturanKeizinan";
+import TabelKeizinan from "../../components/dependent/Pengaturan/TabelPengaturanKeizinan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";

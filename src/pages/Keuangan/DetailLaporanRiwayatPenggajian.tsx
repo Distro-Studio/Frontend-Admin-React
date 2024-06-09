@@ -1,6 +1,6 @@
 import { Badge, Text, VStack, Wrap } from "@chakra-ui/react";
 import { useState } from "react";
-import TabelDetailLaporanRiwayatPenggajian from "../../components/dependent/Keuangan/Tabel/TabelDetailLaporanRiwayatPenggajian";
+import TabelDetailLaporanRiwayatPenggajian from "../../components/dependent/Keuangan/TabelDetailLaporanRiwayatPenggajian";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
