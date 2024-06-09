@@ -219,7 +219,7 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
                     <VStack>
                       <Badge
                         w={"100%"}
-                        maxW={"100px"}
+                        maxW={"120px"}
                         mx={"auto"}
                         textAlign={"center"}
                         colorScheme={row.status_hidup === 1 ? "teal" : "gray"}

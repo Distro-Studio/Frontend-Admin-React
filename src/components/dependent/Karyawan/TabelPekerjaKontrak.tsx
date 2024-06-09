@@ -3,7 +3,6 @@ import {
   Badge,
   HStack,
   Icon,
-  IconButton,
   Table,
   Tbody,
   Td,
@@ -11,14 +10,12 @@ import {
   Th,
   Thead,
   Tr,
-  VStack,
 } from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
+import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { dummyPekerjaKontrak } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
-import { iconSize } from "../../../const/sizes";
 import formatDate from "../../../lib/formatDate";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";

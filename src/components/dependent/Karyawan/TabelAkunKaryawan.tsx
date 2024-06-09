@@ -3,7 +3,6 @@ import {
   Badge,
   HStack,
   Icon,
-  IconButton,
   Table,
   Tbody,
   Td,
@@ -13,12 +12,11 @@ import {
   Tr,
   VStack,
 } from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine, RiMore2Fill } from "@remixicon/react";
+import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { dummyAkunKaryawan } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
-import { iconSize } from "../../../const/sizes";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
@@ -50,8 +48,8 @@ export default function TabelAkunKaryawan({ filterConfig }: Props) {
       dataType: "string",
     },
     {
-      key: "status_aktif",
-      label: "Status Aktif",
+      key: "status_akun",
+      label: "Status Akun",
       dataType: "badge",
       preferredTextAlign: "center",
     },
@@ -202,26 +200,6 @@ export default function TabelAkunKaryawan({ filterConfig }: Props) {
                       )}
                     </Th>
                   ))}
-
-                  {/* Kolom tetap di sebelah kanan */}
-                  <Th
-                    position={"sticky"}
-                    top={0}
-                    right={0}
-                    borderBottom={"none !important"}
-                    p={0}
-                    bg={bodyColor}
-                    zIndex={2}
-                  >
-                    <VStack
-                      px={4}
-                      py={3}
-                      zIndex={99}
-                      borderLeft={"1px solid var(--divider3)"}
-                      borderBottom={"1px solid var(--divider3)"}
-                      h={"52px"}
-                    ></VStack>
-                  </Th>
                 </Tr>
               </Thead>
 
@@ -245,39 +223,13 @@ export default function TabelAkunKaryawan({ filterConfig }: Props) {
                       <VStack>
                         <Badge
                           w={"100%"}
-                          maxW={"100px"}
+                          maxW={"120px"}
                           mx={"auto"}
                           textAlign={"center"}
-                          colorScheme={row.status_aktif ? "ap" : "red"}
+                          colorScheme={row.status_akun ? "ap" : "red"}
                         >
-                          {row.status_aktif ? "Aktif" : "Tidak Aktif"}
+                          {row.status_akun ? "Aktif" : "Tidak Aktif"}
                         </Badge>
-                      </VStack>
-                    </Td>
-
-                    {/* Kolom tetap di sebelah kanan */}
-                    <Td
-                      position={"sticky"}
-                      top={0}
-                      right={0}
-                      borderBottom={"none !important"}
-                      p={0}
-                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                      zIndex={1}
-                      w={"50px"}
-                    >
-                      <VStack
-                        borderLeft={"1px solid var(--divider3)"}
-                        justify={"center"}
-                      >
-                        <IconButton
-                          h={"72px"}
-                          w={"50px"}
-                          aria-label="Option Button"
-                          icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
-                          className="btn"
-                          borderRadius={0}
-                        />
                       </VStack>
                     </Td>
                   </Tr>

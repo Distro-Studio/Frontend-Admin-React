@@ -276,7 +276,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
                     <Td whiteSpace={"nowrap"} textAlign={"center"}>
                       <Badge
                         w={"100%"}
-                        maxW={"100px"}
+                        maxW={"120px"}
                         textAlign={"center"}
                         colorScheme={
                           isDatePassed(row.tgl_mulai, true) ? "ap" : "orange"
