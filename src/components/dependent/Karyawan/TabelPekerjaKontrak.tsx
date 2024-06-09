@@ -221,26 +221,6 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
                       )}
                     </Th>
                   ))}
-
-                  {/* Kolom tetap di sebelah kanan */}
-                  <Th
-                    position={"sticky"}
-                    top={0}
-                    right={0}
-                    borderBottom={"none !important"}
-                    p={0}
-                    bg={bodyColor}
-                    zIndex={2}
-                  >
-                    <VStack
-                      px={4}
-                      py={3}
-                      zIndex={99}
-                      borderLeft={"1px solid var(--divider3)"}
-                      borderBottom={"1px solid var(--divider3)"}
-                      h={"52px"}
-                    ></VStack>
-                  </Th>
                 </Tr>
               </Thead>
 
@@ -272,31 +252,6 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
                       >
                         {!row.tgl_keluar ? "Aktif" : "Tidak Aktif"}
                       </Badge>
-                    </Td>
-
-                    <Td
-                      position={"sticky"}
-                      top={0}
-                      right={0}
-                      borderBottom={"none !important"}
-                      p={0}
-                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                      zIndex={1}
-                      w={"50px"}
-                    >
-                      <VStack
-                        borderLeft={"1px solid var(--divider3)"}
-                        justify={"center"}
-                      >
-                        <IconButton
-                          h={"72px"}
-                          w={"50px"}
-                          aria-label="Option Button"
-                          icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
-                          className="btn"
-                          borderRadius={0}
-                        />
-                      </VStack>
                     </Td>
                   </Tr>
                 ))}
