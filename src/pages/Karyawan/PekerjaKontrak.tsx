@@ -8,13 +8,13 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import FilterTabelPekerjaKontrak from "../../components/dependent/Karyawan/FilterTabelPekerjaKontrak";
-import TabelPekerjaKontrak from "../../components/dependent/Karyawan/TabelPekerjaKontrak";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 import SelectStatusPekerjaKontrak from "../../components/dependent/_Select/SelectStatusPekerjaKontrak";
+import FilterTabelPekerjaKontrak from "../../components/dependent/Karyawan/FilterTabelPekerjaKontrak";
+import TabelPekerjaKontrak from "../../components/dependent/Karyawan/TabelPekerjaKontrak";
 
 export default function PekerjaKontrak() {
   // Filter Config
@@ -22,7 +22,7 @@ export default function PekerjaKontrak() {
     search: "",
     unit_kerja: [],
     tgl_masuk: [],
-    status: {
+    status_aktif: {
       value: null,
       label: "Semua status",
     },
@@ -58,8 +58,8 @@ export default function PekerjaKontrak() {
             </InputGroup>
 
             <SelectStatusPekerjaKontrak
-              placeholder="Pilih Status"
-              initialSelected={filterConfig.status}
+              placeholder="Pilih Status Aktif"
+              initialSelected={filterConfig.status_aktif}
               confirmSelect={confirmSelectStatusPekerjaKontrak}
               noSearch
               noReset

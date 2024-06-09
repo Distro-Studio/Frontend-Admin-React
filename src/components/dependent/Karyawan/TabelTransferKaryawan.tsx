@@ -23,6 +23,7 @@ import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
 import EditTransferKaryawanModal from "./EditTransferKaryawanModal";
+import isDatePassed from "../../../lib/isDatePassed";
 
 interface Props {
   filterConfig?: any;
@@ -57,8 +58,9 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
     },
     {
       key: "status",
-      label: "Status",
+      label: "Status Transfer",
       dataType: "badge",
+      preferredTextAlign: "center",
     },
   ];
 
@@ -263,14 +265,25 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
                     </Td>
                     <Td whiteSpace={"nowrap"}>{row.tipe.label}</Td>
                     <Td whiteSpace={"nowrap"}>
-                      {row.user.unit_kerja.nama_unit}
+                      {row.unit_kerja_tujuan.nama_unit}
                     </Td>
                     <Td whiteSpace={"nowrap"}>
-                      {row.user.jabatan.nama_jabatan}
+                      {row.jabatan_tujuan.nama_jabatan}
                     </Td>
-                    <Td whiteSpace={"nowrap"}>
-                      <Badge w={"100%"} textAlign={"center"}>
-                        {row.status}
+                    <Td whiteSpace={"nowrap"} textAlign={"center"}>
+                      <Badge
+                        w={"100%"}
+                        maxW={"100px"}
+                        textAlign={"center"}
+                        colorScheme={
+                          isDatePassed(row.tanggal_mulai, true)
+                            ? "ap"
+                            : "orange"
+                        }
+                      >
+                        {isDatePassed(row.tanggal_mulai, true)
+                          ? "Sukses"
+                          : "Menunggu"}
                       </Badge>
                     </Td>
 

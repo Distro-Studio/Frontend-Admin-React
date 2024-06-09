@@ -21,13 +21,13 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useBodyColor, useContentBgColor } from "../../../const/colors";
-import { dummyKaryawanList } from "../../../const/dummy";
+import { dummyRekamJejak } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
 import formatDate from "../../../lib/formatDate";
+import formatMasaKerja from "../../../lib/formatMasaKerja";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
-import formatMasaKerja from "../../../lib/formatMasaKerja";
 
 interface Props {
   filterConfig?: any;
@@ -66,7 +66,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       dataType: "string",
     },
     {
-      key: "pernghargaan",
+      key: "penghargaan",
       label: "Pengharagaan",
       dataType: "string",
     },
@@ -78,7 +78,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
 
   //TODO get karyawan
 
-  const [data] = useState<any[] | null>(dummyKaryawanList);
+  const [data] = useState<any[] | null>(dummyRekamJejak);
   const [loading] = useState<boolean>(false);
 
   // Limit Config
@@ -102,7 +102,6 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
         aValue = a.user?.nama;
         bValue = b.user?.nama;
       } else {
-        // Kasus default: langsung gunakan kunci untuk perbandingan
         //@ts-ignore
         aValue = a[sortConfig.key];
         //@ts-ignore
@@ -273,9 +272,9 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
                     <Td whiteSpace={"nowrap"}>
                       {formatMasaKerja(row.masa_kerja)}
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{row.promosi}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.mutasi}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.penghargaan}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.promosi || "-"}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.mutasi || "-"}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.penghargaan || "-"}</Td>
 
                     {/* Kolom tetap di sebelah kanan */}
                     <Td

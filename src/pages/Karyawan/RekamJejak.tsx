@@ -6,10 +6,11 @@ import {
   InputLeftElement,
   Wrap,
 } from "@chakra-ui/react";
-import { RiDownloadLine, RiSearchLine, RiUploadLine } from "@remixicon/react";
+import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import FilterTabelRekamJejak from "../../components/dependent/Karyawan/FilterTabelRekamJejak";
 import TabelRekamJejak from "../../components/dependent/Karyawan/TabelRekamJejak";
+import ImportRekamJejakModal from "../../components/independent/Karyawan/ImportRekamJejakModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
@@ -63,15 +64,7 @@ export default function RekamJejak() {
               Export
             </Button>
 
-            <Button
-              flex={"1 1 110px"}
-              variant={"outline"}
-              colorScheme="ap"
-              className="clicky"
-              rightIcon={<Icon as={RiDownloadLine} fontSize={iconSize} />}
-            >
-              Import
-            </Button>
+            <ImportRekamJejakModal />
           </Wrap>
 
           <TabelRekamJejak filterConfig={filterConfig} />

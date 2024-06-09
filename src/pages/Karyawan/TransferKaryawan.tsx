@@ -15,6 +15,7 @@ import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 import AjukanTransferKaryawan from "../../components/independent/Karyawan/AjukanTransferKaryawan";
+import SelectStatusTransferKaryawan from "../../components/dependent/_Select/SelectStatusTransferKaryawan";
 
 export default function TransferKaryawan() {
   // Filter Config
@@ -22,6 +23,16 @@ export default function TransferKaryawan() {
     search: "",
     unit_kerja: [],
     status_karyawan: [],
+    status_transfer: {
+      value: null,
+      label: "Semua status",
+    },
+  };
+  const confirmSelectStatusTransferKaryawan = (newStatus: any) => {
+    setFilterConfig((ps: any) => ({
+      ...ps,
+      status_transfer: newStatus,
+    }));
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
 
@@ -46,6 +57,15 @@ export default function TransferKaryawan() {
                 value={filterConfig.search}
               />
             </InputGroup>
+
+            <SelectStatusTransferKaryawan
+              placeholder="Pilih Status Transfer"
+              initialSelected={filterConfig.status_transfer}
+              confirmSelect={confirmSelectStatusTransferKaryawan}
+              noSearch
+              noReset
+              flex={"1 1 110px"}
+            />
 
             <FilterTabelKaryawan
               defaultFilterConfig={defaultFilterConfig}
