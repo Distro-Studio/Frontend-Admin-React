@@ -346,7 +346,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       <VStack>
                         <Badge
                           w={"100%"}
-                          maxW={"120px"}
+                          maxW={"100px"}
                           textAlign={"center"}
                           colorScheme={
                             //@ts-ignore
