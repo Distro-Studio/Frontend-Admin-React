@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Badge,
   HStack,
   Icon,
   Table,
@@ -19,6 +18,7 @@ import { dummyAkunKaryawan } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
+import BooleanBadge from "../BooleanBadge";
 import TabelFooterConfig from "../TabelFooterConfig";
 
 interface Props {
@@ -221,15 +221,11 @@ export default function TabelAkunKaryawan({ filterConfig }: Props) {
                     <Td whiteSpace={"nowrap"}>{row.username}</Td>
                     <Td whiteSpace={"nowrap"}>
                       <VStack>
-                        <Badge
-                          w={"100%"}
-                          maxW={"120px"}
-                          mx={"auto"}
-                          textAlign={"center"}
-                          colorScheme={row.status_akun ? "ap" : "red"}
-                        >
-                          {row.status_akun ? "Aktif" : "Tidak Aktif"}
-                        </Badge>
+                        <BooleanBadge
+                          data={row.status_akun}
+                          trueValue="Aktif"
+                          falseValue="Tidak Aktif"
+                        />
                       </VStack>
                     </Td>
                   </Tr>

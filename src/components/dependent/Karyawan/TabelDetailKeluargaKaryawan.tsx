@@ -1,5 +1,4 @@
 import {
-  Badge,
   Center,
   HStack,
   Icon,
@@ -18,6 +17,7 @@ import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
+import BooleanBadge from "../BooleanBadge";
 import TabelFooterConfig from "../TabelFooterConfig";
 import EditDataKeluargaKaryawanModal from "./EditDataKeluargaKaryawanModal";
 
@@ -217,15 +217,11 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
                   <Td whiteSpace={"nowrap"}>{row.pekerjaan}</Td>
                   <Td whiteSpace={"nowrap"}>
                     <VStack>
-                      <Badge
-                        w={"100%"}
-                        maxW={"120px"}
-                        mx={"auto"}
-                        textAlign={"center"}
-                        colorScheme={row.status_hidup === 1 ? "teal" : "gray"}
-                      >
-                        {row.status_hidup === 1 ? "Hidup" : "Meninggal"}
-                      </Badge>
+                      <BooleanBadge
+                        data={row.status_hidup}
+                        trueValue="Hidup"
+                        falseValue="Meninggal"
+                      />
                     </VStack>
                   </Td>
                   <Td whiteSpace={"nowrap"}>{row.no_hp}</Td>

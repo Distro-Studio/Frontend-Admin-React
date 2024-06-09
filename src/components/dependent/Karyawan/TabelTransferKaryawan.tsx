@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Badge,
   Center,
   HStack,
   Icon,
@@ -19,11 +18,12 @@ import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { dummyTransferKaryawan } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
 import formatDate from "../../../lib/formatDate";
+import isDatePassed from "../../../lib/isDatePassed";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
+import BooleanBadge from "../BooleanBadge";
 import TabelFooterConfig from "../TabelFooterConfig";
 import EditTransferKaryawanModal from "./EditTransferKaryawanModal";
-import isDatePassed from "../../../lib/isDatePassed";
 
 interface Props {
   filterConfig?: any;
@@ -274,18 +274,14 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
                       {row.jabatan_tujuan.nama_jabatan}
                     </Td>
                     <Td whiteSpace={"nowrap"} textAlign={"center"}>
-                      <Badge
-                        w={"100%"}
-                        maxW={"120px"}
-                        textAlign={"center"}
+                      <BooleanBadge
+                        data={isDatePassed(row.tgl_mulai, true)}
+                        trueValue="Sukses"
+                        falseValue="Menunggu"
                         colorScheme={
                           isDatePassed(row.tgl_mulai, true) ? "ap" : "orange"
                         }
-                      >
-                        {isDatePassed(row.tgl_mulai, true)
-                          ? "Sukses"
-                          : "Menunggu"}
-                      </Badge>
+                      />
                     </Td>
 
                     {/* Kolom tetap di sebelah kanan */}

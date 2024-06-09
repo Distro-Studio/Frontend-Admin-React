@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Badge,
   HStack,
   Icon,
   Table,
@@ -19,6 +18,7 @@ import { Tabel__Column__Interface } from "../../../const/interfaces";
 import formatDate from "../../../lib/formatDate";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
+import BooleanBadge from "../BooleanBadge";
 import TabelFooterConfig from "../TabelFooterConfig";
 
 interface Props {
@@ -242,13 +242,11 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
                       {formatDate(row.tgl_keluar as string)}
                     </Td>
                     <Td whiteSpace={"nowrap"}>
-                      <Badge
-                        w={"100%"}
-                        colorScheme={!row.tgl_keluar ? "ap" : "red"}
-                        textAlign={"center"}
-                      >
-                        {!row.tgl_keluar ? "Aktif" : "Tidak Aktif"}
-                      </Badge>
+                      <BooleanBadge
+                        data={!row.tgl_keluar}
+                        trueValue="Aktif"
+                        falseValue="Tidak Aktif"
+                      />
                     </Td>
                   </Tr>
                 ))}
