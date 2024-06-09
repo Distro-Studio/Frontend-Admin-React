@@ -7,6 +7,7 @@ interface Props extends BoxProps {
   noFooterConfig?: boolean;
   noTopNavs?: boolean;
   customReducer?: number;
+  minH?: string;
 }
 
 export default function TabelContainer({
@@ -14,6 +15,7 @@ export default function TabelContainer({
   noFooterConfig,
   noTopNavs,
   customReducer,
+  minH,
   ...props
 }: Props) {
   const sh = useScreenHeight();
@@ -29,7 +31,7 @@ export default function TabelContainer({
       className={"tabelContainer scrollX scrollY"}
       overflow={"auto"}
       w={"100%"}
-      minH={sh < 500 ? "400px" : "max-content !important"}
+      minH={minH || sh < 625 ? "400px" : "max-content !important"}
       // maxH={[
       //   `calc(100vh - 318px - ${tabelConfigH}px)`,
       //   null,

@@ -31,9 +31,9 @@ export default function PresensiTotal({ ...props }: Props) {
     <Wrap spacing={responsiveSpacing} {...props}>
       {loading && (
         <>
-          <Skeleton flex={"1 1"} h={"150px"} />
-          <Skeleton flex={"1 1"} h={"150px"} />
-          <Skeleton flex={"1 1"} h={"150px"} />
+          <Skeleton flex={"1 1"} h={"120px"} />
+          <Skeleton flex={"1 1"} h={"120px"} />
+          <Skeleton flex={"1 1"} h={"120px"} />
         </>
       )}
       {!loading && data && (
@@ -41,15 +41,16 @@ export default function PresensiTotal({ ...props }: Props) {
           <VStack
             borderRadius={12}
             px={responsiveSpacing}
+            justify={"center"}
             py={[4, null, 5]}
             bg={"var(--p500a4)"}
             align={"flex-start"}
             flex={"1 1 400px"}
-            h={"150px"}
+            h={"120px"}
           >
-            <Text fontWeight={600} color="p.500">
+            {/* <Text fontWeight={600} color="p.500">
               Kehadiran
-            </Text>
+            </Text> */}
 
             <HStack gap={6} justify={"space-between"} w={"100%"}>
               <VStack align={"flex-start"} gap={0} flex={"1 1"}>
@@ -84,15 +85,16 @@ export default function PresensiTotal({ ...props }: Props) {
           <VStack
             borderRadius={12}
             px={responsiveSpacing}
+            justify={"center"}
             py={[4, null, 5]}
             bg={"var(--reda)"}
             align={"flex-start"}
             flex={"1 1 300px"}
-            h={"150px"}
+            h={"120px"}
           >
-            <Text fontWeight={600} color={"red.400"}>
+            {/* <Text fontWeight={600} color={"red.400"}>
               Tidak Hadir
-            </Text>
+            </Text> */}
 
             <HStack gap={6} justify={"space-between"} w={"100%"}>
               <VStack align={"flex-start"} gap={0} flex={"1 1"}>
@@ -127,15 +129,16 @@ export default function PresensiTotal({ ...props }: Props) {
           <VStack
             borderRadius={12}
             px={responsiveSpacing}
+            justify={"center"}
             py={[4, null, 5]}
             bg={"var(--divider)"}
             align={"flex-start"}
             flex={"1 1 200px"}
-            h={"150px"}
+            h={"120px"}
           >
-            <Text fontWeight={600} color={"var(--divider-text)"}>
+            {/* <Text fontWeight={600} color={"var(--divider-text)"}>
               Libur
-            </Text>
+            </Text> */}
 
             <HStack gap={6} justify={"space-between"} w={"100%"}>
               <VStack align={"flex-start"} gap={0} flex={"1 1"}>

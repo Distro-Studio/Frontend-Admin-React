@@ -305,7 +305,9 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
                         align={"stretch"}
                         justify={"center"}
                       >
-                        <EditTransferKaryawanModal data={row} />
+                        {!isDatePassed(row.tgl_mulai, true) && (
+                          <EditTransferKaryawanModal data={row} />
+                        )}
                       </VStack>
                     </Td>
                   </Tr>

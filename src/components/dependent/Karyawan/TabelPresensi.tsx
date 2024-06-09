@@ -27,6 +27,7 @@ import formatTime from "../../../lib/formatTime";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
+import useScreenWidth from "../../../lib/useScreenWidth";
 
 interface Props {
   filterConfig?: any;
@@ -127,6 +128,7 @@ export default function TabelPresensi({ filterConfig }: Props) {
   // SX
   const contentBgColor = useContentBgColor();
   const bodyColor = useBodyColor();
+  const sw = useScreenWidth();
 
   return (
     <>
@@ -134,7 +136,7 @@ export default function TabelPresensi({ filterConfig }: Props) {
 
       {!loading && sortedData && (
         <>
-          <TabelContainer>
+          <TabelContainer noTopNavs customReducer={sw < 768 ? 136 : 144}>
             <Table minW={"100%"}>
               <Thead>
                 <Tr position={"sticky"} top={0} zIndex={3}>
