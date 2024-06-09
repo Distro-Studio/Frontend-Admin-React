@@ -129,7 +129,7 @@ export default function DetailPresensi() {
                 borderRadius={12}
               >
                 <VStack align={"stretch"} gap={0}>
-                  <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
+                  <Text fontSize={20} fontWeight={600} mb={4}>
                     Data Jadwal
                   </Text>
 
@@ -180,13 +180,13 @@ export default function DetailPresensi() {
 
             <CContainer
               p={responsiveSpacing}
-              flex={"1 0 500px"}
+              flex={"1 0 0"}
               bg={bodyColor}
               borderRadius={12}
             >
               <Wrap spacing={responsiveSpacing2}>
                 <Box>
-                  <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
+                  <Text fontSize={20} fontWeight={600} mb={4}>
                     Foto Presensi
                   </Text>
 
@@ -218,7 +218,7 @@ export default function DetailPresensi() {
                 </Box>
 
                 <Box flex={1}>
-                  <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
+                  <Text fontSize={20} fontWeight={600} mb={4}>
                     Data Presensi
                   </Text>
 
