@@ -150,6 +150,7 @@ export default function PengaturanKeizinan() {
   //! DEBUG
   const [data] = useState<any | null>(dummy);
   const [semuaIzin, setSemuaIzin] = useState<boolean | null>(null);
+  const [toggleSemuaIzin, setToggleSemuaIzin] = useState<boolean>(false);
   const [loading] = useState<boolean>(false);
   const [simpanLoading, setSimpanLoading] = useState<boolean>(false);
   const [simpanTrigger, setSimpanTrigger] = useState<boolean | null>(null);
@@ -160,7 +161,7 @@ export default function PengaturanKeizinan() {
   }));
   const dataToArrayRef = useRef(dataToArray);
 
-  const checkAllPermissionsTrue = (permissionsArray: any) => {
+  const checkAllPermissionsTrue = (permissionsArray: any): boolean => {
     return permissionsArray.every((item: any) => {
       return Object.values(item.permissions).every(
         (permission) => permission === null || permission === true
@@ -195,6 +196,7 @@ export default function PengaturanKeizinan() {
                   colorScheme="ap"
                   onChange={() => {
                     setSemuaIzin(!semuaIzin);
+                    setToggleSemuaIzin(!toggleSemuaIzin);
                   }}
                   isChecked={semuaIzin ? true : false}
                   size={"lg"}
@@ -220,9 +222,12 @@ export default function PengaturanKeizinan() {
           <TabelKeizinan
             data={dataToArray}
             loading={loading}
+            toggleSemuaIzin={toggleSemuaIzin}
             semuaIzin={semuaIzin}
+            setSemuaIzin={setSemuaIzin}
             simpanTrigger={simpanTrigger}
             setSimpanLoading={setSimpanLoading}
+            checkAllPermissionsTrue={checkAllPermissionsTrue}
           />
         </CContainer>
       </CWrapper>

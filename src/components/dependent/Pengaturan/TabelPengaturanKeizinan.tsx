@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useFormik } from "formik";
-import { useEffect, useRef, useState } from "react";
+import { Dispatch, useEffect, useRef, useState } from "react";
 import * as yup from "yup";
 import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
@@ -23,16 +23,22 @@ interface Props {
   data: any;
   loading: boolean;
   simpanTrigger: boolean | null;
+  toggleSemuaIzin: boolean;
   semuaIzin: boolean | null;
+  setSemuaIzin: Dispatch<boolean>;
   setSimpanLoading: React.Dispatch<boolean>;
+  checkAllPermissionsTrue: (permissionsArray: any) => boolean;
 }
 
 export default function TabelPengaturanKeizinan({
   data,
   loading,
   simpanTrigger,
+  toggleSemuaIzin,
   semuaIzin,
+  setSemuaIzin,
   setSimpanLoading,
+  checkAllPermissionsTrue,
 }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
@@ -101,6 +107,10 @@ export default function TabelPengaturanKeizinan({
     updatedPermissions[index].permissions[key] =
       !updatedPermissions[index].permissions[key];
     formik.setFieldValue("permissions", updatedPermissions);
+
+    // Check if all permissions are true after the update
+    const allPermissionsTrue = checkAllPermissionsTrue(updatedPermissions);
+    setSemuaIzin(allPermissionsTrue);
   };
 
   useEffect(() => {
@@ -119,7 +129,7 @@ export default function TabelPengaturanKeizinan({
 
       formikRef.current.setFieldValue("permissions", updatedPermissions);
     }
-  }, [semuaIzin]);
+  }, [toggleSemuaIzin]);
 
   // SX
   const contentBgColor = useContentBgColor();
