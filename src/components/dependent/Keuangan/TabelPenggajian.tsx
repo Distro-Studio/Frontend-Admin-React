@@ -229,10 +229,10 @@ export default function TabelPenggajian({ filterConfig }: Props) {
                       <HStack>
                         <Avatar
                           size={"sm"}
-                          name={row.nama}
-                          src={row.foto_profil}
+                          name={row.user.nama}
+                          src={row.user.foto_profil}
                         />
-                        <Text>{row.nama}</Text>
+                        <Text>{row.user.nama}</Text>
                       </HStack>
                     </Td>
                     <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
