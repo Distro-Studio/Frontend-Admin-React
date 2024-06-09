@@ -124,37 +124,40 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
               </VStack>
             </VStack>
 
-            <FormControl mt={6} isInvalid={formik.errors.shift ? true : false}>
-              <FormLabel>
-                Shift
-                <FormRequired />
-              </FormLabel>
-              <SelectShift
-                formik={formik}
-                name="shift"
-                placeholder="Pilih shift"
-                initialSelected={formik.values.shift}
-                noUseBackOnClose
-              />
-              <FormErrorMessage>
-                {formik.errors.shift as string}
-              </FormErrorMessage>
-            </FormControl>
-
-            <form id="terapkanJadwa;KaryawanTerpilihForm"></form>
+            <form
+              id="terapkanJadwalKaryawanTerpilihForm"
+              onSubmit={formik.handleSubmit}
+            >
+              <FormControl
+                mt={6}
+                isInvalid={formik.errors.shift ? true : false}
+              >
+                <FormLabel>
+                  Shift
+                  <FormRequired />
+                </FormLabel>
+                <SelectShift
+                  formik={formik}
+                  name="shift"
+                  placeholder="Pilih shift"
+                  initialSelected={formik.values.shift}
+                  noUseBackOnClose
+                />
+                <FormErrorMessage>
+                  {formik.errors.shift as string}
+                </FormErrorMessage>
+              </FormControl>
+            </form>
           </ModalBody>
           <ModalFooter>
             <ButtonGroup w={"100%"}>
-              {/* <Button
+              <Button
+                type="submit"
+                form="terapkanJadwalKaryawanTerpilihForm"
                 w={"100%"}
-                className="btn-solid clicky"
-                onClick={() => {
-                  backOnClose(onClose);
-                }}
+                colorScheme="ap"
+                className="btn-ap clicky"
               >
-                Batal
-              </Button> */}
-              <Button w={"100%"} colorScheme="ap" className="btn-ap clicky">
                 Simpan
               </Button>
             </ButtonGroup>
