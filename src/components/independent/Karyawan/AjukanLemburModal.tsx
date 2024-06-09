@@ -27,6 +27,7 @@ import SelectShift from "../../dependent/_Select/SelectShift";
 import SelectTipeCuti from "../../dependent/_Select/SelectTipeCuti";
 import FormRequired from "../../form/FormRequired";
 import Textarea from "../../input/Textarea";
+import DatePicker from "../../input/DatePicker";
 
 interface Props extends ButtonProps {}
 
@@ -39,6 +40,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
     validateOnChange: false,
     initialValues: {
       karyawan: "",
+      tgl_pengajuan: "" as any,
       shift: "" as any,
       kompensasi: "" as any,
       tipe: "" as any,
@@ -48,6 +50,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
     },
     validationSchema: yup.object().shape({
       karyawan: yup.object().required("Harus diisi"),
+      tgl_pengajuan: yup.string().required("Harus diisi"),
       shift: yup.object().required("Harus diisi"),
       kompensasi: yup.object().required("Harus diisi"),
       tipe: yup.object().required("Harus diisi"),
@@ -100,6 +103,22 @@ export default function AjukanLemburModal({ ...props }: Props) {
                 />
                 <FormErrorMessage>
                   {formik.errors.karyawan as string}
+                </FormErrorMessage>
+              </FormControl>
+
+              <FormControl mb={4} isInvalid={!!formik.errors.tgl_pengajuan}>
+                <FormLabel>
+                  Tanggal Pengajuan
+                  <FormRequired />
+                </FormLabel>
+                <DatePicker
+                  name="tgl_pengajuan"
+                  formik={formik}
+                  dateValue={formik.values.tgl_pengajuan}
+                  noUseBackOnClose
+                />
+                <FormErrorMessage>
+                  {formik.errors.tgl_pengajuan as string}
                 </FormErrorMessage>
               </FormControl>
 
@@ -225,7 +244,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
                 <Textarea
                   name="catatan"
                   formik={formik}
-                  placeholder="TUlis catatan untuk karyawan"
+                  placeholder="Catatan untuk Karyawan"
                 />
                 <FormErrorMessage>
                   {formik.errors.catatan as string}

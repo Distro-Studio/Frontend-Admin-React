@@ -120,7 +120,10 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                   mb={4}
                   isInvalid={formik.errors.tgl_selesai ? true : false}
                 >
-                  <FormLabel>Tanggal Selesai</FormLabel>
+                  <FormLabel>
+                    Tanggal Selesai
+                    <FormRequired />
+                  </FormLabel>
                   <DatePicker
                     formik={formik}
                     name="tgl_selesai"

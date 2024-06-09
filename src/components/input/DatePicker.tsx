@@ -182,7 +182,7 @@ export default function DatePicker({
         <Text opacity={dateValue ? 1 : 0.3} fontSize={14}>
           {dateValue
             ? formatDate(dateValue, dateFormatOptions)
-            : placeholder || `Pilih tanggal`}
+            : placeholder || `Pilih Tanggal`}
         </Text>
 
         <Icon as={RiCalendarLine} mb={"1px"} />

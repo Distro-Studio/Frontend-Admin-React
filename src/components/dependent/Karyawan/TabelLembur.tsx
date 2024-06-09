@@ -20,6 +20,7 @@ import formatDurationShort from "../../../lib/formatDurationShort";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
+import BooleanBadge from "../BooleanBadge";
 
 interface Props {
   filterConfig?: any;
@@ -31,6 +32,11 @@ export default function TabelLembur({ filterConfig }: Props) {
       key: "nama",
       label: "Nama",
       dataType: "avatarAndName",
+    },
+    {
+      key: "tgl_pengajuan",
+      label: "Tanggal Lembur",
+      dataType: "date",
     },
     {
       key: "tgl_lembur",
@@ -46,6 +52,12 @@ export default function TabelLembur({ filterConfig }: Props) {
       key: "durasi",
       label: "Durasi",
       dataType: "duration",
+    },
+    {
+      key: "status_persetujuan",
+      label: "Status Persetujuan",
+      dataType: "badge",
+      preferredTextAlign: "center",
     },
   ];
 
@@ -230,9 +242,21 @@ export default function TabelLembur({ filterConfig }: Props) {
                     <Td whiteSpace={"nowrap"}>
                       {formatDate(row.tgl_lahir as string)}
                     </Td>
+                    <Td whiteSpace={"nowrap"}>
+                      {formatDate(row.tgl_lahir as string)}
+                    </Td>
                     <Td whiteSpace={"nowrap"}>{row.ayah}</Td>
                     <Td whiteSpace={"nowrap"}>
                       {formatDurationShort(parseInt(row.no_rm as string))}
+                    </Td>
+                    <Td whiteSpace={"nowrap"} textAlign={"center"}>
+                      <BooleanBadge
+                        data={1}
+                        trueValue="Disetujui"
+                        falseValue="Menunggu"
+                        w={"100%"}
+                        maxW={"120px"}
+                      />
                     </Td>
                   </Tr>
                 ))}
