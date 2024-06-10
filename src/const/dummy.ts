@@ -4315,6 +4315,10 @@ const dummyTransferKaryawan = [
       created_at: "2024-03-16T07:43:42.000000Z",
       updated_at: "2024-05-25T07:43:42.000000Z",
     },
+    kelompok_gaji_tujuan: {
+      id: 1,
+      nama_kelompok: "A",
+    },
     tipe: { id: 1, label: "Promosi" },
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
@@ -4417,6 +4421,10 @@ const dummyTransferKaryawan = [
       tunjangan: 2317911,
       created_at: "2023-06-05T07:43:42.000000Z",
       updated_at: "2024-05-25T07:43:42.000000Z",
+    },
+    kelompok_gaji_tujuan: {
+      id: 1,
+      nama_kelompok: "A",
     },
     tipe: { id: 1, label: "Promosi" },
     alasan:
@@ -4521,6 +4529,10 @@ const dummyTransferKaryawan = [
       created_at: "2023-06-23T07:43:42.000000Z",
       updated_at: "2024-05-25T07:43:42.000000Z",
     },
+    kelompok_gaji_tujuan: {
+      id: 1,
+      nama_kelompok: "A",
+    },
     tipe: { id: 1, label: "Promosi" },
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
@@ -4623,6 +4635,10 @@ const dummyTransferKaryawan = [
       tunjangan: 3103771,
       created_at: "2024-03-02T07:43:42.000000Z",
       updated_at: "2024-05-25T07:43:42.000000Z",
+    },
+    kelompok_gaji_tujuan: {
+      id: 1,
+      nama_kelompok: "A",
     },
     tipe: { id: 1, label: "Promosi" },
     alasan:
@@ -4727,6 +4743,10 @@ const dummyTransferKaryawan = [
       created_at: "2023-06-05T07:43:42.000000Z",
       updated_at: "2024-05-25T07:43:42.000000Z",
     },
+    kelompok_gaji_tujuan: {
+      id: 1,
+      nama_kelompok: "A",
+    },
     tipe: { id: 1, label: "Promosi" },
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
@@ -4829,6 +4849,10 @@ const dummyTransferKaryawan = [
       tunjangan: 3169805,
       created_at: "2023-11-24T07:43:42.000000Z",
       updated_at: "2024-05-25T07:43:42.000000Z",
+    },
+    kelompok_gaji_tujuan: {
+      id: 1,
+      nama_kelompok: "A",
     },
     tipe: { id: 1, label: "Promosi" },
     alasan:
@@ -4933,6 +4957,10 @@ const dummyTransferKaryawan = [
       created_at: "2024-04-10T07:43:42.000000Z",
       updated_at: "2024-05-25T07:43:42.000000Z",
     },
+    kelompok_gaji_tujuan: {
+      id: 1,
+      nama_kelompok: "A",
+    },
     tipe: { id: 1, label: "Promosi" },
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
@@ -5035,6 +5063,10 @@ const dummyTransferKaryawan = [
       tunjangan: 3191635,
       created_at: "2024-01-30T07:43:42.000000Z",
       updated_at: "2024-05-25T07:43:42.000000Z",
+    },
+    kelompok_gaji_tujuan: {
+      id: 1,
+      nama_kelompok: "A",
     },
     tipe: { id: 1, label: "Promosi" },
     alasan:
@@ -5139,6 +5171,10 @@ const dummyTransferKaryawan = [
       created_at: "2024-03-02T07:43:42.000000Z",
       updated_at: "2024-05-25T07:43:42.000000Z",
     },
+    kelompok_gaji_tujuan: {
+      id: 1,
+      nama_kelompok: "A",
+    },
     tipe: { id: 1, label: "Promosi" },
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
@@ -5241,6 +5277,10 @@ const dummyTransferKaryawan = [
       tunjangan: 4279092,
       created_at: "2023-08-15T07:43:42.000000Z",
       updated_at: "2024-05-25T07:43:42.000000Z",
+    },
+    kelompok_gaji_tujuan: {
+      id: 1,
+      nama_kelompok: "A",
     },
     tipe: { id: 1, label: "Promosi" },
     alasan:

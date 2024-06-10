@@ -34,7 +34,7 @@ import SelectKelompokGaji from "../../dependent/_Select/SelectKelompokGaji";
 
 interface Props extends ButtonProps {}
 
-export default function AjukanTransferKaryawan({ ...props }: Props) {
+export default function AjukanTransferKaryawanModal({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);

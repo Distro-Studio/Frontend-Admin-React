@@ -14,7 +14,7 @@ import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
-import AjukanTransferKaryawan from "../../components/independent/Karyawan/AjukanTransferKaryawan";
+import AjukanTransferKaryawanModal from "../../components/independent/Karyawan/AjukanTransferKaryawanModal";
 import SelectStatusTransferKaryawan from "../../components/dependent/_Select/SelectStatusTransferKaryawan";
 
 export default function TransferKaryawan() {
@@ -83,7 +83,7 @@ export default function TransferKaryawan() {
               Export
             </Button>
 
-            <AjukanTransferKaryawan flex={"1 1 170px"} />
+            <AjukanTransferKaryawanModal flex={"1 1 170px"} />
           </Wrap>
 
           <TabelTransferKarywan filterConfig={filterConfig} />
