@@ -223,7 +223,7 @@ export default function TabelPekerjaKontrak({ filterConfig }: Props) {
 
               <Tbody>
                 {sortedData.map((row, i) => (
-                  <Tr key={i} bg={i % 2 === 0 ? contentBgColor : ""}>
+                  <Tr h={"72px"} key={i} bg={i % 2 === 0 ? contentBgColor : ""}>
                     <Td whiteSpace={"nowrap"}>
                       <HStack>
                         <Avatar
