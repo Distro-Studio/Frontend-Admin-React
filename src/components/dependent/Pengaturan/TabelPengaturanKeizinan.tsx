@@ -48,6 +48,13 @@ export default function TabelPengaturanKeizinan({
     },
   ];
 
+  const [prevToggleSemuaIzin, setPrevToggleSemuaIzin] =
+    useState<boolean>(false);
+  useEffect(() => {
+    setPrevToggleSemuaIzin(toggleSemuaIzin);
+    console.log(prevToggleSemuaIzin, toggleSemuaIzin);
+  }, [toggleSemuaIzin]);
+
   // Sort Config
   const [sortConfig, setSortConfig] = useState<{
     key: string;
@@ -114,22 +121,24 @@ export default function TabelPengaturanKeizinan({
   };
 
   useEffect(() => {
-    if (semuaIzin !== null) {
-      const updatedPermissions = formikRef.current.values.permissions.map(
-        (item: any) => {
-          const updatedItem = { ...item };
-          Object.keys(updatedItem.permissions).forEach((key) => {
-            if (updatedItem.permissions[key] !== null) {
-              updatedItem.permissions[key] = semuaIzin;
-            }
-          });
-          return updatedItem;
-        }
-      );
+    if (prevToggleSemuaIzin !== toggleSemuaIzin) {
+      if (semuaIzin !== null) {
+        const updatedPermissions = formikRef.current.values.permissions.map(
+          (item: any) => {
+            const updatedItem = { ...item };
+            Object.keys(updatedItem.permissions).forEach((key) => {
+              if (updatedItem.permissions[key] !== null) {
+                updatedItem.permissions[key] = semuaIzin;
+              }
+            });
+            return updatedItem;
+          }
+        );
 
-      formikRef.current.setFieldValue("permissions", updatedPermissions);
+        formikRef.current.setFieldValue("permissions", updatedPermissions);
+      }
     }
-  }, [toggleSemuaIzin]);
+  }, [semuaIzin, toggleSemuaIzin]);
 
   // SX
   const contentBgColor = useContentBgColor();

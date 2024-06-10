@@ -68,7 +68,7 @@ export default function Jadwal() {
             </InputGroup>
 
             <DateRangePicker
-              flex={"1 1 250px"}
+              flex={"1 1 220px"}
               confirmDate={confirmDateRange}
               dateValue={filterConfig.range_tgl}
               defaultDateSelected={defaultRangeTgl}

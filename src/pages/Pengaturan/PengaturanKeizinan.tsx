@@ -149,7 +149,7 @@ export default function PengaturanKeizinan() {
   };
   //! DEBUG
   const [data] = useState<any | null>(dummy);
-  const [semuaIzin, setSemuaIzin] = useState<boolean | null>(null);
+  const [semuaIzin, setSemuaIzin] = useState<boolean>(false);
   const [toggleSemuaIzin, setToggleSemuaIzin] = useState<boolean>(false);
   const [loading] = useState<boolean>(false);
   const [simpanLoading, setSimpanLoading] = useState<boolean>(false);
@@ -170,13 +170,15 @@ export default function PengaturanKeizinan() {
   };
 
   useEffect(() => {
-    //TODO get permission by role id
+    //TODO get permission by rolew id
     console.log(role_id);
 
     if (checkAllPermissionsTrue(dataToArrayRef.current)) {
       setSemuaIzin(true);
     }
   }, [role_id]);
+
+  console.log(toggleSemuaIzin);
 
   return (
     <>
@@ -195,10 +197,10 @@ export default function PengaturanKeizinan() {
                 <Checkbox
                   colorScheme="ap"
                   onChange={() => {
-                    setSemuaIzin(!semuaIzin);
                     setToggleSemuaIzin(!toggleSemuaIzin);
-                  }}
-                  isChecked={semuaIzin ? true : false}
+                  }} // Mengubah nilai toggleSemuaIzin
+                  onClick={(e) => e.stopPropagation()} // Menghentikan propagasi event agar tidak memicu perubahan checkbox
+                  isChecked={toggleSemuaIzin} // Menggunakan toggleSemuaIzin sebagai nilai isChecked
                   size={"lg"}
                 >
                   <Text fontWeight={500}>Semua izin</Text>

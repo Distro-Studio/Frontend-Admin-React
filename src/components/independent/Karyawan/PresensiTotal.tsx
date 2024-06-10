@@ -45,7 +45,7 @@ export default function PresensiTotal({ ...props }: Props) {
             py={[4, null, 5]}
             bg={"var(--p500a4)"}
             align={"flex-start"}
-            flex={"1 1 400px"}
+            flex={"1 1 350px"}
             h={"120px"}
           >
             {/* <Text fontWeight={600} color="p.500">
@@ -89,7 +89,7 @@ export default function PresensiTotal({ ...props }: Props) {
             py={[4, null, 5]}
             bg={"var(--reda)"}
             align={"flex-start"}
-            flex={"1 1 300px"}
+            flex={"1 1 250px"}
             h={"120px"}
           >
             {/* <Text fontWeight={600} color={"red.400"}>
