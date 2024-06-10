@@ -94,7 +94,7 @@ export default function SelectKelompokGaji({
       ))}
 
       {filteredOptions && filteredOptions.length === 0 && (
-        <Text textAlign={"center"} mt={2}>
+        <Text textAlign={"center"} my={2}>
           Opsi tidak ditemukan
         </Text>
       )}

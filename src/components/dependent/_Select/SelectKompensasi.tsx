@@ -98,7 +98,7 @@ export default function SelectKompensasi({
       ))}
 
       {filteredOptions && filteredOptions.length === 0 && (
-        <Text textAlign={"center"} mt={2}>
+        <Text textAlign={"center"} my={2}>
           Opsi tidak ditemukan
         </Text>
       )}

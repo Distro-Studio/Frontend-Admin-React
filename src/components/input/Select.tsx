@@ -4,9 +4,6 @@ import {
   ButtonProps,
   HStack,
   Icon,
-  Input,
-  InputGroup,
-  InputLeftElement,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -19,11 +16,12 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import { RiArrowDownSLine, RiSearchLine } from "@remixicon/react";
+import { RiArrowDownSLine } from "@remixicon/react";
 import { Dispatch, forwardRef, useImperativeHandle, useRef } from "react";
-import { iconSize } from "../../const/sizes";
 import formatNumber from "../../lib/formatNumber";
 import useBackOnClose from "../../lib/useBackOnClose";
+import useScreenHeight from "../../lib/useScreenHeight";
+import SearchComponent from "../dependent/SearchComponent";
 
 interface Props extends ButtonProps {
   placeholder: string;
@@ -82,11 +80,12 @@ const Select = forwardRef(
       handleOnClose,
     }));
 
-    // XS
+    // SX
     const selectOnError = useColorModeValue(
       "0 0 0 1px #E53E3E",
       "0 0 0 1px #FC8181"
     );
+    const sh = useScreenHeight();
 
     return (
       <>
@@ -212,7 +211,7 @@ const Select = forwardRef(
               setSelected(initialSelected);
             }
           }}
-          // scrollBehavior="inside"
+          scrollBehavior={sh < 500 ? "outside" : "inside"}
           initialFocusRef={initialRef}
           isCentered
           size={modalSize}
@@ -225,22 +224,10 @@ const Select = forwardRef(
               <Text fontSize={20}>{placeholder}</Text>
               {!noSearch && setSearch && (
                 <HStack mt={6}>
-                  <InputGroup>
-                    <InputLeftElement>
-                      <Icon as={RiSearchLine} fontSize={iconSize} />
-                    </InputLeftElement>
-
-                    <Input
-                      ref={initialRef}
-                      w={"100%"}
-                      placeholder={"Pencarian"}
-                      boxShadow={"none !important"}
-                      onChange={(e) => {
-                        setSearch(e.target.value);
-                      }}
-                      value={search}
-                    />
-                  </InputGroup>
+                  <SearchComponent
+                    search={search as string}
+                    setSearch={setSearch}
+                  />
                 </HStack>
               )}
             </ModalHeader>

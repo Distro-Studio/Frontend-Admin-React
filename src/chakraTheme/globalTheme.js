@@ -134,6 +134,7 @@ export const globalTheme = extendTheme({
           color: props.colorMode === "dark" ? "wt" : "bt",
           boxShadow: "none",
           borderRadius: "16px",
+          // maxH: "100%",
           // border: "1px solid var(--divider)",
           mx: "16px",
         },
@@ -149,6 +150,7 @@ export const globalTheme = extendTheme({
         body: {
           px: "24px",
           py: "0px !important",
+          // minH: window.innerWidth < 500 ? "300px" : "fit-content",
         },
         footer: {
           p: "24px",
@@ -158,6 +160,7 @@ export const globalTheme = extendTheme({
           right: 4,
           top: 4,
           fontSize: "13px !important",
+          // color: "red.400",
         },
       }),
     },

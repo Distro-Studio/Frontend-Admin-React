@@ -364,6 +364,10 @@ select {
   pointer-events: none; /* agar tidak mengganggu klik tombol */
 }
 
+.chakra-form__helper-text {
+  opacity: 0.4;
+}
+
 @keyframes ripple {
   to {
     width: 260px;

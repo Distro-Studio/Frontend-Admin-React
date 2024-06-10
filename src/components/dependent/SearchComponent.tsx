@@ -41,10 +41,18 @@ export default function SearchComponent({
       />
 
       {search && (
-        <Center zIndex={3} position={"absolute"} h={"100%"} right={2}>
+        <Center
+          flexShrink={0}
+          zIndex={3}
+          position={"absolute"}
+          h={"100%"}
+          right={2}
+        >
           <IconButton
             aria-label="Reset Search"
-            icon={<Icon as={RiCloseLine} />}
+            icon={
+              <Icon as={RiCloseLine} color={"red.400"} fontSize={iconSize} />
+            }
             onClick={() => {
               if (resetSearch) {
                 resetSearch();
