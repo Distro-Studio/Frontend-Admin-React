@@ -5,10 +5,6 @@ export default function isDatePassed(
   const inputDate = new Date(date);
   const today = new Date();
 
-  // Set time to midnight for comparison
-  inputDate.setHours(0, 0, 0, 0);
-  today.setHours(0, 0, 0, 0);
-
   if (isTodayCounted) {
     return inputDate <= today;
   } else {

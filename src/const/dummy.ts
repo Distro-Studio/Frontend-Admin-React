@@ -16,8 +16,8 @@ const dummyTabelJadwalData = [
       {
         id: 2,
         tanggal: new Date(2024, 4, 14),
-        jam_masuk: "2024-05-14T17:20:00.000Z",
-        jam_keluar: "2024-05-14T17:08:00.000Z",
+        jam_masuk: "2023-05-14T17:20:00.000Z",
+        jam_keluar: "2023-05-14T17:08:00.000Z",
         label: "Shift Malam 2",
       },
       {
