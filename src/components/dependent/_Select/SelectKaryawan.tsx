@@ -32,7 +32,7 @@ export default function SelectKaryawan({
     const options = dummyKaryawanList.map((item) => ({
       value: item.id,
       label: item.user.nama,
-      unit_kerja: item.unit_kerja.nama_unit,
+      label2: item.unit_kerja.nama_unit,
     }));
     setOptions(options);
     // TODO get shift list
@@ -60,6 +60,7 @@ export default function SelectKaryawan({
       noSearch={noSearch}
       modalSize={modalSize}
       confirmSelect={confirmSelect}
+      initialSelected={initialSelected}
       {...props}
     >
       {filteredOptions?.map((option: any, i: number) => (
@@ -86,7 +87,7 @@ export default function SelectKaryawan({
         >
           <Text>{option.label}</Text>
           <Text opacity={0.6} fontSize={14}>
-            {option.unit_kerja}
+            {option.label2}
           </Text>
         </Button>
       ))}
