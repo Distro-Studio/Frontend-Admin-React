@@ -2,6 +2,7 @@ import {
   Avatar,
   Box,
   Button,
+  ButtonGroup,
   HStack,
   Icon,
   Text,
@@ -140,13 +141,13 @@ export default function DetailPenggajian() {
                   </Text>
 
                   <VStack align={"stretch"} gap={4}>
-                    <HStack justify={"space-between"}>
+                    {/* <HStack justify={"space-between"}>
                       <Text opacity={0.6}>Unit Kerja</Text>
                       <FlexLine />
                       <Text fontWeight={500} textAlign={"right"}>
                         {data.unit_kerja.nama_unit}
                       </Text>
-                    </HStack>
+                    </HStack> */}
 
                     <HStack justify={"space-between"}>
                       <Text opacity={0.6}>Kelompok Gaji</Text>
@@ -271,7 +272,7 @@ export default function DetailPenggajian() {
                   justify={"space-between"}
                   borderTop={"1px solid var(--divider3)"}
                   pt={4}
-                  mt={2}
+                  mt={1}
                 >
                   <Text fontSize={20} opacity={0.6}>
                     Take Home Pay
@@ -283,6 +284,15 @@ export default function DetailPenggajian() {
                 </HStack>
               </VStack>
             </CContainer>
+
+            <ButtonGroup w={"50%"} ml={"auto"}>
+              <Button w={"100%"} colorScheme="red" variant={"outline"}>
+                Tidak Disetujui
+              </Button>
+              <Button w={"100%"} colorScheme="ap" className="btn-ap clicky">
+                Disetujui
+              </Button>
+            </ButtonGroup>
           </>
         )}
       </VStack>

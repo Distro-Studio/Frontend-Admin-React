@@ -143,6 +143,14 @@ export default function DetailPresensi() {
                     </HStack>
 
                     <HStack justify={"space-between"}>
+                      <Text opacity={0.6}>Tanggal Masuk</Text>
+                      <FlexLine />
+                      <Text fontWeight={500} textAlign={"right"}>
+                        {formatDate(data.jadwal.jam_from, "short")}
+                      </Text>
+                    </HStack>
+
+                    <HStack justify={"space-between"}>
                       <Text opacity={0.6}>Jadwal Masuk</Text>
                       <FlexLine />
                       <Text fontWeight={500} textAlign={"right"}>
@@ -158,21 +166,13 @@ export default function DetailPresensi() {
                       </Text>
                     </HStack>
 
-                    <HStack justify={"space-between"}>
-                      <Text opacity={0.6}>Tanggal Masuk</Text>
-                      <FlexLine />
-                      <Text fontWeight={500} textAlign={"right"}>
-                        {formatDate(data.jadwal.jam_from, "short")}
-                      </Text>
-                    </HStack>
-
-                    <HStack justify={"space-between"}>
+                    {/* <HStack justify={"space-between"}>
                       <Text opacity={0.6}>Tanggal Keluar</Text>
                       <FlexLine />
                       <Text fontWeight={500} textAlign={"right"}>
                         {formatDate(data.jadwal.jam_to, "short")}
                       </Text>
-                    </HStack>
+                    </HStack> */}
                   </VStack>
                 </VStack>
               </CContainer>
