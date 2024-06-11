@@ -335,9 +335,7 @@ export default function DatePicker({
             <VStack align={"stretch"} w={"100%"}>
               <VStack borderRadius={8} bg={"var(--divider)"} p={2} gap={1}>
                 <Text opacity={selected ? 1 : 0.6}>
-                  {selected
-                    ? `${formatDate(selected)}`
-                    : "Tanggal belum dipilih"}
+                  {selected ? `${formatDate(selected)}` : "Pilih tanggal"}
                 </Text>
               </VStack>
 
