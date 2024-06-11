@@ -62,7 +62,7 @@ export default function Jadwal() {
               />
             </Wrap>
 
-            <Wrap flex={"1 1 550px"}>
+            <Wrap flex={"1 1 520px"}>
               <FilterTabelJadwal
                 defaultFilterConfig={defaultFilterConfig}
                 filterConfig={filterConfig}
