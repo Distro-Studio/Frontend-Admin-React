@@ -49,6 +49,7 @@ import Perusahaan from "./pages/Perusahaan/Diklat";
 import DetailPresensi from "./pages/Presensi/DetailPresensi";
 import Presensi from "./pages/Presensi/Presensi";
 import EditKaryawan from "./pages/Karyawan/EditKaryawan";
+import DetailPenggajian from "./pages/Keuangan/DetailPenggajian";
 
 // github pekok
 
@@ -300,6 +301,19 @@ export const App = () => (
               topNavActive={0}
             >
               <Penggajian />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/keuangan/penggajian/:penggajianId"
+          element={
+            <NavContainer
+              active={4}
+              title="Penggajian"
+              topNavsData={keuanganTopNavs}
+              topNavActive={0}
+            >
+              <DetailPenggajian />
             </NavContainer>
           }
         />

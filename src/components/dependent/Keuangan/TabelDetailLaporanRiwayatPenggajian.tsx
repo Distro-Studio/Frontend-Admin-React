@@ -214,14 +214,16 @@ export default function TabelDetailLaporanRiwayatPenggajian() {
                       <HStack>
                         <Avatar
                           size={"sm"}
-                          name={row.nama}
-                          src={row.foto_profil}
+                          name={row.user.nama}
+                          src={row.user.foto_profil}
                         />
-                        <Text>{row.nama}</Text>
+                        <Text>{row.user.nama}</Text>
                       </HStack>
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.kelompok_gaji}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
+                    <Td whiteSpace={"nowrap"}>
+                      {row.kelompok_gaji.nama_kelompok}
+                    </Td>
                     <Td whiteSpace={"nowrap"}>{row.gaji_bruto}</Td>
                     <Td whiteSpace={"nowrap"}>{row.tunjangan_lainnya}</Td>
                     <Td whiteSpace={"nowrap"}>{row.total_premi}</Td>

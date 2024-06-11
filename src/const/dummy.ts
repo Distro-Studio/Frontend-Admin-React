@@ -436,7 +436,7 @@ const dummyKaryawanList = [
       created_at: "2024-02-01T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    jabatan_id: {
+    jabatan: {
       id: 7,
       nama_jabatan: "Tenaga Laboratorium",
       is_struktural: 1,
@@ -444,7 +444,7 @@ const dummyKaryawanList = [
       created_at: "2024-04-12T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    kompetensi_id: {
+    kompetensi: {
       id: 4,
       nama_kompetensi: "Bidan",
       jenis_kompetensi: 0,
@@ -452,7 +452,7 @@ const dummyKaryawanList = [
       created_at: "2024-02-04T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    role_id: [
+    role: [
       {
         id: 3,
         name: "Admin",
@@ -473,7 +473,7 @@ const dummyKaryawanList = [
     status_karyawan: "Tetap",
     tempat_lahir: "Cirebon",
     tgl_lahir: "1993-10-31",
-    kelompok_gaji_id: {
+    kelompok_gaji: {
       id: 19,
       nama_kelompok: "Y",
       besaran_gaji: 3202572,
@@ -561,7 +561,7 @@ const dummyKaryawanList = [
       created_at: "2023-09-03T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    jabatan_id: {
+    jabatan: {
       id: 18,
       nama_jabatan: "Wakil Direktur",
       is_struktural: 0,
@@ -569,7 +569,7 @@ const dummyKaryawanList = [
       created_at: "2023-08-22T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    kompetensi_id: {
+    kompetensi: {
       id: 7,
       nama_kompetensi: "Ahli Gizi",
       jenis_kompetensi: 0,
@@ -577,7 +577,7 @@ const dummyKaryawanList = [
       created_at: "2023-05-30T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    role_id: [
+    role: [
       {
         id: 4,
         name: "Karyawan",
@@ -598,7 +598,7 @@ const dummyKaryawanList = [
     status_karyawan: "Kontrak",
     tempat_lahir: "Temanggung",
     tgl_lahir: "1944-12-09",
-    kelompok_gaji_id: {
+    kelompok_gaji: {
       id: 7,
       nama_kelompok: "O",
       besaran_gaji: 3565689,
@@ -686,7 +686,7 @@ const dummyKaryawanList = [
       created_at: "2023-10-11T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    jabatan_id: {
+    jabatan: {
       id: 11,
       nama_jabatan: "Asisten Dokter",
       is_struktural: 1,
@@ -694,7 +694,7 @@ const dummyKaryawanList = [
       created_at: "2023-08-10T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    kompetensi_id: {
+    kompetensi: {
       id: 5,
       nama_kompetensi: "Dokter Spesialis Bedah",
       jenis_kompetensi: 0,
@@ -702,7 +702,7 @@ const dummyKaryawanList = [
       created_at: "2023-10-12T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    role_id: [
+    role: [
       {
         id: 4,
         name: "Karyawan",
@@ -723,7 +723,7 @@ const dummyKaryawanList = [
     status_karyawan: "Tetap",
     tempat_lahir: "Majalengka",
     tgl_lahir: "1926-09-13",
-    kelompok_gaji_id: {
+    kelompok_gaji: {
       id: 11,
       nama_kelompok: "P",
       besaran_gaji: 987688,
@@ -811,7 +811,7 @@ const dummyKaryawanList = [
       created_at: "2024-01-31T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    jabatan_id: {
+    jabatan: {
       id: 19,
       nama_jabatan: "Dokter Spesialis",
       is_struktural: 0,
@@ -819,7 +819,7 @@ const dummyKaryawanList = [
       created_at: "2023-05-31T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    kompetensi_id: {
+    kompetensi: {
       id: 7,
       nama_kompetensi: "Ahli Gizi",
       jenis_kompetensi: 0,
@@ -827,7 +827,7 @@ const dummyKaryawanList = [
       created_at: "2023-05-30T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    role_id: [
+    role: [
       {
         id: 4,
         name: "Karyawan",
@@ -848,7 +848,7 @@ const dummyKaryawanList = [
     status_karyawan: "Magang",
     tempat_lahir: "Tasikmalaya",
     tgl_lahir: "1931-07-27",
-    kelompok_gaji_id: {
+    kelompok_gaji: {
       id: 10,
       nama_kelompok: "Q",
       besaran_gaji: 4568354,
@@ -936,7 +936,7 @@ const dummyKaryawanList = [
       created_at: "2024-03-12T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    jabatan_id: {
+    jabatan: {
       id: 14,
       nama_jabatan: "Apoteker",
       is_struktural: 1,
@@ -944,7 +944,7 @@ const dummyKaryawanList = [
       created_at: "2023-06-14T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    kompetensi_id: {
+    kompetensi: {
       id: 8,
       nama_kompetensi: "Dokter Spesialis Penyakit Dalam",
       jenis_kompetensi: 0,
@@ -952,7 +952,7 @@ const dummyKaryawanList = [
       created_at: "2023-12-01T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    role_id: [
+    role: [
       {
         id: 3,
         name: "Admin",
@@ -973,7 +973,7 @@ const dummyKaryawanList = [
     status_karyawan: "Magang",
     tempat_lahir: "Kuningan",
     tgl_lahir: "1943-03-29",
-    kelompok_gaji_id: {
+    kelompok_gaji: {
       id: 20,
       nama_kelompok: "K",
       besaran_gaji: 2746757,
@@ -1061,7 +1061,7 @@ const dummyKaryawanList = [
       created_at: "2023-07-10T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    jabatan_id: {
+    jabatan: {
       id: 10,
       nama_jabatan: "Tenaga Medis Darurat",
       is_struktural: 0,
@@ -1069,7 +1069,7 @@ const dummyKaryawanList = [
       created_at: "2023-06-14T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    kompetensi_id: {
+    kompetensi: {
       id: 1,
       nama_kompetensi: "Petugas Kebersihan",
       jenis_kompetensi: 0,
@@ -1077,7 +1077,7 @@ const dummyKaryawanList = [
       created_at: "2023-10-16T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    role_id: [
+    role: [
       {
         id: 3,
         name: "Admin",
@@ -1098,7 +1098,7 @@ const dummyKaryawanList = [
     status_karyawan: "Magang",
     tempat_lahir: "Blora",
     tgl_lahir: "1993-04-23",
-    kelompok_gaji_id: {
+    kelompok_gaji: {
       id: 17,
       nama_kelompok: "P",
       besaran_gaji: 2792988,
@@ -1186,7 +1186,7 @@ const dummyKaryawanList = [
       created_at: "2024-02-27T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    jabatan_id: {
+    jabatan: {
       id: 14,
       nama_jabatan: "Apoteker",
       is_struktural: 1,
@@ -1194,7 +1194,7 @@ const dummyKaryawanList = [
       created_at: "2023-06-14T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    kompetensi_id: {
+    kompetensi: {
       id: 9,
       nama_kompetensi: "Tenaga Farmasi",
       jenis_kompetensi: 1,
@@ -1202,7 +1202,7 @@ const dummyKaryawanList = [
       created_at: "2023-12-16T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    role_id: [
+    role: [
       {
         id: 3,
         name: "Admin",
@@ -1223,7 +1223,7 @@ const dummyKaryawanList = [
     status_karyawan: "Kontrak",
     tempat_lahir: "Batang",
     tgl_lahir: "1919-07-26",
-    kelompok_gaji_id: {
+    kelompok_gaji: {
       id: 13,
       nama_kelompok: "R",
       besaran_gaji: 790717,
@@ -1311,7 +1311,7 @@ const dummyKaryawanList = [
       created_at: "2023-06-26T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    jabatan_id: {
+    jabatan: {
       id: 18,
       nama_jabatan: "Wakil Direktur",
       is_struktural: 0,
@@ -1319,7 +1319,7 @@ const dummyKaryawanList = [
       created_at: "2023-08-22T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    kompetensi_id: {
+    kompetensi: {
       id: 1,
       nama_kompetensi: "Petugas Kebersihan",
       jenis_kompetensi: 0,
@@ -1327,7 +1327,7 @@ const dummyKaryawanList = [
       created_at: "2023-10-16T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    role_id: [
+    role: [
       {
         id: 3,
         name: "Admin",
@@ -1348,7 +1348,7 @@ const dummyKaryawanList = [
     status_karyawan: "Kontrak",
     tempat_lahir: "Tasikmalaya",
     tgl_lahir: "1947-02-20",
-    kelompok_gaji_id: {
+    kelompok_gaji: {
       id: 3,
       nama_kelompok: "A",
       besaran_gaji: 802109,
@@ -1436,7 +1436,7 @@ const dummyKaryawanList = [
       created_at: "2023-07-10T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    jabatan_id: {
+    jabatan: {
       id: 20,
       nama_jabatan: "Humas",
       is_struktural: 0,
@@ -1444,7 +1444,7 @@ const dummyKaryawanList = [
       created_at: "2024-01-04T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    kompetensi_id: {
+    kompetensi: {
       id: 9,
       nama_kompetensi: "Tenaga Farmasi",
       jenis_kompetensi: 1,
@@ -1452,7 +1452,7 @@ const dummyKaryawanList = [
       created_at: "2023-12-16T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    role_id: [
+    role: [
       {
         id: 4,
         name: "Karyawan",
@@ -1473,7 +1473,7 @@ const dummyKaryawanList = [
     status_karyawan: "Tetap",
     tempat_lahir: "Ponorogo",
     tgl_lahir: "1950-12-02",
-    kelompok_gaji_id: {
+    kelompok_gaji: {
       id: 8,
       nama_kelompok: "G",
       besaran_gaji: 3231330,
@@ -1561,7 +1561,7 @@ const dummyKaryawanList = [
       created_at: "2024-01-25T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    jabatan_id: {
+    jabatan: {
       id: 13,
       nama_jabatan: "Perawat",
       is_struktural: 1,
@@ -1569,7 +1569,7 @@ const dummyKaryawanList = [
       created_at: "2024-01-22T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    kompetensi_id: {
+    kompetensi: {
       id: 3,
       nama_kompetensi: "Petugas Administrasi",
       jenis_kompetensi: 1,
@@ -1577,7 +1577,7 @@ const dummyKaryawanList = [
       created_at: "2023-07-04T13:41:16.000000Z",
       updated_at: "2024-05-22T13:41:16.000000Z",
     },
-    role_id: [
+    role: [
       {
         id: 3,
         name: "Admin",
@@ -1598,7 +1598,7 @@ const dummyKaryawanList = [
     status_karyawan: "Kontrak",
     tempat_lahir: "Madiun",
     tgl_lahir: "1952-01-29",
-    kelompok_gaji_id: {
+    kelompok_gaji: {
       id: 2,
       nama_kelompok: "P",
       besaran_gaji: 2561174,
@@ -4349,8 +4349,8 @@ const dummyTransferKaryawan = [
         tgl_masuk: "2022-06-01",
         tgl_keluar: "2024-08-19",
         unit_kerja_id: 2,
-        jabatan_id: 12,
-        kompetensi_id: 3,
+        jabatan: 12,
+        kompetensi: 3,
         tunjangan_jabatan: 2725216,
         tunjangan_fungsional: 1417795,
         tunjangan_khusus: 1523942,
@@ -4458,8 +4458,8 @@ const dummyTransferKaryawan = [
         tgl_masuk: "2018-01-19",
         tgl_keluar: "2024-04-28",
         unit_kerja_id: 8,
-        jabatan_id: 10,
-        kompetensi_id: 6,
+        jabatan: 10,
+        kompetensi: 6,
         tunjangan_jabatan: 2022956,
         tunjangan_fungsional: 922220,
         tunjangan_khusus: 1980668,
@@ -4567,8 +4567,8 @@ const dummyTransferKaryawan = [
         tgl_masuk: "2022-01-17",
         tgl_keluar: "2023-09-15",
         unit_kerja_id: 16,
-        jabatan_id: 8,
-        kompetensi_id: 5,
+        jabatan: 8,
+        kompetensi: 5,
         tunjangan_jabatan: 2264200,
         tunjangan_fungsional: 964129,
         tunjangan_khusus: 1689145,
@@ -4676,8 +4676,8 @@ const dummyTransferKaryawan = [
         tgl_masuk: "2021-06-30",
         tgl_keluar: "2024-05-25",
         unit_kerja_id: 21,
-        jabatan_id: 15,
-        kompetensi_id: 1,
+        jabatan: 15,
+        kompetensi: 1,
         tunjangan_jabatan: 9347524,
         tunjangan_fungsional: 1556581,
         tunjangan_khusus: 1994500,
@@ -4785,8 +4785,8 @@ const dummyTransferKaryawan = [
         tgl_masuk: "2021-08-29",
         tgl_keluar: "2024-10-08",
         unit_kerja_id: 6,
-        jabatan_id: 4,
-        kompetensi_id: 2,
+        jabatan: 4,
+        kompetensi: 2,
         tunjangan_jabatan: 4927194,
         tunjangan_fungsional: 1124118,
         tunjangan_khusus: 1433728,
@@ -4894,8 +4894,8 @@ const dummyTransferKaryawan = [
         tgl_masuk: "2021-03-17",
         tgl_keluar: "2023-07-07",
         unit_kerja_id: 20,
-        jabatan_id: 19,
-        kompetensi_id: 6,
+        jabatan: 19,
+        kompetensi: 6,
         tunjangan_jabatan: 4436418,
         tunjangan_fungsional: 2451302,
         tunjangan_khusus: 1566841,
@@ -5003,8 +5003,8 @@ const dummyTransferKaryawan = [
         tgl_masuk: "2020-12-09",
         tgl_keluar: "2024-01-01",
         unit_kerja_id: 3,
-        jabatan_id: 1,
-        kompetensi_id: 4,
+        jabatan: 1,
+        kompetensi: 4,
         tunjangan_jabatan: 5441105,
         tunjangan_fungsional: 1047841,
         tunjangan_khusus: 1652247,
@@ -5113,7 +5113,7 @@ const dummyTransferKaryawan = [
         tgl_keluar: "2023-03-28",
         unit_kerja_id: 10,
         jabatan_id: 9,
-        kompetensi_id: 5,
+        kompetensi: 5,
         tunjangan_jabatan: 8019400,
         tunjangan_fungsional: 2472499,
         tunjangan_khusus: 1202139,
@@ -5222,7 +5222,7 @@ const dummyTransferKaryawan = [
         tgl_keluar: "2024-06-09",
         unit_kerja_id: 1,
         jabatan_id: 2,
-        kompetensi_id: 3,
+        kompetensi: 3,
         tunjangan_jabatan: 2397565,
         tunjangan_fungsional: 2722837,
         tunjangan_khusus: 2442077,
@@ -5495,7 +5495,7 @@ const dummyDetailKeluargaKaryawan = {
     tgl_keluar: null,
     unit_kerja: 1,
     jabatan_id: 4,
-    kompetensi_id: 7,
+    kompetensi: 7,
     status_karyawan: "Magang",
     tempat_lahir: "Banyuwangi",
     tgl_lahir: "2007-03-22",
