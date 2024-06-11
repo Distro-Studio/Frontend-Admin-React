@@ -26,7 +26,7 @@ export default function SearchComponent({
   ...props
 }: Props) {
   return (
-    <InputGroup flex={"1 1 165px"} {...props}>
+    <InputGroup flex={"1 1 165px"} minW={"165px"} {...props}>
       <InputLeftElement>
         <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
       </InputLeftElement>

@@ -72,16 +72,16 @@ export default function Cuti() {
               initialSelected={filterConfig.tipe}
               confirmSelect={confirmTipeCuti}
               noSearch
-              flex={"1 1 160px"}
+              flex={"1 1 110px"}
               noReset
             />
 
             <SelectStatusCuti
-              placeholder="Pilih Status"
+              placeholder="Pilih Status Cuti"
               initialSelected={filterConfig.status}
               confirmSelect={confirmStatusCuti}
               noSearch
-              flex={"1 1 160px"}
+              flex={"1 1 110px"}
               noReset
             />
 

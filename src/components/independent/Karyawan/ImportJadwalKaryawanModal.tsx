@@ -59,6 +59,7 @@ export default function ImportJadwalKaryawanModal() {
     <>
       <Button
         flex={"1 1 110px"}
+        minW={"110px"}
         variant={"outline"}
         colorScheme="ap"
         className="clicky"
