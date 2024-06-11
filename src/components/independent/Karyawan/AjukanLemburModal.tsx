@@ -4,8 +4,6 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  HStack,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -26,8 +24,9 @@ import SelectKompensasi from "../../dependent/_Select/SelectKompensasi";
 import SelectShift from "../../dependent/_Select/SelectShift";
 import SelectTipeCuti from "../../dependent/_Select/SelectTipeCuti";
 import FormRequired from "../../form/FormRequired";
-import Textarea from "../../input/Textarea";
 import DatePicker from "../../input/DatePicker";
+import Textarea from "../../input/Textarea";
+import TimeInput from "../../input/TimeInput";
 
 interface Props extends ButtonProps {}
 
@@ -44,8 +43,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
       shift: "" as any,
       kompensasi: "" as any,
       tipe: "" as any,
-      durasi_jam: "" as any,
-      durasi_menit: "" as any,
+      durasi: "" as any,
       catatan: "",
     },
     validationSchema: yup.object().shape({
@@ -54,8 +52,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
       shift: yup.object().required("Harus diisi"),
       kompensasi: yup.object().required("Harus diisi"),
       tipe: yup.object().required("Harus diisi"),
-      durasi_jam: yup.string().required("Harus diisi"),
-      durasi_menit: yup.string().required("Harus diisi"),
+      durasi: yup.string().required("Harus diisi"),
       catatan: yup.string().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
@@ -174,64 +171,19 @@ export default function AjukanLemburModal({ ...props }: Props) {
                   </FormErrorMessage>
                 </FormControl>
 
-                <FormControl mb={4} isInvalid={!!formik.errors.durasi_jam}>
+                <FormControl mb={4} isInvalid={!!formik.errors.durasi}>
                   <FormLabel>
                     Durasi
                     <FormRequired />
                   </FormLabel>
-                  <HStack>
-                    <Input
-                      name="durasi_jam"
-                      placeholder="hh"
-                      onChange={(e) => {
-                        const value = e.target.value;
-                        if (
-                          value === "" ||
-                          (formik.values.durasi_jam === 0 && value === "0")
-                        ) {
-                          formik.setFieldValue("durasi_jam", "");
-                        } else {
-                          const numValue = parseInt(value);
-                          if (numValue < 24) {
-                            formik.setFieldValue("durasi_jam", numValue);
-                          }
-                        }
-                      }}
-                      value={
-                        formik.values.durasi_jam === ""
-                          ? ""
-                          : formik.values.durasi_jam.toString().padStart(2, "0")
-                      }
-                    />
-
-                    <Input
-                      name="durasi_menit"
-                      placeholder="mm"
-                      onChange={(e) => {
-                        const value = e.target.value;
-                        if (
-                          value === "" ||
-                          (formik.values.durasi_menit === 0 && value === "0")
-                        ) {
-                          formik.setFieldValue("durasi_menit", "");
-                        } else {
-                          const numValue = parseInt(value);
-                          if (numValue < 60) {
-                            formik.setFieldValue("durasi_menit", numValue);
-                          }
-                        }
-                      }}
-                      value={
-                        formik.values.durasi_menit === ""
-                          ? ""
-                          : formik.values.durasi_menit
-                              .toString()
-                              .padStart(2, "0")
-                      }
-                    />
-                  </HStack>
+                  <TimeInput
+                    value={formik.values.durasi}
+                    onChange={(newValue) => {
+                      formik.setFieldValue("durasi", newValue);
+                    }}
+                  />
                   <FormErrorMessage>
-                    {formik.errors.durasi_jam as string}
+                    {formik.errors.durasi as string}
                   </FormErrorMessage>
                 </FormControl>
               </SimpleGrid>
