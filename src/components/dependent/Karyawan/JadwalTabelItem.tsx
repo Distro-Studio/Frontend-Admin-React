@@ -48,7 +48,15 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
 
   const formik = useFormik({
     validateOnChange: false,
-    initialValues: { shift: { value: jadwal.id, label: jadwal.label } },
+    initialValues: {
+      shift: {
+        value: jadwal.id,
+        label: jadwal.label,
+        label2: `${formatTime(jadwal.jam_masuk)}-${formatTime(
+          jadwal.jam_keluar
+        )}`,
+      },
+    },
     validationSchema: yup
       .object()
       .shape({ shift: yup.object().required("Harus diisi") }),
@@ -138,6 +146,17 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
                   </Text>
                   <JenisKaryawanBadge data={data.unit_kerja.jenis_karyawan} />
                 </HStack>
+
+                {data.unit_kerja.jenis_karyawan !== 1 && (
+                  <HStack justify={"space-between"}>
+                    <Text fontSize={14} w={"120px"} opacity={0.6}>
+                      Jam Kerja
+                    </Text>
+                    <Text>{`${formatTime(jadwal.jam_masuk)} - ${formatTime(
+                      jadwal.jam_keluar
+                    )}`}</Text>
+                  </HStack>
+                )}
               </VStack>
             </VStack>
 

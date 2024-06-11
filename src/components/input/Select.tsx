@@ -128,7 +128,18 @@ const Select = forwardRef(
               whiteSpace={"nowrap"}
               textOverflow={"ellipsis"}
             >
-              {initialSelected ? initialSelected.label : placeholder}
+              {initialSelected ? (
+                <>
+                  {initialSelected.label}
+                  {initialSelected.label2 && (
+                    <span style={{ opacity: 0.6 }}>
+                      {` (${initialSelected.label2})`}
+                    </span>
+                  )}
+                </>
+              ) : (
+                placeholder
+              )}
             </Text>
           )}
 

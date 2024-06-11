@@ -33,7 +33,7 @@ export default function SelectShift({
     const options = dummyShift.map((item) => ({
       value: item.id,
       label: item.nama,
-      jam_kerja: `${formatTime(item.jam_from)} - ${formatTime(item.jam_to)}`,
+      label2: `${formatTime(item.jam_from)} - ${formatTime(item.jam_to)}`,
     }));
     setOptions([{ value: 0, label: "Libur" }, ...options]);
     // TODO get shift list
@@ -88,7 +88,7 @@ export default function SelectShift({
         >
           <Text>{option.label}</Text>
           <Text opacity={0.6} fontSize={14}>
-            {option.jam_kerja}
+            {option.label2}
           </Text>
         </Button>
       ))}
