@@ -4,7 +4,6 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  HStack,
   Input,
   Modal,
   ModalBody,
@@ -23,6 +22,7 @@ import * as yup from "yup";
 import backOnClose from "../../../lib/backOnClose";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import FormRequired from "../../form/FormRequired";
+import TimeInput from "../../input/TimeInput";
 
 interface Props extends ButtonProps {}
 
@@ -35,31 +35,16 @@ export default function TambahShift({ ...props }: Props) {
     validateOnChange: false,
     initialValues: {
       nama: "",
-      jam_from_hour: "" as any,
-      jam_from_minute: "" as any,
-      jam_to_hour: "" as any,
-      jam_to_minute: "" as any,
+      jam_from: "",
+      jam_to: "" as any,
     },
     validationSchema: yup.object().shape({
       nama: yup.string().required("Harus diisi"),
-      jam_from_hour: yup.number().required("Harus diisi"),
-      jam_from_minute: yup.number().required("Harus diisi"),
-      jam_to_hour: yup.number().required("Harus diisi"),
-      jam_to_minute: yup.number().required("Harus diisi"),
+      jam_from: yup.string().required("Harus diisi"),
+      jam_to: yup.string().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
-      const jam_from = new Date(
-        Date.UTC(0, 0, 0, values.jam_from_hour, values.jam_from_minute)
-      );
-      const jam_to = new Date(
-        Date.UTC(0, 0, 0, values.jam_to_hour, values.jam_to_minute)
-      );
-
-      const payload = new FormData();
-      payload.append("nama", values.nama);
-      payload.append("jam_from", jam_from.toString());
-      payload.append("jam_to", jam_to.toString());
 
       //TODO api tambah kelompok gaji
     },
@@ -111,71 +96,18 @@ export default function TambahShift({ ...props }: Props) {
                 Jam Kerja
                 <FormRequired />
               </FormLabel>
-              <Wrap spacing={4}>
-                <FormControl
-                  flex={"1 1"}
-                  isInvalid={
-                    !!formik.errors.jam_from_hour ||
-                    !!formik.errors.jam_from_minute
-                  }
-                >
-                  <HStack>
-                    <Input
-                      name="jam_from_hour"
-                      placeholder="hh"
-                      onChange={(e) => {
-                        const value = e.target.value;
-                        if (
-                          value === "" ||
-                          (formik.values.jam_from_hour === 0 && value === "0")
-                        ) {
-                          formik.setFieldValue("jam_from_hour", "");
-                        } else {
-                          const numValue = parseInt(value);
-                          if (numValue < 24) {
-                            formik.setFieldValue("jam_from_hour", numValue);
-                          }
-                        }
-                      }}
-                      value={
-                        formik.values.jam_from_hour === ""
-                          ? ""
-                          : formik.values.jam_from_hour
-                              .toString()
-                              .padStart(2, "0")
-                      }
-                    />
 
-                    <Input
-                      name="jam_from_minute"
-                      placeholder="mm"
-                      onChange={(e) => {
-                        const value = e.target.value;
-                        if (
-                          value === "" ||
-                          (formik.values.jam_from_minute === 0 && value === "0")
-                        ) {
-                          formik.setFieldValue("jam_from_minute", "");
-                        } else {
-                          const numValue = parseInt(value);
-                          if (numValue < 60) {
-                            formik.setFieldValue("jam_from_minute", numValue);
-                          }
-                        }
-                      }}
-                      value={
-                        formik.values.jam_from_minute === ""
-                          ? ""
-                          : formik.values.jam_from_minute
-                              .toString()
-                              .padStart(2, "0")
-                      }
-                    />
-                  </HStack>
+              <Wrap spacing={4}>
+                <FormControl flex={"1 1"} isInvalid={!!formik.errors.jam_from}>
+                  <TimeInput
+                    value={formik.values.jam_from}
+                    onChange={(newValue) => {
+                      formik.setFieldValue("jam_from", newValue);
+                    }}
+                  />
 
                   <FormErrorMessage>
-                    {(formik.errors.jam_from_hour as string) ||
-                      (formik.errors.jam_from_minute as string)}
+                    {formik.errors.jam_from as string}
                   </FormErrorMessage>
                 </FormControl>
 
@@ -183,68 +115,15 @@ export default function TambahShift({ ...props }: Props) {
                   -
                 </Text>
 
-                <FormControl
-                  flex={"1 1"}
-                  isInvalid={
-                    !!formik.errors.jam_to_hour || !!formik.errors.jam_to_minute
-                  }
-                >
-                  <HStack>
-                    <Input
-                      name="jam_to_hour"
-                      placeholder="hh"
-                      onChange={(e) => {
-                        const value = e.target.value;
-                        if (
-                          value === "" ||
-                          (formik.values.jam_to_hour === 0 && value === "0")
-                        ) {
-                          formik.setFieldValue("jam_to_hour", "");
-                        } else {
-                          const numValue = parseInt(value);
-                          if (numValue < 24) {
-                            formik.setFieldValue("jam_to_hour", numValue);
-                          }
-                        }
-                      }}
-                      value={
-                        formik.values.jam_to_hour === ""
-                          ? ""
-                          : formik.values.jam_to_hour
-                              .toString()
-                              .padStart(2, "0")
-                      }
-                    />
-
-                    <Input
-                      name="jam_to_minute"
-                      placeholder="mm"
-                      onChange={(e) => {
-                        const value = e.target.value;
-                        if (
-                          value === "" ||
-                          (formik.values.jam_to_minute === 0 && value === "0")
-                        ) {
-                          formik.setFieldValue("jam_to_minute", "");
-                        } else {
-                          const numValue = parseInt(value);
-                          if (numValue < 60) {
-                            formik.setFieldValue("jam_to_minute", numValue);
-                          }
-                        }
-                      }}
-                      value={
-                        formik.values.jam_to_minute === ""
-                          ? ""
-                          : formik.values.jam_to_minute
-                              .toString()
-                              .padStart(2, "0")
-                      }
-                    />
-                  </HStack>
+                <FormControl flex={"1 1"} isInvalid={!!formik.errors.jam_to}>
+                  <TimeInput
+                    value={formik.values.jam_to}
+                    onChange={(newValue) => {
+                      formik.setFieldValue("jam_to", newValue);
+                    }}
+                  />
                   <FormErrorMessage>
-                    {(formik.errors.jam_to_hour as string) ||
-                      (formik.errors.jam_to_minute as string)}
+                    {formik.errors.jam_to as string}
                   </FormErrorMessage>
                 </FormControl>
               </Wrap>

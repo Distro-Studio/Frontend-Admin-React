@@ -488,8 +488,8 @@ img[alt="Google"] {
   justify-content: stretch !important;
 }
 .rdp-button {
-  width: 30px !important;
-  height: 30px !important;
+  width: 36px !important;
+  height: 36px !important;
   border-radius: 100px !important;
   /* margin-left: 5px !important; */
   margin: auto !important;
@@ -501,14 +501,12 @@ img[alt="Google"] {
 .rdp-button:hover {
   background-color: var(--divider) !important;
 }
-.rdp-day_selected {
-  background: transparent !important;
-}
+.rdp-day_selected,
 .rdp-day_range_start,
 .rdp-day_range_end {
-  background: var(--p500a4) !important;
+  background: var(--p500) !important;
+  color: white !important;
 }
-
 .rdp-day_range_middle {
   background: var(--p500a3) !important;
 }
