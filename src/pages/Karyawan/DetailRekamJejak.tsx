@@ -20,33 +20,38 @@ export default function DetailRekamJejak() {
     rekam_jejak: [
       {
         id: 1,
+        tgl_mulai: "2024-06-01",
         promosi: "Undefined",
         mutasi: "Kepala Ruang",
         penghargaan: "S1 Teknik Sipil",
       },
       {
         id: 2,
+        tgl_mulai: "2024-05-16",
         promosi: "Undefined",
         mutasi: "Manager",
-        penghargaan: "S1 Teknik Sipil",
+        penghargaan: "S1 Teknik Akuntansi",
       },
       {
         id: 3,
+        tgl_mulai: "2024-02-12",
         promosi: "Undefined",
         mutasi: "Karlitos Kurniawan",
-        penghargaan: "S1 Teknik Sipil",
+        penghargaan: "S1 Teknik Elektro",
       },
       {
         id: 3,
+        tgl_mulai: "2024-08-23",
         promosi: "Undefined",
         mutasi: "Karlitos Kurniawan",
-        penghargaan: "S1 Teknik Sipil",
+        penghargaan: "S1 Teknik Hewan",
       },
       {
         id: 3,
+        tgl_mulai: "2024-06-06",
         promosi: "Undefined",
         mutasi: "Karlitos Kurniawan",
-        penghargaan: "S1 Teknik Sipil",
+        penghargaan: "S1 Teknik THT",
       },
     ],
   };

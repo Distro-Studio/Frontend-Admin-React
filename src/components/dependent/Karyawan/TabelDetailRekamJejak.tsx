@@ -16,6 +16,7 @@ import { Tabel__Column__Interface } from "../../../const/interfaces";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
+import formatDate from "../../../lib/formatDate";
 
 interface Props {
   data: any;
@@ -23,6 +24,11 @@ interface Props {
 
 export default function TabelDetailRekamJejak({ data }: Props) {
   const columns: Tabel__Column__Interface[] = [
+    {
+      key: "tgl_mulai",
+      label: "Tanggal Mulai",
+      dataType: "date",
+    },
     {
       key: "promosi",
       label: "Promosi Jabatan",
@@ -173,6 +179,9 @@ export default function TabelDetailRekamJejak({ data }: Props) {
                   key={rowIndex}
                   bg={rowIndex % 2 === 0 ? contentBgColor : bodyColor}
                 >
+                  <Td h={"72px"} pl={4} whiteSpace={"nowrap"}>
+                    {formatDate(row.tgl_mulai)}
+                  </Td>
                   <Td h={"72px"} pl={4} whiteSpace={"nowrap"}>
                     {row.promosi}
                   </Td>

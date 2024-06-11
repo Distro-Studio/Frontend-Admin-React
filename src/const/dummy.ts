@@ -4323,6 +4323,8 @@ const dummyTransferKaryawan = [
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
+    beri_tahu_manajer_direktur: true,
+    beri_tahu_karyawan: true,
     created_at: "2024-05-25T07:43:59.000000Z",
     updated_at: "2024-05-25T07:43:59.000000Z",
   },
@@ -4430,6 +4432,8 @@ const dummyTransferKaryawan = [
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
+    beri_tahu_manajer_direktur: true,
+    beri_tahu_karyawan: true,
     created_at: "2024-05-25T07:43:59.000000Z",
     updated_at: "2024-05-25T07:43:59.000000Z",
   },
@@ -4537,6 +4541,8 @@ const dummyTransferKaryawan = [
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
+    beri_tahu_manajer_direktur: true,
+    beri_tahu_karyawan: true,
     created_at: "2024-05-25T07:43:59.000000Z",
     updated_at: "2024-05-25T07:43:59.000000Z",
   },
@@ -4644,6 +4650,8 @@ const dummyTransferKaryawan = [
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
+    beri_tahu_manajer_direktur: true,
+    beri_tahu_karyawan: true,
     created_at: "2024-05-25T07:43:59.000000Z",
     updated_at: "2024-05-25T07:43:59.000000Z",
   },
@@ -4751,6 +4759,8 @@ const dummyTransferKaryawan = [
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
+    beri_tahu_manajer_direktur: true,
+    beri_tahu_karyawan: true,
     created_at: "2024-05-25T07:43:59.000000Z",
     updated_at: "2024-05-25T07:43:59.000000Z",
   },
@@ -4858,6 +4868,8 @@ const dummyTransferKaryawan = [
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
+    beri_tahu_manajer_direktur: true,
+    beri_tahu_karyawan: true,
     created_at: "2024-05-25T07:43:59.000000Z",
     updated_at: "2024-05-25T07:43:59.000000Z",
   },
@@ -4965,6 +4977,8 @@ const dummyTransferKaryawan = [
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
+    beri_tahu_manajer_direktur: true,
+    beri_tahu_karyawan: true,
     created_at: "2024-05-25T07:43:59.000000Z",
     updated_at: "2024-05-25T07:43:59.000000Z",
   },
@@ -5072,6 +5086,8 @@ const dummyTransferKaryawan = [
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
+    beri_tahu_manajer_direktur: true,
+    beri_tahu_karyawan: true,
     created_at: "2024-05-25T07:43:59.000000Z",
     updated_at: "2024-05-25T07:43:59.000000Z",
   },
@@ -5179,6 +5195,8 @@ const dummyTransferKaryawan = [
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
+    beri_tahu_manajer_direktur: true,
+    beri_tahu_karyawan: true,
     created_at: "2024-05-25T07:43:59.000000Z",
     updated_at: "2024-05-25T07:43:59.000000Z",
   },
@@ -5286,6 +5304,8 @@ const dummyTransferKaryawan = [
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
+    beri_tahu_manajer_direktur: true,
+    beri_tahu_karyawan: true,
     created_at: "2024-05-25T07:43:59.000000Z",
     updated_at: "2024-05-25T07:43:59.000000Z",
   },

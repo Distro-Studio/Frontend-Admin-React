@@ -50,7 +50,7 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
       kelompok_gaji_tujuan: "" as any,
       dokumen: "",
       alasan: "",
-      beri_tahu_manager_direktur: false,
+      beri_tahu_manajer_direktur: false,
       beri_tahu_karyawan: false,
     },
     validationSchema: yup.object().shape({
@@ -62,7 +62,7 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
       kelompok_gaji_tujuan: yup.mixed(),
       dokumen: yup.array().min(1, "Harus diisi").required("Harus diisi"),
       alasan: yup.string().required("Harus diisi"),
-      beri_tahu_manager_direktur: yup.boolean(),
+      beri_tahu_manajer_direktur: yup.boolean(),
       beri_tahu_karyawan: yup.boolean(),
     }),
     onSubmit: (values, { resetForm }) => {
@@ -243,7 +243,7 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
                   </Text>
                 </Checkbox>
                 <FormErrorMessage>
-                  {formik.errors.beri_tahu_manager_direktur as string}
+                  {formik.errors.beri_tahu_manajer_direktur as string}
                 </FormErrorMessage>
               </FormControl>
 

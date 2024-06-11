@@ -64,7 +64,7 @@ export default function EditTransferKaryawanModal({ data }: Props) {
       } as any,
       dokumen: data.dokumen as File[],
       alasan: data.alasan,
-      beri_tahu_manager_direktur: data.beri_tahu_manajer,
+      beri_tahu_manajer_direktur: data.beri_tahu_manajer_direktur,
       beri_tahu_karyawan: data.beri_tahu_karyawan,
     },
     validationSchema: yup.object().shape({
@@ -75,7 +75,7 @@ export default function EditTransferKaryawanModal({ data }: Props) {
       kelompok_gaji_tujuan: yup.mixed().required("Harus diisi"),
       dokumen: yup.array().min(1, "Harus diisi"),
       alasan: yup.string().required("Harus diisi"),
-      beri_tahu_manager_direktur: yup.boolean(),
+      beri_tahu_manajer_direktur: yup.boolean(),
       beri_tahu_karyawan: yup.boolean(),
     }),
     onSubmit: (values, { resetForm }) => {
@@ -249,18 +249,25 @@ export default function EditTransferKaryawanModal({ data }: Props) {
               </FormControl>
 
               <FormControl mb={2}>
-                <Checkbox colorScheme="ap">
+                <Checkbox
+                  colorScheme="ap"
+                  isChecked={formik.values.beri_tahu_manajer_direktur}
+                >
                   <Text fontSize={14}>
                     Beritahu Manajer Karyawan dan Direktur Melalui Email
                   </Text>
                 </Checkbox>
                 <FormErrorMessage>
-                  {formik.errors.beri_tahu_manager_direktur as string}
+                  {formik.errors.beri_tahu_manajer_direktur as string}
                 </FormErrorMessage>
               </FormControl>
 
               <FormControl>
-                <Checkbox colorScheme="ap" className="checkbox">
+                <Checkbox
+                  colorScheme="ap"
+                  className="checkbox"
+                  isChecked={formik.values.beri_tahu_karyawan}
+                >
                   <Text fontSize={14}>Beritahu Karyawan Melalui Email</Text>
                 </Checkbox>
                 <FormErrorMessage>
