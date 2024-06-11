@@ -124,9 +124,6 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       } else if (sortConfig.key === "status") {
         aValue = !a.tgl_keluar ? 1 : 0;
         bValue = !b.tgl_keluar ? 1 : 0;
-      } else if (sortConfig.key === "tgl_keluar") {
-        aValue = a.tgl_keluar;
-        bValue = b.tgl_keluar;
       }
 
       if (aValue === null && bValue === null) return 0;

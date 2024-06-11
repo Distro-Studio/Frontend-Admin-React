@@ -4121,7 +4121,7 @@ const dummyUnitKerja = [
   },
   {
     id: 2,
-    nama_unit: "Teknologi Informasi dan Komunikasi (TIK)",
+    nama_unit: "TIK",
     jenis_karyawan: 1,
     created_at: "2024-04-04T03:18:23.000000Z",
     updated_at: "2024-05-07T03:18:23.000000Z",
@@ -5801,7 +5801,7 @@ const dummyPekerjaKontrak = [
     },
     unit_kerja: {
       id: 17,
-      nama_unit: "Teknologi Informasi dan Komunikasi (TIK)",
+      nama_unit: "TIK",
       jenis_karyawan: 1,
       created_at: "2023-10-13T23:17:12.000000Z",
       updated_at: "2024-05-21T23:17:12.000000Z",

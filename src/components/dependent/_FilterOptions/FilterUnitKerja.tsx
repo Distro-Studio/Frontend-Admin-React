@@ -38,7 +38,7 @@ export default function FilterUnitKerja({
     },
     {
       id: 2,
-      nama_unit: "Teknologi Informasi dan Komunikasi (TIK)",
+      nama_unit: "TIK",
       jenis_karyawan: 1,
       created_at: "2024-04-04T03:18:23.000000Z",
       updated_at: "2024-05-07T03:18:23.000000Z",
