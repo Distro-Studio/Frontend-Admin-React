@@ -211,7 +211,7 @@ export default function DateRangePicker({
             : placeholder || `Pilih periode tanggal`}
         </Text>
 
-        <Icon as={RiCalendarLine} mt={"1px"} />
+        <Icon as={RiCalendarLine} />
       </Button>
 
       <Modal
