@@ -20,6 +20,8 @@ export default function TimeInput({ value, onChange, ...props }: Props) {
       date.setHours(hour);
       date.setMinutes(minute);
       onChangeRef.current(date.toISOString());
+    } else {
+      onChangeRef.current("");
     }
   }, [hour, minute]);
 

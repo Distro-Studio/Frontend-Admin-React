@@ -58,6 +58,8 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
     },
   });
 
+  console.log(formik.values.waktu);
+
   return (
     <>
       <Button
