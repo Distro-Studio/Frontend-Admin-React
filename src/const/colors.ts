@@ -17,10 +17,10 @@ const useWhiteDarkColor = () => {
 };
 
 const statusKaryawanColorScheme = {
-  tetap: "ap",
-  Tetap: "ap",
-  kontrak: "purple",
-  Kontrak: "purple",
+  tetap: "green",
+  Tetap: "green",
+  kontrak: "blue",
+  Kontrak: "blue",
   magang: "orange",
   Magang: "orange",
 };
