@@ -285,7 +285,7 @@ export default function DetailPenggajian() {
               </VStack>
             </CContainer>
 
-            <ButtonGroup ml={"auto"} mt={responsiveSpacing}>
+            <ButtonGroup ml={"auto"}>
               <Button colorScheme="red" variant={"outline"} className="clicky">
                 Tidak Disetujui
               </Button>
