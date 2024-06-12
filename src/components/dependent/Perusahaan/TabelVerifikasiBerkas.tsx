@@ -268,7 +268,7 @@ export default function TabelVerifikasiBerkas({ filterConfig }: Props) {
                           variant={"ghost"}
                           className="clicky"
                           as={Link}
-                          to={`/karyawan/${row.id}`}
+                          to={`/perusahaan/verifikasi-berkas/${row.id}`}
                           rightIcon={
                             <Icon as={RiArrowRightSLine} fontSize={20} />
                           }

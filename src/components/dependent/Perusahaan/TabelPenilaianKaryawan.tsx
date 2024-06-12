@@ -50,7 +50,7 @@ export default function TabelPenilaianKaryawan({ filterConfig }: Props) {
     },
     {
       key: "rata_rata",
-      label: "Rata-rata",
+      label: "Total Rata-rata",
       dataType: "string",
     },
   ];
@@ -280,7 +280,7 @@ export default function TabelPenilaianKaryawan({ filterConfig }: Props) {
                           variant={"ghost"}
                           className="clicky"
                           as={Link}
-                          to={`/karyawan/${row.id}`}
+                          to={`/perusahaan/penilaian-karyawan/${row.id}`}
                           rightIcon={
                             <Icon as={RiArrowRightSLine} fontSize={20} />
                           }

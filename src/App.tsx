@@ -53,6 +53,8 @@ import DetailPenggajian from "./pages/Keuangan/DetailPenggajian";
 import PelaporanKaryawan from "./pages/Perusahaan/PelaporanKaryawan";
 import PenilaianKaryawan from "./pages/Perusahaan/PenilaianKaryawan";
 import VerifikasiBerkas from "./pages/Perusahaan/VerifikasiBerkas";
+import DetailPenilaianKaryawan from "./pages/Perusahaan/DetailPenilaianKaryawan";
+import DetailVerifikasiBerkas from "./pages/Perusahaan/DetailVerifikasiBerkas ";
 
 // github pekok
 
@@ -408,6 +410,18 @@ export const App = () => (
           }
         />
         <Route
+          path="/perusahaan/penilaian-karyawan/:karyawanId"
+          element={
+            <NavContainer
+              active={5}
+              title="Detail Penilaian Karyawan"
+              left={"back"}
+            >
+              <DetailPenilaianKaryawan />
+            </NavContainer>
+          }
+        />
+        <Route
           path="/perusahaan/verifikasi-berkas"
           element={
             <NavContainer
@@ -417,6 +431,18 @@ export const App = () => (
               topNavActive={3}
             >
               <VerifikasiBerkas />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/perusahaan/verifikasi-berkas/:karyawanId"
+          element={
+            <NavContainer
+              active={5}
+              title="Detail Verifikasi Berkas"
+              left={"back"}
+            >
+              <DetailVerifikasiBerkas />
             </NavContainer>
           }
         />
