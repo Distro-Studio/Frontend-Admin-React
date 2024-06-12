@@ -525,9 +525,10 @@ export default function EditKaryawan() {
           colorScheme="ap"
           className="btn-ap clicky"
           h={"50px"}
-          onClick={handleNext}
+          type="submit"
+          form="editKaryawanForm"
         >
-          Lanjut
+          Simpan
         </Button>
       </ButtonGroup>
     );
@@ -583,7 +584,7 @@ export default function EditKaryawan() {
           Silahkan Isi Semua Data Informasi Dasar Karyawan
         </Text>
 
-        <form id="tambahKaryawanForm" onSubmit={formik.handleSubmit}>
+        <form id="editKaryawanForm" onSubmit={formik.handleSubmit}>
           {stepComponents[activeStep]()}
         </form>
 
