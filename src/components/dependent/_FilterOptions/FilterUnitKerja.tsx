@@ -237,7 +237,7 @@ export default function FilterUnitKerja({
                 fontWeight={400}
                 opacity={active ? 1 : 0.6}
                 bg={active && `var(--p500a2) !important`}
-                borderColor={active && "p.500"}
+                borderColor={active && "p.500 !important"}
                 flexShrink={0}
                 h={"40px"}
                 maxW={"100%"}

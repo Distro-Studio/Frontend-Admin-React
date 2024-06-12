@@ -119,7 +119,7 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
 
                 <FormControl flex={"1 1"} isInvalid={!!formik.errors.tgl}>
                   <FormLabel>
-                    Tanggal Acara
+                    Tanggal
                     <FormRequired />
                   </FormLabel>
                   <Input
@@ -137,7 +137,7 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
               <Wrap spacing={4} mb={4}>
                 <FormControl flex={"1 1"} isInvalid={!!formik.errors.tempat}>
                   <FormLabel>
-                    Tempat Acara
+                    Tempat
                     <FormRequired />
                   </FormLabel>
                   <Input
@@ -153,7 +153,7 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
 
                 <FormControl flex={"1 1"} isInvalid={!!formik.errors.waktu}>
                   <FormLabel>
-                    Waktu Acara
+                    Waktu
                     <FormRequired />
                   </FormLabel>
                   <TimeInput

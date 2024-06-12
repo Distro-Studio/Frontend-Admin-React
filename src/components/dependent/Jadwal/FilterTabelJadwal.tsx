@@ -62,7 +62,7 @@ export default function FilterTabelJadwal({
         minW={"110px"}
         variant={"outline"}
         colorScheme="ap"
-        className="btn-outline clicky"
+        className="clicky"
         rightIcon={<Icon as={RiEqualizer3Line} fontSize={iconSize} />}
         flexShrink={0}
         pr={3}

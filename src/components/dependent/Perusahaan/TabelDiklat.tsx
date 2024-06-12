@@ -1,7 +1,4 @@
 import {
-  Avatar,
-  Button,
-  Center,
   HStack,
   Icon,
   Table,
@@ -11,15 +8,9 @@ import {
   Th,
   Thead,
   Tr,
-  VStack,
 } from "@chakra-ui/react";
-import {
-  RiArrowDownLine,
-  RiArrowRightSLine,
-  RiArrowUpLine,
-} from "@remixicon/react";
+import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { dummyKaryawanList } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
@@ -37,29 +28,38 @@ export default function TabelDiklat({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
       key: "nama",
-      label: "Nama",
-      dataType: "avatarAndName",
-    },
-    {
-      key: "unit_kerja",
-      label: "Unit Kerja",
+      label: "Nama Acara",
       dataType: "string",
     },
     {
-      key: "kelompok_gaji",
-      label: "Kelompok Gaji",
+      key: "jenis",
+      label: "Jenis Acara",
       dataType: "string",
     },
     {
-      key: "take_home_pay",
-      label: "Take Home Pay",
+      key: "tgl",
+      label: "Tanggal",
       dataType: "string",
     },
     {
-      key: "status_penggajian",
-      label: "Status Penggajian",
-      dataType: "badge",
-      preferredTextAlign: "center",
+      key: "tempat",
+      label: "Tempat",
+      dataType: "string",
+    },
+    {
+      key: "waktu",
+      label: "Waktu",
+      dataType: "string",
+    },
+    {
+      key: "penanggung_jawab",
+      label: "Penanggung Jawab",
+      dataType: "string",
+    },
+    {
+      key: "peserta",
+      label: "Peserta",
+      dataType: "string",
     },
   ];
 
@@ -218,28 +218,6 @@ export default function TabelDiklat({ filterConfig }: Props) {
                       )}
                     </Th>
                   ))}
-
-                  {/* Kolom tetap di sebelah kanan */}
-                  <Th
-                    position={"sticky"}
-                    top={0}
-                    right={0}
-                    borderBottom={"none !important"}
-                    p={0}
-                    bg={bodyColor}
-                    zIndex={2}
-                  >
-                    <Center
-                      px={4}
-                      py={3}
-                      zIndex={99}
-                      borderLeft={"1px solid var(--divider3)"}
-                      borderBottom={"1px solid var(--divider3)"}
-                      h={"52px"}
-                    >
-                      <Text>Detail</Text>
-                    </Center>
-                  </Th>
                 </Tr>
               </Thead>
 
@@ -250,16 +228,9 @@ export default function TabelDiklat({ filterConfig }: Props) {
                     key={i}
                     bg={i % 2 === 0 ? contentBgColor : bodyColor}
                   >
-                    <Td whiteSpace={"nowrap"}>
-                      <HStack>
-                        <Avatar
-                          size={"sm"}
-                          name={row.user.nama}
-                          src={row.user.foto_profil}
-                        />
-                        <Text>{row.user.nama}</Text>
-                      </HStack>
-                    </Td>
+                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
+                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
                     <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
                     <Td whiteSpace={"nowrap"}>
                       {row.kelompok_gaji.nama_kelompok}
@@ -276,41 +247,6 @@ export default function TabelDiklat({ filterConfig }: Props) {
                         maxW={"120px"}
                         colorScheme={1 ? "green" : "orange"}
                       />
-                    </Td>
-
-                    {/* Kolom tetap di sebelah kanan */}
-                    <Td
-                      position={"sticky"}
-                      top={0}
-                      right={0}
-                      borderBottom={"none !important"}
-                      p={0}
-                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                      zIndex={1}
-                      w={"150px"}
-                    >
-                      <VStack
-                        borderLeft={"1px solid var(--divider3)"}
-                        w={"150px"}
-                        h={"72px"}
-                        px={4}
-                        align={"stretch"}
-                        justify={"center"}
-                      >
-                        <Button
-                          colorScheme="ap"
-                          variant={"ghost"}
-                          className="clicky"
-                          as={Link}
-                          to={`/keuangan/penggajian/${row.id}`}
-                          rightIcon={
-                            <Icon as={RiArrowRightSLine} fontSize={20} />
-                          }
-                          pr={3}
-                        >
-                          Detail
-                        </Button>
-                      </VStack>
                     </Td>
                   </Tr>
                 ))}
