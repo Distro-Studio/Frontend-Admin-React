@@ -378,6 +378,45 @@ export const App = () => (
             </NavContainer>
           }
         />
+        <Route
+          path="/perusahaan/pelaporan-karyawan"
+          element={
+            <NavContainer
+              active={5}
+              title="Pelaporan Karyawan"
+              topNavsData={perusahaanTopNavs}
+              topNavActive={1}
+            >
+              <Perusahaan />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/perusahaan/penilaian-karyawan"
+          element={
+            <NavContainer
+              active={5}
+              title="Penilaian Karyawan"
+              topNavsData={perusahaanTopNavs}
+              topNavActive={2}
+            >
+              <Perusahaan />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/perusahaan/verifikasi-berkas"
+          element={
+            <NavContainer
+              active={5}
+              title="Verifikasi-Berkas"
+              topNavsData={perusahaanTopNavs}
+              topNavActive={3}
+            >
+              <Perusahaan />
+            </NavContainer>
+          }
+        />
 
         <Route
           path="/pengaturan/akun/kelola-role"
