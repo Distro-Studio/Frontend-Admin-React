@@ -205,7 +205,7 @@ export default function DetailPresensi() {
                       overflow={"clip"}
                       justify={"center"}
                       bg={"var(--divider)"}
-                      borderRadius={6}
+                      borderRadius={8}
                       p={responsiveSpacing}
                     >
                       <Icon
