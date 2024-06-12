@@ -9,7 +9,7 @@ import {
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import FilterTabelPenggajian from "../../components/dependent/Keuangan/FilterTabelPenggajian";
-import TabelDiklat from "../../components/dependent/Perusahaan/TabelDiklat";
+import TabelPelaporanKaryawan from "../../components/dependent/Perusahaan/TabelPelaporanKaryawan";
 import TambahAcaraDiklat from "../../components/independent/Perusahaan/TambahAcaraDiklat";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -64,7 +64,7 @@ export default function PelaporanKaryawan() {
             <TambahAcaraDiklat flex={"1 1 220px"} />
           </Wrap>
 
-          <TabelDiklat filterConfig={filterConfig} />
+          <TabelPelaporanKaryawan filterConfig={filterConfig} />
         </CContainer>
       </CWrapper>
     </>
