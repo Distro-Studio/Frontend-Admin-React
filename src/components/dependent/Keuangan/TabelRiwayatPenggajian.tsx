@@ -285,7 +285,7 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
                         <Tooltip label="Publikasi Payslip" openDelay={500}>
                           <Button
                             colorScheme="ap"
-                            variant={"outline"}
+                            variant={"ghost"}
                             className="clicky"
                           >
                             Publikasi
