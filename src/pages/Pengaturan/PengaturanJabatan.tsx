@@ -1,15 +1,9 @@
-import {
-  Button,
-  Icon,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Wrap,
-} from "@chakra-ui/react";
-import { RiDownloadLine, RiSearchLine, RiUploadLine } from "@remixicon/react";
+import { Button, Icon, Wrap } from "@chakra-ui/react";
+import { RiDownloadLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import TabelJabatan from "../../components/dependent/Pengaturan/TabelPengaturanJabatan";
+import SearchComponent from "../../components/dependent/SearchComponent";
 import TambahJabatan from "../../components/independent/Pengaturan/TambahJabatan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -59,23 +53,12 @@ export default function PengaturanJabatan() {
             overflowX={"auto"}
           >
             <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
-              <InputGroup flex={"1 1 165px"}>
-                <InputLeftElement>
-                  <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
-                </InputLeftElement>
-                <Input
-                  placeholder="Pencarian"
-                  flex={"1 1 0"}
-                  onChange={(e) => {
-                    setFilterConfig((ps: any) => ({
-                      ...ps,
-                      search: e.target.value,
-                    }));
-                  }}
-                  value={filterConfig.search}
-                />
-              </InputGroup>
-
+              <SearchComponent
+                search={filterConfig.search}
+                setSearch={(newSearch) => {
+                  setFilterConfig((ps: any) => ({ ...ps, search: newSearch }));
+                }}
+              />
               <Button
                 flex={"1 1 110px"}
                 variant={"outline"}
