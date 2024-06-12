@@ -50,6 +50,9 @@ import DetailPresensi from "./pages/Presensi/DetailPresensi";
 import Presensi from "./pages/Presensi/Presensi";
 import EditKaryawan from "./pages/Karyawan/EditKaryawan";
 import DetailPenggajian from "./pages/Keuangan/DetailPenggajian";
+import PelaporanKaryawan from "./pages/Perusahaan/PelaporanKaryawan";
+import PenilaianKaryawan from "./pages/Perusahaan/PenilaianKaryawan";
+import VerifikasiBerkas from "./pages/Perusahaan/VerifikasiBerkas";
 
 // github pekok
 
@@ -387,7 +390,7 @@ export const App = () => (
               topNavsData={perusahaanTopNavs}
               topNavActive={1}
             >
-              <Perusahaan />
+              <PelaporanKaryawan />
             </NavContainer>
           }
         />
@@ -400,7 +403,7 @@ export const App = () => (
               topNavsData={perusahaanTopNavs}
               topNavActive={2}
             >
-              <Perusahaan />
+              <PenilaianKaryawan />
             </NavContainer>
           }
         />
@@ -413,7 +416,7 @@ export const App = () => (
               topNavsData={perusahaanTopNavs}
               topNavActive={3}
             >
-              <Perusahaan />
+              <VerifikasiBerkas />
             </NavContainer>
           }
         />
