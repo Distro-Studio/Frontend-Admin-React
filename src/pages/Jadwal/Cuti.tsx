@@ -1,16 +1,10 @@
-import {
-  Button,
-  Icon,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Wrap,
-} from "@chakra-ui/react";
-import { RiSearchLine, RiUploadLine } from "@remixicon/react";
+import { Button, Icon, Wrap } from "@chakra-ui/react";
+import { RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import SelectStatusCuti from "../../components/dependent/_Select/SelectStatusCuti";
-import SelectTipeCuti from "../../components/dependent/_Select/SelectTipeCuti";
+import SelectMultiStatusCuti from "../../components/dependent/_Select/SelectMultiStatusCuti";
+import SelectMultiTipeCuti from "../../components/dependent/_Select/SelectMultiTipeCuti";
 import TabelCuti from "../../components/dependent/Karyawan/TabelCuti";
+import SearchComponent from "../../components/dependent/SearchComponent";
 import AjukanCutiModal from "../../components/independent/Karyawan/AjukanCutiModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -21,14 +15,8 @@ export default function Cuti() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
-    tipe: {
-      value: 0,
-      label: "Semua Tipe Cuti",
-    },
-    status: {
-      value: 0,
-      label: "Semua Status",
-    },
+    tipe: [],
+    status: [],
     kompensasi: "",
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
@@ -50,39 +38,34 @@ export default function Cuti() {
       <CWrapper>
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
-            <InputGroup flex={"1 1 165px"}>
-              <InputLeftElement>
-                <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
-              </InputLeftElement>
-              <Input
-                placeholder="Pencarian"
-                flex={"1 1 0"}
-                onChange={(e) => {
-                  setFilterConfig((ps: any) => ({
-                    ...ps,
-                    search: e.target.value,
-                  }));
-                }}
-                value={filterConfig.search}
-              />
-            </InputGroup>
+            <SearchComponent
+              search={filterConfig.search}
+              setSearch={(newSearch) => {
+                setFilterConfig((ps: any) => ({
+                  ...ps,
+                  search: newSearch,
+                }));
+              }}
+            />
 
-            <SelectTipeCuti
-              placeholder="Pilih Tipe"
+            <SelectMultiTipeCuti
+              placeholder="Filter Tipe Cuti"
+              nullLabel={"Semua Tipe Cuti"}
               initialSelected={filterConfig.tipe}
               confirmSelect={confirmTipeCuti}
               noSearch
-              flex={"1 1 110px"}
-              noReset
+              flex={"1 1 165px"}
+              maxDisplayed={1}
             />
 
-            <SelectStatusCuti
-              placeholder="Pilih Status Cuti"
+            <SelectMultiStatusCuti
+              placeholder="Filter Status Cuti"
+              nullLabel={"Semua Status Cuti"}
               initialSelected={filterConfig.status}
               confirmSelect={confirmStatusCuti}
               noSearch
-              flex={"1 1 110px"}
-              noReset
+              flex={"1 1 165px"}
+              maxDisplayed={1}
             />
 
             <Button

@@ -232,7 +232,7 @@ export default function FilterUnitKerja({
             return (
               <HStack
                 key={i}
-                borderRadius={"full"}
+                borderRadius={8}
                 className="btn-outline"
                 fontWeight={400}
                 opacity={active ? 1 : 0.6}
@@ -241,6 +241,7 @@ export default function FilterUnitKerja({
                 flexShrink={0}
                 h={"40px"}
                 maxW={"100%"}
+                justify={"center"}
                 px={4}
                 cursor={"pointer"}
                 onClick={() => {
@@ -272,6 +273,7 @@ export default function FilterUnitKerja({
               >
                 <Text
                   lineHeight={1.3}
+                  textAlign={"center"}
                   w={"100%"}
                   h={"20px !important"}
                   noOfLines={1}

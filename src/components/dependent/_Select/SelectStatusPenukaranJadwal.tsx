@@ -13,6 +13,7 @@ interface Props extends ButtonProps {
   noSearch?: boolean;
   noReset?: boolean;
   modalSize?: string;
+  nullLabel?: string;
 }
 
 export default function SelectStatusPenukaranJadwal({
@@ -25,6 +26,7 @@ export default function SelectStatusPenukaranJadwal({
   noSearch,
   noReset,
   modalSize,
+  nullLabel,
   ...props
 }: Props) {
   const [search, setSearch] = useState<string>("");
@@ -66,6 +68,7 @@ export default function SelectStatusPenukaranJadwal({
       confirmSelect={confirmSelect}
       initialSelected={initialSelected}
       noReset={noReset}
+      nullLabel={nullLabel}
       {...props}
     >
       {filteredOptions?.map((option, i) => (

@@ -48,7 +48,7 @@ export default function PenukaranJadwal() {
               confirmSelect={confirmSelectStatusPenukaranJadwal}
               noSearch
               flex={"1 1 110px"}
-              noReset
+              nullLabel={"Semua Status Penukaran Jadawal"}
             />
 
             <Button

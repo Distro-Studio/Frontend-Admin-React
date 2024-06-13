@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, ButtonProps, Text } from "@chakra-ui/react";
 import { Select__Item__Interface } from "../../../const/interfaces";
 import Select from "../../input/Select";
+import { dummyCuti } from "../../../const/dummy";
 
 interface Props extends ButtonProps {
   placeholder: string;
@@ -28,25 +29,16 @@ export default function SelectTipeCuti({
   ...props
 }: Props) {
   const [search, setSearch] = useState<string>("");
-  const options = [
-    {
-      value: 0,
-      label: "Semua Tipe Cuti",
-    },
-    {
-      value: 2,
-      label: "Hamil",
-    },
-    {
-      value: 3,
-      label: "Haji",
-    },
-    {
-      value: 4,
-      label: "Cuti Mandiri",
-    },
-  ];
-  const filteredOptions = options?.filter((option) =>
+  const [options, setOptions] = useState<any | null>(null);
+  useEffect(() => {
+    const selectOptions = dummyCuti.map((item) => ({
+      value: item.id,
+      label: item.nama,
+    }));
+    setOptions(selectOptions);
+    // TODO get karyawan list
+  }, []);
+  const filteredOptions = options?.filter((option: any) =>
     option.label.toLowerCase().includes(search.toLocaleLowerCase())
   );
   const [selected, setSelected] = useState<Select__Item__Interface | null>(
@@ -72,7 +64,7 @@ export default function SelectTipeCuti({
       initialSelected={initialSelected}
       {...props}
     >
-      {filteredOptions?.map((option, i) => (
+      {filteredOptions?.map((option: any, i: number) => (
         <Button
           bg={
             selected && selected.value === option.value

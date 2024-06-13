@@ -1,7 +1,7 @@
 import { Button, Icon, Wrap } from "@chakra-ui/react";
 import { RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import SelectKompensasi from "../../components/dependent/_Select/SelectKompensasi";
+import SelectMultiKompensasi from "../../components/dependent/_Select/SelectMultiKompensasi";
 import TabelLembur from "../../components/dependent/Karyawan/TabelLembur";
 import SearchComponent from "../../components/dependent/SearchComponent";
 import AjukanLemburModal from "../../components/independent/Karyawan/AjukanLemburModal";
@@ -14,13 +14,10 @@ export default function Lembur() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
-    kompensasi: {
-      value: 0,
-      label: "Semua kompensasi",
-    },
+    kompensasi: [],
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
-  const confirmSelectStatusPenukaranJadwal = (newKompensasi: any) => {
+  const confirmSelectKompensasi = (newKompensasi: any) => {
     setFilterConfig((ps: any) => ({
       ...ps,
       kompensasi: newKompensasi,
@@ -42,13 +39,14 @@ export default function Lembur() {
               }}
             />
 
-            <SelectKompensasi
-              placeholder="Pilih Kompensasi"
+            <SelectMultiKompensasi
+              nullLabel={"Semua Kompensasi"}
+              placeholder="Filter Kompensasi"
               initialSelected={filterConfig.kompensasi}
-              confirmSelect={confirmSelectStatusPenukaranJadwal}
+              confirmSelect={confirmSelectKompensasi}
               noSearch
-              noReset
-              flex={"1 1 110px"}
+              flex={"1 1 165px"}
+              maxDisplayed={1}
             />
 
             <Button

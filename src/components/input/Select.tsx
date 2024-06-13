@@ -39,6 +39,8 @@ interface Props extends ButtonProps {
   modalSize?: string;
   isMultiSelect?: boolean;
   setSelected?: Dispatch<any>;
+  maxDisplayed?: number;
+  nullLabel?: string;
 }
 
 const Select = forwardRef(
@@ -59,6 +61,8 @@ const Select = forwardRef(
       modalSize,
       isMultiSelect,
       setSelected,
+      maxDisplayed,
+      nullLabel,
       ...props
     }: Props,
     ref
@@ -79,6 +83,8 @@ const Select = forwardRef(
     useImperativeHandle(ref, () => ({
       handleOnClose,
     }));
+
+    const md = maxDisplayed ? maxDisplayed : 2;
 
     // SX
     const selectOnError = useColorModeValue(
@@ -106,7 +112,7 @@ const Select = forwardRef(
           justifyContent={"space-between"}
           w={"100%"}
           pl={
-            isMultiSelect && selected && selected.length > 0
+            isMultiSelect && initialSelected && initialSelected.length > 0
               ? "6px !important"
               : ""
           }
@@ -116,9 +122,10 @@ const Select = forwardRef(
           {!isMultiSelect && (
             <Text
               opacity={
-                initialSelected !== null &&
-                initialSelected !== undefined &&
-                initialSelected !== ""
+                (initialSelected !== null &&
+                  initialSelected !== undefined &&
+                  initialSelected !== "") ||
+                nullLabel
                   ? 1
                   : 0.3
               }
@@ -138,27 +145,27 @@ const Select = forwardRef(
                   )}
                 </>
               ) : (
-                placeholder
+                nullLabel || placeholder
               )}
             </Text>
           )}
 
-          {isMultiSelect && selected && selected.length > 0 && (
+          {isMultiSelect && initialSelected && initialSelected.length > 0 && (
             <HStack
               w={"100%"}
               overflow={"hidden"}
               whiteSpace={"nowrap"}
-              spacing={2}
+              spacing={"5px"}
             >
-              {selected.map((karyawan: any, i: number) => {
-                const ok = i < 2;
+              {initialSelected.map((karyawan: any, i: number) => {
+                const ok = i < md;
                 return (
                   ok && (
                     <HStack
                       flex={"1 1 0"}
                       textAlign={"center"}
                       key={i}
-                      borderRadius={6}
+                      borderRadius={4}
                       bg={"var(--p500a4)"}
                       h={26}
                       px={2}
@@ -180,10 +187,10 @@ const Select = forwardRef(
                 );
               })}
 
-              {formik.values.karyawan_list.length > 2 && (
+              {initialSelected.length > 1 && (
                 <HStack
                   textAlign={"center"}
-                  borderRadius={6}
+                  borderRadius={4}
                   bg={"var(--p500a4)"}
                   h={26}
                   px={2}
@@ -198,16 +205,21 @@ const Select = forwardRef(
                     whiteSpace={"nowrap"}
                     textOverflow={"ellipsis"}
                   >
-                    +{formatNumber(formik.values.karyawan_list.length - 2)}
+                    +{formatNumber(initialSelected.length - 1)}
                   </Text>
                 </HStack>
               )}
             </HStack>
           )}
 
-          {isMultiSelect && selected && selected.length === 0 && (
-            <Text flexShrink={0} opacity={0.3} fontSize={14} fontWeight={400}>
-              {placeholder}
+          {isMultiSelect && initialSelected && initialSelected.length === 0 && (
+            <Text
+              flexShrink={0}
+              opacity={nullLabel ? 1 : 0.3}
+              fontSize={14}
+              fontWeight={400}
+            >
+              {nullLabel || placeholder}
             </Text>
           )}
 

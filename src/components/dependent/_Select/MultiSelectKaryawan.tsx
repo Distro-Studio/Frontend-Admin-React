@@ -32,10 +32,10 @@ export default function MultiSelectKaryawan({
     const selectOptions = dummyKaryawanList.map((item) => ({
       value: item.id,
       label: item.user.nama,
-      unit_kerja: item.unit_kerja.nama_unit,
+      label2: item.unit_kerja.nama_unit,
     }));
     setOptions(selectOptions);
-    // TODO get shift list
+    // TODO get karyawan list
   }, []);
 
   const filteredOptions = options?.filter((option: any) =>
@@ -104,7 +104,7 @@ export default function MultiSelectKaryawan({
         >
           <Text>{option.label}</Text>
           <Text opacity={0.6} fontWeight={400} fontSize={14}>
-            {option.unit_kerja}
+            {option.label2}
           </Text>
         </Button>
       ))}
