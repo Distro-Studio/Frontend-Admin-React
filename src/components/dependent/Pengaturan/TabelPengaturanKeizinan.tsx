@@ -52,7 +52,6 @@ export default function TabelPengaturanKeizinan({
     useState<boolean>(false);
   useEffect(() => {
     setPrevToggleSemuaIzin(toggleSemuaIzin);
-    console.log(prevToggleSemuaIzin, toggleSemuaIzin);
   }, [toggleSemuaIzin]);
 
   // Sort Config
