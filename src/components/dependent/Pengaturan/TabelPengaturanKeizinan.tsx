@@ -128,7 +128,7 @@ export default function TabelPengaturanKeizinan({
             const updatedItem = { ...item };
             Object.keys(updatedItem.permissions).forEach((key) => {
               if (updatedItem.permissions[key] !== null) {
-                updatedItem.permissions[key] = semuaIzin;
+                updatedItem.permissions[key] = !semuaIzin;
               }
             });
             return updatedItem;
@@ -138,7 +138,7 @@ export default function TabelPengaturanKeizinan({
         formikRef.current.setFieldValue("permissions", updatedPermissions);
       }
     }
-  }, [semuaIzin, toggleSemuaIzin]);
+  }, [semuaIzin, toggleSemuaIzin, prevToggleSemuaIzin]);
 
   // SX
   const contentBgColor = useContentBgColor();

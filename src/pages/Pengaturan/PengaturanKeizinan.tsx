@@ -178,8 +178,6 @@ export default function PengaturanKeizinan() {
     }
   }, [role_id]);
 
-  console.log(toggleSemuaIzin);
-
   return (
     <>
       <CWrapper>
@@ -193,14 +191,18 @@ export default function PengaturanKeizinan() {
                 </Text>
               </HStack>
 
-              <HStack>
+              <HStack
+                onClick={() => {
+                  setToggleSemuaIzin(!toggleSemuaIzin);
+                }}
+              >
                 <Checkbox
                   colorScheme="ap"
                   onChange={() => {
-                    setToggleSemuaIzin(!toggleSemuaIzin);
+                    setSemuaIzin(!semuaIzin);
                   }} // Mengubah nilai toggleSemuaIzin
                   onClick={(e) => e.stopPropagation()} // Menghentikan propagasi event agar tidak memicu perubahan checkbox
-                  isChecked={toggleSemuaIzin} // Menggunakan toggleSemuaIzin sebagai nilai isChecked
+                  isChecked={semuaIzin} // Menggunakan toggleSemuaIzin sebagai nilai isChecked
                   size={"lg"}
                 >
                   <Text fontWeight={500}>Semua izin</Text>
