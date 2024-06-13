@@ -14,10 +14,7 @@ export default function PenukaranJadwal() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
-    status: {
-      value: 0,
-      label: "Semua status",
-    },
+    status: "",
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
   const confirmSelectStatusPenukaranJadwal = (newStatus: any) => {
@@ -48,7 +45,7 @@ export default function PenukaranJadwal() {
               confirmSelect={confirmSelectStatusPenukaranJadwal}
               noSearch
               flex={"1 1 110px"}
-              nullLabel={"Semua Status Penukaran Jadawal"}
+              nullLabel={"Semua Status Penukaran Jadwal"}
             />
 
             <Button

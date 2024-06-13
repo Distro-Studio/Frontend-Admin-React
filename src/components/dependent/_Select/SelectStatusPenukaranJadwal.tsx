@@ -32,10 +32,6 @@ export default function SelectStatusPenukaranJadwal({
   const [search, setSearch] = useState<string>("");
   const options = [
     {
-      value: 0,
-      label: "Semua status",
-    },
-    {
       value: 1,
       label: "Disetujui",
     },
