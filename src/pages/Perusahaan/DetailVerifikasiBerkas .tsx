@@ -108,6 +108,7 @@ export default function DetailVerifikasiBerkas() {
             <SimpleGrid columns={[2, 3, 4, 5]} gap={responsiveSpacing}>
               {dummy.map((berkas: any, i: number) => (
                 <VStack
+                  key={i}
                   bg={"var(--divider)"}
                   borderRadius={6}
                   p={responsiveSpacing}
