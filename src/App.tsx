@@ -55,6 +55,7 @@ import PenilaianKaryawan from "./pages/Perusahaan/PenilaianKaryawan";
 import VerifikasiBerkas from "./pages/Perusahaan/VerifikasiBerkas";
 import DetailPenilaianKaryawan from "./pages/Perusahaan/DetailPenilaianKaryawan";
 import DetailVerifikasiBerkas from "./pages/Perusahaan/DetailVerifikasiBerkas ";
+import PengaturanKuisioner from "./pages/Pengaturan/PengaturanKuisioner";
 
 // github pekok
 
@@ -535,6 +536,19 @@ export const App = () => (
               topNavActive={1}
             >
               <PengaturanKompetensi />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/pengaturan/karyawan/kuisioner"
+          element={
+            <NavContainer
+              active={6}
+              title="Pengaturan - Kuisioner"
+              topNavsData={pengaturanTopNavs}
+              topNavActive={1}
+            >
+              <PengaturanKuisioner />
             </NavContainer>
           }
         />
