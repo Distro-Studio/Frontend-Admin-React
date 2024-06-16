@@ -487,6 +487,9 @@ img[alt="Google"] {
   align-items: stretch !important;
   justify-content: stretch !important;
 }
+.rdp-cell {
+  height: 46px !important;
+}
 .rdp-button {
   width: 36px !important;
   height: 36px !important;
