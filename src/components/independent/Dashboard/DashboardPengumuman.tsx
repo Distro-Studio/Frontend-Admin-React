@@ -58,7 +58,7 @@ export default function DashboardPengumuman({ ...props }: Props) {
       id: 4,
       judul: "Judul Pengumuman",
       pengumuman:
-        "Contoh isi pengumuman, bisa pendek, bisa sangat amat panjang sekali seperti ini, ber tele - tele kaya lele, apa lagi ya gatau ah gelap",
+        "Contoh isi pengumuman, bisa pendek, bisa sangat amat panjang sekali seperti ini, ber tele - tele kaya lele, apa lagi ya gatau",
       createdAt: "Tue May 07 2024 21:13:25 GMT+0700 (Western Indonesia Time)",
     },
     {
