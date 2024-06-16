@@ -61,6 +61,7 @@ export default function NavContainer({
             overflowX={"clip"}
             position={"sticky"}
             top={0}
+            w={"72px"}
             flexShrink={0}
           >
             <VStack>
@@ -148,8 +149,9 @@ export default function NavContainer({
           pb={["86px", null, 6]}
           align={"stretch"}
           minH={"100vh"}
+          maxW={"calc(100% - 72px)"}
           // w={"100%"}
-          flex={1}
+          flex={"1 1 0"}
           overflowX={"clip"}
           {...props}
         >
