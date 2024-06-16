@@ -296,7 +296,7 @@ export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
                       </Td>
 
                       <Td whiteSpace={"nowrap"}>{row.name}</Td>
-                      <Td maxW={"400px"}>{row.deskripsi}</Td>
+                      <Td>{row.deskripsi}</Td>
 
                       {/* Kolom tetap di sebelah kanan */}
                       <Td

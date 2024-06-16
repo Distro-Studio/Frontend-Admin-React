@@ -33,6 +33,10 @@ const pengaturanTopNavs = [
         link: "/pengaturan/karyawan/kompetensi",
         label: "Kompetensi",
       },
+      {
+        link: "/pengaturan/karyawan/kuisioner",
+        label: "Kuisioner",
+      },
     ],
   },
   {

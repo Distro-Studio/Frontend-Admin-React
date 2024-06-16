@@ -27,6 +27,7 @@ export default function PengaturanKelolaRole() {
             bg={useBodyColor()}
             borderRadius={12}
             w={"230px"}
+            flex={"0 0 230px"}
             flexShrink={0}
             gap={2}
           >
