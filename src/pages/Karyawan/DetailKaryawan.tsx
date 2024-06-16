@@ -31,6 +31,7 @@ import { iconSize, responsiveSpacing } from "../../const/sizes";
 import formatDate from "../../lib/formatDate";
 import formatMasaKerja from "../../lib/formatMasaKerja";
 import formatNumber from "../../lib/formatNumber";
+import BooleanBadge from "../../components/dependent/BooleanBadge";
 
 export default function DetailKaryawan() {
   const [data] = useState<any | null>(dummyDetailKaryawan);
@@ -114,6 +115,55 @@ export default function DetailKaryawan() {
                   // bg={"red"}
                 >
                   <HStack justify={"space-between"}>
+                    {/* <Text opacity={0.6}>Email</Text> */}
+                    <Highlighter
+                      highlightClassName="hw"
+                      unhighlightClassName="uw"
+                      searchWords={searchQuery}
+                      autoEscape={true}
+                      textToHighlight="Status Aktif"
+                    />
+                    <FlexLine />
+                    <Text fontWeight={500} textAlign={"right"}>
+                      <BooleanBadge
+                        data={data.user.status_aktif}
+                        trueValue="Aktif"
+                        falseValue="Tidak Aktif"
+                      />
+                    </Text>
+                  </HStack>
+
+                  <HStack justify={"space-between"}>
+                    {/* <Text opacity={0.6}>No. Induk Karyawan</Text> */}
+                    <Highlighter
+                      highlightClassName="hw"
+                      unhighlightClassName="uw"
+                      searchWords={searchQuery}
+                      autoEscape={true}
+                      textToHighlight="Username Akun"
+                    />
+                    <FlexLine />
+                    <Text fontWeight={500} textAlign={"right"}>
+                      {data.user.username}
+                    </Text>
+                  </HStack>
+
+                  <HStack justify={"space-between"}>
+                    {/* <Text opacity={0.6}>Email</Text> */}
+                    <Highlighter
+                      highlightClassName="hw"
+                      unhighlightClassName="uw"
+                      searchWords={searchQuery}
+                      autoEscape={true}
+                      textToHighlight="Email"
+                    />
+                    <FlexLine />
+                    <Text fontWeight={500} textAlign={"right"}>
+                      {data.email}
+                    </Text>
+                  </HStack>
+
+                  <HStack justify={"space-between"}>
                     {/* <Text opacity={0.6}>No. Induk Karyawan</Text> */}
                     <Highlighter
                       highlightClassName="hw"
@@ -176,21 +226,6 @@ export default function DetailKaryawan() {
                     <FlexLine />
                     <Text fontWeight={500} textAlign={"right"}>
                       {data.no_hp}
-                    </Text>
-                  </HStack>
-
-                  <HStack justify={"space-between"}>
-                    {/* <Text opacity={0.6}>Email</Text> */}
-                    <Highlighter
-                      highlightClassName="hw"
-                      unhighlightClassName="uw"
-                      searchWords={searchQuery}
-                      autoEscape={true}
-                      textToHighlight="Email"
-                    />
-                    <FlexLine />
-                    <Text fontWeight={500} textAlign={"right"}>
-                      {data.email}
                     </Text>
                   </HStack>
 
