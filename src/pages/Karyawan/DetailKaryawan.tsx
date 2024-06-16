@@ -596,7 +596,7 @@ export default function DetailKaryawan() {
                         />
                         <FlexLine />
                         <Text fontWeight={500} textAlign={"right"}>
-                          {data.status_karyawan}
+                          {data.status_karyawan.label}
                         </Text>
                       </HStack>
 
