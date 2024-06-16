@@ -2922,11 +2922,36 @@ const dummyShift = [
 ];
 
 const dummyKelolaRole = [
-  { id: 1, name: "Super Admin", deskripsi: "mbuh pak mumet pokoke lhosss" },
-  { id: 2, name: "Direktur", deskripsi: "mbuh pak mumet pokoke lhosss" },
-  { id: 3, name: "Admin", deskripsi: "mbuh pak mumet pokoke lhosss" },
-  { id: 4, name: "Manager", deskripsi: "mbuh pak mumet pokoke lhosss" },
-  { id: 5, name: "Karyawan", deskripsi: "mbuh pak mumet pokoke lhosss" },
+  {
+    id: 1,
+    name: "Super Admin",
+    deskripsi:
+      "Deskripsi suatu role disini, bisa pendek bisa panjang, pure text",
+  },
+  {
+    id: 2,
+    name: "Direktur",
+    deskripsi:
+      "Deskripsi suatu role disini, bisa pendek bisa panjang, pure text",
+  },
+  {
+    id: 3,
+    name: "Admin",
+    deskripsi:
+      "Deskripsi suatu role disini, bisa pendek bisa panjang, pure text",
+  },
+  {
+    id: 4,
+    name: "Manager",
+    deskripsi:
+      "Deskripsi suatu role disini, bisa pendek bisa panjang, pure text",
+  },
+  {
+    id: 5,
+    name: "Karyawan",
+    deskripsi:
+      "Deskripsi suatu role disini, bisa pendek bisa panjang, pure text",
+  },
 ];
 
 const dummyKelompokGaji = [
