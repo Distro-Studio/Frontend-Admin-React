@@ -37,20 +37,22 @@ import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useScreenWidth from "../../lib/useScreenWidth";
+import SelectStatusKaryawan from "../../components/dependent/_Select/SelectStatusKaryawan";
 const validationSchemaStep1 = yup.object({
   // nama_karyawan: yup.string().required("Harus diisi"),
   // email: yup.string().email("Email tidak valid").required("Harus diisi"),
   // rm: yup.string().required("Harus diisi"),
   // no_manulife: yup.string().required("Harus diisi"),
   // tgl_masuk: yup.string().required("Harus diisi"),
-  // unit_kerja: yup.string().required("Harus diisi"),
-  // jabatan: yup.string().required("Harus diisi"),
-  // kompetensi: yup.string(),
-  // role: yup.string().required("Harus diisi"),
+  // status_karyawan: yup.mixed().required("Harus diisi"),
+  // unit_kerja: yup.mixed().required("Harus diisi"),
+  // jabatan: yup.mixed().required("Harus diisi"),
+  // kompetensi: yup.mixed(),
+  // role: yup.mixed().required("Harus diisi"),
 });
 
 const validationSchemaStep2 = yup.object({
-  // kelompok_gaji: yup.string().required("Harus diisi"),
+  // kelompok_gaji: yup.mixed().required("Harus diisi"),
   // no_rekening: yup.string().required("Harus diisi"),
   // tunjangan_uang_lembur: yup.string().required("Harus diisi"),
   // tunjangan_fungsional: yup.string().required("Harus diisi"),
@@ -58,7 +60,7 @@ const validationSchemaStep2 = yup.object({
   // tunjangan_lainnya: yup.string().required("Harus diisi"),
   // uang_lembur: yup.string().required("Harus diisi"),
   // uang_makan: yup.string().required("Harus diisi"),
-  // ptkp: yup.string().required("Harus diisi"),
+  // ptkp: yup.mixed().required("Harus diisi"),
 });
 
 const validationSchemaStep3 = yup.object({
@@ -85,6 +87,7 @@ export default function TambahKaryawan() {
       rm: "",
       no_manulife: "",
       tgl_masuk: "",
+      status_karyawan: "" as any,
       unit_kerja: "" as any,
       jabatan: "" as any,
       kompetensi: "" as any,
@@ -124,7 +127,11 @@ export default function TambahKaryawan() {
   const handleNext = () => {
     formik.validateForm().then((errors) => {
       if (Object.keys(errors).length === 0) {
-        setActiveStep(activeStep + 1);
+        if (activeStep === 2) {
+          formik.submitForm();
+        } else {
+          setActiveStep(activeStep + 1);
+        }
       } else {
         const touchedErrors: Record<string, boolean> = {};
         Object.keys(errors).forEach((key) => {
@@ -229,6 +236,27 @@ export default function TambahKaryawan() {
             dateValue={formik.values.tgl_masuk}
           />
           <FormErrorMessage>{formik.errors.tgl_masuk}</FormErrorMessage>
+        </FormControl>
+
+        <FormControl
+          mb={4}
+          flex={"1 1 300px"}
+          isInvalid={!!formik.errors.status_karyawan}
+        >
+          <FormLabel>
+            Status Karyawan
+            <FormRequired />
+          </FormLabel>
+          <SelectStatusKaryawan
+            name="status_karyawan"
+            formik={formik}
+            placeholder="Pilih Status Karyawan"
+            initialSelected={formik.values.status_karyawan}
+            noSearch
+          />
+          <FormErrorMessage>
+            {formik.errors.unit_kerja as string}
+          </FormErrorMessage>
         </FormControl>
 
         <FormControl
@@ -608,8 +636,7 @@ export default function TambahKaryawan() {
           colorScheme="ap"
           className="btn-ap clicky"
           h={"50px"}
-          type="submit"
-          form="tambahKaryawanForm"
+          onClick={handleNext}
         >
           Tambah Karyawan
         </Button>
