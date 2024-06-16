@@ -239,14 +239,7 @@ export default function TabelDiklat({ filterConfig }: Props) {
                       Rp {formatNumber(row.no_bpjsksh)}
                     </Td>
                     <Td whiteSpace={"nowrap"} textAlign={"center"}>
-                      <BooleanBadge
-                        data={1}
-                        trueValue="Disetujui"
-                        falseValue="Menunggu"
-                        w={"100%"}
-                        maxW={"120px"}
-                        colorScheme={1 ? "green" : "orange"}
-                      />
+                      dummy text
                     </Td>
                   </Tr>
                 ))}
