@@ -36,7 +36,7 @@ import useBackOnClose from "../../lib/useBackOnClose";
 
 interface Props extends ButtonProps {
   dateValue: string;
-  defaultDateSelected?: Date;
+  initialDateValue?: Date;
   dateFormatOptions?: any;
   formik?: any;
   name?: string;
@@ -52,7 +52,7 @@ export default function DatePicker({
   placeholder,
   confirmDate,
   dateValue,
-  defaultDateSelected,
+  initialDateValue,
   dateFormatOptions,
   noUseBackOnClose,
   nullable,
@@ -64,18 +64,18 @@ export default function DatePicker({
   const [date, setDate] = useState<Date>(new Date());
   const [tahun, setTahun] = useState<number>(date.getFullYear());
   const [bulan, setBulan] = useState<number>(date.getMonth() + 1);
-  const [selected, setSelected] = useState<any>();
+  const [selected, setSelected] = useState<any>(initialDateValue);
   const confirmSelect = () => {
-    let action = false;
+    let condirmable = false;
     if (nullable) {
-      action = true;
+      condirmable = true;
     } else {
       if (selected) {
-        action = true;
+        condirmable = true;
       }
     }
 
-    if (action && formik && name) {
+    if (condirmable && formik && name) {
       formik.setFieldValue(name, selected);
     } else if (confirmDate) {
       confirmDate(selected);
@@ -83,10 +83,13 @@ export default function DatePicker({
   };
 
   useEffect(() => {
-    if (defaultDateSelected) {
-      setSelected(defaultDateSelected);
+    if (initialDateValue) {
+      setSelected(initialDateValue);
+      setDate(initialDateValue);
+      setBulan(initialDateValue.getMonth());
+      setTahun(initialDateValue.getFullYear());
     }
-  }, [defaultDateSelected]);
+  }, [initialDateValue]);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const backOnClose = useBackOnClose;
@@ -152,8 +155,6 @@ export default function DatePicker({
       color: "var(--p500)",
     },
   };
-
-  // SX
   const errorColor = useColorModeValue("#E53E3E", "#FC8181");
 
   return (
@@ -192,7 +193,7 @@ export default function DatePicker({
         isOpen={isOpen}
         onClose={() => {
           handleOnClose();
-          setSelected(dateValue);
+          setSelected(new Date(dateValue));
         }}
         initialFocusRef={initialRef}
         isCentered

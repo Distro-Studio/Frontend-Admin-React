@@ -4189,13 +4189,7 @@ const dummyUnitKerja = [
     created_at: "2024-04-22T03:18:23.000000Z",
     updated_at: "2024-05-07T03:18:23.000000Z",
   },
-  {
-    id: 12,
-    nama_unit: "Patologi Klinik",
-    jenis_karyawan: 1,
-    created_at: "2024-05-05T03:18:23.000000Z",
-    updated_at: "2024-05-07T03:18:23.000000Z",
-  },
+
   {
     id: 13,
     nama_unit: "Radiologi",
@@ -5897,25 +5891,26 @@ const dummyDetailKaryawan = {
     created_at: "2024-04-29T23:48:34.000000Z",
     updated_at: "2024-06-06T23:48:34.000000Z",
   },
-  role: [
-    {
-      id: 3,
-      name: "Admin",
-      deskripsi:
-        "satellites native some bottle blanket extra continued young married lost far great door short quick example tin teeth variety shadow does line met these",
-      guard_name: "web",
-      created_at: "2024-04-19T23:48:34.000000Z",
-      updated_at: "2024-06-06T23:48:34.000000Z",
-      pivot: {
-        model_type: "App\\Models\\User",
-        model_id: 3,
-        role_id: 3,
-      },
+  role: {
+    id: 3,
+    name: "Admin",
+    deskripsi:
+      "satellites native some bottle blanket extra continued young married lost far great door short quick example tin teeth variety shadow does line met these",
+    guard_name: "web",
+    created_at: "2024-04-19T23:48:34.000000Z",
+    updated_at: "2024-06-06T23:48:34.000000Z",
+    pivot: {
+      model_type: "App\\Models\\User",
+      model_id: 3,
+      role_id: 3,
     },
-  ],
+  },
   nik: "2329429",
   nik_ktp: "327640",
-  status_karyawan: "Magang",
+  status_karyawan: {
+    id: 2,
+    label: "Kontrak",
+  },
   tempat_lahir: "Subang",
   tgl_lahir: "1924-06-02",
   kelompok_gaji: {
@@ -5933,7 +5928,7 @@ const dummyDetailKaryawan = {
   uang_lembur: 974476,
   uang_makan: 1467478,
   ptkp: {
-    id: 7,
+    id: 4,
     kode_ptkp: "K/2",
     kategori_ter_id: 2,
     created_at: "2024-06-06T23:48:34.000000Z",

@@ -128,7 +128,7 @@ export default function EditTransferKaryawanModal({ data }: Props) {
                     name="tgl_mulai"
                     formik={formik}
                     dateValue={formik.values.tgl_mulai}
-                    defaultDateSelected={new Date(formik.values.tgl_mulai)}
+                    initialDateValue={new Date(formik.values.tgl_mulai)}
                     dateFormatOptions={{
                       year: "numeric",
                       month: "numeric",

@@ -45,7 +45,7 @@ interface Props extends ButtonProps {
   placeholder?: string;
   confirmDate?: (from: Date, to: Date) => void;
   dateValue?: { from: Date; to: Date };
-  defaultDateSelected?: { from: Date; to: Date };
+  initialDateValue?: { from: Date; to: Date };
   dateFormatFromOptions?: any;
   dateFormatToOptions?: any;
   noBackOnClose?: boolean;
@@ -58,7 +58,7 @@ export default function DateRangePicker({
   placeholder,
   confirmDate,
   dateValue,
-  defaultDateSelected,
+  initialDateValue,
   dateFormatFromOptions,
   dateFormatToOptions,
   noBackOnClose,
@@ -107,7 +107,7 @@ export default function DateRangePicker({
   function todayMonth() {
     const today = new Date();
     setDate(today);
-    setSelected(defaultDateSelected);
+    setSelected(initialDateValue);
     setBulan(today.getMonth() + 1);
     setTahun(today.getFullYear());
   }

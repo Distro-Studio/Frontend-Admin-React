@@ -58,7 +58,7 @@ export default function Jadwal() {
                 flex={"1 1 220px"}
                 confirmDate={confirmDateRange}
                 dateValue={filterConfig.range_tgl}
-                defaultDateSelected={defaultRangeTgl}
+                initialDateValue={defaultRangeTgl}
               />
             </Wrap>
 

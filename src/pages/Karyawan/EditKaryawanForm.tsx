@@ -1,118 +1,112 @@
 import {
-  Box,
   Button,
   ButtonGroup,
   FormControl,
   FormErrorMessage,
   FormHelperText,
   FormLabel,
-  HStack,
   Input,
   InputGroup,
   InputLeftElement,
-  Step,
-  StepIcon,
-  StepIndicator,
-  StepNumber,
-  Stepper,
-  StepSeparator,
-  StepStatus,
-  StepTitle,
   Text,
-  useSteps,
   Wrap,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
+import { Dispatch } from "react";
 import * as yup from "yup";
 import SelectJabatan from "../../components/dependent/_Select/SelectJabatan";
 import SelectKelompokGaji from "../../components/dependent/_Select/SelectKelompokGaji";
 import SelectKompetensi from "../../components/dependent/_Select/SelectKompetensi";
 import SelectPtkp from "../../components/dependent/_Select/SelectPtkp";
 import SelectRole from "../../components/dependent/_Select/SelectRole";
+import SelectStatusKaryawan from "../../components/dependent/_Select/SelectStatusKaryawan";
 import SelectUnitKerja from "../../components/dependent/_Select/SelectUnitKerja";
 import FormRequired from "../../components/form/FormRequired";
 import DatePicker from "../../components/input/DatePicker";
-import CContainer from "../../components/wrapper/CContainer";
-import CWrapper from "../../components/wrapper/CWrapper";
-import { useBodyColor } from "../../const/colors";
-import { responsiveSpacing } from "../../const/sizes";
-import useScreenWidth from "../../lib/useScreenWidth";
-import SelectStatusKaryawan from "../../components/dependent/_Select/SelectStatusKaryawan";
+
 const validationSchemaStep1 = yup.object({
   // nama_karyawan: yup.string().required("Harus diisi"),
   // email: yup.string().email("Email tidak valid").required("Harus diisi"),
   // no_rm: yup.string().required("Harus diisi"),
   // no_manulife: yup.string().required("Harus diisi"),
   // tgl_masuk: yup.string().required("Harus diisi"),
-  // status_karyawan: yup.mixed().required("Harus diisi"),
-  // unit_kerja: yup.mixed().required("Harus diisi"),
-  // jabatan: yup.mixed().required("Harus diisi"),
-  // kompetensi: yup.mixed(),
-  // role: yup.mixed().required("Harus diisi"),
+  // status_karyawan: yup.string().required("Harus diisi"),
+  // unit_kerja: yup.string().required("Harus diisi"),
+  // jabatan: yup.string().required("Harus diisi"),
+  // kompetensi: yup.string(),
+  // role: yup.string().required("Harus diisi"),
 });
 
 const validationSchemaStep2 = yup.object({
-  // kelompok_gaji: yup.mixed().required("Harus diisi"),
-  // no_rekening: yup.string().required("Harus diisi"),
-  // tunjangan_uang_lembur: yup.string().required("Harus diisi"),
-  // tunjangan_fungsional: yup.string().required("Harus diisi"),
-  // tunjangan_khusus: yup.string().required("Harus diisi"),
-  // tunjangan_lainnya: yup.string().required("Harus diisi"),
-  // uang_lembur: yup.string().required("Harus diisi"),
-  // uang_makan: yup.string().required("Harus diisi"),
-  // ptkp: yup.mixed().required("Harus diisi"),
+  kelompok_gaji: yup.mixed().required("Harus diisi"),
+  no_rekening: yup.string().required("Harus diisi"),
+  tunjangan_uang_lembur: yup.string().required("Harus diisi"),
+  tunjangan_fungsional: yup.string().required("Harus diisi"),
+  tunjangan_khusus: yup.string().required("Harus diisi"),
+  tunjangan_lainnya: yup.string().required("Harus diisi"),
+  uang_lembur: yup.string().required("Harus diisi"),
+  uang_makan: yup.string().required("Harus diisi"),
+  ptkp: yup.mixed().required("Harus diisi"),
 });
 
-const validationSchemaStep3 = yup.object({
-  username: yup.string().required("Harus diisi"),
-  password: yup.string().required("Harus diisi"),
-});
+const validationSchema = [validationSchemaStep1, validationSchemaStep2];
 
-const validationSchema = [
-  validationSchemaStep1,
-  validationSchemaStep2,
-  validationSchemaStep3,
-];
+interface Props {
+  activeStep: number;
+  setActiveStep: Dispatch<number>;
+  data: any;
+}
 
-export default function TambahKaryawan() {
-  const steps = [
-    { title: "Data Karyawan" },
-    { title: "Penggajian" },
-    { title: "Akun Karyawan" },
-  ];
-  const { activeStep, setActiveStep } = useSteps();
-  const activeStepText = steps[activeStep].title;
-
-  const sw = useScreenWidth();
-
+export default function EditKaryawanForm({
+  activeStep,
+  setActiveStep,
+  data,
+}: Props) {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      nama_karyawan: "",
-      email: "",
-      no_rm: "",
-      no_manulife: "",
-      tgl_masuk: "",
-      status_karyawan: "" as any,
-      unit_kerja: "" as any,
-      jabatan: "" as any,
-      kompetensi: "" as any,
-      role: "" as any,
-      kelompok_gaji: "" as any,
-      no_rekening: "",
-      tunjangan_uang_lembur: "",
-      tunjangan_fungsional: "",
-      tunjangan_khusus: "",
-      tunjangan_lainnya: "",
-      uang_lembur: "",
-      uang_makan: "",
-      ptkp: "" as any,
-      username: "",
-      password: "",
+      nama_karyawan: data.user.nama,
+      email: data.email,
+      no_rm: data.no_rm,
+      no_manulife: data.no_manulife,
+      tgl_masuk: data.tgl_masuk,
+      status_karyawan: {
+        value: data.status_karyawan.id,
+        label: data.status_karyawan.label,
+      },
+      unit_kerja: {
+        value: data.unit_kerja.id,
+        label: data.unit_kerja.nama_unit,
+      },
+      jabatan: {
+        value: data.jabatan.id,
+        label: data.jabatan.nama_jabatan,
+      },
+      kompetensi: {
+        value: data.kompetensi.id,
+        label: data.kompetensi.nama_kompetensi,
+      },
+      role: {
+        value: data.role.id,
+        label: data.role.name,
+      },
+      kelompok_gaji: {
+        value: data.kelompok_gaji.id,
+        label: data.kelompok_gaji.nama_kelompok,
+      },
+      no_rekening: data.no_rekening,
+      tunjangan_uang_lembur: data.uang_lembur,
+      tunjangan_fungsional: data.tunjangan_fungsional,
+      tunjangan_khusus: data.tunjangan_khusus,
+      tunjangan_lainnya: data.tunjangan_lainnya,
+      uang_lembur: data.uang_lembur,
+      uang_makan: data.uang_makan,
+      ptkp: {
+        value: data.ptkp.id,
+        label: data.ptkp.kode_ptkp,
+      },
     },
-
     validationSchema: validationSchema[activeStep],
-
     onSubmit: (values, { resetForm }) => {
       console.log(values);
       //TODO api post tambah karyawan step 1
@@ -122,11 +116,7 @@ export default function TambahKaryawan() {
   const handleNext = () => {
     formik.validateForm().then((errors) => {
       if (Object.keys(errors).length === 0) {
-        if (activeStep === 2) {
-          formik.submitForm();
-        } else {
-          setActiveStep(activeStep + 1);
-        }
+        setActiveStep(activeStep + 1);
       } else {
         const touchedErrors: Record<string, boolean> = {};
         Object.keys(errors).forEach((key) => {
@@ -159,7 +149,9 @@ export default function TambahKaryawan() {
             onChange={formik.handleChange}
             value={formik.values.nama_karyawan}
           />
-          <FormErrorMessage>{formik.errors.nama_karyawan}</FormErrorMessage>
+          <FormErrorMessage>
+            {formik.errors.nama_karyawan as string}
+          </FormErrorMessage>
         </FormControl>
 
         <FormControl
@@ -180,7 +172,7 @@ export default function TambahKaryawan() {
           <FormHelperText opacity={0.4}>
             Email ini digunakan untuk masuk (login)
           </FormHelperText>
-          <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+          <FormErrorMessage>{formik.errors.email as string}</FormErrorMessage>
         </FormControl>
 
         <FormControl
@@ -198,7 +190,7 @@ export default function TambahKaryawan() {
             onChange={formik.handleChange}
             value={formik.values.no_rm}
           />
-          <FormErrorMessage>{formik.errors.no_rm}</FormErrorMessage>
+          <FormErrorMessage>{formik.errors.no_rm as string}</FormErrorMessage>
         </FormControl>
 
         <FormControl
@@ -216,7 +208,9 @@ export default function TambahKaryawan() {
             onChange={formik.handleChange}
             value={formik.values.no_manulife}
           />
-          <FormErrorMessage>{formik.errors.no_manulife}</FormErrorMessage>
+          <FormErrorMessage>
+            {formik.errors.no_manulife as string}
+          </FormErrorMessage>
         </FormControl>
 
         <FormControl
@@ -233,8 +227,11 @@ export default function TambahKaryawan() {
             formik={formik}
             placeholder="Pilih tanggal"
             dateValue={formik.values.tgl_masuk}
+            initialDateValue={new Date(data.tgl_masuk)}
           />
-          <FormErrorMessage>{formik.errors.tgl_masuk}</FormErrorMessage>
+          <FormErrorMessage>
+            {formik.errors.tgl_masuk as string}
+          </FormErrorMessage>
         </FormControl>
 
         <FormControl
@@ -251,10 +248,10 @@ export default function TambahKaryawan() {
             formik={formik}
             placeholder="Pilih Status Karyawan"
             initialSelected={formik.values.status_karyawan}
-            noSearch
           />
           <FormErrorMessage>
             {formik.errors.unit_kerja as string}
+            as string{" "}
           </FormErrorMessage>
         </FormControl>
 
@@ -275,6 +272,7 @@ export default function TambahKaryawan() {
           />
           <FormErrorMessage>
             {formik.errors.unit_kerja as string}
+            as string{" "}
           </FormErrorMessage>
         </FormControl>
 
@@ -293,7 +291,9 @@ export default function TambahKaryawan() {
             placeholder="Pilih Jabatan"
             initialSelected={formik.values.jabatan}
           />
-          <FormErrorMessage>{formik.errors.jabatan as string}</FormErrorMessage>
+          <FormErrorMessage>
+            {formik.errors.jabatan as string as string}
+          </FormErrorMessage>
         </FormControl>
 
         <FormControl
@@ -313,6 +313,7 @@ export default function TambahKaryawan() {
           </FormHelperText>
           <FormErrorMessage>
             {formik.errors.kompetensi as string}
+            as string{" "}
           </FormErrorMessage>
         </FormControl>
 
@@ -327,7 +328,9 @@ export default function TambahKaryawan() {
             placeholder="Pilih Role"
             initialSelected={formik.values.role}
           />
-          <FormErrorMessage>{formik.errors.role as string}</FormErrorMessage>
+          <FormErrorMessage>
+            {formik.errors.role as string as string}
+          </FormErrorMessage>
         </FormControl>
       </Wrap>
     );
@@ -368,6 +371,7 @@ export default function TambahKaryawan() {
           />
           <FormErrorMessage>
             {formik.errors.kelompok_gaji as string}
+            as string{" "}
           </FormErrorMessage>
         </FormControl>
 
@@ -386,7 +390,9 @@ export default function TambahKaryawan() {
             onChange={formik.handleChange}
             value={formik.values.no_rekening}
           />
-          <FormErrorMessage>{formik.errors.no_rekening}</FormErrorMessage>
+          <FormErrorMessage>
+            {formik.errors.no_rekening as string}
+          </FormErrorMessage>
         </FormControl>
 
         <FormControl
@@ -410,7 +416,7 @@ export default function TambahKaryawan() {
             />
           </InputGroup>
           <FormErrorMessage>
-            {formik.errors.tunjangan_uang_lembur}
+            {formik.errors.tunjangan_uang_lembur as string}
           </FormErrorMessage>
         </FormControl>
 
@@ -435,7 +441,7 @@ export default function TambahKaryawan() {
             />
           </InputGroup>
           <FormErrorMessage>
-            {formik.errors.tunjangan_fungsional}
+            {formik.errors.tunjangan_fungsional as string}
           </FormErrorMessage>
         </FormControl>
 
@@ -459,7 +465,9 @@ export default function TambahKaryawan() {
               value={formik.values.tunjangan_khusus}
             />
           </InputGroup>
-          <FormErrorMessage>{formik.errors.tunjangan_khusus}</FormErrorMessage>
+          <FormErrorMessage>
+            {formik.errors.tunjangan_khusus as string}
+          </FormErrorMessage>
         </FormControl>
 
         <FormControl
@@ -482,7 +490,9 @@ export default function TambahKaryawan() {
               value={formik.values.tunjangan_lainnya}
             />
           </InputGroup>
-          <FormErrorMessage>{formik.errors.tunjangan_lainnya}</FormErrorMessage>
+          <FormErrorMessage>
+            {formik.errors.tunjangan_lainnya as string}
+          </FormErrorMessage>
         </FormControl>
 
         <FormControl
@@ -505,7 +515,9 @@ export default function TambahKaryawan() {
               value={formik.values.uang_lembur}
             />
           </InputGroup>
-          <FormErrorMessage>{formik.errors.uang_lembur}</FormErrorMessage>
+          <FormErrorMessage>
+            {formik.errors.uang_lembur as string}
+          </FormErrorMessage>
         </FormControl>
 
         <FormControl
@@ -528,7 +540,9 @@ export default function TambahKaryawan() {
               value={formik.values.uang_makan}
             />
           </InputGroup>
-          <FormErrorMessage>{formik.errors.uang_makan}</FormErrorMessage>
+          <FormErrorMessage>
+            {formik.errors.uang_makan as string}
+          </FormErrorMessage>
         </FormControl>
 
         <FormControl mb={4} flex={"1 1 300px"} isInvalid={!!formik.errors.ptkp}>
@@ -542,7 +556,9 @@ export default function TambahKaryawan() {
             placeholder="Pilih PTKP"
             initialSelected={formik.values.ptkp}
           />
-          <FormErrorMessage>{formik.errors.ptkp as string}</FormErrorMessage>
+          <FormErrorMessage>
+            {formik.errors.ptkp as string as string}
+          </FormErrorMessage>
         </FormControl>
       </Wrap>
     );
@@ -564,134 +580,25 @@ export default function TambahKaryawan() {
           colorScheme="ap"
           className="btn-ap clicky"
           h={"50px"}
-          onClick={handleNext}
+          type="submit"
+          form="editKaryawanForm"
         >
-          Lanjut
+          Simpan
         </Button>
       </ButtonGroup>
     );
   };
 
-  const Step3 = () => {
-    return (
-      <>
-        <FormControl mb={4} isInvalid={!!formik.errors.username}>
-          <FormLabel>
-            Username
-            <FormRequired />
-          </FormLabel>
-          <InputGroup>
-            <HStack w={"100%"}>
-              <Input
-                name="username"
-                placeholder="Username"
-                onChange={formik.handleChange}
-                value={formik.values.username}
-              />
-              <Button colorScheme="ap" variant={"outline"} className="clicky">
-                Generate
-              </Button>
-            </HStack>
-          </InputGroup>
-          <FormErrorMessage>{formik.errors.username}</FormErrorMessage>
-        </FormControl>
-
-        <FormControl mb={4} isInvalid={!!formik.errors.password}>
-          <FormLabel>
-            Password
-            <FormRequired />
-          </FormLabel>
-          <HStack w={"100%"}>
-            <Input
-              name="password"
-              type="password"
-              placeholder="Password"
-              onChange={formik.handleChange}
-              value={formik.values.password}
-            />
-            <Button colorScheme="ap" variant={"outline"} className="clicky">
-              Generate
-            </Button>
-          </HStack>
-          <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
-        </FormControl>
-      </>
-    );
-  };
-
-  const Step3Footer = () => {
-    return (
-      <ButtonGroup mt={"auto"} w={"100%"}>
-        <Button
-          w={"100%"}
-          className="btn-solid clicky"
-          h={"50px"}
-          onClick={handleBack}
-        >
-          Sebelumnya
-        </Button>
-        <Button
-          w={"100%"}
-          colorScheme="ap"
-          className="btn-ap clicky"
-          h={"50px"}
-          onClick={handleNext}
-        >
-          Tambah Karyawan
-        </Button>
-      </ButtonGroup>
-    );
-  };
-
-  const stepComponents = [Step1, Step2, Step3];
-  const stepFooterComponents = [Step1Footer, Step2Footer, Step3Footer];
+  const stepComponents = [Step1, Step2];
+  const stepFooterComponents = [Step1Footer, Step2Footer];
 
   return (
-    <CWrapper maxW={"800px"} mx={"auto"} my={12}>
-      <Stepper index={activeStep} colorScheme="ap" mb={6}>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepIndicator>
-              <StepStatus
-                complete={<StepIcon />}
-                incomplete={<StepNumber />}
-                active={<StepNumber />}
-              />
-            </StepIndicator>
-            <Box flexShrink="0">
-              <StepTitle>{sw >= 768 && <Text>{step.title}</Text>}</StepTitle>
-            </Box>
-            <StepSeparator />
-          </Step>
-        ))}
-      </Stepper>
+    <>
+      <form id="editKaryawanForm" onSubmit={formik.handleSubmit}>
+        {stepComponents[activeStep]()}
+      </form>
 
-      {sw < 768 && (
-        <Text mb={6}>
-          Step {activeStep + 1} : <b>{activeStepText}</b>
-        </Text>
-      )}
-
-      <CContainer
-        p={responsiveSpacing}
-        bg={useBodyColor()}
-        borderRadius={12}
-        overflowY={"auto"}
-        flex={1}
-      >
-        <Text fontSize={22} fontWeight={600}>
-          {steps[activeStep].title}
-        </Text>
-        <Text opacity={0.6} mb={6}>
-          Silahkan Isi Semua Data Informasi Dasar Karyawan
-        </Text>
-
-        <form id="tambahKaryawanForm" onSubmit={formik.handleSubmit}>
-          {stepComponents[activeStep]()}
-        </form>
-
-        {stepFooterComponents[activeStep]()}
-      </CContainer>
-    </CWrapper>
+      {stepFooterComponents[activeStep]()}
+    </>
   );
 }

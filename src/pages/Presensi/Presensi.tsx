@@ -61,7 +61,7 @@ export default function Presensi() {
               flex={"1 1 200px"}
               confirmDate={confirmDate}
               dateValue={filterConfig.tanggal}
-              defaultDateSelected={today}
+              initialDateValue={today}
               dateFormatOptions={{
                 year: "numeric",
                 month: "long",
