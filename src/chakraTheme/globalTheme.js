@@ -185,6 +185,7 @@ export const globalTheme = extendTheme({
         },
         closeButton: {
           right: 1,
+          fontSize: "12px !important",
         },
       }),
     },

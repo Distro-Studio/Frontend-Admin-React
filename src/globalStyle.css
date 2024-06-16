@@ -491,6 +491,7 @@ img[alt="Google"] {
   width: 36px !important;
   height: 36px !important;
   border-radius: 100px !important;
+  transition: 200ms;
   /* margin-left: 5px !important; */
   margin: auto !important;
 }
@@ -499,7 +500,7 @@ img[alt="Google"] {
   border: none !important;
 }
 .rdp-button:hover {
-  background-color: var(--divider) !important;
+  background-color: var(--p500a2) !important;
 }
 .rdp-day_selected,
 .rdp-day_range_start,
