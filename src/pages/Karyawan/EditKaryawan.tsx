@@ -36,12 +36,14 @@ import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useScreenWidth from "../../lib/useScreenWidth";
+import SelectStatusKaryawan from "../../components/dependent/_Select/SelectStatusKaryawan";
 const validationSchemaStep1 = yup.object({
   // nama_karyawan: yup.string().required("Harus diisi"),
   // email: yup.string().email("Email tidak valid").required("Harus diisi"),
   // rm: yup.string().required("Harus diisi"),
   // no_manulife: yup.string().required("Harus diisi"),
   // tgl_masuk: yup.string().required("Harus diisi"),
+  // status_karyawan: yup.string().required("Harus diisi"),
   // unit_kerja: yup.string().required("Harus diisi"),
   // jabatan: yup.string().required("Harus diisi"),
   // kompetensi: yup.string(),
@@ -49,15 +51,15 @@ const validationSchemaStep1 = yup.object({
 });
 
 const validationSchemaStep2 = yup.object({
-  // kelompok_gaji: yup.string().required("Harus diisi"),
-  // no_rekening: yup.string().required("Harus diisi"),
-  // tunjangan_uang_lembur: yup.string().required("Harus diisi"),
-  // tunjangan_fungsional: yup.string().required("Harus diisi"),
-  // tunjangan_khusus: yup.string().required("Harus diisi"),
-  // tunjangan_lainnya: yup.string().required("Harus diisi"),
-  // uang_lembur: yup.string().required("Harus diisi"),
-  // uang_makan: yup.string().required("Harus diisi"),
-  // ptkp: yup.string().required("Harus diisi"),
+  kelompok_gaji: yup.string().required("Harus diisi"),
+  no_rekening: yup.string().required("Harus diisi"),
+  tunjangan_uang_lembur: yup.string().required("Harus diisi"),
+  tunjangan_fungsional: yup.string().required("Harus diisi"),
+  tunjangan_khusus: yup.string().required("Harus diisi"),
+  tunjangan_lainnya: yup.string().required("Harus diisi"),
+  uang_lembur: yup.string().required("Harus diisi"),
+  uang_makan: yup.string().required("Harus diisi"),
+  ptkp: yup.string().required("Harus diisi"),
 });
 
 export default function EditKaryawan() {
@@ -75,6 +77,7 @@ export default function EditKaryawan() {
       rm: "",
       no_manulife: "",
       tgl_masuk: "",
+      status_karyawan: "" as any,
       unit_kerja: "" as any,
       jabatan: "" as any,
       kompetensi: "" as any,
@@ -217,6 +220,26 @@ export default function EditKaryawan() {
             dateValue={formik.values.tgl_masuk}
           />
           <FormErrorMessage>{formik.errors.tgl_masuk}</FormErrorMessage>
+        </FormControl>
+
+        <FormControl
+          mb={4}
+          flex={"1 1 300px"}
+          isInvalid={!!formik.errors.status_karyawan}
+        >
+          <FormLabel>
+            Status Karyawan
+            <FormRequired />
+          </FormLabel>
+          <SelectStatusKaryawan
+            name="status_karyawan"
+            formik={formik}
+            placeholder="Pilih Status Karyawan"
+            initialSelected={formik.values.status_karyawan}
+          />
+          <FormErrorMessage>
+            {formik.errors.unit_kerja as string}
+          </FormErrorMessage>
         </FormControl>
 
         <FormControl

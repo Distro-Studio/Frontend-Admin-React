@@ -79,6 +79,12 @@ export default function TambahKaryawan() {
 
   const sw = useScreenWidth();
 
+  const validationSchema = [
+    validationSchemaStep1,
+    validationSchemaStep2,
+    validationSchemaStep3,
+  ];
+
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
@@ -104,25 +110,14 @@ export default function TambahKaryawan() {
       username: "",
       password: "",
     },
-    validationSchema: getValidationSchema(activeStep),
+
+    validationSchema: validationSchema[activeStep],
+
     onSubmit: (values, { resetForm }) => {
       console.log(values);
       //TODO api post tambah karyawan step 1
     },
   });
-
-  function getValidationSchema(step: number) {
-    switch (step) {
-      case 0:
-        return validationSchemaStep1;
-      case 1:
-        return validationSchemaStep2;
-      case 2:
-        return validationSchemaStep3;
-      default:
-        return validationSchemaStep1;
-    }
-  }
 
   const handleNext = () => {
     formik.validateForm().then((errors) => {
