@@ -508,7 +508,7 @@ img[alt="Google"] {
   color: white !important;
 }
 .rdp-day_range_middle {
-  background: var(--p500a3) !important;
+  background: var(--p500) !important;
 }
 .rdp-tfoot {
   display: none !important;

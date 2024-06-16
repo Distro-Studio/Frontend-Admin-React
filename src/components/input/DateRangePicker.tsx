@@ -153,7 +153,6 @@ export default function DateRangePicker({
       opacity: 1,
     },
     range_middle: {
-      backgroundColor: "var(--p500a2) !important",
       border: "none",
       color: bnwColor,
     },
