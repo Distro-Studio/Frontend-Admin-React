@@ -23,7 +23,7 @@ interface Props extends ButtonProps {
   data: any;
 }
 
-export default function DetailPesertaDiklatModal({ data }: Props) {
+export default function DaftarPesertaDiklatModal({ data }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);

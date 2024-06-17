@@ -18,7 +18,7 @@ import formatNumber from "../../../lib/formatNumber";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
-import DetailPesertaDiklatModal from "./DetailPesertaDiklatModal";
+import DaftarPesertaDiklatModal from "./DaftarPesertaDiklatModal";
 
 interface Props {
   filterConfig?: any;
@@ -239,7 +239,7 @@ export default function TabelDiklat({ filterConfig }: Props) {
                       Rp {formatNumber(row.no_bpjsksh)}
                     </Td>
                     <Td whiteSpace={"nowrap"} textAlign={"center"}>
-                      <DetailPesertaDiklatModal data={dummyKaryawanList} />
+                      <DaftarPesertaDiklatModal data={dummyKaryawanList} />
                     </Td>
                   </Tr>
                 ))}
