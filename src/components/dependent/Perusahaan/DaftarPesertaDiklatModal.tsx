@@ -62,9 +62,10 @@ export default function DaftarPesertaDiklatModal({ data }: Props) {
             {fd?.map((peserta: any, i: number) => (
               <HStack
                 key={i}
-                py={3}
+                p={3}
                 borderBottom={"1px solid var(--divider)"}
                 justify={"space-between"}
+                _hover={{ bg: "var(--divider)" }}
               >
                 <Text>{peserta.user.nama}</Text>
 
@@ -78,10 +79,10 @@ export default function DaftarPesertaDiklatModal({ data }: Props) {
                   as={Link}
                   target="_blank"
                   to={`/karyawan/${data.id}`}
-                  rightIcon={<Icon as={RiArrowRightSLine} fontSize={20} />}
+                  rightIcon={<Icon as={RiArrowRightSLine} fontSize={16} />}
                   pr={3}
                 >
-                  Detail
+                  <Text fontSize={14}>Detail</Text>
                 </Button>
               </HStack>
             ))}
