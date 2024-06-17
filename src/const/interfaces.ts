@@ -146,7 +146,8 @@ export interface Tabel__Column__Interface {
     | "link"
     | "action"
     | "duration"
-    | "time";
+    | "time"
+    | "modal";
   link?: string;
   preferredTextAlign?: string;
   action?: any;

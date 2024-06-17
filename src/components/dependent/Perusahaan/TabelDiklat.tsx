@@ -18,6 +18,7 @@ import formatNumber from "../../../lib/formatNumber";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
+import DetailPesertaDiklatModal from "./DetailPesertaDiklatModal";
 
 interface Props {
   filterConfig?: any;
@@ -58,7 +59,7 @@ export default function TabelDiklat({ filterConfig }: Props) {
     {
       key: "peserta",
       label: "Peserta",
-      dataType: "string",
+      dataType: "action",
     },
   ];
 
@@ -238,7 +239,7 @@ export default function TabelDiklat({ filterConfig }: Props) {
                       Rp {formatNumber(row.no_bpjsksh)}
                     </Td>
                     <Td whiteSpace={"nowrap"} textAlign={"center"}>
-                      dummy text
+                      <DetailPesertaDiklatModal data={dummyKaryawanList} />
                     </Td>
                   </Tr>
                 ))}

@@ -246,12 +246,11 @@ const Select = forwardRef(
             <ModalHeader pr={6}>
               <Text fontSize={20}>{placeholder}</Text>
               {!noSearch && setSearch && (
-                <HStack mt={6}>
-                  <SearchComponent
-                    search={search as string}
-                    setSearch={setSearch}
-                  />
-                </HStack>
+                <SearchComponent
+                  mt={4}
+                  search={search as string}
+                  setSearch={setSearch}
+                />
               )}
             </ModalHeader>
 

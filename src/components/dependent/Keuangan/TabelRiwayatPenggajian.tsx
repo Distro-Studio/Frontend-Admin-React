@@ -136,7 +136,11 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
                       key={i}
                       whiteSpace={"nowrap"}
                       onClick={() => {
-                        if (column.dataType !== "action") {
+                        if (
+                          column.dataType !== "action" &&
+                          column.dataType !== "link" &&
+                          column.dataType !== "modal"
+                        ) {
                           sort(column.key);
                         }
                       }}
@@ -148,7 +152,8 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
                       {...column.thProps}
                     >
                       {column.dataType === "action" ||
-                      column.dataType === "link" ? (
+                      (column.dataType === "link" &&
+                        column.dataType === "link") ? (
                         <HStack
                           justify={"center"}
                           borderBottom={"1px solid var(--divider3)"}
