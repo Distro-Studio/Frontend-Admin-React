@@ -62,8 +62,8 @@ export default function TabelLembur({ filterConfig }: Props) {
       dataType: "duration",
     },
     {
-      key: "status_persetujuan",
-      label: "Status Persetujuan",
+      key: "status_lembur",
+      label: "Status Lembur",
       dataType: "badge",
       preferredTextAlign: "center",
     },
@@ -281,8 +281,9 @@ export default function TabelLembur({ filterConfig }: Props) {
                     </Td>
                     <Td whiteSpace={"nowrap"} textAlign={"center"}>
                       <BooleanBadge
-                        data={1}
-                        trueValue="Disetujui"
+                        data={null}
+                        trueValue="Selesai"
+                        nullValue="Berlangsung"
                         falseValue="Menunggu"
                         w={"100%"}
                         maxW={"120px"}
