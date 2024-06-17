@@ -1,5 +1,7 @@
 import {
   Avatar,
+  Button,
+  Center,
   HStack,
   Icon,
   Table,
@@ -9,16 +11,21 @@ import {
   Th,
   Thead,
   Tr,
+  VStack,
 } from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
+import {
+  RiArrowDownLine,
+  RiArrowRightSLine,
+  RiArrowUpLine,
+} from "@remixicon/react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { dummyKaryawanList } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
 import formatNumber from "../../../lib/formatNumber";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
-import BooleanBadge from "../BooleanBadge";
 import TabelFooterConfig from "../TabelFooterConfig";
 
 interface Props {
@@ -55,11 +62,6 @@ export default function TabelPelaporanKaryawan({ filterConfig }: Props) {
     {
       key: "kronologi",
       label: "Kronologi",
-      dataType: "string",
-    },
-    {
-      key: "foto",
-      label: "Berkas Foto",
       dataType: "string",
     },
   ];
@@ -219,6 +221,28 @@ export default function TabelPelaporanKaryawan({ filterConfig }: Props) {
                       )}
                     </Th>
                   ))}
+
+                  {/* Kolom tetap di sebelah kanan */}
+                  <Th
+                    position={"sticky"}
+                    top={0}
+                    right={0}
+                    borderBottom={"none !important"}
+                    p={0}
+                    bg={bodyColor}
+                    zIndex={2}
+                  >
+                    <Center
+                      px={4}
+                      py={3}
+                      zIndex={99}
+                      borderLeft={"1px solid var(--divider3)"}
+                      borderBottom={"1px solid var(--divider3)"}
+                      h={"52px"}
+                    >
+                      <Text>Detail</Text>
+                    </Center>
+                  </Th>
                 </Tr>
               </Thead>
 
@@ -255,15 +279,39 @@ export default function TabelPelaporanKaryawan({ filterConfig }: Props) {
                     <Td whiteSpace={"nowrap"}>
                       Rp {formatNumber(row.no_bpjsksh)}
                     </Td>
-                    <Td whiteSpace={"nowrap"} textAlign={"center"}>
-                      <BooleanBadge
-                        data={1}
-                        trueValue="Disetujui"
-                        falseValue="Menunggu"
-                        w={"100%"}
-                        maxW={"120px"}
-                        colorScheme={1 ? "green" : "orange"}
-                      />
+                    {/* Kolom tetap di sebelah kanan */}
+                    <Td
+                      position={"sticky"}
+                      top={0}
+                      right={0}
+                      borderBottom={"none !important"}
+                      p={0}
+                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                      zIndex={1}
+                      w={"150px"}
+                    >
+                      <VStack
+                        borderLeft={"1px solid var(--divider3)"}
+                        w={"150px"}
+                        h={"72px"}
+                        px={4}
+                        align={"stretch"}
+                        justify={"center"}
+                      >
+                        <Button
+                          colorScheme="ap"
+                          variant={"ghost"}
+                          className="clicky"
+                          as={Link}
+                          to={`/perusahaan/pelaporan-karyawan/${row.id}`}
+                          rightIcon={
+                            <Icon as={RiArrowRightSLine} fontSize={20} />
+                          }
+                          pr={3}
+                        >
+                          Detail
+                        </Button>
+                      </VStack>
                     </Td>
                   </Tr>
                 ))}

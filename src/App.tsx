@@ -56,6 +56,7 @@ import VerifikasiBerkas from "./pages/Perusahaan/VerifikasiBerkas";
 import DetailPenilaianKaryawan from "./pages/Perusahaan/DetailPenilaianKaryawan";
 import DetailVerifikasiBerkas from "./pages/Perusahaan/DetailVerifikasiBerkas ";
 import PengaturanKuisioner from "./pages/Pengaturan/PengaturanKuisioner";
+import DetailPelaporanKaryawan from "./pages/Perusahaan/DetailPelaporanKaryawan";
 
 // github pekok
 
@@ -394,6 +395,18 @@ export const App = () => (
               topNavActive={1}
             >
               <PelaporanKaryawan />
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/perusahaan/pelaporan-karyawan/:pelaporanId"
+          element={
+            <NavContainer
+              active={5}
+              title="Berkas Foto Pelaporan"
+              left={"back"}
+            >
+              <DetailPelaporanKaryawan />
             </NavContainer>
           }
         />
