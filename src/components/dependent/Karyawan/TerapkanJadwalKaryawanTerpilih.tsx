@@ -63,7 +63,7 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
         gap={1}
         borderRadius={8}
         w={"100%"}
-        h={"70px"}
+        h={"74px"}
         cursor={"pointer"}
         bg={bodyColor}
         color={whiteDarkColor}

@@ -74,8 +74,9 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
         gap={1}
         borderRadius={8}
         w={"100%"}
-        h={"70px"}
+        h={"74px"}
         align={"stretch"}
+        justify={"center"}
         className="btn-solid clicky"
         cursor={"pointer"}
         onClick={onOpen}

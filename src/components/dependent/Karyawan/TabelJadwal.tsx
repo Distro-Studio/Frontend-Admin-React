@@ -180,9 +180,9 @@ export default function TabelJadwal({ onCheckItem, filterConfig }: Props) {
                   {row.jadwal_list.map((jadwal: any, ii: number) => (
                     <Td
                       key={ii}
-                      px={2}
                       pl={ii === 0 ? 4 : 2}
                       pr={ii === row.jadwal_list.length - 1 ? 4 : 2}
+                      py={2}
                     >
                       {!jadwal ? (
                         <TerapkanJadwalKaryawanTerpilih
