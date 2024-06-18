@@ -10,7 +10,6 @@ import {
   Text,
   Th,
   Thead,
-  Tooltip,
   Tr,
   VStack,
 } from "@chakra-ui/react";
@@ -20,6 +19,7 @@ import {
   RiFileList3Line,
 } from "@remixicon/react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { dummyRiwayatPenggajian } from "../../../const/dummy";
 import {
@@ -31,7 +31,6 @@ import formatNumber from "../../../lib/formatNumber";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
-import { Link } from "react-router-dom";
 
 interface Props {
   filterConfig?: any;

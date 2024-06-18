@@ -23,7 +23,6 @@ import { Link } from "react-router-dom";
 import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { dummyKaryawanList } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
-import formatNumber from "../../../lib/formatNumber";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
@@ -35,8 +34,8 @@ interface Props {
 export default function TabelPelaporanKaryawan({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
-      key: "nama",
-      label: "Nama Pelapor",
+      key: "pelaku",
+      label: "Pelaku",
       dataType: "avatarAndName",
     },
     {
@@ -55,14 +54,9 @@ export default function TabelPelaporanKaryawan({ filterConfig }: Props) {
       dataType: "string",
     },
     {
-      key: "pelaku",
-      label: "Pelaku",
+      key: "nama",
+      label: "Nama Pelapor",
       dataType: "avatarAndName",
-    },
-    {
-      key: "kronologi",
-      label: "Kronologi",
-      dataType: "string",
     },
   ];
 
@@ -276,9 +270,7 @@ export default function TabelPelaporanKaryawan({ filterConfig }: Props) {
                         <Text>{row.user.nama}</Text>
                       </HStack>
                     </Td>
-                    <Td whiteSpace={"nowrap"}>
-                      Rp {formatNumber(row.no_bpjsksh)}
-                    </Td>
+
                     {/* Kolom tetap di sebelah kanan */}
                     <Td
                       position={"sticky"}

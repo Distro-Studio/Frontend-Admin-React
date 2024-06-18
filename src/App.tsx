@@ -403,7 +403,7 @@ export const App = () => (
           element={
             <NavContainer
               active={5}
-              title="Berkas Foto Pelaporan"
+              title="Detail Pelaporan Karyawan"
               left={"back"}
             >
               <DetailPelaporanKaryawan />

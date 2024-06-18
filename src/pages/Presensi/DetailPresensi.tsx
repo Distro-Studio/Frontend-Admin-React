@@ -185,7 +185,7 @@ export default function DetailPresensi() {
               borderRadius={12}
             >
               <Wrap spacing={responsiveSpacing2}>
-                <Box>
+                <Box w={"100%"} maxW={"300px"}>
                   <Text fontSize={20} fontWeight={600} mb={4}>
                     Foto Presensi
                   </Text>
@@ -195,6 +195,7 @@ export default function DetailPresensi() {
                       objectFit={"cover"}
                       aspectRatio={3 / 4}
                       maxH={dataPresensiRef?.current?.offsetHeight || "344px"}
+                      w={"100%"}
                       src={data.foto}
                       borderRadius={6}
                     />
@@ -202,6 +203,7 @@ export default function DetailPresensi() {
                     <VStack
                       aspectRatio={3 / 4}
                       maxH={dataPresensiRef?.current?.offsetHeight || "344px"}
+                      w={"100%"}
                       overflow={"clip"}
                       justify={"center"}
                       bg={"var(--divider)"}

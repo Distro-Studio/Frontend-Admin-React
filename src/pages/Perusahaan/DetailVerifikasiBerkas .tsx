@@ -14,8 +14,9 @@ import ComponentSpinner from "../../components/independent/ComponentSpinner";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
-import { responsiveSpacing } from "../../const/sizes";
 import { dummyDetailKaryawan } from "../../const/dummy";
+import { responsiveSpacing } from "../../const/sizes";
+import formatNumber from "../../lib/formatNumber";
 
 export default function DetailVerifikasiBerkas() {
   const dummy = [
@@ -85,23 +86,9 @@ export default function DetailVerifikasiBerkas() {
 
               <VStack align={"stretch"}>
                 <Text fontSize={14} opacity={0.6}>
-                  Unit Kerja
+                  Total Berkas
                 </Text>
-                <Text fontWeight={500}>{data.unit_kerja.nama_unit}</Text>
-              </VStack>
-
-              <VStack align={"stretch"}>
-                <Text fontSize={14} opacity={0.6}>
-                  Jabatan
-                </Text>
-                <Text fontWeight={500}>{data.jabatan.nama_jabatan}</Text>
-              </VStack>
-
-              <VStack align={"stretch"}>
-                <Text fontSize={14} opacity={0.6}>
-                  Total Rata-rata
-                </Text>
-                <Text fontWeight={500}>dummy</Text>
+                <Text fontWeight={500}>{formatNumber(12)}</Text>
               </VStack>
             </Wrap>
 
