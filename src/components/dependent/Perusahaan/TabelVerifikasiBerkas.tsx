@@ -26,6 +26,7 @@ import { Tabel__Column__Interface } from "../../../const/interfaces";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
+import BooleanBadge from "../BooleanBadge";
 
 interface Props {
   filterConfig?: any;
@@ -42,6 +43,12 @@ export default function TabelVerifikasiBerkas({ filterConfig }: Props) {
       key: "jumlah_berkas",
       label: "Jumlah Berkas",
       dataType: "string",
+    },
+    {
+      key: "status_verifikasi",
+      label: "Status Verifikasi",
+      dataType: "badge",
+      preferredTextAlign: "center",
     },
   ];
 
@@ -243,6 +250,15 @@ export default function TabelVerifikasiBerkas({ filterConfig }: Props) {
                       </HStack>
                     </Td>
                     <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
+                    <Td whiteSpace={"nowrap"} textAlign={"center"}>
+                      <BooleanBadge
+                        w={"100%"}
+                        maxW={"160px"}
+                        data={Math.random() < 0.5 ? 0 : 1}
+                        trueValue="Diverifikasi"
+                        falseValue="Belum diverifikasi"
+                      />
+                    </Td>
 
                     {/* Kolom tetap di sebelah kanan */}
                     <Td
