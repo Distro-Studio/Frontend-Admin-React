@@ -49,11 +49,6 @@ export default function TabelPelaporanKaryawan({ filterConfig }: Props) {
       dataType: "string",
     },
     {
-      key: "tempat",
-      label: "Tempat",
-      dataType: "string",
-    },
-    {
       key: "nama",
       label: "Nama Pelapor",
       dataType: "avatarAndName",
@@ -257,7 +252,6 @@ export default function TabelPelaporanKaryawan({ filterConfig }: Props) {
                         <Text>{row.user.nama}</Text>
                       </HStack>
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
                     <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
                     <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
                     <Td whiteSpace={"nowrap"}>
