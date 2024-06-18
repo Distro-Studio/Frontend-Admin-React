@@ -187,3 +187,132 @@ export interface Riwayat__Penggajian__Interface {
 }
 
 export interface Unit__Kerja__Interface {}
+
+export interface DetailKaryawan {
+  id: number;
+  user: User;
+  email: string;
+  no_rm: number;
+  no_manulife: number;
+  tgl_masuk: Date;
+  unit_kerja: UnitKerja;
+  jabatan: Jabatan;
+  kompetensi: Kompetensi;
+  role: Role;
+  nik: string;
+  nik_ktp: string;
+  status_karyawan: StatusKaryawan;
+  tempat_lahir: string;
+  tgl_lahir: Date;
+  kelompok_gaji: KelompokGaji;
+  no_rekening: string;
+  tunjangan_jabatan: number;
+  tunjangan_fungsional: number;
+  tunjangan_khusus: number;
+  tunjangan_lainnya: number;
+  uang_lembur: number;
+  uang_makan: number;
+  ptkp: Ptkp;
+  tgl_keluar: Date;
+  no_kk: string;
+  alamat: string;
+  gelar_depan: string;
+  no_hp: string;
+  no_bpjsksh: string;
+  no_bpjsktk: string;
+  tgl_diangkat: Date;
+  masa_kerja: string;
+  npwp: string;
+  jenis_kelamin: string;
+  agama: string;
+  golongan_darah: string;
+  tinggi_badan: number;
+  berat_badan: number;
+  no_ijazah: string;
+  tahun_lulus: number;
+  no_str: string;
+  masa_berlaku_str: Date;
+  no_sip: string;
+  masa_berlaku_sip: Date;
+  tgl_berakhir_pks: Date;
+  masa_diklat: number;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface Jabatan {
+  id: number;
+  nama_jabatan: string;
+  is_struktural: number;
+  tunjangan: number;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface KelompokGaji {
+  id: number;
+  nama_kelompok: string;
+  besaran_gaji: number;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface Kompetensi {
+  id: number;
+  nama_kompetensi: string;
+  jenis_kompetensi: number;
+  total_tunjangan: number;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface Ptkp {
+  id: number;
+  kode_ptkp: string;
+  kategori_ter_id: number;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface Role {
+  id: number;
+  name: string;
+  deskripsi: string;
+  guard_name: string;
+  created_at: Date;
+  updated_at: Date;
+  pivot: Pivot;
+}
+
+export interface Pivot {
+  model_type: string;
+  model_id: number;
+  role_id: number;
+}
+
+export interface StatusKaryawan {
+  id: number;
+  label: string;
+}
+
+export interface UnitKerja {
+  id: number;
+  nama_unit: string;
+  jenis_karyawan: number;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface User {
+  id: number;
+  nama: string;
+  username: string;
+  email_verified_at: null;
+  role_id: null;
+  foto_profil: null;
+  data_completion_step: number;
+  status_aktif: number;
+  created_at: Date;
+  updated_at: Date;
+  roles: Role;
+}
