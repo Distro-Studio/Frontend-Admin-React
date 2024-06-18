@@ -1,122 +1,272 @@
-{
-  "id": 2,
-  "user": {
-    "id": 3,
-    "nama": "Very Very Long Name as Possible",
-    "username": "username1",
-    "email_verified_at": null,
-    "role_id": null,
-    "foto_profil": null,
-    "data_completion_step": 1,
-    "status_aktif": 0,
-    "created_at": "2024-06-06T23:48:35.000000Z",
-    "updated_at": "2024-06-06T23:48:35.000000Z",
-    "roles": {
-        "id": 3,
-        "name": "Admin",
-        "deskripsi": "satellites native some bottle blanket extra continued young married lost far great door short quick example tin teeth variety shadow does line met these",
-        "guard_name": "web",
-        "created_at": "2024-04-19T23:48:34.000000Z",
-        "updated_at": "2024-06-06T23:48:34.000000Z",
-        "pivot": {
-          "model_type": "App\\Models\\User",
-          "model_id": 3,
-          "role_id": 3
-        }
-      }
+[
+  {
+      "id": 1,
+      "user": {
+          "id": 2,
+          "nama": "User 0",
+          "username": "username0",
+          "email_verified_at": null,
+          "role_id": null,
+          "foto_profil": null,
+          "data_completion_step": 1,
+          "status_aktif": 0,
+          "created_at": "2024-06-07T06:57:42.000000Z",
+          "updated_at": "2024-06-07T06:57:42.000000Z"
+      },
+      "nik": "2415692",
+      "no_rm": 1828094,
+      "unit_kerja": {
+          "id": 20,
+          "nama_unit": "Psikiatri",
+          "jenis_karyawan": 0,
+          "created_at": "2024-03-19T06:57:41.000000Z",
+          "updated_at": "2024-06-07T06:57:41.000000Z"
+      },
+      "status_karyawan": "Kontrak",
+      "created_at": "2024-06-07T06:57:42.000000Z",
+      "updated_at": "2024-06-07T06:57:42.000000Z"
   },
-  "email": "user1@example.com",
-  "no_rm": 3468984,
-  "no_manulife": 4437834,
-  "tgl_masuk": "2020-11-25",
-  "unit_kerja": {
-    "id": 12,
-    "nama_unit": "Sumber Daya Manusia (SDM)",
-    "jenis_karyawan": 0,
-    "created_at": "2024-03-20T23:48:34.000000Z",
-    "updated_at": "2024-06-06T23:48:34.000000Z"
+  {
+      "id": 2,
+      "user": {
+          "id": 3,
+          "nama": "User 1",
+          "username": "username1",
+          "email_verified_at": null,
+          "role_id": null,
+          "foto_profil": null,
+          "data_completion_step": 1,
+          "status_aktif": 0,
+          "created_at": "2024-06-07T06:57:42.000000Z",
+          "updated_at": "2024-06-07T06:57:42.000000Z"
+      },
+      "nik": "1528863",
+      "no_rm": 4600727,
+      "unit_kerja": {
+          "id": 16,
+          "nama_unit": "Fisioterapi",
+          "jenis_karyawan": 1,
+          "created_at": "2023-07-29T06:57:41.000000Z",
+          "updated_at": "2024-06-07T06:57:41.000000Z"
+      },
+      "status_karyawan": "Magang",
+      "created_at": "2024-06-07T06:57:42.000000Z",
+      "updated_at": "2024-06-07T06:57:42.000000Z"
   },
-  "jabatan": {
-    "id": 16,
-    "nama_jabatan": "Tenaga Radiologi",
-    "is_struktural": 0,
-    "tunjangan": 1697689,
-    "created_at": "2023-07-14T23:48:34.000000Z",
-    "updated_at": "2024-06-06T23:48:34.000000Z"
+  {
+      "id": 3,
+      "user": {
+          "id": 4,
+          "nama": "User 2",
+          "username": "username2",
+          "email_verified_at": null,
+          "role_id": null,
+          "foto_profil": null,
+          "data_completion_step": 1,
+          "status_aktif": 0,
+          "created_at": "2024-06-07T06:57:43.000000Z",
+          "updated_at": "2024-06-07T06:57:43.000000Z"
+      },
+      "nik": "2371077",
+      "no_rm": 4327005,
+      "unit_kerja": {
+          "id": 11,
+          "nama_unit": "Kebidanan dan Kandungan",
+          "jenis_karyawan": 1,
+          "created_at": "2023-06-18T06:57:41.000000Z",
+          "updated_at": "2024-06-07T06:57:41.000000Z"
+      },
+      "status_karyawan": "Tetap",
+      "created_at": "2024-06-07T06:57:43.000000Z",
+      "updated_at": "2024-06-07T06:57:43.000000Z"
   },
-  "kompetensi": {
-    "id": 4,
-    "nama_kompetensi": "Ahli Radiologi",
-    "jenis_kompetensi": 1,
-    "total_tunjangan": 2629416,
-    "created_at": "2024-04-29T23:48:34.000000Z",
-    "updated_at": "2024-06-06T23:48:34.000000Z"
+  {
+      "id": 4,
+      "user": {
+          "id": 5,
+          "nama": "User 3",
+          "username": "username3",
+          "email_verified_at": null,
+          "role_id": null,
+          "foto_profil": null,
+          "data_completion_step": 1,
+          "status_aktif": 0,
+          "created_at": "2024-06-07T06:57:43.000000Z",
+          "updated_at": "2024-06-07T06:57:43.000000Z"
+      },
+      "nik": "271683",
+      "no_rm": 355076,
+      "unit_kerja": {
+          "id": 6,
+          "nama_unit": "Pemeliharaan Sarana Prasarana",
+          "jenis_karyawan": 1,
+          "created_at": "2023-06-13T06:57:41.000000Z",
+          "updated_at": "2024-06-07T06:57:41.000000Z"
+      },
+      "status_karyawan": "Magang",
+      "created_at": "2024-06-07T06:57:43.000000Z",
+      "updated_at": "2024-06-07T06:57:43.000000Z"
   },
-  "role": {
-    "id": 3,
-    "name": "Admin",
-    "deskripsi": "satellites native some bottle blanket extra continued young married lost far great door short quick example tin teeth variety shadow does line met these",
-    "guard_name": "web",
-    "created_at": "2024-04-19T23:48:34.000000Z",
-    "updated_at": "2024-06-06T23:48:34.000000Z",
-    "pivot": {
-      "model_type": "App\\Models\\User",
-      "model_id": 3,
-      "role_id": 3
-    }
+  {
+      "id": 5,
+      "user": {
+          "id": 6,
+          "nama": "User 4",
+          "username": "username4",
+          "email_verified_at": null,
+          "role_id": null,
+          "foto_profil": null,
+          "data_completion_step": 1,
+          "status_aktif": 0,
+          "created_at": "2024-06-07T06:57:43.000000Z",
+          "updated_at": "2024-06-07T06:57:43.000000Z"
+      },
+      "nik": "2331089",
+      "no_rm": 103065,
+      "unit_kerja": {
+          "id": 1,
+          "nama_unit": "Asuransi Kesehatan",
+          "jenis_karyawan": 0,
+          "created_at": "2024-05-20T06:57:41.000000Z",
+          "updated_at": "2024-06-07T06:57:41.000000Z"
+      },
+      "status_karyawan": "Kontrak",
+      "created_at": "2024-06-07T06:57:43.000000Z",
+      "updated_at": "2024-06-07T06:57:43.000000Z"
   },
-  "nik": "2329429",
-  "nik_ktp": "327640",
-  "status_karyawan": {
-    "id": 2,
-    "label": "Kontrak"
+  {
+      "id": 6,
+      "user": {
+          "id": 7,
+          "nama": "User 5",
+          "username": "username5",
+          "email_verified_at": null,
+          "role_id": null,
+          "foto_profil": null,
+          "data_completion_step": 1,
+          "status_aktif": 0,
+          "created_at": "2024-06-07T06:57:44.000000Z",
+          "updated_at": "2024-06-07T06:57:44.000000Z"
+      },
+      "nik": "2128093",
+      "no_rm": 1076505,
+      "unit_kerja": {
+          "id": 14,
+          "nama_unit": "Apotek",
+          "jenis_karyawan": 1,
+          "created_at": "2023-06-26T06:57:41.000000Z",
+          "updated_at": "2024-06-07T06:57:41.000000Z"
+      },
+      "status_karyawan": "Kontrak",
+      "created_at": "2024-06-07T06:57:44.000000Z",
+      "updated_at": "2024-06-07T06:57:44.000000Z"
   },
-  "tempat_lahir": "Subang",
-  "tgl_lahir": "1924-06-02",
-  "kelompok_gaji": {
-    "id": 15,
-    "nama_kelompok": "Q",
-    "besaran_gaji": 4808596,
-    "created_at": "2024-05-11T23:48:34.000000Z",
-    "updated_at": "2024-06-06T23:48:34.000000Z"
+  {
+      "id": 7,
+      "user": {
+          "id": 8,
+          "nama": "User 6",
+          "username": "username6",
+          "email_verified_at": null,
+          "role_id": null,
+          "foto_profil": null,
+          "data_completion_step": 1,
+          "status_aktif": 0,
+          "created_at": "2024-06-07T06:57:44.000000Z",
+          "updated_at": "2024-06-07T06:57:44.000000Z"
+      },
+      "nik": "2246555",
+      "no_rm": 3574313,
+      "unit_kerja": {
+          "id": 13,
+          "nama_unit": "Onkologi",
+          "jenis_karyawan": 1,
+          "created_at": "2024-01-17T06:57:41.000000Z",
+          "updated_at": "2024-06-07T06:57:41.000000Z"
+      },
+      "status_karyawan": "Tetap",
+      "created_at": "2024-06-07T06:57:44.000000Z",
+      "updated_at": "2024-06-07T06:57:44.000000Z"
   },
-  "no_rekening": "300652572",
-  "tunjangan_jabatan": 6350127,
-  "tunjangan_fungsional": 1602565,
-  "tunjangan_khusus": 2193815,
-  "tunjangan_lainnya": 2205493,
-  "uang_lembur": 974476,
-  "uang_makan": 1467478,
-  "ptkp": {
-    "id": 4,
-    "kode_ptkp": "K/2",
-    "kategori_ter_id": 2,
-    "created_at": "2024-06-06T23:48:34.000000Z",
-    "updated_at": "2024-06-06T23:48:34.000000Z"
+  {
+      "id": 8,
+      "user": {
+          "id": 9,
+          "nama": "User 7",
+          "username": "username7",
+          "email_verified_at": null,
+          "role_id": null,
+          "foto_profil": null,
+          "data_completion_step": 1,
+          "status_aktif": 0,
+          "created_at": "2024-06-07T06:57:44.000000Z",
+          "updated_at": "2024-06-07T06:57:44.000000Z"
+      },
+      "nik": "2220567",
+      "no_rm": 4660600,
+      "unit_kerja": {
+          "id": 20,
+          "nama_unit": "Psikiatri",
+          "jenis_karyawan": 0,
+          "created_at": "2024-03-19T06:57:41.000000Z",
+          "updated_at": "2024-06-07T06:57:41.000000Z"
+      },
+      "status_karyawan": "Magang",
+      "created_at": "2024-06-07T06:57:44.000000Z",
+      "updated_at": "2024-06-07T06:57:44.000000Z"
   },
-  "tgl_keluar": "2023-04-01",
-  "no_kk": "155272565",
-  "alamat": "Jalan Imam Bonjol no. 56, Semarang, Jawa Tengah",
-  "gelar_depan": "apt.",
-  "no_hp": "171392948",
-  "no_bpjsksh": "297109472",
-  "no_bpjsktk": "415654976",
-  "tgl_diangkat": "2023-04-01",
-  "masa_kerja": "50",
-  "npwp": "75485344",
-  "jenis_kelamin": "P",
-  "agama": "Konghucu",
-  "golongan_darah": "A+",
-  "tinggi_badan": 237,
-  "berat_badan": 143,
-  "no_ijazah": "IJ/VII/147397979",
-  "tahun_lulus": 1841,
-  "no_str": "STR/01/RA/12164",
-  "masa_berlaku_str": "2024-05-23",
-  "no_sip": "161652",
-  "masa_berlaku_sip": "2024-05-23",
-  "tgl_berakhir_pks": "2023-04-01",
-  "masa_diklat": 1,
-  "created_at": "2024-06-06T23:48:35.000000Z",
-  "updated_at": "2024-06-06T23:48:35.000000Z"
-}
+  {
+      "id": 9,
+      "user": {
+          "id": 10,
+          "nama": "User 8",
+          "username": "username8",
+          "email_verified_at": null,
+          "role_id": null,
+          "foto_profil": null,
+          "data_completion_step": 1,
+          "status_aktif": 0,
+          "created_at": "2024-06-07T06:57:45.000000Z",
+          "updated_at": "2024-06-07T06:57:45.000000Z"
+      },
+      "nik": "578774",
+      "no_rm": 1187264,
+      "unit_kerja": {
+          "id": 3,
+          "nama_unit": "Laboratorium",
+          "jenis_karyawan": 0,
+          "created_at": "2024-02-08T06:57:41.000000Z",
+          "updated_at": "2024-06-07T06:57:41.000000Z"
+      },
+      "status_karyawan": "Tetap",
+      "created_at": "2024-06-07T06:57:45.000000Z",
+      "updated_at": "2024-06-07T06:57:45.000000Z"
+  },
+  {
+      "id": 10,
+      "user": {
+          "id": 11,
+          "nama": "User 9",
+          "username": "username9",
+          "email_verified_at": null,
+          "role_id": null,
+          "foto_profil": null,
+          "data_completion_step": 1,
+          "status_aktif": 0,
+          "created_at": "2024-06-07T06:57:45.000000Z",
+          "updated_at": "2024-06-07T06:57:45.000000Z"
+      },
+      "nik": "3181412",
+      "no_rm": 943415,
+      "unit_kerja": {
+          "id": 24,
+          "nama_unit": "Gizi",
+          "jenis_karyawan": 1,
+          "created_at": "2024-05-26T06:57:41.000000Z",
+          "updated_at": "2024-06-07T06:57:41.000000Z"
+      },
+      "status_karyawan": "Magang",
+      "created_at": "2024-06-07T06:57:45.000000Z",
+      "updated_at": "2024-06-07T06:57:45.000000Z"
+  }
+]
