@@ -24,6 +24,7 @@ import formatDate from "../../../lib/formatDate";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
+import BooleanBadge from "../BooleanBadge";
 
 interface Props {
   filterConfig?: any;
@@ -32,9 +33,9 @@ interface Props {
 export default function TabelKaryawan({ filterConfig }: Props) {
   const columns: Tabel__Column__Interface[] = [
     {
-      key: "nama",
-      label: "Nama",
-      dataType: "avatarAndName",
+      key: "created_at",
+      label: "Tanggal Pengajuan",
+      dataType: "date",
     },
     {
       key: "unit_kerja",
@@ -42,25 +43,24 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       dataType: "string",
     },
     {
-      key: "created_at",
-      label: "Tanggal Pengajuan",
-      dataType: "date",
+      key: "nama",
+      label: "Karyawan Pengajuan",
+      dataType: "avatarAndName",
     },
     {
       key: "jadwal_pengajuan",
       label: "Jadwal Pengajuan",
       dataType: "date",
     },
-
-    {
-      key: "jadwal_ditukar",
-      label: "Jadwal Ditukar",
-      dataType: "date",
-    },
     {
       key: "user_ditukar",
       label: "Karyawan Ditukar",
       dataType: "string",
+    },
+    {
+      key: "jadwal_ditukar",
+      label: "Jadwal Ditukar",
+      dataType: "date",
     },
     {
       key: "status_penukaran",
@@ -239,6 +239,10 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                     bg={i % 2 === 0 ? contentBgColor : bodyColor}
                   >
                     <Td whiteSpace={"nowrap"}>
+                      {formatDate(row.tgl_lahir as string)}
+                    </Td>
+                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
+                    <Td whiteSpace={"nowrap"}>
                       <HStack>
                         <Avatar
                           size={"sm"}
@@ -248,29 +252,30 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                         <Text>{row.user.nama}</Text>
                       </HStack>
                     </Td>
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
                     <Td whiteSpace={"nowrap"}>
                       {formatDate(row.tgl_lahir as string)}
                     </Td>
                     <Td whiteSpace={"nowrap"}>
-                      {formatDate(row.tgl_lahir as string)}
+                      <HStack>
+                        <Avatar
+                          size={"sm"}
+                          name={row.user.nama}
+                          src={row.user.foto_profil}
+                        />
+                        <Text>{row.user.nama}</Text>
+                      </HStack>
                     </Td>
                     <Td whiteSpace={"nowrap"}>
                       {formatDate(row.tgl_lahir as string)}
                     </Td>
-                    <Td>{row.nama}</Td>
                     <Td whiteSpace={"nowrap"} textAlign={"center"}>
-                      <Badge
+                      <BooleanBadge
+                        data={Math.random() < 0.5 ? 0 : 1}
+                        trueValue="Disetujui"
+                        falseValue="tidak disetujui"
                         w={"100%"}
-                        maxW={"120px"}
-                        textAlign={"center"}
-                        colorScheme={
-                          //@ts-ignore
-                          statusKaryawanColorScheme[row.status_karyawan]
-                        }
-                      >
-                        {row.status_karyawan}
-                      </Badge>
+                        maxW={"150px"}
+                      />
                     </Td>
                   </Tr>
                 ))}
