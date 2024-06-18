@@ -14,7 +14,7 @@ export default function DetailLaporanRiwayatPenggajian() {
     periode: new Date(),
     tanggal: new Date(),
     total_karyawan: 703,
-    status: "Butuh Verifikasi 2",
+    status: "Menunggu Verifikasi 2",
   };
   const [data] = useState<any | null>(dummy);
 

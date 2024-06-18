@@ -287,15 +287,13 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
                         align={"stretch"}
                         justify={"center"}
                       >
-                        <Tooltip label="Publikasi Payslip" openDelay={500}>
-                          <Button
-                            colorScheme="ap"
-                            variant={"ghost"}
-                            className="clicky"
-                          >
-                            Publikasi
-                          </Button>
-                        </Tooltip>
+                        <Button
+                          colorScheme="ap"
+                          variant={"ghost"}
+                          className="clicky"
+                        >
+                          Publikasi
+                        </Button>
                       </VStack>
                     </Td>
                   </Tr>

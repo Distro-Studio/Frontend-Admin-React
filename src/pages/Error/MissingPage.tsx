@@ -28,13 +28,15 @@ export default function MissingPage() {
           onClick={() => {
             window.history.back();
           }}
-          mb={2}
         >
           Back
         </Button>
 
         <Button
-          variant={"unstyled"}
+          variant={"ghost"}
+          colorScheme="ap"
+          w={"100%"}
+          maxW={"300px"}
           className="lg-clicky"
           as={Link}
           to={"/"}
