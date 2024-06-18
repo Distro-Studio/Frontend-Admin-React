@@ -57,11 +57,7 @@ export default function DashboardJenisKelamin({ ...props }: Props) {
 
           <Wrap m={"auto"} spacing={responsiveSpacing}>
             <VStack flex={"1 1 0"} my={responsiveSpacing} position={"relative"}>
-              <VStack
-                w={"100%"}
-                maxW={"240px"}
-                className="doughnutChartContainer"
-              >
+              <VStack w={"100%"} className="doughnutChartContainer">
                 <ChartDoughnut labels={labels} datasets={datasets} />
               </VStack>
 

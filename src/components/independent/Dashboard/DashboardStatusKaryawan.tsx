@@ -57,11 +57,7 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
 
           <Wrap m={"auto"} spacing={responsiveSpacing}>
             <VStack flex={"1 1 0"} my={responsiveSpacing} position={"relative"}>
-              <VStack
-                w={"100% !important"}
-                maxW={"240px"}
-                className="doughnutChartContainer"
-              >
+              <VStack w={"100% !important"} className="doughnutChartContainer">
                 <ChartDoughnut labels={labels} datasets={datasets} />
               </VStack>
 

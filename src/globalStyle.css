@@ -438,9 +438,9 @@ select {
   width: 100% !important;
   height: 100% !important;
   min-width: 200px !important;
-  max-width: 320px !important;
+  max-width: 250px !important;
   min-height: 200px !important;
-  max-height: 320px !important;
+  max-height: 250px !important;
 }
 
 img[src^="/vectors/icons/hospital.svg"] {
