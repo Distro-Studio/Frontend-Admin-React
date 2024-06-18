@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Badge,
   HStack,
   Icon,
   Table,
@@ -13,18 +12,14 @@ import {
 } from "@chakra-ui/react";
 import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useState } from "react";
-import {
-  statusKaryawanColorScheme,
-  useBodyColor,
-  useContentBgColor,
-} from "../../../const/colors";
+import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { dummyKaryawanList } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
 import formatDate from "../../../lib/formatDate";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/TabelContainer";
-import TabelFooterConfig from "../TabelFooterConfig";
 import BooleanBadge from "../BooleanBadge";
+import TabelFooterConfig from "../TabelFooterConfig";
 
 interface Props {
   filterConfig?: any;

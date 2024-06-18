@@ -49,8 +49,8 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
       dataType: "date",
     },
     {
-      key: "total_karyawan_terverifikasi",
-      label: "Karyawan Terverifikasi",
+      key: "total_karyawan_diverifikasi",
+      label: "Karyawan Diverifikasi",
       dataType: "number",
       preferredTextAlign: "center",
     },
