@@ -4,16 +4,17 @@ import {
   Button,
   HStack,
   Icon,
-  Image,
   SimpleGrid,
   Text,
   VStack,
   Wrap,
 } from "@chakra-ui/react";
+import { Global } from "@emotion/react";
 import { RiArrowRightSLine } from "@remixicon/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import JenisKaryawanBadge from "../../components/dependent/JenisKaryawanBadge";
+import ImageView from "../../components/dependent/Perusahaan/ImageView";
 import ComponentSpinner from "../../components/independent/ComponentSpinner";
 import FlexLine from "../../components/independent/FlexLine";
 import CContainer from "../../components/wrapper/CContainer";
@@ -24,34 +25,13 @@ import formatDate from "../../lib/formatDate";
 import formatTime from "../../lib/formatTime";
 export default function DetailPelaporanKaryawan() {
   const dummyBerkasFoto = [
-    {
-      filename: "Nama File.jpg",
-      size: "1.2kb",
-    },
-    {
-      filename: "Nama File.jpg",
-      size: "1.2kb",
-    },
-    {
-      filename: "Nama File.jpg",
-      size: "1.2kb",
-    },
-    {
-      filename: "Nama File.jpg",
-      size: "1.2kb",
-    },
-    {
-      filename: "Nama File.jpg",
-      size: "1.2kb",
-    },
-    {
-      filename: "Nama File.jpg",
-      size: "1.2kb",
-    },
-    {
-      filename: "Nama File.jpg",
-      size: "1.2kb",
-    },
+    "/reza.jpg",
+    "/reza.jpg",
+    "/reza.jpg",
+    "/reza.jpg",
+    "/reza.jpg",
+    "/reza.jpg",
+    "/reza.jpg",
   ];
   const dummy = {
     id: 1,
@@ -68,7 +48,7 @@ export default function DetailPelaporanKaryawan() {
     },
     unit_kerja: {
       id: 2,
-      nama_unit: "TIK",
+      nama_unit: "Informatika",
       jenis_karyawan: 1,
       created_at: "2024-04-04T03:18:23.000000Z",
       updated_at: "2024-05-07T03:18:23.000000Z",
@@ -103,6 +83,14 @@ export default function DetailPelaporanKaryawan() {
 
   return (
     <CWrapper>
+      <Global
+        styles={{
+          ".chakra-modal__content-container": {
+            padding: "0 !important",
+          },
+        }}
+      />
+
       {loading && <ComponentSpinner minH={"400px"} flex={1} />}
 
       <VStack spacing={responsiveSpacing} align={"stretch"}>
@@ -240,11 +228,16 @@ export default function DetailPelaporanKaryawan() {
                   </Text>
 
                   <SimpleGrid
-                    columns={[2, 3, null, null, 4]}
+                    columns={[1, 2, 3, null, 4]}
                     gap={responsiveSpacing}
                   >
-                    {dummy.berkas_foto.map((berkas: any, i: number) => (
-                      <Image src="/reza.jpg" borderRadius={6} />
+                    {data.berkas_foto.map((foto: any, i: number) => (
+                      <ImageView
+                        key={i}
+                        initialSrc={foto}
+                        index={i}
+                        data={data.berkas_foto}
+                      />
                     ))}
                   </SimpleGrid>
                 </Box>

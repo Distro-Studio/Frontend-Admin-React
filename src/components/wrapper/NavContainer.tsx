@@ -149,7 +149,7 @@ export default function NavContainer({
           pb={["86px", null, 6]}
           align={"stretch"}
           minH={"100vh"}
-          maxW={"calc(100% - 72px)"}
+          maxW={smScreen ? "100%" : "calc(100% - 72px)"}
           // w={"100%"}
           flex={"1 1 0"}
           overflowX={"clip"}
