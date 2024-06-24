@@ -67,11 +67,6 @@ export default function MultiSelectKaryawan({
     >
       {filteredOptions?.map((option: any, i: number) => (
         <Button
-          bg={
-            selected.some((item) => item.value === option.value)
-              ? "var(--p500a3) !important"
-              : ""
-          }
           _hover={{
             bg: "var(--divider) !important",
           }}
@@ -79,6 +74,11 @@ export default function MultiSelectKaryawan({
           borderColor={
             selected.some((item) => item.value === option.value)
               ? "var(--p500a1)"
+              : ""
+          }
+          bg={
+            selected.some((item) => item.value === option.value)
+              ? "var(--p500a3) !important"
               : ""
           }
           key={i}
