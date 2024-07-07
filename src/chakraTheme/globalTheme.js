@@ -30,63 +30,31 @@ export const globalTheme = extendTheme({
       800: "#16B3AC",
       900: "#16B3AC",
     },
-    ad: {
-      50: "#bfbfbf15",
-      100: "#bfbfbf15",
-      200: "#bfbfbf15",
-      300: "#bfbfbf15",
-      400: "#bfbfbf15",
-      500: "#bfbfbf15",
-      600: "#bfbfbf15",
-      700: "#bfbfbf15",
-      800: "#bfbfbf15",
-      900: "#bfbfbf15",
-    },
-    ared: {
-      50: "#E53E3E1b",
-      100: "#E53E3E2b",
-      200: "#E53E3E",
-      300: "#E53E3E",
-      400: "#E53E3E",
+    error: {
+      50: "#FFF5F5",
+      100: "#FED7D7",
+      200: "#FC8181",
+      300: "#FC8181",
+      400: "#F56565",
       500: "#E53E3E",
-      600: "#E53E3E",
-      700: "#E53E3E",
-      800: "#E53E3E",
-      900: "#E53E3E",
+      600: "#C53030",
+      700: "#9B2C2C",
+      800: "#822727",
+      900: "#63171B",
     },
-    dnw: {
+    bnw: {
       200: "white",
       300: "white",
-      500: "#181818",
-      600: "#181818",
+      500: "#191919",
+      600: "#191919",
     },
-    wnd: {
-      200: "#181818",
-      300: "#181818",
+    wnb: {
+      200: "#191919",
+      300: "#191919",
       500: "white",
       600: "white",
     },
-    b: "#000000",
-    bt: "#333333",
-    w: "white",
-    wt: "#eeeeee",
-    dark: "#181818",
-    error: "#E53E3E",
-    divider: "#b4b4b420",
-    divider2: "#b4b4b440",
-    divider3: "#b4b4b450",
-
-    blue: {
-      100: "#D0EAFE",
-      200: "#A1D2FE",
-      300: "#72B5FE",
-      400: "#4F9CFD",
-      500: "#1672FC",
-      600: "#1058D8",
-      700: "#0B41B5",
-      800: "#072D92",
-      900: "#041F78",
-    },
+    dark: "#191919",
   },
 
   styles: {
@@ -99,27 +67,139 @@ export const globalTheme = extendTheme({
   },
 
   components: {
-    Skeleton: {
+    Accordion: {
       baseStyle: (props) => ({
-        // bg: "var(--divider3) !important",
-        borderRadius: "16px",
+        container: {
+          borderColor: "var(--divider)",
+        },
+        panel: {
+          pb: 2,
+        },
       }),
+    },
+
+    Alert: {
+      baseStyle: (props) => ({
+        container: {
+          borderRadius: 12,
+        },
+      }),
+      variants: {
+        // Perbarui varian subtle untuk status error
+        subtle: (props) => ({
+          container: {
+            bg: props.status === "error" ? "var(--reda3)" : undefined,
+          },
+          icon: {
+            color: props.status === "error" ? "red.400" : undefined,
+          },
+        }),
+      },
     },
 
     Badge: {
       baseStyle: (props) => ({
-        p: "4px 16px",
+        p: "4px 10px",
         borderRadius: 6,
+        fontSize: [10, null, 12],
         // textTransform: "none",
+      }),
+    },
+
+    Button: {
+      baseStyle: {
+        fontWeight: 550,
+        borderRadius: 8,
+      },
+      variants: {
+        outline: {
+          // border: "2px solid",
+        },
+      },
+    },
+
+    Checkbox: {
+      baseStyle: (props) => ({
+        icon: {
+          color: "white",
+        },
+        control: {
+          border: props.isInvalid
+            ? "1.5px solid #E53E3E"
+            : "2px solid var(--divider3) !important",
+        },
       }),
     },
 
     Drawer: {
       baseStyle: (props) => ({
+        overlay: {
+          bg: "#00000011",
+          backdropFilter: "blur(5px)",
+        },
         dialog: {
-          bg: "transparent",
-          color: props.colorMode === "dark" ? "wt" : "wt",
+          bg: props.colorMode === "dark" ? "dark" : "white",
           boxShadow: "none",
+        },
+        header: {
+          py: "20px",
+          pt: "18px",
+          px: "24px",
+          pr: "20px",
+        },
+        body: {
+          px: "24px",
+          py: "0px !important",
+          display: "flex",
+          flexDirection: "column",
+          // minH: window.innerWidth < 500 ? "300px" : "fit-content",
+        },
+        closeButton: {
+          borderRadius: "full",
+          right: 4,
+          top: 4,
+          fontSize: "13px !important",
+        },
+      }),
+    },
+
+    Input: {
+      baseStyle: (props) => ({
+        field: {
+          _autofill: {
+            boxShadow:
+              props.colorMode === "dark"
+                ? "0 0 0px 1000px dark inset"
+                : "0 0 0px 1000px #ffffff inset",
+            border: "2px solid var(--divider) !important",
+          },
+        },
+      }),
+    },
+
+    Menu: {
+      baseStyle: (props) => ({
+        groupTitle: {
+          opacity: 0.5,
+          cursor: "default",
+        },
+        divider: {
+          my: 0,
+        },
+        list: {
+          bg: props.colorMode === "dark" ? "dark" : "white",
+          border: "1px solid var(--divider3)",
+          p: 0,
+          overflow: "hidden",
+          boxShadow: "none",
+          borderRadius: 8,
+        },
+        item: {
+          bg: "transparent",
+          _hover: { bg: "var(--divider)" },
+          fontSize: 14,
+          py: 3,
+          px: 4,
         },
       }),
     },
@@ -127,29 +207,32 @@ export const globalTheme = extendTheme({
     Modal: {
       baseStyle: (props) => ({
         dialogContainer: {
-          p: 6,
+          // p: 4,
         },
         dialog: {
           bg: props.colorMode === "dark" ? "dark" : "white",
           color: props.colorMode === "dark" ? "wt" : "bt",
           boxShadow: "none",
-          borderRadius: "16px",
+          borderRadius: 12,
+          m: 4,
+          border: "1px solid var(--divider2)",
           // maxH: "100%",
-          // border: "1px solid var(--divider)",
-          mx: "16px",
         },
         overlay: {
           bg: "#00000011",
           backdropFilter: "blur(5px)",
         },
         header: {
-          py: "20px",
-          px: "24px",
-          pr: "70px !important",
+          pt: "18px",
+          pr: "20px",
+          pb: "20px",
+          pl: "24px",
         },
         body: {
           px: "24px",
           py: "0px !important",
+          display: "flex",
+          flexDirection: "column",
           // minH: window.innerWidth < 500 ? "300px" : "fit-content",
         },
         footer: {
@@ -190,88 +273,19 @@ export const globalTheme = extendTheme({
       }),
     },
 
-    Toast: {
-      baseStyle: {
-        fontSize: [13, null, 15],
-        borderRadius: "16px",
-      },
-    },
-
-    Menu: {
+    Radio: {
       baseStyle: (props) => ({
-        groupTitle: {
-          opacity: 0.5,
-          cursor: "default",
-        },
-        divider: {
-          my: 0,
-        },
-        list: {
-          bg: props.colorMode === "dark" ? "dark" : "white",
-          border: "1px solid var(--divider3)",
-          p: 0,
-          overflow: "hidden",
-          boxShadow: "none",
-          borderRadius: "8px",
-        },
-        item: {
-          bg: "transparent",
-          _hover: { bg: "var(--divider)" },
-          fontSize: 14,
-          py: 3,
-          px: 4,
-        },
-      }),
-    },
-
-    Button: {
-      baseStyle: {
-        fontWeight: 550,
-        borderRadius: "8px",
-      },
-      variants: {
-        outline: {
-          // border: "2px solid",
-        },
-      },
-    },
-
-    Input: {
-      baseStyle: (props) => ({
-        field: {
-          _autofill: {
-            boxShadow:
-              props.colorMode === "dark"
-                ? "0 0 0px 1000px dark inset"
-                : "0 0 0px 1000px #ffffff inset",
-            border: "2px solid var(--divider) !important",
-          },
-        },
-      }),
-    },
-
-    Checkbox: {
-      baseStyle: (props) => ({
-        icon: {
-          color: "white",
-        },
         control: {
-          border: props.isInvalid
-            ? "1.5px solid #E53E3E"
-            : "2px solid var(--divider3) !important",
+          border: "1px solid var(--divider3) !important",
         },
       }),
     },
 
-    Tooltip: {
-      baseStyle: {
-        bg: "dark",
-        color: "w",
-        "--popper-arrow-bg": "#0097e8",
+    Skeleton: {
+      baseStyle: (props) => ({
+        // bg: "var(--divider3) !important",
         borderRadius: 8,
-        px: 4,
-        py: 2,
-      },
+      }),
     },
 
     Table: {
@@ -286,9 +300,27 @@ export const globalTheme = extendTheme({
           // },
           td: {
             py: "12px",
-            px: "16px",
+            px: "24px",
           },
         },
+      },
+    },
+
+    Toast: {
+      baseStyle: {
+        fontSize: [13, null, 15],
+        borderRadius: 8,
+      },
+    },
+
+    Tooltip: {
+      baseStyle: {
+        bg: "dark",
+        color: "white !important",
+        "--popper-arrow-bg": "#0097e8",
+        borderRadius: 8,
+        px: 4,
+        py: 2,
       },
     },
   },

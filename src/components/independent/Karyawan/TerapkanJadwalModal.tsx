@@ -18,11 +18,11 @@ import {
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import MultiSelectKaryawan from "../../dependent/_Select/MultiSelectKaryawan";
 import SelectShift from "../../dependent/_Select/SelectShift";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 import DatePicker from "../../input/DatePicker";
 
 interface Props extends ButtonProps {}
@@ -80,7 +80,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
               <FormControl mb={4} isInvalid={!!formik.errors.karyawan_list}>
                 <FormLabel>
                   Karyawan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <MultiSelectKaryawan
                   formik={formik}
@@ -98,7 +98,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                 <FormControl mb={4} isInvalid={!!formik.errors.tgl_mulai}>
                   <FormLabel>
                     Tanggal Mulai
-                    <FormRequired />
+                    <RequiredForm />
                   </FormLabel>
                   <DatePicker
                     formik={formik}
@@ -122,7 +122,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                 >
                   <FormLabel>
                     Tanggal Selesai
-                    <FormRequired />
+                    <RequiredForm />
                   </FormLabel>
                   <DatePicker
                     formik={formik}
@@ -145,7 +145,7 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
               <FormControl isInvalid={!!formik.errors.shift}>
                 <FormLabel>
                   Pilih Shift
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectShift
                   formik={formik}

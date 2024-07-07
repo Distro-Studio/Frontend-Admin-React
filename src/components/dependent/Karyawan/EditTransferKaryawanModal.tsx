@@ -21,9 +21,9 @@ import { RiEditFill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 import DatePicker from "../../input/DatePicker";
 import FileInput from "../../input/FileInput";
 import Textarea from "../../input/Textarea";
@@ -113,7 +113,7 @@ export default function EditTransferKaryawanModal({ data }: Props) {
               <FormControl mb={4}>
                 <FormLabel>
                   Nama Karyawan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input defaultValue={data.user.nama} isDisabled />
               </FormControl>
@@ -122,7 +122,7 @@ export default function EditTransferKaryawanModal({ data }: Props) {
                 <FormControl mb={4} isInvalid={!!formik.errors.tgl_mulai}>
                   <FormLabel>
                     Tanggal Mulai
-                    <FormRequired />
+                    <RequiredForm />
                   </FormLabel>
                   <DatePicker
                     name="tgl_mulai"
@@ -144,7 +144,7 @@ export default function EditTransferKaryawanModal({ data }: Props) {
                 <FormControl mb={4} isInvalid={!!formik.errors.tipe}>
                   <FormLabel>
                     Tipe Transfer
-                    <FormRequired />
+                    <RequiredForm />
                   </FormLabel>
                   <SelectTipeTransfer
                     name="tipe"
@@ -163,7 +163,7 @@ export default function EditTransferKaryawanModal({ data }: Props) {
               <FormControl mb={4} isInvalid={!!formik.errors.unit_kerja_tujuan}>
                 <FormLabel>
                   Unit Kerja Tujuan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectUnitKerja
                   name="unit_kerja_tujuan"
@@ -180,7 +180,7 @@ export default function EditTransferKaryawanModal({ data }: Props) {
               <FormControl mb={4} isInvalid={!!formik.errors.jabatan_tujuan}>
                 <FormLabel>
                   Jabatan Tujuan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectJabatan
                   name="jabatan_tujuan"
@@ -200,7 +200,7 @@ export default function EditTransferKaryawanModal({ data }: Props) {
               >
                 <FormLabel>
                   Kelompok Gaji Tujuan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectKelompokGaji
                   name="kelompok_gaji_tujuan"
@@ -217,7 +217,7 @@ export default function EditTransferKaryawanModal({ data }: Props) {
               <FormControl mb={4} isInvalid={!!formik.errors.dokumen}>
                 <FormLabel>
                   Dokumen
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <FileInput name="dokumen" formik={formik} />
                 <Text
@@ -236,7 +236,7 @@ export default function EditTransferKaryawanModal({ data }: Props) {
               >
                 <FormLabel>
                   Alesan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Textarea
                   name="alasan"

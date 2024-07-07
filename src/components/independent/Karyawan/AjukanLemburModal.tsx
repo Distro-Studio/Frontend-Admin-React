@@ -17,13 +17,13 @@ import {
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import SelectKaryawan from "../../dependent/_Select/SelectKaryawan";
 import SelectKompensasi from "../../dependent/_Select/SelectKompensasi";
 import SelectShift from "../../dependent/_Select/SelectShift";
 import SelectTipeCuti from "../../dependent/_Select/SelectTipeCuti";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 import DatePicker from "../../input/DatePicker";
 import Textarea from "../../input/Textarea";
 import TimeInput from "../../input/TimeInput";
@@ -89,7 +89,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
               <FormControl mb={4} isInvalid={!!formik.errors.karyawan}>
                 <FormLabel>
                   Karyawan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectKaryawan
                   name="karyawan"
@@ -106,7 +106,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
               <FormControl mb={4} isInvalid={!!formik.errors.tgl_pengajuan}>
                 <FormLabel>
                   Tanggal Pengajuan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <DatePicker
                   name="tgl_pengajuan"
@@ -122,7 +122,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
               <FormControl mb={4} isInvalid={!!formik.errors.shift}>
                 <FormLabel>
                   Shift
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectShift
                   name="shift"
@@ -139,7 +139,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
               <FormControl mb={4} isInvalid={!!formik.errors.kompensasi}>
                 <FormLabel>
                   Kompensasi
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectKompensasi
                   name="kompensasi"
@@ -157,7 +157,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
                 <FormControl mb={4} isInvalid={!!formik.errors.tipe}>
                   <FormLabel>
                     Tipe
-                    <FormRequired />
+                    <RequiredForm />
                   </FormLabel>
                   <SelectTipeCuti
                     name="tipe"
@@ -174,7 +174,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
                 <FormControl mb={4} isInvalid={!!formik.errors.durasi}>
                   <FormLabel>
                     Durasi
-                    <FormRequired />
+                    <RequiredForm />
                   </FormLabel>
                   <TimeInput
                     value={formik.values.durasi}
@@ -191,7 +191,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
               <FormControl isInvalid={!!formik.errors.catatan}>
                 <FormLabel>
                   Catatan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Textarea
                   name="catatan"

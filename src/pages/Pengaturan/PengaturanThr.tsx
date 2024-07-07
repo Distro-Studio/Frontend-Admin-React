@@ -15,7 +15,7 @@ import { RiCircleLine, RiRecordCircleLine } from "@remixicon/react";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
-import FormRequired from "../../components/form/FormRequired";
+import RequiredForm from "../../components/form/RequiredForm";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
@@ -93,7 +93,7 @@ export default function PengaturanThr() {
               >
                 <FormLabel>
                   Perhitungan THR
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
 
                 <Wrap>
@@ -201,7 +201,7 @@ export default function PengaturanThr() {
               >
                 <FormLabel>
                   Pajak dan Premi
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
 
                 <Wrap>
@@ -302,7 +302,7 @@ export default function PengaturanThr() {
               >
                 <FormLabel>
                   THR Karyawan Kontrak
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
 
                 <Wrap align={"center"}>

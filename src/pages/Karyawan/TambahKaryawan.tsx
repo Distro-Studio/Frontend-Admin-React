@@ -30,7 +30,7 @@ import SelectKompetensi from "../../components/dependent/_Select/SelectKompetens
 import SelectPtkp from "../../components/dependent/_Select/SelectPtkp";
 import SelectRole from "../../components/dependent/_Select/SelectRole";
 import SelectUnitKerja from "../../components/dependent/_Select/SelectUnitKerja";
-import FormRequired from "../../components/form/FormRequired";
+import RequiredForm from "../../components/form/RequiredForm";
 import DatePicker from "../../components/input/DatePicker";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -107,6 +107,7 @@ export default function TambahKaryawan() {
       uang_lembur: "",
       uang_makan: "",
       ptkp: "" as any,
+      potongan: "" as any,
       username: "",
       password: "",
     },
@@ -151,7 +152,7 @@ export default function TambahKaryawan() {
         >
           <FormLabel>
             Nama Karyawan
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <Input
             name="nama_karyawan"
@@ -169,7 +170,7 @@ export default function TambahKaryawan() {
         >
           <FormLabel>
             Email
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <Input
             name="email"
@@ -190,7 +191,7 @@ export default function TambahKaryawan() {
         >
           <FormLabel>
             RM
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <Input
             name="no_rm"
@@ -208,7 +209,7 @@ export default function TambahKaryawan() {
         >
           <FormLabel>
             No. Manulife
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <Input
             name="no_manulife"
@@ -226,7 +227,7 @@ export default function TambahKaryawan() {
         >
           <FormLabel>
             Tanggal Masuk
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <DatePicker
             name="tgl_masuk"
@@ -244,7 +245,7 @@ export default function TambahKaryawan() {
         >
           <FormLabel>
             Status Karyawan
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <SelectStatusKaryawan
             name="status_karyawan"
@@ -265,7 +266,7 @@ export default function TambahKaryawan() {
         >
           <FormLabel>
             Unit Kerja
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <SelectUnitKerja
             name="unit_kerja"
@@ -285,7 +286,7 @@ export default function TambahKaryawan() {
         >
           <FormLabel>
             Jabatan
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <SelectJabatan
             name="jabatan"
@@ -319,7 +320,7 @@ export default function TambahKaryawan() {
         <FormControl mb={4} flex={"1 1 300px"} isInvalid={!!formik.errors.role}>
           <FormLabel>
             Role
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <SelectRole
             name="role"
@@ -358,7 +359,7 @@ export default function TambahKaryawan() {
         >
           <FormLabel>
             Kelompok Gaji
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <SelectKelompokGaji
             name="kelompok_gaji"
@@ -378,7 +379,7 @@ export default function TambahKaryawan() {
         >
           <FormLabel>
             Nomor Rekening
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <Input
             name="no_rekening"
@@ -396,7 +397,7 @@ export default function TambahKaryawan() {
         >
           <FormLabel>
             Tunjangan Uang Lembur
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <InputGroup>
             <InputLeftElement>
@@ -421,7 +422,7 @@ export default function TambahKaryawan() {
         >
           <FormLabel>
             Tunjangan Fungsional
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <InputGroup>
             <InputLeftElement>
@@ -446,7 +447,7 @@ export default function TambahKaryawan() {
         >
           <FormLabel>
             Tunjangan Khusus
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <InputGroup>
             <InputLeftElement>
@@ -469,7 +470,7 @@ export default function TambahKaryawan() {
         >
           <FormLabel>
             Tunjangan Lainnya
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <InputGroup>
             <InputLeftElement>
@@ -492,7 +493,7 @@ export default function TambahKaryawan() {
         >
           <FormLabel>
             Uang Lembur
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <InputGroup>
             <InputLeftElement>
@@ -515,7 +516,7 @@ export default function TambahKaryawan() {
         >
           <FormLabel>
             Uang Makan
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <InputGroup>
             <InputLeftElement>
@@ -534,7 +535,7 @@ export default function TambahKaryawan() {
         <FormControl mb={4} flex={"1 1 300px"} isInvalid={!!formik.errors.ptkp}>
           <FormLabel>
             PTKP
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <SelectPtkp
             name="ptkp"
@@ -543,6 +544,22 @@ export default function TambahKaryawan() {
             initialSelected={formik.values.ptkp}
           />
           <FormErrorMessage>{formik.errors.ptkp as string}</FormErrorMessage>
+        </FormControl>
+
+        <FormControl mb={4} flex={"1 1 300px"} isInvalid={!!formik.errors.ptkp}>
+          <FormLabel>
+            Potongan
+            <RequiredForm />
+          </FormLabel>
+          <SelectPtkp
+            name="potongan"
+            formik={formik}
+            placeholder="Multi Pilih Potongan"
+            initialSelected={formik.values.potongan}
+          />
+          <FormErrorMessage>
+            {formik.errors.potongan as string}
+          </FormErrorMessage>
         </FormControl>
       </Wrap>
     );
@@ -578,7 +595,7 @@ export default function TambahKaryawan() {
         <FormControl mb={4} isInvalid={!!formik.errors.username}>
           <FormLabel>
             Username
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <InputGroup>
             <HStack w={"100%"}>
@@ -599,7 +616,7 @@ export default function TambahKaryawan() {
         <FormControl mb={4} isInvalid={!!formik.errors.password}>
           <FormLabel>
             Password
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <HStack w={"100%"}>
             <Input

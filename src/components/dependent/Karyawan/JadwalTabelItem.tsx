@@ -24,12 +24,12 @@ import { useFormik } from "formik";
 import { useRef, useState } from "react";
 import * as yup from "yup";
 import { responsiveSpacing } from "../../../const/sizes";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import formatDate from "../../../lib/formatDate";
 import formatTime from "../../../lib/formatTime";
 import isDatePassed from "../../../lib/isDatePassed";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 import SelectShift from "../_Select/SelectShift";
 import JenisKaryawanBadge from "../JenisKaryawanBadge";
 import DeleteJadwalModal from "./DeleteJadwalModal";
@@ -169,7 +169,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
                 <FormControl mt={6} isInvalid={!!formik.errors.shift}>
                   <FormLabel>
                     Shift
-                    <FormRequired />
+                    <RequiredForm />
                   </FormLabel>
                   <SelectShift
                     formik={formik}

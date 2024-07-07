@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { RiCalendarLine } from "@remixicon/react";
 import { Dispatch, useRef, useState } from "react";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import formatYear from "../../../lib/formatYear";
 import parseNumber from "../../../lib/parseNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";

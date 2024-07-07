@@ -9,12 +9,13 @@ import {
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import FilterTabelPenggajian from "../../components/dependent/Keuangan/FilterTabelPenggajian";
-import TabelPenggajian from "../../components/dependent/Keuangan/TabelPenggajian";
+import TabelRiwayatPenggajian from "../../components/dependent/Keuangan/TabelRiwayatPenggajian";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
+import BuatPenggajianModal from "../../components/independent/BuatPenggajianModal";
 
 export default function Penggajian() {
   // Filter Config
@@ -64,9 +65,11 @@ export default function Penggajian() {
             </Button>
 
             <ImportKaryawanModal />
+
+            <BuatPenggajianModal />
           </Wrap>
 
-          <TabelPenggajian filterConfig={filterConfig} />
+          <TabelRiwayatPenggajian filterConfig={filterConfig} />
         </CContainer>
       </CWrapper>
     </>

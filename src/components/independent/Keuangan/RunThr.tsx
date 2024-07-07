@@ -17,10 +17,10 @@ import {
 import { useFormik } from "formik";
 import { useRef, useState } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import MultiSelectKaryawan from "../../dependent/_Select/MultiSelectKaryawan";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 import DatePicker from "../../input/DatePicker";
 
 interface Props extends ButtonProps {}
@@ -88,7 +88,7 @@ export default function RunThr({ ...props }: Props) {
               <FormControl mb={4} isInvalid={!!formik.errors.karyawan_list}>
                 <FormLabel>
                   Karyawan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <MultiSelectKaryawan
                   formik={formik}
@@ -106,7 +106,7 @@ export default function RunThr({ ...props }: Props) {
               <FormControl isInvalid={!!formik.errors.tanggal}>
                 <FormLabel>
                   Tanggal
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <DatePicker
                   formik={formik}

@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { RiEqualizer3Line } from "@remixicon/react";
 import { Dispatch, useRef, useState } from "react";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import FilterUnitKerja from "../_FilterOptions/FilterUnitKerja";
 import FilterStatusKaryawan from "../_FilterOptions/FilterStatusKaryawan";
 import useBackOnClose from "../../../lib/useBackOnClose";

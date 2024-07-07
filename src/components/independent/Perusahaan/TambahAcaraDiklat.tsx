@@ -18,9 +18,9 @@ import {
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 import Textarea from "../../input/Textarea";
 import TimeInput from "../../input/TimeInput";
 
@@ -89,7 +89,7 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
               <FormControl mb={4} isInvalid={!!formik.errors.nama}>
                 <FormLabel>
                   Nama Acara
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input
                   name="nama"
@@ -106,7 +106,7 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
                 <FormControl flex={"1 1"} isInvalid={!!formik.errors.jenis}>
                   <FormLabel>
                     Jenis Acara
-                    <FormRequired />
+                    <RequiredForm />
                   </FormLabel>
                   <Input
                     name="jenis"
@@ -122,7 +122,7 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
                 <FormControl flex={"1 1"} isInvalid={!!formik.errors.tgl}>
                   <FormLabel>
                     Tanggal
-                    <FormRequired />
+                    <RequiredForm />
                   </FormLabel>
                   <Input
                     name="tgl"
@@ -140,7 +140,7 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
                 <FormControl flex={"1 1"} isInvalid={!!formik.errors.tempat}>
                   <FormLabel>
                     Tempat
-                    <FormRequired />
+                    <RequiredForm />
                   </FormLabel>
                   <Input
                     name="tempat"
@@ -156,7 +156,7 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
                 <FormControl flex={"1 1"} isInvalid={!!formik.errors.waktu}>
                   <FormLabel>
                     Waktu
-                    <FormRequired />
+                    <RequiredForm />
                   </FormLabel>
                   <TimeInput
                     value={formik.values.waktu}
@@ -173,7 +173,7 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
               <FormControl mb={4} isInvalid={!!formik.errors.penanggung_jawab}>
                 <FormLabel>
                   Penanggung Jawab
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input
                   name="penanggung_jawab"
@@ -189,7 +189,7 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
               <FormControl mb={4} isInvalid={!!formik.errors.peserta}>
                 <FormLabel>
                   Peserta
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Textarea
                   name="peserta"

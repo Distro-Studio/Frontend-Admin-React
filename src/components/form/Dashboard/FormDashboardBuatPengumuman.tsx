@@ -7,7 +7,7 @@ import {
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Textarea from "../../input/Textarea";
-import FormRequired from "../FormRequired";
+import RequiredForm from "../RequiredForm";
 import { MutableRefObject } from "react";
 
 interface Props {
@@ -34,7 +34,7 @@ export default function FormDashboardBuatPengumuman({ forwardRef }: Props) {
       <FormControl mb={4} isInvalid={formik.errors.judul ? true : false}>
         <FormLabel>
           Judul
-          <FormRequired />
+          <RequiredForm />
         </FormLabel>
         <Input
           ref={forwardRef}
@@ -49,7 +49,7 @@ export default function FormDashboardBuatPengumuman({ forwardRef }: Props) {
       <FormControl isInvalid={formik.errors.pengumuman ? true : false}>
         <FormLabel>
           Pengumuman
-          <FormRequired />
+          <RequiredForm />
         </FormLabel>
         <Textarea
           formik={formik}

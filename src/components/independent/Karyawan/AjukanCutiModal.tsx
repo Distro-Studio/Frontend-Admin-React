@@ -20,11 +20,11 @@ import {
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import SelectKaryawan from "../../dependent/_Select/SelectKaryawan";
 import SelectTipeCuti from "../../dependent/_Select/SelectTipeCuti";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 
 interface Props extends ButtonProps {}
 
@@ -82,7 +82,7 @@ export default function AjukanCutiModal({ ...props }: Props) {
               >
                 <FormLabel>
                   Karyawan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectKaryawan
                   name="karyawan"
@@ -102,7 +102,7 @@ export default function AjukanCutiModal({ ...props }: Props) {
               >
                 <FormLabel>
                   Tipe Cuti
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectTipeCuti
                   name="tipe_cuti"
@@ -119,7 +119,7 @@ export default function AjukanCutiModal({ ...props }: Props) {
               <FormControl isInvalid={formik.errors.durasi ? true : false}>
                 <FormLabel>
                   Durasi
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <InputGroup>
                   <Input name="durasi" placeholder="5" pr={16} />

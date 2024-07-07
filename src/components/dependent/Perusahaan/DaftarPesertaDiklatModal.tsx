@@ -15,7 +15,7 @@ import {
 import { RiArrowRightSLine, RiGroupFill } from "@remixicon/react";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import SearchComponent from "../SearchComponent";
 

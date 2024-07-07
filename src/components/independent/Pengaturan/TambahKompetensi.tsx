@@ -20,11 +20,11 @@ import {
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import formatNumber from "../../../lib/formatNumber";
 import parseNumber from "../../../lib/parseNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 import SelectJenisKompetensi from "../../dependent/_Select/SelectJenisKompetensi";
 
 interface Props extends ButtonProps {}
@@ -83,7 +83,7 @@ export default function TambahKompetensi({ ...props }: Props) {
               >
                 <FormLabel>
                   Nama Kompetensi
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input
                   name="nama_jabatan"
@@ -102,7 +102,7 @@ export default function TambahKompetensi({ ...props }: Props) {
               >
                 <FormLabel>
                   Jenis Kompetensi
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectJenisKompetensi
                   name="jenis_kompetensi"
@@ -122,7 +122,7 @@ export default function TambahKompetensi({ ...props }: Props) {
               >
                 <FormLabel>
                   Tunjangan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <InputGroup>
                   <InputLeftElement>

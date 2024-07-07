@@ -20,11 +20,11 @@ import {
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import formatNumber from "../../../lib/formatNumber";
 import parseNumber from "../../../lib/parseNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 
 interface Props extends ButtonProps {}
 
@@ -77,7 +77,7 @@ export default function TambahKelompokGaji({ ...props }: Props) {
               >
                 <FormLabel>
                   Nama Kelompok
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input
                   name="nama_kelompok"
@@ -95,7 +95,7 @@ export default function TambahKelompokGaji({ ...props }: Props) {
               >
                 <FormLabel>
                   Besaran Gaji
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <InputGroup>
                   <InputLeftElement>

@@ -8,7 +8,7 @@ import {
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
-import FormRequired from "../../components/form/FormRequired";
+import RequiredForm from "../../components/form/RequiredForm";
 import PasswordInput from "../../components/input/PasswordInput";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -79,7 +79,7 @@ export default function PengaturanUbahKataSandi() {
               >
                 <FormLabel>
                   Kata Sandi Lama
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <PasswordInput
                   name="password_lama"
@@ -97,7 +97,7 @@ export default function PengaturanUbahKataSandi() {
               >
                 <FormLabel>
                   Kata Sandi Baru
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <PasswordInput
                   name="password_baru"
@@ -117,7 +117,7 @@ export default function PengaturanUbahKataSandi() {
               >
                 <FormLabel>
                   Konfirmasi Kata Sandi Baru
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <PasswordInput
                   name="konfirmasi_password_baru"

@@ -21,7 +21,7 @@ import SelectPtkp from "../../components/dependent/_Select/SelectPtkp";
 import SelectRole from "../../components/dependent/_Select/SelectRole";
 import SelectStatusKaryawan from "../../components/dependent/_Select/SelectStatusKaryawan";
 import SelectUnitKerja from "../../components/dependent/_Select/SelectUnitKerja";
-import FormRequired from "../../components/form/FormRequired";
+import RequiredForm from "../../components/form/RequiredForm";
 import DatePicker from "../../components/input/DatePicker";
 
 const validationSchemaStep1 = yup.object({
@@ -141,7 +141,7 @@ export default function EditKaryawanForm({
         >
           <FormLabel>
             Nama Karyawan
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <Input
             name="nama_karyawan"
@@ -161,7 +161,7 @@ export default function EditKaryawanForm({
         >
           <FormLabel>
             Email
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <Input
             name="email"
@@ -182,7 +182,7 @@ export default function EditKaryawanForm({
         >
           <FormLabel>
             RM
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <Input
             name="no_rm"
@@ -200,7 +200,7 @@ export default function EditKaryawanForm({
         >
           <FormLabel>
             No. Manulife
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <Input
             name="no_manulife"
@@ -220,7 +220,7 @@ export default function EditKaryawanForm({
         >
           <FormLabel>
             Tanggal Masuk
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <DatePicker
             name="tgl_masuk"
@@ -241,7 +241,7 @@ export default function EditKaryawanForm({
         >
           <FormLabel>
             Status Karyawan
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <SelectStatusKaryawan
             name="status_karyawan"
@@ -262,7 +262,7 @@ export default function EditKaryawanForm({
         >
           <FormLabel>
             Unit Kerja
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <SelectUnitKerja
             name="unit_kerja"
@@ -283,7 +283,7 @@ export default function EditKaryawanForm({
         >
           <FormLabel>
             Jabatan
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <SelectJabatan
             name="jabatan"
@@ -320,7 +320,7 @@ export default function EditKaryawanForm({
         <FormControl mb={4} flex={"1 1 300px"} isInvalid={!!formik.errors.role}>
           <FormLabel>
             Role
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <SelectRole
             name="role"
@@ -361,7 +361,7 @@ export default function EditKaryawanForm({
         >
           <FormLabel>
             Kelompok Gaji
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <SelectKelompokGaji
             name="kelompok_gaji"
@@ -382,7 +382,7 @@ export default function EditKaryawanForm({
         >
           <FormLabel>
             Nomor Rekening
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <Input
             name="no_rekening"
@@ -402,7 +402,7 @@ export default function EditKaryawanForm({
         >
           <FormLabel>
             Tunjangan Uang Lembur
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <InputGroup>
             <InputLeftElement>
@@ -427,7 +427,7 @@ export default function EditKaryawanForm({
         >
           <FormLabel>
             Tunjangan Fungsional
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <InputGroup>
             <InputLeftElement>
@@ -452,7 +452,7 @@ export default function EditKaryawanForm({
         >
           <FormLabel>
             Tunjangan Khusus
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <InputGroup>
             <InputLeftElement>
@@ -477,7 +477,7 @@ export default function EditKaryawanForm({
         >
           <FormLabel>
             Tunjangan Lainnya
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <InputGroup>
             <InputLeftElement>
@@ -502,7 +502,7 @@ export default function EditKaryawanForm({
         >
           <FormLabel>
             Uang Lembur
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <InputGroup>
             <InputLeftElement>
@@ -527,7 +527,7 @@ export default function EditKaryawanForm({
         >
           <FormLabel>
             Uang Makan
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <InputGroup>
             <InputLeftElement>
@@ -548,7 +548,7 @@ export default function EditKaryawanForm({
         <FormControl mb={4} flex={"1 1 300px"} isInvalid={!!formik.errors.ptkp}>
           <FormLabel>
             PTKP
-            <FormRequired />
+            <RequiredForm />
           </FormLabel>
           <SelectPtkp
             name="ptkp"

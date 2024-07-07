@@ -17,9 +17,9 @@ import {
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 import DatePicker from "../../input/DatePicker";
 
 interface Props extends ButtonProps {}
@@ -73,7 +73,7 @@ export default function TambahHariLibur({ ...props }: Props) {
               <FormControl mb={4} isInvalid={formik.errors.nama ? true : false}>
                 <FormLabel>
                   Nama Hari Libur
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input
                   name="nama"
@@ -92,7 +92,7 @@ export default function TambahHariLibur({ ...props }: Props) {
               >
                 <FormLabel>
                   Tanggal
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <DatePicker
                   name="tanggal"

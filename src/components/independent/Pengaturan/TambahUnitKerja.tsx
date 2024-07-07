@@ -17,10 +17,10 @@ import {
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import SelectJenisKaryawan from "../../dependent/_Select/SelectJenisKaryawan";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 
 interface Props extends ButtonProps {}
 
@@ -73,7 +73,7 @@ export default function TambahUnitKerja({ ...props }: Props) {
               >
                 <FormLabel>
                   Nama Unit
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input
                   name="nama_unit"
@@ -91,7 +91,7 @@ export default function TambahUnitKerja({ ...props }: Props) {
               >
                 <FormLabel>
                   Jenis Karyawan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectJenisKaryawan
                   name="jenis_karyawan"

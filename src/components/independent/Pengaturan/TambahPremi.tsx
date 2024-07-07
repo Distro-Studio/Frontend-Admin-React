@@ -21,12 +21,12 @@ import {
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import formatNumber from "../../../lib/formatNumber";
 import parseNumber from "../../../lib/parseNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import SelectJenisPremi from "../../dependent/_Select/SelectJenisPremi";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 
 interface Props extends ButtonProps {}
 
@@ -84,7 +84,7 @@ export default function TambahPremi({ ...props }: Props) {
               >
                 <FormLabel>
                   Nama Premi
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input
                   name="nama_premi"
@@ -103,7 +103,7 @@ export default function TambahPremi({ ...props }: Props) {
               >
                 <FormLabel>
                   Jenis Premi
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectJenisPremi
                   name="jenis_premi"
@@ -123,7 +123,7 @@ export default function TambahPremi({ ...props }: Props) {
               >
                 <FormLabel>
                   Besaran Premi
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <InputGroup>
                   {formik.values.jenis_premi.value === 1 && (

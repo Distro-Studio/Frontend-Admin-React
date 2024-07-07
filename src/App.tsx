@@ -19,6 +19,7 @@ import AkunKaryawan from "./pages/Karyawan/AkunKaryawan";
 import DetailKaryawan from "./pages/Karyawan/DetailKaryawan";
 import DetailKeluargaKaryawan from "./pages/Karyawan/DetailKeluargaKaryawan";
 import DetailRekamJejak from "./pages/Karyawan/DetailRekamJejak";
+import EditKaryawan from "./pages/Karyawan/EditKaryawan";
 import Karyawan from "./pages/Karyawan/Karyawan";
 import KeluargaKaryawan from "./pages/Karyawan/KeluargaKaryawan";
 import PekerjaKontrak from "./pages/Karyawan/PekerjaKontrak";
@@ -27,8 +28,8 @@ import TambahKaryawan from "./pages/Karyawan/TambahKaryawan";
 import TransferKaryawan from "./pages/Karyawan/TransferKaryawan";
 import DetailLaporanRiwayatPenggajian from "./pages/Keuangan/DetailLaporanRiwayatPenggajian";
 import DetailLaporanThr from "./pages/Keuangan/DetailLaporanThr";
+import DetailPenggajian from "./pages/Keuangan/DetailPenggajian";
 import Penggajian from "./pages/Keuangan/Penggajian";
-import RiwayatPenggajian from "./pages/Keuangan/RiwayatPenggajian";
 import Thr from "./pages/Keuangan/Thr";
 import Login from "./pages/Login/Login";
 import PengaturanCuti from "./pages/Pengaturan/PengaturanCuti";
@@ -39,24 +40,22 @@ import PengaturanKeizinan from "./pages/Pengaturan/PengaturanKeizinan";
 import PengaturanKelolaRole from "./pages/Pengaturan/PengaturanKelolaRole";
 import PengaturanKelompokGaji from "./pages/Pengaturan/PengaturanKelompokGaji";
 import PengaturanKompetensi from "./pages/Pengaturan/PengaturanKompetensi";
+import PengaturanKuisioner from "./pages/Pengaturan/PengaturanKuisioner";
 import PengaturanPremi from "./pages/Pengaturan/PengaturanPremi";
 import PengaturanShift from "./pages/Pengaturan/PengaturanShift";
 import PengaturanTerPph21 from "./pages/Pengaturan/PengaturanTerPph21";
 import PengaturanThr from "./pages/Pengaturan/PengaturanThr";
 import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi";
 import PengaturanUnitKerja from "./pages/Pengaturan/PengaturanUnitKerja";
+import DetailPelaporanKaryawan from "./pages/Perusahaan/DetailPelaporanKaryawan";
+import DetailPenilaianKaryawan from "./pages/Perusahaan/DetailPenilaianKaryawan";
+import DetailVerifikasiBerkas from "./pages/Perusahaan/DetailVerifikasiBerkas ";
 import Perusahaan from "./pages/Perusahaan/Diklat";
-import DetailPresensi from "./pages/Presensi/DetailPresensi";
-import Presensi from "./pages/Presensi/Presensi";
-import EditKaryawan from "./pages/Karyawan/EditKaryawan";
-import DetailPenggajian from "./pages/Keuangan/DetailPenggajian";
 import PelaporanKaryawan from "./pages/Perusahaan/PelaporanKaryawan";
 import PenilaianKaryawan from "./pages/Perusahaan/PenilaianKaryawan";
 import VerifikasiBerkas from "./pages/Perusahaan/VerifikasiBerkas";
-import DetailPenilaianKaryawan from "./pages/Perusahaan/DetailPenilaianKaryawan";
-import DetailVerifikasiBerkas from "./pages/Perusahaan/DetailVerifikasiBerkas ";
-import PengaturanKuisioner from "./pages/Pengaturan/PengaturanKuisioner";
-import DetailPelaporanKaryawan from "./pages/Perusahaan/DetailPelaporanKaryawan";
+import DetailPresensi from "./pages/Presensi/DetailPresensi";
+import Presensi from "./pages/Presensi/Presensi";
 
 // github pekok
 
@@ -320,19 +319,6 @@ export const App = () => (
           }
         />
         <Route
-          path="/keuangan/riwayat-penggajian"
-          element={
-            <NavContainer
-              active={4}
-              title="Riwayat Penggajian"
-              topNavsData={keuanganTopNavs}
-              topNavActive={1}
-            >
-              <RiwayatPenggajian />
-            </NavContainer>
-          }
-        />
-        <Route
           path="/keuangan/riwayat-penggajian/laporan/:laporan_id"
           element={
             <NavContainer
@@ -352,7 +338,7 @@ export const App = () => (
               active={4}
               title="THR"
               topNavsData={keuanganTopNavs}
-              topNavActive={2}
+              topNavActive={1}
             >
               <Thr />
             </NavContainer>

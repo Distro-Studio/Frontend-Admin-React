@@ -20,13 +20,13 @@ import {
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import SelectJabatan from "../../dependent/_Select/SelectJabatan";
 import SelectKaryawan from "../../dependent/_Select/SelectKaryawan";
 import SelectTipeTransfer from "../../dependent/_Select/SelectTipeTransfer";
 import SelectUnitKerja from "../../dependent/_Select/SelectUnitKerja";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 import DatePicker from "../../input/DatePicker";
 import FileInput from "../../input/FileInput";
 import Textarea from "../../input/Textarea";
@@ -99,7 +99,7 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
               <FormControl mb={4} isInvalid={!!formik.errors.nama}>
                 <FormLabel>
                   Nama Karyawan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectKaryawan
                   name="nama"
@@ -116,7 +116,7 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
                 <FormControl mb={4} isInvalid={!!formik.errors.tgl_mulai}>
                   <FormLabel>
                     Tanggal Mulai
-                    <FormRequired />
+                    <RequiredForm />
                   </FormLabel>
                   <DatePicker
                     name="tgl_mulai"
@@ -137,7 +137,7 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
                 <FormControl mb={4} isInvalid={!!formik.errors.tipe}>
                   <FormLabel>
                     Tipe Transfer
-                    <FormRequired />
+                    <RequiredForm />
                   </FormLabel>
                   <SelectTipeTransfer
                     name="tipe"
@@ -210,7 +210,7 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
               <FormControl mb={4} isInvalid={!!formik.errors.dokumen}>
                 <FormLabel>
                   Dokumen
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <FileInput name="dokumen" formik={formik} />
                 <FormErrorMessage>
@@ -224,7 +224,7 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
               >
                 <FormLabel>
                   Alesan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Textarea
                   name="alasan"

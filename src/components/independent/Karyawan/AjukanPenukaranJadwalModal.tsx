@@ -20,11 +20,11 @@ import { RiArrowUpDownLine } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import SelectKaryawan from "../../dependent/_Select/SelectKaryawan";
 import SelectShiftKaryawan from "../../dependent/_Select/SelectShiftKaryawan";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 
 interface Props extends ButtonProps {}
 
@@ -84,7 +84,7 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
               >
                 <FormLabel>
                   Karyawan Pengajuan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectKaryawan
                   name="user_pengajuan"
@@ -103,7 +103,7 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
               >
                 <FormLabel>
                   Jadwal Pengajuan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectShiftKaryawan
                   name="jadwal_pengajuan"
@@ -129,7 +129,7 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
               >
                 <FormLabel>
                   Karyawan Ditukar
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectKaryawan
                   name="user_ditukar"
@@ -148,7 +148,7 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
               >
                 <FormLabel>
                   Jadwal Ditukar
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectShiftKaryawan
                   name="jadwal_ditukar"

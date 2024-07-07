@@ -7,7 +7,7 @@ import {
   FormLabel,
   Input,
 } from "@chakra-ui/react";
-import FormRequired from "../FormRequired";
+import RequiredForm from "../RequiredForm";
 import Textarea from "../../input/Textarea";
 
 interface Props {
@@ -34,7 +34,7 @@ export default function FormDashboardUpdatePengumuman({ data }: Props) {
       <FormControl mb={4} isInvalid={formik.errors.judul ? true : false}>
         <FormLabel>
           Judul
-          <FormRequired />
+          <RequiredForm />
         </FormLabel>
         <Input
           name="judul"
@@ -48,7 +48,7 @@ export default function FormDashboardUpdatePengumuman({ data }: Props) {
       <FormControl isInvalid={formik.errors.pengumuman ? true : false}>
         <FormLabel>
           Pengumuman
-          <FormRequired />
+          <RequiredForm />
         </FormLabel>
         <Textarea
           formik={formik}

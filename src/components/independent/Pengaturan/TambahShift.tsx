@@ -19,9 +19,9 @@ import {
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 import TimeInput from "../../input/TimeInput";
 
 interface Props extends ButtonProps {}
@@ -79,7 +79,7 @@ export default function TambahShift({ ...props }: Props) {
               <FormControl mb={4} isInvalid={formik.errors.nama ? true : false}>
                 <FormLabel>
                   Nama Shift
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input
                   name="nama"
@@ -94,7 +94,7 @@ export default function TambahShift({ ...props }: Props) {
 
               <FormLabel>
                 Jam Kerja
-                <FormRequired />
+                <RequiredForm />
               </FormLabel>
 
               <Wrap spacing={4}>

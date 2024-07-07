@@ -20,11 +20,11 @@ import {
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import formatNumber from "../../../lib/formatNumber";
 import parseNumber from "../../../lib/parseNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 
 interface Props extends ButtonProps {}
 
@@ -77,7 +77,7 @@ export default function TambahJabatan({ ...props }: Props) {
               >
                 <FormLabel>
                   Nama Jabatan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input
                   name="nama_jabatan"
@@ -93,7 +93,7 @@ export default function TambahJabatan({ ...props }: Props) {
               <FormControl isInvalid={formik.errors.tunjangan ? true : false}>
                 <FormLabel>
                   Tunjangan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <InputGroup>
                   <InputLeftElement>

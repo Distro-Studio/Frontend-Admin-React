@@ -19,7 +19,7 @@ import { RiEqualizer3Line } from "@remixicon/react";
 import { Dispatch, useRef, useState } from "react";
 import { useBodyColor } from "../../../const/colors";
 import { iconSize } from "../../../const/sizes";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import formatNumber from "../../../lib/formatNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import FilterStatusKaryawan from "../_FilterOptions/FilterStatusKaryawan";

@@ -22,12 +22,12 @@ import {
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import formatNumber from "../../../lib/formatNumber";
 import parseNumber from "../../../lib/parseNumber";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import SelectPtkp from "../../dependent/_Select/SelectPtkp";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 import SelectKategoriTer from "../../dependent/_Select/SelectKategoriTer";
 
 interface Props extends ButtonProps {}
@@ -90,7 +90,7 @@ export default function TambahTerPph21({ ...props }: Props) {
               >
                 <FormLabel>
                   Kategori TER
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectKategoriTer
                   name="kategori_ter"
@@ -108,7 +108,7 @@ export default function TambahTerPph21({ ...props }: Props) {
               <FormControl mb={4} isInvalid={formik.errors.ptkp ? true : false}>
                 <FormLabel>
                   PTKP
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectPtkp
                   name="ptkp"
@@ -125,7 +125,7 @@ export default function TambahTerPph21({ ...props }: Props) {
 
               <FormLabel>
                 Penghasilan Bruto Bulanan
-                <FormRequired />
+                <RequiredForm />
               </FormLabel>
               <Wrap spacing={4} mb={4}>
                 <FormControl
@@ -200,7 +200,7 @@ export default function TambahTerPph21({ ...props }: Props) {
               >
                 <FormLabel>
                   Rate TER
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <InputGroup>
                   <Input

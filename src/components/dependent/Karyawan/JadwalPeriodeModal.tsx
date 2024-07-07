@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { RiCalendarLine } from "@remixicon/react";
 import { Dispatch, useRef } from "react";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
 
 interface Props extends ButtonProps {

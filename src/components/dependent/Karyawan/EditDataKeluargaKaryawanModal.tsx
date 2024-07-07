@@ -20,9 +20,9 @@ import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
 import { iconSize } from "../../../const/sizes";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 import SelectStatusHidup from "../_Select/SelectStatusHidup";
 
 interface Props {
@@ -95,7 +95,7 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
               >
                 <FormLabel>
                   Nama Anggota Keluarga
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input
                   name="nama_keluarga"
@@ -114,7 +114,7 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
               >
                 <FormLabel>
                   Hubungan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input
                   name="hubungan"
@@ -133,7 +133,7 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
               >
                 <FormLabel>
                   Pendidikan Terakhir
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input
                   name="pendidikan_terakhir"
@@ -152,7 +152,7 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
               >
                 <FormLabel>
                   Pekerjaan
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input
                   name="pekerjaan"
@@ -171,7 +171,7 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
               >
                 <FormLabel>
                   Status Hidup
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectStatusHidup
                   formik={formik}
@@ -192,7 +192,7 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
               >
                 <FormLabel>
                   No. Telepon
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input
                   name="no_hp"
@@ -208,7 +208,7 @@ export default function EditDataKeluargaKaryawanModal({ data }: Props) {
               <FormControl isInvalid={formik.errors.email ? true : false}>
                 <FormLabel>
                   Email
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input
                   name="email"

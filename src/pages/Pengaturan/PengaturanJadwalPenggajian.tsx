@@ -8,7 +8,7 @@ import {
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
-import FormRequired from "../../components/form/FormRequired";
+import RequiredForm from "../../components/form/RequiredForm";
 import DatePicker from "../../components/input/DatePicker";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -72,7 +72,7 @@ export default function PengaturanJadwalPenggajian() {
               >
                 <FormLabel>
                   Tanggal Penggajian
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <DatePicker
                   formik={formik}

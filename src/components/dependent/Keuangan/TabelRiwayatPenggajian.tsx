@@ -249,7 +249,7 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
                     <Td whiteSpace={"nowrap"} textAlign={"center"}>
                       {formatNumber(row.total_karyawan_terverifikasi)}
                     </Td>
-                    <Td whiteSpace={"nowrap"}>
+                    <Td textAlign={"center"} whiteSpace={"nowrap"}>
                       <Button
                         leftIcon={<Icon as={RiFileList3Line} />}
                         colorScheme="ap"

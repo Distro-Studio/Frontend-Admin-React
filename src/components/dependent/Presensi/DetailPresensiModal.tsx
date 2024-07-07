@@ -14,7 +14,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useRef } from "react";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import MiniKaryawanPresensiProfile from "../MiniKaryawanPresensiProfile";
 import formatTime from "../../../lib/formatTime";

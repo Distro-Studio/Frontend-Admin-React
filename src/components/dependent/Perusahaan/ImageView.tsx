@@ -14,7 +14,7 @@ import {
 import { RiArrowLeftSLine, RiArrowRightSLine } from "@remixicon/react";
 import { useRef, useState } from "react";
 import { useWhiteDarkColor } from "../../../const/colors";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
 
 interface Props {

@@ -24,10 +24,10 @@ import { useRef } from "react";
 import * as yup from "yup";
 import { useBodyColor, useWhiteDarkColor } from "../../../const/colors";
 import { responsiveSpacing } from "../../../const/sizes";
-import backOnClose from "../../../lib/backOnClose";
+import backOnClose from "../../../lib/backOnCloseOld";
 import formatDate from "../../../lib/formatDate";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import FormRequired from "../../form/FormRequired";
+import RequiredForm from "../../form/RequiredForm";
 import SelectShift from "../_Select/SelectShift";
 import JenisKaryawanBadge from "../JenisKaryawanBadge";
 
@@ -134,7 +134,7 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
               >
                 <FormLabel>
                   Shift
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <SelectShift
                   formik={formik}

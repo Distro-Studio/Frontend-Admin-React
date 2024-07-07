@@ -18,8 +18,8 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import { useRef } from "react";
-import backOnClose from "../../../lib/backOnClose";
-import FormRequired from "../../form/FormRequired";
+import backOnClose from "../../../lib/backOnCloseOld";
+import RequiredForm from "../../form/RequiredForm";
 import Textarea from "../../input/Textarea";
 
 interface Props extends ButtonProps {}
@@ -69,7 +69,7 @@ export default function TambahRole({ ...props }: Props) {
               <FormControl mb={4} isInvalid={formik.errors.name ? true : false}>
                 <FormLabel>
                   Nama Role
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Input
                   name="name"
@@ -85,7 +85,7 @@ export default function TambahRole({ ...props }: Props) {
               <FormControl isInvalid={formik.errors.deskripsi ? true : false}>
                 <FormLabel>
                   Deskripsi
-                  <FormRequired />
+                  <RequiredForm />
                 </FormLabel>
                 <Textarea
                   name="deskripsi"
