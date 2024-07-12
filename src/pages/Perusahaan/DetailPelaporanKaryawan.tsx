@@ -179,7 +179,7 @@ export default function DetailPelaporanKaryawan() {
                     </HStack>
 
                     <HStack justify={"space-between"}>
-                      <Text opacity={0.6}>Tempat</Text>
+                      <Text opacity={0.6}>Waktu</Text>
                       <FlexLine />
                       <Text fontWeight={500} textAlign={"right"}>
                         {formatTime(data.jadwal.jam_from)}
