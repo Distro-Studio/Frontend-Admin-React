@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from "react";
 
-const useBackOnClose = (isOpen: boolean, onClose: () => void) => {
+const useBackOnCloseOld = (isOpen: boolean, onClose: () => void) => {
   const handlePopState = useCallback(() => {
     if (isOpen) {
       onClose();
@@ -27,4 +27,4 @@ const useBackOnClose = (isOpen: boolean, onClose: () => void) => {
   }, [isOpen, onClose, handlePopState]);
 };
 
-export default useBackOnClose;
+export default useBackOnCloseOld;

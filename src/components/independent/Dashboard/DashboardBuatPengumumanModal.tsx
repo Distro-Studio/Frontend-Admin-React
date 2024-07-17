@@ -13,7 +13,7 @@ import { RiAddLine } from "@remixicon/react";
 import { useRef } from "react";
 import { iconSize } from "../../../const/sizes";
 import backOnClose from "../../../lib/backOnCloseOld";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import useBackOnClose from "../../../lib/useBackOnCloseOld";
 import DisclosureHeader from "../../dependent/DisclosureHeader";
 import FormDashboardBuatPengumuman from "../../form/Dashboard/FormDashboardBuatPengumuman";
 

@@ -20,7 +20,7 @@ import { Dispatch, useRef, useState } from "react";
 import backOnClose from "../../../lib/backOnCloseOld";
 import FilterUnitKerja from "../_FilterOptions/FilterUnitKerja";
 import FilterStatusKaryawan from "../_FilterOptions/FilterStatusKaryawan";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import useBackOnClose from "../../../lib/useBackOnCloseOld";
 import { useBodyColor } from "../../../const/colors";
 import { iconSize } from "../../../const/sizes";
 import formatNumber from "../../../lib/formatNumber";

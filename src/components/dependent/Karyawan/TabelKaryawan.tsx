@@ -20,7 +20,7 @@ import {
 } from "@remixicon/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useBodyColor, useContentBgColor } from "../../../const/colors";
+import { useContentBgColor, useLightDarkColor } from "../../../const/colors";
 import { dummyKaryawanList } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
 import ComponentSpinner from "../../independent/ComponentSpinner";
@@ -153,7 +153,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
 
   // SX
   const contentBgColor = useContentBgColor();
-  const bodyColor = useBodyColor();
+  const lightDarkColor = useLightDarkColor();
 
   return (
     <>
@@ -178,7 +178,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       h={"52px"}
                       w={"50px"}
                       borderRight={"1px solid var(--divider3)"}
-                      bg={bodyColor}
+                      bg={lightDarkColor}
                       borderBottom={"1px solid var(--divider3) !important"}
                     >
                       <Checkbox
@@ -203,7 +203,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       }}
                       cursor={"pointer"}
                       borderBottom={"none !important"}
-                      bg={bodyColor}
+                      bg={lightDarkColor}
                       zIndex={2}
                       p={0}
                       {...column.thProps}
@@ -276,7 +276,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                     right={0}
                     borderBottom={"none !important"}
                     p={0}
-                    bg={bodyColor}
+                    bg={lightDarkColor}
                     zIndex={2}
                   >
                     <Center
@@ -295,19 +295,22 @@ export default function TabelKaryawan({ filterConfig }: Props) {
 
               <Tbody>
                 {sortedData.map((row, i) => (
-                  <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
+                  <Tr
+                    key={i}
+                    bg={i % 2 === 0 ? contentBgColor : lightDarkColor}
+                  >
                     {/* <Td
                       position={"sticky"}
                       left={0}
                       p={0}
-                      bg={bodyColor}
+                      bg={lightDarkColor}
                       zIndex={2}
                       w={"50px"}
                     >
                       <Center
                         h={"72px"}
                         w={"50px"}
-                        bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                        bg={i % 2 === 0 ? contentBgColor : lightDarkColor}
                         p={4}
                         borderRight={"1px solid var(--divider3)"}
                       >
@@ -352,7 +355,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       right={0}
                       borderBottom={"none !important"}
                       p={0}
-                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
+                      bg={i % 2 === 0 ? contentBgColor : lightDarkColor}
                       zIndex={1}
                       w={"150px"}
                     >

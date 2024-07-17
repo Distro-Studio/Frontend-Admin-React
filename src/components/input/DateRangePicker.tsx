@@ -36,7 +36,7 @@ import "react-day-picker/dist/style.css";
 import { iconSize } from "../../const/sizes";
 import formatDate from "../../lib/formatDate";
 import parseNumber from "../../lib/parseNumber";
-import useBackOnClose from "../../lib/useBackOnClose";
+import useBackOnClose from "../../lib/useBackOnCloseOld";
 import useScreenWidth from "../../lib/useScreenWidth";
 
 interface Props extends ButtonProps {

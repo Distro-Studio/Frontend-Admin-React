@@ -16,7 +16,7 @@ import {
 import { RiCalendarLine } from "@remixicon/react";
 import { Dispatch, useRef } from "react";
 import backOnClose from "../../../lib/backOnCloseOld";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import useBackOnClose from "../../../lib/useBackOnCloseOld";
 
 interface Props extends ButtonProps {
   data: any;

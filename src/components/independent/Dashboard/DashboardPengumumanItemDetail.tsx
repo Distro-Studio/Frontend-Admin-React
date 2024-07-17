@@ -20,7 +20,7 @@ import { Pengumuman__Interface } from "../../../const/interfaces";
 import { iconSize } from "../../../const/sizes";
 import backOnClose from "../../../lib/backOnCloseOld";
 import formatDate from "../../../lib/formatDate";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import useBackOnClose from "../../../lib/useBackOnCloseOld";
 import DisclosureHeader from "../../dependent/DisclosureHeader";
 import FormDashboardUpdatePengumuman from "../../form/Dashboard/FormDashboardUpdatePengumuman";
 

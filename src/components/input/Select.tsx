@@ -19,7 +19,7 @@ import {
 import { RiArrowDownSLine } from "@remixicon/react";
 import { Dispatch, forwardRef, useImperativeHandle, useRef } from "react";
 import formatNumber from "../../lib/formatNumber";
-import useBackOnClose from "../../lib/useBackOnClose";
+import useBackOnClose from "../../lib/useBackOnCloseOld";
 import useScreenHeight from "../../lib/useScreenHeight";
 import SearchComponent from "../dependent/SearchComponent";
 

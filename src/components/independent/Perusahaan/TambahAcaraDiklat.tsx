@@ -19,7 +19,7 @@ import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
 import backOnClose from "../../../lib/backOnCloseOld";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import useBackOnClose from "../../../lib/useBackOnCloseOld";
 import RequiredForm from "../../form/RequiredForm";
 import Textarea from "../../input/Textarea";
 import TimeInput from "../../input/TimeInput";

@@ -21,7 +21,7 @@ import { useRef } from "react";
 import * as yup from "yup";
 import { iconSize } from "../../../const/sizes";
 import backOnClose from "../../../lib/backOnCloseOld";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import useBackOnClose from "../../../lib/useBackOnCloseOld";
 import RequiredForm from "../../form/RequiredForm";
 import SelectStatusHidup from "../_Select/SelectStatusHidup";
 

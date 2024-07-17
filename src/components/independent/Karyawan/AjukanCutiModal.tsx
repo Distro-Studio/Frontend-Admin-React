@@ -21,7 +21,7 @@ import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
 import backOnClose from "../../../lib/backOnCloseOld";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import useBackOnClose from "../../../lib/useBackOnCloseOld";
 import SelectKaryawan from "../../dependent/_Select/SelectKaryawan";
 import SelectTipeCuti from "../../dependent/_Select/SelectTipeCuti";
 import RequiredForm from "../../form/RequiredForm";

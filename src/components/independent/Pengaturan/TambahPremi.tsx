@@ -24,7 +24,7 @@ import * as yup from "yup";
 import backOnClose from "../../../lib/backOnCloseOld";
 import formatNumber from "../../../lib/formatNumber";
 import parseNumber from "../../../lib/parseNumber";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import useBackOnClose from "../../../lib/useBackOnCloseOld";
 import SelectJenisPremi from "../../dependent/_Select/SelectJenisPremi";
 import RequiredForm from "../../form/RequiredForm";
 

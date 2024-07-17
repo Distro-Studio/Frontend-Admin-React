@@ -14,7 +14,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useRef } from "react";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import useBackOnClose from "../../../lib/useBackOnCloseOld";
 import DeletePermanentWarning from "../../alert/DeletePermanentWarning";
 
 interface Props extends ButtonProps {

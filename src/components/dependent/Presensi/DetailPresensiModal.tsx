@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import backOnClose from "../../../lib/backOnCloseOld";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import useBackOnClose from "../../../lib/useBackOnCloseOld";
 import MiniKaryawanPresensiProfile from "../MiniKaryawanPresensiProfile";
 import formatTime from "../../../lib/formatTime";
 import FlexLine from "../../independent/FlexLine";

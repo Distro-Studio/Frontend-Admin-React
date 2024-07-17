@@ -16,7 +16,7 @@ import { Dispatch, useRef, useState } from "react";
 import backOnClose from "../../../lib/backOnCloseOld";
 import formatYear from "../../../lib/formatYear";
 import parseNumber from "../../../lib/parseNumber";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import useBackOnClose from "../../../lib/useBackOnCloseOld";
 
 interface Props {
   filterConfig: any;

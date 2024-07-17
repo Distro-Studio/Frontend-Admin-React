@@ -18,7 +18,7 @@ import { useFormik } from "formik";
 import { useRef, useState } from "react";
 import * as yup from "yup";
 import backOnClose from "../../../lib/backOnCloseOld";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import useBackOnClose from "../../../lib/useBackOnCloseOld";
 import MultiSelectKaryawan from "../../dependent/_Select/MultiSelectKaryawan";
 import RequiredForm from "../../form/RequiredForm";
 import DatePickerModal from "../../dependent/input/DatePickerModal";

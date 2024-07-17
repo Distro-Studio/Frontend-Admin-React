@@ -1,7 +1,7 @@
-import { Button, Icon, Wrap } from "@chakra-ui/react";
-import { RiUploadLine } from "@remixicon/react";
+import { Button, Wrap } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import ExportModal from "../../components/dependent/ExportModal";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelKaryawan from "../../components/dependent/Karyawan/TabelKaryawan";
 import FilterKaryawan from "../../components/independent/FilterKaryawan";
@@ -9,7 +9,7 @@ import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKar
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { responsiveSpacing } from "../../const/sizes";
 
 export default function Karyawan() {
   // Filter Config
@@ -38,15 +38,7 @@ export default function Karyawan() {
 
             <FilterKaryawan />
 
-            <Button
-              flex={"1 1 110px"}
-              variant={"outline"}
-              colorScheme="ap"
-              className="clicky"
-              rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
-            >
-              Export
-            </Button>
+            <ExportModal url={""} />
 
             <ImportKaryawanModal />
 

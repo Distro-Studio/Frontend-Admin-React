@@ -28,7 +28,7 @@ import backOnClose from "../../../lib/backOnCloseOld";
 import formatDate from "../../../lib/formatDate";
 import formatTime from "../../../lib/formatTime";
 import isDatePassed from "../../../lib/isDatePassed";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import useBackOnClose from "../../../lib/useBackOnCloseOld";
 import RequiredForm from "../../form/RequiredForm";
 import SelectShift from "../_Select/SelectShift";
 import JenisKaryawanBadge from "../JenisKaryawanBadge";

@@ -16,7 +16,7 @@ import { RiArrowRightSLine, RiGroupFill } from "@remixicon/react";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import backOnClose from "../../../lib/backOnCloseOld";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import useBackOnClose from "../../../lib/useBackOnCloseOld";
 import SearchComponent from "../SearchComponent";
 
 interface Props extends ButtonProps {

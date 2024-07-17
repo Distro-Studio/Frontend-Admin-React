@@ -30,7 +30,7 @@ import {
 } from "@remixicon/react";
 import { useState } from "react";
 import getLocation from "../lib/getLocation";
-import useBackOnClose from "../lib/useBackOnClose";
+import useBackOnClose from "../lib/useBackOnCloseOld";
 import useDebugLoadingState from "../global/useDebugLoadingState";
 
 export default function DebugTools() {

@@ -25,7 +25,7 @@ import * as yup from "yup";
 import backOnClose from "../../../lib/backOnCloseOld";
 import formatNumber from "../../../lib/formatNumber";
 import parseNumber from "../../../lib/parseNumber";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import useBackOnClose from "../../../lib/useBackOnCloseOld";
 import SelectPtkp from "../../dependent/_Select/SelectPtkp";
 import RequiredForm from "../../form/RequiredForm";
 import SelectKategoriTer from "../../dependent/_Select/SelectKategoriTer";

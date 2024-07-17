@@ -17,7 +17,7 @@ import {
 import { useRef, useState } from "react";
 import formatNumber from "../../lib/formatNumber";
 import parseNumber from "../../lib/parseNumber";
-import useBackOnClose from "../../lib/useBackOnClose";
+import useBackOnClose from "../../lib/useBackOnCloseOld";
 
 type Props = {
   page: any;

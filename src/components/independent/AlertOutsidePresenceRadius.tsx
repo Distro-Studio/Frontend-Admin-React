@@ -10,7 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import useBackOnClose from "../../lib/useBackOnClose";
+import useBackOnClose from "../../lib/useBackOnCloseOld";
 import { useRef } from "react";
 
 interface Props {

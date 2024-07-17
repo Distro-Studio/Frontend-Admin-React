@@ -16,7 +16,7 @@ import backOnClose from "../../lib/backOnCloseOld";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import BackOnCloseButton from "./BackOnCloseButton";
-import useBackOnClose from "../../lib/useBackOnClose";
+import useBackOnClose from "../../lib/useBackOnCloseOld";
 
 export default function BuatPenggajianModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();

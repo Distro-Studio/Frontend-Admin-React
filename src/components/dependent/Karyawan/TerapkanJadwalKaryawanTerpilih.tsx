@@ -26,7 +26,7 @@ import { useBodyColor, useWhiteDarkColor } from "../../../const/colors";
 import { responsiveSpacing } from "../../../const/sizes";
 import backOnClose from "../../../lib/backOnCloseOld";
 import formatDate from "../../../lib/formatDate";
-import useBackOnClose from "../../../lib/useBackOnClose";
+import useBackOnClose from "../../../lib/useBackOnCloseOld";
 import RequiredForm from "../../form/RequiredForm";
 import SelectShift from "../_Select/SelectShift";
 import JenisKaryawanBadge from "../JenisKaryawanBadge";
