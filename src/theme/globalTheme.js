@@ -111,11 +111,6 @@ export const globalTheme = extendTheme({
         fontWeight: 550,
         borderRadius: 8,
       },
-      variants: {
-        outline: {
-          // border: "2px solid",
-        },
-      },
     },
 
     Checkbox: {
@@ -167,11 +162,7 @@ export const globalTheme = extendTheme({
       baseStyle: (props) => ({
         field: {
           _autofill: {
-            boxShadow:
-              props.colorMode === "dark"
-                ? "0 0 0px 1000px dark inset"
-                : "0 0 0px 1000px #ffffff inset",
-            border: "2px solid var(--divider) !important",
+            border: "1px solid var(--divider3) !important",
           },
         },
       }),
@@ -223,10 +214,11 @@ export const globalTheme = extendTheme({
           backdropFilter: "blur(5px)",
         },
         header: {
-          pt: "18px",
-          pr: "20px",
-          pb: "20px",
-          pl: "24px",
+          p: 0,
+          // pt: "18px",
+          // pr: "20px",
+          // pb: "20px",
+          // pl: "24px",
         },
         body: {
           px: "24px",
@@ -236,7 +228,9 @@ export const globalTheme = extendTheme({
           // minH: window.innerWidth < 500 ? "300px" : "fit-content",
         },
         footer: {
-          p: "24px",
+          px: "24px",
+          pt: "20px",
+          pb: "24px",
         },
         closeButton: {
           borderRadius: "full",
@@ -300,7 +294,7 @@ export const globalTheme = extendTheme({
           // },
           td: {
             py: "12px",
-            px: "24px",
+            px: "16px",
           },
         },
       },

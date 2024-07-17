@@ -7,7 +7,6 @@ import {
   FormLabel,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -22,8 +21,9 @@ import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import MultiSelectKaryawan from "../../dependent/_Select/MultiSelectKaryawan";
 import SelectShift from "../../dependent/_Select/SelectShift";
-import RequiredForm from "../../form/RequiredForm";
+import DisclosureHeader from "../../dependent/DisclosureHeader";
 import DatePickerModal from "../../dependent/input/DatePickerModal";
+import RequiredForm from "../../form/RequiredForm";
 
 interface Props extends ButtonProps {}
 
@@ -73,8 +73,9 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Terapkan Jadwal</ModalHeader>
+          <ModalHeader p={0} ref={initialRef}>
+            <DisclosureHeader title="Terapkan Jadwal" />
+          </ModalHeader>
           <ModalBody>
             <form id="terapkanJadwalForm" onSubmit={formik.handleSubmit}>
               <FormControl mb={4} isInvalid={!!formik.errors.karyawan_list}>

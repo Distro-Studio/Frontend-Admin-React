@@ -210,8 +210,8 @@ select {
 
 button[aria-label="Close"] {
   background: transparent !important;
-  top: 2px !important;
-  right: 2px !important;
+  top: 0px !important;
+  right: 0px !important;
 }
 button[aria-label="Close"] > svg {
   width: 12px !important;

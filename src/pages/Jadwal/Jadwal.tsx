@@ -66,6 +66,7 @@ export default function Jadwal() {
               flex={"1 1 160px"}
               onConfirm={confirmDateRange}
               inputValue={filterConfig.range_tgl}
+              maxRange={7}
               nonNullable
             />
 

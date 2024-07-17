@@ -150,7 +150,7 @@ export default function SingleSelectModal({
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title={placeholder || "Pilih Salah Satu"} p={0} />
+            <DisclosureHeader title={placeholder || "Pilih Salah Satu"} />
 
             {withSearch && (
               <Box mt={4}>
