@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Box,
   Button,
   Center,
   HStack,
@@ -94,7 +95,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
   //     if (isCheckAll) {
   //       setCheckedItems([]);
   //     } else {
-  //       const allIds = data.map((item) => item.id);
+  //       const allIds = data.map((item)x => item.id);
   //       setCheckedItems(allIds);
   //     }
   //     setIsCheckAll(!isCheckAll);
@@ -297,7 +298,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                 {sortedData.map((row, i) => (
                   <Tr
                     key={i}
-                    bg={i % 2 === 0 ? contentBgColor : lightDarkColor}
+                    transition={"200ms"}
+                    _hover={{ bg: "var(--divider)" }}
+                    // bg={i % 2 === 0 ? contentBgColor : lightDarkColor}
                   >
                     {/* <Td
                       position={"sticky"}
