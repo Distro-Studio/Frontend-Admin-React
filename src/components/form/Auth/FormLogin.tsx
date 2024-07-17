@@ -3,13 +3,13 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Input,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useState } from "react";
-import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-import PasswordInput from "../../input/PasswordInput";
+import * as yup from "yup";
+import PasswordInput from "../../dependent/input/PasswordInput";
+import StringInput from "../../dependent/input/StringInput";
 import RequiredForm from "../RequiredForm";
 
 export default function FormLogin() {
@@ -45,11 +45,13 @@ export default function FormLogin() {
           Username
           <RequiredForm />
         </FormLabel>
-        <Input
+        <StringInput
           name="username"
           placeholder={"Username"}
-          onChange={formik.handleChange}
-          value={formik.values.username}
+          onChangeSetter={(input) => {
+            formik.setFieldValue("username", input);
+          }}
+          inputValue={formik.values.username}
         />
         <FormErrorMessage>{formik.errors.username}</FormErrorMessage>
       </FormControl>
@@ -60,9 +62,11 @@ export default function FormLogin() {
           <RequiredForm />
         </FormLabel>
         <PasswordInput
-          formik={formik}
           name="password"
-          placeholder={"Password"}
+          onChangeSetter={(input) => {
+            formik.setFieldValue("password", input);
+          }}
+          inputValue={formik.values.password}
         />
         <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
       </FormControl>

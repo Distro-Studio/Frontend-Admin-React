@@ -1,14 +1,10 @@
-import {
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-} from "@chakra-ui/react";
+import { FormControl, FormErrorMessage, FormLabel } from "@chakra-ui/react";
 import { useFormik } from "formik";
+import { MutableRefObject } from "react";
 import * as yup from "yup";
+import StringInput from "../../dependent/input/StringInput";
 import Textarea from "../../input/Textarea";
 import RequiredForm from "../RequiredForm";
-import { MutableRefObject } from "react";
 
 interface Props {
   forwardRef: MutableRefObject<null>;
@@ -36,12 +32,13 @@ export default function FormDashboardBuatPengumuman({ forwardRef }: Props) {
           Judul
           <RequiredForm />
         </FormLabel>
-        <Input
-          ref={forwardRef}
+        <StringInput
           name="judul"
           placeholder="Judul Pengumuman"
-          onChange={formik.handleChange}
-          value={formik.values.judul}
+          onChangeSetter={(input) => {
+            formik.setFieldValue("judul", input);
+          }}
+          inputValue={formik.values.judul}
         />
         <FormErrorMessage>{formik.errors.judul}</FormErrorMessage>
       </FormControl>

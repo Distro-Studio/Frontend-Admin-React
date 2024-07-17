@@ -5,7 +5,6 @@ import {
   Icon,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -22,7 +21,7 @@ import { iconSize } from "../../../const/sizes";
 import backOnClose from "../../../lib/backOnCloseOld";
 import formatDate from "../../../lib/formatDate";
 import useBackOnClose from "../../../lib/useBackOnClose";
-import DeletePermanentWarning from "../../alert/DeletePermanentWarning";
+import DisclosureHeader from "../../dependent/DisclosureHeader";
 import FormDashboardUpdatePengumuman from "../../form/Dashboard/FormDashboardUpdatePengumuman";
 
 interface Props extends StackProps {
@@ -37,19 +36,11 @@ export default function DashboardPengumumanItemDetail({
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
   const [loadingUpdate, setLoadingUpdate] = useState<boolean>(false);
-  const [loadingDelete, setLoadingDelete] = useState<boolean>(false);
-  const [isDeleting, setIsDeleting] = useState<boolean>(false);
 
   function updatePengumuman() {
     setLoadingUpdate(true);
 
     //TODO api update pengumuman
-  }
-
-  function deletePengumuman() {
-    setLoadingDelete(true);
-
-    //TODO api delete pengumuman
   }
 
   // SX
@@ -80,101 +71,49 @@ export default function DashboardPengumumanItemDetail({
         isOpen={isOpen}
         onClose={() => {
           backOnClose(onClose);
-          setIsDeleting(false);
         }}
         initialFocusRef={initialRef}
         isCentered
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
           <ModalHeader ref={initialRef}>
-            {isDeleting ? "Hapus" : "Detail"} Pengumuman
+            <DisclosureHeader title="Detail Pengumuman" />
           </ModalHeader>
 
           <ModalBody>
-            {!isDeleting && (
-              <>
-                <HStack mb={4}>
-                  <Icon
-                    as={RiCalendar2Fill}
-                    fontSize={iconSize}
-                    opacity={0.6}
-                  />
-                  <Text>{formatDate(data.createdAt)}</Text>
-                </HStack>
-                <FormDashboardUpdatePengumuman data={data} />
-              </>
-            )}
+            <HStack mb={4}>
+              <Icon as={RiCalendar2Fill} fontSize={iconSize} opacity={0.6} />
+              <Text>{formatDate(data.createdAt)}</Text>
+            </HStack>
+            <FormDashboardUpdatePengumuman data={data} />
           </ModalBody>
 
-          <ModalFooter pt={isDeleting ? "0 !important" : 6}>
-            {!isDeleting && (
-              <ButtonGroup w={"100%"}>
-                <Button
-                  w={"50%"}
-                  className="clicky"
-                  colorScheme="red"
-                  variant={"ghost"}
-                  onClick={() => {
-                    setIsDeleting(true);
-                  }}
-                  isDisabled={loadingUpdate}
-                  bg={"var(--reda)"}
-                  _hover={{ bg: "var(--reda)" }}
-                >
-                  Hapus
-                </Button>
-                <Button
-                  type="submit"
-                  form="updatePengumumanForm"
-                  w={"50%"}
-                  className="btn-ap clicky"
-                  colorScheme="ap"
-                  isLoading={loadingUpdate}
-                  isDisabled={loadingDelete}
-                  onClick={updatePengumuman}
-                >
-                  Simpan
-                </Button>
-              </ButtonGroup>
-            )}
-
-            {isDeleting && (
-              <VStack w={"100%"}>
-                <Text textAlign={"center"}>
-                  Apakah anda yakin menghapus pengumuman ini?
-                </Text>
-
-                <DeletePermanentWarning mb={2} mt={4} />
-
-                <ButtonGroup w={"100%"}>
-                  <Button
-                    w={"50%"}
-                    className="clicky"
-                    colorScheme="red"
-                    onClick={() => {
-                      setIsDeleting(false);
-                    }}
-                    isDisabled={loadingDelete}
-                  >
-                    Tidak
-                  </Button>
-                  <Button
-                    w={"50%"}
-                    className="clicky"
-                    variant={"ghost"}
-                    colorScheme="red"
-                    bg={"var(--reda)"}
-                    _hover={{ bg: "var(--reda)" }}
-                    isLoading={loadingDelete}
-                    onClick={deletePengumuman}
-                  >
-                    Ya
-                  </Button>
-                </ButtonGroup>
-              </VStack>
-            )}
+          <ModalFooter>
+            <ButtonGroup w={"100%"}>
+              <Button
+                w={"50%"}
+                className="clicky"
+                colorScheme="red"
+                variant={"ghost"}
+                isDisabled={loadingUpdate}
+                bg={"var(--reda)"}
+                _hover={{ bg: "var(--reda)" }}
+              >
+                Hapus
+              </Button>
+              <Button
+                type="submit"
+                form="updatePengumumanForm"
+                w={"50%"}
+                className="btn-ap clicky"
+                colorScheme="ap"
+                isLoading={loadingUpdate}
+                onClick={updatePengumuman}
+              >
+                Simpan
+              </Button>
+            </ButtonGroup>
           </ModalFooter>
         </ModalContent>
       </Modal>

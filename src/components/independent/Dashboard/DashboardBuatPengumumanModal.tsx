@@ -3,7 +3,6 @@ import {
   Icon,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -15,6 +14,7 @@ import { useRef } from "react";
 import { iconSize } from "../../../const/sizes";
 import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
+import DisclosureHeader from "../../dependent/DisclosureHeader";
 import FormDashboardBuatPengumuman from "../../form/Dashboard/FormDashboardBuatPengumuman";
 
 export default function DashboardBuatPengumumanModal() {
@@ -45,8 +45,9 @@ export default function DashboardBuatPengumumanModal() {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader>Buat Pengumuman</ModalHeader>
+          <ModalHeader>
+            <DisclosureHeader title="Buat Pengumuman" />
+          </ModalHeader>
 
           <ModalBody>
             <FormDashboardBuatPengumuman forwardRef={initialRef} />
