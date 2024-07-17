@@ -190,6 +190,10 @@ export default function DateRangePicker({
             (formik && name && formik.values[name]) || dateValue ? 1 : 0.3
           }
           fontSize={14}
+          overflow={"hidden"}
+          whiteSpace={"nowrap"}
+          textOverflow={"ellipsis"}
+          mr={2}
         >
           {(formik && name && formik.values[name]) || dateValue
             ? `${formatDate(

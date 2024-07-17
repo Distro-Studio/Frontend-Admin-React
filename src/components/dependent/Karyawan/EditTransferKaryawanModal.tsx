@@ -24,7 +24,6 @@ import * as yup from "yup";
 import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import RequiredForm from "../../form/RequiredForm";
-import DatePicker from "../../input/DatePicker";
 import FileInput from "../../input/FileInput";
 import Textarea from "../../input/Textarea";
 import SelectJabatan from "../_Select/SelectJabatan";
@@ -32,6 +31,7 @@ import SelectTipeTransfer from "../_Select/SelectTipeTransfer";
 import SelectUnitKerja from "../_Select/SelectUnitKerja";
 import { iconSize } from "../../../const/sizes";
 import SelectKelompokGaji from "../_Select/SelectKelompokGaji";
+import DatePickerModal from "../input/DatePickerModal";
 
 interface Props {
   data: any;
@@ -124,17 +124,17 @@ export default function EditTransferKaryawanModal({ data }: Props) {
                     Tanggal Mulai
                     <RequiredForm />
                   </FormLabel>
-                  <DatePicker
+                  <DatePickerModal
+                    id="edit-transfer-karyawan-tgl-mulai"
                     name="tgl_mulai"
-                    formik={formik}
-                    dateValue={formik.values.tgl_mulai}
-                    initialDateValue={new Date(formik.values.tgl_mulai)}
-                    dateFormatOptions={{
-                      year: "numeric",
-                      month: "numeric",
-                      day: "numeric",
+                    onConfirm={(input) => {
+                      formik.setFieldValue("tgl_mulai", input);
                     }}
-                    noUseBackOnClose
+                    inputValue={
+                      formik.values.tgl_mulai
+                        ? new Date(formik.values.tgl_mulai)
+                        : undefined
+                    }
                   />
                   <FormErrorMessage>
                     {formik.errors.tgl_mulai as string}

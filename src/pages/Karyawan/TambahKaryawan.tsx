@@ -31,13 +31,13 @@ import SelectPtkp from "../../components/dependent/_Select/SelectPtkp";
 import SelectRole from "../../components/dependent/_Select/SelectRole";
 import SelectUnitKerja from "../../components/dependent/_Select/SelectUnitKerja";
 import RequiredForm from "../../components/form/RequiredForm";
-import DatePicker from "../../components/input/DatePicker";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useScreenWidth from "../../lib/useScreenWidth";
 import SelectStatusKaryawan from "../../components/dependent/_Select/SelectStatusKaryawan";
+import DatePickerModal from "../../components/dependent/input/DatePickerModal";
 const validationSchemaStep1 = yup.object({
   // nama_karyawan: yup.string().required("Harus diisi"),
   // email: yup.string().email("Email tidak valid").required("Harus diisi"),
@@ -229,11 +229,18 @@ export default function TambahKaryawan() {
             Tanggal Masuk
             <RequiredForm />
           </FormLabel>
-          <DatePicker
+          <DatePickerModal
+            id="tambah-karyawan-date-picker"
             name="tgl_masuk"
-            formik={formik}
             placeholder="Pilih tanggal"
-            dateValue={formik.values.tgl_masuk}
+            onConfirm={(input) => {
+              formik.setFieldValue("tgl_masuk", input);
+            }}
+            inputValue={
+              formik.values.tgl_masuk
+                ? new Date(formik.values.tgl_masuk)
+                : undefined
+            }
           />
           <FormErrorMessage>{formik.errors.tgl_masuk}</FormErrorMessage>
         </FormControl>

@@ -22,7 +22,7 @@ import SelectRole from "../../components/dependent/_Select/SelectRole";
 import SelectStatusKaryawan from "../../components/dependent/_Select/SelectStatusKaryawan";
 import SelectUnitKerja from "../../components/dependent/_Select/SelectUnitKerja";
 import RequiredForm from "../../components/form/RequiredForm";
-import DatePicker from "../../components/input/DatePicker";
+import DatePickerModal from "../../components/dependent/input/DatePickerModal";
 
 const validationSchemaStep1 = yup.object({
   // nama_karyawan: yup.string().required("Harus diisi"),
@@ -222,12 +222,17 @@ export default function EditKaryawanForm({
             Tanggal Masuk
             <RequiredForm />
           </FormLabel>
-          <DatePicker
+          <DatePickerModal
+            id="edit-karyawan-tgl-masuk"
             name="tgl_masuk"
-            formik={formik}
-            placeholder="Pilih tanggal"
-            dateValue={formik.values.tgl_masuk}
-            initialDateValue={new Date(data.tgl_masuk)}
+            onConfirm={(input) => {
+              formik.setFieldValue("tgl_masuk", input);
+            }}
+            inputValue={
+              formik.values.tgl_masuk
+                ? new Date(formik.values.tgl_masuk)
+                : undefined
+            }
           />
           <FormErrorMessage>
             {formik.errors.tgl_masuk as string}

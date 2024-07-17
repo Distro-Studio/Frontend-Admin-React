@@ -27,10 +27,10 @@ import SelectKaryawan from "../../dependent/_Select/SelectKaryawan";
 import SelectTipeTransfer from "../../dependent/_Select/SelectTipeTransfer";
 import SelectUnitKerja from "../../dependent/_Select/SelectUnitKerja";
 import RequiredForm from "../../form/RequiredForm";
-import DatePicker from "../../input/DatePicker";
 import FileInput from "../../input/FileInput";
 import Textarea from "../../input/Textarea";
 import SelectKelompokGaji from "../../dependent/_Select/SelectKelompokGaji";
+import DatePickerModal from "../../dependent/input/DatePickerModal";
 
 interface Props extends ButtonProps {}
 
@@ -118,16 +118,17 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
                     Tanggal Mulai
                     <RequiredForm />
                   </FormLabel>
-                  <DatePicker
+                  <DatePickerModal
+                    id="ajukan-transfer-karyawan-tgl-masuk"
                     name="tgl_mulai"
-                    formik={formik}
-                    dateValue={formik.values.tgl_mulai}
-                    dateFormatOptions={{
-                      day: "numeric",
-                      month: "numeric",
-                      year: "numeric",
+                    onConfirm={(input) => {
+                      formik.setFieldValue("tgl_mulai", input);
                     }}
-                    noUseBackOnClose
+                    inputValue={
+                      formik.values.tgl_mulai
+                        ? new Date(formik.values.tgl_mulai)
+                        : undefined
+                    }
                   />
                   <FormErrorMessage>
                     {formik.errors.tgl_mulai as string}

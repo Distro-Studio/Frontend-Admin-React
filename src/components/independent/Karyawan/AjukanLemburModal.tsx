@@ -24,9 +24,9 @@ import SelectKompensasi from "../../dependent/_Select/SelectKompensasi";
 import SelectShift from "../../dependent/_Select/SelectShift";
 import SelectTipeCuti from "../../dependent/_Select/SelectTipeCuti";
 import RequiredForm from "../../form/RequiredForm";
-import DatePicker from "../../input/DatePicker";
 import Textarea from "../../input/Textarea";
 import TimeInput from "../../input/TimeInput";
+import DatePickerModal from "../../dependent/input/DatePickerModal";
 
 interface Props extends ButtonProps {}
 
@@ -108,11 +108,17 @@ export default function AjukanLemburModal({ ...props }: Props) {
                   Tanggal Pengajuan
                   <RequiredForm />
                 </FormLabel>
-                <DatePicker
+                <DatePickerModal
+                  id="ajukan-lembur-tgl-pengajuan"
                   name="tgl_pengajuan"
-                  formik={formik}
-                  dateValue={formik.values.tgl_pengajuan}
-                  noUseBackOnClose
+                  onConfirm={(input) => {
+                    formik.setFieldValue("tgl_pengajuan", input);
+                  }}
+                  inputValue={
+                    formik.values.tgl_pengajuan
+                      ? new Date(formik.values.tgl_pengajuan)
+                      : undefined
+                  }
                 />
                 <FormErrorMessage>
                   {formik.errors.tgl_pengajuan as string}

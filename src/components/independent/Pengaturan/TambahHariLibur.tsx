@@ -20,7 +20,7 @@ import * as yup from "yup";
 import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import RequiredForm from "../../form/RequiredForm";
-import DatePicker from "../../input/DatePicker";
+import DatePickerModal from "../../dependent/input/DatePickerModal";
 
 interface Props extends ButtonProps {}
 
@@ -94,12 +94,17 @@ export default function TambahHariLibur({ ...props }: Props) {
                   Tanggal
                   <RequiredForm />
                 </FormLabel>
-                <DatePicker
+                <DatePickerModal
+                  id="date-picker-tambah-libur"
                   name="tanggal"
-                  formik={formik}
-                  dateValue={formik.values.tanggal}
-                  placeholder="Pilih tanggal hari libur"
-                  noUseBackOnClose
+                  onConfirm={(input) => {
+                    formik.setFieldValue("tanggal", input);
+                  }}
+                  inputValue={
+                    formik.values.tanggal
+                      ? new Date(formik.values.tanggal)
+                      : undefined
+                  }
                 />
 
                 <FormErrorMessage>

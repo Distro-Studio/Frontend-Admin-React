@@ -12,11 +12,11 @@ import FilterTabelPresensi from "../../components/dependent/Karyawan/FilterTabel
 import TabelPresensi from "../../components/dependent/Karyawan/TabelPresensi";
 import PresensiTotal from "../../components/independent/Karyawan/PresensiTotal";
 import ImportPresensiModal from "../../components/independent/Presensi/ImportPresensiModal";
-import DatePicker from "../../components/input/DatePicker";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
+import DatePickerModal from "../../components/dependent/input/DatePickerModal";
 
 export default function Presensi() {
   const today = new Date();
@@ -29,7 +29,7 @@ export default function Presensi() {
     tanggal: [today],
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
-  const confirmDate = (newDate: string) => {
+  const confirmDate = (newDate: Date | undefined) => {
     setFilterConfig((ps: any) => ({ ...ps, tanggal: [newDate] }));
   };
 
@@ -57,16 +57,12 @@ export default function Presensi() {
               />
             </InputGroup>
 
-            <DatePicker
+            <DatePickerModal
+              id="presensi-date-picker"
+              name="'date-picker"
               flex={"1 1 200px"}
-              confirmDate={confirmDate}
-              dateValue={filterConfig.tanggal}
-              initialDateValue={today}
-              dateFormatOptions={{
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              }}
+              onConfirm={confirmDate}
+              inputValue={filterConfig.tanggal}
             />
 
             <FilterTabelPresensi

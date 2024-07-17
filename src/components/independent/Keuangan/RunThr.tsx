@@ -21,7 +21,7 @@ import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnClose";
 import MultiSelectKaryawan from "../../dependent/_Select/MultiSelectKaryawan";
 import RequiredForm from "../../form/RequiredForm";
-import DatePicker from "../../input/DatePicker";
+import DatePickerModal from "../../dependent/input/DatePickerModal";
 
 interface Props extends ButtonProps {}
 
@@ -108,11 +108,17 @@ export default function RunThr({ ...props }: Props) {
                   Tanggal
                   <RequiredForm />
                 </FormLabel>
-                <DatePicker
-                  formik={formik}
+                <DatePickerModal
+                  id="tanggal-run-thr-date-picker"
                   name="tanggal"
-                  dateValue={formik.values.tanggal}
-                  noUseBackOnClose
+                  onConfirm={(input) => {
+                    formik.setFieldValue("tanggal", input);
+                  }}
+                  inputValue={
+                    formik.values.tanggal
+                      ? new Date(formik.values.tanggal)
+                      : undefined
+                  }
                 />
                 <FormErrorMessage>
                   {formik.errors.tanggal as string}

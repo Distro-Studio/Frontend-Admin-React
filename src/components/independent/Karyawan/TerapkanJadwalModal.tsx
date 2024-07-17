@@ -23,7 +23,7 @@ import useBackOnClose from "../../../lib/useBackOnClose";
 import MultiSelectKaryawan from "../../dependent/_Select/MultiSelectKaryawan";
 import SelectShift from "../../dependent/_Select/SelectShift";
 import RequiredForm from "../../form/RequiredForm";
-import DatePicker from "../../input/DatePicker";
+import DatePickerModal from "../../dependent/input/DatePickerModal";
 
 interface Props extends ButtonProps {}
 
@@ -100,16 +100,17 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                     Tanggal Mulai
                     <RequiredForm />
                   </FormLabel>
-                  <DatePicker
-                    formik={formik}
+                  <DatePickerModal
+                    id="terapkan-jadwal-tanggal-mulai"
                     name="tgl_mulai"
-                    dateValue={formik.values.tgl_mulai}
-                    noUseBackOnClose
-                    dateFormatOptions={{
-                      day: "numeric",
-                      month: "numeric",
-                      year: "numeric",
+                    onConfirm={(input) => {
+                      formik.setFieldValue("tgl_mulai", input);
                     }}
+                    inputValue={
+                      formik.values.tgl_mulai
+                        ? new Date(formik.values.tgl_mulai)
+                        : undefined
+                    }
                   />
                   <FormErrorMessage>
                     {formik.errors.tgl_mulai as string}
@@ -124,17 +125,17 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                     Tanggal Selesai
                     <RequiredForm />
                   </FormLabel>
-                  <DatePicker
-                    formik={formik}
+                  <DatePickerModal
+                    id="terapkan-jadwal-tgl-selesai"
                     name="tgl_selesai"
-                    dateValue={formik.values.tgl_selesai}
-                    noUseBackOnClose
-                    dateFormatOptions={{
-                      day: "numeric",
-                      month: "numeric",
-                      year: "numeric",
+                    onConfirm={(input) => {
+                      formik.setFieldValue("tgl_selesai", input);
                     }}
-                    nullable
+                    inputValue={
+                      formik.values.tgl_selesai
+                        ? new Date(formik.values.tgl_selesai)
+                        : undefined
+                    }
                   />
                   <FormErrorMessage>
                     {formik.errors.tgl_selesai as string}

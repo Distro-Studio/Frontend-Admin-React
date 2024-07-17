@@ -1,7 +1,7 @@
 import { VStack } from "@chakra-ui/react";
 import { Dispatch } from "react";
-import DatePicker from "../../input/DatePicker";
 import FilterItemWrapper from "../../wrapper/FilterItemWrapper";
+import DatePickerModal from "../input/DatePickerModal";
 
 interface Props {
   filterConfig: any;
@@ -12,7 +12,7 @@ export default function FilterTglMasuk({
   filterConfig,
   setFilterConfig,
 }: Props) {
-  function confirmDate(date: Date | string) {
+  function confirmDate(date: Date | undefined) {
     setFilterConfig((ps: any) => ({ ...ps, tgl_masuk: [date] }));
   }
 
@@ -27,11 +27,17 @@ export default function FilterTglMasuk({
       panelMaxH={"380px"}
     >
       <VStack py={4}>
-        <DatePicker
-          dateValue={filterConfig.tgl_masuk[0]}
-          confirmDate={confirmDate}
-          placeholder="Pilih tanggal"
-          noUseBackOnClose
+        <DatePickerModal
+          id="filter-karyawan-tgl-masuk"
+          name="tgl_masuk"
+          onConfirm={(input) => {
+            confirmDate(input);
+          }}
+          inputValue={
+            filterConfig.tgl_masuk
+              ? new Date(filterConfig.tgl_masuk)
+              : undefined
+          }
         />
       </VStack>
     </FilterItemWrapper>

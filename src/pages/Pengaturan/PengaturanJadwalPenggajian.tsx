@@ -9,12 +9,12 @@ import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 import RequiredForm from "../../components/form/RequiredForm";
-import DatePicker from "../../components/input/DatePicker";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import pengaturanTopNavs from "../../const/pengaturanTopNavs";
 import { responsiveSpacing } from "../../const/sizes";
+import DatePickerModal from "../../components/dependent/input/DatePickerModal";
 
 export default function PengaturanJadwalPenggajian() {
   const formik = useFormik({
@@ -74,11 +74,17 @@ export default function PengaturanJadwalPenggajian() {
                   Tanggal Penggajian
                   <RequiredForm />
                 </FormLabel>
-                <DatePicker
-                  formik={formik}
+                <DatePickerModal
+                  id="date-picker-jadwal-penggajian"
                   name="tanggal"
-                  dateValue={formik.values.tanggal}
-                  placeholder="Pilih tanggal penggajian"
+                  onConfirm={(input) => {
+                    formik.setFieldValue("tanggal", input);
+                  }}
+                  inputValue={
+                    formik.values.tanggal
+                      ? new Date(formik.values.tanggal)
+                      : undefined
+                  }
                 />
                 <FormErrorMessage>
                   {formik.errors.tanggal as string}

@@ -4,14 +4,14 @@ import { endOfWeek, startOfWeek } from "date-fns";
 import { useState } from "react";
 import FilterTabelJadwal from "../../components/dependent/Jadwal/FilterTabelJadwal";
 import TabelJadwal from "../../components/dependent/Karyawan/TabelJadwal";
-import SearchComponent from "../../components/dependent/SearchComponent";
 import ImportJadwalKaryawanModal from "../../components/independent/Karyawan/ImportJadwalKaryawanModal";
 import TerapkanJadwalModal from "../../components/independent/Karyawan/TerapkanJadwalModal";
-import DateRangePicker from "../../components/input/DateRangePicker";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
+import SearchComponent from "../../components/dependent/input/SearchComponent";
+import DateRangePickerModal from "../../components/dependent/input/DateRangePickerModal";
 
 export default function Jadwal() {
   const today = new Date();
@@ -32,10 +32,14 @@ export default function Jadwal() {
     range_tgl: defaultRangeTgl,
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
-  const confirmDateRange = (from: Date, to: Date) => {
+  const confirmDateRange = (
+    inputValue: { from: Date; to: Date } | undefined
+  ) => {
     setFilterConfig((ps: any) => ({
       ...ps,
-      range_tgl: { from: from, to: to },
+      range_tgl: inputValue
+        ? { from: inputValue.from, to: inputValue.to }
+        : undefined,
     }));
   };
 
@@ -44,46 +48,47 @@ export default function Jadwal() {
       <CWrapper>
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
-            <Wrap flex={"1 1 450px"}>
-              <SearchComponent
-                search={filterConfig.search}
-                setSearch={(newSearch) => {
-                  setFilterConfig((ps: any) => ({
-                    ...ps,
-                    search: newSearch,
-                  }));
-                }}
-              />
-              <DateRangePicker
-                flex={"1 1 220px"}
-                confirmDate={confirmDateRange}
-                dateValue={filterConfig.range_tgl}
-                initialDateValue={defaultRangeTgl}
-              />
-            </Wrap>
+            <SearchComponent
+              name="search"
+              flex={"1 1 165px"}
+              onChangeSetter={(inputValue) => {
+                setFilterConfig((ps: any) => ({
+                  ...ps,
+                  search: inputValue,
+                }));
+              }}
+              inputValue={filterConfig.search}
+            />
 
-            <Wrap flex={"1 1 520px"}>
-              <FilterTabelJadwal
-                defaultFilterConfig={defaultFilterConfig}
-                filterConfig={filterConfig}
-                setFilterConfig={setFilterConfig}
-                rangeTgl={filterConfig.range_tgl}
-              />
+            <DateRangePickerModal
+              id="jadwal-date-range"
+              name="date-range"
+              flex={"1 1 160px"}
+              onConfirm={confirmDateRange}
+              inputValue={filterConfig.range_tgl}
+              nonNullable
+            />
 
-              <Button
-                flex={"1 1 110px"}
-                variant={"outline"}
-                colorScheme="ap"
-                className="clicky"
-                rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
-              >
-                Export
-              </Button>
+            <FilterTabelJadwal
+              defaultFilterConfig={defaultFilterConfig}
+              filterConfig={filterConfig}
+              setFilterConfig={setFilterConfig}
+              rangeTgl={filterConfig.range_tgl}
+            />
 
-              <ImportJadwalKaryawanModal />
+            <Button
+              flex={"1 1 110px"}
+              variant={"outline"}
+              colorScheme="ap"
+              className="clicky"
+              rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
+            >
+              Export
+            </Button>
 
-              <TerapkanJadwalModal flex={"1 1 160px"} />
-            </Wrap>
+            <ImportJadwalKaryawanModal />
+
+            <TerapkanJadwalModal flex={"1 1 160px"} />
           </Wrap>
 
           <TabelJadwal filterConfig={filterConfig} />
