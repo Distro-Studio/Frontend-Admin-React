@@ -8,7 +8,6 @@ import {
   FormLabel,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -24,13 +23,14 @@ import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnCloseOld";
 import SelectJabatan from "../../dependent/_Select/SelectJabatan";
 import SelectKaryawan from "../../dependent/_Select/SelectKaryawan";
+import SelectKelompokGaji from "../../dependent/_Select/SelectKelompokGaji";
 import SelectTipeTransfer from "../../dependent/_Select/SelectTipeTransfer";
 import SelectUnitKerja from "../../dependent/_Select/SelectUnitKerja";
+import DisclosureHeader from "../../dependent/DisclosureHeader";
+import DatePickerModal from "../../dependent/input/DatePickerModal";
 import RequiredForm from "../../form/RequiredForm";
 import FileInput from "../../input/FileInput";
 import Textarea from "../../input/Textarea";
-import SelectKelompokGaji from "../../dependent/_Select/SelectKelompokGaji";
-import DatePickerModal from "../../dependent/input/DatePickerModal";
 
 interface Props extends ButtonProps {}
 
@@ -89,11 +89,13 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
         }}
         initialFocusRef={initialRef}
         isCentered
+        // size={"full"}
       >
         <ModalOverlay />
-        <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Ajukan Transfer Karyawan</ModalHeader>
+        <ModalContent borderRadius={12}>
+          <ModalHeader ref={initialRef}>
+            <DisclosureHeader title={"Ajukan Transfer Karyawan"} />
+          </ModalHeader>
           <ModalBody>
             <form id="transferKaryawanForm" onSubmit={formik.handleSubmit}>
               <FormControl mb={4} isInvalid={!!formik.errors.nama}>
