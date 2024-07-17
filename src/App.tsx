@@ -1,6 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { globalTheme } from "./chakraTheme/globalTheme";
+import { globalTheme } from "./theme/globalTheme";
 import NavContainer from "./components/wrapper/NavContainer";
 import jadwalTopNavs from "./const/jadwalTopNavs";
 import karyawanTopNavs from "./const/karyawanTopNavs";

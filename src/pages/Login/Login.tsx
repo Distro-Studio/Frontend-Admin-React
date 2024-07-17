@@ -42,7 +42,7 @@ export default function Login() {
 
           <VStack p={6} minH={"400px"} h={"100vh"} flex={1}>
             <VStack
-              borderRadius={24}
+              borderRadius={20}
               justify={"flex-end"}
               align={"flex-start"}
               p={4}

@@ -1,16 +1,14 @@
-const formatNumber = (numParam: number | string | null) => {
+const formatNumber = (numParam: number | string | undefined | null) => {
   let formattedNum;
   //@ts-ignore
   let num;
   if (typeof numParam === "string") {
-    num = parseInt(numParam) as any;
+    num = parseInt(numParam);
   } else {
     num = numParam;
   }
 
-  if (num === undefined || num === null || Number.isNaN(num)) {
-    formattedNum = "";
-  } else if (num !== 0) {
+  if (num !== 0) {
     formattedNum = num?.toLocaleString("id-ID");
   } else if (num === 0) {
     formattedNum = "0";

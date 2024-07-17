@@ -31,7 +31,7 @@ import {
 import { useState } from "react";
 import getLocation from "../lib/getLocation";
 import useBackOnClose from "../lib/useBackOnClose";
-import useDebugLoadingState from "../globalState/useDebugLoadingState";
+import useDebugLoadingState from "../global/useDebugLoadingState";
 
 export default function DebugTools() {
   //! DEBUG
