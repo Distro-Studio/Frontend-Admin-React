@@ -20,7 +20,6 @@ import * as yup from "yup";
 import { iconSize } from "../../../const/sizes";
 import backOnClose from "../../../lib/backOnCloseOld";
 import useBackOnClose from "../../../lib/useBackOnCloseOld";
-import FileInputBig from "../../input/FileInputBig";
 
 export default function ImportKaryawanModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -83,11 +82,7 @@ export default function ImportKaryawanModal() {
           <ModalBody>
             <form id="importDataKaryawanForm" onSubmit={formik.handleSubmit}>
               <FormControl isInvalid={formik.errors.file ? true : false}>
-                <FileInputBig
-                  formik={formik}
-                  name="file"
-                  accept=".csv, .xls, .xlsx"
-                />
+                {/* <FileInputLarge name="file" accept=".csv, .xls, .xlsx" /> */}
                 <FormErrorMessage>{formik.errors.file}</FormErrorMessage>
               </FormControl>
             </form>

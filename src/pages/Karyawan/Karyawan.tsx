@@ -1,24 +1,18 @@
 import { Button, Wrap } from "@chakra-ui/react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import ExportModal from "../../components/dependent/ExportModal";
+import ImportModal from "../../components/dependent/ImportModal";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelKaryawan from "../../components/dependent/Karyawan/TabelKaryawan";
 import FilterKaryawan from "../../components/independent/FilterKaryawan";
-import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
+import useFilterKaryawan from "../../global/useFilterKaryawan";
 
 export default function Karyawan() {
-  // Filter Config
-  const defaultFilterConfig = {
-    search: "",
-    unit_kerja: [],
-    status_karyawan: [],
-  };
-  const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
+  const { filterKaryawan, setFilterKaryawan } = useFilterKaryawan();
 
   return (
     <>
@@ -28,19 +22,19 @@ export default function Karyawan() {
             <SearchComponent
               name="search"
               onChangeSetter={(input) => {
-                setFilterConfig((ps: any) => ({
+                setFilterKaryawan((ps: any) => ({
                   ...ps,
                   search: input,
                 }));
               }}
-              inputValue={filterConfig.search}
+              inputValue={filterKaryawan.search}
             />
 
-            <FilterKaryawan />
+            <FilterKaryawan flex={"1 1 110px"} />
 
-            <ExportModal url={""} />
+            <ExportModal url={""} flex={"1 1 110px"} />
 
-            <ImportKaryawanModal />
+            <ImportModal url={""} flex={"1 1 110px"} />
 
             <Button
               flex={"1 0 170px"}
@@ -53,7 +47,7 @@ export default function Karyawan() {
             </Button>
           </Wrap>
 
-          <TabelKaryawan filterConfig={filterConfig} />
+          <TabelKaryawan />
         </CContainer>
       </CWrapper>
     </>

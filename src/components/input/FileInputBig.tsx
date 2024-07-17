@@ -90,6 +90,7 @@ export default function FileInputBig({ formik, name, accept }: Props) {
         onDrop={handleDrop}
       >
         <Icon as={RiUploadCloud2Line} fontSize={124} color={"p.500"} />
+
         {!fileName && (
           <>
             <Text

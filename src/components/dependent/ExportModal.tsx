@@ -30,7 +30,6 @@ export default function ExportModal({ url, ...props }: Props) {
   return (
     <>
       <Button
-        flex={"1 1 110px"}
         variant={"outline"}
         colorScheme="ap"
         className="clicky"

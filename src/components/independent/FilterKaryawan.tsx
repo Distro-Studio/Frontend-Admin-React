@@ -78,7 +78,6 @@ export default function FilterKaryawan({ ...props }: Props) {
   return (
     <>
       <Button
-        flex={"1 1 110px"}
         variant={"outline"}
         colorScheme="ap"
         className="clicky"
