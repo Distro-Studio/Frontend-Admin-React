@@ -240,7 +240,7 @@ export default function FilterUnitKerja({
                 className="btn-outline"
                 fontWeight={400}
                 opacity={active ? 1 : 0.6}
-                bg={active && `var(--p500a2) !important`}
+                bg={active && `var(--p500a5) !important`}
                 borderColor={active && "p.500 !important"}
                 flexShrink={0}
                 h={"40px"}
@@ -248,6 +248,7 @@ export default function FilterUnitKerja({
                 justify={"center"}
                 px={4}
                 cursor={"pointer"}
+                transition={"200ms"}
                 onClick={() => {
                   setFilterConfig((ps: any) => {
                     // Mengecek apakah data sudah ada dalam unit_kerja

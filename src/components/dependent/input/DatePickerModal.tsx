@@ -268,6 +268,7 @@ export default function DatePickerModal({
               <Button
                 flexShrink={0}
                 className="btn-solid clicky"
+                // border={"1px solid var(--divider3)"}
                 onClick={() => {
                   setSelected(undefined);
                 }}

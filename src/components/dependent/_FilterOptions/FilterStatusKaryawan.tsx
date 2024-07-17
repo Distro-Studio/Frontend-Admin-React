@@ -50,13 +50,14 @@ export default function FilterStatusKaryawan({
               className="btn-outline"
               fontWeight={400}
               opacity={active ? 1 : 0.6}
-              bg={active && `var(--p500a2) !important`}
+              bg={active && `var(--p500a5) !important`}
               borderColor={active && "p.500 !important"}
               flexShrink={0}
               h={"40px"}
               maxW={"100%"}
               px={4}
               cursor={"pointer"}
+              transition={"200ms"}
               onClick={() => {
                 setFilterConfig((ps: any) => {
                   const isDataExist =

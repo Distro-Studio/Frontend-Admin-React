@@ -13,7 +13,10 @@ export default function FilterTglMasuk({
   setFilterConfig,
 }: Props) {
   function confirmDate(date: Date | undefined) {
-    setFilterConfig((ps: any) => ({ ...ps, tgl_masuk: [date] }));
+    setFilterConfig((ps: any) => ({
+      ...ps,
+      tgl_masuk: date ? [date] : [],
+    }));
   }
 
   // SX
@@ -34,8 +37,8 @@ export default function FilterTglMasuk({
             confirmDate(input);
           }}
           inputValue={
-            filterConfig.tgl_masuk
-              ? new Date(filterConfig.tgl_masuk)
+            filterConfig.tgl_masuk[0]
+              ? new Date(filterConfig.tgl_masuk[0])
               : undefined
           }
         />

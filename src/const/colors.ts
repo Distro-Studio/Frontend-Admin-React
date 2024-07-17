@@ -1,7 +1,7 @@
 import { useColorModeValue } from "@chakra-ui/react";
 
 const useContentBgColor = () => {
-  return useColorModeValue("#f9f9f9", "#141414");
+  return useColorModeValue("#f9f9f9", "#151515");
 };
 
 const useBodyColor = () => {

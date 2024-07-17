@@ -63,13 +63,13 @@ export default function FilterItemWrapper({
                   <IconButton
                     as={Center}
                     aria-label="Delete filter item button"
-                    icon={<Icon as={RiCloseLine} fontSize={16} />}
+                    icon={<Icon as={RiCloseLine} fontSize={20} />}
                     size={"xs"}
                     borderRadius={"full"}
                     colorScheme="red"
                     variant={"ghost"}
-                    opacity={0} 
-                    _groupHover={{ opacity: 1 }} 
+                    opacity={0}
+                    _groupHover={{ opacity: 1 }}
                     onClick={(e) => {
                       e.stopPropagation();
                       setFilterConfig((ps: any) => ({

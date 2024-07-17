@@ -4,8 +4,9 @@ const defaultFilterConfig = {
   search: "",
   unit_kerja: [],
   status_karyawan: [],
-  masa_kerja: undefined,
-  status_aktif: undefined,
+  masa_kerja: [],
+  status_aktif: [],
+  tgl_masuk: [],
 };
 
 type State = {

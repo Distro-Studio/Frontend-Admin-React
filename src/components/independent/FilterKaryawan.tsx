@@ -28,6 +28,7 @@ import FilterUnitKerja from "../dependent/_FilterOptions/FilterUnitKerja";
 import DisclosureHeader from "../dependent/DisclosureHeader";
 import FilterMasaKerja from "../dependent/_FilterOptions/FilterMasaKerja";
 import FilterStatusAktif from "../dependent/_FilterOptions/FilterStatusAktif";
+import FilterTglMasuk from "../dependent/_FilterOptions/FilterTglMasuk";
 
 interface Props extends ButtonProps {}
 
@@ -48,10 +49,31 @@ export default function FilterKaryawan({ ...props }: Props) {
     backOnClose();
   }
 
-  //TODO post api filter data karyawan
+  function filterCount(values: any) {
+    let count = 0;
+
+    if (values.unit_kerja && values.unit_kerja.length > 0) {
+      count += values.unit_kerja.length;
+    }
+    if (values.status_karyawan && values.status_karyawan.length > 0) {
+      count += values.status_karyawan.length;
+    }
+    if (values.masa_kerja && values.masa_kerja.length > 0) {
+      count += values.masa_kerja.length;
+    }
+    if (values.status_aktif && values.status_aktif.length > 0) {
+      count += values.status_aktif.length;
+    }
+    if (values.tgl_masuk && values.tgl_masuk.length > 0) {
+      count += values.tgl_masuk.length;
+    }
+    return count;
+  }
 
   // SX
   const lightDarkColor = useLightDarkColor();
+
+  // console.log(filterKaryawan);
 
   return (
     <>
@@ -67,30 +89,23 @@ export default function FilterKaryawan({ ...props }: Props) {
         {...props}
       >
         <HStack>
-          {filterKaryawan &&
-            ((filterKaryawan.unit_kerja &&
-              filterKaryawan.unit_kerja.length > 0) ||
-              (filterKaryawan.status_karyawan &&
-                filterKaryawan.status_karyawan.length > 0)) && (
-              <Center
-                position={"absolute"}
-                right={"-6px"}
-                top={"-6px"}
-                flexShrink={0}
-                minW={"20px"}
-                h={"20px"}
-                borderRadius={"full"}
-                bg={"p.500"}
-                ml={"auto"}
-              >
-                <Text color={lightDarkColor} fontSize={12} fontWeight={600}>
-                  {formatNumber(
-                    filterKaryawan.unit_kerja.length +
-                      filterKaryawan.status_karyawan.length
-                  )}
-                </Text>
-              </Center>
-            )}
+          {filterCount(filterKaryawan) && (
+            <Center
+              position={"absolute"}
+              right={"-6px"}
+              top={"-6px"}
+              flexShrink={0}
+              minW={"20px"}
+              h={"20px"}
+              borderRadius={"full"}
+              bg={"p.500"}
+              ml={"auto"}
+            >
+              <Text color={lightDarkColor} fontSize={12} fontWeight={600}>
+                {formatNumber(filterCount(filterKaryawan))}
+              </Text>
+            </Center>
+          )}
 
           <Text>Filter</Text>
         </HStack>
@@ -131,6 +146,11 @@ export default function FilterKaryawan({ ...props }: Props) {
               />
 
               <FilterStatusAktif
+                filterConfig={localFilterConfig}
+                setFilterConfig={setLocalFilterConfig}
+              />
+
+              <FilterTglMasuk
                 filterConfig={localFilterConfig}
                 setFilterConfig={setLocalFilterConfig}
               />
