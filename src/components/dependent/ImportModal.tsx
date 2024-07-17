@@ -36,22 +36,24 @@ export default function ImportModal({ url, ...props }: Props) {
     initialValues: { file: undefined },
     validationSchema: yup.object().shape({
       file: yup
-        .array()
-        .min(1, "Harus diisi")
+        .mixed()
+        .nullable()
         .test(
           "fileType",
           "Hanya file dengan ekstensi .csv, .xls, atau .xlsx yang diperbolehkan",
-          (value: File[] | null | undefined) => {
-            if (!value) return false;
-            return value.every((file) => {
+          (value: any) => {
+            if (value === null || value === undefined) return false; // Tidak boleh kosong
+            if (typeof value === "string") return true; // String dianggap valid
+            if (value instanceof File) {
               const validExtensions = [".csv", ".xls", ".xlsx"];
-              const extension = file.name.split(".").pop();
+              const extension = value.name.split(".").pop();
               return extension
                 ? validExtensions.includes(`.${extension}`)
                 : false;
-            });
+            }
+            return false;
           }
-        ) as any,
+        ),
     }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
@@ -74,7 +76,10 @@ export default function ImportModal({ url, ...props }: Props) {
 
       <Modal
         isOpen={isOpen}
-        onClose={backOnClose}
+        onClose={() => {
+          backOnClose();
+          formik.resetForm();
+        }}
         initialFocusRef={initialRef}
         isCentered
       >
@@ -103,14 +108,13 @@ export default function ImportModal({ url, ...props }: Props) {
           </ModalBody>
           <ModalFooter gap={2}>
             <Button
+              type="submit"
+              form="importForm"
               w={"100%"}
-              className="btn-solid clicky"
-              onClick={backOnClose}
+              className="btn-ap clicky"
+              colorScheme="ap"
             >
-              Tidak
-            </Button>
-            <Button w={"100%"} className="btn-ap clicky" colorScheme="ap">
-              Ya
+              Simpan
             </Button>
           </ModalFooter>
         </ModalContent>
