@@ -2,9 +2,9 @@ import { Button, Icon, Wrap } from "@chakra-ui/react";
 import { RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
+import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelKaryawan from "../../components/dependent/Karyawan/TabelKaryawan";
-import SearchComponent from "../../components/dependent/SearchComponent";
+import FilterKaryawan from "../../components/independent/FilterKaryawan";
 import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -26,20 +26,17 @@ export default function Karyawan() {
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
             <SearchComponent
-              search={filterConfig.search}
-              setSearch={(newSearch) => {
+              name="search"
+              onChangeSetter={(input) => {
                 setFilterConfig((ps: any) => ({
                   ...ps,
-                  search: newSearch,
+                  search: input,
                 }));
               }}
+              inputValue={filterConfig.search}
             />
 
-            <FilterTabelKaryawan
-              defaultFilterConfig={defaultFilterConfig}
-              filterConfig={filterConfig}
-              setFilterConfig={setFilterConfig}
-            />
+            <FilterKaryawan />
 
             <Button
               flex={"1 1 110px"}

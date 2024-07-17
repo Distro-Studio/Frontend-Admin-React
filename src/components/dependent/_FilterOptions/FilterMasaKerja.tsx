@@ -39,7 +39,7 @@ export default function FilterMasaKerja({
       <VStack align={"stretch"} gap={0} overflow={"clip"}>
         <Center>
           <Text fontSize={18} fontWeight={500}>
-            {filterConfig.masa_kerja[0] || 0} Tahun
+            {filterConfig.masa_kerja || 0} Tahun
           </Text>
         </Center>
 
@@ -61,7 +61,7 @@ export default function FilterMasaKerja({
                 }));
               }
             }}
-            value={(filterConfig.masa_kerja[0] * 10) / 6 || 0}
+            value={(filterConfig.masa_kerja * 10) / 6 || 0}
           >
             <SliderMark value={25} {...labelStyles}>
               15

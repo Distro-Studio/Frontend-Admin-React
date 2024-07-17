@@ -343,16 +343,18 @@ export default function TambahKaryawan() {
 
   const Step1Footer = () => {
     return (
-      <Button
-        mt={"auto"}
-        w={"100%"}
-        colorScheme="ap"
-        className="btn-ap clicky"
-        h={"50px"}
-        onClick={handleNext}
-      >
-        Lanjut
-      </Button>
+      <Box mt={"auto"}>
+        <Button
+          mt={2}
+          w={"100%"}
+          colorScheme="ap"
+          className="btn-ap clicky"
+          h={"50px"}
+          onClick={handleNext}
+        >
+          Lanjut
+        </Button>
+      </Box>
     );
   };
 
@@ -576,6 +578,7 @@ export default function TambahKaryawan() {
     return (
       <ButtonGroup mt={"auto"} w={"100%"}>
         <Button
+          mt={2}
           w={"100%"}
           className="btn-solid clicky"
           h={"50px"}
@@ -584,6 +587,7 @@ export default function TambahKaryawan() {
           Sebelumnya
         </Button>
         <Button
+          mt={2}
           w={"100%"}
           colorScheme="ap"
           className="btn-ap clicky"
@@ -647,6 +651,7 @@ export default function TambahKaryawan() {
     return (
       <ButtonGroup mt={"auto"} w={"100%"}>
         <Button
+          mt={2}
           w={"100%"}
           className="btn-solid clicky"
           h={"50px"}
@@ -655,6 +660,7 @@ export default function TambahKaryawan() {
           Sebelumnya
         </Button>
         <Button
+          mt={2}
           w={"100%"}
           colorScheme="ap"
           className="btn-ap clicky"

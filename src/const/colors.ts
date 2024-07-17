@@ -16,6 +16,30 @@ const useWhiteDarkColor = () => {
   return useColorModeValue("white", "dark");
 };
 
+const useLightDarkColor = () => {
+  return useColorModeValue("white", "#191919");
+};
+
+const useDarkLightColor = () => {
+  return useColorModeValue("dark", "white");
+};
+
+const useErrorColor = () => {
+  return useColorModeValue("#E53E3E", "#FC8181");
+};
+
+const useWarningColor = () => {
+  return useColorModeValue("#C05621", "#FBD38D");
+};
+
+const useErrorAlphaColor = () => {
+  return useColorModeValue("#FED7D7", "#FEB2B229");
+};
+
+const useWarningAlphaColor = () => {
+  return useColorModeValue("#FEEBC8", "#FBD38D29");
+};
+
 const statusKaryawanColorScheme = {
   tetap: "orange",
   Tetap: "orange",
@@ -31,4 +55,10 @@ export {
   usePrimaryAlphaColor,
   useWhiteDarkColor,
   statusKaryawanColorScheme,
+  useLightDarkColor,
+  useDarkLightColor,
+  useErrorColor,
+  useErrorAlphaColor,
+  useWarningColor,
+  useWarningAlphaColor,
 };

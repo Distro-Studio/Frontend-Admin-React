@@ -46,7 +46,7 @@ export default function FilterStatusKaryawan({
           return (
             <HStack
               key={i}
-              borderRadius={8}
+              borderRadius={"full"}
               className="btn-outline"
               fontWeight={400}
               opacity={active ? 1 : 0.6}

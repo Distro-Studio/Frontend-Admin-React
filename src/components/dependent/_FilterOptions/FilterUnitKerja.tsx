@@ -221,7 +221,11 @@ export default function FilterUnitKerja({
       </InputGroup>
 
       <VStack align={"stretch"} h={"calc(300px - 52px)"} gap={0}>
-        {filteredList?.length === 0 && <DataNotFound mt={4} />}
+        {filteredList?.length === 0 && (
+          <VStack h={"100px"} justify={"center"}>
+            <DataNotFound />
+          </VStack>
+        )}
 
         <Wrap py={4} w={"100%"}>
           {filteredList?.map((data, i) => {
@@ -232,7 +236,7 @@ export default function FilterUnitKerja({
             return (
               <HStack
                 key={i}
-                borderRadius={8}
+                borderRadius={"full"}
                 className="btn-outline"
                 fontWeight={400}
                 opacity={active ? 1 : 0.6}
