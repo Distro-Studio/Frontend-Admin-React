@@ -9,7 +9,6 @@ import {
   Input,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -27,6 +26,7 @@ import useBackOnClose from "../../../hooks/useBackOnClose";
 import backOnClose from "../../../lib/backOnClose";
 import formatDate from "../../../lib/formatDate";
 import parseNumber from "../../../lib/parseNumber";
+import DisclosureHeader from "../DisclosureHeader";
 
 interface Props extends StackProps {
   id: string;
@@ -159,13 +159,8 @@ export default function PeriodPickerModal({
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
           <ModalHeader ref={initialRef}>
-            <HStack align={"start"} justify={"space-between"}>
-              <Text fontSize={20} fontWeight={600}>
-                Set Bulan & Tahun
-              </Text>
-            </HStack>
+            <DisclosureHeader title="Pilih Periode Bulan & Tahun" />
           </ModalHeader>
 
           <ModalBody className="scrollY">
