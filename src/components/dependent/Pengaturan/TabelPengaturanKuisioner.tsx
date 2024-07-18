@@ -17,7 +17,7 @@ import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { dummyKompetensi } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
 import { iconSize } from "../../../const/sizes";
-import NoData from "../../alert/NoData";
+import NoData from "../../independent/NoData";
 import ComponentSpinner from "../../independent/ComponentSpinner";
 import TabelContainer from "../../wrapper/CustomTableContainer";
 

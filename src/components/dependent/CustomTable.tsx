@@ -61,7 +61,6 @@ export default function CustomTable({
       setSelectedRows([]);
     }
   };
-
   const toggleRowSelection = (rowId: string | number) => {
     setSelectedRows((prevSelected) => {
       const isSelected = prevSelected.includes(rowId);

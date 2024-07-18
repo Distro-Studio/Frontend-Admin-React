@@ -10,7 +10,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { RiCheckLine } from "@remixicon/react";
-import React from "react";
 import { Link } from "react-router-dom";
 
 interface Props {

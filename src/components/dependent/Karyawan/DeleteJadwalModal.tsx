@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import useBackOnClose from "../../../lib/useBackOnCloseOld";
-import DeletePermanentWarning from "../../alert/DeletePermanentWarning";
+import DeletePermanentWarning from "../../independent/DeletePermanentWarning";
 
 interface Props extends ButtonProps {
   data: any;

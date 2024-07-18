@@ -1,8 +1,8 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useDisclosure } from "@chakra-ui/react";
 import { dummyKaryawans } from "../../../const/dummy";
 import { Interface__Karyawan } from "../../../const/interfaces";
 import useDataState from "../../../hooks/useDataState";
-import NoData from "../../alert/NoData";
+import NoData from "../../independent/NoData";
 import Skeleton from "../../independent/Skeleton";
 import CustomTableContainer from "../../wrapper/CustomTableContainer";
 import AvatarAndNameTableData from "../AvatarAndNameTableData";
@@ -11,6 +11,7 @@ import Retry from "../Retry";
 import StatusKaryawanBadge from "./StatusKaryawanBadge";
 import TabelFooterConfig from "../TabelFooterConfig";
 import { useState } from "react";
+import DetailKaryawanModal from "../DetailKaryawanModal";
 
 interface Props {
   filterConfig?: any;
@@ -108,6 +109,8 @@ export default function TabelKaryawan({ filterConfig }: Props) {
   const [limitConfig, setLimitConfig] = useState<number>(10);
   // Pagination Config
   const [pageConfig, setPageConfig] = useState<number>(1);
+  // Karyawan Detail Disclosure
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
@@ -139,6 +142,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       onBatchAction={(selectedRows) => {
                         console.log("selected_rows", selectedRows);
                       }}
+                      onRowClick={() => {
+                        onOpen();
+                      }}
                     />
                   </CustomTableContainer>
 
@@ -152,6 +158,13 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       next_page_url: "",
                       last_page: 1,
                     }}
+                  />
+
+                  <DetailKaryawanModal
+                    id={1}
+                    isOpen={isOpen}
+                    onOpen={onOpen}
+                    onClose={onClose}
                   />
                 </>
               )}

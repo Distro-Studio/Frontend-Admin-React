@@ -67,7 +67,7 @@ export default function DebugTools() {
         position={"fixed"}
         bottom={"92px"}
         right={"6px"}
-        zIndex={99}
+        zIndex={99999999999999999}
         onClick={onOpen}
       />
 
