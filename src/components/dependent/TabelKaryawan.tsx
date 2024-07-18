@@ -4,7 +4,6 @@ import { useState } from "react";
 import { dummyKaryawans } from "../../const/dummy";
 import { Interface__Karyawan } from "../../const/interfaces";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
-import chartColors from "../../constant/chartColors";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
 import useDataState from "../../hooks/useDataState";
 import NoData from "../independent/NoData";

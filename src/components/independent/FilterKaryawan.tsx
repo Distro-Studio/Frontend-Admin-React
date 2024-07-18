@@ -19,7 +19,6 @@ import { RiEqualizer3Fill } from "@remixicon/react";
 import { useRef, useState } from "react";
 import { useLightDarkColor } from "../../const/colors";
 import { iconSize } from "../../const/sizes";
-import chartColors from "../../constant/chartColors";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import backOnClose from "../../lib/backOnClose";

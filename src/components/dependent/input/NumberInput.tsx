@@ -1,8 +1,9 @@
+import { InputProps } from "@chakra-ui/react";
 import formatNumber from "../../../lib/formatNumber";
 import parseNumber from "../../../lib/parseNumber";
 import StringInput from "./StringInput";
 
-interface Props {
+interface Props extends InputProps {
   name: string;
   onChangeSetter: (inputValue: number | undefined) => void;
   inputValue: number | undefined;

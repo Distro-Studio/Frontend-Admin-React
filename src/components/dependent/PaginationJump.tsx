@@ -1,23 +1,17 @@
 import {
   Button,
-  Center,
   FormControl,
   FormErrorMessage,
-  Input,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
+  HStack,
+  Menu,
+  MenuButton,
+  MenuGroup,
+  MenuList,
   Text,
-  useDisclosure,
+  VStack,
 } from "@chakra-ui/react";
-import { useRef, useState } from "react";
-import formatNumber from "../../lib/formatNumber";
-import parseNumber from "../../lib/parseNumber";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
-import DisclosureHeader from "./DisclosureHeader";
+import { useState } from "react";
+import NumberInput from "./input/NumberInput";
 
 type Props = {
   page: any;
@@ -25,14 +19,7 @@ type Props = {
   pagination: any;
 };
 export default function PaginationJump({ page, setPage, pagination }: Props) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
-  const handleOnClose = () => {
-    onClose();
-    window.history.back();
-  };
-  const initialFocusRef = useRef(null);
-  const [data, setData] = useState<number | null>(page);
+  const [data, setData] = useState<number | undefined>(page);
 
   const validation = () => {
     if (data && data > 0 && data <= pagination.last_page) {
@@ -50,7 +37,55 @@ export default function PaginationJump({ page, setPage, pagination }: Props) {
 
   return (
     <>
-      <Center
+      <Menu>
+        <MenuButton
+          as={VStack}
+          justify={"center"}
+          className="btn-outline"
+          color={"p.500"}
+          minW={"32px"}
+          h={"32px"}
+          borderRadius={8}
+          cursor={"pointer"}
+          transition={"200ms"}
+          px={2}
+        >
+          <Text fontWeight={600} mt={1}>
+            {page}
+          </Text>
+        </MenuButton>
+        <MenuList minW={"180px"} maxW={"180px"}>
+          <MenuGroup title={`Terakhir : ${pagination.last_page}`}></MenuGroup>
+          <form id={"jumpToPageForm"} onSubmit={handleSubmit}>
+            <FormControl isInvalid={!validation()}>
+              <HStack gap={0}>
+                <NumberInput
+                  name="page"
+                  onChangeSetter={(input) => {
+                    setData(input);
+                  }}
+                  inputValue={data}
+                  borderRadius={"6px 0 0 6px !important"}
+                />
+                <Button
+                  className="btn-solid"
+                  type="submit"
+                  form="jumpToPageForm"
+                  isDisabled={!validation()}
+                  borderRadius={"0 6px 6px 0"}
+                  w={"100%"}
+                >
+                  Lompat
+                </Button>
+              </HStack>
+              <FormErrorMessage
+                px={4}
+              >{`Input harus lebih dari 0 dan kurang dari/sama dengan halaman terakhir`}</FormErrorMessage>
+            </FormControl>
+          </form>
+        </MenuList>
+      </Menu>
+      {/* <Center
         className="btn-outline clicky"
         color={"p.500"}
         w={"32px"}
@@ -106,7 +141,7 @@ export default function PaginationJump({ page, setPage, pagination }: Props) {
             </Button>
           </ModalFooter>
         </ModalContent>
-      </Modal>
+      </Modal> */}
     </>
   );
 }

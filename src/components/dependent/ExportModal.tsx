@@ -15,9 +15,8 @@ import { RiUploadLine } from "@remixicon/react";
 import { useRef } from "react";
 import { iconSize } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
-import DisclosureHeader from "./DisclosureHeader";
 import backOnClose from "../../lib/backOnClose";
-import chartColors from "../../constant/chartColors";
+import DisclosureHeader from "./DisclosureHeader";
 
 interface Props extends ButtonProps {
   url: string;
