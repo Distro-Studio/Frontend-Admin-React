@@ -7,7 +7,7 @@ interface Props extends StackProps {
 
 export default function AvatarAndNameTableData({ data, ...props }: Props) {
   return (
-    <HStack w={"150px"} {...props}>
+    <HStack w={"180px"} {...props}>
       <Avatar
         src={data.user.foto_profil || ""}
         name={data.user.nama}
@@ -15,6 +15,7 @@ export default function AvatarAndNameTableData({ data, ...props }: Props) {
       />
       <Tooltip label={data.user.nama}>
         <Text
+          w={"100%"}
           whiteSpace={"nowrap"}
           overflow={"hidden"}
           textOverflow={"ellipsis"}

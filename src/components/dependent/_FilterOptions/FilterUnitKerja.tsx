@@ -200,7 +200,7 @@ export default function FilterUnitKerja({
     >
       <InputGroup position={"sticky"} top={0} bg={useBodyColor()} zIndex={2}>
         <InputLeftElement>
-          <Icon as={RiSearch2Line} fontSize={iconSize} color={"p.500"} />
+          <Icon as={RiSearch2Line} fontSize={iconSize} opacity={0.4} />
         </InputLeftElement>
 
         <Input

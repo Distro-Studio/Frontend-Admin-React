@@ -44,7 +44,6 @@ import JenisKaryawanBadge from "./JenisKaryawanBadge";
 import Retry from "./Retry";
 import SmallLink from "./SmallLink";
 import SearchComponent from "./input/SearchComponent";
-import chartColors from "../../constant/chartColors";
 
 interface Props {
   karyawan_id: number;
@@ -148,7 +147,8 @@ export default function DetailKaryawanModal({
                             <Icon
                               as={RiShutDownLine}
                               fontSize={iconSize}
-                              color={chartColors[4]}
+                              opacity={0.4}
+                              // color={chartColors[4]}
                             />
                           }
                         >
@@ -165,7 +165,8 @@ export default function DetailKaryawanModal({
                               <Icon
                                 as={RiHeartLine}
                                 fontSize={iconSize}
-                                color={chartColors[6]}
+                                opacity={0.4}
+                                // color={chartColors[6]}
                               />
                             }
                             className="btn-outline clicky"

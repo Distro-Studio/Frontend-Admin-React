@@ -68,7 +68,9 @@ export default function PaginationJump({ page, setPage, pagination }: Props) {
                   borderRadius={"6px 0 0 6px !important"}
                 />
                 <Button
-                  className="btn-solid"
+                  variant={"outline"}
+                  colorScheme="ap"
+                  // className="btn-solid"
                   type="submit"
                   form="jumpToPageForm"
                   isDisabled={!validation()}
@@ -80,6 +82,7 @@ export default function PaginationJump({ page, setPage, pagination }: Props) {
               </HStack>
               <FormErrorMessage
                 px={4}
+                pb={2}
               >{`Input harus lebih dari 0 dan kurang dari/sama dengan halaman terakhir`}</FormErrorMessage>
             </FormControl>
           </form>

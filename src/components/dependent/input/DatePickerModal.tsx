@@ -264,8 +264,9 @@ export default function DatePickerModal({
           </ModalBody>
 
           <ModalFooter pt={5}>
-            <VStack align={"stretch"} w={"100%"}>
+            <ButtonGroup w={"100%"}>
               <Button
+                w={"50%"}
                 flexShrink={0}
                 className="btn-solid clicky"
                 // border={"1px solid var(--divider3)"}
@@ -277,15 +278,15 @@ export default function DatePickerModal({
               </Button>
 
               <Button
+                w={"50%"}
                 colorScheme="ap"
                 className="btn-ap clicky"
-                w={"100%"}
                 isDisabled={nonNullable ? (selected ? false : true) : false}
                 onClick={confirmSelected}
               >
                 Konfirmasi
               </Button>
-            </VStack>
+            </ButtonGroup>
           </ModalFooter>
         </ModalContent>
       </Modal>

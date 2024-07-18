@@ -173,7 +173,7 @@ export default function FilterKaryawan({ ...props }: Props) {
                   setLocalFilterConfig(defaultFilterKaryawan);
                 }}
               >
-                Reset
+                Clear
               </Button>
 
               <Button

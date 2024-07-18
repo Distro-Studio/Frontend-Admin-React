@@ -75,6 +75,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
         position: "sticky",
         left: "52px",
         zIndex: 99,
+        w: "180px",
       },
       cProps: {
         borderRight: "1px solid var(--divider3)",
