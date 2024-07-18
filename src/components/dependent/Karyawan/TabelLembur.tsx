@@ -25,7 +25,7 @@ import { Tabel__Column__Interface } from "../../../const/interfaces";
 import formatDate from "../../../lib/formatDate";
 import formatDurationShort from "../../../lib/formatDurationShort";
 import ComponentSpinner from "../../independent/ComponentSpinner";
-import TabelContainer from "../../wrapper/TabelContainer";
+import TabelContainer from "../../wrapper/CustomTableContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
 import BooleanBadge from "../BooleanBadge";
 import { Link } from "react-router-dom";

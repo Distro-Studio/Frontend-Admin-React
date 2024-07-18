@@ -17,7 +17,7 @@ import { useState } from "react";
 import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { dummyTabelJadwalData } from "../../../const/dummy";
 import ComponentSpinner from "../../independent/ComponentSpinner";
-import TabelContainer from "../../wrapper/TabelContainer";
+import TabelContainer from "../../wrapper/CustomTableContainer";
 import JenisKaryawanBadge from "../JenisKaryawanBadge";
 import TabelFooterConfig from "../TabelFooterConfig";
 import TabelJadwalItem from "./JadwalTabelItem";

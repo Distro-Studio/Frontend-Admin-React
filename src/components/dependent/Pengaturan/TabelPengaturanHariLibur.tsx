@@ -20,7 +20,7 @@ import { iconSize } from "../../../const/sizes";
 import formatDate from "../../../lib/formatDate";
 import NoData from "../../alert/NoData";
 import ComponentSpinner from "../../independent/ComponentSpinner";
-import TabelContainer from "../../wrapper/TabelContainer";
+import TabelContainer from "../../wrapper/CustomTableContainer";
 interface Props {
   filterConfig?: any;
 }

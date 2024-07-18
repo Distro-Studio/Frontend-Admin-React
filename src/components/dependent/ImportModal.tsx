@@ -12,11 +12,12 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import { RiUploadLine } from "@remixicon/react";
+import { RiDownloadLine } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
 import { iconSize } from "../../const/sizes";
+import chartColors from "../../constant/chartColors";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import backOnClose from "../../lib/backOnClose";
 import DisclosureHeader from "./DisclosureHeader";
@@ -28,7 +29,7 @@ interface Props extends ButtonProps {
 
 export default function ImportModal({ url, ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`export-modal-${1}`, isOpen, onOpen, onClose);
+  useBackOnClose(`import-modal-${1}`, isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
   const formik = useFormik({
@@ -64,10 +65,17 @@ export default function ImportModal({ url, ...props }: Props) {
   return (
     <>
       <Button
-        variant={"outline"}
-        colorScheme="ap"
-        className="clicky"
-        rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
+        // variant={"outline"}
+        // colorScheme="ap"
+        className="btn-outline clicky"
+        _focus={{ border: "1px solid var(--p500)" }}
+        rightIcon={
+          <Icon
+            as={RiDownloadLine}
+            fontSize={iconSize}
+            color={chartColors[2]}
+          />
+        }
         onClick={onOpen}
         {...props}
       >

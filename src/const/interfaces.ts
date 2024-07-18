@@ -1,3 +1,5 @@
+import { StackProps } from "@chakra-ui/react";
+
 export interface Attendance__Data__Interface {
   masuk: string;
   keluar: string;
@@ -315,4 +317,98 @@ export interface User {
   created_at: Date;
   updated_at: Date;
   roles: Role;
+}
+
+//! NEW
+export interface Interface__TableRowOption {
+  label: string | React.ReactNode;
+  handleOnClick: (param: any) => void;
+}
+
+export interface Interface__ColumnConfigOld {
+  th: string | React.ReactNode;
+  thProps?: any;
+  td: any;
+  tdProps?: any;
+  isNumeric: boolean;
+  isSortable: boolean;
+  sortKey: string;
+  isHidden: boolean;
+  rowOptions?: Interface__TableRowOption[];
+  // rowOnClick?: (param: any) => void;
+}
+
+export interface Interface__FormattedTableHeader {
+  th: string;
+  isSortable?: boolean;
+  isHidden?: boolean; // default false
+  props?: any;
+  cProps?: StackProps;
+}
+
+export interface Interface__FormattedTableData {
+  id: number;
+  rows: {
+    column: string;
+    value: string | number;
+    td: string | number | React.ReactNode;
+    isNumeric?: boolean; // default false
+    props?: any;
+    cProps?: StackProps;
+  };
+}
+
+export interface Interface__User {
+  id: number;
+  nama: string;
+  username: string;
+  email_verified_at: Date | string | null;
+  role_id: number | null;
+  foto_profil: string | null;
+  data_completion_step: number;
+  unit_kerja?: Interface__UnitKerja;
+  status_aktif: number;
+  created_at: Date | string;
+  updated_at: Date | string | null;
+}
+
+export interface Interface__UnitKerja {
+  id: number;
+  nama_unit: string;
+  jenis_karyawan: {
+    id: number;
+    label: string;
+  };
+  created_at: Date | string;
+  updated_at: Date | string | null;
+}
+
+export interface Interface__StatusKaryawan {
+  id: number;
+  label: string;
+}
+
+export type Interface__ValidStatusKerja = "Kerja" | "Cuti" | "Izin" | "Libur";
+
+export interface Interface__Jadwal {
+  id: number;
+  nama: string | null;
+  jam_from: Date | string;
+  jam_to: Date | string | null;
+  assignees?: Interface__Karyawan[];
+  created_at: Date | string;
+  updated_at: Date | string | null;
+}
+
+export interface Interface__Karyawan {
+  id: number;
+  user: Interface__User;
+  nik: string;
+  no_rm: string;
+  unit_kerja: Interface__UnitKerja;
+  status_karyawan: Interface__StatusKaryawan;
+  status_kerja?: Interface__ValidStatusKerja;
+  jadwals?: Interface__Jadwal[];
+  created_at: Date | string;
+  updated_at: Date | string | null;
 }

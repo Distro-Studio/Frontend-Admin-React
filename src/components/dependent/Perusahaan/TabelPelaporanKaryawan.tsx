@@ -24,7 +24,7 @@ import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { dummyKaryawanList } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
 import ComponentSpinner from "../../independent/ComponentSpinner";
-import TabelContainer from "../../wrapper/TabelContainer";
+import TabelContainer from "../../wrapper/CustomTableContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
 
 interface Props {

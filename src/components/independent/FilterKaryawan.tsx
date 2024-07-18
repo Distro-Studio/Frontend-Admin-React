@@ -15,20 +15,21 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import { RiEqualizer3Line } from "@remixicon/react";
+import { RiEqualizer3Fill } from "@remixicon/react";
 import { useRef, useState } from "react";
 import { useLightDarkColor } from "../../const/colors";
+import { iconSize } from "../../const/sizes";
+import chartColors from "../../constant/chartColors";
+import useFilterKaryawan from "../../global/useFilterKaryawan";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import backOnClose from "../../lib/backOnClose";
 import formatNumber from "../../lib/formatNumber";
-import { iconSize } from "../../const/sizes";
-import useFilterKaryawan from "../../global/useFilterKaryawan";
-import FilterStatusKaryawan from "../dependent/_FilterOptions/FilterStatusKaryawan";
-import FilterUnitKerja from "../dependent/_FilterOptions/FilterUnitKerja";
-import DisclosureHeader from "../dependent/DisclosureHeader";
 import FilterMasaKerja from "../dependent/_FilterOptions/FilterMasaKerja";
 import FilterStatusAktif from "../dependent/_FilterOptions/FilterStatusAktif";
+import FilterStatusKaryawan from "../dependent/_FilterOptions/FilterStatusKaryawan";
 import FilterTglMasuk from "../dependent/_FilterOptions/FilterTglMasuk";
+import FilterUnitKerja from "../dependent/_FilterOptions/FilterUnitKerja";
+import DisclosureHeader from "../dependent/DisclosureHeader";
 
 interface Props extends ButtonProps {}
 
@@ -78,13 +79,23 @@ export default function FilterKaryawan({ ...props }: Props) {
   return (
     <>
       <Button
-        variant={"outline"}
-        colorScheme="ap"
-        className="clicky"
-        rightIcon={<Icon as={RiEqualizer3Line} fontSize={iconSize} />}
+        // variant={"outline"}
+        // colorScheme="ap"
+        className="btn-outline clicky"
+        _focus={{ border: "1px solid var(--p500)" }}
+        rightIcon={
+          <Icon
+            as={RiEqualizer3Fill}
+            fontSize={iconSize}
+            color={chartColors[0]}
+          />
+        }
         flexShrink={0}
         pr={3}
-        onClick={onOpen}
+        onClick={() => {
+          onOpen();
+          setLocalFilterConfig(filterKaryawan);
+        }}
         {...props}
       >
         <HStack>
@@ -112,10 +123,7 @@ export default function FilterKaryawan({ ...props }: Props) {
 
       <Modal
         isOpen={isOpen}
-        onClose={() => {
-          backOnClose();
-          setLocalFilterConfig(filterKaryawan);
-        }}
+        onClose={backOnClose}
         initialFocusRef={initialRef}
         isCentered
         // scrollBehavior="inside"

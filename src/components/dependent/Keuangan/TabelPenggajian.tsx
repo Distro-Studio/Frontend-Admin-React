@@ -25,7 +25,7 @@ import { dummyKaryawanList } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
 import formatNumber from "../../../lib/formatNumber";
 import ComponentSpinner from "../../independent/ComponentSpinner";
-import TabelContainer from "../../wrapper/TabelContainer";
+import TabelContainer from "../../wrapper/CustomTableContainer";
 import BooleanBadge from "../BooleanBadge";
 import TabelFooterConfig from "../TabelFooterConfig";
 

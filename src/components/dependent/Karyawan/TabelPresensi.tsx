@@ -25,7 +25,7 @@ import { dummyPresensi } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
 import formatTime from "../../../lib/formatTime";
 import ComponentSpinner from "../../independent/ComponentSpinner";
-import TabelContainer from "../../wrapper/TabelContainer";
+import TabelContainer from "../../wrapper/CustomTableContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
 import useScreenWidth from "../../../lib/useScreenWidth";
 

@@ -17,7 +17,7 @@ import * as yup from "yup";
 import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
 import ComponentSpinner from "../../independent/ComponentSpinner";
-import TabelContainer from "../../wrapper/TabelContainer";
+import TabelContainer from "../../wrapper/CustomTableContainer";
 
 interface Props {
   data: any;

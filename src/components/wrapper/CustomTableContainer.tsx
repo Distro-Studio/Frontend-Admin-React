@@ -11,7 +11,7 @@ interface Props extends BoxProps {
   minH?: string;
 }
 
-export default function TabelContainer({
+export default function CustomTableContainer({
   children,
   noFooterConfig,
   noTopNavs,

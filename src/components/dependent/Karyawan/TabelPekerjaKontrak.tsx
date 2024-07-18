@@ -17,7 +17,7 @@ import { dummyPekerjaKontrak } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
 import formatDate from "../../../lib/formatDate";
 import ComponentSpinner from "../../independent/ComponentSpinner";
-import TabelContainer from "../../wrapper/TabelContainer";
+import TabelContainer from "../../wrapper/CustomTableContainer";
 import BooleanBadge from "../BooleanBadge";
 import TabelFooterConfig from "../TabelFooterConfig";
 

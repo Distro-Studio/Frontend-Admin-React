@@ -17,7 +17,7 @@ import { useBodyColor, useContentBgColor } from "../../../const/colors";
 import { dummyAkunKaryawan } from "../../../const/dummy";
 import { Tabel__Column__Interface } from "../../../const/interfaces";
 import ComponentSpinner from "../../independent/ComponentSpinner";
-import TabelContainer from "../../wrapper/TabelContainer";
+import TabelContainer from "../../wrapper/CustomTableContainer";
 import BooleanBadge from "../BooleanBadge";
 import TabelFooterConfig from "../TabelFooterConfig";
 
@@ -76,6 +76,7 @@ export default function TabelAkunKaryawan({ filterConfig }: Props) {
     direction: "asc" | "desc";
   } | null>({ key: columns[0].key, direction: "asc" });
   const sortedData = data && [...data];
+  
   if (sortConfig !== null && sortedData) {
     sortedData.sort((a, b) => {
       //@ts-ignore

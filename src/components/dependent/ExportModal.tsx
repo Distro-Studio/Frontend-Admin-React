@@ -17,6 +17,7 @@ import { iconSize } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import DisclosureHeader from "./DisclosureHeader";
 import backOnClose from "../../lib/backOnClose";
+import chartColors from "../../constant/chartColors";
 
 interface Props extends ButtonProps {
   url: string;
@@ -30,10 +31,13 @@ export default function ExportModal({ url, ...props }: Props) {
   return (
     <>
       <Button
-        variant={"outline"}
-        colorScheme="ap"
-        className="clicky"
-        rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
+        // variant={"outline"}
+        // colorScheme="ap"
+        className="btn-outline clicky"
+        _focus={{ border: "1px solid var(--p500)" }}
+        rightIcon={
+          <Icon as={RiUploadLine} fontSize={iconSize} color={chartColors[1]} />
+        }
         onClick={onOpen}
         {...props}
       >

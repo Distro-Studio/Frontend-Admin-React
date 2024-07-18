@@ -29,7 +29,7 @@ import {
 import formatDate from "../../../lib/formatDate";
 import formatNumber from "../../../lib/formatNumber";
 import ComponentSpinner from "../../independent/ComponentSpinner";
-import TabelContainer from "../../wrapper/TabelContainer";
+import TabelContainer from "../../wrapper/CustomTableContainer";
 import TabelFooterConfig from "../TabelFooterConfig";
 import { Link } from "react-router-dom";
 
