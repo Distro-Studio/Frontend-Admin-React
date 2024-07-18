@@ -1,4 +1,5 @@
-import { Button, Wrap } from "@chakra-ui/react";
+import { Button, Icon, Wrap } from "@chakra-ui/react";
+import { RiAddBoxFill } from "@remixicon/react";
 import { Link } from "react-router-dom";
 import ExportModal from "../../components/dependent/ExportModal";
 import ImportModal from "../../components/dependent/ImportModal";
@@ -8,7 +9,7 @@ import FilterKaryawan from "../../components/independent/FilterKaryawan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
-import { responsiveSpacing } from "../../const/sizes";
+import { iconSize, responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
 
 export default function Karyawan() {
@@ -54,6 +55,7 @@ export default function Karyawan() {
               flex={"1 0 170px"}
               colorScheme="ap"
               className="btn-ap clicky"
+              leftIcon={<Icon as={RiAddBoxFill} fontSize={iconSize} />}
               as={Link}
               to={"/karyawan/tambah-karyawan"}
             >

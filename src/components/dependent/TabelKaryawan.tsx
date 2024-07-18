@@ -1,8 +1,10 @@
-import { Box, HStack, Text, useDisclosure } from "@chakra-ui/react";
+import { Box, HStack, Icon, Text, useDisclosure } from "@chakra-ui/react";
+import { RiShutDownLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import { dummyKaryawans } from "../../const/dummy";
 import { Interface__Karyawan } from "../../const/interfaces";
-import { responsiveSpacing } from "../../const/sizes";
+import { iconSize, responsiveSpacing } from "../../const/sizes";
+import chartColors from "../../constant/chartColors";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
 import useDataState from "../../hooks/useDataState";
 import NoData from "../independent/NoData";
@@ -28,6 +30,37 @@ export default function TabelKaryawan({ filterConfig }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   // Filter Config
   const { filterKaryawan } = useFilterKaryawan();
+  // Batch Actions Config
+  const batchActions = [
+    {
+      label: "Non-aktifkan",
+      icon: (
+        <Icon
+          as={RiShutDownLine}
+          fontSize={iconSize}
+          opacity={0.4}
+          // color={chartColors[4]}
+        />
+      ),
+      callback: (selectedRows: number[]) => {
+        console.log("Non-aktifkan", selectedRows);
+      },
+    },
+    {
+      label: "Export",
+      icon: (
+        <Icon
+          as={RiUploadLine}
+          fontSize={iconSize}
+          opacity={0.4}
+          // color={chartColors[1]}
+        />
+      ),
+      callback: (selectedRows: number[]) => {
+        console.log("Exporting", selectedRows);
+      },
+    },
+  ];
 
   const { error, loading, data, retry } = useDataState<Interface__Karyawan[]>({
     initialData: dummyKaryawans,
@@ -146,20 +179,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       formattedHeader={formattedHeader}
                       // @ts-ignore
                       formattedData={formattedData}
-                      batchActions={[
-                        {
-                          label: "Nonaktifkan",
-                          callback: (selectedRows: number[]) => {
-                            console.log("Nonaktifkan", selectedRows);
-                          },
-                        },
-                        {
-                          label: "Export",
-                          callback: (selectedRows: number[]) => {
-                            console.log("Exporting", selectedRows);
-                          },
-                        },
-                      ]}
+                      batchActions={batchActions}
                       onRowClick={() => {
                         onOpen();
                       }}

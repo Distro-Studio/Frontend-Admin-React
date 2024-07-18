@@ -37,7 +37,12 @@ export default function ExportModal({ url, label, ...props }: Props) {
         className="btn-outline clicky"
         _focus={{ border: "1px solid var(--p500)" }}
         leftIcon={
-          <Icon as={RiUploadLine} fontSize={iconSize} color={chartColors[1]} />
+          <Icon
+            as={RiUploadLine}
+            fontSize={iconSize}
+            // color={chartColors[1]}
+            opacity={0.4}
+          />
         }
         pl={3}
         onClick={onOpen}

@@ -17,7 +17,6 @@ import {
   Th,
   Thead,
   Tr,
-  useDisclosure,
 } from "@chakra-ui/react";
 import { RiArrowDownLine, RiArrowUpLine, RiListCheck } from "@remixicon/react";
 import { useState } from "react";
@@ -27,7 +26,6 @@ import {
   Interface__FormattedTableHeader,
 } from "../../const/interfaces";
 import { iconSize } from "../../const/sizes";
-import useBackOnClose from "../../hooks/useBackOnClose";
 
 interface BatchActionsProps {
   selectedRows: number[];
@@ -41,9 +39,6 @@ const BatchActions = ({
   selectAllRows,
   handleSelectAllRows,
 }: BatchActionsProps) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose("batch=actions-modal", isOpen, onOpen, onClose);
-
   return (
     <Menu closeOnSelect={false}>
       <MenuButton
@@ -54,7 +49,6 @@ const BatchActions = ({
         className="btn"
         aria-label="batch actions options"
         icon={<Icon as={RiListCheck} fontSize={iconSize} />}
-        onClick={onOpen}
       />
       <MenuList>
         <MenuGroup title={`${selectedRows.length} Terpilih`}>
@@ -81,8 +75,11 @@ const BatchActions = ({
               onClick={() => {
                 action.callback(selectedRows);
               }}
+              isDisabled={selectedRows.length === 0}
             >
               <Text>{action.label}</Text>
+
+              {action.icon}
             </MenuItem>
           ))}
         </MenuGroup>

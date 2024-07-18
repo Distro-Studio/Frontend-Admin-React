@@ -20,7 +20,7 @@ import {
   VStack,
   Wrap,
 } from "@chakra-ui/react";
-import { RiEditBoxFill, RiHeartLine } from "@remixicon/react";
+import { RiEditBoxFill, RiHeartLine, RiShutDownLine } from "@remixicon/react";
 import { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { Link } from "react-router-dom";
@@ -141,6 +141,20 @@ export default function DetailKaryawanModal({
                           inputValue={search}
                         />
 
+                        <Button
+                          flex={"1 1 120px"}
+                          className="btn-outline clicky"
+                          leftIcon={
+                            <Icon
+                              as={RiShutDownLine}
+                              fontSize={iconSize}
+                              color={chartColors[4]}
+                            />
+                          }
+                        >
+                          {data.user.status_aktif ? "Non-aktifkan" : "Aktifkan"}
+                        </Button>
+
                         <DetailKeluargaKaryawanModalDisclosure
                           flex={"1 1 120px"}
                           karyawan_id={1}
@@ -161,7 +175,7 @@ export default function DetailKaryawanModal({
                         </DetailKeluargaKaryawanModalDisclosure>
 
                         <Button
-                          flex={"1 1 80px"}
+                          flex={"1 1 120px"}
                           leftIcon={
                             <Icon as={RiEditBoxFill} fontSize={iconSize} />
                           }
