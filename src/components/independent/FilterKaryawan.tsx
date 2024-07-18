@@ -91,7 +91,7 @@ export default function FilterKaryawan({ ...props }: Props) {
           />
         }
         flexShrink={0}
-        pl={3}
+        pl={"18px !important"}
         onClick={() => {
           onOpen();
           setLocalFilterConfig(filterKaryawan);

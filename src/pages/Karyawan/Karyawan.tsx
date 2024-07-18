@@ -25,42 +25,43 @@ export default function Karyawan() {
           borderRadius={12}
           overflowY={"auto"}
         >
-          <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
-            <SearchComponent
-              name="search"
-              onChangeSetter={(input) => {
-                setFilterKaryawan((ps: any) => ({
-                  ...ps,
-                  search: input,
-                }));
-              }}
-              inputValue={filterKaryawan.search}
-            />
+          <Wrap
+            justify={"space-between"}
+            w={"100%"}
+            mb={responsiveSpacing}
+            className="tabelConfig"
+          >
+            <Wrap>
+              <SearchComponent
+                name="search"
+                onChangeSetter={(input) => {
+                  setFilterKaryawan((ps: any) => ({
+                    ...ps,
+                    search: input,
+                  }));
+                }}
+                inputValue={filterKaryawan.search}
+              />
 
-            <FilterKaryawan flex={"1 1 110px"} />
+              <FilterKaryawan px={6} />
+            </Wrap>
 
-            <ExportModal
-              url={""}
-              label={"Export Karyawan"}
-              flex={"1 1 110px"}
-            />
+            <Wrap>
+              <ExportModal url={""} label={"Export Karyawan"} px={6} />
 
-            <ImportModal
-              url={""}
-              label={"Import Karyawan"}
-              flex={"1 1 110px"}
-            />
+              <ImportModal url={""} label={"Import Karyawan"} px={6} />
 
-            <Button
-              flex={"1 0 170px"}
-              colorScheme="ap"
-              className="btn-ap clicky"
-              leftIcon={<Icon as={RiAddBoxFill} fontSize={iconSize} />}
-              as={Link}
-              to={"/karyawan/tambah-karyawan"}
-            >
-              Tambah Karyawan
-            </Button>
+              <Button
+                flex={"1 0 170px"}
+                colorScheme="ap"
+                className="btn-ap clicky"
+                leftIcon={<Icon as={RiAddBoxFill} fontSize={iconSize} />}
+                as={Link}
+                to={"/karyawan/tambah-karyawan"}
+              >
+                Tambah Karyawan
+              </Button>
+            </Wrap>
           </Wrap>
 
           <TabelKaryawan />

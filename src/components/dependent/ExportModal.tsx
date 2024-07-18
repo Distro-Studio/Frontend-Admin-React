@@ -43,7 +43,7 @@ export default function ExportModal({ url, label, ...props }: Props) {
             opacity={0.4}
           />
         }
-        pl={3}
+        pl={"18px !important"}
         onClick={onOpen}
         {...props}
       >

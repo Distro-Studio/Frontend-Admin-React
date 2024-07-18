@@ -8,8 +8,8 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import FilterTabelRekamJejak from "../../components/dependent/FilterTabelRekamJejak";
 import TabelRekamJejak from "../../components/dependent/TabelRekamJejak";
+import FilterKaryawan from "../../components/independent/FilterKaryawan";
 import ImportRekamJejakModal from "../../components/independent/ImportRekamJejakModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -48,11 +48,7 @@ export default function RekamJejak() {
               />
             </InputGroup>
 
-            <FilterTabelRekamJejak
-              defaultFilterConfig={defaultFilterConfig}
-              filterConfig={filterConfig}
-              setFilterConfig={setFilterConfig}
-            />
+            <FilterKaryawan flex={"1 1 110px"} />
 
             <Button
               flex={"1 1 110px"}
