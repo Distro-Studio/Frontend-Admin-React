@@ -14,7 +14,7 @@ import { RiArrowRightSLine } from "@remixicon/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import JenisKaryawanBadge from "../../components/dependent/JenisKaryawanBadge";
-import ImageView from "../../components/dependent/Perusahaan/ImageView";
+import ImageView from "../../components/dependent/ImageView";
 import ComponentSpinner from "../../components/independent/ComponentSpinner";
 import FlexLine from "../../components/independent/FlexLine";
 import CContainer from "../../components/wrapper/CContainer";

@@ -8,8 +8,8 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import PeriodeTahunRiwayatPenggajian from "../../components/dependent/Keuangan/PeriodeTahunRiwayatPenggajian";
-import TabelRiwayatPenggajian from "../../components/dependent/Keuangan/TabelRiwayatPenggajian";
+import PeriodeTahunRiwayatPenggajian from "../../components/dependent/PeriodeTahunRiwayatPenggajian";
+import TabelRiwayatPenggajian from "../../components/dependent/TabelRiwayatPenggajian";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";

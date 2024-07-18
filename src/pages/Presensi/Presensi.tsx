@@ -8,10 +8,10 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import FilterTabelPresensi from "../../components/dependent/Karyawan/FilterTabelPresensi";
-import TabelPresensi from "../../components/dependent/Karyawan/TabelPresensi";
-import PresensiTotal from "../../components/independent/Karyawan/PresensiTotal";
-import ImportPresensiModal from "../../components/independent/Presensi/ImportPresensiModal";
+import FilterTabelPresensi from "../../components/dependent/FilterTabelPresensi";
+import TabelPresensi from "../../components/dependent/TabelPresensi";
+import PresensiTotal from "../../components/independent/PresensiTotal";
+import ImportPresensiModal from "../../components/independent/ImportPresensiModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";

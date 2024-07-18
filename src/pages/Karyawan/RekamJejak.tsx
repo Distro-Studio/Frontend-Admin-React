@@ -8,9 +8,9 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import FilterTabelRekamJejak from "../../components/dependent/Karyawan/FilterTabelRekamJejak";
-import TabelRekamJejak from "../../components/dependent/Karyawan/TabelRekamJejak";
-import ImportRekamJejakModal from "../../components/independent/Karyawan/ImportRekamJejakModal";
+import FilterTabelRekamJejak from "../../components/dependent/FilterTabelRekamJejak";
+import TabelRekamJejak from "../../components/dependent/TabelRekamJejak";
+import ImportRekamJejakModal from "../../components/independent/ImportRekamJejakModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";

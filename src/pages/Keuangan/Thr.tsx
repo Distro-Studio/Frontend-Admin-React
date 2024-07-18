@@ -8,13 +8,13 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import PeriodeTahunRiwayatPenggajian from "../../components/dependent/Keuangan/PeriodeTahunRiwayatPenggajian";
-import TabelThr from "../../components/dependent/Keuangan/TabelThr";
+import PeriodeTahunRiwayatPenggajian from "../../components/dependent/PeriodeTahunRiwayatPenggajian";
+import TabelThr from "../../components/dependent/TabelThr";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
-import RunThr from "../../components/independent/Keuangan/RunThr";
+import RunThr from "../../components/independent/RunThr";
 
 export default function Thr() {
   // Filter Config

@@ -8,9 +8,9 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import FilterTabelPenggajian from "../../components/dependent/Keuangan/FilterTabelPenggajian";
-import TabelRiwayatPenggajian from "../../components/dependent/Keuangan/TabelRiwayatPenggajian";
-import ImportKaryawanModal from "../../components/independent/Karyawan/ImportKaryawanModal";
+import FilterTabelPenggajian from "../../components/dependent/FilterTabelPenggajian";
+import TabelRiwayatPenggajian from "../../components/dependent/TabelRiwayatPenggajian";
+import ImportKaryawanModal from "../../components/independent/ImportKaryawanModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ExportModal from "../../components/dependent/ExportModal";
 import ImportModal from "../../components/dependent/ImportModal";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
-import TabelKaryawan from "../../components/dependent/Karyawan/TabelKaryawan";
+import TabelKaryawan from "../../components/dependent/TabelKaryawan";
 import FilterKaryawan from "../../components/independent/FilterKaryawan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";

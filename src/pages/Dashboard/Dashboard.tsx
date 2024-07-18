@@ -1,10 +1,10 @@
 import { Wrap } from "@chakra-ui/react";
-import DashboardTotal from "../../components/independent/Dashboard/DashboardTotal";
-import DashboardJabatan from "../../components/independent/Dashboard/DashboardJabatan";
-import DashboardStatusKaryawan from "../../components/independent/Dashboard/DashboardStatusKaryawan";
-import DashboardSiapaYangLibur from "../../components/independent/Dashboard/DashboardSiapaYangLibur";
-import DashboardPengumuman from "../../components/independent/Dashboard/DashboardPengumuman";
-import DashboardJenisKelamin from "../../components/independent/Dashboard/DashboardJenisKelamin";
+import DashboardTotal from "../../components/independent/DashboardTotal";
+import DashboardJabatan from "../../components/independent/DashboardJabatan";
+import DashboardStatusKaryawan from "../../components/independent/DashboardStatusKaryawan";
+import DashboardSiapaYangLibur from "../../components/independent/DashboardSiapaYangLibur";
+import DashboardPengumuman from "../../components/independent/DashboardPengumuman";
+import DashboardJenisKelamin from "../../components/independent/DashboardJenisKelamin";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { responsiveSpacing } from "../../const/sizes";
 

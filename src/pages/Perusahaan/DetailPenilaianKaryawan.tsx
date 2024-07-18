@@ -1,6 +1,6 @@
 import { Avatar, Text, VStack, Wrap } from "@chakra-ui/react";
 import { useState } from "react";
-import TabelDetailPenilaianKaryawan from "../../components/dependent/Perusahaan/TabelDetailPenilaianKaryawan";
+import TabelDetailPenilaianKaryawan from "../../components/dependent/TabelDetailPenilaianKaryawan";
 import ComponentSpinner from "../../components/independent/ComponentSpinner";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";

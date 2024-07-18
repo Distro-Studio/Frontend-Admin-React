@@ -13,8 +13,8 @@ import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 import SelectStatusPekerjaKontrak from "../../components/dependent/_Select/SelectStatusPekerjaKontrak";
-import FilterTabelPekerjaKontrak from "../../components/dependent/Karyawan/FilterTabelPekerjaKontrak";
-import TabelPekerjaKontrak from "../../components/dependent/Karyawan/TabelPekerjaKontrak";
+import FilterTabelPekerjaKontrak from "../../components/dependent/FilterTabelPekerjaKontrak";
+import TabelPekerjaKontrak from "../../components/dependent/TabelPekerjaKontrak";
 
 export default function PekerjaKontrak() {
   // Filter Config

@@ -8,13 +8,13 @@ import {
 } from "@chakra-ui/react";
 import { RiSearchLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import FilterTabelKaryawan from "../../components/dependent/Karyawan/FilterTabelKaryawan";
-import TabelTransferKarywan from "../../components/dependent/Karyawan/TabelTransferKaryawan";
+import FilterTabelKaryawan from "../../components/dependent/FilterTabelKaryawan";
+import TabelTransferKarywan from "../../components/dependent/TabelTransferKaryawan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
-import AjukanTransferKaryawanModal from "../../components/independent/Karyawan/AjukanTransferKaryawanModal";
+import AjukanTransferKaryawanModal from "../../components/independent/AjukanTransferKaryawanModal";
 import SelectStatusTransferKaryawan from "../../components/dependent/_Select/SelectStatusTransferKaryawan";
 
 export default function TransferKaryawan() {
