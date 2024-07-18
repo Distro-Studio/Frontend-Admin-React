@@ -123,11 +123,11 @@ export default function DetailKaryawanModal({
                           position={"sticky"}
                           top={"0"}
                           h={"fit-content !important"}
-                          maxH={"calc(100vh - 70px - 32px)"}
+                          maxH={"calc(100vh - 70px - 32px - 24px)"}
                           overflowY={"auto"}
                           className="scrollY"
                         >
-                          <VStack flex={1} pb={responsiveSpacing}>
+                          <VStack flex={1}>
                             <VStack>
                               <Avatar
                                 w={"250px"}
@@ -397,12 +397,13 @@ export default function DetailKaryawanModal({
                           gap={responsiveSpacing}
                           overflowY={"auto"}
                           minH={"300px"}
-                          maxH={"calc(100vh - 70px - 32px)"}
+                          maxH={"calc(100vh - 70px - 32px - 24px)"}
                           flex={"1 1 500px"}
                           className="scrollY"
                         >
                           <CContainer
-                            pb={responsiveSpacing}
+                            flex={1}
+                            overflowY={"auto"}
                             bg={bodyColor}
                             gap={responsiveSpacing}
                           >
@@ -457,6 +458,7 @@ export default function DetailKaryawanModal({
                             <VStack
                               align={"stretch"}
                               gap={responsiveSpacing}
+                              flex={1}
                               overflowY={"auto"}
                               className="scrollY"
                               px={responsiveSpacing}
