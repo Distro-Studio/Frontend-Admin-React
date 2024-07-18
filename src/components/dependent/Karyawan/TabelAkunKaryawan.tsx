@@ -76,7 +76,7 @@ export default function TabelAkunKaryawan({ filterConfig }: Props) {
     direction: "asc" | "desc";
   } | null>({ key: columns[0].key, direction: "asc" });
   const sortedData = data && [...data];
-  
+
   if (sortConfig !== null && sortedData) {
     sortedData.sort((a, b) => {
       //@ts-ignore

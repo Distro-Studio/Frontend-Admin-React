@@ -32,6 +32,7 @@ export default function CustomTable({
   onRowClick,
   onBatchAction,
 }: Props) {
+  const [selectAllRows, setSelectAllRows] = useState<boolean>(false);
   const [selectedRows, setSelectedRows] = useState<(string | number)[]>([]);
   const [sortConfig, setSortConfig] = useState<{
     sortKey: number;
@@ -51,13 +52,27 @@ export default function CustomTable({
     onBatchAction(selectedRows);
   }
 
+  const handleSelectAllRows = (isChecked: boolean) => {
+    setSelectAllRows(!selectAllRows);
+    if (!isChecked) {
+      const allIds = formattedData.map((row) => row.id);
+      setSelectedRows(allIds);
+    } else {
+      setSelectedRows([]);
+    }
+  };
+
   const toggleRowSelection = (rowId: string | number) => {
     setSelectedRows((prevSelected) => {
       const isSelected = prevSelected.includes(rowId);
 
       if (isSelected) {
+        setSelectAllRows(false);
         return prevSelected.filter((id) => id !== rowId);
       } else {
+        if (formattedData.length === selectedRows.length + 1) {
+          setSelectAllRows(true);
+        }
         return [...prevSelected, rowId];
       }
     });
@@ -72,7 +87,6 @@ export default function CustomTable({
           : "asc",
     }));
   };
-
   const sortedData = () => {
     if (sortConfig.sortKey !== null) {
       return [...formattedData].sort((a, b) => {
@@ -99,7 +113,6 @@ export default function CustomTable({
     }
     return formattedData;
   };
-
   const renderSortIcon = (columnIndex: number) => {
     if (sortConfig.sortKey === columnIndex) {
       return (
@@ -134,9 +147,8 @@ export default function CustomTable({
                 <Checkbox
                   colorScheme="ap"
                   size={"lg"}
-                  onChange={() => {
-                    // toggleRowSelection(row.id);
-                  }}
+                  onChange={() => handleSelectAllRows(selectAllRows)}
+                  isChecked={selectAllRows}
                 />
               </Center>
             </Td>
@@ -206,6 +218,7 @@ export default function CustomTable({
                     onChange={() => {
                       toggleRowSelection(row.id);
                     }}
+                    isChecked={selectedRows.includes(row.id)}
                   />
                 </Center>
               </Td>

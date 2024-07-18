@@ -6,7 +6,6 @@ import {
   Input,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -18,6 +17,7 @@ import { useRef, useState } from "react";
 import formatNumber from "../../lib/formatNumber";
 import parseNumber from "../../lib/parseNumber";
 import useBackOnClose from "../../lib/useBackOnCloseOld";
+import DisclosureHeader from "./DisclosureHeader";
 
 type Props = {
   page: any;
@@ -51,7 +51,8 @@ export default function PaginationJump({ page, setPage, pagination }: Props) {
   return (
     <>
       <Center
-        className="btn-apa"
+        className="btn-outline clicky"
+        color={"p.500"}
         w={"32px"}
         h={"32px"}
         borderRadius={8}
@@ -71,9 +72,9 @@ export default function PaginationJump({ page, setPage, pagination }: Props) {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-
-          <ModalHeader>Lompat Halaman Ke - </ModalHeader>
+          <ModalHeader>
+            <DisclosureHeader title="Lompat Halaman Ke - " />
+          </ModalHeader>
 
           <ModalBody>
             <Text mb={4}>{`Halaman terakhir : ${pagination.last_page}`}</Text>

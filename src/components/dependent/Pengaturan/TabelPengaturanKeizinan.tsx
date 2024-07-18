@@ -50,6 +50,7 @@ export default function TabelPengaturanKeizinan({
 
   const [prevToggleSemuaIzin, setPrevToggleSemuaIzin] =
     useState<boolean>(false);
+
   useEffect(() => {
     setPrevToggleSemuaIzin(toggleSemuaIzin);
   }, [toggleSemuaIzin]);

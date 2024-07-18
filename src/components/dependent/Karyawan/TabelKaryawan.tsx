@@ -9,6 +9,8 @@ import AvatarAndNameTableData from "../AvatarAndNameTableData";
 import CustomTable from "../CustomTable";
 import Retry from "../Retry";
 import StatusKaryawanBadge from "./StatusKaryawanBadge";
+import TabelFooterConfig from "../TabelFooterConfig";
+import { useState } from "react";
 
 interface Props {
   filterConfig?: any;
@@ -20,7 +22,6 @@ export default function TabelKaryawan({ filterConfig }: Props) {
     url: "",
     dependencies: [],
   });
-
   const formattedHeader = [
     {
       th: "Nama",
@@ -54,7 +55,6 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       },
     },
   ];
-
   const formattedData = data?.map((karyawan: Interface__Karyawan) => ({
     id: karyawan.id,
     rows: [
@@ -75,6 +75,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
         column: "nik",
         value: karyawan.nik,
         td: karyawan.nik,
+        isNumeric: true,
       },
       {
         column: "no_rm",
@@ -103,6 +104,11 @@ export default function TabelKaryawan({ filterConfig }: Props) {
     ],
   }));
 
+  // Limit Config
+  const [limitConfig, setLimitConfig] = useState<number>(10);
+  // Pagination Config
+  const [pageConfig, setPageConfig] = useState<number>(1);
+
   return (
     <>
       {error && (
@@ -130,11 +136,23 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       formattedHeader={formattedHeader}
                       // @ts-ignore
                       formattedData={formattedData}
-                      onBatchAction={(selectedIds) => {
-                        console.log("selected_ids", selectedIds);
+                      onBatchAction={(selectedRows) => {
+                        console.log("selected_rows", selectedRows);
                       }}
                     />
                   </CustomTableContainer>
+
+                  <TabelFooterConfig
+                    limitConfig={limitConfig}
+                    setLimitConfig={setLimitConfig}
+                    pageConfig={pageConfig}
+                    setPageConfig={setPageConfig}
+                    paginationData={{
+                      prev_page_url: "",
+                      next_page_url: "",
+                      last_page: 1,
+                    }}
+                  />
                 </>
               )}
             </>

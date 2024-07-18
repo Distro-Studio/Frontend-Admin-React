@@ -50,7 +50,7 @@ export default function TabelFooterConfig({
           <MenuButton
             ref={limitButtonRef}
             as={Button}
-            className="btn-apa"
+            className="btn-outline"
             rightIcon={
               <Icon as={RiArrowDownSLine} fontSize={iconSize} opacity={0.6} />
             }
