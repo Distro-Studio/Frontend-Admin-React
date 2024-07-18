@@ -1,4 +1,4 @@
-import { Box, useDisclosure } from "@chakra-ui/react";
+import { Box, HStack, useDisclosure } from "@chakra-ui/react";
 import { dummyKaryawans } from "../../const/dummy";
 import { Interface__Karyawan } from "../../const/interfaces";
 import useDataState from "../../hooks/useDataState";
@@ -12,16 +12,28 @@ import StatusKaryawanBadge from "./StatusKaryawanBadge";
 import TabelFooterConfig from "./TabelFooterConfig";
 import { useState } from "react";
 import DetailKaryawanModal from "./DetailKaryawanModal";
+import useFilterKaryawan from "../../global/useFilterKaryawan";
+import { responsiveSpacing } from "../../const/sizes";
 
 interface Props {
   filterConfig?: any;
 }
 
 export default function TabelKaryawan({ filterConfig }: Props) {
+  // Limit Config
+  const [limitConfig, setLimitConfig] = useState<number>(10);
+  // Pagination Config
+  const [pageConfig, setPageConfig] = useState<number>(1);
+  // Karyawan Detail Disclosure
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  // Filter Config
+  const { filterKaryawan } = useFilterKaryawan();
+
   const { error, loading, data, retry } = useDataState<Interface__Karyawan[]>({
     initialData: dummyKaryawans,
     url: "",
-    dependencies: [],
+    limit: limitConfig,
+    dependencies: [limitConfig, pageConfig, filterKaryawan],
   });
   const formattedHeader = [
     {
@@ -105,13 +117,6 @@ export default function TabelKaryawan({ filterConfig }: Props) {
     ],
   }));
 
-  // Limit Config
-  const [limitConfig, setLimitConfig] = useState<number>(10);
-  // Pagination Config
-  const [pageConfig, setPageConfig] = useState<number>(1);
-  // Karyawan Detail Disclosure
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
   return (
     <>
       {error && (
@@ -123,9 +128,11 @@ export default function TabelKaryawan({ filterConfig }: Props) {
         <>
           {loading && (
             <>
-              {Array.from({ length: 10 }).map((_, i) => (
-                <Skeleton key={i} flex={1} mx={"auto"} />
-              ))}
+              <Skeleton flex={1} mx={"auto"} />
+              <HStack justify={"space-between"} mt={responsiveSpacing}>
+                <Skeleton maxW={"120px"} />
+                <Skeleton maxW={"112px"} />
+              </HStack>
             </>
           )}
           {!loading && (
@@ -134,7 +141,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
 
               {formattedData && (
                 <>
-                  <CustomTableContainer>
+                  <CustomTableContainer flex={1}>
                     <CustomTable
                       formattedHeader={formattedHeader}
                       // @ts-ignore
@@ -161,7 +168,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                   />
 
                   <DetailKaryawanModal
-                    id={1}
+                    karyawan_id={1}
                     isOpen={isOpen}
                     onOpen={onOpen}
                     onClose={onClose}

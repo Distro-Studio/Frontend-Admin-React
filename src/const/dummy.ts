@@ -5871,7 +5871,7 @@ const dummyDetailKaryawan = {
     role_id: null,
     foto_profil: null,
     data_completion_step: 1,
-    status_aktif: 0,
+    status_aktif: 1,
     created_at: "2024-06-06T23:48:35.000000Z",
     updated_at: "2024-06-06T23:48:35.000000Z",
     roles: [
@@ -6226,13 +6226,13 @@ const dummyKaryawans = [
     id: 1,
     user: {
       id: 2,
-      nama: "User 0",
+      nama: "Very Long Name 0",
       username: "username0",
       email_verified_at: null,
       role_id: null,
       foto_profil: null,
       data_completion_step: 1,
-      status_aktif: 0,
+      status_aktif: 1,
       created_at: "2024-06-07T06:57:42.000000Z",
       updated_at: "2024-06-07T06:57:42.000000Z",
     },
@@ -6294,7 +6294,7 @@ const dummyKaryawans = [
     id: 2,
     user: {
       id: 3,
-      nama: "User 1",
+      nama: "Very Long Name 1",
       username: "username1",
       email_verified_at: null,
       role_id: null,
@@ -6370,7 +6370,7 @@ const dummyKaryawans = [
     id: 3,
     user: {
       id: 4,
-      nama: "User 2",
+      nama: "Very Long Name 2",
       username: "username2",
       email_verified_at: null,
       role_id: null,
@@ -6446,7 +6446,7 @@ const dummyKaryawans = [
     id: 4,
     user: {
       id: 5,
-      nama: "User 3",
+      nama: "Very Long Name 3",
       username: "username3",
       email_verified_at: null,
       role_id: null,
@@ -6514,7 +6514,7 @@ const dummyKaryawans = [
     id: 5,
     user: {
       id: 6,
-      nama: "User 4",
+      nama: "Very Long Name 4",
       username: "username4",
       email_verified_at: null,
       role_id: null,
@@ -6590,7 +6590,7 @@ const dummyKaryawans = [
     id: 6,
     user: {
       id: 7,
-      nama: "User 5",
+      nama: "Very Long Name 5",
       username: "username5",
       email_verified_at: null,
       role_id: null,
@@ -6666,7 +6666,7 @@ const dummyKaryawans = [
     id: 7,
     user: {
       id: 8,
-      nama: "User 6",
+      nama: "Very Long Name 6",
       username: "username6",
       email_verified_at: null,
       role_id: null,
@@ -6734,7 +6734,7 @@ const dummyKaryawans = [
     id: 8,
     user: {
       id: 9,
-      nama: "User 7",
+      nama: "Very Long Name 7",
       username: "username7",
       email_verified_at: null,
       role_id: null,
@@ -6802,7 +6802,7 @@ const dummyKaryawans = [
     id: 9,
     user: {
       id: 10,
-      nama: "User 8",
+      nama: "Very Long Name 8",
       username: "username8",
       email_verified_at: null,
       role_id: null,
@@ -6878,7 +6878,7 @@ const dummyKaryawans = [
     id: 10,
     user: {
       id: 11,
-      nama: "User 9",
+      nama: "Very Long Name 9",
       username: "username9",
       email_verified_at: null,
       role_id: null,

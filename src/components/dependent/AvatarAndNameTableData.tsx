@@ -14,7 +14,11 @@ export default function AvatarAndNameTableData({ data, ...props }: Props) {
         size={"sm"}
       />
       <Tooltip label={data.user.nama}>
-        <Text whiteSpace={"nowrap"} noOfLines={1}>
+        <Text
+          whiteSpace={"nowrap"}
+          overflow={"hidden"}
+          textOverflow={"ellipsis"}
+        >
           {data.user.nama}
         </Text>
       </Tooltip>

@@ -46,7 +46,7 @@ export default function CustomTableContainer({
       //   null,
       //   `calc(100vh - 304px - ${tabelConfigH}px)`,
       // ]}
-      maxH={`calc(100vh - 40px - ${customReducerValue}px - ${baseReducer}px - ${noFooterConfigReducer}px - ${noTopNavsReducer}px)`}
+      // maxH={`calc(100vh - 40px - ${customReducerValue}px - ${baseReducer}px - ${noFooterConfigReducer}px - ${noTopNavsReducer}px)`}
       border={"1px solid var(--divider3)"}
       borderRadius={8}
       {...props}

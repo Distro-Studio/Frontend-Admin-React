@@ -20,7 +20,7 @@ import {
   VStack,
   Wrap,
 } from "@chakra-ui/react";
-import { RiEditBoxFill, RiUserHeartFill } from "@remixicon/react";
+import { RiEditBoxFill, RiHeartLine } from "@remixicon/react";
 import { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { Link } from "react-router-dom";
@@ -33,11 +33,12 @@ import backOnClose from "../../lib/backOnClose";
 import formatDate from "../../lib/formatDate";
 import formatMasaKerja from "../../lib/formatMasaKerja";
 import formatNumber from "../../lib/formatNumber";
-import NoData from "../independent/NoData";
 import ComponentSpinner from "../independent/ComponentSpinner";
 import FlexLine from "../independent/FlexLine";
+import NoData from "../independent/NoData";
 import CContainer from "../wrapper/CContainer";
 import BooleanBadge from "./BooleanBadge";
+import DetailKeluargaKaryawanModalDisclosure from "./DetailKeluargaKaryawanModalDisclosure";
 import DisclosureHeader from "./DisclosureHeader";
 import JenisKaryawanBadge from "./JenisKaryawanBadge";
 import Retry from "./Retry";
@@ -45,18 +46,23 @@ import SmallLink from "./SmallLink";
 import SearchComponent from "./input/SearchComponent";
 
 interface Props {
-  id: number;
+  karyawan_id: number;
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 }
 export default function DetailKaryawanModal({
-  id,
+  karyawan_id,
   isOpen,
   onOpen,
   onClose,
 }: Props) {
-  useBackOnClose(`detail-karyawan-modal-${id}`, isOpen, onOpen, onClose);
+  useBackOnClose(
+    `detail-karyawan-modal-${karyawan_id}`,
+    isOpen,
+    onOpen,
+    onClose
+  );
   const initialRef = useRef(null);
 
   const { error, loading, data, retry } = useDataState<any>({
@@ -420,22 +426,24 @@ export default function DetailKaryawanModal({
                                 inputValue={search}
                               />
 
-                              <Button
-                                flex={"1 1 120px"}
-                                leftIcon={
-                                  <Icon
-                                    as={RiUserHeartFill}
-                                    fontSize={iconSize}
-                                  />
-                                }
-                                colorScheme="ap"
-                                variant={"outline"}
-                                as={Link}
-                                to={`/karyawan/keluarga-karyawan/${data.id}`}
-                                className="clicky"
+                              <DetailKeluargaKaryawanModalDisclosure
+                                karyawan_id={1}
                               >
-                                Data Keluarga
-                              </Button>
+                                <Button
+                                  flex={"1 1 120px"}
+                                  leftIcon={
+                                    <Icon
+                                      as={RiHeartLine}
+                                      fontSize={iconSize}
+                                    />
+                                  }
+                                  colorScheme="ap"
+                                  variant={"outline"}
+                                  className="clicky"
+                                >
+                                  Data Keluarga
+                                </Button>
+                              </DetailKeluargaKaryawanModalDisclosure>
 
                               <Button
                                 flex={"1 1 80px"}

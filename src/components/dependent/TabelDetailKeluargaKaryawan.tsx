@@ -234,7 +234,7 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
                   <Td
                     position={"sticky"}
                     top={0}
-                    right={0}
+                    right={"-1px"}
                     borderBottom={"none !important"}
                     p={0}
                     bg={rowIndex % 2 === 0 ? contentBgColor : bodyColor}

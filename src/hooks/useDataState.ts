@@ -81,7 +81,7 @@ const useDataState = <T>({
 
   function loadMore() {
     setLoadingLoadMore(true);
-    setOffset(limit);
+    setOffset((ps) => ps + limit);
     //TODO http request dan append ke data
   }
 

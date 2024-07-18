@@ -148,11 +148,12 @@ export default function NavContainer({
           bg={useContentBgColor()}
           pb={["86px", null, 6]}
           align={"stretch"}
-          minH={"100vh"}
+          h={"100vh"}
           maxW={smScreen ? "100%" : "calc(100% - 72px)"}
           // w={"100%"}
           flex={"1 1 0"}
           overflowX={"clip"}
+          overflowY={"auto"}
           {...props}
         >
           <Header
@@ -177,6 +178,7 @@ export default function NavContainer({
             align={"stretch"}
             mx={"auto"}
             flex={1}
+            overflowY={"auto"}
             // maxW={"1280px"}
           >
             {children}

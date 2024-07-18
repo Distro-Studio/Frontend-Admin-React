@@ -16,8 +16,14 @@ export default function Karyawan() {
 
   return (
     <>
-      <CWrapper>
-        <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
+      <CWrapper overflowY={"auto"}>
+        <CContainer
+          flex={1}
+          p={responsiveSpacing}
+          bg={useBodyColor()}
+          borderRadius={12}
+          overflowY={"auto"}
+        >
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
             <SearchComponent
               name="search"

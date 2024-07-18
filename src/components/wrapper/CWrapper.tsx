@@ -17,6 +17,7 @@ export default function CWrapper({ children, ...props }: Props) {
       gap={0}
       w={"100%"}
       flex={1}
+      overflowY={"auto"}
       {...props}
     >
       {children}
