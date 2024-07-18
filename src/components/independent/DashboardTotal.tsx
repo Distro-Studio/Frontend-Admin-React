@@ -46,8 +46,8 @@ export default function DashboardTotal({ ...props }: Props) {
     totalCuti: {
       label: "Total Cuti",
       icon: RiLandscapeFill,
-      iconBgColor: "yellow.400",
-      bgColor: "yellow.200",
+      iconBgColor: "#D7AA67",
+      bgColor: "#FBD38D",
     },
     totalIzinKerja: {
       label: "Total Izin Kerja",

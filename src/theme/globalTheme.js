@@ -175,17 +175,20 @@ export const globalTheme = extendTheme({
           cursor: "default",
         },
         divider: {
-          my: 0,
+          my: 1,
+          mx: -1,
+          borderColor: "var(--divider3)",
         },
         list: {
           bg: props.colorMode === "dark" ? "dark" : "white",
           border: "1px solid var(--divider3)",
-          p: 0,
+          p: "4px",
           overflow: "hidden",
           boxShadow: "none",
           borderRadius: 8,
         },
         item: {
+          borderRadius: "6px",
           bg: "transparent",
           _hover: { bg: "var(--divider)" },
           fontSize: 14,

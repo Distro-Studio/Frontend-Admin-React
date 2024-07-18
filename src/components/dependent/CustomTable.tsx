@@ -3,6 +3,13 @@ import {
   Checkbox,
   HStack,
   Icon,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuGroup,
+  MenuItem,
+  MenuList,
   Table,
   Tbody,
   Td,
@@ -10,32 +17,95 @@ import {
   Th,
   Thead,
   Tr,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
+import { RiArrowDownLine, RiArrowUpLine, RiListCheck } from "@remixicon/react";
 import { useState } from "react";
 import { useLightDarkColor } from "../../const/colors";
 import {
   Interface__FormattedTableData,
   Interface__FormattedTableHeader,
 } from "../../const/interfaces";
+import { iconSize } from "../../const/sizes";
+import useBackOnClose from "../../hooks/useBackOnClose";
+
+interface BatchActionsProps {
+  selectedRows: number[];
+  batchActions: any[];
+  selectAllRows: boolean;
+  handleSelectAllRows: (isChecked: boolean) => void;
+}
+const BatchActions = ({
+  selectedRows,
+  batchActions,
+  selectAllRows,
+  handleSelectAllRows,
+}: BatchActionsProps) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  useBackOnClose("batch=actions-modal", isOpen, onOpen, onClose);
+
+  return (
+    <Menu closeOnSelect={false}>
+      <MenuButton
+        as={IconButton}
+        h={"52px"}
+        w={"52px"}
+        borderRadius={0}
+        className="btn"
+        aria-label="batch actions options"
+        icon={<Icon as={RiListCheck} fontSize={iconSize} />}
+        onClick={onOpen}
+      />
+      <MenuList>
+        <MenuGroup title={`${selectedRows.length} Terpilih`}>
+          <MenuDivider />
+
+          <MenuItem
+            justifyContent={"space-between"}
+            onClick={() => {
+              handleSelectAllRows(selectAllRows);
+            }}
+          >
+            <Text color={"p.500"} fontWeight={550}>
+              Pilih Semua
+            </Text>
+            <Checkbox colorScheme="ap" isChecked={selectAllRows} />
+          </MenuItem>
+
+          <MenuDivider />
+
+          {batchActions?.map((action, i) => (
+            <MenuItem
+              key={i}
+              justifyContent={"space-between"}
+              onClick={() => {
+                action.callback(selectedRows);
+              }}
+            >
+              <Text>{action.label}</Text>
+            </MenuItem>
+          ))}
+        </MenuGroup>
+      </MenuList>
+    </Menu>
+  );
+};
 
 interface Props {
   formattedHeader: Interface__FormattedTableHeader[];
   formattedData: Interface__FormattedTableData[];
   onRowClick?: (rowData: any) => void;
-  onRowClickTooltipLabel?: string;
-  onBatchAction?: (selectedIds: (string | number)[]) => void; // to get row ids
+  batchActions?: any[];
 }
 
 export default function CustomTable({
   formattedHeader,
   formattedData,
   onRowClick,
-  onRowClickTooltipLabel,
-  onBatchAction,
+  batchActions,
 }: Props) {
   const [selectAllRows, setSelectAllRows] = useState<boolean>(false);
-  const [selectedRows, setSelectedRows] = useState<(string | number)[]>([]);
+  const [selectedRows, setSelectedRows] = useState<number[]>([]);
   const [sortConfig, setSortConfig] = useState<{
     sortKey: number;
     direction: "asc" | "desc";
@@ -50,10 +120,6 @@ export default function CustomTable({
     }
   };
 
-  if (onBatchAction) {
-    onBatchAction(selectedRows);
-  }
-
   const handleSelectAllRows = (isChecked: boolean) => {
     setSelectAllRows(!selectAllRows);
     if (!isChecked) {
@@ -63,7 +129,7 @@ export default function CustomTable({
       setSelectedRows([]);
     }
   };
-  const toggleRowSelection = (rowId: string | number) => {
+  const toggleRowSelection = (rowId: number) => {
     setSelectedRows((prevSelected) => {
       const isSelected = prevSelected.includes(rowId);
 
@@ -136,7 +202,7 @@ export default function CustomTable({
     <Table minW={"100%"}>
       <Thead>
         <Tr position={"sticky"} top={0} zIndex={3}>
-          {onBatchAction && (
+          {batchActions && (
             <Td p={0} position={"sticky"} left={0}>
               <Center
                 h={"52px"}
@@ -145,11 +211,11 @@ export default function CustomTable({
                 borderBottom={"1px solid var(--divider3)"}
                 bg={lightDarkColor}
               >
-                <Checkbox
-                  colorScheme="ap"
-                  size={"lg"}
-                  onChange={() => handleSelectAllRows(selectAllRows)}
-                  isChecked={selectAllRows}
+                <BatchActions
+                  selectedRows={selectedRows}
+                  batchActions={batchActions}
+                  selectAllRows={selectAllRows}
+                  handleSelectAllRows={handleSelectAllRows}
                 />
               </Center>
             </Td>
@@ -197,7 +263,7 @@ export default function CustomTable({
             onClick={handleRowClick}
             cursor={onRowClick ? "pointer" : "auto"}
           >
-            {onBatchAction && (
+            {batchActions && (
               <Td
                 w={"52px"}
                 p={0}
@@ -212,14 +278,15 @@ export default function CustomTable({
                   borderRight={"1px solid var(--divider3)"}
                   _groupHover={{ bg: "var(--divider)" }}
                   transition={"200ms"}
-                  cursor={"auto"}
+                  cursor={"pointer"}
                   onClick={(e) => {
                     e.stopPropagation();
+                    toggleRowSelection(row.id);
                   }}
                 >
                   <Checkbox
                     colorScheme="ap"
-                    size={"lg"}
+                    // size={"lg"}
                     onChange={() => {
                       toggleRowSelection(row.id);
                     }}

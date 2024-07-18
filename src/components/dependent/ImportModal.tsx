@@ -74,7 +74,7 @@ export default function ImportModal({ url, label, ...props }: Props) {
           <Icon
             as={RiDownloadLine}
             fontSize={iconSize}
-            color={chartColors[2]}
+            color={chartColors[8]}
           />
         }
         pl={3}

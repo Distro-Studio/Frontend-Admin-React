@@ -1,19 +1,19 @@
 import { Box, HStack, Text, useDisclosure } from "@chakra-ui/react";
+import { useState } from "react";
 import { dummyKaryawans } from "../../const/dummy";
 import { Interface__Karyawan } from "../../const/interfaces";
+import { responsiveSpacing } from "../../const/sizes";
+import useFilterKaryawan from "../../global/useFilterKaryawan";
 import useDataState from "../../hooks/useDataState";
 import NoData from "../independent/NoData";
 import Skeleton from "../independent/Skeleton";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
 import AvatarAndNameTableData from "./AvatarAndNameTableData";
 import CustomTable from "./CustomTable";
+import DetailKaryawanModal from "./DetailKaryawanModal";
 import Retry from "./Retry";
 import StatusKaryawanBadge from "./StatusKaryawanBadge";
 import TabelFooterConfig from "./TabelFooterConfig";
-import { useState } from "react";
-import DetailKaryawanModal from "./DetailKaryawanModal";
-import useFilterKaryawan from "../../global/useFilterKaryawan";
-import { responsiveSpacing } from "../../const/sizes";
 
 interface Props {
   filterConfig?: any;
@@ -141,18 +141,28 @@ export default function TabelKaryawan({ filterConfig }: Props) {
 
               {formattedData && (
                 <>
-                  <CustomTableContainer flex={1}>
+                  <CustomTableContainer>
                     <CustomTable
                       formattedHeader={formattedHeader}
                       // @ts-ignore
                       formattedData={formattedData}
-                      onBatchAction={(selectedRows) => {
-                        // console.log("selected_rows", selectedRows);
-                      }}
+                      batchActions={[
+                        {
+                          label: "Delete",
+                          callback: (selectedRows: number[]) => {
+                            console.log("Deleting", selectedRows);
+                          },
+                        },
+                        {
+                          label: "Export",
+                          callback: (selectedRows: number[]) => {
+                            console.log("Exporting", selectedRows);
+                          },
+                        },
+                      ]}
                       onRowClick={() => {
                         onOpen();
                       }}
-                      onRowClickTooltipLabel={"Klik untuk melihat detail"}
                     />
                   </CustomTableContainer>
 

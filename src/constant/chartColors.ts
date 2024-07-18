@@ -1,7 +1,7 @@
 const chartColors: string[] = [
   "purple.400", // 0 Ungu
   "green.400", // 1 Hijau terang
-  "yellow.500", // 2 Kuning cerah
+  "#FBD38D", // 2 Kuning cerah
   "blue.400", // 3 Biru cerah
   "red.400", // 4 Merah tuaw
   "cyan.400", // 5 Biru muda
