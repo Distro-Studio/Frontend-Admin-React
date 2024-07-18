@@ -210,6 +210,10 @@ export default function CustomTable({
                   borderRight={"1px solid var(--divider3)"}
                   _groupHover={{ bg: "var(--divider)" }}
                   transition={"200ms"}
+                  cursor={"auto"}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
                 >
                   <Checkbox
                     colorScheme="ap"
