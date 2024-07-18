@@ -10,7 +10,6 @@ import {
   Th,
   Thead,
   Tr,
-  StackProps,
 } from "@chakra-ui/react";
 import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useState } from "react";
@@ -22,9 +21,8 @@ import {
 
 interface Props {
   formattedHeader: Interface__FormattedTableHeader[];
-  formattedData: Interface__FormattedTableData[][];
+  formattedData: Interface__FormattedTableData[];
   onRowClick?: (rowData: any) => void;
-  batchActions?: boolean; // to show checkbox each row
   onBatchAction?: (selectedIds: (string | number)[]) => void; // to get row ids
 }
 
@@ -32,7 +30,6 @@ export default function CustomTable({
   formattedHeader,
   formattedData,
   onRowClick,
-  batchActions = false,
   onBatchAction,
 }: Props) {
   const [selectedRows, setSelectedRows] = useState<(string | number)[]>([]);
@@ -50,11 +47,9 @@ export default function CustomTable({
     }
   };
 
-  const handleBatchAction = () => {
-    if (onBatchAction) {
-      onBatchAction(selectedRows);
-    }
-  };
+  if (onBatchAction) {
+    onBatchAction(selectedRows);
+  }
 
   const toggleRowSelection = (rowId: string | number) => {
     setSelectedRows((prevSelected) => {
@@ -81,12 +76,16 @@ export default function CustomTable({
   const sortedData = () => {
     if (sortConfig.sortKey !== null) {
       return [...formattedData].sort((a, b) => {
-        const aValue = a[sortConfig.sortKey].rows.value;
-        const bValue = b[sortConfig.sortKey].rows.value;
+        //@ts-ignore
+        const aValue = a.rows[sortConfig.sortKey].value;
+        //@ts-ignore
+        const bValue = b.rows[sortConfig.sortKey].value;
 
         if (
-          a[sortConfig.sortKey].rows.isNumeric &&
-          b[sortConfig.sortKey].rows.isNumeric
+          //@ts-ignore
+          a.rows[sortConfig.sortKey].isNumeric &&
+          //@ts-ignore
+          b.rows[sortConfig.sortKey].isNumeric
         ) {
           return sortConfig.direction === "asc"
             ? Number(aValue) - Number(bValue)
@@ -106,9 +105,9 @@ export default function CustomTable({
       return (
         <>
           {sortConfig.direction === "asc" ? (
-            <Icon as={RiArrowUpLine} color={"pink.500"} fontSize={16} />
+            <Icon as={RiArrowUpLine} color={"p.500"} fontSize={16} />
           ) : (
-            <Icon as={RiArrowDownLine} color={"pink.500"} fontSize={16} />
+            <Icon as={RiArrowDownLine} color={"p.500"} fontSize={16} />
           )}
         </>
       );
@@ -123,7 +122,7 @@ export default function CustomTable({
     <Table minW={"100%"}>
       <Thead>
         <Tr position={"sticky"} top={0} zIndex={3}>
-          {batchActions && (
+          {onBatchAction && (
             <Td p={0} position={"sticky"} left={0}>
               <Center
                 h={"52px"}
@@ -182,9 +181,10 @@ export default function CustomTable({
             key={rowIndex}
             role="group"
             transition={"200ms"}
-            // cursor={"pointer"}
+            onClick={handleRowClick}
+            cursor={onRowClick ? "pointer" : "auto"}
           >
-            {batchActions && (
+            {onBatchAction && (
               <Td
                 w={"52px"}
                 p={0}
@@ -204,19 +204,19 @@ export default function CustomTable({
                     colorScheme="ap"
                     size={"lg"}
                     onChange={() => {
-                      toggleRowSelection(row[rowIndex].id);
+                      toggleRowSelection(row.id);
                     }}
                   />
                 </Center>
               </Td>
             )}
-            {row.map((col, colIndex) => (
+            {row.rows.map((col, colIndex) => (
               <Td
                 key={colIndex}
                 whiteSpace={"nowrap"}
                 bg={lightDarkColor}
                 p={0}
-                {...col.rows.props}
+                {...col.props}
               >
                 <HStack
                   _groupHover={{ bg: "var(--divider)" }}
@@ -224,13 +224,12 @@ export default function CustomTable({
                   px={4}
                   h={"60px"}
                   transition={"200ms"}
-                  {...col.rows.cProps}
+                  {...col.cProps}
                 >
-                  {typeof col.rows.td === "string" ||
-                  typeof col.rows.td === "number" ? (
-                    <Text>{col.rows.td}</Text>
+                  {typeof col.td === "string" || typeof col.td === "number" ? (
+                    <Text>{col.td}</Text>
                   ) : (
-                    col.rows.td
+                    col.td
                   )}
                 </HStack>
               </Td>

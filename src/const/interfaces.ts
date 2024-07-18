@@ -355,7 +355,7 @@ export interface Interface__FormattedTableData {
     isNumeric?: boolean; // default false
     props?: any;
     cProps?: StackProps;
-  };
+  }[];
 }
 
 export interface Interface__User {

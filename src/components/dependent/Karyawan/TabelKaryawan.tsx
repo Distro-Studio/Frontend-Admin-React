@@ -92,7 +92,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
         value: karyawan.status_karyawan.label,
         td: (
           <StatusKaryawanBadge
-            w={"100px"}
+            w={"120px"}
             data={karyawan.status_karyawan.label}
           />
         ),
@@ -130,7 +130,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       formattedHeader={formattedHeader}
                       // @ts-ignore
                       formattedData={formattedData}
-                      batchActions
+                      onBatchAction={(selectedIds) => {
+                        console.log("selected_ids", selectedIds);
+                      }}
                     />
                   </CustomTableContainer>
                 </>
