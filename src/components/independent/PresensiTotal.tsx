@@ -4,6 +4,7 @@ import { Presensi__SUmmary__Interface } from "../../const/interfaces";
 import { responsiveSpacing } from "../../const/sizes";
 import formatNumber from "../../lib/formatNumber";
 import Skeleton from "./Skeleton";
+import { useErrorAlphaColor } from "../../const/colors";
 
 interface Props extends WrapProps {}
 
@@ -26,6 +27,9 @@ export default function PresensiTotal({ ...props }: Props) {
   };
   const [loading] = useState<boolean>(false);
   const [data] = useState<Presensi__SUmmary__Interface | null>(dummy);
+
+  // SX
+  const errorAlphaColor = useErrorAlphaColor();
 
   return (
     <Wrap spacing={responsiveSpacing} {...props}>
@@ -87,7 +91,7 @@ export default function PresensiTotal({ ...props }: Props) {
             px={responsiveSpacing}
             justify={"center"}
             py={[4, null, 5]}
-            bg={"var(--reda)"}
+            bg={errorAlphaColor}
             align={"flex-start"}
             flex={"1 1 250px"}
             h={"120px"}
