@@ -148,9 +148,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       formattedData={formattedData}
                       batchActions={[
                         {
-                          label: "Delete",
+                          label: "Nonaktifkan",
                           callback: (selectedRows: number[]) => {
-                            console.log("Deleting", selectedRows);
+                            console.log("Nonaktifkan", selectedRows);
                           },
                         },
                         {
