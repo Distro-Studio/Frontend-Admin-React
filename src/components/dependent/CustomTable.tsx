@@ -23,6 +23,7 @@ interface Props {
   formattedHeader: Interface__FormattedTableHeader[];
   formattedData: Interface__FormattedTableData[];
   onRowClick?: (rowData: any) => void;
+  onRowClickTooltipLabel?: string;
   onBatchAction?: (selectedIds: (string | number)[]) => void; // to get row ids
 }
 
@@ -30,6 +31,7 @@ export default function CustomTable({
   formattedHeader,
   formattedData,
   onRowClick,
+  onRowClickTooltipLabel,
   onBatchAction,
 }: Props) {
   const [selectAllRows, setSelectAllRows] = useState<boolean>(false);
@@ -253,16 +255,6 @@ export default function CustomTable({
           </Tr>
         ))}
       </Tbody>
-
-      {/* {batchActions && (
-        <tfoot>
-          <Tr>
-            <Td colSpan={formattedData.length}>
-              <button>Lakukan Aksi Batch</button>
-            </Td>
-          </Tr>
-        </tfoot>
-      )} */}
     </Table>
   );
 }

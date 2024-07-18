@@ -1,4 +1,4 @@
-import { Box, HStack, useDisclosure } from "@chakra-ui/react";
+import { Box, HStack, Text, useDisclosure } from "@chakra-ui/react";
 import { dummyKaryawans } from "../../const/dummy";
 import { Interface__Karyawan } from "../../const/interfaces";
 import useDataState from "../../hooks/useDataState";
@@ -147,11 +147,12 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       // @ts-ignore
                       formattedData={formattedData}
                       onBatchAction={(selectedRows) => {
-                        console.log("selected_rows", selectedRows);
+                        // console.log("selected_rows", selectedRows);
                       }}
                       onRowClick={() => {
                         onOpen();
                       }}
+                      onRowClickTooltipLabel={"Klik untuk melihat detail"}
                     />
                   </CustomTableContainer>
 
@@ -165,6 +166,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       next_page_url: "",
                       last_page: 1,
                     }}
+                    footer={
+                      <Text opacity={0.4}>Klik row untuk melihat detail</Text>
+                    }
                   />
 
                   <DetailKaryawanModal

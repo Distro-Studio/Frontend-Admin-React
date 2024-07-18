@@ -12,7 +12,7 @@ import {
 import { RiArrowDownSLine } from "@remixicon/react";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 import PaginationNav from "./PaginationNav";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface Props {
   limitConfig?: number;
@@ -20,6 +20,7 @@ interface Props {
   pageConfig?: number;
   setPageConfig?: (page: number) => void;
   paginationData?: any;
+  footer?: React.ReactNode;
 }
 
 export default function TabelFooterConfig({
@@ -28,6 +29,7 @@ export default function TabelFooterConfig({
   pageConfig,
   setPageConfig,
   paginationData,
+  footer,
 }: Props) {
   const limitButtonRef = useRef<HTMLButtonElement>(null);
   const [limitMenuListW, setLimitMenuListW] = useState<
@@ -44,6 +46,7 @@ export default function TabelFooterConfig({
       spacing={responsiveSpacing}
       justify={"space-between"}
       mt={responsiveSpacing}
+      align={"center"}
     >
       {limitConfig && setLimitConfig && (
         <Menu>
@@ -89,6 +92,8 @@ export default function TabelFooterConfig({
           </MenuList>
         </Menu>
       )}
+
+      {footer}
 
       {pageConfig && setPageConfig && (
         <PaginationNav
