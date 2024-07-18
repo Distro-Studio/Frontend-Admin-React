@@ -62,7 +62,8 @@ export default function Presensi() {
               name="'date-picker"
               flex={"1 1 200px"}
               onConfirm={confirmDate}
-              inputValue={filterConfig.tanggal}
+              inputValue={filterConfig.tanggal[0]}
+              nonNullable
             />
 
             <FilterTabelPresensi
