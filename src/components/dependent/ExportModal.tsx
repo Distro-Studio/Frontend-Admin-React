@@ -21,9 +21,10 @@ import chartColors from "../../constant/chartColors";
 
 interface Props extends ButtonProps {
   url: string;
+  label?: string;
 }
 
-export default function ExportModal({ url, ...props }: Props) {
+export default function ExportModal({ url, label, ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(`export-modal-${1}`, isOpen, onOpen, onClose);
   const initialRef = useRef(null);
@@ -35,9 +36,10 @@ export default function ExportModal({ url, ...props }: Props) {
         // colorScheme="ap"
         className="btn-outline clicky"
         _focus={{ border: "1px solid var(--p500)" }}
-        rightIcon={
+        leftIcon={
           <Icon as={RiUploadLine} fontSize={iconSize} color={chartColors[1]} />
         }
+        pl={3}
         onClick={onOpen}
         {...props}
       >
@@ -53,10 +55,10 @@ export default function ExportModal({ url, ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title={"Export"} />
+            <DisclosureHeader title={label || "Export"} />
           </ModalHeader>
           <ModalBody>
-            <Text>Apakah anda yakin akan export tabel ini?</Text>
+            <Text opacity={0.6}>Apakah anda yakin akan export tabel ini?</Text>
           </ModalBody>
           <ModalFooter gap={2}>
             <Button

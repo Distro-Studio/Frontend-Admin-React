@@ -25,9 +25,10 @@ import FileInputLarge from "./input/FileInputLarge";
 
 interface Props extends ButtonProps {
   url: string;
+  label?: string;
 }
 
-export default function ImportModal({ url, ...props }: Props) {
+export default function ImportModal({ url, label, ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(`import-modal-${1}`, isOpen, onOpen, onClose);
   const initialRef = useRef(null);
@@ -69,13 +70,14 @@ export default function ImportModal({ url, ...props }: Props) {
         // colorScheme="ap"
         className="btn-outline clicky"
         _focus={{ border: "1px solid var(--p500)" }}
-        rightIcon={
+        leftIcon={
           <Icon
             as={RiDownloadLine}
             fontSize={iconSize}
             color={chartColors[2]}
           />
         }
+        pl={3}
         onClick={onOpen}
         {...props}
       >
@@ -94,7 +96,7 @@ export default function ImportModal({ url, ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title={"Import"} />
+            <DisclosureHeader title={label || "Import"} />
           </ModalHeader>
           <ModalBody>
             <form id="importForm" onSubmit={formik.handleSubmit}>

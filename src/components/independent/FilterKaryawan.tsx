@@ -83,7 +83,7 @@ export default function FilterKaryawan({ ...props }: Props) {
         // colorScheme="ap"
         className="btn-outline clicky"
         _focus={{ border: "1px solid var(--p500)" }}
-        rightIcon={
+        leftIcon={
           <Icon
             as={RiEqualizer3Fill}
             fontSize={iconSize}
@@ -91,7 +91,7 @@ export default function FilterKaryawan({ ...props }: Props) {
           />
         }
         flexShrink={0}
-        pr={3}
+        pl={3}
         onClick={() => {
           onOpen();
           setLocalFilterConfig(filterKaryawan);

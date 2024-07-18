@@ -38,9 +38,17 @@ export default function Karyawan() {
 
             <FilterKaryawan flex={"1 1 110px"} />
 
-            <ExportModal url={""} flex={"1 1 110px"} />
+            <ExportModal
+              url={""}
+              label={"Export Karyawan"}
+              flex={"1 1 110px"}
+            />
 
-            <ImportModal url={""} flex={"1 1 110px"} />
+            <ImportModal
+              url={""}
+              label={"Import Karyawan"}
+              flex={"1 1 110px"}
+            />
 
             <Button
               flex={"1 0 170px"}
