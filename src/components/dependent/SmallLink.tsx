@@ -12,6 +12,7 @@ export default function SmallLink({ to, children, ...props }: Props) {
       variant={"ghost"}
       size={"xs"}
       as={Link}
+      target={"_blank"}
       to={to}
       {...props}
     >

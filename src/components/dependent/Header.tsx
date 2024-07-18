@@ -22,7 +22,7 @@ import useScreenWidth from "../../lib/useScreenWidth";
 import AdminMiniProfile from "../independent/AdminMiniProfile";
 import BackButton from "../independent/BackButton";
 import { ColorModeSwitcherHeaderMenu } from "../independent/ColorModeSwitcherHeaderMenu";
-import NotificationButton from "../independent/NotificationButton";
+import NotificationButton from "../independent/NotificationModal";
 import { useContentBgColor } from "../../const/colors";
 
 interface Props extends StackProps {
