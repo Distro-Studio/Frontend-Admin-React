@@ -71,6 +71,7 @@ export default function DetailKeluargaKaryawanModalDisclosure({
         size={"full"}
         scrollBehavior="inside"
         allowPinchZoom
+        blockScrollOnMount={false}
       >
         <ModalOverlay />
         <ModalContent borderRadius={12} minH={"calc(100vh - 32px)"}>

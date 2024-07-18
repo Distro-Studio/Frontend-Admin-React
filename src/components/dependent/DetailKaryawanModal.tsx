@@ -44,6 +44,7 @@ import JenisKaryawanBadge from "./JenisKaryawanBadge";
 import Retry from "./Retry";
 import SmallLink from "./SmallLink";
 import SearchComponent from "./input/SearchComponent";
+import chartColors from "../../constant/chartColors";
 
 interface Props {
   karyawan_id: number;
@@ -97,6 +98,7 @@ export default function DetailKaryawanModal({
       initialFocusRef={initialRef}
       size={"full"}
       scrollBehavior="inside"
+      blockScrollOnMount={false}
     >
       <ModalOverlay />
       <ModalContent borderRadius={12} minH={"calc(100vh - 32px)"}>
@@ -121,19 +123,74 @@ export default function DetailKaryawanModal({
                   {(!data || (data && data.length === 0)) && <NoData />}
 
                   {(data || (data && data.length > 0)) && (
-                    <>
-                      <Wrap spacing={responsiveSpacing} overflowY={"auto"}>
+                    <CContainer
+                      h={"calc(100vh - 70px)"}
+                      overflowY={"auto"}
+                      className="scrollY"
+                    >
+                      <Wrap mb={responsiveSpacing}>
+                        <SearchComponent
+                          name="search"
+                          onChangeSetter={(input) => {
+                            if (input) {
+                              setSearch(input);
+                            } else {
+                              setSearch("");
+                            }
+                          }}
+                          inputValue={search}
+                        />
+
+                        <DetailKeluargaKaryawanModalDisclosure
+                          flex={"1 1 120px"}
+                          karyawan_id={1}
+                        >
+                          <Button
+                            w={"100%"}
+                            leftIcon={
+                              <Icon
+                                as={RiHeartLine}
+                                fontSize={iconSize}
+                                color={chartColors[6]}
+                              />
+                            }
+                            className="btn-outline clicky"
+                          >
+                            Data Keluarga
+                          </Button>
+                        </DetailKeluargaKaryawanModalDisclosure>
+
+                        <Button
+                          flex={"1 1 80px"}
+                          leftIcon={
+                            <Icon as={RiEditBoxFill} fontSize={iconSize} />
+                          }
+                          colorScheme="ap"
+                          className="btn-ap clicky"
+                          as={Link}
+                          to={`/karyawan/${data.id}/edit`}
+                          pl={3}
+                        >
+                          Edit
+                        </Button>
+                      </Wrap>
+
+                      <Wrap
+                        flex={1}
+                        spacing={responsiveSpacing}
+                        overflowY={"auto"}
+                        className="scrollY"
+                        mb={responsiveSpacing}
+                      >
                         <CContainer
                           flex={"1 1 350px"}
                           bg={bodyColor}
                           position={"sticky"}
                           top={"0"}
-                          h={"fit-content !important"}
-                          maxH={"calc(100vh - 70px - 32px - 24px)"}
                           overflowY={"auto"}
                           className="scrollY"
                         >
-                          <VStack flex={1}>
+                          <VStack overflowY={"auto"} flex={1}>
                             <VStack>
                               <Avatar
                                 w={"250px"}
@@ -171,13 +228,15 @@ export default function DetailKaryawanModal({
                             >
                               <HStack justify={"space-between"}>
                                 {/* <Text opacity={0.6}>Email</Text> */}
-                                <Highlighter
-                                  highlightClassName="hw"
-                                  unhighlightClassName="uw"
-                                  searchWords={searchQuery}
-                                  autoEscape={true}
-                                  textToHighlight="Status Aktif"
-                                />
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight="Status Aktif"
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   <BooleanBadge
@@ -190,13 +249,15 @@ export default function DetailKaryawanModal({
 
                               <HStack justify={"space-between"}>
                                 {/* <Text opacity={0.6}>No. Induk Karyawan</Text> */}
-                                <Highlighter
-                                  highlightClassName="hw"
-                                  unhighlightClassName="uw"
-                                  searchWords={searchQuery}
-                                  autoEscape={true}
-                                  textToHighlight="Username Akun"
-                                />
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight="Username Akun"
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {data.user.username}
@@ -205,13 +266,15 @@ export default function DetailKaryawanModal({
 
                               <HStack justify={"space-between"}>
                                 {/* <Text opacity={0.6}>Email</Text> */}
-                                <Highlighter
-                                  highlightClassName="hw"
-                                  unhighlightClassName="uw"
-                                  searchWords={searchQuery}
-                                  autoEscape={true}
-                                  textToHighlight="Email"
-                                />
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight="Email"
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {data.email}
@@ -220,13 +283,15 @@ export default function DetailKaryawanModal({
 
                               <HStack justify={"space-between"}>
                                 {/* <Text opacity={0.6}>No. Induk Karyawan</Text> */}
-                                <Highlighter
-                                  highlightClassName="hw"
-                                  unhighlightClassName="uw"
-                                  searchWords={searchQuery}
-                                  autoEscape={true}
-                                  textToHighlight="No. Induk Karyawan"
-                                />
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight="No. Induk Karyawan"
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {data.nik}
@@ -235,13 +300,15 @@ export default function DetailKaryawanModal({
 
                               <HStack justify={"space-between"}>
                                 {/* <Text opacity={0.6}>NIK KTP</Text> */}
-                                <Highlighter
-                                  highlightClassName="hw"
-                                  unhighlightClassName="uw"
-                                  searchWords={searchQuery}
-                                  autoEscape={true}
-                                  textToHighlight="NIK KTP"
-                                />
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight="NIK KTP"
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <HStack>
                                   <SmallLink to="#">Lihat</SmallLink>
@@ -253,13 +320,15 @@ export default function DetailKaryawanModal({
 
                               <HStack justify={"space-between"}>
                                 {/* <Text opacity={0.6}>No. KK</Text> */}
-                                <Highlighter
-                                  highlightClassName="hw"
-                                  unhighlightClassName="uw"
-                                  searchWords={searchQuery}
-                                  autoEscape={true}
-                                  textToHighlight="No. KK"
-                                />
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight="No. KK"
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <HStack>
                                   <SmallLink to="#">Lihat</SmallLink>
@@ -271,13 +340,15 @@ export default function DetailKaryawanModal({
 
                               <HStack justify={"space-between"}>
                                 {/* <Text opacity={0.6}>No. HP</Text> */}
-                                <Highlighter
-                                  highlightClassName="hw"
-                                  unhighlightClassName="uw"
-                                  searchWords={searchQuery}
-                                  autoEscape={true}
-                                  textToHighlight="No. HP"
-                                />
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight="No. HP"
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {data.no_hp}
@@ -286,13 +357,15 @@ export default function DetailKaryawanModal({
 
                               <HStack justify={"space-between"}>
                                 {/* <Text opacity={0.6}>Tempat Lahir</Text> */}
-                                <Highlighter
-                                  highlightClassName="hw"
-                                  unhighlightClassName="uw"
-                                  searchWords={searchQuery}
-                                  autoEscape={true}
-                                  textToHighlight="Tempat Lahir"
-                                />
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight="Tempat Lahir"
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {data.tempat_lahir}
@@ -301,13 +374,15 @@ export default function DetailKaryawanModal({
 
                               <HStack justify={"space-between"}>
                                 {/* <Text opacity={0.6}>Tanggal Lahir</Text> */}
-                                <Highlighter
-                                  highlightClassName="hw"
-                                  unhighlightClassName="uw"
-                                  searchWords={searchQuery}
-                                  autoEscape={true}
-                                  textToHighlight="Tanggal Lahir"
-                                />
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight="Tanggal Lahir"
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {formatDate(data.tgl_lahir)}
@@ -316,13 +391,15 @@ export default function DetailKaryawanModal({
 
                               <HStack justify={"space-between"}>
                                 {/* <Text opacity={0.6}>Jenis Kelamin</Text> */}
-                                <Highlighter
-                                  highlightClassName="hw"
-                                  unhighlightClassName="uw"
-                                  searchWords={searchQuery}
-                                  autoEscape={true}
-                                  textToHighlight="Jenis Kelamin"
-                                />
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight="Jenis Kelamin"
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {data.jenis_kelamin.toLowerCase() === "p"
@@ -333,13 +410,15 @@ export default function DetailKaryawanModal({
 
                               <HStack justify={"space-between"}>
                                 {/* <Text opacity={0.6}>Agama</Text> */}
-                                <Highlighter
-                                  highlightClassName="hw"
-                                  unhighlightClassName="uw"
-                                  searchWords={searchQuery}
-                                  autoEscape={true}
-                                  textToHighlight="Agama"
-                                />
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight="Agama"
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {data.agama}
@@ -348,13 +427,15 @@ export default function DetailKaryawanModal({
 
                               <HStack justify={"space-between"}>
                                 {/* <Text opacity={0.6}>Gelar Depan</Text> */}
-                                <Highlighter
-                                  highlightClassName="hw"
-                                  unhighlightClassName="uw"
-                                  searchWords={searchQuery}
-                                  autoEscape={true}
-                                  textToHighlight="Gelar Depan"
-                                />
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight="Gelar Depan"
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {data.gelar_depan}
@@ -363,13 +444,15 @@ export default function DetailKaryawanModal({
 
                               <HStack justify={"space-between"}>
                                 {/* <Text opacity={0.6}>Alamat</Text> */}
-                                <Highlighter
-                                  highlightClassName="hw"
-                                  unhighlightClassName="uw"
-                                  searchWords={searchQuery}
-                                  autoEscape={true}
-                                  textToHighlight="Alamat"
-                                />
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight="Alamat"
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Popover>
                                   <PopoverTrigger>
@@ -402,8 +485,6 @@ export default function DetailKaryawanModal({
                         <VStack
                           gap={responsiveSpacing}
                           overflowY={"auto"}
-                          minH={"300px"}
-                          maxH={"calc(100vh - 70px - 32px - 24px)"}
                           flex={"1 1 500px"}
                           className="scrollY"
                         >
@@ -413,56 +494,6 @@ export default function DetailKaryawanModal({
                             bg={bodyColor}
                             gap={responsiveSpacing}
                           >
-                            <Wrap px={responsiveSpacing}>
-                              <SearchComponent
-                                name="search"
-                                onChangeSetter={(input) => {
-                                  if (input) {
-                                    setSearch(input);
-                                  } else {
-                                    setSearch("");
-                                  }
-                                }}
-                                inputValue={search}
-                              />
-
-                              <DetailKeluargaKaryawanModalDisclosure
-                                karyawan_id={1}
-                              >
-                                <Button
-                                  flex={"1 1 120px"}
-                                  leftIcon={
-                                    <Icon
-                                      as={RiHeartLine}
-                                      fontSize={iconSize}
-                                    />
-                                  }
-                                  colorScheme="ap"
-                                  variant={"outline"}
-                                  className="clicky"
-                                >
-                                  Data Keluarga
-                                </Button>
-                              </DetailKeluargaKaryawanModalDisclosure>
-
-                              <Button
-                                flex={"1 1 80px"}
-                                leftIcon={
-                                  <Icon
-                                    as={RiEditBoxFill}
-                                    fontSize={iconSize}
-                                  />
-                                }
-                                colorScheme="ap"
-                                className="btn-ap clicky"
-                                as={Link}
-                                to={`/karyawan/${data.id}/edit`}
-                                pl={3}
-                              >
-                                Edit
-                              </Button>
-                            </Wrap>
-
                             <VStack
                               align={"stretch"}
                               gap={responsiveSpacing}
@@ -479,13 +510,15 @@ export default function DetailKaryawanModal({
                                 <VStack align={"stretch"} gap={4}>
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>No. Rekam Medis</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="No. Rekam Medis"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="No. Rekam Medis"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {data.no_rm}
@@ -494,13 +527,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>No. Manulife</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="No. Manulife"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="No. Manulife"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {data.no_manulife}
@@ -509,13 +544,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>No. BPJS Kesehatan</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="No. BPJS Kesehatan"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="No. BPJS Kesehatan"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <HStack>
                                       <SmallLink to="#">Lihat</SmallLink>
@@ -530,13 +567,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>No. BPJS Ketenagakerjaan</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="No. BPJS Ketenagakerjaan"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="No. BPJS Ketenagakerjaan"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {data.no_bpjsktk}
@@ -545,13 +584,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Tinggi Badan</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Tinggi Badan"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Tinggi Badan"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {data.tinggi_badan} cm
@@ -560,13 +601,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Berat Badan</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Berat Badan"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Berat Badan"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {data.berat_badan} kg
@@ -575,13 +618,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Golongan Darah</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Golongan Darah"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Golongan Darah"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {data.golongan_darah}
@@ -598,13 +643,15 @@ export default function DetailKaryawanModal({
                                 <VStack align={"stretch"} gap={4}>
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Tanggal Masuk</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Tanggal Masuk"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Tanggal Masuk"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {formatDate(data.tgl_masuk)}
@@ -613,13 +660,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Tanggal Keluar</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Tanggal Keluar"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Tanggal Keluar"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {formatDate(data.tgl_keluar)}
@@ -628,13 +677,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Tanggal Diangkat</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Tanggal Diangkat"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Tanggal Diangkat"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {formatDate(data.tgl_diangkat)}
@@ -643,13 +694,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Masa Kerja</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Masa Kerja"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Masa Kerja"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {formatMasaKerja(data.masa_kerja)}
@@ -658,13 +711,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Unit Kerja</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Unit Kerja"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Unit Kerja"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {data.unit_kerja.nama_unit}
@@ -673,13 +728,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Jabatan</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Jabatan"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Jabatan"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {data.jabatan.nama_jabatan}
@@ -688,13 +745,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Kompetensi</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Kompetensi"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Kompetensi"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {data.kompetensi.nama_kompetensi}
@@ -703,13 +762,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Status Karyawan</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Status Karyawan"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Status Karyawan"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {data.status_karyawan.label}
@@ -718,13 +779,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Tanggal Berakhir PKS</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Tanggal Berakhir PKS"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Tanggal Berakhir PKS"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {formatDate(data.tgl_berakhir_pks)}
@@ -733,13 +796,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Masa Diklat</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Masa Diklat"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Masa Diklat"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {formatMasaKerja(data.masa_diklat)}
@@ -756,13 +821,15 @@ export default function DetailKaryawanModal({
                                 <VStack align={"stretch"} gap={4}>
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>No. Ijazah</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="No. Ijazah"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="No. Ijazah"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <HStack>
                                       <SmallLink to="#">Lihat</SmallLink>
@@ -777,13 +844,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Tahun Lulus</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Tahun Lulus"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Tahun Lulus"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {data.tahun_lulus}
@@ -792,13 +861,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>No. STR</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="No. STR"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="No. STR"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <HStack>
                                       <SmallLink to="#">Lihat</SmallLink>
@@ -813,13 +884,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Masa Berlaku STR</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Masa Berlaku STR"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Masa Berlaku STR"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {formatDate(data.masa_berlaku_str)}
@@ -828,13 +901,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>No. SIP</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="No. SIP"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="No. SIP"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <HStack>
                                       <SmallLink to="#">Lihat</SmallLink>
@@ -849,13 +924,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Masa Berlaku SIP</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Masa Berlaku SIP"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Masa Berlaku SIP"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {formatDate(data.masa_berlaku_sip)}
@@ -872,13 +949,15 @@ export default function DetailKaryawanModal({
                                 <VStack align={"stretch"} gap={4}>
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Kelompok Gaji</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Kelompok Gaji"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Kelompok Gaji"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {data.kelompok_gaji.nama_kelompok}
@@ -887,13 +966,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Gaji</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Gaji"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Gaji"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       Rp{" "}
@@ -905,13 +986,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>NPWP</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="NPWP"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="NPWP"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {data.npwp}
@@ -920,13 +1003,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>No. Rekening</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="No. Rekening"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="No. Rekening"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {data.no_rekening}
@@ -935,13 +1020,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Kode PTKP</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Kode PTKP"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Kode PTKP"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       {data.ptkp.kode_ptkp}
@@ -950,13 +1037,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Uang Makan</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Uang Makan"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Uang Makan"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       Rp {formatNumber(data.uang_makan)}
@@ -965,13 +1054,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Uang Lembur</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Uang Lembur"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Uang Lembur"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       Rp {formatNumber(data.uang_lembur)}
@@ -988,13 +1079,15 @@ export default function DetailKaryawanModal({
                                 <VStack align={"stretch"} gap={4}>
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Jabatan</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Jabatan"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Jabatan"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       Rp {formatNumber(data.tunjangan_jabatan)}
@@ -1003,13 +1096,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Fungsional</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Fungsional"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Fungsional"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       Rp{" "}
@@ -1019,13 +1114,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Khusus</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Khusus"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Khusus"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       Rp {formatNumber(data.tunjangan_khusus)}
@@ -1034,13 +1131,15 @@ export default function DetailKaryawanModal({
 
                                   <HStack justify={"space-between"}>
                                     {/* <Text opacity={0.6}>Lainnya</Text> */}
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight="Lainnya"
-                                    />
+                                    <Box opacity={0.6}>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight="Lainnya"
+                                      />
+                                    </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
                                       Rp {formatNumber(data.tunjangan_lainnya)}
@@ -1052,7 +1151,7 @@ export default function DetailKaryawanModal({
                           </CContainer>
                         </VStack>
                       </Wrap>
-                    </>
+                    </CContainer>
                   )}
                 </>
               )}
