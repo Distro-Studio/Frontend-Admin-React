@@ -9,6 +9,7 @@ import {
   ModalOverlay,
   Text,
   useDisclosure,
+  VStack,
   Wrap,
 } from "@chakra-ui/react";
 import { useRef } from "react";
@@ -155,39 +156,39 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
                                   name={data.nama}
                                 />
 
-                                <Box>
+                                <VStack align={"stretch"}>
                                   <Text fontSize={14} opacity={0.6}>
                                     Nama Karyawan
                                   </Text>
                                   <Text fontWeight={500}>{data.nama}</Text>
-                                </Box>
+                                </VStack>
 
-                                <Box>
+                                <VStack align={"stretch"}>
                                   <Text fontSize={14} opacity={0.6}>
                                     Tanggal Masuk
                                   </Text>
                                   <Text fontWeight={500}>
                                     {formatDate(data.tgl_masuk)}
                                   </Text>
-                                </Box>
+                                </VStack>
 
-                                <Box>
+                                <VStack align={"stretch"}>
                                   <Text fontSize={14} opacity={0.6}>
                                     Tanggal Keluar
                                   </Text>
                                   <Text fontWeight={500}>
                                     {formatDate(data.tgl_keluar)}
                                   </Text>
-                                </Box>
+                                </VStack>
 
-                                <Box>
+                                <VStack align={"stretch"}>
                                   <Text fontSize={14} opacity={0.6}>
                                     Masa Kerja
                                   </Text>
                                   <Text fontWeight={500}>
                                     {formatMasaKerja(data.masa_kerja)}
                                   </Text>
-                                </Box>
+                                </VStack>
                               </Wrap>
 
                               <TabelDetailRekamJejak data={data.rekam_jejak} />
