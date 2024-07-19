@@ -21,7 +21,7 @@ import {
   Wrap,
 } from "@chakra-ui/react";
 import {
-  RiEditBoxFill,
+  RiEditFill,
   RiGuideLine,
   RiHeartLine,
   RiShutDownLine,
@@ -139,7 +139,7 @@ export default function DetailKaryawanModal({
                           w={"max-content"}
                           justify={"space-between"}
                         >
-                          <HStack flexShrink={0}>
+                          <HStack flex={"1 0"}>
                             <SearchComponent
                               name="search"
                               onChangeSetter={(input) => {
@@ -195,7 +195,7 @@ export default function DetailKaryawanModal({
                             </DetailRekamJejakKaryawanModalDisclosure>
                           </HStack>
 
-                          <HStack>
+                          <HStack flex={"1 0"}>
                             <Button
                               flexShrink={0}
                               className="btn-outline clicky"
@@ -214,9 +214,9 @@ export default function DetailKaryawanModal({
                             </Button>
 
                             <Button
-                              flexShrink={0}
+                              flex={"1 0"}
                               leftIcon={
-                                <Icon as={RiEditBoxFill} fontSize={iconSize} />
+                                <Icon as={RiEditFill} fontSize={iconSize} />
                               }
                               colorScheme="ap"
                               className="btn-ap clicky"
@@ -224,7 +224,7 @@ export default function DetailKaryawanModal({
                               to={`/karyawan/${data.id}/edit`}
                               pl={3}
                             >
-                              Edit
+                              Edit Karyawan
                             </Button>
                           </HStack>
                         </HStack>

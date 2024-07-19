@@ -1,5 +1,5 @@
 import { Button, HStack, Icon } from "@chakra-ui/react";
-import { RiAddBoxFill, RiAddFill } from "@remixicon/react";
+import { RiAddFill } from "@remixicon/react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ExportModal from "../../components/dependent/ExportModal";
