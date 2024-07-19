@@ -22,7 +22,6 @@ import useBackOnClose from "../../hooks/useBackOnClose";
 import backOnClose from "../../lib/backOnClose";
 import DisclosureHeader from "../dependent/DisclosureHeader";
 import CContainer from "../wrapper/CContainer";
-import { Interface__ColumnConfig } from "../../const/interfaces";
 
 interface Props extends ButtonProps {
   title?: string;
@@ -37,59 +36,52 @@ export default function TabelKaryawanColumnConfigModal({
   useBackOnClose(`table-column-config-modal`, isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
-  const { allColumns, tabelKaryawanColumns, setTabelKaryawanColumns } =
+  const { tabelKaryawanColumns, setTabelKaryawanColumns } =
     useTabelKaryawanColumns();
-  const [selected, setSelected] = useState<Interface__ColumnConfig[]>([]);
+  const [selected, setSelected] = useState<number[]>([]);
 
+  const allColumns = [
+    { column: "nama", label: "Nama" },
+    { column: "nik", label: "Nik" },
+    { column: "no_rm", label: "No. Rekam Medis" },
+    { column: "unit_kerja", label: "Unit Kerja" },
+    { column: "status_karyawan", label: "Status Karyawan" },
+    { column: "email", label: "Email" },
+    { column: "username", label: "Username" },
+    { column: "status_aktif", label: "Status Aktif" },
+    { column: "ayah", label: "Ayah" },
+    { column: "ibu", label: "Ibu" },
+    { column: "jumlah_keluarga", label: "Jumlah Keluarga" },
+    { column: "tgl_masuk", label: "Tanggal Masuk" },
+    { column: "tgl_keluar", label: "Tanggal Keluar" },
+    { column: "masa_kerja", label: "Masa Kerja" },
+    { column: "promosi", label: "Promosi" },
+    { column: "mutasi", label: "Mutasi" },
+  ];
   const presetColumn = [
     {
       label: "Semua Kolom",
-      columns: allColumns,
+      columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
     },
     {
       label: "Karyawan",
-      columns: [
-        { column: "nama", label: "Nama" },
-        { column: "nik", label: "Nik" },
-        { column: "no_rm", label: "No. Rekam Medis" },
-        { column: "unit_kerja", label: "Unit Kerja" },
-      ],
+      columns: [0, 1, 2, 3, 4],
     },
     {
       label: "Akun",
-      columns: [
-        { column: "nama", label: "Nama" },
-        { column: "status_karyawan", label: "Status Karyawan" },
-        { column: "email", label: "Email" },
-        { column: "username", label: "Username" },
-      ],
+      columns: [0, 1, 5, 6, 7],
     },
     {
       label: "Keluarga",
-      columns: [
-        { column: "ayah", label: "Ayah" },
-        { column: "ibu", label: "Ibu" },
-        { column: "jumlah_keluarga", label: "Jumlah Keluarga" },
-      ],
+      columns: [0, 8, 9, 10],
     },
     {
       label: "Pekerja Kontrak",
-      columns: [
-        { column: "no_rm", label: "No. Rekam Medis" },
-        { column: "tgl_masuk", label: "Tanggal Masuk" },
-        { column: "tgl_keluar", label: "Tanggal Keluar" },
-        { column: "status_aktif", label: "Status Aktif" },
-      ],
+      columns: [0, 3, 11, 12, 7],
     },
     {
       label: "Rekam Jejak",
-      columns: [
-        { column: "tgl_masuk", label: "Tanggal Masuk" },
-        { column: "tgl_keluar", label: "Tanggal Keluar" },
-        { column: "masa_kerja", label: "Masa Kerja" },
-        { column: "promosi", label: "Promosi" },
-        { column: "mutasi", label: "Mutasi" },
-      ],
+      columns: [0, 11, 12, 13, 14, 15],
     },
   ];
 
@@ -150,65 +142,67 @@ export default function TabelKaryawanColumnConfigModal({
               Kolom
             </Text>
             <Wrap>
-              {allColumns.map((option, i) => (
-                <Button
-                  key={i}
-                  borderRadius={"full"}
-                  className={"btn-outline clicky"}
-                  borderColor={
-                    selected &&
-                    selected.some((item) => item.column === option.column)
-                      ? "var(--p500a2)"
-                      : ""
-                  }
-                  bg={
-                    selected &&
-                    selected.some((item) => item.column === option.column)
-                      ? "var(--p500a4) !important"
-                      : ""
-                  }
-                  onClick={() => {
-                    const isSelected =
-                      selected &&
-                      selected.some((item) => item.column === option.column);
-                    let newSelected = selected || [];
+              {allColumns.map((option, i) => {
+                const ok = i !== 0;
+                return (
+                  ok && (
+                    <Button
+                      key={i}
+                      borderRadius={"full"}
+                      className={"btn-outline clicky"}
+                      borderColor={
+                        selected && selected.some((item) => item === i)
+                          ? "var(--p500a2)"
+                          : ""
+                      }
+                      bg={
+                        selected && selected.some((item) => item === i)
+                          ? "var(--p500a4) !important"
+                          : ""
+                      }
+                      onClick={() => {
+                        const isSelected =
+                          selected && selected.some((item) => item === i);
+                        let newSelected = selected || [];
 
-                    if (isSelected) {
-                      // Filter out the option if it's already selected
-                      newSelected = newSelected.filter(
-                        (item) => item.column !== option.column
-                      );
-                    } else {
-                      // Add the option to the selected array
-                      newSelected = [...newSelected, option];
-                    }
+                        if (isSelected) {
+                          // Filter out the option if it's already selected
+                          newSelected = newSelected.filter(
+                            (item) => item !== i
+                          );
+                        } else {
+                          // Add the option to the selected array
+                          newSelected = [...newSelected, i];
+                        }
 
-                    setSelected(newSelected);
-                  }}
-                >
-                  {option.label}
-                </Button>
-              ))}
+                        setSelected(newSelected);
+                      }}
+                    >
+                      {option.label}
+                    </Button>
+                  )
+                );
+              })}
             </Wrap>
           </ModalBody>
 
           <ModalFooter>
             <CContainer>
               <Text fontWeight={500} mb={2} opacity={0.4}>
-                Kolom Dipilih
+                Urutan Kolom (dari kiri ke kanan)
               </Text>
               <Wrap>
                 {selected.length === 0 && (
                   <Text opacity={0.4}>Tidak ada kolom yang dipilih</Text>
                 )}
-                {selected.map((column, i) => (
+                {selected.map((columnIndex, i) => (
                   <Badge
                     textTransform={"none"}
                     bg={"var(--divider)"}
                     fontWeight={400}
                     key={i}
                   >
-                    {column.label}
+                    {allColumns[columnIndex].label}
                   </Badge>
                 ))}
               </Wrap>
@@ -218,7 +212,7 @@ export default function TabelKaryawanColumnConfigModal({
                   w={"100%"}
                   className="btn-solid clicky"
                   onClick={() => {
-                    setSelected([]);
+                    setSelected([0]);
                   }}
                 >
                   Clear

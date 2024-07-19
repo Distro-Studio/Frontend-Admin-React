@@ -22,7 +22,6 @@ import { RiArrowDownLine, RiArrowUpLine, RiListCheck } from "@remixicon/react";
 import { useState } from "react";
 import { useLightDarkColor } from "../../const/colors";
 import {
-  Interface__ColumnConfig,
   Interface__FormattedTableData,
   Interface__FormattedTableHeader,
 } from "../../const/interfaces";
@@ -95,7 +94,7 @@ interface Props {
   formattedData: Interface__FormattedTableData[];
   onRowClick?: (rowData: any) => void;
   batchActions?: any[];
-  columnsConfig?: Interface__ColumnConfig[];
+  columnsConfig?: number[];
 }
 
 export default function CustomTable({
@@ -106,17 +105,16 @@ export default function CustomTable({
   columnsConfig,
 }: Props) {
   const tableHeader = columnsConfig
-    ? formattedHeader.filter((header) =>
-        columnsConfig.some((col) => col.column === header.column)
-      )
+    ? columnsConfig.map((columnIndex) => formattedHeader[columnIndex])
     : formattedHeader;
 
   const tableBody = columnsConfig
-    ? formattedData.filter((data) =>
-        data.rows.map((dataCol) =>
-          columnsConfig.map((col) => col.column === dataCol.column)
-        )
-      )
+    ? formattedData.map((data) => {
+        const filteredRows = columnsConfig.map(
+          (columnIndex) => data.rows[columnIndex]
+        );
+        return { ...data, rows: filteredRows };
+      })
     : formattedData;
 
   const [selectAllRows, setSelectAllRows] = useState<boolean>(false);
@@ -214,11 +212,19 @@ export default function CustomTable({
   const lightDarkColor = useLightDarkColor();
 
   return (
-    <Table minW={"100%"}>
+    <Table minW={"0"} w={"fit-content !important"}>
       <Thead>
         <Tr position={"sticky"} top={0} zIndex={3}>
           {batchActions && (
-            <Td p={0} position={"sticky"} left={0}>
+            <Td
+              h={"52px"}
+              w={"52px !important"}
+              minW={"0% !important"}
+              maxW={"52px !important"}
+              p={0}
+              position={"sticky"}
+              left={0}
+            >
               <Center
                 h={"52px"}
                 w={"52px"}
@@ -280,7 +286,10 @@ export default function CustomTable({
           >
             {batchActions && (
               <Td
-                w={"52px"}
+                h={"60px"}
+                w={"52px !important"}
+                minW={"0% !important"}
+                maxW={"52px !important"}
                 p={0}
                 position={"sticky"}
                 left={0}

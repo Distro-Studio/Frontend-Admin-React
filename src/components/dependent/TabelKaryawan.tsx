@@ -128,6 +128,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       column: "status_aktif",
       th: "Status Aktif",
       isSortable: true,
+      cProps: {
+        justify: "center",
+      },
     },
     {
       column: "ayah",
@@ -238,6 +241,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
             w={"120px"}
           />
         ),
+        cProps: {
+          justify: "center",
+        },
       },
       {
         column: "ayah",
