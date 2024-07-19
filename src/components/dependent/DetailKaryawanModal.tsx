@@ -127,75 +127,87 @@ export default function DetailKaryawanModal({
                       overflowY={"auto"}
                       className="scrollY"
                     >
-                      <Wrap mb={responsiveSpacing}>
-                        <SearchComponent
-                          name="search"
-                          onChangeSetter={(input) => {
-                            if (input) {
-                              setSearch(input);
-                            } else {
-                              setSearch("");
-                            }
-                          }}
-                          inputValue={search}
-                        />
-
-                        <Button
-                          flex={"1 1 120px"}
-                          className="btn-outline clicky"
-                          leftIcon={
-                            <Icon
-                              as={RiShutDownLine}
-                              fontSize={iconSize}
-                              opacity={0.4}
-                              // color={chartColors[4]}
+                      <Box overflowX={"auto"} className="noScroll">
+                        <HStack
+                          minW={"100%"}
+                          w={"max-content"}
+                          justify={"space-between"}
+                          mb={responsiveSpacing}
+                        >
+                          <HStack flexShrink={0}>
+                            <SearchComponent
+                              name="search"
+                              onChangeSetter={(input) => {
+                                if (input) {
+                                  setSearch(input);
+                                } else {
+                                  setSearch("");
+                                }
+                              }}
+                              inputValue={search}
                             />
-                          }
-                        >
-                          {data.user.status_aktif ? "Non-aktifkan" : "Aktifkan"}
-                        </Button>
 
-                        <DetailKeluargaKaryawanModalDisclosure
-                          flex={"1 1 120px"}
-                          karyawan_id={1}
-                        >
+                            <Button
+                              flexShrink={0}
+                              className="btn-outline clicky"
+                              leftIcon={
+                                <Icon
+                                  as={RiShutDownLine}
+                                  fontSize={iconSize}
+                                  // opacity={0.4}
+                                  // color={chartColors[4]}
+                                />
+                              }
+                            >
+                              {data.user.status_aktif
+                                ? "Non-aktifkan"
+                                : "Aktifkan"}
+                            </Button>
+
+                            <DetailKeluargaKaryawanModalDisclosure
+                              karyawan_id={1}
+                              flexShrink={0}
+                            >
+                              <Button
+                                flexShrink={0}
+                                w={"100%"}
+                                leftIcon={
+                                  <Icon
+                                    as={RiHeartLine}
+                                    fontSize={iconSize}
+                                    // opacity={0.4}
+                                    // color={chartColors[6]}
+                                  />
+                                }
+                                className="btn-outline clicky"
+                              >
+                                Data Keluarga
+                              </Button>
+                            </DetailKeluargaKaryawanModalDisclosure>
+                          </HStack>
+
                           <Button
-                            w={"100%"}
+                            flexShrink={0}
                             leftIcon={
-                              <Icon
-                                as={RiHeartLine}
-                                fontSize={iconSize}
-                                opacity={0.4}
-                                // color={chartColors[6]}
-                              />
+                              <Icon as={RiEditBoxFill} fontSize={iconSize} />
                             }
-                            className="btn-outline clicky"
+                            colorScheme="ap"
+                            className="btn-ap clicky"
+                            as={Link}
+                            to={`/karyawan/${data.id}/edit`}
+                            pl={3}
                           >
-                            Data Keluarga
+                            Edit
                           </Button>
-                        </DetailKeluargaKaryawanModalDisclosure>
-
-                        <Button
-                          flex={"1 1 120px"}
-                          leftIcon={
-                            <Icon as={RiEditBoxFill} fontSize={iconSize} />
-                          }
-                          colorScheme="ap"
-                          className="btn-ap clicky"
-                          as={Link}
-                          to={`/karyawan/${data.id}/edit`}
-                          pl={3}
-                        >
-                          Edit
-                        </Button>
-                      </Wrap>
+                        </HStack>
+                      </Box>
 
                       <Wrap
                         flex={1}
                         spacing={responsiveSpacing}
                         overflowY={"auto"}
                         className="scrollY"
-                        mb={responsiveSpacing}
+                        my={responsiveSpacing}
                       >
                         <CContainer
                           flex={"1 1 350px"}

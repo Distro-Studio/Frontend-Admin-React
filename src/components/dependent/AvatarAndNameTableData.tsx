@@ -1,8 +1,11 @@
 import { Avatar, HStack, StackProps, Text, Tooltip } from "@chakra-ui/react";
-import { Interface__Karyawan } from "../../const/interfaces";
+import {
+  Interface__DetailKaryawan,
+  Interface__Karyawan,
+} from "../../const/interfaces";
 
 interface Props extends StackProps {
-  data: Interface__Karyawan;
+  data: Interface__Karyawan | Interface__DetailKaryawan;
 }
 
 export default function AvatarAndNameTableData({ data, ...props }: Props) {

@@ -197,7 +197,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       last_page: 1,
                     }}
                     footer={
-                      <Text opacity={0.4}>Klik row untuk melihat detail</Text>
+                      <Text opacity={0.4}>
+                        Klik row untuk melihat detail karyawan
+                      </Text>
                     }
                   />
 

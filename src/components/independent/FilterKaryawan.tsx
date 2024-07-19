@@ -87,7 +87,7 @@ export default function FilterKaryawan({ ...props }: Props) {
             as={RiEqualizer3Fill}
             fontSize={iconSize}
             // color={chartColors[0]}
-            opacity={0.4}
+            // opacity={0.4}
           />
         }
         flexShrink={0}

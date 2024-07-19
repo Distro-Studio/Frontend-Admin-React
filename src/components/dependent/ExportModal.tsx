@@ -40,7 +40,7 @@ export default function ExportModal({ url, label, ...props }: Props) {
             as={RiUploadLine}
             fontSize={iconSize}
             // color={chartColors[1]}
-            opacity={0.4}
+            // opacity={0.4}
           />
         }
         pl={"18px !important"}

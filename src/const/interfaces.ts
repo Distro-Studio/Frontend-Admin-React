@@ -412,3 +412,110 @@ export interface Interface__Karyawan {
   created_at: Date | string;
   updated_at: Date | string | null;
 }
+
+export interface Interface__Jabatan {
+  id: number;
+  nama_jabatan: string;
+  is_struktural: number;
+  tunjangan: number;
+  created_at: Date;
+  updated_at: Date | string | null;
+}
+
+export interface Interface__Kompetensi {
+  id: number;
+  nama_kompetensi: string;
+  jenis_kompetensi: number;
+  total_tunjangan: number;
+  created_at: Date;
+  updated_at: Date | string | null;
+}
+
+export interface Interface__Pivot {
+  model_type: string;
+  model_id: number;
+  role_id: number;
+}
+
+export interface Interface__Role {
+  id: number;
+  name: string;
+  deskripsi: string;
+  guard_name: string;
+  created_at: Date;
+  updated_at: Date | string | null;
+  pivot: Interface__Pivot;
+}
+
+export interface Interface__KelompokGaji {
+  id: number;
+  nama_kelompok: string;
+  besaran_gaji: number;
+  created_at: Date;
+  updated_at: Date | string | null;
+}
+
+export interface Interface__Ptkp {
+  id: number;
+  kode_ptkp: string;
+  kategori_ter_id: number;
+  created_at: Date;
+  updated_at: Date | string | null;
+}
+
+export interface Interface__ConstantTable {
+  id: number | boolean | null;
+  label: string;
+}
+
+export interface Interface__DetailKaryawan {
+  id: number;
+  user: Interface__User;
+  email: string;
+  no_rm: number;
+  no_manulife: number;
+  tgl_masuk: Date | string;
+  unit_kerja: Interface__UnitKerja;
+  jabatan: Interface__Jabatan;
+  kompetensi: Interface__Kompetensi;
+  role: Interface__Role[];
+  nik: string;
+  nik_ktp: string;
+  status_karyawan: Interface__StatusKaryawan;
+  tempat_lahir: string;
+  tgl_lahir: Date | string;
+  kelompok_gaji: Interface__KelompokGaji;
+  no_rekening: string;
+  tunjangan_jabatan: number;
+  tunjangan_fungsional: number;
+  tunjangan_khusus: number;
+  tunjangan_lainnya: number;
+  uang_lembur: number;
+  uang_makan: number;
+  ptkp: Interface__Ptkp;
+  tgl_keluar: Date | string;
+  no_kk: string;
+  alamat: string;
+  gelar_depan: string;
+  no_hp: string;
+  no_bpjsksh: string;
+  no_bpjsktk: string;
+  tgl_diangkat: Date | string;
+  masa_kerja: number;
+  npwp: string;
+  jenis_kelamin: Interface__ConstantTable;
+  agama: Interface__ConstantTable;
+  golongan_darah: Interface__ConstantTable;
+  tinggi_badan: number;
+  berat_badan: number;
+  no_ijazah: string;
+  tahun_lulus: number;
+  no_str: string;
+  masa_berlaku_str: Date | string;
+  no_sip: string;
+  masa_berlaku_sip: Date | string;
+  tgl_berakhir_pks: Date | string;
+  masa_diklat: number;
+  created_at: Date | string;
+  updated_at: Date | string | null;
+}

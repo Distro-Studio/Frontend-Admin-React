@@ -1,69 +1,78 @@
-import {
-  Button,
-  Icon,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Wrap,
-} from "@chakra-ui/react";
-import { RiSearchLine, RiUploadLine } from "@remixicon/react";
-import { useState } from "react";
+import { HStack } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import ExportModal from "../../components/dependent/ExportModal";
+import ImportModal from "../../components/dependent/ImportModal";
+import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelRekamJejak from "../../components/dependent/TabelRekamJejak";
 import FilterKaryawan from "../../components/independent/FilterKaryawan";
-import ImportRekamJejakModal from "../../components/independent/ImportRekamJejakModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
-import { useBodyColor } from "../../const/colors";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { useLightDarkColor } from "../../const/colors";
+import { responsiveSpacing } from "../../const/sizes";
+import useFilterKaryawan from "../../global/useFilterKaryawan";
 
 export default function RekamJejak() {
   // Filter Config
-  const defaultFilterConfig = {
-    search: "",
-    unit_kerja: [],
-    status_karyawan: [],
-    masa_kerja: [],
-  };
-  const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
+  const { filterKaryawan, setFilterKaryawan } = useFilterKaryawan();
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setFilterKaryawan((ps: any) => ({
+        ...ps,
+        search: search,
+      }));
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search, setFilterKaryawan]);
+
+  // SX
+  const lightDarkColor = useLightDarkColor();
 
   return (
     <>
-      <CWrapper>
-        <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
-          <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
-            <InputGroup flex={"1 1 165px"}>
-              <InputLeftElement>
-                <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
-              </InputLeftElement>
-              <Input
-                placeholder="Pencarian"
-                flex={"1 1 0"}
-                onChange={(e) => {
-                  setFilterConfig((ps: any) => ({
-                    ...ps,
-                    search: e.target.value,
-                  }));
+      <CWrapper overflowY={"auto"}>
+        <CContainer
+          flex={1}
+          px={responsiveSpacing}
+          pb={responsiveSpacing}
+          pt={0}
+          bg={lightDarkColor}
+          borderRadius={12}
+          overflowY={"auto"}
+        >
+          <HStack
+            pt={responsiveSpacing}
+            justify={"space-between"}
+            w={"100%"}
+            mb={responsiveSpacing}
+            className="tabelConfig noScroll"
+            overflowX={"auto"}
+            flexShrink={0}
+          >
+            <HStack>
+              <SearchComponent
+                name="search"
+                onChangeSetter={(input) => {
+                  setSearch(input ? input : "");
                 }}
-                value={filterConfig.search}
+                inputValue={filterKaryawan.search}
               />
-            </InputGroup>
 
-            <FilterKaryawan flex={"1 1 110px"} />
+              <FilterKaryawan px={6} />
+            </HStack>
 
-            <Button
-              flex={"1 1 110px"}
-              variant={"outline"}
-              colorScheme="ap"
-              className="clicky"
-              rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
-            >
-              Export
-            </Button>
+            <HStack>
+              <ExportModal url={""} label={"Export Rekam Jejak"} px={6} />
 
-            <ImportRekamJejakModal />
-          </Wrap>
+              <ImportModal url={""} label={"Import Karyawan"} px={6} />
+            </HStack>
+          </HStack>
 
-          <TabelRekamJejak filterConfig={filterConfig} />
+          <TabelRekamJejak />
         </CContainer>
       </CWrapper>
     </>
