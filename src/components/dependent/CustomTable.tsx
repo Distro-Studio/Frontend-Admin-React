@@ -212,7 +212,7 @@ export default function CustomTable({
   const lightDarkColor = useLightDarkColor();
 
   return (
-    <Table minW={"0"} w={"fit-content !important"}>
+    <Table minW={"0"} w={tableHeader.length > 2 ? "100%" : "fit-content"}>
       <Thead>
         <Tr position={"sticky"} top={0} zIndex={3}>
           {batchActions && (
