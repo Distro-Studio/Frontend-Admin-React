@@ -94,66 +94,52 @@ export default function DetailKeluargaKaryawanModalDisclosure({
                     {(!data || (data && data.length === 0)) && <NoData />}
 
                     {(data || (data && data.length > 0)) && (
-                      <>
-                        <CContainer borderRadius={12}>
-                          {loading && (
-                            <ComponentSpinner minH={"400px"} flex={1} />
-                          )}
+                      <CContainer borderRadius={12}>
+                        <Wrap
+                          spacing={responsiveSpacing}
+                          mb={responsiveSpacing}
+                          align={"center"}
+                        >
+                          <Avatar
+                            size={"lg"}
+                            src={data.user.foto_profil}
+                            name={data.user.nama}
+                          />
 
-                          {!loading && data && (
-                            <>
-                              <Wrap
-                                spacing={responsiveSpacing}
-                                mb={responsiveSpacing}
-                                align={"center"}
-                              >
-                                <Avatar
-                                  size={"lg"}
-                                  src={data.user.foto_profil}
-                                  name={data.user.nama}
-                                />
+                          <VStack align={"stretch"}>
+                            <Text fontSize={14} opacity={0.6}>
+                              Nama Karyawan
+                            </Text>
+                            <Text fontWeight={500}>{data.user.nama}</Text>
+                          </VStack>
 
-                                <VStack align={"stretch"}>
-                                  <Text fontSize={14} opacity={0.6}>
-                                    Nama Karyawan
-                                  </Text>
-                                  <Text fontWeight={500}>{data.user.nama}</Text>
-                                </VStack>
+                          <VStack align={"stretch"}>
+                            <Text fontSize={14} opacity={0.6}>
+                              Jumlah Keluarga
+                            </Text>
+                            <Text fontWeight={500}>
+                              {data.data_karyawan.data_keluargas.length} Anggota
+                            </Text>
+                          </VStack>
 
-                                <VStack align={"stretch"}>
-                                  <Text fontSize={14} opacity={0.6}>
-                                    Jumlah Keluarga
-                                  </Text>
-                                  <Text fontWeight={500}>
-                                    {data.data_karyawan.data_keluargas.length}{" "}
-                                    Anggota
-                                  </Text>
-                                </VStack>
+                          <HStack ml={"auto"}>
+                            <Button
+                              leftIcon={
+                                <Icon as={RiCheckboxFill} fontSize={iconSize} />
+                              }
+                              pl={5}
+                              className="btn-ap clicky"
+                              colorScheme="ap"
+                            >
+                              Persetujuan
+                            </Button>
+                          </HStack>
+                        </Wrap>
 
-                                <HStack ml={"auto"}>
-                                  <Button
-                                    leftIcon={
-                                      <Icon
-                                        as={RiCheckboxFill}
-                                        fontSize={iconSize}
-                                      />
-                                    }
-                                    pl={5}
-                                    className="btn-ap clicky"
-                                    colorScheme="ap"
-                                  >
-                                    Persetujuan
-                                  </Button>
-                                </HStack>
-                              </Wrap>
-
-                              <TabelDetailKeluargaKaryawan
-                                data={data.data_karyawan.data_keluargas}
-                              />
-                            </>
-                          )}
-                        </CContainer>
-                      </>
+                        <TabelDetailKeluargaKaryawan
+                          data={data.data_karyawan.data_keluargas}
+                        />
+                      </CContainer>
                     )}
                   </>
                 )}
