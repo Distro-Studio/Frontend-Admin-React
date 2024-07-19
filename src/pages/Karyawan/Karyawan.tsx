@@ -1,5 +1,5 @@
 import { Button, HStack, Icon } from "@chakra-ui/react";
-import { RiAddBoxFill } from "@remixicon/react";
+import { RiAddBoxFill, RiAddFill } from "@remixicon/react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ExportModal from "../../components/dependent/ExportModal";
@@ -56,7 +56,7 @@ export default function Karyawan() {
             overflowX={"auto"}
             flexShrink={0}
           >
-            <HStack>
+            <HStack flex={1}>
               <SearchComponent
                 flex={"1 1 140px"}
                 name="search"
@@ -71,7 +71,7 @@ export default function Karyawan() {
               <TableColumnConfigModal title="Kolom Tabel Karyawan Config" />
             </HStack>
 
-            <HStack>
+            <HStack flex={1}>
               <ExportModal url={""} title={"Export Karyawan"} px={6} />
 
               <ImportModal url={""} title={"Import Karyawan"} px={6} />
@@ -80,11 +80,11 @@ export default function Karyawan() {
                 flex={"1 0 120px"}
                 colorScheme="ap"
                 className="btn-ap clicky"
-                leftIcon={<Icon as={RiAddBoxFill} fontSize={iconSize} />}
+                leftIcon={<Icon as={RiAddFill} fontSize={iconSize} />}
                 as={Link}
                 to={"/karyawan/tambah-karyawan"}
               >
-                Tambah
+                Tambah Karyawan
               </Button>
             </HStack>
           </HStack>

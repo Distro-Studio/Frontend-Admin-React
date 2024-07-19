@@ -116,7 +116,7 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
         <ModalOverlay />
         <ModalContent borderRadius={12} minH={"calc(100vh - 32px)"}>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title={"Detail Keluarga Karyawan"} />
+            <DisclosureHeader title={"Detail Rekam Jejak Karyawan"} />
           </ModalHeader>
           <ModalBody pb={6}>
             {error && (
