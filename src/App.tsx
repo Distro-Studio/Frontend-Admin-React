@@ -1,6 +1,5 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { globalTheme } from "./theme/globalTheme";
 import NavContainer from "./components/wrapper/NavContainer";
 import jadwalTopNavs from "./const/jadwalTopNavs";
 import karyawanTopNavs from "./const/karyawanTopNavs";
@@ -15,14 +14,10 @@ import Cuti from "./pages/Jadwal/Cuti";
 import Jadwal from "./pages/Jadwal/Jadwal";
 import Lembur from "./pages/Jadwal/Lembur";
 import PenukaranJadwal from "./pages/Jadwal/PenukaranJadwal";
-import AkunKaryawan from "./pages/Karyawan/AkunKaryawan";
 import DetailKaryawan from "./pages/Karyawan/DetailKaryawan";
-import DetailKeluargaKaryawan from "./pages/Karyawan/DetailKeluargaKaryawan";
 import DetailRekamJejak from "./pages/Karyawan/DetailRekamJejak";
 import EditKaryawan from "./pages/Karyawan/EditKaryawan";
 import Karyawan from "./pages/Karyawan/Karyawan";
-import KeluargaKaryawan from "./pages/Karyawan/KeluargaKaryawan";
-import PekerjaKontrak from "./pages/Karyawan/PekerjaKontrak";
 import RekamJejak from "./pages/Karyawan/RekamJejak";
 import TambahKaryawan from "./pages/Karyawan/TambahKaryawan";
 import TransferKaryawan from "./pages/Karyawan/TransferKaryawan";
@@ -56,6 +51,7 @@ import PenilaianKaryawan from "./pages/Perusahaan/PenilaianKaryawan";
 import VerifikasiBerkas from "./pages/Perusahaan/VerifikasiBerkas";
 import DetailPresensi from "./pages/Presensi/DetailPresensi";
 import Presensi from "./pages/Presensi/Presensi";
+import { globalTheme } from "./theme/globalTheme";
 
 // github pekok
 
@@ -130,7 +126,7 @@ export const App = () => (
             </NavContainer>
           }
         />
-        <Route
+        {/* <Route
           path="/karyawan/akun-karyawan"
           element={
             <NavContainer
@@ -181,7 +177,7 @@ export const App = () => (
               <PekerjaKontrak />
             </NavContainer>
           }
-        />
+        /> */}
         <Route
           path="/karyawan/rekam-jejak"
           element={
@@ -215,7 +211,7 @@ export const App = () => (
               active={1}
               title="Transfer Karyawan"
               topNavsData={karyawanTopNavs}
-              topNavActive={5}
+              topNavActive={1}
             >
               <TransferKaryawan />
             </NavContainer>
