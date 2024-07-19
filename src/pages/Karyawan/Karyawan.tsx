@@ -48,10 +48,9 @@ export default function Karyawan() {
           overflowY={"auto"}
         >
           <HStack
-            pt={responsiveSpacing}
+            py={responsiveSpacing}
             justify={"space-between"}
             w={"100%"}
-            mb={responsiveSpacing}
             className="tabelConfig noScroll"
             overflowX={"auto"}
             flexShrink={0}

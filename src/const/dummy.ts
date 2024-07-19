@@ -5509,8 +5509,8 @@ const dummyDetailKeluargaKaryawan = {
   id: 3,
   user: {
     id: 4,
-    nama: "User 2",
-    username: "username2",
+    nama: "Jolitos Kurniawan",
+    username: "jolitozzz",
     email_verified_at: null,
     role_id: null,
     foto_profil: null,
@@ -6716,6 +6716,72 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
   },
 ];
 
+const dummyDokumens = [
+  {
+    id: 1,
+    nama: "Word Example",
+    name: "Word Example.docx",
+    size: 12344,
+    type: "application/docx",
+    path: "/file/word.docx",
+    created_at: "2024-07-12",
+  },
+  {
+    id: 2,
+    nama: "PDF Example",
+    name: "PDF Example.pdf",
+    size: 12344,
+    type: "application/pdf",
+    path: "/file/pdf.pdf",
+    created_at: "2024-07-12",
+  },
+  {
+    id: 3,
+    nama: "Excel Example",
+    name: "Excel Example.xlsx",
+    size: 12344,
+    type: "image/jpg",
+    path: "/file/excel.xlsx",
+    created_at: "2024-07-12",
+  },
+  {
+    id: 4,
+    nama: "CSV Example",
+    name: "CSV Example.csv",
+    size: 12344,
+    type: "image/jpg",
+    path: "/file/csv.csv",
+    created_at: "2024-07-12",
+  },
+  {
+    id: 5,
+    nama: "Very very long name yhat posible to be",
+    name: "Very very long name yhat posible to be.pdf",
+    size: 12344,
+    type: "image/jpg",
+    path: "/images/gear5.jpg",
+    created_at: "2024-07-12",
+  },
+  {
+    id: 6,
+    nama: "Very very long name yhat posible to be",
+    name: "Very very long name yhat posible to be.pdf",
+    size: 12344,
+    type: "image/jpg",
+    path: "/images/gear5.jpg",
+    created_at: "2024-07-12",
+  },
+  {
+    id: 7,
+    nama: "Very very long name yhat posible to be",
+    name: "Very very long name yhat posible to be.pdf",
+    size: 12344,
+    type: "image/jpg",
+    path: "/images/gear5.jpg",
+    created_at: "2024-07-12",
+  },
+];
+
 export {
   dummyAkunKaryawan,
   dummyCuti,
@@ -6739,4 +6805,5 @@ export {
   dummyTerPph21,
   dummyTransferKaryawan,
   dummyUnitKerja,
+  dummyDokumens,
 };

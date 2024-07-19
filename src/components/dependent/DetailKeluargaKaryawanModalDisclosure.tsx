@@ -120,7 +120,7 @@ export default function DetailKeluargaKaryawanModalDisclosure({
                               Jumlah Keluarga
                             </Text>
                             <Text fontWeight={500}>
-                              {data.jumlah_keluarga} Anggota
+                              {data.jumlah_keluarga || 0}
                             </Text>
                           </VStack>
 

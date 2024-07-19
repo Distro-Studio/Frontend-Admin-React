@@ -11,7 +11,7 @@ export default function JenisKaryawanBadge({ data, ...props }: Props) {
     <Badge
       borderRadius={"full"}
       textAlign={"center"}
-      colorScheme={data ? "orange" : "blue"}
+      colorScheme={data ? "cyan" : "orange"}
       {...props}
     >
       {data ? "Shift" : "Non-Shift"}

@@ -1,6 +1,7 @@
 import {
   Avatar,
   Box,
+  Button,
   HStack,
   Icon,
   Modal,
@@ -8,22 +9,22 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverTrigger,
-  Portal,
   SimpleGrid,
   Text,
+  Tooltip,
   VStack,
 } from "@chakra-ui/react";
 import {
+  RiArchiveStackFill,
+  RiCalendarCheckFill,
+  RiCalendarFill,
+  RiCalendarScheduleFill,
   RiCircleFill,
   RiEditFill,
   RiFileChartFill,
   RiHeartFill,
+  RiLoginBoxFill,
+  RiLoopRightLine,
   RiShutDownFill,
 } from "@remixicon/react";
 import { useEffect, useRef, useState } from "react";
@@ -46,6 +47,7 @@ import BooleanBadge from "./BooleanBadge";
 import DetailKeluargaKaryawanModalDisclosure from "./DetailKeluargaKaryawanModalDisclosure";
 import DetailRekamJejakKaryawanModalDisclosure from "./DetailRekamJejakKaryawanModalDisclosure";
 import DisclosureHeader from "./DisclosureHeader";
+import DokumenKaryawanModalDisclosure from "./DokumenKaryawanModalDisclosure";
 import JenisKaryawanBadge from "./JenisKaryawanBadge";
 import Retry from "./Retry";
 import SmallLink from "./SmallLink";
@@ -184,46 +186,77 @@ export default function DetailKaryawanModal({
                                 </HStack>
                               </HStack>
 
-                              <BooleanBadge
-                                w={"fit-content"}
-                                borderRadius={"full"}
-                                data={data.user.status_aktif}
-                                trueValue="Aktif"
-                                falseValue="Tidak Aktif"
-                              />
+                              <HStack>
+                                <BooleanBadge
+                                  w={"fit-content"}
+                                  borderRadius={"full"}
+                                  data={data.user.status_aktif}
+                                  trueValue="Aktif"
+                                  falseValue="Tidak Aktif"
+                                  fontSize={13}
+                                />
+
+                                <Button
+                                  leftIcon={<Icon as={RiLoopRightLine} />}
+                                  size={"xs"}
+                                  className="btn clicky"
+                                >
+                                  {data.user.status_aktif
+                                    ? "Non-aktifkan"
+                                    : "Aktifkan"}
+                                </Button>
+                              </HStack>
                             </CContainer>
                           </HStack>
 
-                          <SimpleGrid mt={4} gap={2} columns={[2]}>
-                            <DetailKeluargaKaryawanModalDisclosure
-                              karyawan_id={1}
-                              flexShrink={0}
+                          <SimpleGrid mt={4} gap={3} columns={[1, 2, null, 3]}>
+                            {/* Presensi */}
+                            <VStack
+                              cursor={"pointer"}
+                              borderRadius={12}
+                              justify={"center"}
+                              p={4}
+                              className="btn-solid clicky"
                             >
-                              <VStack
-                                cursor={"pointer"}
-                                h={"100%"}
-                                borderRadius={12}
-                                justify={"center"}
-                                p={4}
-                                className="btn-solid clicky"
+                              <Icon
+                                opacity={0.4}
+                                as={RiLoginBoxFill}
+                                fontSize={32}
+                              />
+                              <Text
+                                fontWeight={500}
+                                textAlign={"center"}
+                                lineHeight={1.4}
                               >
-                                <Icon
-                                  opacity={0.4}
-                                  as={RiHeartFill}
-                                  fontSize={32}
-                                />
-                                <Text
-                                  fontWeight={500}
-                                  textAlign={"center"}
-                                  lineHeight={1.4}
-                                >
-                                  Data Keluarga
-                                </Text>
-                              </VStack>
-                            </DetailKeluargaKaryawanModalDisclosure>
+                                Presensi
+                              </Text>
+                            </VStack>
 
+                            {/* Jadwal */}
+                            <VStack
+                              cursor={"pointer"}
+                              borderRadius={12}
+                              justify={"center"}
+                              p={4}
+                              className="btn-solid clicky"
+                            >
+                              <Icon
+                                opacity={0.4}
+                                as={RiCalendarFill}
+                                fontSize={32}
+                              />
+                              <Text
+                                fontWeight={500}
+                                textAlign={"center"}
+                                lineHeight={1.4}
+                              >
+                                Jadwal
+                              </Text>
+                            </VStack>
+
+                            {/* Rekam Jejak */}
                             <DetailRekamJejakKaryawanModalDisclosure
-                              karyawan_id={1}
+                              karyawan_id={karyawan_id}
                               flexShrink={0}
                             >
                               <VStack
@@ -249,6 +282,62 @@ export default function DetailKaryawanModal({
                               </VStack>
                             </DetailRekamJejakKaryawanModalDisclosure>
 
+                            {/* Data Keluarga */}
+                            <DetailKeluargaKaryawanModalDisclosure
+                              karyawan_id={karyawan_id}
+                              flexShrink={0}
+                            >
+                              <VStack
+                                cursor={"pointer"}
+                                h={"100%"}
+                                borderRadius={12}
+                                justify={"center"}
+                                p={4}
+                                className="btn-solid clicky"
+                              >
+                                <Icon
+                                  opacity={0.4}
+                                  as={RiHeartFill}
+                                  fontSize={32}
+                                />
+                                <Text
+                                  fontWeight={500}
+                                  textAlign={"center"}
+                                  lineHeight={1.4}
+                                >
+                                  Data Keluarga
+                                </Text>
+                              </VStack>
+                            </DetailKeluargaKaryawanModalDisclosure>
+
+                            {/* Dokumen */}
+                            <DokumenKaryawanModalDisclosure
+                              karyawan_id={karyawan_id}
+                              flexShrink={0}
+                            >
+                              <VStack
+                                cursor={"pointer"}
+                                borderRadius={12}
+                                justify={"center"}
+                                p={4}
+                                className="btn-solid clicky"
+                              >
+                                <Icon
+                                  opacity={0.4}
+                                  as={RiArchiveStackFill}
+                                  fontSize={32}
+                                />
+                                <Text
+                                  fontWeight={500}
+                                  textAlign={"center"}
+                                  lineHeight={1.4}
+                                >
+                                  Dokumen
+                                </Text>
+                              </VStack>
+                            </DokumenKaryawanModalDisclosure>
+
+                            {/* Cuti */}
                             <VStack
                               cursor={"pointer"}
                               borderRadius={12}
@@ -266,12 +355,55 @@ export default function DetailKaryawanModal({
                                 textAlign={"center"}
                                 lineHeight={1.4}
                               >
-                                {data.user.status_aktif
-                                  ? "Non-aktifkan"
-                                  : "Aktifkan"}
+                                Cuti
                               </Text>
                             </VStack>
 
+                            {/* Tukar Jadwal */}
+                            <VStack
+                              cursor={"pointer"}
+                              borderRadius={12}
+                              justify={"center"}
+                              p={4}
+                              className="btn-solid clicky"
+                            >
+                              <Icon
+                                opacity={0.4}
+                                as={RiCalendarCheckFill}
+                                fontSize={32}
+                              />
+                              <Text
+                                fontWeight={500}
+                                textAlign={"center"}
+                                lineHeight={1.4}
+                              >
+                                Tukar Jadwal
+                              </Text>
+                            </VStack>
+
+                            {/* Lembur */}
+                            <VStack
+                              cursor={"pointer"}
+                              borderRadius={12}
+                              justify={"center"}
+                              p={4}
+                              className="btn-solid clicky"
+                            >
+                              <Icon
+                                opacity={0.4}
+                                as={RiCalendarScheduleFill}
+                                fontSize={32}
+                              />
+                              <Text
+                                fontWeight={500}
+                                textAlign={"center"}
+                                lineHeight={1.4}
+                              >
+                                Lembur
+                              </Text>
+                            </VStack>
+
+                            {/* Edit */}
                             <VStack
                               cursor={"pointer"}
                               borderRadius={12}
@@ -568,29 +700,16 @@ export default function DetailKaryawanModal({
                                       />
                                     </Box>
                                     <FlexLine />
-                                    <Popover>
-                                      <PopoverTrigger>
-                                        <Text
-                                          fontWeight={500}
-                                          noOfLines={1}
-                                          maxW={"180px"}
-                                          cursor={"pointer"}
-                                        >
-                                          {data.alamat}
-                                        </Text>
-                                      </PopoverTrigger>
-                                      <Portal>
-                                        <PopoverContent>
-                                          <PopoverArrow />
-                                          <PopoverCloseButton />
-                                          <PopoverBody>
-                                            <Text fontWeight={500}>
-                                              {data.alamat}
-                                            </Text>
-                                          </PopoverBody>
-                                        </PopoverContent>
-                                      </Portal>
-                                    </Popover>
+                                    <Tooltip label={data.alamat}>
+                                      <Text
+                                        fontWeight={500}
+                                        noOfLines={1}
+                                        maxW={"180px"}
+                                        cursor={"pointer"}
+                                      >
+                                        {data.alamat}
+                                      </Text>
+                                    </Tooltip>
                                   </HStack>
                                 </VStack>
                               </VStack>
