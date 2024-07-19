@@ -10,6 +10,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  SimpleGrid,
   Text,
   useDisclosure,
   Wrap,
@@ -125,11 +126,11 @@ export default function TabelKaryawanColumnConfigModal({
             <Text fontWeight={500} mb={2} opacity={0.4}>
               Preset Kolom
             </Text>
-            <Wrap gap={2}>
+            <SimpleGrid columns={[1, 2, 3]} gap={2}>
               {presetColumn.map((preset, i) => (
                 <Button
                   key={i}
-                  borderRadius={"full"}
+                  // borderRadius={"full"}
                   className="btn-solid clicky"
                   onClick={() => {
                     setSelected(preset.columns);
@@ -138,7 +139,7 @@ export default function TabelKaryawanColumnConfigModal({
                   {preset.label}
                 </Button>
               ))}
-            </Wrap>
+            </SimpleGrid>
 
             <Text fontWeight={500} mt={4} mb={2} opacity={0.4}>
               Kolom
@@ -232,7 +233,7 @@ export default function TabelKaryawanColumnConfigModal({
                   w={"100%"}
                   className="btn-ap clicky"
                   colorScheme="ap"
-                  isDisabled={selected.length === 0}
+                  isDisabled={selected.length < 2}
                   onClick={() => {
                     setTabelKaryawanColumns(selected);
                     backOnClose();
