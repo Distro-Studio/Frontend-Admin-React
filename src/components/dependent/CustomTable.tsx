@@ -10,6 +10,7 @@ import {
   MenuGroup,
   MenuItem,
   MenuList,
+  Portal,
   Table,
   Tbody,
   Td,
@@ -51,40 +52,42 @@ const BatchActions = ({
         aria-label="batch actions options"
         icon={<Icon as={RiListCheck} fontSize={iconSize} />}
       />
-      <MenuList>
-        <MenuGroup title={`${selectedRows.length} Terpilih`}>
-          <MenuDivider />
+      <Portal>
+        <MenuList zIndex={10}>
+          <MenuGroup title={`${selectedRows.length} Terpilih`}>
+            <MenuDivider />
 
-          <MenuItem
-            justifyContent={"space-between"}
-            onClick={() => {
-              handleSelectAllRows(selectAllRows);
-            }}
-          >
-            <Text color={"p.500"} fontWeight={550}>
-              Pilih Semua
-            </Text>
-            <Checkbox colorScheme="ap" isChecked={selectAllRows} />
-          </MenuItem>
-
-          <MenuDivider />
-
-          {batchActions?.map((action, i) => (
             <MenuItem
-              key={i}
               justifyContent={"space-between"}
               onClick={() => {
-                action.callback(selectedRows);
+                handleSelectAllRows(selectAllRows);
               }}
-              isDisabled={selectedRows.length === 0}
             >
-              <Text>{action.label}</Text>
-
-              {action.icon}
+              <Text color={"p.500"} fontWeight={550}>
+                Pilih Semua
+              </Text>
+              <Checkbox colorScheme="ap" isChecked={selectAllRows} />
             </MenuItem>
-          ))}
-        </MenuGroup>
-      </MenuList>
+
+            <MenuDivider />
+
+            {batchActions?.map((action, i) => (
+              <MenuItem
+                key={i}
+                justifyContent={"space-between"}
+                onClick={() => {
+                  action.callback(selectedRows);
+                }}
+                isDisabled={selectedRows.length === 0}
+              >
+                <Text>{action.label}</Text>
+
+                {action.icon}
+              </MenuItem>
+            ))}
+          </MenuGroup>
+        </MenuList>
+      </Portal>
     </Menu>
   );
 };
