@@ -1,10 +1,7 @@
-import { RiEditLine } from "@remixicon/react";
 import { Interface__AnggotaKeluarga } from "../../const/interfaces";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
 import BooleanBadge from "./BooleanBadge";
 import CustomTable from "./CustomTable";
-import { Icon } from "@chakra-ui/react";
-import { iconSize } from "../../const/sizes";
 
 interface Props {
   data: Interface__AnggotaKeluarga[];
@@ -12,15 +9,15 @@ interface Props {
 
 export default function TabelDetailKeluargaKaryawan({ data }: Props) {
   // Row Options Config
-  const rowOptions = [
-    {
-      label: "Edit",
-      icon: <Icon as={RiEditLine} fontSize={iconSize} opacity={0.4} />,
-      callback: (row: any) => {
-        console.log(row);
-      },
-    },
-  ];
+  // const rowOptions = [
+  //   {
+  //     label: "Edit",
+  //     icon: <Icon as={RiEditLine} fontSize={iconSize} opacity={0.4} />,
+  //     callback: (row: any) => {
+  //       console.log(row);
+  //     },
+  //   },
+  // ];
 
   const formattedHeader = [
     {
@@ -105,7 +102,7 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
       <CustomTable
         formattedHeader={formattedHeader}
         formattedData={formattedData}
-        rowOptions={rowOptions}
+        // rowOptions={rowOptions}
       />
     </CustomTableContainer>
   );
