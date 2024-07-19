@@ -2,9 +2,6 @@ import {
   Avatar,
   Box,
   BoxProps,
-  Button,
-  HStack,
-  Icon,
   Modal,
   ModalBody,
   ModalContent,
@@ -15,10 +12,9 @@ import {
   VStack,
   Wrap,
 } from "@chakra-ui/react";
-import { RiCheckboxFill } from "@remixicon/react";
 import { useRef } from "react";
 import { dummyDetailKeluargaKaryawan } from "../../const/dummy";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { responsiveSpacing } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import useDataState from "../../hooks/useDataState";
 import backOnClose from "../../lib/backOnClose";
@@ -128,7 +124,7 @@ export default function DetailKeluargaKaryawanModalDisclosure({
                             </Text>
                           </VStack>
 
-                          <HStack ml={"auto"}>
+                          {/* <HStack ml={"auto"}>
                             <Button
                               leftIcon={
                                 <Icon as={RiCheckboxFill} fontSize={iconSize} />
@@ -139,7 +135,7 @@ export default function DetailKeluargaKaryawanModalDisclosure({
                             >
                               Persetujuan
                             </Button>
-                          </HStack>
+                          </HStack> */}
                         </Wrap>
 
                         <TabelDetailKeluargaKaryawan
