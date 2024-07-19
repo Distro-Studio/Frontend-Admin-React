@@ -138,7 +138,6 @@ export default function DetailKaryawanModal({
                           minW={"100%"}
                           w={"max-content"}
                           justify={"space-between"}
-                          mb={responsiveSpacing}
                         >
                           <HStack flexShrink={0}>
                             <SearchComponent
@@ -270,7 +269,7 @@ export default function DetailKaryawanModal({
 
                               <JenisKaryawanBadge
                                 data={data.unit_kerja.jenis_karyawan}
-                                mb={responsiveSpacing}
+                                mb={3}
                               />
                             </VStack>
 
