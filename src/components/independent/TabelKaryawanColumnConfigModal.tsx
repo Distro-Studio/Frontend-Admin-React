@@ -117,7 +117,7 @@ export default function TabelKaryawanColumnConfigModal({
         isOpen={isOpen}
         onClose={backOnClose}
         initialFocusRef={initialRef}
-        scrollBehavior="inside"
+        // scrollBehavior="inside"
         allowPinchZoom
         blockScrollOnMount={false}
         isCentered
@@ -137,7 +137,7 @@ export default function TabelKaryawanColumnConfigModal({
                 <Button
                   key={i}
                   borderRadius={"full"}
-                  className="btn-outline clicky"
+                  className="btn-solid clicky"
                   onClick={() => {
                     setSelected(preset.columns);
                   }}
