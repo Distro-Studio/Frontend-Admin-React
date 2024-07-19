@@ -22,6 +22,7 @@ import useBackOnClose from "../../hooks/useBackOnClose";
 import backOnClose from "../../lib/backOnClose";
 import DisclosureHeader from "../dependent/DisclosureHeader";
 import CContainer from "../wrapper/CContainer";
+import { Interface__ColumnConfig } from "../../const/interfaces";
 
 interface Props extends ButtonProps {
   title?: string;
@@ -38,9 +39,7 @@ export default function TabelKaryawanColumnConfigModal({
 
   const { allColumns, tabelKaryawanColumns, setTabelKaryawanColumns } =
     useTabelKaryawanColumns();
-  const [selected, setSelected] = useState<{ column: string; label: string }[]>(
-    []
-  );
+  const [selected, setSelected] = useState<Interface__ColumnConfig[]>([]);
 
   const presetColumn = [
     {

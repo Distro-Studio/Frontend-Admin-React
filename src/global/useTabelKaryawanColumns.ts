@@ -1,14 +1,13 @@
 import { create } from "zustand";
+import { Interface__ColumnConfig } from "../const/interfaces";
 
 interface State {
-  allColumns: { column: string; label: string }[];
-  tabelKaryawanColumns: { column: string; label: string }[];
+  allColumns: Interface__ColumnConfig[];
+  tabelKaryawanColumns: Interface__ColumnConfig[];
 }
 
 interface Actions {
-  setTabelKaryawanColumns: (
-    newState: { column: string; label: string }[]
-  ) => void;
+  setTabelKaryawanColumns: (newState: Interface__ColumnConfig[]) => void;
 }
 
 const allColumns = [
@@ -33,7 +32,7 @@ const allColumns = [
 const useTabelKaryawanColumns = create<State & Actions>((set) => ({
   allColumns: allColumns,
   tabelKaryawanColumns: allColumns,
-  setTabelKaryawanColumns: (newState: { column: string; label: string }[]) =>
+  setTabelKaryawanColumns: (newState: Interface__ColumnConfig[]) =>
     set({ tabelKaryawanColumns: newState }),
 }));
 

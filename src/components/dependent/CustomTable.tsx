@@ -22,6 +22,7 @@ import { RiArrowDownLine, RiArrowUpLine, RiListCheck } from "@remixicon/react";
 import { useState } from "react";
 import { useLightDarkColor } from "../../const/colors";
 import {
+  Interface__ColumnConfig,
   Interface__FormattedTableData,
   Interface__FormattedTableHeader,
 } from "../../const/interfaces";
@@ -33,6 +34,7 @@ interface BatchActionsProps {
   selectAllRows: boolean;
   handleSelectAllRows: (isChecked: boolean) => void;
 }
+
 const BatchActions = ({
   selectedRows,
   batchActions,
@@ -93,6 +95,7 @@ interface Props {
   formattedData: Interface__FormattedTableData[];
   onRowClick?: (rowData: any) => void;
   batchActions?: any[];
+  columnsConfig?: Interface__ColumnConfig[];
 }
 
 export default function CustomTable({
@@ -100,7 +103,22 @@ export default function CustomTable({
   formattedData,
   onRowClick,
   batchActions,
+  columnsConfig,
 }: Props) {
+  const tableHeader = columnsConfig
+    ? formattedHeader.filter((header) =>
+        columnsConfig.some((col) => col.column === header.column)
+      )
+    : formattedHeader;
+
+  const tableBody = columnsConfig
+    ? formattedData.filter((data) =>
+        data.rows.map((dataCol) =>
+          columnsConfig.map((col) => col.column === dataCol.column)
+        )
+      )
+    : formattedData;
+
   const [selectAllRows, setSelectAllRows] = useState<boolean>(false);
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
   const [sortConfig, setSortConfig] = useState<{
@@ -153,7 +171,7 @@ export default function CustomTable({
   };
   const sortedData = () => {
     if (sortConfig.sortKey !== null) {
-      return [...formattedData].sort((a, b) => {
+      return [...tableBody].sort((a, b) => {
         //@ts-ignore
         const aValue = a.rows[sortConfig.sortKey].value;
         //@ts-ignore
@@ -218,7 +236,7 @@ export default function CustomTable({
             </Td>
           )}
 
-          {formattedHeader.map((header, i) => (
+          {tableHeader.map((header, i) => (
             <Th
               key={i}
               bg={lightDarkColor}

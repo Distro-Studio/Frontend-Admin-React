@@ -18,6 +18,7 @@ import TabelFooterConfig from "./TabelFooterConfig";
 import formatDate from "../../lib/formatDate";
 import formatMasaKerja from "../../lib/formatMasaKerja";
 import BooleanBadge from "./BooleanBadge";
+import useTabelKaryawanColumns from "../../global/useTabelKaryawanColumns";
 
 interface Props {
   filterConfig?: any;
@@ -63,6 +64,8 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       },
     },
   ];
+  // Columns Config
+  const { tabelKaryawanColumns } = useTabelKaryawanColumns();
 
   const { error, loading, data, retry } = useDataState<
     Interface__DetailKaryawan[]
@@ -316,6 +319,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       onRowClick={() => {
                         onOpen();
                       }}
+                      columnsConfig={tabelKaryawanColumns}
                     />
                   </CustomTableContainer>
 

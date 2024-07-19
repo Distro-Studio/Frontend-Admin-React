@@ -339,6 +339,7 @@ export interface Interface__ColumnConfigOld {
 }
 
 export interface Interface__FormattedTableHeader {
+  column?: string;
   th: string;
   isSortable?: boolean;
   isHidden?: boolean; // default false
@@ -533,4 +534,9 @@ export interface Interface__DetailKaryawan {
   ayah: Interface__AnggotaKeluarga;
   created_at: Date | string;
   updated_at: Date | string | null;
+}
+
+export interface Interface__ColumnConfig {
+  column: string;
+  label: string;
 }
