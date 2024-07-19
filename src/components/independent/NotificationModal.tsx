@@ -134,20 +134,22 @@ export default function NotificationModal({ ...props }: Props) {
   return (
     <>
       <Box position={"relative"}>
-        <Center
-          position={"absolute"}
-          w={"20px"}
-          h={"20px"}
-          borderRadius={"full"}
-          bg={"red.400"}
-          color={lightDarkColor}
-          top={-2}
-          right={-2}
-        >
-          <Text fontWeight={550} fontSize={12}>
-            {data.total_baru}
-          </Text>
-        </Center>
+        {data?.total_baru && (
+          <Center
+            position={"absolute"}
+            w={"20px"}
+            h={"20px"}
+            borderRadius={"full"}
+            bg={"red.400"}
+            color={lightDarkColor}
+            top={-2}
+            right={-2}
+          >
+            <Text fontWeight={550} fontSize={12}>
+              {data.total_baru}
+            </Text>
+          </Center>
+        )}
 
         <IconButton
           icon={<Icon as={RiMailDownloadLine} mb={"2px"} fontSize={18} />}

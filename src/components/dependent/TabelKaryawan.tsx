@@ -164,6 +164,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
               <Skeleton flex={1} mx={"auto"} />
               <HStack justify={"space-between"} mt={responsiveSpacing}>
                 <Skeleton maxW={"120px"} />
+                <Skeleton maxW={"300px"} h={"20px"} />
                 <Skeleton maxW={"112px"} />
               </HStack>
             </>

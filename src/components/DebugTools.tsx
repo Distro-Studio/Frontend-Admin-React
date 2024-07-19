@@ -23,24 +23,32 @@ import {
 import {
   RiBuilding2Line,
   RiCloudLine,
+  RiDatabase2Line,
+  RiErrorWarningLine,
   RiMoonLine,
   RiRefreshLine,
   RiSunLine,
   RiTerminalBoxFill,
 } from "@remixicon/react";
 import { useState } from "react";
-import getLocation from "../lib/getLocation";
-import useBackOnClose from "../lib/useBackOnCloseOld";
+import useDebugErrorState from "../global/useDebugErrorState";
 import useDebugLoadingState from "../global/useDebugLoadingState";
+import useDebugNoDataState from "../global/useDebugNoDataState";
+import useBackOnClose from "../hooks/useBackOnClose";
+import getLocation from "../lib/getLocation";
+import DisclosureHeader from "./dependent/DisclosureHeader";
 
 export default function DebugTools() {
   //! DEBUG
   const { debugLoadingState, setDebugLoadingState } = useDebugLoadingState();
+  const { debugErrorState, setDebugErrorState } = useDebugErrorState();
+  const { debugNoDataState, setDebugNoDataState } = useDebugNoDataState();
+
   const { toggleColorMode } = useColorMode();
   const colorMode = useColorModeValue("false", "true");
   const SwitchIcon = useColorModeValue(RiSunLine, RiMoonLine);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
+  useBackOnClose("debug-tools", isOpen, onOpen, onClose);
   function handleOnClose() {
     onClose();
     window.history.back();
@@ -65,45 +73,88 @@ export default function DebugTools() {
         colorScheme="ap"
         className="btn-ap"
         position={"fixed"}
-        bottom={"92px"}
+        bottom={"200px"}
         right={"6px"}
-        zIndex={99999999999999999}
+        zIndex={99}
         onClick={onOpen}
+        border={"2px solid var(--p600)"}
       />
 
-      <Modal isOpen={isOpen} onClose={handleOnClose} isCentered>
+      <Modal isOpen={isOpen} onClose={handleOnClose} size={"lg"} isCentered>
         <ModalOverlay />
 
         <ModalContent>
-          <ModalHeader>Debug Tools</ModalHeader>
+          <ModalHeader>
+            <DisclosureHeader title="Debug Tools" />
+          </ModalHeader>
 
           <ModalBody>
             <VStack align={"stretch"}>
+              <Text>Test : 3</Text>
+              <Text opacity={0.4}>
+                Ubah State ada delay 1 detik agar bisa liat transisinya, setelah
+                ngubah2 lgsg close aja
+              </Text>
               <SimpleGrid columns={[1, 2]} gap={2}>
                 <Button
-                  leftIcon={<Icon as={SwitchIcon} />}
-                  className="btn-solid clicky"
-                  onClick={toggleColorMode}
+                  rightIcon={<Icon as={RiErrorWarningLine} />}
+                  className="btn-outline clicky"
+                  onClick={() => {
+                    setTimeout(() => {
+                      setDebugErrorState(!debugErrorState);
+                    }, 1000);
+                  }}
+                  justifyContent={"space-between"}
+                  color={debugErrorState ? "green.400" : "red.400"}
                 >
-                  {`Dark Mode (${colorMode})`}
+                  {`Error State (${debugErrorState})`}
                 </Button>
 
                 <Button
-                  leftIcon={<Icon as={RiCloudLine} />}
-                  className="btn-solid clicky"
+                  rightIcon={<Icon as={RiCloudLine} />}
+                  className="btn-outline clicky"
                   onClick={() => {
-                    setDebugLoadingState(!debugLoadingState);
+                    setTimeout(() => {
+                      setDebugLoadingState(!debugLoadingState);
+                    }, 1000);
                   }}
+                  justifyContent={"space-between"}
+                  color={debugLoadingState ? "green.400" : "red.400"}
                 >
                   {`Loading State (${debugLoadingState})`}
                 </Button>
 
                 <Button
-                  leftIcon={<Icon as={RiRefreshLine} />}
-                  className="btn-solid clicky"
+                  rightIcon={<Icon as={RiDatabase2Line} />}
+                  className="btn-outline clicky"
+                  onClick={() => {
+                    setTimeout(() => {
+                      setDebugNoDataState(!debugNoDataState);
+                    }, 1000);
+                  }}
+                  justifyContent={"space-between"}
+                  color={debugNoDataState ? "green.400" : "red.400"}
+                >
+                  {`No Data State (${debugNoDataState})`}
+                </Button>
+
+                <Button
+                  rightIcon={<Icon as={SwitchIcon} />}
+                  className="btn-outline clicky"
+                  onClick={toggleColorMode}
+                  justifyContent={"space-between"}
+                  color={colorMode === "true" ? "green.400" : "red.400"}
+                >
+                  {`Dark Mode (${colorMode})`}
+                </Button>
+
+                <Button
+                  rightIcon={<Icon as={RiRefreshLine} />}
+                  className="btn-outline clicky"
                   onClick={() => {
                     window.location.reload();
                   }}
+                  justifyContent={"space-between"}
                 >
                   Manual Refresh
                 </Button>
@@ -111,7 +162,7 @@ export default function DebugTools() {
 
               <HStack mt={4}>
                 <Icon as={RiBuilding2Line} />
-                <Text fontWeight={600}>Office Center</Text>
+                <Text fontWeight={600}>Office Center/Location</Text>
               </HStack>
 
               <VStack
@@ -211,7 +262,7 @@ export default function DebugTools() {
                 </Button>
 
                 <Text
-                  opacity={0.6}
+                  opacity={0.4}
                   textAlign={"center"}
                   fontSize={[12, null, 14]}
                 >
