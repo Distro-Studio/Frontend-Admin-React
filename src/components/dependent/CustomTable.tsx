@@ -57,6 +57,7 @@ const BatchActions = ({
         aria-label="batch actions options"
         icon={<Icon as={RiListCheck} fontSize={iconSize} />}
       />
+
       <Portal>
         <MenuList zIndex={10}>
           <MenuGroup title={`${selectedRows.length} Terpilih`}>
@@ -91,6 +92,47 @@ const BatchActions = ({
               </MenuItem>
             ))}
           </MenuGroup>
+        </MenuList>
+      </Portal>
+    </Menu>
+  );
+};
+
+interface RowOptionsProps {
+  row: any;
+  rowOptions: any[];
+}
+
+const RowOptions = ({ row, rowOptions }: RowOptionsProps) => {
+  console.log(rowOptions);
+
+  return (
+    <Menu closeOnSelect={false}>
+      <MenuButton
+        as={IconButton}
+        h={"60px"}
+        w={"52px"}
+        borderRadius={0}
+        className="btn"
+        aria-label="row options"
+        icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
+      />
+
+      <Portal>
+        <MenuList zIndex={99}>
+          {rowOptions?.map((option, i) => (
+            <MenuItem
+              key={i}
+              justifyContent={"space-between"}
+              onClick={() => {
+                option.callback(row);
+              }}
+            >
+              <Text>{option.label}</Text>
+
+              {option.icon}
+            </MenuItem>
+          ))}
         </MenuList>
       </Portal>
     </Menu>
@@ -396,18 +438,11 @@ export default function CustomTable({
                   _groupHover={{ bg: "var(--divider)" }}
                   _groupActive={{ bg: "var(--divider2)" }}
                   transition={"200ms"}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
                 >
-                  <IconButton
-                    h={"60px"}
-                    w={"52px"}
-                    borderRadius={0}
-                    className="btn"
-                    aria-label="wor options button"
-                    icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                    }}
-                  />
+                  <RowOptions row={row} rowOptions={rowOptions} />
                 </Center>
               </Td>
             )}
