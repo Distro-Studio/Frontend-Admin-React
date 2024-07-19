@@ -94,7 +94,8 @@ export default function TabelKaryawanColumnConfigModal({
         leftIcon={<Icon as={RiLayoutColumnLine} fontSize={iconSize} />}
         _focus={{ border: "1px solid var(--p500)" }}
         flexShrink={0}
-        pl={"18px !important"}
+        pl={5}
+        pr={6}
         onClick={() => {
           onOpen();
           setSelected(tabelKaryawanColumns);
@@ -149,6 +150,7 @@ export default function TabelKaryawanColumnConfigModal({
                   ok && (
                     <Button
                       key={i}
+                      fontWeight={500}
                       borderRadius={"full"}
                       className={"btn-outline clicky"}
                       borderColor={
@@ -179,7 +181,15 @@ export default function TabelKaryawanColumnConfigModal({
                         setSelected(newSelected);
                       }}
                     >
-                      {option.label}
+                      <Text
+                        opacity={
+                          selected && selected.some((item) => item === i)
+                            ? 1
+                            : 0.6
+                        }
+                      >
+                        {option.label}
+                      </Text>
                     </Button>
                   )
                 );

@@ -111,6 +111,11 @@ export const globalTheme = extendTheme({
         fontWeight: 550,
         borderRadius: 8,
       },
+      sizes: {
+        md: {
+          px: 6,
+        },
+      },
     },
 
     Checkbox: {

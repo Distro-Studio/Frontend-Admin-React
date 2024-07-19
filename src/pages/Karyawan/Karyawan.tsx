@@ -56,37 +56,33 @@ export default function Karyawan() {
             overflowX={"auto"}
             flexShrink={0}
           >
-            <HStack flex={1}>
-              <SearchComponent
-                flex={"1 1 140px"}
-                name="search"
-                onChangeSetter={(input) => {
-                  setSearch(input);
-                }}
-                inputValue={search}
-              />
+            <SearchComponent
+              flex={"1 1 140px"}
+              name="search"
+              onChangeSetter={(input) => {
+                setSearch(input);
+              }}
+              inputValue={search}
+            />
 
-              <FilterKaryawan px={6} />
+            <FilterKaryawan px={6} />
 
-              <TableColumnConfigModal title="Kolom Tabel Karyawan Config" />
-            </HStack>
+            <TableColumnConfigModal title="Kolom Tabel Karyawan Config" />
 
-            <HStack flex={1}>
-              <ExportModal url={""} title={"Export Karyawan"} px={6} />
+            <ExportModal url={""} title={"Export Karyawan"} px={6} />
 
-              <ImportModal url={""} title={"Import Karyawan"} px={6} />
+            <ImportModal url={""} title={"Import Karyawan"} px={6} />
 
-              <Button
-                flex={"1 0 120px"}
-                colorScheme="ap"
-                className="btn-ap clicky"
-                leftIcon={<Icon as={RiAddFill} fontSize={iconSize} />}
-                as={Link}
-                to={"/karyawan/tambah-karyawan"}
-              >
-                Tambah Karyawan
-              </Button>
-            </HStack>
+            <Button
+              flex={"1 0 120px"}
+              colorScheme="ap"
+              className="btn-ap clicky"
+              leftIcon={<Icon as={RiAddFill} fontSize={iconSize} />}
+              as={Link}
+              to={"/karyawan/tambah-karyawan"}
+            >
+              Tambah Karyawan
+            </Button>
           </HStack>
 
           <TabelKaryawan />
