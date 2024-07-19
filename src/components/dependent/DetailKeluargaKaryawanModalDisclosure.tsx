@@ -118,7 +118,7 @@ export default function DetailKeluargaKaryawanModalDisclosure({
                               Jumlah Keluarga
                             </Text>
                             <Text fontWeight={500}>
-                              {data.data_karyawan.data_keluargas.length} Anggota
+                              {data.jumlah_keluarga} Anggota
                             </Text>
                           </VStack>
 
@@ -137,7 +137,7 @@ export default function DetailKeluargaKaryawanModalDisclosure({
                         </Wrap>
 
                         <TabelDetailKeluargaKaryawan
-                          data={data.data_karyawan.data_keluargas}
+                          data={data.data_keluarga}
                         />
                       </CContainer>
                     )}

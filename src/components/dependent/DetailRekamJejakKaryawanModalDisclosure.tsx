@@ -38,7 +38,7 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useBackOnClose(
-    `detail-keluarga-karyawan-modal-${karyawan_id}`,
+    `detail-rekam-jejak-karyawan-modal-${karyawan_id}`,
     isOpen,
     onOpen,
     onClose

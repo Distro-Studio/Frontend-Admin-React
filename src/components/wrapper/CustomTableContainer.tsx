@@ -2,7 +2,7 @@ import { Box, BoxProps } from "@chakra-ui/react";
 import useScreenHeight from "../../lib/useScreenHeight";
 
 interface Props extends BoxProps {
-  children: any;
+  children?: any;
   noFooterConfig?: boolean;
   noTopNavs?: boolean;
   customReducer?: number;

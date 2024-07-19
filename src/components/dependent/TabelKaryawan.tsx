@@ -78,7 +78,6 @@ export default function TabelKaryawan({ filterConfig }: Props) {
 
   const formattedHeader = [
     {
-      column: "nama",
       th: "Nama",
       isSortable: true,
       props: {
@@ -92,22 +91,18 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       },
     },
     {
-      column: "nik",
       th: "No. Induk Karyawan",
       isSortable: true,
     },
     {
-      column: "no_rm",
       th: "No. Rekam Medis",
       isSortable: true,
     },
     {
-      column: "unit_kerja",
       th: "Unit Kerja",
       isSortable: true,
     },
     {
-      column: "status_karyawan",
       th: "Status Karyawan",
       isSortable: true,
       cProps: {
@@ -115,17 +110,14 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       },
     },
     {
-      column: "email",
       th: "Email",
       isSortable: true,
     },
     {
-      column: "username",
       th: "Username",
       isSortable: true,
     },
     {
-      column: "status_aktif",
       th: "Status Aktif",
       isSortable: true,
       cProps: {
@@ -133,17 +125,14 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       },
     },
     {
-      column: "ayah",
       th: "Ayah",
       isSortable: true,
     },
     {
-      column: "ibu",
       th: "Ibu",
       isSortable: true,
     },
     {
-      column: "jumlah_keluarga",
       th: "Jumlah Keluarga",
       isSortable: true,
       cProps: {
@@ -151,26 +140,21 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       },
     },
     {
-      column: "tgl_masuk",
       th: "Tanggal Masuk",
       isSortable: true,
     },
     {
-      column: "tgl_keluar",
       th: "Tanggal Keluar",
       isSortable: true,
     },
     {
-      column: "masa_kerja",
       th: "Masa Kerja",
       isSortable: true,
     },
     {
-      column: "promosi",
       th: "Promosi",
     },
     {
-      column: "mutasi",
       th: "Mutasi",
     },
   ];
@@ -178,7 +162,6 @@ export default function TabelKaryawan({ filterConfig }: Props) {
     id: karyawan.id,
     rows: [
       {
-        column: "nama",
         value: karyawan.user.nama,
         td: <AvatarAndNameTableData data={karyawan} />,
         props: {
@@ -191,24 +174,20 @@ export default function TabelKaryawan({ filterConfig }: Props) {
         },
       },
       {
-        column: "nik",
         value: karyawan.nik,
         td: karyawan.nik,
         isNumeric: true,
       },
       {
-        column: "no_rm",
         value: karyawan.no_rm,
         td: karyawan.no_rm,
         isNumeric: true,
       },
       {
-        column: "unit_kerja",
         value: karyawan.unit_kerja.nama_unit,
         td: karyawan.unit_kerja.nama_unit,
       },
       {
-        column: "status_karyawan",
         value: karyawan.status_karyawan.label,
         td: (
           <StatusKaryawanBadge
@@ -221,17 +200,14 @@ export default function TabelKaryawan({ filterConfig }: Props) {
         },
       },
       {
-        column: "email",
         value: karyawan.email,
         td: karyawan.email,
       },
       {
-        column: "username",
         value: karyawan.user.username,
         td: karyawan.user.username,
       },
       {
-        column: "status_aktif",
         value: karyawan.user.status_aktif,
         td: (
           <BooleanBadge
@@ -246,17 +222,14 @@ export default function TabelKaryawan({ filterConfig }: Props) {
         },
       },
       {
-        column: "ayah",
         value: karyawan.ayah.nama,
         td: karyawan.ayah.nama,
       },
       {
-        column: "ibu",
         value: karyawan.ibu.nama,
         td: karyawan.ibu.nama,
       },
       {
-        column: "jumlah_keluarga",
         value: karyawan.jumlah_keluarga,
         td: karyawan.jumlah_keluarga,
         cProps: {
@@ -264,27 +237,22 @@ export default function TabelKaryawan({ filterConfig }: Props) {
         },
       },
       {
-        column: "tgl_masuk",
         value: karyawan.tgl_masuk,
         td: formatDate(karyawan.tgl_masuk),
       },
       {
-        column: "tgl_keluar",
         value: karyawan.tgl_keluar,
         td: formatDate(karyawan.tgl_keluar),
       },
       {
-        column: "masa_kerja",
         value: karyawan.masa_kerja,
         td: formatMasaKerja(karyawan.masa_kerja),
       },
       {
-        column: "promosi",
         value: "-",
         td: "-",
       },
       {
-        column: "mutasi",
         value: "-",
         td: "-",
       },
@@ -319,7 +287,6 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                   <CustomTableContainer>
                     <CustomTable
                       formattedHeader={formattedHeader}
-                      // @ts-ignore
                       formattedData={formattedData}
                       batchActions={batchActions}
                       onRowClick={() => {

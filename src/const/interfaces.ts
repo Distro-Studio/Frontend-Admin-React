@@ -350,9 +350,9 @@ export interface Interface__FormattedTableHeader {
 export interface Interface__FormattedTableData {
   id: number;
   rows: {
-    column: string;
-    value: string | number;
-    td: string | number | React.ReactNode;
+    column?: string;
+    value: string | number | boolean | Date | null;
+    td: string | number | boolean | null | React.ReactNode;
     isNumeric?: boolean; // default false
     props?: any;
     cProps?: StackProps;
@@ -473,7 +473,7 @@ export interface Interface__ConstantTable {
 export interface Interface__AnggotaKeluarga {
   id: number;
   nama: string;
-  pendidikan: string;
+  pendidikan_terakhir: string;
   pekerjaan: string;
   status_hidup: boolean | number;
   no_hp: string;
