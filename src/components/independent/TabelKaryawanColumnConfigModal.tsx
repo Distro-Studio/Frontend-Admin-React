@@ -151,6 +151,8 @@ export default function TabelKaryawanColumnConfigModal({
                   ok && (
                     <Button
                       key={i}
+                      // flex={"1 1 0"}
+                      // minW={"max-content"}
                       fontWeight={500}
                       borderRadius={"full"}
                       className={"btn-outline clicky"}
