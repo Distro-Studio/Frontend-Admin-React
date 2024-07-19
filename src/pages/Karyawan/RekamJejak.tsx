@@ -66,9 +66,9 @@ export default function RekamJejak() {
             </HStack>
 
             <HStack>
-              <ExportModal url={""} label={"Export Rekam Jejak"} px={6} />
+              <ExportModal url={""} title={"Export Rekam Jejak"} px={6} />
 
-              <ImportModal url={""} label={"Import Karyawan"} px={6} />
+              <ImportModal url={""} title={"Import Karyawan"} px={6} />
             </HStack>
           </HStack>
 

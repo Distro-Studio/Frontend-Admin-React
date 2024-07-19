@@ -20,10 +20,10 @@ import DisclosureHeader from "./DisclosureHeader";
 
 interface Props extends ButtonProps {
   url: string;
-  label?: string;
+  title?: string;
 }
 
-export default function ExportModal({ url, label, ...props }: Props) {
+export default function ExportModal({ url, title, ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(`export-modal-${1}`, isOpen, onOpen, onClose);
   const initialRef = useRef(null);
@@ -59,7 +59,7 @@ export default function ExportModal({ url, label, ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title={label || "Export"} />
+            <DisclosureHeader title={title || "Export"} />
           </ModalHeader>
           <ModalBody>
             <Text opacity={0.6}>Apakah anda yakin akan export tabel ini?</Text>

@@ -1,5 +1,5 @@
 import { Button, HStack, Icon } from "@chakra-ui/react";
-import { RiAddBoxFill, RiTableLine } from "@remixicon/react";
+import { RiAddBoxFill } from "@remixicon/react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ExportModal from "../../components/dependent/ExportModal";
@@ -7,6 +7,7 @@ import ImportModal from "../../components/dependent/ImportModal";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelKaryawan from "../../components/dependent/TabelKaryawan";
 import FilterKaryawan from "../../components/independent/FilterKaryawan";
+import TableColumnConfigModal from "../../components/independent/TableColumnConfigModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useLightDarkColor } from "../../const/colors";
@@ -67,21 +68,13 @@ export default function Karyawan() {
 
               <FilterKaryawan px={6} />
 
-              <Button
-                className="btn-outline clicky"
-                leftIcon={<Icon as={RiTableLine} fontSize={iconSize} />}
-                _focus={{ border: "1px solid var(--p500)" }}
-                flexShrink={0}
-                pl={"18px !important"}
-              >
-                Kolom
-              </Button>
+              <TableColumnConfigModal title="Kolom Tabel Karyawan Config" />
             </HStack>
 
             <HStack>
-              <ExportModal url={""} label={"Export Karyawan"} px={6} />
+              <ExportModal url={""} title={"Export Karyawan"} px={6} />
 
-              <ImportModal url={""} label={"Import Karyawan"} px={6} />
+              <ImportModal url={""} title={"Import Karyawan"} px={6} />
 
               <Button
                 flex={"1 0 120px"}

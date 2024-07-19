@@ -24,10 +24,10 @@ import FileInputLarge from "./input/FileInputLarge";
 
 interface Props extends ButtonProps {
   url: string;
-  label?: string;
+  title?: string;
 }
 
-export default function ImportModal({ url, label, ...props }: Props) {
+export default function ImportModal({ url, title, ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(`import-modal-${1}`, isOpen, onOpen, onClose);
   const initialRef = useRef(null);
@@ -96,7 +96,7 @@ export default function ImportModal({ url, label, ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title={label || "Import"} />
+            <DisclosureHeader title={title || "Import"} />
           </ModalHeader>
           <ModalBody>
             <form id="importForm" onSubmit={formik.handleSubmit}>
