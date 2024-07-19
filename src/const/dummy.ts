@@ -5914,7 +5914,7 @@ const dummyDetailKaryawan = {
   id: 2,
   user: {
     id: 3,
-    nama: "Very Very Long Name as Possible",
+    nama: "Jolitos Kurniawan",
     username: "username1",
     email_verified_at: null,
     role_id: null,
@@ -5947,7 +5947,7 @@ const dummyDetailKaryawan = {
   unit_kerja: {
     id: 12,
     nama_unit: "Sumber Daya Manusia (SDM)",
-    jenis_karyawan: 0,
+    jenis_karyawan: 1,
     created_at: "2024-03-20T23:48:34.000000Z",
     updated_at: "2024-06-06T23:48:34.000000Z",
   },

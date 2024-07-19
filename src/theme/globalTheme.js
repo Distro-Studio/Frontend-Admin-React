@@ -99,7 +99,7 @@ export const globalTheme = extendTheme({
 
     Badge: {
       baseStyle: (props) => ({
-        p: "4px 10px",
+        p: "4px 12px",
         borderRadius: 6,
         fontSize: [10, null, 12],
         // textTransform: "none",

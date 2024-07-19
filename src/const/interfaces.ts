@@ -320,6 +320,36 @@ export interface User {
 }
 
 //! NEW
+export interface Interface__ChartDoughnut {
+  datasets: {
+    customTooltipLabels: string[];
+    data: number[];
+    backgroundColor: string[];
+    borderWidth: number;
+    [key: string]: any;
+  }[];
+  labels?: string[];
+  aspectRatio?: number;
+  cutout?: string;
+}
+
+export interface Interface__ChartLine {
+  datasets: {
+    customTooltipLabels: string[] | number[];
+    data: { x: string; y: number }[] | number[];
+    backgroundColor: string[] | string;
+    borderColor: string;
+    borderWidth: number;
+    fill?: boolean;
+    tension?: number;
+    [key: string]: any;
+  }[];
+  xLabel?: string;
+  yLabel?: string;
+  labels?: string[];
+  aspectRatio?: number;
+}
+
 export interface Interface__TableRowOption {
   label: string | React.ReactNode;
   handleOnClick: (param: any) => void;

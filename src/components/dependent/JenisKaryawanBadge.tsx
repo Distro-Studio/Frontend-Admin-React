@@ -1,6 +1,4 @@
 import { Badge, BadgeProps } from "@chakra-ui/react";
-import chartColors from "../../constant/chartColors";
-import { useLightDarkColor } from "../../const/colors";
 
 interface Props extends BadgeProps {
   data: boolean | number;
@@ -8,13 +6,12 @@ interface Props extends BadgeProps {
 
 export default function JenisKaryawanBadge({ data, ...props }: Props) {
   // SX
-  const lightDarkColor = useLightDarkColor();
 
   return (
     <Badge
+      borderRadius={"full"}
       textAlign={"center"}
-      color={lightDarkColor}
-      bg={data ? chartColors[0] : chartColors[1]}
+      colorScheme={data ? "orange" : "blue"}
       {...props}
     >
       {data ? "Shift" : "Non-Shift"}

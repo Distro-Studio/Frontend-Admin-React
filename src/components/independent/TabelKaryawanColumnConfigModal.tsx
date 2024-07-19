@@ -161,7 +161,7 @@ export default function TabelKaryawanColumnConfigModal({
                       }
                       bg={
                         selected && selected.some((item) => item === i)
-                          ? "var(--p500a4) !important"
+                          ? "var(--p500a5) !important"
                           : ""
                       }
                       onClick={() => {

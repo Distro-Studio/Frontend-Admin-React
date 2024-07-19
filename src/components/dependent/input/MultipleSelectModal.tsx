@@ -253,7 +253,7 @@ export default function MultipleSelectDrawer({
                     bg={
                       selected &&
                       selected.some((item) => item.value === option.value)
-                        ? "var(--p500a4) !important"
+                        ? "var(--p500a5) !important"
                         : ""
                     }
                     onClick={() => {

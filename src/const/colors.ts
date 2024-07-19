@@ -4,6 +4,10 @@ const useContentBgColor = () => {
   return useColorModeValue("#f7f7f7", "#151515");
 };
 
+const useTableStripedColor = () => {
+  return useColorModeValue("#fbfbfb", "#161616");
+};
+
 const useBodyColor = () => {
   return useColorModeValue("white", "dark");
 };
@@ -61,4 +65,5 @@ export {
   useErrorAlphaColor,
   useWarningColor,
   useWarningAlphaColor,
+  useTableStripedColor,
 };
