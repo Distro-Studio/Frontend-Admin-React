@@ -20,7 +20,12 @@ import {
   VStack,
   Wrap,
 } from "@chakra-ui/react";
-import { RiEditBoxFill, RiHeartLine, RiShutDownLine } from "@remixicon/react";
+import {
+  RiEditBoxFill,
+  RiGuideLine,
+  RiHeartLine,
+  RiShutDownLine,
+} from "@remixicon/react";
 import { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { Link } from "react-router-dom";
@@ -39,6 +44,7 @@ import NoData from "../independent/NoData";
 import CContainer from "../wrapper/CContainer";
 import BooleanBadge from "./BooleanBadge";
 import DetailKeluargaKaryawanModalDisclosure from "./DetailKeluargaKaryawanModalDisclosure";
+import DetailRekamJejakKaryawanModalDisclosure from "./DetailRekamJejakKaryawanModalDisclosure";
 import DisclosureHeader from "./DisclosureHeader";
 import JenisKaryawanBadge from "./JenisKaryawanBadge";
 import Retry from "./Retry";
@@ -147,23 +153,6 @@ export default function DetailKaryawanModal({
                               inputValue={search}
                             />
 
-                            <Button
-                              flexShrink={0}
-                              className="btn-outline clicky"
-                              leftIcon={
-                                <Icon
-                                  as={RiShutDownLine}
-                                  fontSize={iconSize}
-                                  // opacity={0.4}
-                                  // color={chartColors[4]}
-                                />
-                              }
-                            >
-                              {data.user.status_aktif
-                                ? "Non-aktifkan"
-                                : "Aktifkan"}
-                            </Button>
-
                             <DetailKeluargaKaryawanModalDisclosure
                               karyawan_id={1}
                               flexShrink={0}
@@ -184,21 +173,61 @@ export default function DetailKaryawanModal({
                                 Data Keluarga
                               </Button>
                             </DetailKeluargaKaryawanModalDisclosure>
+
+                            <DetailRekamJejakKaryawanModalDisclosure
+                              karyawan_id={1}
+                              flexShrink={0}
+                            >
+                              <Button
+                                flexShrink={0}
+                                w={"100%"}
+                                leftIcon={
+                                  <Icon
+                                    as={RiGuideLine}
+                                    fontSize={iconSize}
+                                    // opacity={0.4}
+                                    // color={chartColors[6]}
+                                  />
+                                }
+                                className="btn-outline clicky"
+                              >
+                                Rekam Jejak
+                              </Button>
+                            </DetailRekamJejakKaryawanModalDisclosure>
                           </HStack>
 
-                          <Button
-                            flexShrink={0}
-                            leftIcon={
-                              <Icon as={RiEditBoxFill} fontSize={iconSize} />
-                            }
-                            colorScheme="ap"
-                            className="btn-ap clicky"
-                            as={Link}
-                            to={`/karyawan/${data.id}/edit`}
-                            pl={3}
-                          >
-                            Edit
-                          </Button>
+                          <HStack>
+                            <Button
+                              flexShrink={0}
+                              className="btn-outline clicky"
+                              leftIcon={
+                                <Icon
+                                  as={RiShutDownLine}
+                                  fontSize={iconSize}
+                                  // opacity={0.4}
+                                  // color={chartColors[4]}
+                                />
+                              }
+                            >
+                              {data.user.status_aktif
+                                ? "Non-aktifkan"
+                                : "Aktifkan"}
+                            </Button>
+
+                            <Button
+                              flexShrink={0}
+                              leftIcon={
+                                <Icon as={RiEditBoxFill} fontSize={iconSize} />
+                              }
+                              colorScheme="ap"
+                              className="btn-ap clicky"
+                              as={Link}
+                              to={`/karyawan/${data.id}/edit`}
+                              pl={3}
+                            >
+                              Edit
+                            </Button>
+                          </HStack>
                         </HStack>
                       </Box>
 
@@ -507,7 +536,7 @@ export default function DetailKaryawanModal({
                           </VStack>
                         </CContainer>
 
-                        <VStack
+                        <CContainer
                           gap={responsiveSpacing}
                           overflowY={"auto"}
                           flex={"1 1 500px"}
@@ -1174,7 +1203,7 @@ export default function DetailKaryawanModal({
                               </VStack>
                             </VStack>
                           </CContainer>
-                        </VStack>
+                        </CContainer>
                       </Wrap>
                     </CContainer>
                   )}

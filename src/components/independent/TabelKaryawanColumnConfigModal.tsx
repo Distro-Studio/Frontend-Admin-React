@@ -110,6 +110,7 @@ export default function TabelKaryawanColumnConfigModal({
         initialFocusRef={initialRef}
         // scrollBehavior="inside"
         allowPinchZoom
+        size={"lg"}
         blockScrollOnMount={false}
         isCentered
       >

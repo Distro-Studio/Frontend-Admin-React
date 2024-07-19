@@ -126,6 +126,7 @@ export default function FilterKaryawan({ ...props }: Props) {
         onClose={backOnClose}
         initialFocusRef={initialRef}
         isCentered
+        size={"lg"}
         // scrollBehavior="inside"
       >
         <ModalOverlay />

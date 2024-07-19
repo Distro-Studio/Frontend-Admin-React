@@ -2,9 +2,6 @@ import {
   Avatar,
   Box,
   BoxProps,
-  Button,
-  HStack,
-  Icon,
   Modal,
   ModalBody,
   ModalContent,
@@ -12,28 +9,27 @@ import {
   ModalOverlay,
   Text,
   useDisclosure,
-  VStack,
   Wrap,
 } from "@chakra-ui/react";
-import { RiErrorWarningFill } from "@remixicon/react";
 import { useRef } from "react";
-import { dummyDetailKeluargaKaryawan } from "../../const/dummy";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { responsiveSpacing } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import useDataState from "../../hooks/useDataState";
 import backOnClose from "../../lib/backOnClose";
+import formatDate from "../../lib/formatDate";
+import formatMasaKerja from "../../lib/formatMasaKerja";
 import ComponentSpinner from "../independent/ComponentSpinner";
 import NoData from "../independent/NoData";
 import CContainer from "../wrapper/CContainer";
 import DisclosureHeader from "./DisclosureHeader";
 import Retry from "./Retry";
-import TabelDetailKeluargaKaryawan from "./TabelDetailKeluargaKaryawan";
+import TabelDetailRekamJejak from "./TabelDetailRekamJejak";
 
 interface Props extends BoxProps {
   karyawan_id: number;
   children?: any;
 }
-export default function DetailKeluargaKaryawanModalDisclosure({
+export default function DetailRekamJejakKaryawanModalDisclosure({
   karyawan_id,
   children,
   ...props
@@ -48,8 +44,54 @@ export default function DetailKeluargaKaryawanModalDisclosure({
   );
   const initialRef = useRef(null);
 
+  const dummy = {
+    nama: "Jolitos Kurniawan",
+    foto_profil: "https://bit.ly/dan-abramov",
+    jumlah_keluarga: 4,
+    tgl_masuk: new Date(),
+    tgl_keluar: null,
+    masa_kerja: 27,
+    rekam_jejak: [
+      {
+        id: 1,
+        tgl_mulai: "2024-06-01",
+        promosi: "Undefined",
+        mutasi: "Kepala Ruang",
+        penghargaan: "S1 Teknik Sipil",
+      },
+      {
+        id: 2,
+        tgl_mulai: "2024-05-16",
+        promosi: "Undefined",
+        mutasi: "Manager",
+        penghargaan: "S1 Teknik Akuntansi",
+      },
+      {
+        id: 3,
+        tgl_mulai: "2024-02-12",
+        promosi: "Undefined",
+        mutasi: "Karlitos Kurniawan",
+        penghargaan: "S1 Teknik Elektro",
+      },
+      {
+        id: 3,
+        tgl_mulai: "2024-08-23",
+        promosi: "Undefined",
+        mutasi: "Karlitos Kurniawan",
+        penghargaan: "S1 Teknik Hewan",
+      },
+      {
+        id: 3,
+        tgl_mulai: "2024-06-06",
+        promosi: "Undefined",
+        mutasi: "Karlitos Kurniawan",
+        penghargaan: "S1 Teknik THT",
+      },
+    ],
+  };
+
   const { error, loading, data, retry } = useDataState<any>({
-    initialData: dummyDetailKeluargaKaryawan,
+    initialData: dummy,
     url: "",
     dependencies: [],
   });
@@ -76,7 +118,7 @@ export default function DetailKeluargaKaryawanModalDisclosure({
           <ModalHeader ref={initialRef}>
             <DisclosureHeader title={"Detail Keluarga Karyawan"} />
           </ModalHeader>
-          <ModalBody>
+          <ModalBody pb={6}>
             {error && (
               <Box my={"auto"}>
                 <Retry loading={loading} retry={retry} />
@@ -95,7 +137,7 @@ export default function DetailKeluargaKaryawanModalDisclosure({
 
                     {(data || (data && data.length > 0)) && (
                       <>
-                        <CContainer borderRadius={12}>
+                        <CContainer flex={0} borderRadius={12}>
                           {loading && (
                             <ComponentSpinner minH={"400px"} flex={1} />
                           )}
@@ -109,48 +151,46 @@ export default function DetailKeluargaKaryawanModalDisclosure({
                               >
                                 <Avatar
                                   size={"lg"}
-                                  src={data.user.foto_profil}
-                                  name={data.user.nama}
+                                  src={data.foto_profil}
+                                  name={data.nama}
                                 />
 
-                                <VStack align={"stretch"}>
+                                <Box>
                                   <Text fontSize={14} opacity={0.6}>
                                     Nama Karyawan
                                   </Text>
-                                  <Text fontWeight={500}>{data.user.nama}</Text>
-                                </VStack>
+                                  <Text fontWeight={500}>{data.nama}</Text>
+                                </Box>
 
-                                <VStack align={"stretch"}>
+                                <Box>
                                   <Text fontSize={14} opacity={0.6}>
-                                    Jumlah Keluarga
+                                    Tanggal Masuk
                                   </Text>
                                   <Text fontWeight={500}>
-                                    {data.data_karyawan.data_keluargas.length}{" "}
-                                    Anggota
+                                    {formatDate(data.tgl_masuk)}
                                   </Text>
-                                </VStack>
+                                </Box>
 
-                                <HStack ml={"auto"}>
-                                  <Button
-                                    leftIcon={
-                                      <Icon
-                                        as={RiErrorWarningFill}
-                                        fontSize={iconSize}
-                                      />
-                                    }
-                                    pl={5}
-                                    pr={6}
-                                    className="btn-ap clicky"
-                                    colorScheme="ap"
-                                  >
-                                    Persetujuan
-                                  </Button>
-                                </HStack>
+                                <Box>
+                                  <Text fontSize={14} opacity={0.6}>
+                                    Tanggal Keluar
+                                  </Text>
+                                  <Text fontWeight={500}>
+                                    {formatDate(data.tgl_keluar)}
+                                  </Text>
+                                </Box>
+
+                                <Box>
+                                  <Text fontSize={14} opacity={0.6}>
+                                    Masa Kerja
+                                  </Text>
+                                  <Text fontWeight={500}>
+                                    {formatMasaKerja(data.masa_kerja)}
+                                  </Text>
+                                </Box>
                               </Wrap>
 
-                              <TabelDetailKeluargaKaryawan
-                                data={data.data_karyawan.data_keluargas}
-                              />
+                              <TabelDetailRekamJejak data={data.rekam_jejak} />
                             </>
                           )}
                         </CContainer>
