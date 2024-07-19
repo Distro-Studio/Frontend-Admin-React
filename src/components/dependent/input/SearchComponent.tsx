@@ -13,8 +13,8 @@ import { iconSize } from "../../../constant/sizes";
 
 interface Props extends InputGroupProps {
   name: string;
-  inputValue: string | undefined;
-  onChangeSetter: Dispatch<string | undefined>;
+  inputValue: string;
+  onChangeSetter: Dispatch<string>;
   placeholder?: string;
   inputRef?: any;
 }

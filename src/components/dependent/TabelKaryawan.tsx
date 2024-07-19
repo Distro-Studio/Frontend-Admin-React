@@ -2,7 +2,7 @@ import { Box, HStack, Icon, Text, useDisclosure } from "@chakra-ui/react";
 import { RiShutDownLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import { dummyKaryawans } from "../../const/dummy";
-import { Interface__Karyawan } from "../../const/interfaces";
+import { Interface__DetailKaryawan } from "../../const/interfaces";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
 import useDataState from "../../hooks/useDataState";
@@ -15,6 +15,9 @@ import DetailKaryawanModal from "./DetailKaryawanModal";
 import Retry from "./Retry";
 import StatusKaryawanBadge from "./StatusKaryawanBadge";
 import TabelFooterConfig from "./TabelFooterConfig";
+import formatDate from "../../lib/formatDate";
+import formatMasaKerja from "../../lib/formatMasaKerja";
+import BooleanBadge from "./BooleanBadge";
 
 interface Props {
   filterConfig?: any;
@@ -61,14 +64,18 @@ export default function TabelKaryawan({ filterConfig }: Props) {
     },
   ];
 
-  const { error, loading, data, retry } = useDataState<Interface__Karyawan[]>({
+  const { error, loading, data, retry } = useDataState<
+    Interface__DetailKaryawan[]
+  >({
     initialData: dummyKaryawans,
     url: "",
     limit: limitConfig,
     dependencies: [limitConfig, pageConfig, filterKaryawan],
   });
+
   const formattedHeader = [
     {
+      column: "nama",
       th: "Nama",
       isSortable: true,
       props: {
@@ -82,26 +89,86 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       },
     },
     {
+      column: "nik",
       th: "No. Induk Karyawan",
       isSortable: true,
     },
     {
+      column: "no_rm",
       th: "No. Rekam Medis",
       isSortable: true,
     },
     {
+      column: "unit_kerja",
       th: "Unit Kerja",
       isSortable: true,
     },
     {
+      column: "status_karyawan",
       th: "Status Karyawan",
       isSortable: true,
       cProps: {
         justify: "center",
       },
     },
+    {
+      column: "email",
+      th: "Email",
+      isSortable: true,
+    },
+    {
+      column: "username",
+      th: "Username",
+      isSortable: true,
+    },
+    {
+      column: "status_aktif",
+      th: "Status Aktif",
+      isSortable: true,
+    },
+    {
+      column: "ayah",
+      th: "Ayah",
+      isSortable: true,
+    },
+    {
+      column: "ibu",
+      th: "Ibu",
+      isSortable: true,
+    },
+    {
+      column: "jumlah_keluarga",
+      th: "Jumlah Keluarga",
+      isSortable: true,
+      cProps: {
+        justify: "center",
+      },
+    },
+    {
+      column: "tgl_masuk",
+      th: "Tanggal Masuk",
+      isSortable: true,
+    },
+    {
+      column: "tgl_keluar",
+      th: "Tanggal Keluar",
+      isSortable: true,
+    },
+    {
+      column: "masa_kerja",
+      th: "Masa Kerja",
+      isSortable: true,
+    },
+    {
+      column: "promosi",
+      th: "Promosi",
+    },
+    {
+      column: "mutasi",
+      th: "Mutasi",
+    },
   ];
-  const formattedData = data?.map((karyawan: Interface__Karyawan) => ({
+  const formattedData = data?.map((karyawan: Interface__DetailKaryawan) => ({
     id: karyawan.id,
     rows: [
       {
@@ -146,6 +213,71 @@ export default function TabelKaryawan({ filterConfig }: Props) {
         cProps: {
           justify: "center",
         },
+      },
+      {
+        column: "email",
+        value: karyawan.email,
+        td: karyawan.email,
+      },
+      {
+        column: "username",
+        value: karyawan.user.username,
+        td: karyawan.user.username,
+      },
+      {
+        column: "status_aktif",
+        value: karyawan.user.status_aktif,
+        td: (
+          <BooleanBadge
+            data={karyawan.user.status_aktif}
+            trueValue="Aktif"
+            falseValue="Tidak Aktif"
+            w={"120px"}
+          />
+        ),
+      },
+      {
+        column: "ayah",
+        value: karyawan.ayah.nama,
+        td: karyawan.ayah.nama,
+      },
+      {
+        column: "ibu",
+        value: karyawan.ibu.nama,
+        td: karyawan.ibu.nama,
+      },
+      {
+        column: "jumlah_keluarga",
+        value: karyawan.jumlah_keluarga,
+        td: karyawan.jumlah_keluarga,
+        cProps: {
+          justify: "center",
+        },
+      },
+      {
+        column: "tgl_masuk",
+        value: karyawan.tgl_masuk,
+        td: formatDate(karyawan.tgl_masuk),
+      },
+      {
+        column: "tgl_keluar",
+        value: karyawan.tgl_keluar,
+        td: formatDate(karyawan.tgl_keluar),
+      },
+      {
+        column: "masa_kerja",
+        value: karyawan.masa_kerja,
+        td: formatMasaKerja(karyawan.masa_kerja),
+      },
+      {
+        column: "promosi",
+        value: "-",
+        td: "-",
+      },
+      {
+        column: "mutasi",
+        value: "-",
+        td: "-",
       },
     ],
   }));

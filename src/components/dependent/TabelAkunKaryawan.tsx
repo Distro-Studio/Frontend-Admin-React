@@ -48,7 +48,7 @@ export default function TabelAkunKaryawan({ filterConfig }: Props) {
       dataType: "string",
     },
     {
-      key: "status_akun",
+      key: "status_aktif",
       label: "Status Akun",
       dataType: "badge",
       preferredTextAlign: "center",
@@ -223,7 +223,7 @@ export default function TabelAkunKaryawan({ filterConfig }: Props) {
                     <Td whiteSpace={"nowrap"}>
                       <VStack>
                         <BooleanBadge
-                          data={row.status_akun}
+                          data={row.status_aktif}
                           trueValue="Aktif"
                           falseValue="Tidak Aktif"
                           w={"100%"}

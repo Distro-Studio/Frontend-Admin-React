@@ -429,9 +429,7 @@ export default function DetailKaryawanModal({
                                 </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
-                                  {data.jenis_kelamin.toLowerCase() === "p"
-                                    ? "Perempuan"
-                                    : "Laki - laki"}
+                                  {data.jenis_kelamin.label}
                                 </Text>
                               </HStack>
 
@@ -448,7 +446,7 @@ export default function DetailKaryawanModal({
                                 </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
-                                  {data.agama}
+                                  {data.agama.label}
                                 </Text>
                               </HStack>
 
@@ -656,7 +654,7 @@ export default function DetailKaryawanModal({
                                     </Box>
                                     <FlexLine />
                                     <Text fontWeight={500} textAlign={"right"}>
-                                      {data.golongan_darah}
+                                      {data.golongan_darah.label}
                                     </Text>
                                   </HStack>
                                 </VStack>

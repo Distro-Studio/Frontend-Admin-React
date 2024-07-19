@@ -62,7 +62,7 @@ export default function MultipleSelectDrawer({
   useBackOnClose(`${id}-${name}`, isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
-  const [search, setSearch] = useState<string | undefined>("");
+  const [search, setSearch] = useState<string>("");
   const [selected, setSelected] = useState<
     Interface__SelectOption[] | undefined
   >(inputValue);
@@ -243,6 +243,19 @@ export default function MultipleSelectDrawer({
                     key={i}
                     justifyContent={"space-between"}
                     className="btn-outline"
+                    borderRadius={"full"}
+                    borderColor={
+                      selected &&
+                      selected.some((item) => item.value === option.value)
+                        ? "var(--p500a2)"
+                        : ""
+                    }
+                    bg={
+                      selected &&
+                      selected.some((item) => item.value === option.value)
+                        ? "var(--p500a4) !important"
+                        : ""
+                    }
                     onClick={() => {
                       const isSelected =
                         selected &&
@@ -261,19 +274,6 @@ export default function MultipleSelectDrawer({
 
                       setSelected(newSelected);
                     }}
-                    borderRadius={"full"}
-                    borderColor={
-                      selected &&
-                      selected.some((item) => item.value === option.value)
-                        ? "var(--p500a2)"
-                        : ""
-                    }
-                    bg={
-                      selected &&
-                      selected.some((item) => item.value === option.value)
-                        ? "var(--p500a4) !important"
-                        : ""
-                    }
                     gap={2}
                   >
                     <Text>{option.label}</Text>

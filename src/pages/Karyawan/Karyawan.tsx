@@ -7,7 +7,7 @@ import ImportModal from "../../components/dependent/ImportModal";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelKaryawan from "../../components/dependent/TabelKaryawan";
 import FilterKaryawan from "../../components/independent/FilterKaryawan";
-import TableColumnConfigModal from "../../components/independent/TableColumnConfigModal";
+import TableColumnConfigModal from "../../components/independent/TabelKaryawanColumnConfigModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useLightDarkColor } from "../../const/colors";
@@ -16,7 +16,7 @@ import useFilterKaryawan from "../../global/useFilterKaryawan";
 
 export default function Karyawan() {
   // Filter Config
-  const { filterKaryawan, setFilterKaryawan } = useFilterKaryawan();
+  const { setFilterKaryawan } = useFilterKaryawan();
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -61,9 +61,9 @@ export default function Karyawan() {
                 flex={"1 1 140px"}
                 name="search"
                 onChangeSetter={(input) => {
-                  setSearch(input ? input : "");
+                  setSearch(input);
                 }}
-                inputValue={filterKaryawan.search}
+                inputValue={search}
               />
 
               <FilterKaryawan px={6} />

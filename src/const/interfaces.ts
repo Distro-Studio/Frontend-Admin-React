@@ -364,6 +364,7 @@ export interface Interface__User {
   username: string;
   email_verified_at: Date | string | null;
   role_id: number | null;
+  roles: Interface__Role[];
   foto_profil: string | null;
   data_completion_step: number;
   unit_kerja?: Interface__UnitKerja;
@@ -418,7 +419,7 @@ export interface Interface__Jabatan {
   nama_jabatan: string;
   is_struktural: number;
   tunjangan: number;
-  created_at: Date;
+  created_at: Date | string;
   updated_at: Date | string | null;
 }
 
@@ -427,7 +428,7 @@ export interface Interface__Kompetensi {
   nama_kompetensi: string;
   jenis_kompetensi: number;
   total_tunjangan: number;
-  created_at: Date;
+  created_at: Date | string;
   updated_at: Date | string | null;
 }
 
@@ -442,7 +443,7 @@ export interface Interface__Role {
   name: string;
   deskripsi: string;
   guard_name: string;
-  created_at: Date;
+  created_at: Date | string;
   updated_at: Date | string | null;
   pivot: Interface__Pivot;
 }
@@ -451,7 +452,7 @@ export interface Interface__KelompokGaji {
   id: number;
   nama_kelompok: string;
   besaran_gaji: number;
-  created_at: Date;
+  created_at: Date | string;
   updated_at: Date | string | null;
 }
 
@@ -459,7 +460,7 @@ export interface Interface__Ptkp {
   id: number;
   kode_ptkp: string;
   kategori_ter_id: number;
-  created_at: Date;
+  created_at: Date | string;
   updated_at: Date | string | null;
 }
 
@@ -468,17 +469,28 @@ export interface Interface__ConstantTable {
   label: string;
 }
 
+export interface Interface__AnggotaKeluarga {
+  id: number;
+  nama: string;
+  pendidikan: string;
+  pekerjaan: string;
+  status_hidup: boolean | number;
+  no_hp: string;
+  email: string;
+  created_at: Date | string;
+  updated_at: Date | string | null;
+}
+
 export interface Interface__DetailKaryawan {
   id: number;
   user: Interface__User;
   email: string;
-  no_rm: number;
-  no_manulife: number;
+  no_rm: string;
+  no_manulife: string;
   tgl_masuk: Date | string;
   unit_kerja: Interface__UnitKerja;
   jabatan: Interface__Jabatan;
   kompetensi: Interface__Kompetensi;
-  role: Interface__Role[];
   nik: string;
   nik_ktp: string;
   status_karyawan: Interface__StatusKaryawan;
@@ -516,6 +528,9 @@ export interface Interface__DetailKaryawan {
   masa_berlaku_sip: Date | string;
   tgl_berakhir_pks: Date | string;
   masa_diklat: number;
+  jumlah_keluarga: number;
+  ibu: Interface__AnggotaKeluarga;
+  ayah: Interface__AnggotaKeluarga;
   created_at: Date | string;
   updated_at: Date | string | null;
 }

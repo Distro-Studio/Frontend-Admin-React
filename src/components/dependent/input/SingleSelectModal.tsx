@@ -59,7 +59,7 @@ export default function SingleSelectModal({
   useBackOnClose(`${id}-${name}`, isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
-  const [search, setSearch] = useState<string | undefined>("");
+  const [search, setSearch] = useState<string>("");
   const [selected, setSelected] = useState<Interface__SelectOption | undefined>(
     inputValue
   );

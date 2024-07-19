@@ -13,7 +13,7 @@ import useFilterKaryawan from "../../global/useFilterKaryawan";
 
 export default function RekamJejak() {
   // Filter Config
-  const { filterKaryawan, setFilterKaryawan } = useFilterKaryawan();
+  const { setFilterKaryawan } = useFilterKaryawan();
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function RekamJejak() {
                 onChangeSetter={(input) => {
                   setSearch(input ? input : "");
                 }}
-                inputValue={filterKaryawan.search}
+                inputValue={search}
               />
 
               <FilterKaryawan px={6} />
