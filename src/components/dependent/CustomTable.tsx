@@ -304,6 +304,7 @@ export default function CustomTable({
                   h={"60px"}
                   borderRight={"1px solid var(--divider3)"}
                   _groupHover={{ bg: "var(--divider)" }}
+                  _groupActive={{ bg: "var(--divider2)" }}
                   transition={"200ms"}
                   cursor={"pointer"}
                   onClick={(e) => {
@@ -332,6 +333,7 @@ export default function CustomTable({
               >
                 <HStack
                   _groupHover={{ bg: "var(--divider)" }}
+                  _groupActive={{ bg: "var(--divider2)" }}
                   py={3}
                   px={4}
                   h={"60px"}
