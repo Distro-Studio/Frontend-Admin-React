@@ -25,7 +25,7 @@ import {
   RiListCheck,
   RiMore2Fill,
 } from "@remixicon/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useLightDarkColor } from "../../const/colors";
 import {
   Interface__FormattedTableData,
@@ -38,6 +38,7 @@ interface BatchActionsProps {
   batchActions: any[];
   selectAllRows: boolean;
   handleSelectAllRows: (isChecked: boolean) => void;
+  tableRef: any;
 }
 
 const BatchActions = ({
@@ -45,6 +46,7 @@ const BatchActions = ({
   batchActions,
   selectAllRows,
   handleSelectAllRows,
+  tableRef,
 }: BatchActionsProps) => {
   return (
     <Menu closeOnSelect={false}>
@@ -58,7 +60,7 @@ const BatchActions = ({
         icon={<Icon as={RiListCheck} fontSize={iconSize} />}
       />
 
-      <Portal>
+      <Portal containerRef={tableRef}>
         <MenuList zIndex={10}>
           <MenuGroup title={`${selectedRows.length} Terpilih`}>
             <MenuDivider />
@@ -101,9 +103,10 @@ const BatchActions = ({
 interface RowOptionsProps {
   row: any;
   rowOptions: any[];
+  tableRef: any;
 }
 
-const RowOptions = ({ row, rowOptions }: RowOptionsProps) => {
+const RowOptions = ({ row, rowOptions, tableRef }: RowOptionsProps) => {
   return (
     <Menu closeOnSelect={false}>
       <MenuButton
@@ -116,7 +119,7 @@ const RowOptions = ({ row, rowOptions }: RowOptionsProps) => {
         icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
       />
 
-      <Portal>
+      <Portal containerRef={tableRef}>
         <MenuList zIndex={99} className="rowOptionsList">
           {rowOptions?.map((option, i) => (
             <MenuItem
@@ -258,11 +261,17 @@ export default function CustomTable({
     return null;
   };
 
+  const tableRef = useRef(null);
+
   // SX
   const lightDarkColor = useLightDarkColor();
 
   return (
-    <Table minW={"0"} w={tableHeader.length > 1 ? "100%" : "fit-content"}>
+    <Table
+      ref={tableRef}
+      minW={"0"}
+      w={tableHeader.length > 1 ? "100%" : "fit-content"}
+    >
       <Thead>
         <Tr position={"sticky"} top={0} zIndex={3}>
           {batchActions && (
@@ -287,6 +296,7 @@ export default function CustomTable({
                   batchActions={batchActions}
                   selectAllRows={selectAllRows}
                   handleSelectAllRows={handleSelectAllRows}
+                  tableRef={tableRef}
                 />
               </Center>
             </Td>
@@ -440,7 +450,11 @@ export default function CustomTable({
                     e.stopPropagation();
                   }}
                 >
-                  <RowOptions row={row} rowOptions={rowOptions} />
+                  <RowOptions
+                    row={row}
+                    rowOptions={rowOptions}
+                    tableRef={tableRef}
+                  />
                 </Center>
               </Td>
             )}
