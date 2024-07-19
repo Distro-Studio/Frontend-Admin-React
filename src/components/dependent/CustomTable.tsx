@@ -104,8 +104,6 @@ interface RowOptionsProps {
 }
 
 const RowOptions = ({ row, rowOptions }: RowOptionsProps) => {
-  console.log(rowOptions);
-
   return (
     <Menu closeOnSelect={false}>
       <MenuButton
@@ -119,7 +117,7 @@ const RowOptions = ({ row, rowOptions }: RowOptionsProps) => {
       />
 
       <Portal>
-        <MenuList zIndex={99}>
+        <MenuList zIndex={99} className="rowOptionsList">
           {rowOptions?.map((option, i) => (
             <MenuItem
               key={i}

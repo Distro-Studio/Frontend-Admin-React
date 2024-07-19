@@ -1,5 +1,5 @@
 import { Box, HStack, Icon, Text, useDisclosure } from "@chakra-ui/react";
-import { RiShutDownLine, RiUploadLine } from "@remixicon/react";
+import { RiEditLine, RiShutDownLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import { dummyKaryawans } from "../../const/dummy";
 import { Interface__DetailKaryawan } from "../../const/interfaces";
@@ -66,6 +66,30 @@ export default function TabelKaryawan({ filterConfig }: Props) {
   ];
   // Columns Config
   const { tabelKaryawanColumns } = useTabelKaryawanColumns();
+  // Row Options Config
+  const rowOptions = [
+    {
+      label: "Edit",
+      icon: <Icon as={RiEditLine} fontSize={iconSize} opacity={0.4} />,
+      callback: (row: any) => {
+        console.log("Editing", row);
+      },
+    },
+    {
+      label: "Non-aktifkan",
+      icon: (
+        <Icon
+          as={RiShutDownLine}
+          fontSize={iconSize}
+          opacity={0.4}
+          // color={chartColors[4]}
+        />
+      ),
+      callback: (selectedRows: number[]) => {
+        console.log("Non-aktifkan", selectedRows);
+      },
+    },
+  ];
 
   const { error, loading, data, retry } = useDataState<
     Interface__DetailKaryawan[]
@@ -293,6 +317,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                         onOpen();
                       }}
                       columnsConfig={tabelKaryawanColumns}
+                      rowOptions={rowOptions}
                     />
                   </CustomTableContainer>
 
