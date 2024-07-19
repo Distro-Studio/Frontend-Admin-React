@@ -15,7 +15,7 @@ import {
   VStack,
   Wrap,
 } from "@chakra-ui/react";
-import { RiErrorWarningFill } from "@remixicon/react";
+import { RiCheckboxFill } from "@remixicon/react";
 import { useRef } from "react";
 import { dummyDetailKeluargaKaryawan } from "../../const/dummy";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
@@ -134,12 +134,11 @@ export default function DetailKeluargaKaryawanModalDisclosure({
                                   <Button
                                     leftIcon={
                                       <Icon
-                                        as={RiErrorWarningFill}
+                                        as={RiCheckboxFill}
                                         fontSize={iconSize}
                                       />
                                     }
                                     pl={5}
-                                    pr={6}
                                     className="btn-ap clicky"
                                     colorScheme="ap"
                                   >
