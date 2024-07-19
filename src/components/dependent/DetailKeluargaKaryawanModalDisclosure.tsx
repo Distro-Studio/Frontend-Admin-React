@@ -94,7 +94,13 @@ export default function DetailKeluargaKaryawanModalDisclosure({
                     {(!data || (data && data.length === 0)) && <NoData />}
 
                     {(data || (data && data.length > 0)) && (
-                      <CContainer borderRadius={12}>
+                      <CContainer
+                        overflowY={"auto"}
+                        className="scrollY"
+                        borderRadius={12}
+                        flex={1}
+                        pb={6}
+                      >
                         <Wrap
                           spacing={responsiveSpacing}
                           mb={responsiveSpacing}

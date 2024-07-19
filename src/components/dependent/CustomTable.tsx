@@ -19,7 +19,12 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine, RiListCheck } from "@remixicon/react";
+import {
+  RiArrowDownLine,
+  RiArrowUpLine,
+  RiListCheck,
+  RiMore2Fill,
+} from "@remixicon/react";
 import { useState } from "react";
 import { useLightDarkColor } from "../../const/colors";
 import {
@@ -98,6 +103,7 @@ interface Props {
   onRowClick?: (rowData: any) => void;
   batchActions?: any[];
   columnsConfig?: number[];
+  rowOptions?: any[];
 }
 
 export default function CustomTable({
@@ -106,6 +112,7 @@ export default function CustomTable({
   onRowClick,
   batchActions,
   columnsConfig,
+  rowOptions,
 }: Props) {
   const tableHeader = columnsConfig
     ? columnsConfig.map((columnIndex) => formattedHeader[columnIndex])
@@ -275,6 +282,26 @@ export default function CustomTable({
               </HStack>
             </Th>
           ))}
+
+          {rowOptions && (
+            <Td
+              h={"52px"}
+              w={"52px !important"}
+              minW={"0% !important"}
+              maxW={"52px !important"}
+              p={0}
+              position={"sticky"}
+              right={"-1px"}
+            >
+              <Center
+                h={"52px"}
+                w={"52px"}
+                borderLeft={"1px solid var(--divider3)"}
+                borderBottom={"1px solid var(--divider3)"}
+                bg={lightDarkColor}
+              ></Center>
+            </Td>
+          )}
         </Tr>
       </Thead>
 
@@ -323,6 +350,7 @@ export default function CustomTable({
                 </Center>
               </Td>
             )}
+
             {row.rows.map((col, colIndex) => (
               <Td
                 key={colIndex}
@@ -348,6 +376,41 @@ export default function CustomTable({
                 </HStack>
               </Td>
             ))}
+
+            {rowOptions && (
+              <Td
+                h={"52px"}
+                w={"52px !important"}
+                minW={"0% !important"}
+                maxW={"52px !important"}
+                p={0}
+                position={"sticky"}
+                right={"-1px"}
+                bg={lightDarkColor}
+                zIndex={2}
+              >
+                <Center
+                  h={"60px"}
+                  w={"52px"}
+                  borderLeft={"1px solid var(--divider3)"}
+                  _groupHover={{ bg: "var(--divider)" }}
+                  _groupActive={{ bg: "var(--divider2)" }}
+                  transition={"200ms"}
+                >
+                  <IconButton
+                    h={"60px"}
+                    w={"52px"}
+                    borderRadius={0}
+                    className="btn"
+                    aria-label="wor options button"
+                    icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                  />
+                </Center>
+              </Td>
+            )}
           </Tr>
         ))}
       </Tbody>
