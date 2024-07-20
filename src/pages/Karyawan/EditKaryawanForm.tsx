@@ -346,6 +346,7 @@ export default function EditKaryawanForm({
       <Button
         mt={"auto"}
         w={"100%"}
+        flexShrink={0}
         colorScheme="ap"
         className="btn-ap clicky"
         h={"50px"}
@@ -571,7 +572,7 @@ export default function EditKaryawanForm({
 
   const Step2Footer = () => {
     return (
-      <ButtonGroup mt={"auto"} w={"100%"}>
+      <ButtonGroup flexShrink={0} mt={"auto"} w={"100%"}>
         <Button
           w={"100%"}
           className="btn-solid clicky"

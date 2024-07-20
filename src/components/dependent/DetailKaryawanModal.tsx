@@ -20,7 +20,6 @@ import {
   RiCalendarFill,
   RiCalendarScheduleFill,
   RiCircleFill,
-  RiEditLine,
   RiFeedbackFill,
   RiFileChartFill,
   RiHeartFill,
@@ -30,7 +29,6 @@ import {
 } from "@remixicon/react";
 import { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
-import { Link } from "react-router-dom";
 import { useLightDarkColor } from "../../const/colors";
 import { dummyDetailKaryawan } from "../../const/dummy";
 import { responsiveSpacing } from "../../const/sizes";
@@ -49,6 +47,7 @@ import DetailKeluargaKaryawanModalDisclosure from "./DetailKeluargaKaryawanModal
 import DetailRekamJejakKaryawanModalDisclosure from "./DetailRekamJejakKaryawanModalDisclosure";
 import DisclosureHeader from "./DisclosureHeader";
 import DokumenKaryawanModalDisclosure from "./DokumenKaryawanModalDisclosure";
+import EditKaryawanModal from "./EditKaryawanModal";
 import JenisKaryawanBadge from "./JenisKaryawanBadge";
 import Retry from "./Retry";
 import SmallLink from "./SmallLink";
@@ -451,18 +450,7 @@ export default function DetailKaryawanModal({
                                 : "Aktifkan"}
                             </Button>
 
-                            <Button
-                              flexShrink={0}
-                              leftIcon={<Icon as={RiEditLine} />}
-                              className="clicky"
-                              colorScheme="ap"
-                              variant={"outline"}
-                              as={Link}
-                              pl={5}
-                              to={`/karyawan/${data.id}/edit`}
-                            >
-                              Edit
-                            </Button>
+                            <EditKaryawanModal initialData={data} />
                           </HStack>
 
                           <CContainer
