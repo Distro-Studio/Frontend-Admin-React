@@ -148,12 +148,12 @@ export default function DetailKaryawanModal({
                           className="scrollY"
                           px={responsiveSpacing}
                           justify={"space-between"}
+                          gap={responsiveSpacing}
                         >
                           <VStack
                             gap={responsiveSpacing}
                             borderRadius={12}
                             align={"center"}
-                            mb={4}
                             // border={"1px solid var(--divider3)"}
                             // p={4}
                           >
@@ -164,7 +164,6 @@ export default function DetailKaryawanModal({
                               fontSize={"64px !important"}
                               src={data.user.foto_profil}
                               name={data.user.nama}
-                              mb={2}
                             />
 
                             <VStack gap={1}>
@@ -202,7 +201,7 @@ export default function DetailKaryawanModal({
                           </VStack>
 
                           {/* Profil Menu */}
-                          <SimpleGrid mt={4} gap={3} columns={[1, 2, null, 3]}>
+                          <SimpleGrid gap={3} columns={[1, 2, null, 3]}>
                             {/* Presensi */}
                             <VStack
                               cursor={"pointer"}
