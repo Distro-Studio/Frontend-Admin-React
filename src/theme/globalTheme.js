@@ -126,7 +126,7 @@ export const globalTheme = extendTheme({
         control: {
           border: props.isInvalid
             ? "1.5px solid #E53E3E"
-            : "2px solid var(--divider3) !important",
+            : "3px solid var(--divider3) !important",
         },
       }),
     },
