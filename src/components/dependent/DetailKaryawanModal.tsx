@@ -177,12 +177,12 @@ export default function DetailKaryawanModal({
                               </Text>
 
                               <HStack mb={2}>
-                                <HStack>
+                                <HStack opacity={0.4}>
                                   <Text>{data.email}</Text>
                                   <Icon
                                     as={RiCircleFill}
                                     fontSize={8}
-                                    opacity={0.2}
+                                    opacity={0.4}
                                   />
                                   <Text>{data.user.username}</Text>
                                 </HStack>
