@@ -727,7 +727,7 @@ export default function TambahKarsyawanModal({ ...props }: Props) {
             <DisclosureHeader title={"Tambah Karyawan"} />
           </ModalHeader>
 
-          <ModalBody pb={responsiveSpacing}>
+          <ModalBody px={0} pb={responsiveSpacing}>
             <Stepper
               maxW={"720px"}
               w={"100%"}

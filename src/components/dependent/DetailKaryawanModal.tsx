@@ -113,7 +113,7 @@ export default function DetailKaryawanModal({
         <ModalHeader ref={initialRef}>
           <DisclosureHeader title={"Detail Karyawan"} />
         </ModalHeader>
-        <ModalBody>
+        <ModalBody px={0}>
           {error && (
             <Box my={"auto"}>
               <Retry loading={loading} retry={retry} />
@@ -147,7 +147,7 @@ export default function DetailKaryawanModal({
                           bg={lightDarkColor}
                           overflowY={"auto"}
                           className="scrollY"
-                          pr={responsiveSpacing}
+                          px={responsiveSpacing}
                           justify={"space-between"}
                         >
                           <VStack
