@@ -66,6 +66,7 @@ export default function PaginationJump({ page, setPage, pagination }: Props) {
                 borderRadius={"0 !important"}
                 borderLeft={"none !important"}
                 borderRight={"none !important"}
+                textAlign={"center"}
               />
               <Button
                 variant={"ghost"}
