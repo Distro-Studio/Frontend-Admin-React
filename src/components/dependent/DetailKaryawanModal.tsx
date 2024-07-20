@@ -20,17 +20,18 @@ import {
   RiCalendarFill,
   RiCalendarScheduleFill,
   RiCircleFill,
-  RiEditFill,
+  RiEditLine,
+  RiFeedbackFill,
   RiFileChartFill,
   RiHeartFill,
   RiLoginBoxFill,
-  RiLoopRightLine,
   RiShutDownFill,
+  RiShutDownLine,
 } from "@remixicon/react";
 import { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { Link } from "react-router-dom";
-import { useBodyColor } from "../../const/colors";
+import { useLightDarkColor } from "../../const/colors";
 import { dummyDetailKaryawan } from "../../const/dummy";
 import { responsiveSpacing } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
@@ -96,7 +97,7 @@ export default function DetailKaryawanModal({
   }, [search]);
 
   // SX
-  const bodyColor = useBodyColor();
+  const lightDarkColor = useLightDarkColor();
 
   return (
     <Modal
@@ -143,21 +144,22 @@ export default function DetailKaryawanModal({
                         mb={responsiveSpacing}
                       >
                         <CContainer
-                          bg={bodyColor}
+                          bg={lightDarkColor}
                           overflowY={"auto"}
                           className="scrollY"
                           pr={responsiveSpacing}
                           justify={"space-between"}
                         >
-                          <HStack
+                          <VStack
                             gap={responsiveSpacing}
                             borderRadius={12}
+                            align={"center"}
                             // border={"1px solid var(--divider3)"}
                             // p={4}
                           >
                             <Avatar
-                              w={"180px"}
-                              h={"180px"}
+                              w={"200px"}
+                              h={"200px"}
                               size={"xxl"}
                               fontSize={"64px !important"}
                               src={data.user.foto_profil}
@@ -165,7 +167,7 @@ export default function DetailKaryawanModal({
                               mb={2}
                             />
 
-                            <CContainer gap={1}>
+                            <VStack gap={1}>
                               <Text
                                 fontWeight={700}
                                 fontSize={32}
@@ -195,20 +197,11 @@ export default function DetailKaryawanModal({
                                   falseValue="Tidak Aktif"
                                   fontSize={13}
                                 />
-
-                                <Button
-                                  leftIcon={<Icon as={RiLoopRightLine} />}
-                                  size={"xs"}
-                                  className="btn clicky"
-                                >
-                                  {data.user.status_aktif
-                                    ? "Non-aktifkan"
-                                    : "Aktifkan"}
-                                </Button>
                               </HStack>
-                            </CContainer>
-                          </HStack>
+                            </VStack>
+                          </VStack>
 
+                          {/* Profil Menu */}
                           <SimpleGrid mt={4} gap={3} columns={[1, 2, null, 3]}>
                             {/* Presensi */}
                             <VStack
@@ -410,12 +403,10 @@ export default function DetailKaryawanModal({
                               justify={"center"}
                               p={4}
                               className="btn-solid clicky"
-                              as={Link}
-                              to={`/karyawan/${data.id}/edit`}
                             >
                               <Icon
                                 opacity={0.4}
-                                as={RiEditFill}
+                                as={RiFeedbackFill}
                                 fontSize={32}
                               />
                               <Text
@@ -423,7 +414,7 @@ export default function DetailKaryawanModal({
                                 textAlign={"center"}
                                 lineHeight={1.4}
                               >
-                                Edit Karyawan
+                                Feedback
                               </Text>
                             </VStack>
                           </SimpleGrid>
@@ -434,22 +425,47 @@ export default function DetailKaryawanModal({
                           overflowY={[null, null, null, "auto"]}
                           className="scrollY"
                         >
-                          <Box px={[3, null, 5]}>
+                          <HStack
+                            px={[0, null, 5]}
+                            position={"sticky"}
+                            top={"0"}
+                            bg={lightDarkColor}
+                            zIndex={2}
+                          >
                             <SearchComponent
-                              position={"sticky"}
-                              top={"68px"}
                               name="search"
                               onChangeSetter={(input) => {
                                 setSearch(input);
                               }}
                               inputValue={search}
                             />
-                          </Box>
+                            <Button
+                              flexShrink={0}
+                              leftIcon={<Icon as={RiShutDownLine} />}
+                              className="btn-outline clicky"
+                            >
+                              {data.user.status_aktif
+                                ? "Non-aktifkan"
+                                : "Aktifkan"}
+                            </Button>
+
+                            <Button
+                              flexShrink={0}
+                              leftIcon={<Icon as={RiEditLine} />}
+                              className="clicky"
+                              colorScheme="ap"
+                              variant={"outline"}
+                              as={Link}
+                              to={`/karyawan/${data.id}/edit`}
+                            >
+                              Edit
+                            </Button>
+                          </HStack>
 
                           <CContainer
                             flex={1}
                             overflowY={"auto"}
-                            bg={bodyColor}
+                            bg={lightDarkColor}
                             gap={responsiveSpacing}
                           >
                             <VStack
