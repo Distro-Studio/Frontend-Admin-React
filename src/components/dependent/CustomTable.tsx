@@ -381,7 +381,9 @@ export default function CustomTable({
                   h={"60px"}
                   borderRight={"1px solid var(--divider3)"}
                   _groupHover={{ bg: "var(--divider)" }}
-                  _groupActive={{ bg: "var(--divider2)" }}
+                  _groupActive={
+                    onRowClick ? { bg: "var(--divider2)" } : undefined
+                  }
                   transition={"200ms"}
                   cursor={"pointer"}
                   onClick={(e) => {
@@ -411,7 +413,9 @@ export default function CustomTable({
               >
                 <HStack
                   _groupHover={{ bg: "var(--divider)" }}
-                  _groupActive={{ bg: "var(--divider2)" }}
+                  _groupActive={
+                    onRowClick ? { bg: "var(--divider2)" } : undefined
+                  }
                   py={3}
                   px={4}
                   h={"60px"}
@@ -444,7 +448,9 @@ export default function CustomTable({
                   w={"52px"}
                   borderLeft={"1px solid var(--divider3)"}
                   _groupHover={{ bg: "var(--divider)" }}
-                  _groupActive={{ bg: "var(--divider2)" }}
+                  _groupActive={
+                    onRowClick ? { bg: "var(--divider2)" } : undefined
+                  }
                   transition={"200ms"}
                   onClick={(e) => {
                     e.stopPropagation();

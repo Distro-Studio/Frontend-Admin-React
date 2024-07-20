@@ -2,7 +2,6 @@ import {
   Button,
   FormControl,
   FormErrorMessage,
-  HStack,
   Menu,
   MenuButton,
   MenuGroup,
@@ -58,28 +57,28 @@ export default function PaginationJump({ page, setPage, pagination }: Props) {
           <MenuGroup title={`Terakhir : ${pagination.last_page}`}></MenuGroup>
           <form id={"jumpToPageForm"} onSubmit={handleSubmit}>
             <FormControl isInvalid={!validation()}>
-              <HStack gap={0}>
-                <NumberInput
-                  name="page"
-                  onChangeSetter={(input) => {
-                    setData(input);
-                  }}
-                  inputValue={data}
-                  borderRadius={"6px 0 0 6px !important"}
-                />
-                <Button
-                  variant={"outline"}
-                  colorScheme="ap"
-                  // className="btn-solid"
-                  type="submit"
-                  form="jumpToPageForm"
-                  isDisabled={!validation()}
-                  borderRadius={"0 6px 6px 0"}
-                  w={"100%"}
-                >
-                  Lompat
-                </Button>
-              </HStack>
+              <NumberInput
+                name="page"
+                onChangeSetter={(input) => {
+                  setData(input);
+                }}
+                inputValue={data}
+                borderRadius={"0 !important"}
+                borderLeft={"none !important"}
+                borderRight={"none !important"}
+              />
+              <Button
+                variant={"ghost"}
+                colorScheme="ap"
+                // className="btn-solid"
+                type="submit"
+                form="jumpToPageForm"
+                isDisabled={!validation()}
+                borderRadius={"0 0 8px 8px"}
+                w={"100%"}
+              >
+                Lompat
+              </Button>
               <FormErrorMessage
                 px={4}
                 pb={2}
