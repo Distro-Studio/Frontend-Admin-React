@@ -444,6 +444,7 @@ export default function DetailKaryawanModal({
                               flexShrink={0}
                               leftIcon={<Icon as={RiShutDownLine} />}
                               className="btn-outline clicky"
+                              pl={5}
                             >
                               {data.user.status_aktif
                                 ? "Non-aktifkan"
@@ -457,6 +458,7 @@ export default function DetailKaryawanModal({
                               colorScheme="ap"
                               variant={"outline"}
                               as={Link}
+                              pl={5}
                               to={`/karyawan/${data.id}/edit`}
                             >
                               Edit
