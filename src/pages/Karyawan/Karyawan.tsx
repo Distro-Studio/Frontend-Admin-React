@@ -56,7 +56,7 @@ export default function Karyawan() {
             flexShrink={0}
           >
             <SearchComponent
-              flex={"1 1 140px"}
+              flex={"1 0 220px"}
               name="search"
               onChangeSetter={(input) => {
                 setSearch(input);
@@ -73,7 +73,7 @@ export default function Karyawan() {
             <ImportModal url={""} title={"Import Karyawan"} px={6} />
 
             <Button
-              flex={"1 0 120px"}
+              flex={"1 0 220px"}
               colorScheme="ap"
               className="btn-ap clicky"
               leftIcon={<Icon as={RiAddFill} fontSize={iconSize} />}

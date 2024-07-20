@@ -123,7 +123,7 @@ export default function TabelKaryawanColumnConfigModal({
           </ModalHeader>
 
           <ModalBody className="scrollY">
-            <Text fontWeight={500} mb={2} opacity={0.4}>
+            <Text fontWeight={500} mb={2} opacity={0.6}>
               Preset Kolom
             </Text>
             <SimpleGrid columns={[1, 2, 3]} gap={2}>
@@ -141,7 +141,7 @@ export default function TabelKaryawanColumnConfigModal({
               ))}
             </SimpleGrid>
 
-            <Text fontWeight={500} mt={4} mb={2} opacity={0.4}>
+            <Text fontWeight={500} mt={4} mb={2} opacity={0.6}>
               Kolom
             </Text>
             <Wrap>
@@ -202,7 +202,7 @@ export default function TabelKaryawanColumnConfigModal({
 
           <ModalFooter>
             <CContainer>
-              <Text fontWeight={500} mb={2} opacity={0.4}>
+              <Text fontWeight={500} mb={2} opacity={0.6}>
                 Urutan Kolom (dari kiri ke kanan)
               </Text>
               <Wrap>

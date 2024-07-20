@@ -33,6 +33,7 @@ export default function ExportModal({ url, title, ...props }: Props) {
       <Button
         // variant={"outline"}
         // colorScheme="ap"
+        minW={"120px"}
         className="btn-outline clicky"
         _focus={{ border: "1px solid var(--p500)" }}
         leftIcon={
