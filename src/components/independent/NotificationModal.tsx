@@ -52,31 +52,15 @@ export default function NotificationModal({ ...props }: Props) {
           nama: "Jolitos Kurniawan",
           foto_profil: "/images/gear5.jpg",
         },
-        message: "Jolitos Kurniawan ingin tukar jadwal dengan Anda",
+        message: "Jolitos Kurniawan ingin tukar jadwal dengan Sulenq Wazawsky",
         created_at: "2024-07-11",
       },
       {
-        id: 2,
+        id: 3,
         is_read: false,
         kategori: {
-          id: 4,
-          label: "Lembur",
-          link: "/beranda/lembur",
-        },
-        sender: {
-          id: 1,
-          nama: "Jolitos Kurniawan",
-          foto_profil: "/images/gear5.jpg",
-        },
-        message: "Kepala ruang mejadwalkan lembur untuk Anda",
-        created_at: "2024-07-10",
-      },
-      {
-        id: 3,
-        is_read: true,
-        kategori: {
           id: 5,
-          label: "Event & Diklat",
+          label: "Permintaan Perubahan Data Personal",
           link: "/beranda/event-diklat",
         },
         sender: {
@@ -214,7 +198,7 @@ export default function NotificationModal({ ...props }: Props) {
                                 <Text fontWeight={600}>
                                   {inbox.kategori.label}
                                 </Text>
-                                <Text fontSize={13} noOfLines={1} opacity={0.6}>
+                                <Text fontSize={14} noOfLines={1} opacity={0.6}>
                                   {inbox.message}
                                 </Text>
                                 <Text fontSize={12} opacity={0.4} pt={2}>

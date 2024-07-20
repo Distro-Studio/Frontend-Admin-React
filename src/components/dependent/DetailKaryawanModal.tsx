@@ -423,7 +423,7 @@ export default function DetailKaryawanModal({
                                 textAlign={"center"}
                                 lineHeight={1.4}
                               >
-                                Edit
+                                Edit Karyawan
                               </Text>
                             </VStack>
                           </SimpleGrid>
