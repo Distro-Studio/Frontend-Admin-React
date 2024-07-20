@@ -81,7 +81,7 @@ export default function PaginationJump({ page, setPage, pagination }: Props) {
                 Lompat
               </Button>
               <FormErrorMessage
-                px={4}
+                px={3}
                 pb={2}
               >{`Input harus lebih dari 0 dan kurang dari/sama dengan halaman terakhir`}</FormErrorMessage>
             </FormControl>
