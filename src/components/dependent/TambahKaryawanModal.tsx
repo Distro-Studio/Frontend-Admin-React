@@ -2,14 +2,22 @@ import {
   Box,
   Button,
   ButtonGroup,
+  ButtonProps,
   FormControl,
   FormErrorMessage,
   FormHelperText,
   FormLabel,
   HStack,
+  Icon,
   Input,
   InputGroup,
   InputLeftElement,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  SimpleGrid,
   Step,
   StepIcon,
   StepIndicator,
@@ -19,25 +27,30 @@ import {
   StepStatus,
   StepTitle,
   Text,
+  useDisclosure,
   useSteps,
-  Wrap,
 } from "@chakra-ui/react";
+import { RiAddFill } from "@remixicon/react";
 import { useFormik } from "formik";
+import { useRef } from "react";
 import * as yup from "yup";
 import SelectJabatan from "../../components/dependent/_Select/SelectJabatan";
 import SelectKelompokGaji from "../../components/dependent/_Select/SelectKelompokGaji";
 import SelectKompetensi from "../../components/dependent/_Select/SelectKompetensi";
 import SelectPtkp from "../../components/dependent/_Select/SelectPtkp";
 import SelectRole from "../../components/dependent/_Select/SelectRole";
-import SelectUnitKerja from "../../components/dependent/_Select/SelectUnitKerja";
-import RequiredForm from "../../components/form/RequiredForm";
-import CContainer from "../../components/wrapper/CContainer";
-import CWrapper from "../../components/wrapper/CWrapper";
-import { useBodyColor } from "../../const/colors";
-import { responsiveSpacing } from "../../const/sizes";
-import useScreenWidth from "../../lib/useScreenWidth";
 import SelectStatusKaryawan from "../../components/dependent/_Select/SelectStatusKaryawan";
+import SelectUnitKerja from "../../components/dependent/_Select/SelectUnitKerja";
 import DatePickerModal from "../../components/dependent/input/DatePickerModal";
+import RequiredForm from "../../components/form/RequiredForm";
+import { useLightDarkColor } from "../../const/colors";
+import { responsiveSpacing } from "../../const/sizes";
+import { iconSize } from "../../constant/sizes";
+import useBackOnClose from "../../hooks/useBackOnClose";
+import backOnClose from "../../lib/backOnClose";
+import useScreenWidth from "../../lib/useScreenWidth";
+import CContainer from "../wrapper/CContainer";
+import DisclosureHeader from "./DisclosureHeader";
 
 const validationSchemaStep1 = yup.object({
   // nama_karyawan: yup.string().required("Harus diisi"),
@@ -75,7 +88,13 @@ const validationSchema = [
   validationSchemaStep3,
 ];
 
-export default function TambahKaryawan() {
+interface Props extends ButtonProps {}
+
+export default function TambahKarsyawanModal({ ...props }: Props) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  useBackOnClose(`tambah-karyawan-modal`, isOpen, onOpen, onClose);
+  const initialRef = useRef(null);
+
   const steps = [
     { title: "Data Karyawan" },
     { title: "Penggajian" },
@@ -145,7 +164,7 @@ export default function TambahKaryawan() {
 
   const Step1 = () => {
     return (
-      <Wrap spacingX={4}>
+      <SimpleGrid columns={[1, 2, 3]} spacingX={4}>
         <FormControl
           mb={4}
           flex={"1 1 300px"}
@@ -338,7 +357,7 @@ export default function TambahKaryawan() {
           />
           <FormErrorMessage>{formik.errors.role as string}</FormErrorMessage>
         </FormControl>
-      </Wrap>
+      </SimpleGrid>
     );
   };
 
@@ -361,7 +380,7 @@ export default function TambahKaryawan() {
 
   const Step2 = () => {
     return (
-      <Wrap spacingX={4}>
+      <SimpleGrid columns={[1, 2, 3]} spacingX={4}>
         <FormControl
           mb={4}
           flex={"1 1 300px"}
@@ -571,7 +590,7 @@ export default function TambahKaryawan() {
             {formik.errors.potongan as string}
           </FormErrorMessage>
         </FormControl>
-      </Wrap>
+      </SimpleGrid>
     );
   };
 
@@ -677,52 +696,95 @@ export default function TambahKaryawan() {
   const stepComponents = [Step1, Step2, Step3];
   const stepFooterComponents = [Step1Footer, Step2Footer, Step3Footer];
 
+  // SX
+  const lightDarkColor = useLightDarkColor();
+
   return (
-    <CWrapper maxW={"800px"} mx={"auto"} my={12}>
-      <Stepper index={activeStep} colorScheme="ap" mb={6}>
-        {steps.map((step, index) => (
-          <Step key={index}>
-            <StepIndicator>
-              <StepStatus
-                complete={<StepIcon />}
-                incomplete={<StepNumber />}
-                active={<StepNumber />}
-              />
-            </StepIndicator>
-            <Box flexShrink="0">
-              <StepTitle>{sw >= 768 && <Text>{step.title}</Text>}</StepTitle>
-            </Box>
-            <StepSeparator />
-          </Step>
-        ))}
-      </Stepper>
-
-      {sw < 768 && (
-        <Text mb={6}>
-          Step {activeStep + 1} : <b>{activeStepText}</b>
-        </Text>
-      )}
-
-      <CContainer
-        p={responsiveSpacing}
-        bg={useBodyColor()}
-        borderRadius={12}
-        overflowY={"auto"}
-        flex={1}
+    <>
+      <Button
+        flex={"1 0 220px"}
+        colorScheme="ap"
+        className="btn-ap clicky"
+        leftIcon={<Icon as={RiAddFill} fontSize={iconSize} />}
+        onClick={onOpen}
+        pl={5}
+        {...props}
       >
-        <Text fontSize={22} fontWeight={600}>
-          {steps[activeStep].title}
-        </Text>
-        <Text opacity={0.6} mb={6}>
-          Silahkan Isi Semua Data Informasi Dasar Karyawan
-        </Text>
+        Tambah Karyawan
+      </Button>
 
-        <form id="tambahKaryawanForm" onSubmit={formik.handleSubmit}>
-          {stepComponents[activeStep]()}
-        </form>
+      <Modal
+        isOpen={isOpen}
+        onClose={backOnClose}
+        initialFocusRef={initialRef}
+        size={"full"}
+        scrollBehavior="inside"
+        blockScrollOnMount={false}
+      >
+        <ModalOverlay />
+        <ModalContent borderRadius={12} minH={"calc(100vh - 32px)"}>
+          <ModalHeader ref={initialRef}>
+            <DisclosureHeader title={"Tambah Karyawan"} />
+          </ModalHeader>
 
-        {stepFooterComponents[activeStep]()}
-      </CContainer>
-    </CWrapper>
+          <ModalBody pb={responsiveSpacing}>
+            <Stepper
+              maxW={"720px"}
+              w={"100%"}
+              mx={"auto"}
+              index={activeStep}
+              colorScheme="ap"
+              mb={6}
+            >
+              {steps.map((step, index) => (
+                <Step key={index}>
+                  <StepIndicator>
+                    <StepStatus
+                      complete={<StepIcon />}
+                      incomplete={<StepNumber />}
+                      active={<StepNumber />}
+                    />
+                  </StepIndicator>
+                  <Box flexShrink="0">
+                    <StepTitle>
+                      {sw >= 768 && <Text>{step.title}</Text>}
+                    </StepTitle>
+                  </Box>
+                  <StepSeparator />
+                </Step>
+              ))}
+            </Stepper>
+
+            {sw < 768 && (
+              <Text mb={6}>
+                Step {activeStep + 1} : <b>{activeStepText}</b>
+              </Text>
+            )}
+
+            <CContainer
+              px={responsiveSpacing}
+              bg={lightDarkColor}
+              borderRadius={12}
+              overflowY={"auto"}
+              flex={1}
+              className="scrollY"
+            >
+              <Text fontSize={22} fontWeight={600}>
+                {steps[activeStep].title}
+              </Text>
+              <Text opacity={0.6} mb={6}>
+                Silahkan Isi Semua Data Informasi Dasar Karyawan
+              </Text>
+
+              <form id="tambahKaryawanForm" onSubmit={formik.handleSubmit}>
+                {stepComponents[activeStep]()}
+              </form>
+
+              {stepFooterComponents[activeStep]()}
+            </CContainer>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </>
   );
 }

@@ -341,7 +341,7 @@ export default function CustomTable({
               maxW={"52px !important"}
               p={0}
               position={"sticky"}
-              right={"-1px"}
+              right={0}
             >
               <Center
                 h={"52px"}
@@ -439,7 +439,7 @@ export default function CustomTable({
                 maxW={"52px !important"}
                 p={0}
                 position={"sticky"}
-                right={"-1px"}
+                right={0}
                 bg={lightDarkColor}
                 zIndex={2}
               >

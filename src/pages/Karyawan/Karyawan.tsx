@@ -1,17 +1,16 @@
-import { Button, HStack, Icon } from "@chakra-ui/react";
-import { RiAddFill } from "@remixicon/react";
+import { HStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import ExportModal from "../../components/dependent/ExportModal";
 import ImportModal from "../../components/dependent/ImportModal";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelKaryawan from "../../components/dependent/TabelKaryawan";
+import TambahKarsyawanModal from "../../components/dependent/TambahKaryawanModal";
 import FilterKaryawan from "../../components/independent/FilterKaryawan";
 import TableColumnConfigModal from "../../components/independent/TabelKaryawanColumnConfigModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useLightDarkColor } from "../../const/colors";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
 
 export default function Karyawan() {
@@ -72,16 +71,7 @@ export default function Karyawan() {
 
             <ImportModal url={""} title={"Import Karyawan"} px={6} />
 
-            <Button
-              flex={"1 0 220px"}
-              colorScheme="ap"
-              className="btn-ap clicky"
-              leftIcon={<Icon as={RiAddFill} fontSize={iconSize} />}
-              as={Link}
-              to={"/karyawan/tambah-karyawan"}
-            >
-              Tambah Karyawan
-            </Button>
+            <TambahKarsyawanModal />
           </HStack>
 
           <TabelKaryawan />
