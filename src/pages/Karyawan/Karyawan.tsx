@@ -55,7 +55,7 @@ export default function Karyawan() {
             flexShrink={0}
           >
             <SearchComponent
-              flex={"1 0 220px"}
+              flex={"1 0 200px"}
               name="search"
               onChangeSetter={(input) => {
                 setSearch(input);
@@ -71,7 +71,7 @@ export default function Karyawan() {
 
             <ImportModal url={""} title={"Import Karyawan"} px={6} />
 
-            <TambahKarsyawanModal />
+            <TambahKarsyawanModal flex={"1 0 200px"} />
           </HStack>
 
           <TabelKaryawan />

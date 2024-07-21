@@ -702,7 +702,6 @@ export default function TambahKarsyawanModal({ ...props }: Props) {
   return (
     <>
       <Button
-        flex={"1 0 220px"}
         colorScheme="ap"
         className="btn-ap clicky"
         leftIcon={<Icon as={RiAddFill} fontSize={iconSize} />}
