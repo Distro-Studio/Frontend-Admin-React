@@ -4,7 +4,7 @@ import ExportModal from "../../components/dependent/ExportModal";
 import ImportModal from "../../components/dependent/ImportModal";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelKaryawan from "../../components/dependent/TabelKaryawan";
-import TambahKarsyawanModal from "../../components/dependent/TambahKaryawanModal";
+import TambahKaryawanModal from "../../components/dependent/TambahKaryawanModal";
 import FilterKaryawan from "../../components/independent/FilterKaryawan";
 import TableColumnConfigModal from "../../components/independent/TabelKaryawanColumnConfigModal";
 import CContainer from "../../components/wrapper/CContainer";
@@ -63,7 +63,7 @@ export default function Karyawan() {
               inputValue={search}
             />
 
-            <FilterKaryawan px={6} />
+            <FilterKaryawan />
 
             <TableColumnConfigModal title="Kolom Tabel Karyawan Config" />
 
@@ -71,7 +71,7 @@ export default function Karyawan() {
 
             <ImportModal url={""} title={"Import Karyawan"} px={6} />
 
-            <TambahKarsyawanModal flex={"1 0 200px"} />
+            <TambahKaryawanModal w={"max-content"} />
           </HStack>
 
           <TabelKaryawan />

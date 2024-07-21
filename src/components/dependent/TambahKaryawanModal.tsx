@@ -90,7 +90,7 @@ const validationSchema = [
 
 interface Props extends ButtonProps {}
 
-export default function TambahKarsyawanModal({ ...props }: Props) {
+export default function TambahKaryawanModal({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(`tambah-karyawan-modal`, isOpen, onOpen, onClose);
   const initialRef = useRef(null);

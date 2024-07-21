@@ -20,11 +20,7 @@ import formatMasaKerja from "../../lib/formatMasaKerja";
 import BooleanBadge from "./BooleanBadge";
 import useTabelKaryawanColumns from "../../global/useTabelKaryawanColumns";
 
-interface Props {
-  filterConfig?: any;
-}
-
-export default function TabelKaryawan({ filterConfig }: Props) {
+export default function TabelKaryawan() {
   // Limit Config
   const [limitConfig, setLimitConfig] = useState<number>(10);
   // Pagination Config
@@ -96,6 +92,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
   >({
     initialData: dummyKaryawans,
     url: "",
+    payload: filterKaryawan,
     limit: limitConfig,
     dependencies: [limitConfig, pageConfig, filterKaryawan],
   });

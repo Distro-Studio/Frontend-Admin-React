@@ -1,92 +1,56 @@
-import {
-  Button,
-  Icon,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Wrap,
-} from "@chakra-ui/react";
-import { RiSearchLine, RiUploadLine } from "@remixicon/react";
-import { useState } from "react";
-import FilterTabelKaryawan from "../../components/dependent/FilterTabelKaryawan";
+import { Wrap } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import ExportModal from "../../components/dependent/ExportModal";
+import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelTransferKarywan from "../../components/dependent/TabelTransferKaryawan";
+import AjukanTransferKaryawanModal from "../../components/independent/AjukanTransferKaryawanModal";
+import FilterKaryawan from "../../components/independent/FilterKaryawan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
-import AjukanTransferKaryawanModal from "../../components/independent/AjukanTransferKaryawanModal";
-import SelectStatusTransferKaryawan from "../../components/dependent/_Select/SelectStatusTransferKaryawan";
+import { responsiveSpacing } from "../../const/sizes";
+import useFilterKaryawan from "../../global/useFilterKaryawan";
 
 export default function TransferKaryawan() {
   // Filter Config
-  const defaultFilterConfig = {
-    search: "",
-    unit_kerja: [],
-    status_karyawan: [],
-    status_transfer: {
-      value: null,
-      label: "Semua status",
-    },
-  };
-  const confirmSelectStatusTransferKaryawan = (newStatus: any) => {
-    setFilterConfig((ps: any) => ({
-      ...ps,
-      status_transfer: newStatus,
-    }));
-  };
-  const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
+  const { setFilterKaryawan } = useFilterKaryawan();
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setFilterKaryawan((ps: any) => ({
+        ...ps,
+        search: search,
+      }));
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search, setFilterKaryawan]);
 
   return (
     <>
       <CWrapper>
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
-            <InputGroup flex={"1 1 165px"}>
-              <InputLeftElement>
-                <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
-              </InputLeftElement>
-              <Input
-                placeholder="Pencarian"
-                flex={"1 1 0"}
-                onChange={(e) => {
-                  setFilterConfig((ps: any) => ({
-                    ...ps,
-                    search: e.target.value,
-                  }));
-                }}
-                value={filterConfig.search}
-              />
-            </InputGroup>
-
-            <SelectStatusTransferKaryawan
-              placeholder="Pilih Status Transfer"
-              initialSelected={filterConfig.status_transfer}
-              confirmSelect={confirmSelectStatusTransferKaryawan}
-              noSearch
-              noReset
-              flex={"1 1 110px"}
+            <SearchComponent
+              flex={"1 0 200px"}
+              name="search"
+              onChangeSetter={(input) => {
+                setSearch(input);
+              }}
+              inputValue={search}
             />
 
-            <FilterTabelKaryawan
-              defaultFilterConfig={defaultFilterConfig}
-              filterConfig={filterConfig}
-              setFilterConfig={setFilterConfig}
-            />
+            <FilterKaryawan />
 
-            <Button
-              flex={"1 1 110px"}
-              variant={"outline"}
-              colorScheme="ap"
-              className="clicky"
-              rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
-            >
-              Export
-            </Button>
+            <ExportModal url="" title="Export Riwayat Transfer Karyawan" />
 
-            <AjukanTransferKaryawanModal flex={"1 1 170px"} />
+            <AjukanTransferKaryawanModal w={"max-content"} />
           </Wrap>
 
-          <TabelTransferKarywan filterConfig={filterConfig} />
+          <TabelTransferKarywan />
         </CContainer>
       </CWrapper>
     </>

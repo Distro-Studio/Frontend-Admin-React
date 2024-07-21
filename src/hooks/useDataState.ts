@@ -6,6 +6,7 @@ import useDebugNoDataState from "../global/useDebugNoDataState";
 interface Props<T> {
   initialData?: T;
   url?: string;
+  payload?: any;
   limit?: number;
   columns?: string[];
   dependencies?: any[];
@@ -14,6 +15,7 @@ interface Props<T> {
 
 const useDataState = <T>({
   initialData,
+  payload,
   url,
   limit = 10,
   columns = [],
@@ -35,7 +37,7 @@ const useDataState = <T>({
 
   function getData() {
     const options = {
-      method: "GET",
+      method: payload ? "POST" : "GET",
       url: url,
       headers: {
         "Content-Type": "application/json",

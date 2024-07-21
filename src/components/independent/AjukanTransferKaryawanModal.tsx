@@ -6,6 +6,7 @@ import {
   FormErrorMessage,
   FormHelperText,
   FormLabel,
+  Icon,
   Modal,
   ModalBody,
   ModalContent,
@@ -16,9 +17,11 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { RiAddFill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
+import { iconSize } from "../../const/sizes";
 import backOnClose from "../../lib/backOnCloseOld";
 import useBackOnClose from "../../lib/useBackOnCloseOld";
 import SelectJabatan from "../dependent/_Select/SelectJabatan";
@@ -74,8 +77,10 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
     <>
       <Button
         colorScheme="ap"
+        pl={5}
         className="btn-ap clicky"
         onClick={onOpen}
+        leftIcon={<Icon as={RiAddFill} fontSize={iconSize} />}
         {...props}
       >
         Ajukan Transfer
