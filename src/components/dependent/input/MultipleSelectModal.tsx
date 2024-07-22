@@ -11,7 +11,6 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
-  VStack,
   Wrap,
 } from "@chakra-ui/react";
 import { RiArrowDownSLine } from "@remixicon/react";
@@ -21,11 +20,11 @@ import { Interface__SelectOption } from "../../../constant/interfaces";
 import useBackOnClose from "../../../hooks/useBackOnClose";
 import useScreenHeight from "../../../hooks/useScreenHeight";
 import backOnClose from "../../../lib/backOnClose";
+import ComponentSpinner from "../../independent/ComponentSpinner";
+import NotFound from "../../independent/NotFound";
 import CContainer from "../../independent/wrapper/CContainer";
 import DisclosureHeader from "../DisclosureHeader";
 import SearchComponent from "./SearchComponent";
-import NotFound from "../../independent/NotFound";
-import ComponentSpinner from "../../independent/ComponentSpinner";
 
 interface Props {
   id: string;
@@ -314,28 +313,26 @@ export default function MultipleSelectModal({
 
             {!fo && <ComponentSpinner my={"auto"} />}
           </ModalBody>
-          <ModalFooter>
-            <VStack w={"100%"}>
-              <Button
-                className="btn-solid clicky"
-                w={"100%"}
-                onClick={() => {
-                  setSelected(undefined);
-                }}
-              >
-                Clear
-              </Button>
+          <ModalFooter gap={2}>
+            <Button
+              className="btn-solid clicky"
+              w={"100%"}
+              onClick={() => {
+                setSelected(undefined);
+              }}
+            >
+              Clear
+            </Button>
 
-              <Button
-                colorScheme="ap"
-                className="btn-ap clicky"
-                w={"100%"}
-                isDisabled={nonNullable ? (selected ? false : true) : false}
-                onClick={confirmSelected}
-              >
-                Konfirmasi
-              </Button>
-            </VStack>
+            <Button
+              colorScheme="ap"
+              className="btn-ap clicky"
+              w={"100%"}
+              isDisabled={nonNullable ? (selected ? false : true) : false}
+              onClick={confirmSelected}
+            >
+              Konfirmasi
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
