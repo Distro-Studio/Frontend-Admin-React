@@ -266,6 +266,8 @@ export default function CustomTable({
   // SX
   const lightDarkColor = useLightDarkColor();
 
+  console.log(formattedHeader);
+
   return (
     <Table
       ref={tableRef}
@@ -313,7 +315,7 @@ export default function CustomTable({
               cursor={"pointer"}
               borderBottom={"none !important"}
               p={0}
-              {...header.props}
+              {...header?.props}
             >
               <HStack
                 borderBottom={"1px solid var(--divider3)"}
@@ -324,7 +326,7 @@ export default function CustomTable({
                 h={"52px"}
                 pl={i === 0 ? 4 : ""}
                 pr={i === formattedHeader.length - 1 ? 4 : ""}
-                {...header.cProps}
+                {...header?.cProps}
               >
                 <Text>{header.th}</Text>
 
@@ -409,7 +411,7 @@ export default function CustomTable({
                 whiteSpace={"nowrap"}
                 bg={lightDarkColor}
                 p={0}
-                {...col.props}
+                {...col?.props}
               >
                 <HStack
                   _groupHover={{ bg: "var(--divider)" }}
@@ -420,7 +422,7 @@ export default function CustomTable({
                   px={4}
                   h={"60px"}
                   transition={"200ms"}
-                  {...col.cProps}
+                  {...col?.cProps}
                 >
                   {typeof col.td === "string" || typeof col.td === "number" ? (
                     <Text>{col.td}</Text>

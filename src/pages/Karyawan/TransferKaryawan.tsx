@@ -31,8 +31,13 @@ export default function TransferKaryawan() {
 
   return (
     <>
-      <CWrapper>
-        <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
+      <CWrapper overflowY={"auto"}>
+        <CContainer
+          overflowY={"auto"}
+          p={responsiveSpacing}
+          bg={useBodyColor()}
+          borderRadius={12}
+        >
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
             <SearchComponent
               flex={"1 0 200px"}

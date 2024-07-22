@@ -1,20 +1,19 @@
 import { Box, HStack, Icon, Text, useDisclosure } from "@chakra-ui/react";
-import { RiEditLine, RiShutDownLine, RiUploadLine } from "@remixicon/react";
+import { RiEditLine } from "@remixicon/react";
 import { useState } from "react";
 import { dummyTransferKaryawan } from "../../const/dummy";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
-import useTabelKaryawanColumns from "../../global/useTabelKaryawanColumns";
 import useDataState from "../../hooks/useDataState";
+import formatDate from "../../lib/formatDate";
 import NoData from "../independent/NoData";
 import Skeleton from "../independent/Skeleton";
-import Retry from "./Retry";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
-import CustomTable from "./CustomTable";
-import TabelFooterConfig from "./TabelFooterConfig";
-import DetailKaryawanModal from "./DetailKaryawanModal";
 import AvatarAndNameTableData from "./AvatarAndNameTableData";
-import formatDate from "../../lib/formatDate";
+import CustomTable from "./CustomTable";
+import DetailKaryawanModal from "./DetailKaryawanModal";
+import Retry from "./Retry";
+import TabelFooterConfig from "./TabelFooterConfig";
 
 export default function TabelRekamJejak() {
   // Limit Config
@@ -25,39 +24,8 @@ export default function TabelRekamJejak() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   // Filter Config
   const { filterKaryawan } = useFilterKaryawan();
-  // Batch Actions Config
-  const batchActions = [
-    {
-      label: "Non-aktifkan",
-      icon: (
-        <Icon
-          as={RiShutDownLine}
-          fontSize={iconSize}
-          opacity={0.4}
-          // color={chartColors[4]}
-        />
-      ),
-      callback: (selectedRows: number[]) => {
-        console.log("Non-aktifkan", selectedRows);
-      },
-    },
-    {
-      label: "Export",
-      icon: (
-        <Icon
-          as={RiUploadLine}
-          fontSize={iconSize}
-          opacity={0.4}
-          // color={chartColors[1]}
-        />
-      ),
-      callback: (selectedRows: number[]) => {
-        console.log("Exporting", selectedRows);
-      },
-    },
-  ];
   // Columns Config
-  const { tabelKaryawanColumns } = useTabelKaryawanColumns();
+  // const { tabelKaryawanColumns } = useTabelKaryawanColumns();
   // Row Options Config
   const rowOptions = [
     {
@@ -72,6 +40,7 @@ export default function TabelRekamJejak() {
   const { error, loading, data, retry } = useDataState<any>({
     initialData: dummyTransferKaryawan,
     url: "",
+    payload: filterKaryawan,
     dependencies: [],
   });
 
@@ -217,11 +186,11 @@ export default function TabelRekamJejak() {
                     <CustomTable
                       formattedHeader={formattedHeader}
                       formattedData={formattedData}
-                      batchActions={batchActions}
+                      // batchActions={batchActions}
                       onRowClick={() => {
                         onOpen();
                       }}
-                      columnsConfig={tabelKaryawanColumns}
+                      // columnsConfig={tabelKaryawanColumns}
                       rowOptions={rowOptions}
                     />
                   </CustomTableContainer>
