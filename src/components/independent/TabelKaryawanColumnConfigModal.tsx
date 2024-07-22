@@ -132,7 +132,7 @@ export default function TabelKaryawanColumnConfigModal({
                 <Text fontWeight={500} mb={4} opacity={0.6}>
                   Kolom
                 </Text>
-                <SimpleGrid columns={[3]} gap={2}>
+                <SimpleGrid columns={[1, 2, 3]} gap={2}>
                   {allColumns.map((option, i) => {
                     const ok = i !== 0;
                     return (
