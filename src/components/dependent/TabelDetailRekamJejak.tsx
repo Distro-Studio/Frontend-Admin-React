@@ -1,210 +1,190 @@
-import {
-  HStack,
-  Icon,
-  Table,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
-import { useState } from "react";
-import { useBodyColor, useContentBgColor } from "../../const/colors";
-import { Tabel__Column__Interface } from "../../const/interfaces";
-import ComponentSpinner from "../independent/ComponentSpinner";
-import TabelContainer from "../wrapper/CustomTableContainer";
-import TabelFooterConfig from "./TabelFooterConfig";
+import { Box, Center, HStack, Icon, Text, VStack } from "@chakra-ui/react";
+import { RiCircleFill } from "@remixicon/react";
 import formatDate from "../../lib/formatDate";
+import CContainer from "../wrapper/CContainer";
+import SmallLink from "./SmallLink";
 
 interface Props {
   data: any;
 }
 
 export default function TabelDetailRekamJejak({ data }: Props) {
-  const columns: Tabel__Column__Interface[] = [
-    {
-      key: "tgl_mulai",
-      label: "Tanggal Mulai",
-      dataType: "date",
-    },
-    {
-      key: "promosi",
-      label: "Promosi Jabatan",
-      dataType: "string",
-    },
-    {
-      key: "mutasi",
-      label: "Mutasi Unit Kerja",
-      dataType: "string",
-    },
-    {
-      key: "penghargaan",
-      label: "Penghargaan",
-      dataType: "string",
-    },
-  ];
-
-  const [loading] = useState<boolean>(false);
-
-  // Limit Config
-  const [limitConfig, setLimitConfig] = useState<number>(10);
-
-  // Pagination Config
-  const [pageConfig, setPageConfig] = useState<number>(1);
-
-  // Sort Config
-  const [sortConfig, setSortConfig] = useState<{
-    key: string;
-    direction: "asc" | "desc";
-  } | null>({ key: columns[0].key, direction: "asc" });
-  const sortedData = [...data];
-  if (sortConfig !== null) {
-    sortedData.sort((a, b) => {
-      let aValue, bValue;
-
-      // Tangani properti bersarang
-      if (sortConfig.key === "nama") {
-        aValue = a.user?.nama;
-        bValue = b.user?.nama;
-      } else {
-        // Kasus default: langsung gunakan kunci untuk perbandingan
-        //@ts-ignore
-        aValue = a[sortConfig.key];
-        //@ts-ignore
-        bValue = b[sortConfig.key];
-      }
-
-      if (aValue === null && bValue === null) return 0;
-      if (aValue === null) return 1; // Nilai null di bawah
-      if (bValue === null) return -1; // Nilai null di bawah
-
-      //@ts-ignore
-      if (aValue < bValue) {
-        return sortConfig.direction === "asc" ? -1 : 1;
-      }
-      //@ts-ignore
-      if (aValue > bValue) {
-        return sortConfig.direction === "asc" ? 1 : -1;
-      }
-      return 0;
-    });
-  }
-  const sort = (key: string) => {
-    let direction: "asc" | "desc" = "asc";
-    if (
-      sortConfig &&
-      sortConfig.key === key &&
-      sortConfig.direction === "asc"
-    ) {
-      direction = "desc";
-    }
-    setSortConfig({ key, direction });
-  };
-
-  // SX
-  const contentBgColor = useContentBgColor();
-  const bodyColor = useBodyColor();
+  // const formattedHeader = [
+  //   {
+  //     th: "No. Induk Karyawan",
+  //     isSortable: true,
+  //   },
+  //   {
+  //     th: "Kategori Transfer",
+  //     isSortable: true,
+  //   },
+  //   {
+  //     th: "Tanggal Pengajuan",
+  //     isSortable: true,
+  //   },
+  //   {
+  //     th: "Tanggal Mulai",
+  //     isSortable: true,
+  //   },
+  //   {
+  //     th: "Unit Kerja Asal",
+  //     isSortable: true,
+  //   },
+  //   {
+  //     th: "Unit Kerja Tujuan",
+  //     isSortable: true,
+  //   },
+  //   {
+  //     th: "Jabatan Asal",
+  //     isSortable: true,
+  //   },
+  //   {
+  //     th: "Jabatan Tujuan",
+  //     isSortable: true,
+  //   },
+  //   {
+  //     th: "Alasan",
+  //   },
+  //   {
+  //     th: "Dokumen",
+  //     isSortable: true,
+  //   },
+  // ];
+  // const formattedData = data.map((item: any) => ({
+  //   id: item.id,
+  //   rows: [
+  //     {
+  //       value: item.nik,
+  //       td: item.nik,
+  //       isNumeric: true,
+  //     },
+  //     {
+  //       value: item.kategori.label,
+  //       td: item.kategori.label,
+  //     },
+  //     {
+  //       value: item.created_at,
+  //       td: formatDate(item.created_at),
+  //     },
+  //     {
+  //       value: item.tgl_mulai,
+  //       td: formatDate(item.tgl_mulai),
+  //     },
+  //     {
+  //       value: item.unit_kerja_asal.nama_unit,
+  //       td: item.unit_kerja_asal.nama_unit,
+  //     },
+  //     {
+  //       value: item.unit_kerja_tujuan.nama_unit,
+  //       td: item.unit_kerja_tujuan.nama_unit,
+  //     },
+  //     {
+  //       value: item.jabatan_asal.nama_jabatan,
+  //       td: item.jabatan_asal.nama_jabatan,
+  //     },
+  //     {
+  //       value: item.jabatan_tujuan.nama_jabatan,
+  //       td: item.jabatan_tujuan.nama_jabatan,
+  //     },
+  //     {
+  //       value: item.alasan,
+  //       td: (
+  //         <Tooltip label={item.alasan}>
+  //           <Text
+  //             maxW={"200px"}
+  //             overflow={"hidden"}
+  //             whiteSpace={"nowrap"}
+  //             textOverflow={"ellipsis"}
+  //           >
+  //             {item.alasan}
+  //           </Text>
+  //         </Tooltip>
+  //       ),
+  //     },
+  //     {
+  //       value: "-",
+  //       td: "-",
+  //     },
+  //   ],
+  // }));
 
   return (
-    <>
-      {loading && <ComponentSpinner mt={4} />}
+    <CContainer gap={2}>
+      {data.map((item: any, i: number) => (
+        <HStack key={i} align={"stretch"}>
+          <VStack>
+            <Center p={1} borderRadius={"full"} bg={"var(--p500a3)"}>
+              <Icon as={RiCircleFill} color={"p.500"} />
+            </Center>
 
-      {!loading && data && (
-        <TabelContainer noTopNavs customReducer={24}>
-          <Table>
-            <Thead>
-              <Tr>
-                {columns.map((column, i) => (
-                  <Th
-                    key={i}
-                    whiteSpace={"nowrap"}
-                    onClick={() => {
-                      sort(column.key);
-                    }}
-                    cursor={"pointer"}
-                    borderBottom={"none !important"}
-                    bg={bodyColor}
-                    zIndex={2}
-                    p={0}
-                    {...column.thProps}
-                  >
-                    <HStack
-                      justify={
-                        column.preferredTextAlign === "center"
-                          ? "center"
-                          : column.dataType === "numeric"
-                          ? "flex-end"
-                          : "space-between"
-                      }
-                      borderBottom={"1px solid var(--divider3)"}
-                      px={4}
-                      py={3}
-                      h={"52px"}
-                      pl={i === 0 ? 4 : ""}
-                      pr={i === columns.length - 1 ? 4 : ""}
-                      {...column.thContentProps}
-                    >
-                      <Text fontWeight={600} flexShrink={0} lineHeight={1.2}>
-                        {column.label}
-                      </Text>
+            {i !== data.length - 1 && (
+              <Box flex={1} w={"1px"} bg={"var(--divider3)"} />
+            )}
+          </VStack>
 
-                      {sortConfig && sortConfig.key === column.key && (
-                        <>
-                          {sortConfig.direction === "asc" ? (
-                            <Icon
-                              as={RiArrowUpLine}
-                              color={"p.500"}
-                              fontSize={16}
-                            />
-                          ) : (
-                            <Icon
-                              as={RiArrowDownLine}
-                              color={"p.500"}
-                              fontSize={16}
-                            />
-                          )}
-                        </>
-                      )}
-                    </HStack>
-                  </Th>
-                ))}
-              </Tr>
-            </Thead>
+          <CContainer px={4} pb={i !== data.length - 1 ? 8 : ""} gap={3}>
+            <Text fontWeight={600} fontSize={18}>
+              {item.kategori.label}
+            </Text>
 
-            <Tbody>
-              {sortedData.map((row, rowIndex) => (
-                <Tr
-                  key={rowIndex}
-                  bg={rowIndex % 2 === 0 ? contentBgColor : bodyColor}
-                >
-                  <Td h={"72px"} pl={4} whiteSpace={"nowrap"}>
-                    {formatDate(row.tgl_mulai)}
-                  </Td>
-                  <Td h={"72px"} pl={4} whiteSpace={"nowrap"}>
-                    {row.promosi}
-                  </Td>
-                  <Td whiteSpace={"nowrap"}>{row.mutasi}</Td>
-                  <Td whiteSpace={"nowrap"}>{row.penghargaan}</Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
-        </TabelContainer>
-      )}
+            <HStack>
+              <Text minW={"160px"} opacity={0.6}>
+                Tanggal Pengajuan
+              </Text>
+              <Text>{formatDate(item.created_at)}</Text>
+            </HStack>
 
-      <TabelFooterConfig
-        limitConfig={limitConfig}
-        setLimitConfig={setLimitConfig}
-        pageConfig={pageConfig}
-        setPageConfig={setPageConfig}
-        paginationData={{
-          prev_page_url: "",
-          next_page_url: "",
-          last_page: 1,
-        }}
-      />
-    </>
+            <HStack>
+              <Text minW={"160px"} opacity={0.6}>
+                Tanggal Mulai
+              </Text>
+              <Text>{formatDate(item.tgl_mulai)}</Text>
+            </HStack>
+
+            <HStack>
+              <Text minW={"160px"} opacity={0.6}>
+                Unit Kerja Asal
+              </Text>
+              <Text>{item.unit_kerja_asal.nama_unit}</Text>
+            </HStack>
+
+            <HStack>
+              <Text minW={"160px"} opacity={0.6}>
+                Unit Kerja Tujuan
+              </Text>
+              <Text>{item.unit_kerja_tujuan.nama_unit}</Text>
+            </HStack>
+
+            <HStack>
+              <Text minW={"160px"} opacity={0.6}>
+                Jabatan Asal
+              </Text>
+              <Text>{item.jabatan_asal.nama_jabatan}</Text>
+            </HStack>
+
+            <HStack>
+              <Text minW={"160px"} opacity={0.6}>
+                Jabatan Tujuan
+              </Text>
+              <Text>{item.jabatan_tujuan.nama_jabatan}</Text>
+            </HStack>
+
+            <HStack align={"start"}>
+              <Text minW={"160px"} opacity={0.6}>
+                Alasan
+              </Text>
+              <Text>{item.alasan}</Text>
+            </HStack>
+
+            <HStack align={"start"}>
+              <Text minW={"160px"} opacity={0.6}>
+                Dokumen
+              </Text>
+              <SmallLink to={item.dokumen}>Lihat</SmallLink>
+            </HStack>
+          </CContainer>
+        </HStack>
+      ))}
+    </CContainer>
   );
 }

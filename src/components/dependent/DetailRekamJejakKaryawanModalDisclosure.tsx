@@ -13,6 +13,7 @@ import {
   Wrap,
 } from "@chakra-ui/react";
 import { useRef } from "react";
+import { dummyTransferKaryawan } from "../../const/dummy";
 import { responsiveSpacing } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import useDataState from "../../hooks/useDataState";
@@ -52,43 +53,7 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
     tgl_masuk: new Date(),
     tgl_keluar: null,
     masa_kerja: 27,
-    rekam_jejak: [
-      {
-        id: 1,
-        tgl_mulai: "2024-06-01",
-        promosi: "Undefined",
-        mutasi: "Kepala Ruang",
-        penghargaan: "S1 Teknik Sipil",
-      },
-      {
-        id: 2,
-        tgl_mulai: "2024-05-16",
-        promosi: "Undefined",
-        mutasi: "Manager",
-        penghargaan: "S1 Teknik Akuntansi",
-      },
-      {
-        id: 3,
-        tgl_mulai: "2024-02-12",
-        promosi: "Undefined",
-        mutasi: "Karlitos Kurniawan",
-        penghargaan: "S1 Teknik Elektro",
-      },
-      {
-        id: 3,
-        tgl_mulai: "2024-08-23",
-        promosi: "Undefined",
-        mutasi: "Karlitos Kurniawan",
-        penghargaan: "S1 Teknik Hewan",
-      },
-      {
-        id: 3,
-        tgl_mulai: "2024-06-06",
-        promosi: "Undefined",
-        mutasi: "Karlitos Kurniawan",
-        penghargaan: "S1 Teknik THT",
-      },
-    ],
+    rekam_jejak: dummyTransferKaryawan.slice(0, 3),
   };
 
   const { error, loading, data, retry } = useDataState<any>({
@@ -119,7 +84,7 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
           <ModalHeader ref={initialRef}>
             <DisclosureHeader title={"Detail Rekam Jejak Karyawan"} />
           </ModalHeader>
-          <ModalBody pb={6}>
+          <ModalBody mb={6} className="scrollY">
             {error && (
               <Box my={"auto"}>
                 <Retry loading={loading} retry={retry} />
@@ -146,9 +111,9 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
                           {!loading && data && (
                             <>
                               <Wrap
-                                spacing={responsiveSpacing}
-                                mb={responsiveSpacing}
                                 align={"center"}
+                                spacing={responsiveSpacing}
+                                mb={12}
                               >
                                 <Avatar
                                   size={"lg"}

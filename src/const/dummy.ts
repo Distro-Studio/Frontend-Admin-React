@@ -5918,7 +5918,7 @@ const dummyDetailKaryawan = {
     username: "username1",
     email_verified_at: null,
     role_id: null,
-    foto_profil: "/images/profil.jpg",
+    foto_profil: "https://bit.ly/dan-abramov",
     data_completion_step: 1,
     status_aktif: 1,
     created_at: "2024-06-06T23:48:35.000000Z",
