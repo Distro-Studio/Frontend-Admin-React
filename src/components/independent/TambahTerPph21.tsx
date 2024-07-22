@@ -112,11 +112,10 @@ export default function TambahTerPph21({ ...props }: Props) {
                 </FormLabel>
                 <SelectPtkp
                   name="ptkp"
-                  formik={formik}
-                  placeholder="Pilih PTKP"
-                  initialSelected={formik.values.ptkp}
-                  noUseBackOnClose
-                  noSearch
+                  onConfirm={(input) => {
+                    formik.setFieldValue("ptkp", input);
+                  }}
+                  inputValue={formik.values.ptkp}
                 />
                 <FormErrorMessage>
                   {formik.errors.ptkp as string}

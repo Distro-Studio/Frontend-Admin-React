@@ -577,9 +577,10 @@ export default function TambahKaryawanModal({ ...props }: Props) {
           </FormLabel>
           <SelectPtkp
             name="ptkp"
-            formik={formik}
-            placeholder="Pilih PTKP"
-            initialSelected={formik.values.ptkp}
+            onConfirm={(input) => {
+              formik.setFieldValue("ptkp", input);
+            }}
+            inputValue={formik.values.ptkp}
           />
           <FormErrorMessage>{formik.errors.ptkp as string}</FormErrorMessage>
         </FormControl>
@@ -590,10 +591,11 @@ export default function TambahKaryawanModal({ ...props }: Props) {
             <RequiredForm />
           </FormLabel>
           <SelectPtkp
-            name="potongan"
-            formik={formik}
-            placeholder="Multi Pilih Potongan"
-            initialSelected={formik.values.potongan}
+            name="ptkp"
+            onConfirm={(input) => {
+              formik.setFieldValue("ptkp", input);
+            }}
+            inputValue={formik.values.ptkp}
           />
           <FormErrorMessage>
             {formik.errors.potongan as string}

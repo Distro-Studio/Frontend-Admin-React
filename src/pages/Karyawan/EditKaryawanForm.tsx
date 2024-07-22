@@ -567,9 +567,10 @@ export default function EditKaryawanForm({
           </FormLabel>
           <SelectPtkp
             name="ptkp"
-            formik={formik}
-            placeholder="Pilih PTKP"
-            initialSelected={formik.values.ptkp}
+            onConfirm={(input) => {
+              formik.setFieldValue("ptkp", input);
+            }}
+            inputValue={formik.values.ptkp}
           />
           <FormErrorMessage>
             {formik.errors.ptkp as string as string}
