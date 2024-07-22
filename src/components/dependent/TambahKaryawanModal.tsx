@@ -52,6 +52,7 @@ import useScreenWidth from "../../lib/useScreenWidth";
 import CContainer from "../wrapper/CContainer";
 import DisclosureHeader from "./DisclosureHeader";
 import useScreenHeight from "../../lib/useScreenHeight";
+import SelectPotongan from "./_Select/SelectPotongan";
 
 const validationSchemaStep1 = yup.object({
   // nama_karyawan: yup.string().required("Harus diisi"),
@@ -76,6 +77,7 @@ const validationSchemaStep2 = yup.object({
   // uang_lembur: yup.string().required("Harus diisi"),
   // uang_makan: yup.string().required("Harus diisi"),
   // ptkp: yup.mixed().required("Harus diisi"),
+  // potongan: yup.mixed(),
 });
 
 const validationSchemaStep3 = yup.object({
@@ -590,12 +592,13 @@ export default function TambahKaryawanModal({ ...props }: Props) {
             Potongan
             <RequiredForm />
           </FormLabel>
-          <SelectPtkp
-            name="ptkp"
+          <SelectPotongan
+            name="potongan"
             onConfirm={(input) => {
-              formik.setFieldValue("ptkp", input);
+              formik.setFieldValue("potongan", input);
             }}
-            inputValue={formik.values.ptkp}
+            inputValue={formik.values.potongan}
+            withSearch
           />
           <FormErrorMessage>
             {formik.errors.potongan as string}

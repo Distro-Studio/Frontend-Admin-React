@@ -24,6 +24,8 @@ import backOnClose from "../../../lib/backOnClose";
 import CContainer from "../../independent/wrapper/CContainer";
 import DisclosureHeader from "../DisclosureHeader";
 import SearchComponent from "./SearchComponent";
+import NotFound from "../../independent/NotFound";
+import ComponentSpinner from "../../independent/ComponentSpinner";
 
 interface Props {
   id: string;
@@ -31,7 +33,7 @@ interface Props {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-  options: Interface__SelectOption[];
+  options?: Interface__SelectOption[];
   onConfirm: (inputValue: Interface__SelectOption[] | undefined) => void;
   inputValue: Interface__SelectOption[] | undefined;
   withSearch?: boolean;
@@ -67,7 +69,7 @@ export default function MultipleSelectDrawer({
     Interface__SelectOption[] | undefined
   >(inputValue);
   const fo = search
-    ? options.filter((option) => {
+    ? options?.filter((option) => {
         const searchTerm = search.toLowerCase();
         return (
           option.value.toString().toLowerCase().includes(searchTerm) ||
@@ -171,7 +173,10 @@ export default function MultipleSelectDrawer({
         scrollBehavior={sh < 650 ? "outside" : "inside"}
       >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent
+          my={sh < 650 ? 0 : ""}
+          h={withSearch && sh >= 650 ? "100%" : ""}
+        >
           <ModalHeader ref={initialRef}>
             <Box>
               <DisclosureHeader title={placeholder || "Multi Pilih"} p={0} />
@@ -190,106 +195,122 @@ export default function MultipleSelectDrawer({
             </Box>
           </ModalHeader>
           <ModalBody>
-            {optionsDisplay === "list" && (
-              <CContainer gap={2}>
-                {fo.map((option, i) => (
-                  <Button
-                    key={i}
-                    justifyContent={"space-between"}
-                    className="btn-outline"
-                    onClick={() => {
-                      const isSelected =
-                        selected &&
-                        selected.some((item) => item.value === option.value);
-                      let newSelected = selected || [];
+            {fo && (
+              <>
+                {optionsDisplay === "list" && (
+                  <CContainer gap={2}>
+                    {fo.map((option, i) => (
+                      <Button
+                        key={i}
+                        justifyContent={"space-between"}
+                        className="btn-outline"
+                        onClick={() => {
+                          const isSelected =
+                            selected &&
+                            selected.some(
+                              (item) => item.value === option.value
+                            );
+                          let newSelected = selected || [];
 
-                      if (isSelected) {
-                        // Filter out the option if it's already selected
-                        newSelected = newSelected.filter(
-                          (item) => item.value !== option.value
-                        );
-                      } else {
-                        // Add the option to the selected array
-                        newSelected = [...newSelected, option];
-                      }
+                          if (isSelected) {
+                            // Filter out the option if it's already selected
+                            newSelected = newSelected.filter(
+                              (item) => item.value !== option.value
+                            );
+                          } else {
+                            // Add the option to the selected array
+                            newSelected = [...newSelected, option];
+                          }
 
-                      setSelected(newSelected);
-                    }}
-                    border={
-                      selected &&
-                      selected.some((item) => item.value === option.value)
-                        ? "1px solid var(--p500a2)"
-                        : "none"
-                    }
-                    bg={
-                      selected &&
-                      selected.some((item) => item.value === option.value)
-                        ? "var(--p500a4) !important"
-                        : ""
-                    }
-                  >
-                    <Text>{option.label}</Text>
+                          setSelected(newSelected);
+                        }}
+                        border={
+                          selected &&
+                          selected.some((item) => item.value === option.value)
+                            ? "1px solid var(--p500a2)"
+                            : "none"
+                        }
+                        bg={
+                          selected &&
+                          selected.some((item) => item.value === option.value)
+                            ? "var(--p500a4) !important"
+                            : ""
+                        }
+                      >
+                        <Text
+                          overflow={"hidden"}
+                          whiteSpace={"nowrap"}
+                          textOverflow={"ellipsis"}
+                        >
+                          {option.label}
+                        </Text>
 
-                    <Text opacity={0.4}>{option.subLabel}</Text>
-                  </Button>
-                ))}
-              </CContainer>
+                        <Text opacity={0.4}>{option.subLabel}</Text>
+                      </Button>
+                    ))}
+                  </CContainer>
+                )}
+
+                {optionsDisplay === "chip" && (
+                  <Wrap>
+                    {fo.map((option, i) => (
+                      <Button
+                        key={i}
+                        justifyContent={"space-between"}
+                        className="btn-outline"
+                        borderRadius={"full"}
+                        borderColor={
+                          selected &&
+                          selected.some((item) => item.value === option.value)
+                            ? "var(--p500a2)"
+                            : ""
+                        }
+                        bg={
+                          selected &&
+                          selected.some((item) => item.value === option.value)
+                            ? "var(--p500a5) !important"
+                            : ""
+                        }
+                        onClick={() => {
+                          const isSelected =
+                            selected &&
+                            selected.some(
+                              (item) => item.value === option.value
+                            );
+                          let newSelected = selected || [];
+
+                          if (isSelected) {
+                            // Filter out the option if it's already selected
+                            newSelected = newSelected.filter(
+                              (item) => item.value !== option.value
+                            );
+                          } else {
+                            // Add the option to the selected array
+                            newSelected = [...newSelected, option];
+                          }
+
+                          setSelected(newSelected);
+                        }}
+                        gap={2}
+                      >
+                        <Text
+                          overflow={"hidden"}
+                          whiteSpace={"nowrap"}
+                          textOverflow={"ellipsis"}
+                        >
+                          {option.label}
+                        </Text>
+                        {/* <Text opacity={0.4}>{option.subLabel}</Text> */}
+                      </Button>
+                    ))}
+                  </Wrap>
+                )}
+
+                {fo.length === 0 && <NotFound label="Opsi tidak ditemukan" />}
+              </>
             )}
 
-            {optionsDisplay === "chip" && (
-              <Wrap>
-                {fo.map((option, i) => (
-                  <Button
-                    key={i}
-                    justifyContent={"space-between"}
-                    className="btn-outline"
-                    borderRadius={"full"}
-                    borderColor={
-                      selected &&
-                      selected.some((item) => item.value === option.value)
-                        ? "var(--p500a2)"
-                        : ""
-                    }
-                    bg={
-                      selected &&
-                      selected.some((item) => item.value === option.value)
-                        ? "var(--p500a5) !important"
-                        : ""
-                    }
-                    onClick={() => {
-                      const isSelected =
-                        selected &&
-                        selected.some((item) => item.value === option.value);
-                      let newSelected = selected || [];
-
-                      if (isSelected) {
-                        // Filter out the option if it's already selected
-                        newSelected = newSelected.filter(
-                          (item) => item.value !== option.value
-                        );
-                      } else {
-                        // Add the option to the selected array
-                        newSelected = [...newSelected, option];
-                      }
-
-                      setSelected(newSelected);
-                    }}
-                    gap={2}
-                  >
-                    <Text>{option.label}</Text>
-                    {/* <Text opacity={0.4}>{option.subLabel}</Text> */}
-                  </Button>
-                ))}
-              </Wrap>
-            )}
-
-            {fo.length === 0 && (
-              <HStack justify={"center"} opacity={0.4} minH={"100px"}>
-                <Text textAlign={"center"} fontWeight={600}>
-                  Opsi tidak ditemukan
-                </Text>
-              </HStack>
-            )}
+            {!fo && <ComponentSpinner my={"auto"} />}
           </ModalBody>
           <ModalFooter>
             <VStack w={"100%"}>

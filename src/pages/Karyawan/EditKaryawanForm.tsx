@@ -24,6 +24,7 @@ import SelectStatusKaryawan from "../../components/dependent/_Select/SelectStatu
 import SelectUnitKerja from "../../components/dependent/_Select/SelectUnitKerja";
 import RequiredForm from "../../components/form/RequiredForm";
 import DatePickerModal from "../../components/dependent/input/DatePickerModal";
+import SelectPotongan from "../../components/dependent/_Select/SelectPotongan";
 
 const validationSchemaStep1 = yup.object({
   // nama_karyawan: yup.string().required("Harus diisi"),
@@ -48,6 +49,7 @@ const validationSchemaStep2 = yup.object({
   uang_lembur: yup.string().required("Harus diisi"),
   uang_makan: yup.string().required("Harus diisi"),
   ptkp: yup.mixed().required("Harus diisi"),
+  potongan: yup.mixed(),
 });
 
 const validationSchema = [validationSchemaStep1, validationSchemaStep2];
@@ -105,6 +107,10 @@ export default function EditKaryawanForm({
       ptkp: {
         value: data.ptkp.id,
         label: data.ptkp.kode_ptkp,
+      },
+      potongan: {
+        value: data.potongan.id,
+        label: data.potongan.nama_potongan,
       },
     },
     validationSchema: validationSchema[activeStep],
@@ -574,6 +580,24 @@ export default function EditKaryawanForm({
           />
           <FormErrorMessage>
             {formik.errors.ptkp as string as string}
+          </FormErrorMessage>
+        </FormControl>
+
+        <FormControl mb={4} flex={"1 1 300px"} isInvalid={!!formik.errors.ptkp}>
+          <FormLabel>
+            Potongan
+            <RequiredForm />
+          </FormLabel>
+          <SelectPotongan
+            name="potongan"
+            onConfirm={(input) => {
+              formik.setFieldValue("potongan", input);
+            }}
+            inputValue={formik.values.potongan}
+            withSearch
+          />
+          <FormErrorMessage>
+            {formik.errors.potongan as string}
           </FormErrorMessage>
         </FormControl>
       </Wrap>

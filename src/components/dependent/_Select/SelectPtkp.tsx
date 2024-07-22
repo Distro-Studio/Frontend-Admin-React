@@ -1,6 +1,4 @@
 import { ButtonProps, useDisclosure } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { dummyKompetensi } from "../../../const/dummy";
 import { Interface__SelectOption } from "../../../constant/interfaces";
 import SingleSelectModal from "../input/SingleSelectModal";
 

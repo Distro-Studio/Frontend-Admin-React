@@ -194,7 +194,13 @@ export default function SingleSelectModal({
                             : ""
                         }
                       >
-                        <Text>{option.label}</Text>
+                        <Text
+                          overflow={"hidden"}
+                          whiteSpace={"nowrap"}
+                          textOverflow={"ellipsis"}
+                        >
+                          {option.label}
+                        </Text>
 
                         <Text opacity={0.4}>{option.subLabel}</Text>
                       </Button>
@@ -225,7 +231,13 @@ export default function SingleSelectModal({
                         }
                         gap={2}
                       >
-                        <Text>{option.label}</Text>
+                        <Text
+                          overflow={"hidden"}
+                          whiteSpace={"nowrap"}
+                          textOverflow={"ellipsis"}
+                        >
+                          {option.label}
+                        </Text>
                         {/* <Text opacity={0.4}>{option.subLabel}</Text> */}
                       </Button>
                     ))}

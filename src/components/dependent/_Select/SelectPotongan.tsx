@@ -1,6 +1,6 @@
 import { ButtonProps, useDisclosure } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { dummyKelompokGaji } from "../../../const/dummy";
+import { dummyPremi } from "../../../const/dummy";
 import { Interface__SelectOption } from "../../../constant/interfaces";
 import SingleSelectModal from "../input/SingleSelectModal";
 
@@ -15,7 +15,7 @@ interface Props extends ButtonProps {
   nonNullable?: boolean;
 }
 
-export default function SelectKelompokGaji({
+export default function SelectPotongan({
   name,
   onConfirm,
   inputValue,
@@ -35,16 +35,16 @@ export default function SelectKelompokGaji({
   useEffect(() => {
     // TODO get all unit kerja
 
-    const options = dummyKelompokGaji.map((item) => ({
+    const options = dummyPremi.map((item) => ({
       value: item.id,
-      label: item.nama_kelompok,
+      label: item.nama_premi,
     }));
     setOptions(options);
   }, []);
 
   return (
     <SingleSelectModal
-      id="select-kelompok-gaji-modal"
+      id="select-kompetensi-modal"
       name={name}
       isOpen={isOpen}
       onOpen={onOpen}
@@ -57,7 +57,7 @@ export default function SelectKelompokGaji({
       withSearch={withSearch}
       optionsDisplay={optionsDisplay}
       isError={isError}
-      placeholder={placeholder || "Pilih Kelompok Gaji"}
+      placeholder={placeholder || "Multi Pilih Potongan"}
       nonNullable={nonNullable}
       {...props}
     />
