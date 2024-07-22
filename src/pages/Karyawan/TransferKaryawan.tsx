@@ -10,6 +10,7 @@ import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
+import TransferKaryawanTableColumnsConfig from "../../components/independent/TransferKaryawanTableColumnsConfig";
 
 export default function TransferKaryawan() {
   // Filter Config
@@ -49,6 +50,8 @@ export default function TransferKaryawan() {
             />
 
             <FilterKaryawan />
+
+            <TransferKaryawanTableColumnsConfig />
 
             <ExportModal url="" title="Export Transfer Karyawan" />
 

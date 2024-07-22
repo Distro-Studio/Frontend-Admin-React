@@ -1,17 +1,17 @@
 import { ButtonProps } from "@chakra-ui/react";
-import useTabelKaryawanColumns from "../../global/useTabelKaryawanColumns";
+import useTransferKaryawanTableColumnsConfig from "../../global/useTransferKaryawanTableColumnsConfig";
 import ColumnsConfigModal from "../dependent/ColumnsConfigModal";
-import useTabelTransferKaryawanColumns from "../../global/useTabelTransferKaryawanColumns";
 
 interface Props extends ButtonProps {
   title?: string;
 }
 
-export default function ConfigKolomTabelTransferKaryawanModal({
+export default function TransferKaryawanTableColumnsConfig({
   title,
   ...props
 }: Props) {
-  const { tableColumns, setTableColumns } = useTabelTransferKaryawanColumns();
+  const { tableColumns, setTableColumns } =
+    useTransferKaryawanTableColumnsConfig();
 
   const formattedHeader = [
     {
