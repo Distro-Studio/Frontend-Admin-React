@@ -50,7 +50,7 @@ export default function TabelRekamJejak() {
       isSortable: true,
       props: {
         position: "sticky",
-        left: "52px",
+        left: 0,
         zIndex: 99,
         w: "180px",
       },
@@ -106,7 +106,7 @@ export default function TabelRekamJejak() {
         td: <AvatarAndNameTableData data={item} />,
         props: {
           position: "sticky",
-          left: "52px",
+          left: 0,
           zIndex: 2,
         },
         cProps: {

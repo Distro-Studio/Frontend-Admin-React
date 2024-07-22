@@ -4305,7 +4305,7 @@ const dummyTransferKaryawan = [
       data_karyawans: null,
     },
     tgl_mulai: "2024-09-15 00:00:00",
-    nik: null,
+    nik: "9819287",
     unit_kerja_asal: {
       id: 12,
       nama_unit: "Rawat Inap",
