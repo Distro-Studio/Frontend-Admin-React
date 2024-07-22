@@ -44,7 +44,7 @@ export default function SelectPotongan({
 
   return (
     <SingleSelectModal
-      id="select-kompetensi-modal"
+      id="multi-select-potongan-modal"
       name={name}
       isOpen={isOpen}
       onOpen={onOpen}

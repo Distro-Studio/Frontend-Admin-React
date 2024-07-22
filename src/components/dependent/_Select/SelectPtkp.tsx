@@ -51,7 +51,7 @@ export default function SelectPtkp({
 
   return (
     <SingleSelectModal
-      id="select-kompetensi-modal"
+      id="select-ptkp-modal"
       name={name}
       isOpen={isOpen}
       onOpen={onOpen}

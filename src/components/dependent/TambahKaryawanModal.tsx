@@ -440,12 +440,13 @@ export default function TambahKaryawanModal({ ...props }: Props) {
             <RequiredForm />
           </FormLabel>
           <InputGroup>
-            <InputLeftElement>
+            <InputLeftElement pl={4}>
               <Text>Rp</Text>
             </InputLeftElement>
             <Input
+              pl={12}
               name="tunjangan_uang_lembur"
-              placeholder="Rp. 500.000"
+              placeholder="500.000"
               onChange={formik.handleChange}
               value={formik.values.tunjangan_uang_lembur}
             />
@@ -465,12 +466,13 @@ export default function TambahKaryawanModal({ ...props }: Props) {
             <RequiredForm />
           </FormLabel>
           <InputGroup>
-            <InputLeftElement>
+            <InputLeftElement pl={4}>
               <Text>Rp</Text>
             </InputLeftElement>
             <Input
+              pl={12}
               name="tunjangan_fungsional"
-              placeholder="Rp. 500.000"
+              placeholder="500.000"
               onChange={formik.handleChange}
               value={formik.values.tunjangan_fungsional}
             />
@@ -495,7 +497,7 @@ export default function TambahKaryawanModal({ ...props }: Props) {
             </InputLeftElement>
             <Input
               name="tunjangan_khusus"
-              placeholder="Rp. 500.000"
+              placeholder="500.000"
               onChange={formik.handleChange}
               value={formik.values.tunjangan_khusus}
             />
@@ -518,7 +520,7 @@ export default function TambahKaryawanModal({ ...props }: Props) {
             </InputLeftElement>
             <Input
               name="tunjangan_lainnya"
-              placeholder="Rp. 500.000"
+              placeholder="500.000"
               onChange={formik.handleChange}
               value={formik.values.tunjangan_lainnya}
             />
@@ -541,7 +543,7 @@ export default function TambahKaryawanModal({ ...props }: Props) {
             </InputLeftElement>
             <Input
               name="uang_lembur"
-              placeholder="Rp. 500.000"
+              placeholder="500.000"
               onChange={formik.handleChange}
               value={formik.values.uang_lembur}
             />
@@ -564,7 +566,7 @@ export default function TambahKaryawanModal({ ...props }: Props) {
             </InputLeftElement>
             <Input
               name="uang_makan"
-              placeholder="Rp. 500.000"
+              placeholder="500.000"
               onChange={formik.handleChange}
               value={formik.values.uang_makan}
             />
