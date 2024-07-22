@@ -266,8 +266,6 @@ export default function CustomTable({
   // SX
   const lightDarkColor = useLightDarkColor();
 
-  console.log(formattedHeader);
-
   return (
     <Table
       ref={tableRef}
