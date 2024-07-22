@@ -83,7 +83,7 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
         leftIcon={<Icon as={RiAddFill} fontSize={iconSize} />}
         {...props}
       >
-        Ajukan Transfer
+        Transfer Karyawan
       </Button>
 
       <Modal
@@ -99,7 +99,7 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent borderRadius={12}>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title={"Ajukan Transfer Karyawan"} />
+            <DisclosureHeader title={"Transfer Karyawan"} />
           </ModalHeader>
           <ModalBody>
             <form id="transferKaryawanForm" onSubmit={formik.handleSubmit}>
