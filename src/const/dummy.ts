@@ -4340,7 +4340,7 @@ const dummyTransferKaryawan = [
       id: 1,
       nama_kelompok: "A",
     },
-    tipe: { id: 1, label: "Promosi" },
+    kategori: { id: 1, label: "Promosi" },
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
@@ -4449,7 +4449,7 @@ const dummyTransferKaryawan = [
       id: 1,
       nama_kelompok: "A",
     },
-    tipe: { id: 1, label: "Promosi" },
+    kategori: { id: 1, label: "Promosi" },
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
@@ -4558,7 +4558,7 @@ const dummyTransferKaryawan = [
       id: 1,
       nama_kelompok: "A",
     },
-    tipe: { id: 1, label: "Promosi" },
+    kategori: { id: 1, label: "Promosi" },
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
@@ -4667,7 +4667,7 @@ const dummyTransferKaryawan = [
       id: 1,
       nama_kelompok: "A",
     },
-    tipe: { id: 1, label: "Promosi" },
+    kategori: { id: 1, label: "Promosi" },
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
@@ -4776,7 +4776,7 @@ const dummyTransferKaryawan = [
       id: 1,
       nama_kelompok: "A",
     },
-    tipe: { id: 1, label: "Promosi" },
+    kategori: { id: 1, label: "Promosi" },
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
@@ -4885,7 +4885,7 @@ const dummyTransferKaryawan = [
       id: 1,
       nama_kelompok: "A",
     },
-    tipe: { id: 1, label: "Promosi" },
+    kategori: { id: 1, label: "Promosi" },
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
@@ -4994,7 +4994,7 @@ const dummyTransferKaryawan = [
       id: 1,
       nama_kelompok: "A",
     },
-    tipe: { id: 1, label: "Promosi" },
+    kategori: { id: 1, label: "Promosi" },
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
@@ -5103,7 +5103,7 @@ const dummyTransferKaryawan = [
       id: 1,
       nama_kelompok: "A",
     },
-    tipe: { id: 1, label: "Promosi" },
+    kategori: { id: 1, label: "Promosi" },
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
@@ -5212,7 +5212,7 @@ const dummyTransferKaryawan = [
       id: 1,
       nama_kelompok: "A",
     },
-    tipe: { id: 1, label: "Promosi" },
+    kategori: { id: 1, label: "Promosi" },
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,
@@ -5321,7 +5321,7 @@ const dummyTransferKaryawan = [
       id: 1,
       nama_kelompok: "A",
     },
-    tipe: { id: 1, label: "Promosi" },
+    kategori: { id: 1, label: "Promosi" },
     alasan:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
     dokumen: null,

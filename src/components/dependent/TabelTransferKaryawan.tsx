@@ -13,6 +13,8 @@ import CustomTableContainer from "../wrapper/CustomTableContainer";
 import CustomTable from "./CustomTable";
 import TabelFooterConfig from "./TabelFooterConfig";
 import DetailKaryawanModal from "./DetailKaryawanModal";
+import AvatarAndNameTableData from "./AvatarAndNameTableData";
+import formatDate from "../../lib/formatDate";
 
 export default function TabelRekamJejak() {
   // Limit Config
@@ -65,20 +67,6 @@ export default function TabelRekamJejak() {
         console.log("Editing", row);
       },
     },
-    {
-      label: "Non-aktifkan",
-      icon: (
-        <Icon
-          as={RiShutDownLine}
-          fontSize={iconSize}
-          opacity={0.4}
-          // color={chartColors[4]}
-        />
-      ),
-      callback: (selectedRows: number[]) => {
-        console.log("Non-aktifkan", selectedRows);
-      },
-    },
   ];
 
   const { error, loading, data, retry } = useDataState<any>({
@@ -106,75 +94,47 @@ export default function TabelRekamJejak() {
       isSortable: true,
     },
     {
-      th: "No. Rekam Medis",
+      th: "Kategori Transfer",
       isSortable: true,
     },
     {
-      th: "Unit Kerja",
+      th: "Tanggal Pengajuan",
       isSortable: true,
     },
     {
-      th: "Status Karyawan",
-      isSortable: true,
-      cProps: {
-        justify: "center",
-      },
-    },
-    {
-      th: "Email",
+      th: "Tanggal Mulai",
       isSortable: true,
     },
     {
-      th: "Username",
+      th: "Unit Kerja Asal",
       isSortable: true,
     },
     {
-      th: "Status Aktif",
-      isSortable: true,
-      cProps: {
-        justify: "center",
-      },
-    },
-    {
-      th: "Ayah",
+      th: "Unit Kerja Tujuan",
       isSortable: true,
     },
     {
-      th: "Ibu",
+      th: "Jabatan Asal",
       isSortable: true,
     },
     {
-      th: "Jumlah Keluarga",
-      isSortable: true,
-      cProps: {
-        justify: "center",
-      },
-    },
-    {
-      th: "Tanggal Masuk",
+      th: "Jabatan Tujuan",
       isSortable: true,
     },
     {
-      th: "Tanggal Keluar",
+      th: "Alasan",
+    },
+    {
+      th: "Dokumen",
       isSortable: true,
-    },
-    {
-      th: "Masa Kerja",
-      isSortable: true,
-    },
-    {
-      th: "Promosi",
-    },
-    {
-      th: "Mutasi",
     },
   ];
-  const formattedData = data?.map((riwayat: any) => ({
-    id: riwayat.id,
+  const formattedData = data?.map((item: any) => ({
+    id: item.id,
     rows: [
       {
-        value: "-",
-        td: "-",
+        value: item.user.nama,
+        td: <AvatarAndNameTableData data={item} />,
         props: {
           position: "sticky",
           left: "52px",
@@ -183,6 +143,47 @@ export default function TabelRekamJejak() {
         cProps: {
           borderRight: "1px solid var(--divider3)",
         },
+      },
+      {
+        value: item.nik,
+        td: item.nik,
+        isNumeric: true,
+      },
+      {
+        value: item.kategori.label,
+        td: item.kategori.label,
+      },
+      {
+        value: item.created_at,
+        td: formatDate(item.created_at),
+      },
+      {
+        value: item.tgl_mulai,
+        td: formatDate(item.tgl_mulai),
+      },
+      {
+        value: item.unit_kerja_asal.nama_unit,
+        td: item.unit_kerja_asal.nama_unit,
+      },
+      {
+        value: item.unit_kerja_tujuan.nama_unit,
+        td: item.unit_kerja_tujuan.nama_unit,
+      },
+      {
+        value: item.jabatan_asal.nama_jabatan,
+        td: item.jabatan_asal.nama_jabatan,
+      },
+      {
+        value: item.jabatan_tujuan.nama_jabatan,
+        td: item.jabatan_tujuan.nama_jabatan,
+      },
+      {
+        value: item.alasan,
+        td: item.alasan,
+      },
+      {
+        value: "-",
+        td: "-",
       },
     ],
   }));
@@ -213,7 +214,7 @@ export default function TabelRekamJejak() {
               {(data || (data && data.length > 0)) && (
                 <>
                   <CustomTableContainer>
-                    {/* <CustomTable
+                    <CustomTable
                       formattedHeader={formattedHeader}
                       formattedData={formattedData}
                       batchActions={batchActions}
@@ -222,7 +223,7 @@ export default function TabelRekamJejak() {
                       }}
                       columnsConfig={tabelKaryawanColumns}
                       rowOptions={rowOptions}
-                    /> */}
+                    />
                   </CustomTableContainer>
 
                   <TabelFooterConfig

@@ -45,7 +45,7 @@ export default function TransferKaryawan() {
 
             <FilterKaryawan />
 
-            <ExportModal url="" title="Export Riwayat Transfer Karyawan" />
+            <ExportModal url="" title="Export Transfer Karyawan" />
 
             <AjukanTransferKaryawanModal w={"max-content"} />
           </Wrap>

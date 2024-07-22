@@ -179,12 +179,12 @@ export default function TabelKaryawan() {
       th: "Mutasi",
     },
   ];
-  const formattedData = data?.map((karyawan: Interface__DetailKaryawan) => ({
-    id: karyawan.id,
+  const formattedData = data?.map((item: Interface__DetailKaryawan) => ({
+    id: item.id,
     rows: [
       {
-        value: karyawan.user.nama,
-        td: <AvatarAndNameTableData data={karyawan} />,
+        value: item.user.nama,
+        td: <AvatarAndNameTableData data={item} />,
         props: {
           position: "sticky",
           left: "52px",
@@ -195,44 +195,41 @@ export default function TabelKaryawan() {
         },
       },
       {
-        value: karyawan.nik,
-        td: karyawan.nik,
+        value: item.nik,
+        td: item.nik,
         isNumeric: true,
       },
       {
-        value: karyawan.no_rm,
-        td: karyawan.no_rm,
+        value: item.no_rm,
+        td: item.no_rm,
         isNumeric: true,
       },
       {
-        value: karyawan.unit_kerja.nama_unit,
-        td: karyawan.unit_kerja.nama_unit,
+        value: item.unit_kerja.nama_unit,
+        td: item.unit_kerja.nama_unit,
       },
       {
-        value: karyawan.status_karyawan.label,
+        value: item.status_karyawan.label,
         td: (
-          <StatusKaryawanBadge
-            w={"120px"}
-            data={karyawan.status_karyawan.label}
-          />
+          <StatusKaryawanBadge w={"120px"} data={item.status_karyawan.label} />
         ),
         cProps: {
           justify: "center",
         },
       },
       {
-        value: karyawan.email,
-        td: karyawan.email,
+        value: item.email,
+        td: item.email,
       },
       {
-        value: karyawan.user.username,
-        td: karyawan.user.username,
+        value: item.user.username,
+        td: item.user.username,
       },
       {
-        value: karyawan.user.status_aktif,
+        value: item.user.status_aktif,
         td: (
           <BooleanBadge
-            data={karyawan.user.status_aktif}
+            data={item.user.status_aktif}
             trueValue="Aktif"
             falseValue="Tidak Aktif"
             w={"120px"}
@@ -243,31 +240,31 @@ export default function TabelKaryawan() {
         },
       },
       {
-        value: karyawan.ayah.nama,
-        td: karyawan.ayah.nama,
+        value: item.ayah.nama,
+        td: item.ayah.nama,
       },
       {
-        value: karyawan.ibu.nama,
-        td: karyawan.ibu.nama,
+        value: item.ibu.nama,
+        td: item.ibu.nama,
       },
       {
-        value: karyawan.jumlah_keluarga,
-        td: karyawan.jumlah_keluarga,
+        value: item.jumlah_keluarga,
+        td: item.jumlah_keluarga,
         cProps: {
           justify: "center",
         },
       },
       {
-        value: karyawan.tgl_masuk,
-        td: formatDate(karyawan.tgl_masuk),
+        value: item.tgl_masuk,
+        td: formatDate(item.tgl_masuk),
       },
       {
-        value: karyawan.tgl_keluar,
-        td: formatDate(karyawan.tgl_keluar),
+        value: item.tgl_keluar,
+        td: formatDate(item.tgl_keluar),
       },
       {
-        value: karyawan.masa_kerja,
-        td: formatMasaKerja(karyawan.masa_kerja),
+        value: item.masa_kerja,
+        td: formatMasaKerja(item.masa_kerja),
       },
       {
         value: "-",
