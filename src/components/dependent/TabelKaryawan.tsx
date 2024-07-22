@@ -5,7 +5,7 @@ import { dummyKaryawans } from "../../const/dummy";
 import { Interface__DetailKaryawan } from "../../const/interfaces";
 import { responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
-import useTabelKaryawanColumns from "../../global/useKaryawanTableColumnsConfig";
+import useKaryawanTableColumnsConfig from "../../global/useKaryawanTableColumnsConfig";
 import useDataState from "../../hooks/useDataState";
 import formatDate from "../../lib/formatDate";
 import formatMasaKerja from "../../lib/formatMasaKerja";
@@ -30,7 +30,7 @@ export default function TabelKaryawan() {
   // Filter Config
   const { filterKaryawan } = useFilterKaryawan();
   // Columns Config
-  const { tableColumns } = useTabelKaryawanColumns();
+  const { columnsConfig } = useKaryawanTableColumnsConfig();
   // Row Options Config
   const rowOptions = [
     <HStack w={"100%"} justify={"space-between"}>
@@ -261,7 +261,7 @@ export default function TabelKaryawan() {
                       onRowClick={() => {
                         onOpen();
                       }}
-                      columnsConfig={tableColumns}
+                      columnsConfig={columnsConfig}
                       rowOptions={rowOptions}
                     />
                   </CustomTableContainer>
