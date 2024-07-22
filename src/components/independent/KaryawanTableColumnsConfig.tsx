@@ -7,8 +7,12 @@ interface Props extends ButtonProps {
 }
 
 export default function KaryawanTableColumnsConfig({ title, ...props }: Props) {
-  const { clearedTableColumns, tableColumns, setTableColumns } =
-    useKaryawanTableColumnsConfig();
+  const {
+    allTableColumns,
+    clearedTableColumns,
+    tableColumns,
+    setTableColumns,
+  } = useKaryawanTableColumnsConfig();
 
   const allColumns = [
     { column: "nama", label: "Nama" },
@@ -31,7 +35,7 @@ export default function KaryawanTableColumnsConfig({ title, ...props }: Props) {
   const presetColumns = [
     {
       label: "Semua Kolom",
-      columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      columns: allTableColumns,
     },
     {
       label: "Karyawan",
