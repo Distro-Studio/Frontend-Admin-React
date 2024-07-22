@@ -23,7 +23,6 @@ import { useRef } from "react";
 import * as yup from "yup";
 import { iconSize } from "../../const/sizes";
 import backOnClose from "../../lib/backOnCloseOld";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
 import SelectJabatan from "../dependent/_Select/SelectJabatan";
 import SelectKaryawan from "../dependent/_Select/SelectKaryawan";
 import SelectKelompokGaji from "../dependent/_Select/SelectKelompokGaji";
@@ -34,12 +33,13 @@ import DatePickerModal from "../dependent/input/DatePickerModal";
 import RequiredForm from "../form/RequiredForm";
 import FileInput from "../input/FileInput";
 import Textarea from "../input/Textarea";
+import useBackOnClose from "../../hooks/useBackOnClose";
 
 interface Props extends ButtonProps {}
 
 export default function AjukanTransferKaryawanModal({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
+  useBackOnClose("ajukan-transfer-karyawan-modal", isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
   const formik = useFormik({
