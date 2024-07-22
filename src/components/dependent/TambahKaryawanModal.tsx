@@ -399,9 +399,11 @@ export default function TambahKaryawanModal({ ...props }: Props) {
           </FormLabel>
           <SelectKelompokGaji
             name="kelompok_gaji"
-            formik={formik}
-            placeholder="Pilih Kelompok Gaji"
-            initialSelected={formik.values.kelompok_gaji}
+            onConfirm={(input) => {
+              formik.setFieldValue("kelompok_gaji", input);
+            }}
+            inputValue={formik.values.kelompok_gaji}
+            withSearch
           />
           <FormErrorMessage>
             {formik.errors.kelompok_gaji as string}

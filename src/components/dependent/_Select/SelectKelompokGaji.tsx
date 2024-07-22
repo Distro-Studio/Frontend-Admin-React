@@ -1,103 +1,65 @@
-import { Button, ButtonProps, Text } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
-import { dummyKelompokGaji } from "../../../const/dummy";
-import { Select__Item__Interface } from "../../../const/interfaces";
-import Select from "../../input/Select";
-import formatNumber from "../../../lib/formatNumber";
+import { ButtonProps, useDisclosure } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { dummyKelompokGaji, dummyKompetensi } from "../../../const/dummy";
+import { Interface__SelectOption } from "../../../constant/interfaces";
+import SingleSelectModal from "../input/SingleSelectModal";
 
 interface Props extends ButtonProps {
-  placeholder: string;
-  initialSelected?: any;
-  formik?: any;
-  name?: string;
-  confirmSelect?: (newSelectedValue: any) => void;
-  noUseBackOnClose?: boolean;
-  noSearch?: boolean;
-  modalSize?: string;
+  name: string;
+  onConfirm: (inputValue: Interface__SelectOption | undefined) => void;
+  inputValue: Interface__SelectOption | undefined;
+  withSearch?: boolean;
+  optionsDisplay?: "list" | "chip";
+  isError?: boolean;
+  placeholder?: string;
+  nonNullable?: boolean;
 }
 
 export default function SelectKelompokGaji({
-  placeholder,
-  initialSelected,
-  formik,
   name,
-  confirmSelect,
-  noUseBackOnClose,
-  noSearch,
-  modalSize,
+  onConfirm,
+  inputValue,
+  withSearch,
+  optionsDisplay = "list",
+  isError,
+  placeholder,
+  nonNullable,
   ...props
 }: Props) {
-  const [search, setSearch] = useState<string>("");
-  const [options, setOptions] = useState<any | null>(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [options, setOptions] = useState<Interface__SelectOption[] | undefined>(
+    undefined
+  );
+
   useEffect(() => {
+    // TODO get all unit kerja
+
     const options = dummyKelompokGaji.map((item) => ({
       value: item.id,
       label: item.nama_kelompok,
-      besaran_gaji: item.besaran_gaji,
     }));
     setOptions(options);
-    // TODO get shift list
   }, []);
 
-  const filteredOptions = options?.filter((option: any) =>
-    option.label.toLowerCase().includes(search.toLocaleLowerCase())
-  );
-  const [selected, setSelected] = useState<Select__Item__Interface | null>(
-    initialSelected || null
-  );
-  const selectComponentRef = useRef<{ handleOnClose: () => void } | null>(null);
-
   return (
-    <Select
-      ref={selectComponentRef}
-      placeholder={placeholder}
-      selected={selected}
-      setSelected={setSelected}
-      formik={formik}
+    <SingleSelectModal
+      id="select-kelompok-gaji-modal"
       name={name}
-      noUseBackOnClose={noUseBackOnClose}
-      search={search}
-      setSearch={setSearch}
-      noSearch={noSearch}
-      modalSize={modalSize}
-      confirmSelect={confirmSelect}
-      initialSelected={initialSelected}
+      isOpen={isOpen}
+      onOpen={onOpen}
+      onClose={onClose}
+      options={options}
+      onConfirm={(input) => {
+        onConfirm(input);
+      }}
+      inputValue={inputValue}
+      withSearch={withSearch}
+      optionsDisplay={optionsDisplay}
+      isError={isError}
+      placeholder={placeholder || "Pilih Kelompok Gaji"}
+      nonNullable={nonNullable}
       {...props}
-    >
-      {filteredOptions?.map((option: any, i: number) => (
-        <Button
-          bg={
-            selected && selected.value === option.value
-              ? "var(--p500a3) !important"
-              : ""
-          }
-          _hover={{
-            bg: "var(--divider) !important",
-          }}
-          border={"1px solid var(--divider)"}
-          borderColor={
-            selected && selected.value === option.value ? "var(--p500a1)" : ""
-          }
-          key={i}
-          onClick={() => {
-            setSelected(option);
-          }}
-          gap={4}
-          justifyContent={"space-between"}
-          fontWeight={500}
-        >
-          <Text>{option.label}</Text>
-          <Text fontSize={14} opacity={0.6}>
-            {formatNumber(option.besaran_gaji)}
-          </Text>
-        </Button>
-      ))}
-
-      {filteredOptions && filteredOptions.length === 0 && (
-        <Text textAlign={"center"} my={2}>
-          Opsi tidak ditemukan
-        </Text>
-      )}
-    </Select>
+    />
   );
 }

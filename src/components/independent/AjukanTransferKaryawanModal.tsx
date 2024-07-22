@@ -209,11 +209,12 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
                 >
                   <FormLabel>Kelompok Gaji Tujuan</FormLabel>
                   <SelectKelompokGaji
-                    name="kelompok_gaji_tujuan"
-                    formik={formik}
-                    placeholder="Pilih Kelompok Gaji"
-                    initialSelected={formik.values.kelompok_gaji_tujuan}
-                    noUseBackOnClose
+                    name="kelompok_gaji"
+                    onConfirm={(input) => {
+                      formik.setFieldValue("kelompok_gaji", input);
+                    }}
+                    inputValue={formik.values.kelompok_gaji_tujuan}
+                    placeholder="Pilih Kelompok Gaji Tujuan"
                   />
                   <FormHelperText>
                     Kosongkan jika data sama seperti sebelumnya
