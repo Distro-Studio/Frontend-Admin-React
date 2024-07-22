@@ -36,8 +36,24 @@ export default function TransferKaryawanTableColumnsConfig({
       columns: columnsConfigAllColumns,
     },
     {
-      label: "Karyawan",
-      columns: [0, 1, 2, 3, 4],
+      label: "Tanggal Transfer",
+      columns: [0, 2, 3, 4],
+    },
+    {
+      label: "Data Asal",
+      columns: [0, 2, 5, 7],
+    },
+    {
+      label: "Data Tujuan",
+      columns: [0, 2, 6, 8],
+    },
+    {
+      label: "Data Asal & Tujuan",
+      columns: [0, 2, 5, 6, 7, 8],
+    },
+    {
+      label: "Alasan & Dokumen",
+      columns: [0, 9, 10],
     },
   ];
 
