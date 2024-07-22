@@ -139,49 +139,49 @@ export default function TabelDetailRekamJejak({ data }: Props) {
                 <Text minW={"160px"} opacity={0.6}>
                   Tanggal Pengajuan
                 </Text>
-                <Text>{formatDate(item.created_at)}</Text>
+                <Text fontWeight={500}>{formatDate(item.created_at)}</Text>
               </HStack>
 
               <HStack>
                 <Text minW={"160px"} opacity={0.6}>
                   Tanggal Mulai
                 </Text>
-                <Text>{formatDate(item.tgl_mulai)}</Text>
+                <Text fontWeight={500}>{formatDate(item.tgl_mulai)}</Text>
               </HStack>
 
               <HStack>
                 <Text minW={"160px"} opacity={0.6}>
                   Unit Kerja Asal
                 </Text>
-                <Text>{item.unit_kerja_asal.nama_unit}</Text>
+                <Text fontWeight={500}>{item.unit_kerja_asal.nama_unit}</Text>
               </HStack>
 
               <HStack>
                 <Text minW={"160px"} opacity={0.6}>
                   Unit Kerja Tujuan
                 </Text>
-                <Text>{item.unit_kerja_tujuan.nama_unit}</Text>
+                <Text fontWeight={500}>{item.unit_kerja_tujuan.nama_unit}</Text>
               </HStack>
 
               <HStack>
                 <Text minW={"160px"} opacity={0.6}>
                   Jabatan Asal
                 </Text>
-                <Text>{item.jabatan_asal.nama_jabatan}</Text>
+                <Text fontWeight={500}>{item.jabatan_asal.nama_jabatan}</Text>
               </HStack>
 
               <HStack>
                 <Text minW={"160px"} opacity={0.6}>
                   Jabatan Tujuan
                 </Text>
-                <Text>{item.jabatan_tujuan.nama_jabatan}</Text>
+                <Text fontWeight={500}>{item.jabatan_tujuan.nama_jabatan}</Text>
               </HStack>
 
               <HStack align={"start"}>
                 <Text minW={"160px"} opacity={0.6}>
                   Alasan
                 </Text>
-                <Text>{item.alasan}</Text>
+                <Text fontWeight={500}>{item.alasan}</Text>
               </HStack>
 
               <HStack align={"start"}>
