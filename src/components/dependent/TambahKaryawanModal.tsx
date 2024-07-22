@@ -280,7 +280,6 @@ export default function TambahKaryawanModal({ ...props }: Props) {
               formik.setFieldValue("status_karyawan", input);
             }}
             inputValue={formik.values.status_karyawan}
-            placeholder="Pilih Status Karyawan"
           />
           <FormErrorMessage>
             {formik.errors.unit_kerja as string}
@@ -302,7 +301,6 @@ export default function TambahKaryawanModal({ ...props }: Props) {
               formik.setFieldValue("unit_kerja", input);
             }}
             inputValue={formik.values.unit_kerja}
-            placeholder="Pilih Unit Kerja"
             withSearch
           />
           <FormErrorMessage>
@@ -321,9 +319,11 @@ export default function TambahKaryawanModal({ ...props }: Props) {
           </FormLabel>
           <SelectJabatan
             name="jabatan"
-            formik={formik}
-            placeholder="Pilih Jabatan"
-            initialSelected={formik.values.jabatan}
+            onConfirm={(input) => {
+              formik.setFieldValue("jabatan", input);
+            }}
+            inputValue={formik.values.jabatan}
+            withSearch
           />
           <FormErrorMessage>{formik.errors.jabatan as string}</FormErrorMessage>
         </FormControl>

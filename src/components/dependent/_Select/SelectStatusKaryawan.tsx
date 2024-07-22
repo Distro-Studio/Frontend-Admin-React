@@ -56,7 +56,7 @@ export default function SelectStatusKaryawan({
       withSearch={withSearch}
       optionsDisplay={optionsDisplay}
       isError={isError}
-      placeholder={placeholder}
+      placeholder={placeholder || "Pilih Status Karyawan"}
       nonNullable={nonNullable}
       {...props}
     />

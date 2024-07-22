@@ -33,17 +33,18 @@ export default function SelectUnitKerja({
   );
 
   useEffect(() => {
+    // TODO get all unit kerja
+
     const options = dummyUnitKerja.map((item) => ({
       value: item.id,
       label: item.nama_unit,
     }));
     setOptions(options);
-    // TODO get shift list
   }, []);
 
   return (
     <SingleSelectModal
-      id="select-status-karyawan-modal"
+      id="select-unit_kerja-modal"
       name={name}
       isOpen={isOpen}
       onOpen={onOpen}
@@ -56,7 +57,7 @@ export default function SelectUnitKerja({
       withSearch={withSearch}
       optionsDisplay={optionsDisplay}
       isError={isError}
-      placeholder={placeholder}
+      placeholder={placeholder || "Pilih Unit Kerja"}
       nonNullable={nonNullable}
       {...props}
     />

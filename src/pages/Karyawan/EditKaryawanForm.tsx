@@ -256,11 +256,9 @@ export default function EditKaryawanForm({
               formik.setFieldValue("status_karyawan", input);
             }}
             inputValue={formik.values.status_karyawan}
-            placeholder="Pilih Status Karyawan"
           />
           <FormErrorMessage>
             {formik.errors.unit_kerja as string}
-            as string{" "}
           </FormErrorMessage>
         </FormControl>
 
@@ -279,12 +277,10 @@ export default function EditKaryawanForm({
               formik.setFieldValue("unit_kerja", input);
             }}
             inputValue={formik.values.unit_kerja}
-            placeholder="Pilih Unit Kerja"
             withSearch
           />
           <FormErrorMessage>
             {formik.errors.unit_kerja as string}
-            as string{" "}
           </FormErrorMessage>
         </FormControl>
 
@@ -299,9 +295,11 @@ export default function EditKaryawanForm({
           </FormLabel>
           <SelectJabatan
             name="jabatan"
-            formik={formik}
-            placeholder="Pilih Jabatan"
-            initialSelected={formik.values.jabatan}
+            onConfirm={(input) => {
+              formik.setFieldValue("jabatan", input);
+            }}
+            inputValue={formik.values.jabatan}
+            withSearch
           />
           <FormErrorMessage>
             {formik.errors.jabatan as string as string}
@@ -325,7 +323,6 @@ export default function EditKaryawanForm({
           </FormHelperText>
           <FormErrorMessage>
             {formik.errors.kompetensi as string}
-            as string{" "}
           </FormErrorMessage>
         </FormControl>
 
@@ -385,7 +382,6 @@ export default function EditKaryawanForm({
           />
           <FormErrorMessage>
             {formik.errors.kelompok_gaji as string}
-            as string{" "}
           </FormErrorMessage>
         </FormControl>
 

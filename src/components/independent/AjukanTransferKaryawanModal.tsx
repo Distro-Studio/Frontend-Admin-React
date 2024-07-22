@@ -173,7 +173,7 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
                       formik.setFieldValue("unit_kerja", input);
                     }}
                     inputValue={formik.values.unit_kerja_tujuan}
-                    placeholder="Pilih Unit Kerja"
+                    placeholder="Pilih Unit Kerja Tujuan"
                     withSearch
                   />
                   <FormHelperText>
@@ -187,11 +187,13 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
                 <FormControl mb={4} isInvalid={!!formik.errors.jabatan_tujuan}>
                   <FormLabel>Jabatan Tujuan</FormLabel>
                   <SelectJabatan
-                    name="jabatan_tujuan"
-                    formik={formik}
-                    placeholder="Pilih Jabatan"
-                    initialSelected={formik.values.jabatan_tujuan}
-                    noUseBackOnClose
+                    name="jabatan"
+                    onConfirm={(input) => {
+                      formik.setFieldValue("jabatan", input);
+                    }}
+                    inputValue={formik.values.jabatan_tujuan}
+                    placeholder="Pilih Jabatan Tujuan"
+                    withSearch
                   />
                   <FormHelperText>
                     Kosongkan jika data sama seperti sebelumnya
