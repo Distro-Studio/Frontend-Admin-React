@@ -65,7 +65,7 @@ export default function Karyawan() {
 
             <FilterKaryawan />
 
-            <TableColumnConfigModal title="Kolom Tabel Karyawan Config" />
+            <TableColumnConfigModal title="Config Kolom Tabel Karyawan" />
 
             <ExportModal url={""} title={"Export Karyawan"} px={6} />
 

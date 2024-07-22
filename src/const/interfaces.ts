@@ -565,3 +565,8 @@ export interface Interface__DetailKaryawan {
   created_at: Date | string;
   updated_at: Date | string | null;
 }
+
+export interface Interface__ColumnConfig {
+  column: string;
+  label: string;
+}
