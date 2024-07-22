@@ -363,9 +363,8 @@ export default function TambahKaryawanModal({ ...props }: Props) {
 
   const Step1Footer = () => {
     return (
-      <Box mt={"auto"}>
+      <Box mt={"auto"} pt={4}>
         <Button
-          mt={2}
           w={"100%"}
           colorScheme="ap"
           className="btn-ap clicky"
@@ -596,9 +595,8 @@ export default function TambahKaryawanModal({ ...props }: Props) {
 
   const Step2Footer = () => {
     return (
-      <ButtonGroup mt={"auto"} w={"100%"}>
+      <ButtonGroup mt={"auto"} pt={4} w={"100%"}>
         <Button
-          mt={2}
           w={"100%"}
           className="btn-solid clicky"
           h={"50px"}
@@ -607,7 +605,6 @@ export default function TambahKaryawanModal({ ...props }: Props) {
           Sebelumnya
         </Button>
         <Button
-          mt={2}
           w={"100%"}
           colorScheme="ap"
           className="btn-ap clicky"
@@ -669,9 +666,8 @@ export default function TambahKaryawanModal({ ...props }: Props) {
 
   const Step3Footer = () => {
     return (
-      <ButtonGroup mt={"auto"} w={"100%"}>
+      <ButtonGroup mt={"auto"} pt={4} w={"100%"}>
         <Button
-          mt={2}
           w={"100%"}
           className="btn-solid clicky"
           h={"50px"}
@@ -680,7 +676,6 @@ export default function TambahKaryawanModal({ ...props }: Props) {
           Sebelumnya
         </Button>
         <Button
-          mt={2}
           w={"100%"}
           colorScheme="ap"
           className="btn-ap clicky"
