@@ -110,20 +110,28 @@ export default function TabelDetailRekamJejak({ data }: Props) {
   // }));
 
   return (
-    <CContainer gap={2}>
+    <CContainer pl={5}>
       {data.map((item: any, i: number) => (
-        <HStack key={i} align={"stretch"} gap={4}>
+        <HStack key={i} align={"stretch"} gap={8}>
           <VStack>
+            <Box flex={1} w={"1px"} bg={"var(--divider3)"} />
+
             <Center p={1} borderRadius={"full"} bg={"var(--p500a3)"}>
               <Icon as={RiCircleFill} color={"p.500"} />
             </Center>
 
-            {i !== data.length - 1 && (
-              <Box flex={1} w={"1px"} bg={"var(--divider3)"} />
-            )}
+            <Box
+              flex={1}
+              w={"1px"}
+              bg={"var(--divider3)"}
+              opacity={i === data.length - 1 ? 0 : 1}
+            />
           </VStack>
 
-          <Box pb={i !== data.length - 1 ? responsiveSpacing : 0}>
+          <Box
+            pt={responsiveSpacing}
+            pb={i === data.length - 1 ? 0 : responsiveSpacing}
+          >
             <CContainer
               py={4}
               px={5}
@@ -188,7 +196,9 @@ export default function TabelDetailRekamJejak({ data }: Props) {
                 <Text minW={"160px"} opacity={0.6}>
                   Dokumen
                 </Text>
-                <SmallLink to={item.dokumen}>Lihat</SmallLink>
+                <SmallLink to={item.dokumen} className="btn-apa">
+                  Lihat
+                </SmallLink>
               </HStack>
             </CContainer>
           </Box>

@@ -113,7 +113,7 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
                               <Wrap
                                 align={"center"}
                                 spacing={responsiveSpacing}
-                                mb={responsiveSpacing}
+                                // mb={responsiveSpacing}
                               >
                                 <Avatar
                                   size={"lg"}
