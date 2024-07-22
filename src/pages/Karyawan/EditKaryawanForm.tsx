@@ -314,9 +314,11 @@ export default function EditKaryawanForm({
           <FormLabel>Kompetensi Profesi</FormLabel>
           <SelectKompetensi
             name="kompetensi"
-            formik={formik}
-            placeholder="Pilih Kompetensi"
-            initialSelected={formik.values.kompetensi}
+            onConfirm={(input) => {
+              formik.setFieldValue("kompetensi", input);
+            }}
+            inputValue={formik.values.kompetensi}
+            withSearch
           />
           <FormHelperText opacity={0.4}>
             Kosongkan jika tidak memiliki kompetensi
