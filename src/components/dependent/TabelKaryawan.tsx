@@ -39,7 +39,7 @@ export default function TabelKaryawan() {
       },
       element: (
         <HStack w={"100%"} justify={"space-between"} gap={4}>
-          <Text>Masukkan Daftar Penyelidikan</Text>
+          <Text>Tes Aja</Text>
           <Icon as={RiEditLine} opacity={0.4} />
         </HStack>
       ),
