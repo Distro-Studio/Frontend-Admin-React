@@ -3,6 +3,7 @@ import { useState } from "react";
 import { dummyTransferKaryawan } from "../../const/dummy";
 import { responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
+import useTransferKaryawanTableColumnsConfig from "../../global/useTransferKaryawanTableColumnsConfig";
 import useDataState from "../../hooks/useDataState";
 import formatDate from "../../lib/formatDate";
 import NoData from "../independent/NoData";
@@ -13,7 +14,6 @@ import CustomTable from "./CustomTable";
 import DetailKaryawanModal from "./DetailKaryawanModal";
 import Retry from "./Retry";
 import TabelFooterConfig from "./TabelFooterConfig";
-import useTransferKaryawanTableColumnsConfig from "../../global/useTransferKaryawanTableColumnsConfig";
 
 export default function TabelRekamJejak() {
   // Limit Config
@@ -187,7 +187,14 @@ export default function TabelRekamJejak() {
                     <CustomTable
                       formattedHeader={formattedHeader}
                       formattedData={formattedData}
-                      batchActions={[<Text>Jancok</Text>]}
+                      batchActions={[
+                        {
+                          callback: (rowIds) => {
+                            console.log(rowIds);
+                          },
+                          element: <Text>Jancok</Text>,
+                        },
+                      ]}
                       onRowClick={() => {
                         onOpen();
                       }}

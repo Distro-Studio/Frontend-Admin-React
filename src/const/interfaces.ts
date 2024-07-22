@@ -570,3 +570,13 @@ export interface Interface__ColumnConfig {
   column: string;
   label: string;
 }
+
+export interface Interface__RowOption {
+  callback: (row: any) => void;
+  element: React.ReactNode;
+}
+
+export interface Interface__BatchAction {
+  callback: (rowIds: number[]) => void;
+  element: React.ReactNode;
+}

@@ -1,9 +1,8 @@
-import { Box, HStack, Icon, Text, useDisclosure } from "@chakra-ui/react";
-import { RiShutDownLine, RiUploadLine } from "@remixicon/react";
+import { Box, HStack, Text, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import { dummyRekamJejak } from "../../const/dummy";
 import { Interface__DetailKaryawan } from "../../const/interfaces";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
 import useDataState from "../../hooks/useDataState";
 import formatDate from "../../lib/formatDate";
@@ -30,37 +29,6 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   // Filter Config
   const { filterKaryawan } = useFilterKaryawan();
-  // Batch Actions Config
-  const batchActions = [
-    {
-      label: "Non-aktifkan",
-      icon: (
-        <Icon
-          as={RiShutDownLine}
-          fontSize={iconSize}
-          opacity={0.4}
-          // color={chartColors[4]}
-        />
-      ),
-      callback: (selectedRows: number[]) => {
-        console.log("Non-aktifkan", selectedRows);
-      },
-    },
-    {
-      label: "Export",
-      icon: (
-        <Icon
-          as={RiUploadLine}
-          fontSize={iconSize}
-          opacity={0.4}
-          // color={chartColors[1]}
-        />
-      ),
-      callback: (selectedRows: number[]) => {
-        console.log("Exporting", selectedRows);
-      },
-    },
-  ];
 
   const { error, loading, data, retry } = useDataState<any>({
     initialData: dummyRekamJejak,
@@ -176,7 +144,6 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
                       formattedHeader={formattedHeader}
                       // @ts-ignore
                       formattedData={formattedData}
-                      batchActions={batchActions}
                       onRowClick={() => {
                         onOpen();
                       }}

@@ -28,14 +28,16 @@ import {
 import { useRef, useState } from "react";
 import { useLightDarkColor } from "../../const/colors";
 import {
+  Interface__BatchAction,
   Interface__FormattedTableData,
   Interface__FormattedTableHeader,
+  Interface__RowOption,
 } from "../../const/interfaces";
 import { iconSize } from "../../const/sizes";
 
 interface BatchActionsProps {
   selectedRows: number[];
-  batchActions: any[];
+  batchActions: Interface__BatchAction[];
   selectAllRows: boolean;
   handleSelectAllRows: (isChecked: boolean) => void;
   tableRef: any;
@@ -100,7 +102,7 @@ const BatchActions = ({
 
 interface RowOptionsProps {
   row: any;
-  rowOptions: any[];
+  rowOptions: Interface__RowOption[];
   tableRef: any;
 }
 
@@ -140,9 +142,9 @@ interface Props {
   formattedHeader: Interface__FormattedTableHeader[];
   formattedData: Interface__FormattedTableData[];
   onRowClick?: (rowData: any) => void;
-  batchActions?: any[];
   columnsConfig?: number[];
-  rowOptions?: any[];
+  batchActions?: Interface__BatchAction[];
+  rowOptions?: Interface__RowOption[];
 }
 
 export default function CustomTable({
