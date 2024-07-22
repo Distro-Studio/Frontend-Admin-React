@@ -224,8 +224,9 @@ export default function EditKaryawanForm({
             <RequiredForm />
           </FormLabel>
           <DatePickerModal
-            id="edit-karyawan-tgl-masuk"
+            id="edit-karyawan-date-picker"
             name="tgl_masuk"
+            placeholder="Pilih Tanggal Masuk"
             onConfirm={(input) => {
               formik.setFieldValue("tgl_masuk", input);
             }}

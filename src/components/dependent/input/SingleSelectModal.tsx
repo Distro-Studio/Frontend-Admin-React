@@ -22,8 +22,9 @@ import useScreenHeight from "../../../hooks/useScreenHeight";
 import backOnClose from "../../../lib/backOnClose";
 import CContainer from "../../independent/wrapper/CContainer";
 import DisclosureHeader from "../DisclosureHeader";
-import SearchComponent from "./SearchComponent";
 import ComponentSpinner from "../../independent/ComponentSpinner";
+import SearchComponent from "./SearchComponent";
+import NotFound from "../../independent/NotFound";
 
 interface Props {
   id: string;
@@ -149,7 +150,7 @@ export default function SingleSelectModal({
         scrollBehavior={sh < 650 ? "outside" : "inside"}
       >
         <ModalOverlay />
-        <ModalContent my={sh < 650 ? 0 : ""}>
+        <ModalContent my={sh < 650 ? 0 : ""} h={"100%"}>
           <ModalHeader ref={initialRef}>
             <DisclosureHeader title={placeholder || "Pilih Salah Satu"} />
 
@@ -228,13 +229,7 @@ export default function SingleSelectModal({
                   </Wrap>
                 )}
 
-                {fo.length === 0 && (
-                  <HStack justify={"center"} opacity={0.4} minH={"100px"}>
-                    <Text textAlign={"center"} fontWeight={600}>
-                      Opsi tidak ditemukan
-                    </Text>
-                  </HStack>
-                )}
+                {fo.length === 0 && <NotFound label="Opsi tidak ditemukan" />}
               </>
             )}
 

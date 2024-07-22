@@ -252,7 +252,7 @@ export default function TambahKaryawanModal({ ...props }: Props) {
           <DatePickerModal
             id="tambah-karyawan-date-picker"
             name="tgl_masuk"
-            placeholder="Pilih tanggal"
+            placeholder="Pilih Tanggal Masuk"
             onConfirm={(input) => {
               formik.setFieldValue("tgl_masuk", input);
             }}
