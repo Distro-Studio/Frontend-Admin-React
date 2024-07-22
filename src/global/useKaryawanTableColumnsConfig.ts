@@ -7,7 +7,7 @@ interface State {
 }
 
 interface Actions {
-  setTableColumns: (newState: number[]) => void;
+  setColumnsConfig: (newState: number[]) => void;
 }
 
 const columnsConfigAllColumns = [
@@ -18,7 +18,7 @@ const useKaryawanTableColumnsConfig = create<State & Actions>((set) => ({
   clearedTableColumns: [0],
   columnsConfigAllColumns: columnsConfigAllColumns,
   columnsConfig: columnsConfigAllColumns,
-  setTableColumns: (newState: number[]) => set({ columnsConfig: newState }),
+  setColumnsConfig: (newState: number[]) => set({ columnsConfig: newState }),
 }));
 
 export default useKaryawanTableColumnsConfig;

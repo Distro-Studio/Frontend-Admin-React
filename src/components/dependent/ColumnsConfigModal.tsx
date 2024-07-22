@@ -27,8 +27,8 @@ import DisclosureHeader from "./DisclosureHeader";
 interface Props extends ButtonProps {
   id: string;
   clearedTableColumns: number[];
-  tableColumns: number[];
-  setTableColumns: (tableColumns: number[]) => void;
+  columnsConfig: number[];
+  setColumnsConfig: (tableColumns: number[]) => void;
   allColumns: Interface__ColumnConfig[];
   presetColumns: { label: string; columns: number[] }[];
   title?: string;
@@ -37,8 +37,8 @@ interface Props extends ButtonProps {
 export default function ColumnsConfigModal({
   id,
   clearedTableColumns,
-  tableColumns,
-  setTableColumns,
+  columnsConfig,
+  setColumnsConfig,
   allColumns,
   presetColumns,
   title,
@@ -64,7 +64,7 @@ export default function ColumnsConfigModal({
         pr={6}
         onClick={() => {
           onOpen();
-          setSelected(tableColumns);
+          setSelected(columnsConfig);
         }}
         {...props}
       >
@@ -216,7 +216,7 @@ export default function ColumnsConfigModal({
                   colorScheme="ap"
                   isDisabled={selected.length < 2}
                   onClick={() => {
-                    setTableColumns(selected);
+                    setColumnsConfig(selected);
                     backOnClose();
                   }}
                 >

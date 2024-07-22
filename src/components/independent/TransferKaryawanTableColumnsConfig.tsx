@@ -14,7 +14,7 @@ export default function TransferKaryawanTableColumnsConfig({
     columnsConfigAllColumns,
     clearedTableColumns,
     columnsConfig,
-    setTableColumns,
+    setColumnsConfig,
   } = useTransferKaryawanTableColumnsConfig();
 
   const allColumns = [
@@ -47,8 +47,8 @@ export default function TransferKaryawanTableColumnsConfig({
     <ColumnsConfigModal
       id="config-kolom-tabel-karyawan-modal"
       clearedTableColumns={clearedTableColumns}
-      tableColumns={columnsConfig}
-      setTableColumns={setTableColumns}
+      columnsConfig={columnsConfig}
+      setColumnsConfig={setColumnsConfig}
       allColumns={allColumns}
       presetColumns={presetColumns}
       {...props}

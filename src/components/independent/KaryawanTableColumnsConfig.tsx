@@ -11,7 +11,7 @@ export default function KaryawanTableColumnsConfig({ title, ...props }: Props) {
     columnsConfigAllColumns,
     clearedTableColumns,
     columnsConfig,
-    setTableColumns,
+    setColumnsConfig,
   } = useKaryawanTableColumnsConfig();
 
   const allColumns = [
@@ -65,8 +65,8 @@ export default function KaryawanTableColumnsConfig({ title, ...props }: Props) {
     <ColumnsConfigModal
       id="config-kolom-tabel-karyawan-modal"
       clearedTableColumns={clearedTableColumns}
-      tableColumns={columnsConfig}
-      setTableColumns={setTableColumns}
+      columnsConfig={columnsConfig}
+      setColumnsConfig={setColumnsConfig}
       allColumns={allColumns}
       presetColumns={presetColumns}
       {...props}
