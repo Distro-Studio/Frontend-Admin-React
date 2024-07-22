@@ -1,8 +1,7 @@
-import { Box, HStack, Icon, Text, useDisclosure } from "@chakra-ui/react";
-import { RiEditLine } from "@remixicon/react";
+import { Box, HStack, Text, Tooltip, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import { dummyTransferKaryawan } from "../../const/dummy";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
 import useDataState from "../../hooks/useDataState";
 import formatDate from "../../lib/formatDate";
@@ -26,16 +25,6 @@ export default function TabelRekamJejak() {
   const { filterKaryawan } = useFilterKaryawan();
   // Columns Config
   // const { tabelKaryawanColumns } = useTabelKaryawanColumns();
-  // Row Options Config
-  const rowOptions = [
-    {
-      label: "Edit",
-      icon: <Icon as={RiEditLine} fontSize={iconSize} opacity={0.4} />,
-      callback: (row: any) => {
-        console.log("Editing", row);
-      },
-    },
-  ];
 
   const { error, loading, data, retry } = useDataState<any>({
     initialData: dummyTransferKaryawan,
@@ -148,7 +137,18 @@ export default function TabelRekamJejak() {
       },
       {
         value: item.alasan,
-        td: item.alasan,
+        td: (
+          <Tooltip label={item.alasan}>
+            <Text
+              maxW={"200px"}
+              overflow={"hidden"}
+              whiteSpace={"nowrap"}
+              textOverflow={"ellipsis"}
+            >
+              {item.alasan}
+            </Text>
+          </Tooltip>
+        ),
       },
       {
         value: "-",
@@ -191,7 +191,6 @@ export default function TabelRekamJejak() {
                         onOpen();
                       }}
                       // columnsConfig={tabelKaryawanColumns}
-                      rowOptions={rowOptions}
                     />
                   </CustomTableContainer>
 

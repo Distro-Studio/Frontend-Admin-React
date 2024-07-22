@@ -1,24 +1,24 @@
 import { Box, HStack, Icon, Text, useDisclosure } from "@chakra-ui/react";
-import { RiEditLine, RiShutDownLine, RiUploadLine } from "@remixicon/react";
+import { RiEditLine } from "@remixicon/react";
 import { useState } from "react";
 import { dummyKaryawans } from "../../const/dummy";
 import { Interface__DetailKaryawan } from "../../const/interfaces";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
+import useTabelKaryawanColumns from "../../global/useTabelKaryawanColumns";
 import useDataState from "../../hooks/useDataState";
+import formatDate from "../../lib/formatDate";
+import formatMasaKerja from "../../lib/formatMasaKerja";
 import NoData from "../independent/NoData";
 import Skeleton from "../independent/Skeleton";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
 import AvatarAndNameTableData from "./AvatarAndNameTableData";
+import BooleanBadge from "./BooleanBadge";
 import CustomTable from "./CustomTable";
 import DetailKaryawanModal from "./DetailKaryawanModal";
 import Retry from "./Retry";
 import StatusKaryawanBadge from "./StatusKaryawanBadge";
 import TabelFooterConfig from "./TabelFooterConfig";
-import formatDate from "../../lib/formatDate";
-import formatMasaKerja from "../../lib/formatMasaKerja";
-import BooleanBadge from "./BooleanBadge";
-import useTabelKaryawanColumns from "../../global/useTabelKaryawanColumns";
 
 export default function TabelKaryawan() {
   // Limit Config
@@ -31,46 +31,19 @@ export default function TabelKaryawan() {
   const { filterKaryawan } = useFilterKaryawan();
   // Batch Actions Config
   const batchActions = [
-    {
-      label: "Non-aktifkan",
-      icon: (
-        <Icon
-          as={RiShutDownLine}
-          fontSize={iconSize}
-          opacity={0.4}
-          // color={chartColors[4]}
-        />
-      ),
-      callback: (selectedRows: number[]) => {
-        console.log("Non-aktifkan", selectedRows);
-      },
-    },
+    <HStack w={"100%"} justify={"space-between"}>
+      <Text>Non-Aktifkan</Text>
+      <Icon as={RiEditLine} opacity={0.4} />
+    </HStack>,
   ];
   // Columns Config
   const { tabelKaryawanColumns } = useTabelKaryawanColumns();
   // Row Options Config
   const rowOptions = [
-    {
-      label: "Edit",
-      icon: <Icon as={RiEditLine} fontSize={iconSize} opacity={0.4} />,
-      callback: (row: any) => {
-        console.log("Editing", row);
-      },
-    },
-    {
-      label: "Non-aktifkan",
-      icon: (
-        <Icon
-          as={RiShutDownLine}
-          fontSize={iconSize}
-          opacity={0.4}
-          // color={chartColors[4]}
-        />
-      ),
-      callback: (selectedRows: number[]) => {
-        console.log("Non-aktifkan", selectedRows);
-      },
-    },
+    <HStack w={"100%"} justify={"space-between"}>
+      <Text>Edit</Text>
+      <Icon as={RiEditLine} opacity={0.4} />
+    </HStack>,
   ];
 
   const { error, loading, data, retry } = useDataState<
