@@ -6401,6 +6401,10 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     jumlah_keluarga: 3,
     ibu: {
       id: 1,
+      hubungan: {
+        id: 2,
+        label: "Ibu",
+      },
       nama: "Siti Hajar",
       pendidikan_terakhir: "S1 Ekonomi",
       pekerjaan: "Direktur Pertamina",
@@ -6412,6 +6416,10 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     },
     ayah: {
       id: 2,
+      hubungan: {
+        id: 1,
+        label: "Ayah",
+      },
       nama: "Abu Hajar",
       pendidikan_terakhir: "S2 Matematika",
       pekerjaan: "Astronom",
@@ -6546,6 +6554,10 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     jumlah_keluarga: 3,
     ibu: {
       id: 1,
+      hubungan: {
+        id: 2,
+        label: "Ibu",
+      },
       nama: "Siti Hajar",
       pendidikan_terakhir: "S1 Ekonomi",
       pekerjaan: "Direktur Pertamina",
@@ -6557,6 +6569,10 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     },
     ayah: {
       id: 2,
+      hubungan: {
+        id: 1,
+        label: "Ayah",
+      },
       nama: "Abu Hajar",
       pendidikan_terakhir: "S2 Matematika",
       pekerjaan: "Astronom",
@@ -6691,6 +6707,10 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     jumlah_keluarga: 3,
     ibu: {
       id: 1,
+      hubungan: {
+        id: 2,
+        label: "Ibu",
+      },
       nama: "Siti Hajar",
       pendidikan_terakhir: "S1 Ekonomi",
       pekerjaan: "Direktur Pertamina",
@@ -6702,6 +6722,10 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     },
     ayah: {
       id: 2,
+      hubungan: {
+        id: 1,
+        label: "Ayah",
+      },
       nama: "Abu Hajar",
       pendidikan_terakhir: "S2 Matematika",
       pekerjaan: "Astronom",

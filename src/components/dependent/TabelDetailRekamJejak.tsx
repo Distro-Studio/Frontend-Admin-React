@@ -10,107 +10,14 @@ interface Props {
 }
 
 export default function TabelDetailRekamJejak({ data }: Props) {
-  // const formattedHeader = [
-  //   {
-  //     th: "No. Induk Karyawan",
-  //     isSortable: true,
-  //   },
-  //   {
-  //     th: "Kategori Transfer",
-  //     isSortable: true,
-  //   },
-  //   {
-  //     th: "Tanggal Pengajuan",
-  //     isSortable: true,
-  //   },
-  //   {
-  //     th: "Tanggal Mulai",
-  //     isSortable: true,
-  //   },
-  //   {
-  //     th: "Unit Kerja Asal",
-  //     isSortable: true,
-  //   },
-  //   {
-  //     th: "Unit Kerja Tujuan",
-  //     isSortable: true,
-  //   },
-  //   {
-  //     th: "Jabatan Asal",
-  //     isSortable: true,
-  //   },
-  //   {
-  //     th: "Jabatan Tujuan",
-  //     isSortable: true,
-  //   },
-  //   {
-  //     th: "Alasan",
-  //   },
-  //   {
-  //     th: "Dokumen",
-  //     isSortable: true,
-  //   },
-  // ];
-  // const formattedData = data.map((item: any) => ({
-  //   id: item.id,
-  //   rows: [
-  //     {
-  //       value: item.nik,
-  //       td: item.nik,
-  //       isNumeric: true,
-  //     },
-  //     {
-  //       value: item.kategori.label,
-  //       td: item.kategori.label,
-  //     },
-  //     {
-  //       value: item.created_at,
-  //       td: formatDate(item.created_at),
-  //     },
-  //     {
-  //       value: item.tgl_mulai,
-  //       td: formatDate(item.tgl_mulai),
-  //     },
-  //     {
-  //       value: item.unit_kerja_asal.nama_unit,
-  //       td: item.unit_kerja_asal.nama_unit,
-  //     },
-  //     {
-  //       value: item.unit_kerja_tujuan.nama_unit,
-  //       td: item.unit_kerja_tujuan.nama_unit,
-  //     },
-  //     {
-  //       value: item.jabatan_asal.nama_jabatan,
-  //       td: item.jabatan_asal.nama_jabatan,
-  //     },
-  //     {
-  //       value: item.jabatan_tujuan.nama_jabatan,
-  //       td: item.jabatan_tujuan.nama_jabatan,
-  //     },
-  //     {
-  //       value: item.alasan,
-  //       td: (
-  //         <Tooltip label={item.alasan}>
-  //           <Text
-  //             maxW={"200px"}
-  //             overflow={"hidden"}
-  //             whiteSpace={"nowrap"}
-  //             textOverflow={"ellipsis"}
-  //           >
-  //             {item.alasan}
-  //           </Text>
-  //         </Tooltip>
-  //       ),
-  //     },
-  //     {
-  //       value: "-",
-  //       td: "-",
-  //     },
-  //   ],
-  // }));
-
   return (
-    <CContainer pl={5}>
+    <CContainer
+      flex={1}
+      overflowY={"auto"}
+      className="scrollY"
+      pl={"44px"}
+      pr={6}
+    >
       {data.map((item: any, i: number) => (
         <HStack key={i} align={"stretch"} gap={8}>
           <VStack>

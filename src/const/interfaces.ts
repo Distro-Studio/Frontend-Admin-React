@@ -1,4 +1,5 @@
 import { StackProps } from "@chakra-ui/react";
+import { Interface__SelectOption } from "../constant/interfaces";
 
 export interface Attendance__Data__Interface {
   masuk: string;
@@ -502,6 +503,7 @@ export interface Interface__ConstantTable {
 
 export interface Interface__AnggotaKeluarga {
   id: number;
+  hubungan: Interface__ConstantTable;
   nama: string;
   pendidikan_terakhir: string;
   pekerjaan: string;

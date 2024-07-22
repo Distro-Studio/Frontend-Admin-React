@@ -29,19 +29,19 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
       isSortable: true,
     },
     {
+      th: "Status Hidup",
+      isSortable: true,
+      cProps: {
+        justify: "center",
+      },
+    },
+    {
       th: "Pendidikan Terakhir",
       isSortable: true,
     },
     {
       th: "Pekerjaan",
       isSortable: true,
-    },
-    {
-      th: "Status Hidup",
-      isSortable: true,
-      cProps: {
-        justify: "center",
-      },
     },
     {
       th: "No. Telepon",
@@ -61,16 +61,8 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
         td: anggota.nama,
       },
       {
-        value: anggota.nama,
-        td: anggota.nama,
-      },
-      {
-        value: anggota.pendidikan_terakhir,
-        td: anggota.pendidikan_terakhir,
-      },
-      {
-        value: anggota.pekerjaan,
-        td: anggota.pekerjaan,
+        value: anggota.hubungan.label,
+        td: anggota.hubungan.label,
       },
       {
         value: anggota.status_hidup,
@@ -85,6 +77,14 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
         cProps: {
           justify: "center",
         },
+      },
+      {
+        value: anggota.pendidikan_terakhir,
+        td: anggota.pendidikan_terakhir,
+      },
+      {
+        value: anggota.pekerjaan,
+        td: anggota.pekerjaan,
       },
       {
         value: anggota.no_hp,

@@ -26,6 +26,7 @@ import CContainer from "../wrapper/CContainer";
 import DisclosureHeader from "./DisclosureHeader";
 import Retry from "./Retry";
 import TabelDetailRekamJejak from "./TabelDetailRekamJejak";
+import { useLightDarkColor } from "../../const/colors";
 
 interface Props extends BoxProps {
   karyawan_id: number;
@@ -63,6 +64,7 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
   });
 
   // SX
+  const lightDarkColor = useLightDarkColor();
 
   return (
     <>
@@ -84,7 +86,7 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
           <ModalHeader ref={initialRef}>
             <DisclosureHeader title={"Detail Rekam Jejak Karyawan"} />
           </ModalHeader>
-          <ModalBody mb={6} className="scrollY">
+          <ModalBody mb={6} className="scrollY" px={0}>
             {error && (
               <Box my={"auto"}>
                 <Retry loading={loading} retry={retry} />
@@ -103,14 +105,22 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
 
                     {(data || (data && data.length > 0)) && (
                       <>
-                        <CContainer flex={0} borderRadius={12}>
+                        <CContainer
+                          flex={1}
+                          overflowY={"auto"}
+                          borderRadius={12}
+                        >
                           {loading && (
                             <ComponentSpinner minH={"400px"} flex={1} />
                           )}
 
                           {!loading && data && (
-                            <>
+                            <CContainer
+                              overflowY={"auto"}
+                              position={"relative"}
+                            >
                               <Wrap
+                                px={6}
                                 align={"center"}
                                 spacing={responsiveSpacing}
                                 // mb={responsiveSpacing}
@@ -156,8 +166,18 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
                                 </VStack>
                               </Wrap>
 
+                              <Box
+                                h={"24px"}
+                                w={"calc(100% - 64px - 24px)"}
+                                bg={lightDarkColor}
+                                position={"absolute"}
+                                right={0}
+                                top={"64px"}
+                                zIndex={2}
+                              />
+
                               <TabelDetailRekamJejak data={data.rekam_jejak} />
-                            </>
+                            </CContainer>
                           )}
                         </CContainer>
                       </>
