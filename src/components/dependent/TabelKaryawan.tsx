@@ -29,13 +29,6 @@ export default function TabelKaryawan() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   // Filter Config
   const { filterKaryawan } = useFilterKaryawan();
-  // Batch Actions Config
-  const batchActions = [
-    <HStack w={"100%"} justify={"space-between"}>
-      <Text>Non-Aktifkan</Text>
-      <Icon as={RiEditLine} opacity={0.4} />
-    </HStack>,
-  ];
   // Columns Config
   const { tabelKaryawanColumns } = useTabelKaryawanColumns();
   // Row Options Config
@@ -62,7 +55,7 @@ export default function TabelKaryawan() {
       isSortable: true,
       props: {
         position: "sticky",
-        left: "52px",
+        left: 0,
         zIndex: 99,
         w: "180px",
       },
@@ -146,7 +139,7 @@ export default function TabelKaryawan() {
         td: <AvatarAndNameTableData data={item} />,
         props: {
           position: "sticky",
-          left: "52px",
+          left: 0,
           zIndex: 2,
         },
         cProps: {
@@ -265,7 +258,6 @@ export default function TabelKaryawan() {
                     <CustomTable
                       formattedHeader={formattedHeader}
                       formattedData={formattedData}
-                      batchActions={batchActions}
                       onRowClick={() => {
                         onOpen();
                       }}
