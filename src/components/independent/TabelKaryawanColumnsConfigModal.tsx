@@ -6,7 +6,7 @@ interface Props extends ButtonProps {
   title?: string;
 }
 
-export default function TabelKaryawanColumnConfigModal({
+export default function TabelKaryawanColumnsConfigModal({
   title,
   ...props
 }: Props) {
