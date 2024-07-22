@@ -150,7 +150,10 @@ export default function SingleSelectModal({
         scrollBehavior={sh < 650 ? "outside" : "inside"}
       >
         <ModalOverlay />
-        <ModalContent my={sh < 650 ? 0 : ""} h={withSearch ? "100%" : ""}>
+        <ModalContent
+          my={sh < 650 ? 0 : ""}
+          h={withSearch && sh >= 650 ? "100%" : ""}
+        >
           <ModalHeader ref={initialRef}>
             <DisclosureHeader title={placeholder || "Pilih Salah Satu"} />
 

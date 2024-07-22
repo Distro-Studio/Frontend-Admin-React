@@ -733,6 +733,7 @@ export default function TambahKaryawanModal({ ...props }: Props) {
               maxW={"720px"}
               w={"100%"}
               mx={"auto"}
+              px={6}
               index={activeStep}
               colorScheme="ap"
               mb={6}
