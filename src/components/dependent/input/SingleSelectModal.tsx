@@ -23,6 +23,7 @@ import backOnClose from "../../../lib/backOnClose";
 import CContainer from "../../independent/wrapper/CContainer";
 import DisclosureHeader from "../DisclosureHeader";
 import SearchComponent from "./SearchComponent";
+import ComponentSpinner from "../../independent/ComponentSpinner";
 
 interface Props {
   id: string;
@@ -30,7 +31,7 @@ interface Props {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-  options: Interface__SelectOption[];
+  options?: Interface__SelectOption[];
   onConfirm: (inputValue: Interface__SelectOption | undefined) => void;
   inputValue: Interface__SelectOption | undefined;
   withSearch?: boolean;
@@ -64,7 +65,7 @@ export default function SingleSelectModal({
     inputValue
   );
   const fo = search
-    ? options.filter((option) => {
+    ? options?.filter((option) => {
         const searchTerm = search.toLowerCase();
         return (
           option.value.toString().toLowerCase().includes(searchTerm) ||
@@ -148,12 +149,12 @@ export default function SingleSelectModal({
         scrollBehavior={sh < 650 ? "outside" : "inside"}
       >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent my={sh < 650 ? 0 : ""}>
           <ModalHeader ref={initialRef}>
             <DisclosureHeader title={placeholder || "Pilih Salah Satu"} />
 
             {withSearch && (
-              <Box mt={4}>
+              <Box px={6} pb={6}>
                 <SearchComponent
                   name="search select options"
                   inputValue={search}
@@ -165,100 +166,105 @@ export default function SingleSelectModal({
             )}
           </ModalHeader>
 
-          <ModalBody
-            className="scrollY"
-            minH={withSearch ? "360px" : ""}
-            maxH={withSearch ? "360px" : ""}
-            overflowY={"auto"}
-          >
-            {optionsDisplay === "list" && (
-              <VStack align={"stretch"}>
-                {fo.map((option, i) => (
-                  <Button
-                    key={i}
-                    justifyContent={"space-between"}
-                    className="btn-outline"
-                    onClick={() => {
-                      setSelected(option);
-                    }}
-                    borderColor={
-                      selected && selected.value === option.value ? "p.500" : ""
-                    }
-                    bg={
-                      selected && selected.value === option.value
-                        ? "var(--p500a4) !important"
-                        : ""
-                    }
-                  >
-                    <Text>{option.label}</Text>
+          <ModalBody className="scrollY" overflowY={"auto"}>
+            {fo && (
+              <>
+                {optionsDisplay === "list" && (
+                  <VStack align={"stretch"}>
+                    {fo.map((option, i) => (
+                      <Button
+                        key={i}
+                        justifyContent={"space-between"}
+                        className="btn-outline"
+                        onClick={() => {
+                          setSelected(option);
+                        }}
+                        borderColor={
+                          selected && selected.value === option.value
+                            ? "p.500"
+                            : ""
+                        }
+                        bg={
+                          selected && selected.value === option.value
+                            ? "var(--p500a4) !important"
+                            : ""
+                        }
+                      >
+                        <Text>{option.label}</Text>
 
-                    <Text opacity={0.4}>{option.subLabel}</Text>
-                  </Button>
-                ))}
-              </VStack>
+                        <Text opacity={0.4}>{option.subLabel}</Text>
+                      </Button>
+                    ))}
+                  </VStack>
+                )}
+
+                {optionsDisplay === "chip" && (
+                  <Wrap>
+                    {fo.map((option, i) => (
+                      <Button
+                        key={i}
+                        justifyContent={"space-between"}
+                        className="btn-outline"
+                        onClick={() => {
+                          setSelected(option);
+                        }}
+                        borderRadius={"full"}
+                        borderColor={
+                          selected && selected.value === option.value
+                            ? "var(--p500a2)"
+                            : ""
+                        }
+                        bg={
+                          selected && selected.value === option.value
+                            ? "var(--p500a4) !important"
+                            : ""
+                        }
+                        gap={2}
+                      >
+                        <Text>{option.label}</Text>
+                        {/* <Text opacity={0.4}>{option.subLabel}</Text> */}
+                      </Button>
+                    ))}
+                  </Wrap>
+                )}
+
+                {fo.length === 0 && (
+                  <HStack justify={"center"} opacity={0.4} minH={"100px"}>
+                    <Text textAlign={"center"} fontWeight={600}>
+                      Opsi tidak ditemukan
+                    </Text>
+                  </HStack>
+                )}
+              </>
             )}
 
-            {optionsDisplay === "chip" && (
-              <Wrap>
-                {fo.map((option, i) => (
-                  <Button
-                    key={i}
-                    justifyContent={"space-between"}
-                    className="btn-outline"
-                    onClick={() => {
-                      setSelected(option);
-                    }}
-                    borderRadius={"full"}
-                    borderColor={
-                      selected && selected.value === option.value
-                        ? "var(--p500a2)"
-                        : ""
-                    }
-                    bg={
-                      selected && selected.value === option.value
-                        ? "var(--p500a4) !important"
-                        : ""
-                    }
-                    gap={2}
-                  >
-                    <Text>{option.label}</Text>
-                    {/* <Text opacity={0.4}>{option.subLabel}</Text> */}
-                  </Button>
-                ))}
-              </Wrap>
-            )}
-
-            {fo.length === 0 && (
-              <HStack justify={"center"} opacity={0.4} minH={"100px"}>
-                <Text textAlign={"center"} fontWeight={600}>
-                  Opsi tidak ditemukan
-                </Text>
-              </HStack>
-            )}
+            {!fo && <ComponentSpinner my={"auto"} />}
           </ModalBody>
-          <ModalFooter>
-            <CContainer gap={2}>
-              <Button
-                className="btn-solid clicky"
-                w={"100%"}
-                onClick={() => {
-                  setSelected(undefined);
-                }}
-              >
-                Clear
-              </Button>
+          {fo && (
+            <ModalFooter>
+              <CContainer gap={2}>
+                <Button
+                  className="btn-solid clicky"
+                  w={"100%"}
+                  onClick={() => {
+                    setSelected(undefined);
+                  }}
+                >
+                  Clear
+                </Button>
 
-              <Button
-                colorScheme="ap"
-                className="btn-ap clicky"
-                w={"100%"}
-                isDisabled={nonNullable ? (selected ? false : true) : false}
-                onClick={confirmSelected}
-              >
-                Konfirmasi
-              </Button>
-            </CContainer>
-          </ModalFooter>
+                <Button
+                  colorScheme="ap"
+                  className="btn-ap clicky"
+                  w={"100%"}
+                  isDisabled={nonNullable ? (selected ? false : true) : false}
+                  onClick={confirmSelected}
+                >
+                  Konfirmasi
+                </Button>
+              </CContainer>
+            </ModalFooter>
+          )}
         </ModalContent>
       </Modal>
     </>

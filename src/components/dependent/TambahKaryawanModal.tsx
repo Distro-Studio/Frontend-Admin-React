@@ -298,9 +298,12 @@ export default function TambahKaryawanModal({ ...props }: Props) {
           </FormLabel>
           <SelectUnitKerja
             name="unit_kerja"
-            formik={formik}
-            placeholder="Pilih Unit kerja"
-            initialSelected={formik.values.unit_kerja}
+            onConfirm={(input) => {
+              formik.setFieldValue("unit_kerja", input);
+            }}
+            inputValue={formik.values.unit_kerja}
+            placeholder="Pilih Unit Kerja"
+            withSearch
           />
           <FormErrorMessage>
             {formik.errors.unit_kerja as string}

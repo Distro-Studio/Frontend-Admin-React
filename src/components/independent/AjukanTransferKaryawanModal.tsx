@@ -168,11 +168,13 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
                 >
                   <FormLabel>Unit Kerja Tujuan</FormLabel>
                   <SelectUnitKerja
-                    name="unit_kerja_tujuan"
-                    formik={formik}
+                    name="unit_kerja"
+                    onConfirm={(input) => {
+                      formik.setFieldValue("unit_kerja", input);
+                    }}
+                    inputValue={formik.values.unit_kerja_tujuan}
                     placeholder="Pilih Unit Kerja"
-                    initialSelected={formik.values.unit_kerja_tujuan}
-                    noUseBackOnClose
+                    withSearch
                   />
                   <FormHelperText>
                     Kosongkan jika data sama seperti sebelumnya
