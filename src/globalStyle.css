@@ -21,9 +21,9 @@
   --p900: #043c55;
   --drawer: #005234aa;
 
-  --p500a1: rgba(22, 179, 171, 0.8);
-  --p500a2: rgba(22, 179, 171, 0.6);
-  --p500a3: rgba(22, 179, 171, 0.4);
+  --p500a1: rgba(22, 179, 171, 0.6);
+  --p500a2: rgba(22, 179, 171, 0.4);
+  --p500a3: rgba(22, 179, 171, 0.3);
   --p500a4: rgba(22, 179, 171, 0.2);
   --p500a5: rgba(22, 179, 171, 0.1);
 
@@ -140,7 +140,7 @@ button:focus-visible {
   background: var(--p500a3) !important;
 }
 .btn-apa:active:not(:disabled) {
-  background: var(--p500a3) !important;
+  background: var(--p500a2) !important;
 }
 
 .btn-clear {

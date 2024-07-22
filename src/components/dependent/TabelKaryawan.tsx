@@ -33,10 +33,17 @@ export default function TabelKaryawan() {
   const { columnsConfig } = useKaryawanTableColumnsConfig();
   // Row Options Config
   const rowOptions = [
-    <HStack w={"100%"} justify={"space-between"}>
-      <Text>Edit</Text>
-      <Icon as={RiEditLine} opacity={0.4} />
-    </HStack>,
+    {
+      callback: (row: any) => {
+        console.log(row);
+      },
+      element: (
+        <HStack w={"100%"} justify={"space-between"} gap={4}>
+          <Text>Masukkan Daftar Penyelidikan</Text>
+          <Icon as={RiEditLine} opacity={0.4} />
+        </HStack>
+      ),
+    },
   ];
 
   const { error, loading, data, retry } = useDataState<

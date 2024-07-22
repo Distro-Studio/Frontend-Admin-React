@@ -88,7 +88,7 @@ const BatchActions = ({
                 }}
                 isDisabled={selectedRows.length === 0}
               >
-                {action}
+                {action.element}
               </MenuItem>
             ))}
           </MenuGroup>
@@ -120,8 +120,14 @@ const RowOptions = ({ row, rowOptions, tableRef }: RowOptionsProps) => {
       <Portal containerRef={tableRef}>
         <MenuList zIndex={99} className="rowOptionsList">
           {rowOptions?.map((option, i) => (
-            <MenuItem key={i} justifyContent={"space-between"}>
-              {option}
+            <MenuItem
+              key={i}
+              justifyContent={"space-between"}
+              onClick={() => {
+                option.callback(row);
+              }}
+            >
+              {option.element}
             </MenuItem>
           ))}
         </MenuList>
