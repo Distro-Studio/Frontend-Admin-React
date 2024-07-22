@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   ButtonGroup,
   FormControl,
@@ -343,17 +344,18 @@ export default function EditKaryawanForm({
 
   const Step1Footer = () => {
     return (
-      <Button
-        mt={"auto"}
-        w={"100%"}
-        flexShrink={0}
-        colorScheme="ap"
-        className="btn-ap clicky"
-        h={"50px"}
-        onClick={handleNext}
-      >
-        Lanjut
-      </Button>
+      <Box mt={"auto"} pt={4}>
+        <Button
+          w={"100%"}
+          flexShrink={0}
+          colorScheme="ap"
+          className="btn-ap clicky"
+          h={"50px"}
+          onClick={handleNext}
+        >
+          Lanjut
+        </Button>
+      </Box>
     );
   };
 
@@ -572,7 +574,7 @@ export default function EditKaryawanForm({
 
   const Step2Footer = () => {
     return (
-      <ButtonGroup flexShrink={0} mt={"auto"} w={"100%"}>
+      <ButtonGroup flexShrink={0} mt={"auto"} pt={4} w={"100%"}>
         <Button
           w={"100%"}
           className="btn-solid clicky"
