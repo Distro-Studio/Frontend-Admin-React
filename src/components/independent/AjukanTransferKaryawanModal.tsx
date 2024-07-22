@@ -94,32 +94,34 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
         }}
         initialFocusRef={initialRef}
         isCentered
-        // size={"full"}
+        scrollBehavior="inside"
+        size={"xxl"}
+        blockScrollOnMount={false}
       >
         <ModalOverlay />
-        <ModalContent borderRadius={12}>
+        <ModalContent borderRadius={12} maxH={"calc(100vh - 32px)"}>
           <ModalHeader ref={initialRef}>
             <DisclosureHeader title={"Transfer Karyawan"} />
           </ModalHeader>
-          <ModalBody>
+          <ModalBody className="scrollY">
             <form id="transferKaryawanForm" onSubmit={formik.handleSubmit}>
-              <FormControl mb={4} isInvalid={!!formik.errors.nama}>
-                <FormLabel>
-                  Nama Karyawan
-                  <RequiredForm />
-                </FormLabel>
-                <SelectKaryawan
-                  name="nama"
-                  formik={formik}
-                  placeholder="Pilih Karyawan"
-                  noUseBackOnClose
-                />
-                <FormErrorMessage>
-                  {formik.errors.nama as string}
-                </FormErrorMessage>
-              </FormControl>
+              <SimpleGrid columns={[1, 2]} spacingX={4}>
+                <FormControl mb={4} isInvalid={!!formik.errors.nama}>
+                  <FormLabel>
+                    Nama Karyawan
+                    <RequiredForm />
+                  </FormLabel>
+                  <SelectKaryawan
+                    name="nama"
+                    formik={formik}
+                    placeholder="Pilih Karyawan"
+                    noUseBackOnClose
+                  />
+                  <FormErrorMessage>
+                    {formik.errors.nama as string}
+                  </FormErrorMessage>
+                </FormControl>
 
-              <SimpleGrid columns={[1, 2]} gap={4}>
                 <FormControl mb={4} isInvalid={!!formik.errors.tgl_mulai}>
                   <FormLabel>
                     Tanggal Mulai
@@ -159,110 +161,113 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
                     {formik.errors.tipe as string}
                   </FormErrorMessage>
                 </FormControl>
+
+                <FormControl
+                  mb={4}
+                  isInvalid={!!formik.errors.unit_kerja_tujuan}
+                >
+                  <FormLabel>Unit Kerja Tujuan</FormLabel>
+                  <SelectUnitKerja
+                    name="unit_kerja_tujuan"
+                    formik={formik}
+                    placeholder="Pilih Unit Kerja"
+                    initialSelected={formik.values.unit_kerja_tujuan}
+                    noUseBackOnClose
+                  />
+                  <FormHelperText>
+                    Kosongkan jika data sama seperti sebelumnya
+                  </FormHelperText>
+                  <FormErrorMessage>
+                    {formik.errors.unit_kerja_tujuan as string}
+                  </FormErrorMessage>
+                </FormControl>
+
+                <FormControl mb={4} isInvalid={!!formik.errors.jabatan_tujuan}>
+                  <FormLabel>Jabatan Tujuan</FormLabel>
+                  <SelectJabatan
+                    name="jabatan_tujuan"
+                    formik={formik}
+                    placeholder="Pilih Jabatan"
+                    initialSelected={formik.values.jabatan_tujuan}
+                    noUseBackOnClose
+                  />
+                  <FormHelperText>
+                    Kosongkan jika data sama seperti sebelumnya
+                  </FormHelperText>
+                  <FormErrorMessage>
+                    {formik.errors.jabatan_tujuan as string}
+                  </FormErrorMessage>
+                </FormControl>
+
+                <FormControl
+                  mb={4}
+                  isInvalid={!!formik.errors.kelompok_gaji_tujuan}
+                >
+                  <FormLabel>Kelompok Gaji Tujuan</FormLabel>
+                  <SelectKelompokGaji
+                    name="kelompok_gaji_tujuan"
+                    formik={formik}
+                    placeholder="Pilih Kelompok Gaji"
+                    initialSelected={formik.values.kelompok_gaji_tujuan}
+                    noUseBackOnClose
+                  />
+                  <FormHelperText>
+                    Kosongkan jika data sama seperti sebelumnya
+                  </FormHelperText>
+                  <FormErrorMessage>
+                    {formik.errors.kelompok_gaji_tujuan as string}
+                  </FormErrorMessage>
+                </FormControl>
+
+                <FormControl mb={4} isInvalid={!!formik.errors.dokumen}>
+                  <FormLabel>
+                    Dokumen
+                    <RequiredForm />
+                  </FormLabel>
+                  <FileInput name="dokumen" formik={formik} />
+                  <FormErrorMessage>
+                    {formik.errors.dokumen as string}
+                  </FormErrorMessage>
+                </FormControl>
+
+                <FormControl
+                  mb={4}
+                  isInvalid={formik.errors.alasan ? true : false}
+                >
+                  <FormLabel>
+                    Alesan
+                    <RequiredForm />
+                  </FormLabel>
+                  <Textarea
+                    name="alasan"
+                    formik={formik}
+                    placeholder="Jolitos Kurniawan"
+                  />
+                  <FormErrorMessage>
+                    {formik.errors.alasan as string}
+                  </FormErrorMessage>
+                </FormControl>
+
+                <FormControl>
+                  <Checkbox colorScheme="ap" alignItems={"start"}>
+                    <Text mt={"-2px"}>
+                      Beritahu Manajer Karyawan dan Direktur Melalui Email
+                    </Text>
+                  </Checkbox>
+                  <FormErrorMessage>
+                    {formik.errors.beri_tahu_manajer_direktur as string}
+                  </FormErrorMessage>
+                </FormControl>
+
+                <FormControl>
+                  <Checkbox colorScheme="ap">
+                    <Text mt={"-2px"}>Beritahu Karyawan Melalui Email</Text>
+                  </Checkbox>
+                  <FormErrorMessage>
+                    {formik.errors.beri_tahu_karyawan as string}
+                  </FormErrorMessage>
+                </FormControl>
               </SimpleGrid>
-
-              <FormControl mb={4} isInvalid={!!formik.errors.unit_kerja_tujuan}>
-                <FormLabel>Unit Kerja Tujuan</FormLabel>
-                <SelectUnitKerja
-                  name="unit_kerja_tujuan"
-                  formik={formik}
-                  placeholder="Pilih Unit Kerja"
-                  initialSelected={formik.values.unit_kerja_tujuan}
-                  noUseBackOnClose
-                />
-                <FormHelperText>
-                  Kosongkan jika data sama seperti sebelumnya
-                </FormHelperText>
-                <FormErrorMessage>
-                  {formik.errors.unit_kerja_tujuan as string}
-                </FormErrorMessage>
-              </FormControl>
-
-              <FormControl mb={4} isInvalid={!!formik.errors.jabatan_tujuan}>
-                <FormLabel>Jabatan Tujuan</FormLabel>
-                <SelectJabatan
-                  name="jabatan_tujuan"
-                  formik={formik}
-                  placeholder="Pilih Jabatan"
-                  initialSelected={formik.values.jabatan_tujuan}
-                  noUseBackOnClose
-                />
-                <FormHelperText>
-                  Kosongkan jika data sama seperti sebelumnya
-                </FormHelperText>
-                <FormErrorMessage>
-                  {formik.errors.jabatan_tujuan as string}
-                </FormErrorMessage>
-              </FormControl>
-
-              <FormControl
-                mb={4}
-                isInvalid={!!formik.errors.kelompok_gaji_tujuan}
-              >
-                <FormLabel>Kelompok Gaji Tujuan</FormLabel>
-                <SelectKelompokGaji
-                  name="kelompok_gaji_tujuan"
-                  formik={formik}
-                  placeholder="Pilih Kelompok Gaji"
-                  initialSelected={formik.values.kelompok_gaji_tujuan}
-                  noUseBackOnClose
-                />
-                <FormHelperText>
-                  Kosongkan jika data sama seperti sebelumnya
-                </FormHelperText>
-                <FormErrorMessage>
-                  {formik.errors.kelompok_gaji_tujuan as string}
-                </FormErrorMessage>
-              </FormControl>
-
-              <FormControl mb={4} isInvalid={!!formik.errors.dokumen}>
-                <FormLabel>
-                  Dokumen
-                  <RequiredForm />
-                </FormLabel>
-                <FileInput name="dokumen" formik={formik} />
-                <FormErrorMessage>
-                  {formik.errors.dokumen as string}
-                </FormErrorMessage>
-              </FormControl>
-
-              <FormControl
-                mb={4}
-                isInvalid={formik.errors.alasan ? true : false}
-              >
-                <FormLabel>
-                  Alesan
-                  <RequiredForm />
-                </FormLabel>
-                <Textarea
-                  name="alasan"
-                  formik={formik}
-                  placeholder="Jolitos Kurniawan"
-                />
-                <FormErrorMessage>
-                  {formik.errors.alasan as string}
-                </FormErrorMessage>
-              </FormControl>
-
-              <FormControl mb={2}>
-                <Checkbox colorScheme="ap">
-                  <Text fontSize={14}>
-                    Beritahu Manajer Karyawan dan Direktur Melalui Email
-                  </Text>
-                </Checkbox>
-                <FormErrorMessage>
-                  {formik.errors.beri_tahu_manajer_direktur as string}
-                </FormErrorMessage>
-              </FormControl>
-
-              <FormControl>
-                <Checkbox colorScheme="ap" className="checkbox">
-                  <Text fontSize={14}>Beritahu Karyawan Melalui Email</Text>
-                </Checkbox>
-                <FormErrorMessage>
-                  {formik.errors.beri_tahu_karyawan as string}
-                </FormErrorMessage>
-              </FormControl>
             </form>
           </ModalBody>
           <ModalFooter>

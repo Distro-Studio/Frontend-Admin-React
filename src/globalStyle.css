@@ -351,6 +351,10 @@ button[aria-label="Close"] > svg {
   cursor: default;
 }
 
+.chakra-checkbox {
+  align-items: flex-start !important;
+}
+
 .accordionItem {
   border-radius: 16px;
   border: 1px solid var(--divider);

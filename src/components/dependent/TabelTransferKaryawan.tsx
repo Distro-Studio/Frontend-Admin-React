@@ -187,7 +187,7 @@ export default function TabelRekamJejak() {
                     <CustomTable
                       formattedHeader={formattedHeader}
                       formattedData={formattedData}
-                      // batchActions={batchActions}
+                      batchActions={[<Text>Jancok</Text>]}
                       onRowClick={() => {
                         onOpen();
                       }}
