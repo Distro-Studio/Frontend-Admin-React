@@ -108,7 +108,7 @@ export default function EditKaryawanForm({
         value: data.ptkp.id,
         label: data.ptkp.kode_ptkp,
       },
-      potongan: data.potongan.map((potongan: any) => ({
+      potongan: data.potongan?.map((potongan: any) => ({
         value: potongan.id,
         label: potongan.nama_potongan,
       })),

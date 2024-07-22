@@ -263,7 +263,9 @@ export default function SelectPtkp({
       isOpen={isOpen}
       onOpen={onOpen}
       onClose={onClose}
-      options={options}
+      options={options?.sort((a, b) => {
+        return a.label.localeCompare(b.label);
+      })}
       onConfirm={(input) => {
         onConfirm(input);
       }}

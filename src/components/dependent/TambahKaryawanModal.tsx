@@ -7,7 +7,6 @@ import {
   FormErrorMessage,
   FormHelperText,
   FormLabel,
-  HStack,
   Icon,
   Input,
   InputGroup,
@@ -48,11 +47,11 @@ import { responsiveSpacing } from "../../const/sizes";
 import { iconSize } from "../../constant/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import backOnClose from "../../lib/backOnClose";
+import useScreenHeight from "../../lib/useScreenHeight";
 import useScreenWidth from "../../lib/useScreenWidth";
 import CContainer from "../wrapper/CContainer";
-import DisclosureHeader from "./DisclosureHeader";
-import useScreenHeight from "../../lib/useScreenHeight";
 import SelectPotongan from "./_Select/SelectPotongan";
+import DisclosureHeader from "./DisclosureHeader";
 
 const validationSchemaStep1 = yup.object({
   // nama_karyawan: yup.string().required("Harus diisi"),
@@ -98,11 +97,7 @@ export default function TambahKaryawanModal({ ...props }: Props) {
   useBackOnClose(`tambah-karyawan-modal`, isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
-  const steps = [
-    { title: "Data Karyawan" },
-    { title: "Penggajian" },
-    { title: "Akun Karyawan" },
-  ];
+  const steps = [{ title: "Data Karyawan" }, { title: "Penggajian" }];
   const { activeStep, setActiveStep } = useSteps();
   const activeStepText = steps[activeStep].title;
 
@@ -146,7 +141,7 @@ export default function TambahKaryawanModal({ ...props }: Props) {
   const handleNext = () => {
     formik.validateForm().then((errors) => {
       if (Object.keys(errors).length === 0) {
-        if (activeStep === 2) {
+        if (activeStep === 1) {
           formik.submitForm();
         } else {
           setActiveStep(activeStep + 1);
@@ -202,7 +197,7 @@ export default function TambahKaryawanModal({ ...props }: Props) {
             value={formik.values.email}
           />
           <FormHelperText opacity={0.4}>
-            Email ini digunakan untuk masuk (login)
+            Email ini digunakan untuk masuk ke RSKI Karyawan (login)
           </FormHelperText>
           <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
         </FormControl>
@@ -628,85 +623,14 @@ export default function TambahKaryawanModal({ ...props }: Props) {
           h={"50px"}
           onClick={handleNext}
         >
-          Lanjut
-        </Button>
-      </ButtonGroup>
-    );
-  };
-
-  const Step3 = () => {
-    return (
-      <>
-        <FormControl mb={4} isInvalid={!!formik.errors.username}>
-          <FormLabel>
-            Username
-            <RequiredForm />
-          </FormLabel>
-          <InputGroup>
-            <HStack w={"100%"}>
-              <Input
-                name="username"
-                placeholder="Username"
-                onChange={formik.handleChange}
-                value={formik.values.username}
-              />
-              <Button colorScheme="ap" variant={"outline"} className="clicky">
-                Generate
-              </Button>
-            </HStack>
-          </InputGroup>
-          <FormErrorMessage>{formik.errors.username}</FormErrorMessage>
-        </FormControl>
-
-        <FormControl mb={4} isInvalid={!!formik.errors.password}>
-          <FormLabel>
-            Password
-            <RequiredForm />
-          </FormLabel>
-          <HStack w={"100%"}>
-            <Input
-              name="password"
-              type="password"
-              placeholder="Password"
-              onChange={formik.handleChange}
-              value={formik.values.password}
-            />
-            <Button colorScheme="ap" variant={"outline"} className="clicky">
-              Generate
-            </Button>
-          </HStack>
-          <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
-        </FormControl>
-      </>
-    );
-  };
-
-  const Step3Footer = () => {
-    return (
-      <ButtonGroup mt={"auto"} pt={4} w={"100%"}>
-        <Button
-          w={"100%"}
-          className="btn-solid clicky"
-          h={"50px"}
-          onClick={handleBack}
-        >
-          Sebelumnya
-        </Button>
-        <Button
-          w={"100%"}
-          colorScheme="ap"
-          className="btn-ap clicky"
-          h={"50px"}
-          onClick={handleNext}
-        >
           Tambah Karyawan
         </Button>
       </ButtonGroup>
     );
   };
 
-  const stepComponents = [Step1, Step2, Step3];
-  const stepFooterComponents = [Step1Footer, Step2Footer, Step3Footer];
+  const stepComponents = [Step1, Step2];
+  const stepFooterComponents = [Step1Footer, Step2Footer];
 
   // SX
   const sh = useScreenHeight();
