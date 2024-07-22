@@ -17,28 +17,26 @@ import {
 } from "@chakra-ui/react";
 import { RiLayoutColumnLine } from "@remixicon/react";
 import { useRef, useState } from "react";
+import { Interface__ColumnConfig } from "../../const/interfaces";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
-import useTabelKaryawanColumns from "../../global/useTabelKaryawanColumns";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import backOnClose from "../../lib/backOnClose";
-import DisclosureHeader from "./DisclosureHeader";
 import CContainer from "../wrapper/CContainer";
-import { Interface__ColumnConfig } from "../../const/interfaces";
-import NoData from "../independent/NoData";
+import DisclosureHeader from "./DisclosureHeader";
 
 interface Props extends ButtonProps {
   id: string;
-  defaultColumns: number[];
+  clearedTableColumns: number[];
   tableColumns: number[];
   setTableColumns: (tableColumns: number[]) => void;
   allColumns: Interface__ColumnConfig[];
-  presetColumns?: { label: string; columns: number[] }[];
+  presetColumns: { label: string; columns: number[] }[];
   title?: string;
 }
 
 export default function ColumnsConfigModal({
   id,
-  defaultColumns,
+  clearedTableColumns,
   tableColumns,
   setTableColumns,
   allColumns,
@@ -155,24 +153,20 @@ export default function ColumnsConfigModal({
                 <Text fontWeight={500} mb={4} opacity={0.6}>
                   Preset Kolom
                 </Text>
-                {presetColumns && (
-                  <SimpleGrid columns={[1, 2, 3]} gap={2}>
-                    {presetColumns.map((preset, i) => (
-                      <Button
-                        key={i}
-                        // borderRadius={"full"}
-                        className="btn-solid clicky"
-                        onClick={() => {
-                          setSelected(preset.columns);
-                        }}
-                      >
-                        {preset.label}
-                      </Button>
-                    ))}
-                  </SimpleGrid>
-                )}
-
-                {!presetColumns && <NoData label="Tidak ada preset" />}
+                <SimpleGrid columns={[1, 2, 3]} gap={2}>
+                  {presetColumns.map((preset, i) => (
+                    <Button
+                      key={i}
+                      // borderRadius={"full"}
+                      className="btn-solid clicky"
+                      onClick={() => {
+                        setSelected(preset.columns);
+                      }}
+                    >
+                      {preset.label}
+                    </Button>
+                  ))}
+                </SimpleGrid>
 
                 <Text
                   fontWeight={500}
@@ -211,7 +205,7 @@ export default function ColumnsConfigModal({
                   w={"100%"}
                   className="btn-solid clicky"
                   onClick={() => {
-                    setSelected(defaultColumns);
+                    setSelected(clearedTableColumns);
                   }}
                 >
                   Clear

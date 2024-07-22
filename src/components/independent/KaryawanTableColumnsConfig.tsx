@@ -1,16 +1,14 @@
 import { ButtonProps } from "@chakra-ui/react";
-import useTabelKaryawanColumns from "../../global/useTabelKaryawanColumns";
+import useKaryawanTableColumnsConfig from "../../global/useKaryawanTableColumnsConfig";
 import ColumnsConfigModal from "../dependent/ColumnsConfigModal";
 
 interface Props extends ButtonProps {
   title?: string;
 }
 
-export default function TabelKaryawanColumnsConfigModal({
-  title,
-  ...props
-}: Props) {
-  const { tableColumns, setTableColumns } = useTabelKaryawanColumns();
+export default function KaryawanTableColumnsConfig({ title, ...props }: Props) {
+  const { clearedTableColumns, tableColumns, setTableColumns } =
+    useKaryawanTableColumnsConfig();
 
   const allColumns = [
     { column: "nama", label: "Nama" },
@@ -62,7 +60,7 @@ export default function TabelKaryawanColumnsConfigModal({
   return (
     <ColumnsConfigModal
       id="config-kolom-tabel-karyawan-modal"
-      defaultColumns={[0]}
+      clearedTableColumns={clearedTableColumns}
       tableColumns={tableColumns}
       setTableColumns={setTableColumns}
       allColumns={allColumns}

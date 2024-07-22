@@ -5,7 +5,7 @@ import { dummyKaryawans } from "../../const/dummy";
 import { Interface__DetailKaryawan } from "../../const/interfaces";
 import { responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
-import useTabelKaryawanColumns from "../../global/useTabelKaryawanColumns";
+import useTabelKaryawanColumns from "../../global/useKaryawanTableColumnsConfig";
 import useDataState from "../../hooks/useDataState";
 import formatDate from "../../lib/formatDate";
 import formatMasaKerja from "../../lib/formatMasaKerja";
