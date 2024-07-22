@@ -2,12 +2,12 @@ import { ButtonProps, useDisclosure } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { dummyPremi } from "../../../const/dummy";
 import { Interface__SelectOption } from "../../../constant/interfaces";
-import SingleSelectModal from "../input/SingleSelectModal";
+import MultipleSelectModal from "../input/MultipleSelectModal";
 
 interface Props extends ButtonProps {
   name: string;
-  onConfirm: (inputValue: Interface__SelectOption | undefined) => void;
-  inputValue: Interface__SelectOption | undefined;
+  onConfirm: (inputValue: Interface__SelectOption[] | undefined) => void;
+  inputValue: Interface__SelectOption[] | undefined;
   withSearch?: boolean;
   optionsDisplay?: "list" | "chip";
   isError?: boolean;
@@ -43,7 +43,7 @@ export default function SelectPotongan({
   }, []);
 
   return (
-    <SingleSelectModal
+    <MultipleSelectModal
       id="multi-select-potongan-modal"
       name={name}
       isOpen={isOpen}

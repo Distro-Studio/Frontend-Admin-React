@@ -44,7 +44,7 @@ interface Props {
   nonNullable?: boolean;
 }
 
-export default function MultipleSelectDrawer({
+export default function MultipleSelectModal({
   id,
   name,
   isOpen,
@@ -126,41 +126,43 @@ export default function MultipleSelectDrawer({
         px={inputValue ? "8px !important" : "16px !important"}
         {...props}
       >
-        <HStack w={"100%"}>
-          {inputValue ? (
-            inputValue.map((value, i) => {
-              return (
-                i < 2 && (
-                  <Badge
-                    key={i}
-                    borderRadius={6}
-                    bg={"var(--divider)"}
-                    textTransform={"none"}
-                    flex={"1 1 100px"}
-                    h={"24px"}
-                    pt={"5.5px"}
-                  >
-                    {value.label}
-                  </Badge>
-                )
-              );
-            })
-          ) : placeholder ? (
-            <Text opacity={0.3} fontWeight={400}>
-              {placeholder}
-            </Text>
-          ) : (
-            <Text opacity={0.3} fontWeight={400}>
-              Multi Pilih
-            </Text>
-          )}
+        <Box overflowX={"auto"} className="noScroll">
+          <HStack w={"max-content"}>
+            {inputValue ? (
+              inputValue.map((value, i) => {
+                return (
+                  i < 2 && (
+                    <Badge
+                      key={i}
+                      borderRadius={6}
+                      bg={"var(--divider)"}
+                      textTransform={"none"}
+                      flex={"1 1 100px"}
+                      h={"24px"}
+                      pt={"5.5px"}
+                    >
+                      {value.label}
+                    </Badge>
+                  )
+                );
+              })
+            ) : placeholder ? (
+              <Text opacity={0.3} fontWeight={400}>
+                {placeholder}
+              </Text>
+            ) : (
+              <Text opacity={0.3} fontWeight={400}>
+                Multi Pilih
+              </Text>
+            )}
 
-          {inputValue && inputValue.length - 2 > 0 && (
-            <Badge bg={"var(--divider)"} h={"24px"} pt={"5.5px"}>
-              +{inputValue.length - 2 > 0 && inputValue.length - 2}
-            </Badge>
-          )}
-        </HStack>
+            {inputValue && inputValue.length - 2 > 0 && (
+              <Badge bg={"var(--divider)"} h={"24px"} pt={"5.5px"}>
+                +{inputValue.length - 2 > 0 && inputValue.length - 2}
+              </Badge>
+            )}
+          </HStack>
+        </Box>
 
         <Icon as={RiArrowDownSLine} fontSize={18} />
       </Button>
@@ -179,10 +181,10 @@ export default function MultipleSelectDrawer({
         >
           <ModalHeader ref={initialRef}>
             <Box>
-              <DisclosureHeader title={placeholder || "Multi Pilih"} p={0} />
+              <DisclosureHeader title={placeholder || "Multi Pilih"} />
 
               {withSearch && (
-                <Box mt={4}>
+                <Box px={6} pb={6}>
                   <SearchComponent
                     name="search select options"
                     inputValue={search}
@@ -194,7 +196,7 @@ export default function MultipleSelectDrawer({
               )}
             </Box>
           </ModalHeader>
-          <ModalBody>
+          <ModalBody className="scrollY">
             {fo && (
               <>
                 {optionsDisplay === "list" && (

@@ -49,7 +49,7 @@ const validationSchemaStep2 = yup.object({
   uang_lembur: yup.string().required("Harus diisi"),
   uang_makan: yup.string().required("Harus diisi"),
   ptkp: yup.mixed().required("Harus diisi"),
-  potongan: yup.mixed(),
+  potongan: yup.array(),
 });
 
 const validationSchema = [validationSchemaStep1, validationSchemaStep2];
@@ -108,10 +108,10 @@ export default function EditKaryawanForm({
         value: data.ptkp.id,
         label: data.ptkp.kode_ptkp,
       },
-      potongan: {
-        value: data.potongan.id,
-        label: data.potongan.nama_potongan,
-      },
+      potongan: data.potongan.map((potongan: any) => ({
+        value: potongan.id,
+        label: potongan.nama_potongan,
+      })),
     },
     validationSchema: validationSchema[activeStep],
     onSubmit: (values, { resetForm }) => {
