@@ -335,9 +335,10 @@ export default function EditKaryawanForm({
           </FormLabel>
           <SelectRole
             name="role"
-            formik={formik}
-            placeholder="Pilih Role"
-            initialSelected={formik.values.role}
+            onConfirm={(input) => {
+              formik.setFieldValue("role", input);
+            }}
+            inputValue={formik.values.role}
           />
           <FormErrorMessage>
             {formik.errors.role as string as string}
