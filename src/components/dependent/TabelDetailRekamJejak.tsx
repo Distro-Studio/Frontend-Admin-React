@@ -3,6 +3,7 @@ import { RiCircleFill } from "@remixicon/react";
 import formatDate from "../../lib/formatDate";
 import CContainer from "../wrapper/CContainer";
 import SmallLink from "./SmallLink";
+import { responsiveSpacing } from "../../const/sizes";
 
 interface Props {
   data: any;
@@ -111,7 +112,7 @@ export default function TabelDetailRekamJejak({ data }: Props) {
   return (
     <CContainer gap={2}>
       {data.map((item: any, i: number) => (
-        <HStack key={i} align={"stretch"}>
+        <HStack key={i} align={"stretch"} gap={4}>
           <VStack>
             <Center p={1} borderRadius={"full"} bg={"var(--p500a3)"}>
               <Icon as={RiCircleFill} color={"p.500"} />
@@ -122,67 +123,75 @@ export default function TabelDetailRekamJejak({ data }: Props) {
             )}
           </VStack>
 
-          <CContainer px={4} pb={i !== data.length - 1 ? 8 : ""} gap={3}>
-            <Text fontWeight={600} fontSize={18}>
-              {item.kategori.label}
-            </Text>
-
-            <HStack>
-              <Text minW={"160px"} opacity={0.6}>
-                Tanggal Pengajuan
+          <Box pb={i !== data.length - 1 ? responsiveSpacing : 0}>
+            <CContainer
+              py={4}
+              px={5}
+              borderRadius={12}
+              bg={"var(--divider)"}
+              gap={3}
+            >
+              <Text fontWeight={600} fontSize={18}>
+                {item.kategori.label}
               </Text>
-              <Text>{formatDate(item.created_at)}</Text>
-            </HStack>
 
-            <HStack>
-              <Text minW={"160px"} opacity={0.6}>
-                Tanggal Mulai
-              </Text>
-              <Text>{formatDate(item.tgl_mulai)}</Text>
-            </HStack>
+              <HStack>
+                <Text minW={"160px"} opacity={0.6}>
+                  Tanggal Pengajuan
+                </Text>
+                <Text>{formatDate(item.created_at)}</Text>
+              </HStack>
 
-            <HStack>
-              <Text minW={"160px"} opacity={0.6}>
-                Unit Kerja Asal
-              </Text>
-              <Text>{item.unit_kerja_asal.nama_unit}</Text>
-            </HStack>
+              <HStack>
+                <Text minW={"160px"} opacity={0.6}>
+                  Tanggal Mulai
+                </Text>
+                <Text>{formatDate(item.tgl_mulai)}</Text>
+              </HStack>
 
-            <HStack>
-              <Text minW={"160px"} opacity={0.6}>
-                Unit Kerja Tujuan
-              </Text>
-              <Text>{item.unit_kerja_tujuan.nama_unit}</Text>
-            </HStack>
+              <HStack>
+                <Text minW={"160px"} opacity={0.6}>
+                  Unit Kerja Asal
+                </Text>
+                <Text>{item.unit_kerja_asal.nama_unit}</Text>
+              </HStack>
 
-            <HStack>
-              <Text minW={"160px"} opacity={0.6}>
-                Jabatan Asal
-              </Text>
-              <Text>{item.jabatan_asal.nama_jabatan}</Text>
-            </HStack>
+              <HStack>
+                <Text minW={"160px"} opacity={0.6}>
+                  Unit Kerja Tujuan
+                </Text>
+                <Text>{item.unit_kerja_tujuan.nama_unit}</Text>
+              </HStack>
 
-            <HStack>
-              <Text minW={"160px"} opacity={0.6}>
-                Jabatan Tujuan
-              </Text>
-              <Text>{item.jabatan_tujuan.nama_jabatan}</Text>
-            </HStack>
+              <HStack>
+                <Text minW={"160px"} opacity={0.6}>
+                  Jabatan Asal
+                </Text>
+                <Text>{item.jabatan_asal.nama_jabatan}</Text>
+              </HStack>
 
-            <HStack align={"start"}>
-              <Text minW={"160px"} opacity={0.6}>
-                Alasan
-              </Text>
-              <Text>{item.alasan}</Text>
-            </HStack>
+              <HStack>
+                <Text minW={"160px"} opacity={0.6}>
+                  Jabatan Tujuan
+                </Text>
+                <Text>{item.jabatan_tujuan.nama_jabatan}</Text>
+              </HStack>
 
-            <HStack align={"start"}>
-              <Text minW={"160px"} opacity={0.6}>
-                Dokumen
-              </Text>
-              <SmallLink to={item.dokumen}>Lihat</SmallLink>
-            </HStack>
-          </CContainer>
+              <HStack align={"start"}>
+                <Text minW={"160px"} opacity={0.6}>
+                  Alasan
+                </Text>
+                <Text>{item.alasan}</Text>
+              </HStack>
+
+              <HStack align={"start"}>
+                <Text minW={"160px"} opacity={0.6}>
+                  Dokumen
+                </Text>
+                <SmallLink to={item.dokumen}>Lihat</SmallLink>
+              </HStack>
+            </CContainer>
+          </Box>
         </HStack>
       ))}
     </CContainer>
