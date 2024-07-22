@@ -51,6 +51,7 @@ import backOnClose from "../../lib/backOnClose";
 import useScreenWidth from "../../lib/useScreenWidth";
 import CContainer from "../wrapper/CContainer";
 import DisclosureHeader from "./DisclosureHeader";
+import useScreenHeight from "../../lib/useScreenHeight";
 
 const validationSchemaStep1 = yup.object({
   // nama_karyawan: yup.string().required("Harus diisi"),
@@ -699,6 +700,7 @@ export default function TambahKaryawanModal({ ...props }: Props) {
   const stepFooterComponents = [Step1Footer, Step2Footer, Step3Footer];
 
   // SX
+  const sh = useScreenHeight();
   const lightDarkColor = useLightDarkColor();
 
   return (
@@ -719,7 +721,7 @@ export default function TambahKaryawanModal({ ...props }: Props) {
         onClose={backOnClose}
         initialFocusRef={initialRef}
         size={"full"}
-        scrollBehavior="inside"
+        scrollBehavior={sh < 650 ? "outside" : "inside"}
         blockScrollOnMount={false}
       >
         <ModalOverlay />
