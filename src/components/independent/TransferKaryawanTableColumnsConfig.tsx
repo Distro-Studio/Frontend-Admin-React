@@ -11,22 +11,29 @@ export default function TransferKaryawanTableColumnsConfig({
   ...props
 }: Props) {
   const {
-    allTableColumns,
+    columnsConfigAllColumns,
     clearedTableColumns,
-    tableColumns,
+    columnsConfig,
     setTableColumns,
   } = useTransferKaryawanTableColumnsConfig();
 
   const allColumns = [
     { column: "nama", label: "Nama" },
     { column: "nik", label: "Nik" },
+    { column: "kategori", label: "Kategori Transfer" },
+    { column: "created_at", label: "Tanggal Pengajuan" },
+    { column: "tgl_mulai", label: "Tanggal Mulai" },
     { column: "unit_kerja_asal", label: "Unit Kerja Asal" },
     { column: "unit_kerja_tujuan", label: "Unit Kerja Tujuan" },
+    { column: "jabatan_asal", label: "Jabatan Asal" },
+    { column: "jabatan_tujuan", label: "Jabatan Tujuan" },
+    { column: "alasan", label: "Alasan" },
+    { column: "dokumen", label: "Dokumen" },
   ];
   const presetColumns = [
     {
       label: "Semua Kolom",
-      columns: allTableColumns,
+      columns: columnsConfigAllColumns,
     },
     {
       label: "Karyawan",
@@ -40,7 +47,7 @@ export default function TransferKaryawanTableColumnsConfig({
     <ColumnsConfigModal
       id="config-kolom-tabel-karyawan-modal"
       clearedTableColumns={clearedTableColumns}
-      tableColumns={tableColumns}
+      tableColumns={columnsConfig}
       setTableColumns={setTableColumns}
       allColumns={allColumns}
       presetColumns={presetColumns}

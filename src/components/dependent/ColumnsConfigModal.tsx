@@ -49,7 +49,7 @@ export default function ColumnsConfigModal({
   useBackOnClose(id, isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
-  const [selected, setSelected] = useState<number[]>([]);
+  const [selected, setSelected] = useState<number[]>([0]);
 
   // SX
 

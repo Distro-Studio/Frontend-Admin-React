@@ -13,6 +13,7 @@ import CustomTable from "./CustomTable";
 import DetailKaryawanModal from "./DetailKaryawanModal";
 import Retry from "./Retry";
 import TabelFooterConfig from "./TabelFooterConfig";
+import useTransferKaryawanTableColumnsConfig from "../../global/useTransferKaryawanTableColumnsConfig";
 
 export default function TabelRekamJejak() {
   // Limit Config
@@ -24,7 +25,7 @@ export default function TabelRekamJejak() {
   // Filter Config
   const { filterKaryawan } = useFilterKaryawan();
   // Columns Config
-  // const { tabelKaryawanColumns } = useTabelKaryawanColumns();
+  const { columnsConfig } = useTransferKaryawanTableColumnsConfig();
 
   const { error, loading, data, retry } = useDataState<any>({
     initialData: dummyTransferKaryawan,
@@ -190,7 +191,7 @@ export default function TabelRekamJejak() {
                       onRowClick={() => {
                         onOpen();
                       }}
-                      // columnsConfig={tabelKaryawanColumns}
+                      columnsConfig={columnsConfig}
                     />
                   </CustomTableContainer>
 
