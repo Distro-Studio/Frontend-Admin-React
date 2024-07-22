@@ -45,20 +45,6 @@ export default function TabelKaryawan() {
         console.log("Non-aktifkan", selectedRows);
       },
     },
-    {
-      label: "Export",
-      icon: (
-        <Icon
-          as={RiUploadLine}
-          fontSize={iconSize}
-          opacity={0.4}
-          // color={chartColors[1]}
-        />
-      ),
-      callback: (selectedRows: number[]) => {
-        console.log("Exporting", selectedRows);
-      },
-    },
   ];
   // Columns Config
   const { tabelKaryawanColumns } = useTabelKaryawanColumns();
