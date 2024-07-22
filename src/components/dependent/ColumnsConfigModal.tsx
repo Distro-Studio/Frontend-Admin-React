@@ -30,7 +30,7 @@ interface Props extends ButtonProps {
   id: string;
   defaultColumns: number[];
   tableColumns: number[];
-  setColumns: (tableColumns: number[]) => void;
+  setTableColumns: (tableColumns: number[]) => void;
   allColumns: Interface__ColumnConfig[];
   presetColumns?: { label: string; columns: number[] }[];
   title?: string;
@@ -40,7 +40,7 @@ export default function ColumnsConfigModal({
   id,
   defaultColumns,
   tableColumns,
-  setColumns,
+  setTableColumns,
   allColumns,
   presetColumns,
   title,
@@ -51,8 +51,6 @@ export default function ColumnsConfigModal({
   useBackOnClose(id, isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
-  const { tabelKaryawanColumns, setTabelKaryawanColumns } =
-    useTabelKaryawanColumns();
   const [selected, setSelected] = useState<number[]>([]);
 
   // SX
@@ -68,7 +66,7 @@ export default function ColumnsConfigModal({
         pr={6}
         onClick={() => {
           onOpen();
-          setSelected(tabelKaryawanColumns);
+          setSelected(tableColumns);
         }}
         {...props}
       >
@@ -224,7 +222,7 @@ export default function ColumnsConfigModal({
                   colorScheme="ap"
                   isDisabled={selected.length < 2}
                   onClick={() => {
-                    setTabelKaryawanColumns(selected);
+                    setTableColumns(selected);
                     backOnClose();
                   }}
                 >

@@ -1,16 +1,72 @@
 import { ButtonProps } from "@chakra-ui/react";
 import useTabelKaryawanColumns from "../../global/useTabelKaryawanColumns";
 import ColumnsConfigModal from "../dependent/ColumnsConfigModal";
+import useTabelTransferKaryawanColumns from "../../global/useTabelTransferKaryawanColumns";
 
 interface Props extends ButtonProps {
   title?: string;
 }
 
-export default function TabelKaryawanColumnsConfigModal({
+export default function ConfigKolomTabelTransferKaryawanModal({
   title,
   ...props
 }: Props) {
-  const { tableColumns, setTableColumns } = useTabelKaryawanColumns();
+  const { tableColumns, setTableColumns } = useTabelTransferKaryawanColumns();
+
+  const formattedHeader = [
+    {
+      th: "Nama",
+      isSortable: true,
+      props: {
+        position: "sticky",
+        left: 0,
+        zIndex: 99,
+        w: "180px",
+      },
+      cProps: {
+        borderRight: "1px solid var(--divider3)",
+      },
+    },
+    {
+      th: "No. Induk Karyawan",
+      isSortable: true,
+    },
+    {
+      th: "Kategori Transfer",
+      isSortable: true,
+    },
+    {
+      th: "Tanggal Pengajuan",
+      isSortable: true,
+    },
+    {
+      th: "Tanggal Mulai",
+      isSortable: true,
+    },
+    {
+      th: "Unit Kerja Asal",
+      isSortable: true,
+    },
+    {
+      th: "Unit Kerja Tujuan",
+      isSortable: true,
+    },
+    {
+      th: "Jabatan Asal",
+      isSortable: true,
+    },
+    {
+      th: "Jabatan Tujuan",
+      isSortable: true,
+    },
+    {
+      th: "Alasan",
+    },
+    {
+      th: "Dokumen",
+      isSortable: true,
+    },
+  ];
 
   const allColumns = [
     { column: "nama", label: "Nama" },

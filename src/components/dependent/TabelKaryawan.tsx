@@ -30,7 +30,7 @@ export default function TabelKaryawan() {
   // Filter Config
   const { filterKaryawan } = useFilterKaryawan();
   // Columns Config
-  const { tabelKaryawanColumns } = useTabelKaryawanColumns();
+  const { tableColumns } = useTabelKaryawanColumns();
   // Row Options Config
   const rowOptions = [
     <HStack w={"100%"} justify={"space-between"}>
@@ -261,7 +261,7 @@ export default function TabelKaryawan() {
                       onRowClick={() => {
                         onOpen();
                       }}
-                      columnsConfig={tabelKaryawanColumns}
+                      columnsConfig={tableColumns}
                       rowOptions={rowOptions}
                     />
                   </CustomTableContainer>

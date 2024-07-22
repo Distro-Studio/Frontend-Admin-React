@@ -6,7 +6,7 @@ import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelKaryawan from "../../components/dependent/TabelKaryawan";
 import TambahKaryawanModal from "../../components/dependent/TambahKaryawanModal";
 import FilterKaryawan from "../../components/independent/FilterKaryawan";
-import TabelKaryawanColumnsConfigModal from "../../components/independent/TabelKaryawanColumnsConfigModal";
+import ConfigKolomTabelTransferKaryawanModal from "../../components/independent/ConfigKolomTabelTransferKaryawanModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useLightDarkColor } from "../../const/colors";
@@ -65,7 +65,7 @@ export default function Karyawan() {
 
             <FilterKaryawan />
 
-            <TabelKaryawanColumnsConfigModal title="Config Kolom Tabel Karyawan" />
+            <ConfigKolomTabelTransferKaryawanModal title="Config Kolom Tabel Karyawan" />
 
             <ExportModal url={""} title={"Export Karyawan"} px={6} />
 
