@@ -251,9 +251,11 @@ export default function EditKaryawanForm({
           </FormLabel>
           <SelectStatusKaryawan
             name="status_karyawan"
-            formik={formik}
+            onConfirm={(input) => {
+              formik.setFieldValue("status_karyawan", input);
+            }}
+            inputValue={formik.values.status_karyawan}
             placeholder="Pilih Status Karyawan"
-            initialSelected={formik.values.status_karyawan}
           />
           <FormErrorMessage>
             {formik.errors.unit_kerja as string}
@@ -315,7 +317,7 @@ export default function EditKaryawanForm({
             initialSelected={formik.values.kompetensi}
           />
           <FormHelperText opacity={0.4}>
-            Jika karyawan tidak memiliki kompetensi atau profesi pilih tidak ada
+            Kosongkan jika tidak memiliki kompetensi
           </FormHelperText>
           <FormErrorMessage>
             {formik.errors.kompetensi as string}

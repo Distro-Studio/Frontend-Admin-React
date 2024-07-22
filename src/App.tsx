@@ -6,7 +6,6 @@ import karyawanTopNavs from "./const/karyawanTopNavs";
 import keuanganTopNavs from "./const/keuanganTopNavs";
 import pengaturanTopNavs from "./const/pengaturanTopNavs";
 import perusahaanTopNavs from "./const/perusahaanTopNavs";
-import { responsiveSpacing } from "./const/sizes";
 import "./globalStyle.css";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import MissingPage from "./pages/Error/MissingPage";
@@ -16,10 +15,8 @@ import Lembur from "./pages/Jadwal/Lembur";
 import PenukaranJadwal from "./pages/Jadwal/PenukaranJadwal";
 import DetailKaryawan from "./pages/Karyawan/DetailKaryawan";
 import DetailRekamJejak from "./pages/Karyawan/DetailRekamJejak";
-import EditKaryawan from "./pages/Karyawan/EditKaryawan";
 import Karyawan from "./pages/Karyawan/Karyawan";
 import RekamJejak from "./pages/Karyawan/RekamJejak";
-import TambahKaryawan from "./pages/Karyawan/TambahKaryawan";
 import TransferKaryawan from "./pages/Karyawan/TransferKaryawan";
 import DetailLaporanRiwayatPenggajian from "./pages/Keuangan/DetailLaporanRiwayatPenggajian";
 import DetailLaporanThr from "./pages/Keuangan/DetailLaporanThr";
@@ -96,88 +93,6 @@ export const App = () => (
             </NavContainer>
           }
         />
-        <Route
-          path="/karyawan/tambah-karyawan"
-          element={
-            <NavContainer
-              active={1}
-              title="Tambah Karyawan"
-              // noNavs
-              left={"back"}
-              // backLink="/karyawan"
-              pb={responsiveSpacing}
-            >
-              <TambahKaryawan />
-            </NavContainer>
-          }
-        />
-        <Route
-          path="/karyawan/:karyawanId/edit"
-          element={
-            <NavContainer
-              active={1}
-              title="Edit Karyawan"
-              // noNavs
-              left={"back"}
-              // backLink="/karyawan"
-              pb={responsiveSpacing}
-            >
-              <EditKaryawan />
-            </NavContainer>
-          }
-        />
-        {/* <Route
-          path="/karyawan/akun-karyawan"
-          element={
-            <NavContainer
-              active={1}
-              title="Akun Karyawan"
-              topNavsData={karyawanTopNavs}
-              topNavActive={1}
-            >
-              <AkunKaryawan />
-            </NavContainer>
-          }
-        />
-        <Route
-          path="/karyawan/keluarga-karyawan"
-          element={
-            <NavContainer
-              active={1}
-              title="Keluarga Karyawan"
-              topNavsData={karyawanTopNavs}
-              topNavActive={2}
-            >
-              <KeluargaKaryawan />
-            </NavContainer>
-          }
-        />
-        <Route
-          path="/karyawan/keluarga-karyawan/:karyawanId"
-          element={
-            <NavContainer
-              active={1}
-              title="Detail Keluarga Karyawan"
-              left={"back"}
-              // backLink="/karyawan/keluarga-karyawan"
-            >
-              <DetailKeluargaKaryawan />
-            </NavContainer>
-          }
-        />
-        <Route
-          path="/karyawan/pekerja-kontrak"
-          element={
-            <NavContainer
-              active={1}
-              title="Pekerja Kontrak"
-              topNavsData={karyawanTopNavs}
-              topNavActive={3}
-            >
-              <PekerjaKontrak />
-            </NavContainer>
-          }
-        /> */}
         <Route
           path="/karyawan/rekam-jejak"
           element={
