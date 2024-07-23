@@ -183,10 +183,10 @@ export default function SingleSelectModal({
                         onClick={() => {
                           setSelected(option);
                         }}
-                        border={
+                        borderColor={
                           selected && selected.value === option.value
-                            ? "1px solid var(--p500a2)"
-                            : "none"
+                            ? "var(--p500a2)"
+                            : "transparent !important"
                         }
                         bg={
                           selected && selected.value === option.value
