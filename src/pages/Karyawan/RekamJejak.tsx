@@ -13,21 +13,22 @@ import useFilterKaryawan from "../../global/useFilterKaryawan";
 
 export default function RekamJejak() {
   // Filter Config
-  const { setFilterKaryawan } = useFilterKaryawan();
+  const { filterKaryawan, setFilterKaryawan } = useFilterKaryawan();
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      setFilterKaryawan((ps: any) => ({
-        ...ps,
-        search: search,
-      }));
+      setFilterKaryawan({ search });
     }, 300);
 
     return () => {
       clearTimeout(handler);
     };
   }, [search, setFilterKaryawan]);
+
+  useEffect(() => {
+    console.log("Current filterKaryawan state:", filterKaryawan);
+  }, [filterKaryawan]);
 
   // SX
   const lightDarkColor = useLightDarkColor();

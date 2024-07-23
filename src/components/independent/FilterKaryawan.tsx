@@ -44,11 +44,6 @@ export default function FilterKaryawan({ ...props }: Props) {
     defaultFilterKaryawan
   );
 
-  function filterData() {
-    setFilterKaryawan(localFilterConfig);
-    backOnClose();
-  }
-
   function filterCount(values: any) {
     let count = 0;
 
@@ -68,6 +63,11 @@ export default function FilterKaryawan({ ...props }: Props) {
       count += values.tgl_masuk.length;
     }
     return count;
+  }
+
+  function filterData() {
+    setFilterKaryawan(localFilterConfig);
+    backOnClose();
   }
 
   // SX

@@ -38,13 +38,20 @@ interface Props {
   data: any;
   tgl: Date | string;
   jadwal: any;
-  index: number;
+  index?: number;
+  rowIndex?: number;
 }
 
-export default function TabelJadwalItem({ data, tgl, jadwal, index }: Props) {
+export default function TabelJadwalItem({
+  data,
+  tgl,
+  jadwal,
+  index,
+  rowIndex,
+}: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(
-    `jadwal-detail-${data.id}-${formatDate(tgl)}-${index}`,
+    `jadwal-detail-${data.id}-${formatDate(tgl)}-${rowIndex}-${index}`,
     isOpen,
     onOpen,
     onClose
@@ -186,6 +193,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal, index }: Props) {
                       formik.setFieldValue("shift", input);
                     }}
                     inputValue={formik.values.shift}
+                    isDisabled={isDatePassed(data.tgl_masuk)}
                   />
                   <FormErrorMessage>
                     {formik.errors.shift as string}

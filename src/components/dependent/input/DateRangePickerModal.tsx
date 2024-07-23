@@ -57,8 +57,6 @@ export default function DateRangePickerModal({
   maxRange,
   ...props
 }: Props) {
-  console.log(inputValue);
-
   const initialRef = useRef(null);
 
   const { isOpen, onOpen, onClose } = useDisclosure();

@@ -14,21 +14,22 @@ import TransferKaryawanTableColumnsConfig from "../../components/independent/Tra
 
 export default function TransferKaryawan() {
   // Filter Config
-  const { setFilterKaryawan } = useFilterKaryawan();
+  const { filterKaryawan, setFilterKaryawan } = useFilterKaryawan();
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      setFilterKaryawan((ps: any) => ({
-        ...ps,
-        search: search,
-      }));
+      setFilterKaryawan({ search });
     }, 300);
 
     return () => {
       clearTimeout(handler);
     };
   }, [search, setFilterKaryawan]);
+
+  useEffect(() => {
+    console.log("Current filterKaryawan state:", filterKaryawan);
+  }, [filterKaryawan]);
 
   return (
     <>

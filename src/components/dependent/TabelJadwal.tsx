@@ -53,7 +53,7 @@ export default function TabelJadwal({ filterConfig }: Props) {
       th: formatDate(date, "longShort"),
     })),
   ];
-  const formattedData = data?.map((item: any) => ({
+  const formattedData = data?.map((item: any, rowIndex: number) => ({
     id: item.id,
     columnsFormat: [
       {
@@ -78,12 +78,14 @@ export default function TabelJadwal({ filterConfig }: Props) {
               jadwal={jadwal}
               tgl={new Date()}
               index={i}
+              rowIndex={rowIndex}
             />
           ) : (
             <TerapkanJadwalKaryawanTerpilih
               data={item}
               tgl={new Date()}
               index={i}
+              rowIndex={rowIndex}
             />
           ),
         cProps: {

@@ -29,10 +29,7 @@ export default function Presensi() {
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      setFilterKaryawan((ps: any) => ({
-        ...ps,
-        search: search,
-      }));
+      setFilterKaryawan({ search });
     }, 300);
 
     return () => {

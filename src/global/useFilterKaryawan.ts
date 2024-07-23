@@ -10,19 +10,24 @@ const defaultFilterConfig = {
 };
 
 type State = {
-  defaultFilterKaryawan: any;
-  filterKaryawan: any;
+  defaultFilterKaryawan: typeof defaultFilterConfig;
+  filterKaryawan: typeof defaultFilterConfig;
 };
 
 type Actions = {
-  setFilterKaryawan: (filterKaryawan: any) => void;
+  setFilterKaryawan: (filterKaryawan: Partial<State["filterKaryawan"]>) => void;
 };
 
 const useFilterKaryawan = create<State & Actions>((set) => ({
   defaultFilterKaryawan: defaultFilterConfig,
   filterKaryawan: defaultFilterConfig,
-  setFilterKaryawan: (filterKaryawan) =>
-    set(() => ({ filterKaryawan: filterKaryawan })),
+  setFilterKaryawan: (newFilter) =>
+    set((state) => ({
+      filterKaryawan: {
+        ...state.filterKaryawan,
+        ...newFilter,
+      },
+    })),
 }));
 
 export default useFilterKaryawan;

@@ -34,17 +34,19 @@ import JenisKaryawanBadge from "./JenisKaryawanBadge";
 interface Props {
   data: any;
   tgl: Date | string;
-  index: number;
+  index?: number;
+  rowIndex?: number;
 }
 
 export default function TerapkanJadwalKaryawanTerpilih({
   data,
   tgl,
   index,
+  rowIndex,
 }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(
-    `terapkan-jadwal-${data.id}-${formatDate(tgl)}-${index}`,
+    `terapkan-jadwal-${data.id}-${formatDate(tgl)}-${rowIndex}-${index}`,
     isOpen,
     onOpen,
     onClose
