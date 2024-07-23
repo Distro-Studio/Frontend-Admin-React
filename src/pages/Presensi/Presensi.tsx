@@ -1,37 +1,46 @@
-import {
-  Button,
-  Icon,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Wrap,
-} from "@chakra-ui/react";
-import { RiSearchLine, RiUploadLine } from "@remixicon/react";
-import { useState } from "react";
-import FilterTabelPresensi from "../../components/dependent/FilterTabelPresensi";
+import { Wrap } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import ExportModal from "../../components/dependent/ExportModal";
+import ImportModal from "../../components/dependent/ImportModal";
 import DatePickerModal from "../../components/dependent/input/DatePickerModal";
+import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelPresensi from "../../components/dependent/TabelPresensi";
-import ImportPresensiModal from "../../components/independent/ImportPresensiModal";
+import FilterKaryawan from "../../components/independent/FilterKaryawan";
 import PresensiTotal from "../../components/independent/PresensiTotal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { responsiveSpacing } from "../../const/sizes";
+import useFilterKaryawan from "../../global/useFilterKaryawan";
 
 export default function Presensi() {
   const today = new Date();
 
   // Filter Config
-  const defaultFilterConfig = {
-    search: "",
-    unit_kerja: [],
-    status_karyawan: [],
-    tanggal: [today],
-  };
-  const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
+  const { filterKaryawan, setFilterKaryawan } = useFilterKaryawan();
+  const [filterConfig, setFilterConfig] = useState({
+    ...filterKaryawan,
+    tgl: [today],
+  });
+  const [search, setSearch] = useState("");
   const confirmDate = (newDate: Date | undefined) => {
-    setFilterConfig((ps: any) => ({ ...ps, tanggal: [newDate] }));
+    setFilterConfig((ps: any) => ({ ...ps, tgl: [newDate] }));
   };
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setFilterKaryawan((ps: any) => ({
+        ...ps,
+        search: search,
+      }));
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search, setFilterKaryawan]);
+
+  // SX
 
   return (
     <>
@@ -40,49 +49,29 @@ export default function Presensi() {
 
         <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
-            <InputGroup flex={"1 1 165px"}>
-              <InputLeftElement>
-                <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
-              </InputLeftElement>
-              <Input
-                placeholder="Pencarian"
-                flex={"1 1 0"}
-                onChange={(e) => {
-                  setFilterConfig((ps: any) => ({
-                    ...ps,
-                    search: e.target.value,
-                  }));
-                }}
-                value={filterConfig.search}
-              />
-            </InputGroup>
+            <SearchComponent
+              flex={"1 0 200px"}
+              name="search"
+              onChangeSetter={(input) => {
+                setSearch(input);
+              }}
+              inputValue={search}
+            />
 
             <DatePickerModal
               id="presensi-date-picker"
               name="'date-picker"
               flex={"1 1 200px"}
               onConfirm={confirmDate}
-              inputValue={filterConfig.tanggal[0]}
+              inputValue={filterConfig.tgl[0]}
               nonNullable
             />
 
-            <FilterTabelPresensi
-              defaultFilterConfig={defaultFilterConfig}
-              filterConfig={filterConfig}
-              setFilterConfig={setFilterConfig}
-            />
+            <FilterKaryawan />
 
-            <Button
-              flex={"1 1 110px"}
-              variant={"outline"}
-              colorScheme="ap"
-              className="clicky"
-              rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
-            >
-              Export
-            </Button>
+            <ExportModal url="" title="Export Presnsi" />
 
-            <ImportPresensiModal />
+            <ImportModal url="" title="Import Presnsi" />
           </Wrap>
 
           <TabelPresensi filterConfig={filterConfig} />
