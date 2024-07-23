@@ -39,6 +39,7 @@ export default function TransferKaryawan() {
           p={responsiveSpacing}
           bg={useBodyColor()}
           borderRadius={12}
+          flex={1}
         >
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
             <SearchComponent

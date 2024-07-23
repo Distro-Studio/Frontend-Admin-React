@@ -51,6 +51,7 @@ export default function Jadwal() {
           bg={useBodyColor()}
           borderRadius={12}
           overflowY={"auto"}
+          flex={1}
         >
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
             <SearchComponent

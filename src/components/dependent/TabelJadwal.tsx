@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, HStack } from "@chakra-ui/react";
 import { useState } from "react";
 import { dummyTabelJadwalData } from "../../const/dummy";
 import useDataState from "../../hooks/useDataState";
@@ -13,6 +13,7 @@ import TabelFooterConfig from "./TabelFooterConfig";
 import TerapkanJadwalKaryawanTerpilih from "./TerapkanJadwalKaryawanTerpilih";
 import { eachDayOfInterval } from "date-fns";
 import formatDate from "../../lib/formatDate";
+import { responsiveSpacing } from "../../const/sizes";
 
 interface Props {
   filterConfig?: any;
@@ -111,9 +112,12 @@ export default function TabelJadwal({ filterConfig }: Props) {
         <>
           {loading && (
             <>
-              {Array.from({ length: 10 }).map((_, i) => (
-                <Skeleton key={i} flex={1} mx={"auto"} />
-              ))}
+              <Skeleton flex={1} mx={"auto"} />
+              <HStack justify={"space-between"} mt={responsiveSpacing}>
+                <Skeleton maxW={"120px"} />
+                <Skeleton maxW={"300px"} h={"20px"} />
+                <Skeleton maxW={"112px"} />
+              </HStack>
             </>
           )}
           {!loading && (
