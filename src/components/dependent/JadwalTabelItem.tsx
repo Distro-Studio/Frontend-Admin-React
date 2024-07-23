@@ -51,7 +51,7 @@ export default function TabelJadwalItem({
 }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(
-    `jadwal-detail-${data.id}-${formatDate(tgl)}-${rowIndex}-${index}`,
+    `jadwal-detail-${data.id}-${rowIndex}-${index}`,
     isOpen,
     onOpen,
     onClose

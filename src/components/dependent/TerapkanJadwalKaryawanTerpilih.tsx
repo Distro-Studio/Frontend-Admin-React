@@ -46,7 +46,7 @@ export default function TerapkanJadwalKaryawanTerpilih({
 }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(
-    `terapkan-jadwal-${data.id}-${formatDate(tgl)}-${rowIndex}-${index}`,
+    `terapkan-jadwal-${data.id}-${rowIndex}-${index}`,
     isOpen,
     onOpen,
     onClose
