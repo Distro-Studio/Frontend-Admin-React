@@ -14,7 +14,6 @@ import Jadwal from "./pages/Jadwal/Jadwal";
 import Lembur from "./pages/Jadwal/Lembur";
 import PenukaranJadwal from "./pages/Jadwal/PenukaranJadwal";
 import DetailKaryawan from "./pages/Karyawan/DetailKaryawan";
-import DetailRekamJejak from "./pages/Karyawan/DetailRekamJejak";
 import Karyawan from "./pages/Karyawan/Karyawan";
 import RekamJejak from "./pages/Karyawan/RekamJejak";
 import TransferKaryawan from "./pages/Karyawan/TransferKaryawan";
@@ -103,19 +102,6 @@ export const App = () => (
               topNavActive={4}
             >
               <RekamJejak />
-            </NavContainer>
-          }
-        />
-        <Route
-          path="/karyawan/rekam-jejak/:karyawanId"
-          element={
-            <NavContainer
-              active={1}
-              title="Detail Rekam Jejak"
-              left={"back"}
-              // backLink="/karyawan/rekam-jejak"
-            >
-              <DetailRekamJejak />
             </NavContainer>
           }
         />

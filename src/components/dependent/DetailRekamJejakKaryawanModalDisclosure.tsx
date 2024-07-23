@@ -2,6 +2,8 @@ import {
   Avatar,
   Box,
   BoxProps,
+  Center,
+  HStack,
   Modal,
   ModalBody,
   ModalContent,
@@ -13,7 +15,7 @@ import {
   Wrap,
 } from "@chakra-ui/react";
 import { useRef } from "react";
-import { dummyTransferKaryawan } from "../../const/dummy";
+import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import useDataState from "../../hooks/useDataState";
@@ -23,10 +25,9 @@ import formatMasaKerja from "../../lib/formatMasaKerja";
 import ComponentSpinner from "../independent/ComponentSpinner";
 import NoData from "../independent/NoData";
 import CContainer from "../wrapper/CContainer";
+import DetailRekamJejakItem from "./DetailRekamJejakItem";
 import DisclosureHeader from "./DisclosureHeader";
 import Retry from "./Retry";
-import TabelDetailRekamJejak from "./TabelDetailRekamJejak";
-import { useLightDarkColor } from "../../const/colors";
 
 interface Props extends BoxProps {
   karyawan_id: number;
@@ -46,6 +47,116 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
     onClose
   );
   const initialRef = useRef(null);
+  // 1 Perubahan Data
+  // 2 Mutasi Karyawan
+  // 3 Promosi Karyawan
+  // 4 Feedback
+
+  const dummyRekamJejak = [
+    {
+      user_id: 1,
+      kategori: {
+        id: 1,
+        label: "Pembaruan Data",
+      },
+      content: {
+        id: 1,
+        kolom: "tgl_lahir",
+        original_data: "2001-11-01",
+        updated_data: "2001-11-05",
+        status_perubahan: null,
+        tgl_disetujui: "2024-07-11",
+        created_at: "2024-07-10",
+        updated_at: null,
+      },
+      created_at: "2023-05-02",
+    },
+    {
+      user_id: 1,
+      kategori: {
+        id: 2,
+        label: "Mutasi Karyawan",
+      },
+      content: {
+        id: 1,
+        user: {
+          id: 1,
+          nama: "Olga Parks",
+          username: "olgaP",
+          email_verified_at: null,
+          role_id: null,
+          foto_profil: null,
+          data_completion_step: 1,
+          created_at: "2024-05-25T07:43:42.000000Z",
+          updated_at: "2024-05-25T07:43:42.000000Z",
+          data_karyawans: null,
+        },
+        tgl_mulai: "2024-09-15 00:00:00",
+        nik: "9819287",
+        unit_kerja_asal: {
+          id: 12,
+          nama_unit: "Rawat Inap",
+          jenis_karyawan: 0,
+          created_at: "2023-12-19T07:43:42.000000Z",
+          updated_at: "2024-05-25T07:43:42.000000Z",
+        },
+        unit_kerja_tujuan: {
+          id: 4,
+          nama_unit: "Penyakit Dalam",
+          jenis_karyawan: 1,
+          created_at: "2024-04-17T07:43:42.000000Z",
+          updated_at: "2024-05-25T07:43:42.000000Z",
+        },
+        jabatan_asal: {
+          id: 10,
+          nama_jabatan: "Tenaga Medis Darurat",
+          is_struktural: 0,
+          tunjangan: 502110,
+          created_at: "2023-10-18T07:43:42.000000Z",
+          updated_at: "2024-05-25T07:43:42.000000Z",
+        },
+        jabatan_tujuan: {
+          id: 9,
+          nama_jabatan: "Staf Tata Usaha",
+          is_struktural: 1,
+          tunjangan: 935671,
+          created_at: "2024-03-16T07:43:42.000000Z",
+          updated_at: "2024-05-25T07:43:42.000000Z",
+        },
+        kelompok_gaji_tujuan: {
+          id: 1,
+          nama_kelompok: "A",
+        },
+        kategori: { id: 1, label: "Promosi" },
+        alasan:
+          "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos rerum unde, culpa corporis impedit id sequi in tenetur laboriosam odit provident vel temporibus fugiat excepturi ex eum at? Rem, totam!",
+        dokumen: null,
+        beri_tahu_manajer_direktur: true,
+        beri_tahu_karyawan: true,
+        created_at: "2024-05-25T07:43:59.000000Z",
+        updated_at: "2024-05-25T07:43:59.000000Z",
+      },
+      created_at: "2024-07-21",
+    },
+    {
+      user_id: 1,
+      kategori: {
+        id: 1,
+        label: "Pembaruan Data",
+      },
+      content: {
+        id: 2,
+        kolom: "foto_profil",
+        original_data: "/images/reza.jpg",
+        updated_data: "/images/gear5.jpg",
+        status_perubahan: false,
+        tgl_disetujui: "2024-07-11",
+        created_at: "2024-07-10",
+        updated_at: null,
+      },
+      created_at: "2024-07-22",
+    },
+  ];
 
   const dummy = {
     nama: "Jolitos Kurniawan",
@@ -54,7 +165,7 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
     tgl_masuk: new Date(),
     tgl_keluar: null,
     masa_kerja: 27,
-    rekam_jejak: dummyTransferKaryawan.slice(0, 3),
+    rekam_jejak: dummyRekamJejak,
   };
 
   const { error, loading, data, retry } = useDataState<any>({
@@ -166,17 +277,42 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
                                 </VStack>
                               </Wrap>
 
-                              <Box
-                                h={"24px"}
-                                w={"calc(100% - 64px - 24px)"}
-                                bg={lightDarkColor}
+                              <HStack
+                                h={"12px"}
+                                pl={"44px"}
                                 position={"absolute"}
-                                right={0}
                                 top={"64px"}
-                                zIndex={2}
-                              />
+                                right={0}
+                                w={"100%"}
+                              >
+                                <Center w={"24px"}>
+                                  <Box
+                                    h={"12px"}
+                                    w={"1px"}
+                                    bg={"var(--divider3)"}
+                                  />
+                                </Center>
+                                <Box flex={1} h={"12px"} bg={lightDarkColor} />
+                              </HStack>
 
-                              <TabelDetailRekamJejak data={data.rekam_jejak} />
+                              <CContainer
+                                flex={1}
+                                overflowY={"auto"}
+                                className="scrollY"
+                                pl={"44px"}
+                                pr={6}
+                              >
+                                {data.rekam_jejak.map(
+                                  (item: any, i: number) => (
+                                    <DetailRekamJejakItem
+                                      key={i}
+                                      dataList={data.rekam_jejak}
+                                      data={item}
+                                      index={i}
+                                    />
+                                  )
+                                )}
+                              </CContainer>
                             </CContainer>
                           )}
                         </CContainer>

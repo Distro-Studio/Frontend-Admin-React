@@ -17,6 +17,7 @@ import {
 import {
   RiArchiveStackFill,
   RiCalendarCheckFill,
+  RiCalendarCloseFill,
   RiCalendarFill,
   RiCalendarScheduleFill,
   RiCircleFill,
@@ -24,7 +25,6 @@ import {
   RiFileChartFill,
   RiHeartFill,
   RiLoginBoxFill,
-  RiShutDownFill,
   RiShutDownLine,
 } from "@remixicon/react";
 import { useEffect, useRef, useState } from "react";
@@ -339,7 +339,7 @@ export default function DetailKaryawanModal({
                             >
                               <Icon
                                 opacity={0.4}
-                                as={RiShutDownFill}
+                                as={RiCalendarCloseFill}
                                 fontSize={32}
                               />
                               <Text
