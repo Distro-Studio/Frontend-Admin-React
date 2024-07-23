@@ -146,7 +146,7 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
       content: {
         id: 2,
         kolom: "foto_profil",
-        original_data: "/images/reza.jpg",
+        original_data: "https://bit.ly/dan-abramov",
         updated_data: "/images/gear5.jpg",
         status_perubahan: false,
         created_at: "2024-07-22",

@@ -53,6 +53,7 @@ const PerubahanDataItem = ({ data }: { data: any }) => {
       case "foto_profil":
         return (
           <Image
+            maxW={"40px"}
             src={data[type]}
             aspectRatio={1}
             objectFit={"cover"}
@@ -101,20 +102,9 @@ const PerubahanDataItem = ({ data }: { data: any }) => {
 
       <HStack>
         <Text minW={"160px"} opacity={0.6}>
-          Status
-        </Text>
-        <BooleanBadge
-          data={data.status_perubahan}
-          trueValue="Disetujui"
-          falseValue="Ditolak"
-        />
-      </HStack>
-
-      <HStack>
-        <Text minW={"160px"} opacity={0.6}>
           Tanggal Diproses
         </Text>
-        <Text fontWeight={500}>{formatDate(data.tgl_diproses)}</Text>
+        <Text fontWeight={500}>{formatDate(data.updated_at)}</Text>
       </HStack>
 
       <HStack>
@@ -127,12 +117,23 @@ const PerubahanDataItem = ({ data }: { data: any }) => {
             <PerubahanDataRenderer kolom={data.kolom} type={"original_data"} />
           </Box>
 
-          <Icon as={RiArrowRightLine} mx={5} />
+          <Icon as={RiArrowRightLine} mx={2} />
 
           <Box flex={1}>
             <PerubahanDataRenderer kolom={data.kolom} type={"updated_data"} />
           </Box>
         </HStack>
+      </HStack>
+
+      <HStack>
+        <Text minW={"160px"} opacity={0.6}>
+          Status
+        </Text>
+        <BooleanBadge
+          data={data.status_perubahan}
+          trueValue="Disetujui"
+          falseValue="Ditolak"
+        />
       </HStack>
     </CContainer>
   );
