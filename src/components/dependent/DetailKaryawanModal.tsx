@@ -154,8 +154,6 @@ export default function DetailKaryawanModal({
                             gap={responsiveSpacing}
                             borderRadius={12}
                             align={"center"}
-                            // border={"1px solid var(--divider3)"}
-                            // p={4}
                           >
                             <Avatar
                               w={"200px"}
