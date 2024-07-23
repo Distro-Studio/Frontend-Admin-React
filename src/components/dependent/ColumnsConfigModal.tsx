@@ -88,7 +88,7 @@ export default function ColumnsConfigModal({
           </ModalHeader>
 
           <ModalBody className="scrollY">
-            <Wrap spacing={responsiveSpacing}>
+            <Wrap spacing={responsiveSpacing} mb={responsiveSpacing}>
               <CContainer flex={"1 1 300px"}>
                 <Text fontWeight={500} mb={4} opacity={0.6}>
                   Kolom
@@ -167,35 +167,32 @@ export default function ColumnsConfigModal({
                     </Button>
                   ))}
                 </SimpleGrid>
-
-                <Text
-                  fontWeight={500}
-                  mt={responsiveSpacing}
-                  mb={4}
-                  opacity={0.6}
-                >
-                  Urutan Kolom (dari kiri ke kanan)
-                </Text>
-                <Wrap>
-                  {selected.length === 0 && (
-                    <Text opacity={0.4}>Tidak ada kolom yang dipilih</Text>
-                  )}
-                  {selected.map((columnIndex, i) => (
-                    <Badge
-                      textTransform={"none"}
-                      bg={"var(--p500a5)"}
-                      color={"p.500"}
-                      // border={"1px solid var(--p500a2)"}
-                      fontWeight={450}
-                      fontSize={"md"}
-                      key={i}
-                    >
-                      {allColumns[columnIndex].label}
-                    </Badge>
-                  ))}
-                </Wrap>
               </CContainer>
             </Wrap>
+
+            <CContainer mt={"auto"} mb={2}>
+              <Text fontWeight={500} mb={4} opacity={0.6}>
+                Urutan Kolom (dari kiri ke kanan)
+              </Text>
+              <Wrap>
+                {selected.length === 0 && (
+                  <Text opacity={0.4}>Tidak ada kolom yang dipilih</Text>
+                )}
+                {selected.map((columnIndex, i) => (
+                  <Badge
+                    textTransform={"none"}
+                    bg={"var(--p500a5)"}
+                    color={"p.500"}
+                    // border={"1px solid var(--p500a2)"}
+                    fontWeight={450}
+                    fontSize={"md"}
+                    key={i}
+                  >
+                    {allColumns[columnIndex].label}
+                  </Badge>
+                ))}
+              </Wrap>
+            </CContainer>
           </ModalBody>
 
           <ModalFooter>
