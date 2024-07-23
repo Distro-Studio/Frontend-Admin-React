@@ -20,11 +20,11 @@ import {
 } from "@chakra-ui/react";
 import { RiEditBoxLine } from "@remixicon/react";
 import { useFormik } from "formik";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import * as yup from "yup";
 import { responsiveSpacing } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
-import backOnClose from "../../lib/backOnCloseOld";
+import backOnClose from "../../lib/backOnClose";
 import formatDate from "../../lib/formatDate";
 import formatTime from "../../lib/formatTime";
 import isDatePassed from "../../lib/isDatePassed";
@@ -56,7 +56,6 @@ export default function TabelJadwalItem({
     onOpen,
     onClose
   );
-  const initialRef = useRef(null);
   const [loadingUpdate, setLoadingUpdate] = useState<boolean>(false);
 
   const formik = useFormik({
@@ -119,16 +118,16 @@ export default function TabelJadwalItem({
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          backOnClose(onClose);
+          backOnClose();
           formik.resetForm();
         }}
-        initialFocusRef={initialRef}
         isCentered
+        blockScrollOnMount={false}
       >
         <ModalOverlay />
-        <ModalContent ref={initialRef}>
+        <ModalContent>
           <ModalHeader>
-            <DisclosureHeader title="Detail Jadwal" />
+            <DisclosureHeader title={"Jancok"} />
           </ModalHeader>
           <ModalBody>
             <VStack gap={responsiveSpacing} px={1} flexShrink={0}>
@@ -202,7 +201,7 @@ export default function TabelJadwalItem({
               </form>
             )}
           </ModalBody>
-          <ModalFooter pt={6}>
+          <ModalFooter gap={2}>
             {data.unit_kerja.jenis_karyawan === 1 && (
               <ButtonGroup w={"100%"}>
                 <DeleteJadwalModal
@@ -230,7 +229,7 @@ export default function TabelJadwalItem({
                 w={"100%"}
                 className="btn-solid clicky"
                 onClick={() => {
-                  backOnClose(onClose);
+                  backOnClose();
                   formik.resetForm();
                 }}
               >

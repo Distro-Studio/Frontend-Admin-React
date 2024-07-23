@@ -19,12 +19,11 @@ import {
 } from "@chakra-ui/react";
 import { RiEditBoxLine } from "@remixicon/react";
 import { useFormik } from "formik";
-import { useRef } from "react";
 import * as yup from "yup";
 import { useBodyColor, useWhiteDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
-import backOnClose from "../../lib/backOnCloseOld";
+import backOnClose from "../../lib/backOnClose";
 import formatDate from "../../lib/formatDate";
 import RequiredForm from "../form/RequiredForm";
 import SelectShift from "./_Select/SelectShift";
@@ -51,7 +50,6 @@ export default function TerapkanJadwalKaryawanTerpilih({
     onOpen,
     onClose
   );
-  const initialRef = useRef(null);
 
   const formik = useFormik({
     validateOnChange: false,
@@ -91,14 +89,14 @@ export default function TerapkanJadwalKaryawanTerpilih({
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          backOnClose(onClose);
+          backOnClose();
           formik.resetForm();
         }}
-        initialFocusRef={initialRef}
         isCentered
+        blockScrollOnMount={false}
       >
         <ModalOverlay />
-        <ModalContent ref={initialRef}>
+        <ModalContent>
           <ModalHeader>
             <DisclosureHeader title="Terapkan Jadwal" />
           </ModalHeader>
