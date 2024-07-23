@@ -380,7 +380,7 @@ export interface Interface__FormattedTableHeader {
 
 export interface Interface__FormattedTableData {
   id: number;
-  rows: {
+  columnsFormat: {
     column?: string;
     value: string | number | boolean | Date | null;
     td: string | number | boolean | null | React.ReactNode;

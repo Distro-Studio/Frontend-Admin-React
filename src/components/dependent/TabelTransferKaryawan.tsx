@@ -87,7 +87,7 @@ export default function TabelRekamJejak() {
   ];
   const formattedData = data?.map((item: any) => ({
     id: item.id,
-    rows: [
+    columnsFormat: [
       {
         value: item.user.nama,
         td: <AvatarAndNameTableData data={item} />,

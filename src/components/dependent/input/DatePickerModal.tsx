@@ -156,7 +156,7 @@ export default function DatePickerModal({
           <Text opacity={0.3}>{placeholder || `Pilih Tanggal`}</Text>
         )}
 
-        <Icon as={RiCalendarLine} mb={"1px"} />
+        <Icon as={RiCalendarLine} ml={4} />
       </Button>
 
       <Modal

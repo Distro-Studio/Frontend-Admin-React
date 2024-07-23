@@ -140,7 +140,7 @@ export default function TabelKaryawan() {
   ];
   const formattedData = data?.map((item: Interface__DetailKaryawan) => ({
     id: item.id,
-    rows: [
+    columnsFormat: [
       {
         value: item.user.nama,
         td: <AvatarAndNameTableData data={item} />,

@@ -61,7 +61,7 @@ export default function Presensi() {
             <DatePickerModal
               id="presensi-date-picker"
               name="'date-picker"
-              flex={"1 1 200px"}
+              w={"fit-content"}
               onConfirm={confirmDate}
               inputValue={filterConfig.tgl[0]}
               nonNullable

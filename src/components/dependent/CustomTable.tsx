@@ -162,9 +162,9 @@ export default function CustomTable({
   const tableBody = columnsConfig
     ? formattedData.map((data) => {
         const filteredRows = columnsConfig.map(
-          (columnIndex) => data.rows[columnIndex]
+          (columnIndex) => data.columnsFormat[columnIndex]
         );
-        return { ...data, rows: filteredRows };
+        return { ...data, columns: filteredRows };
       })
     : formattedData;
 
@@ -222,15 +222,15 @@ export default function CustomTable({
     if (sortConfig.sortKey !== null) {
       return [...tableBody].sort((a, b) => {
         //@ts-ignore
-        const aValue = a.rows[sortConfig.sortKey].value;
+        const aValue = a.columnsFormat[sortConfig.sortKey].value;
         //@ts-ignore
-        const bValue = b.rows[sortConfig.sortKey].value;
+        const bValue = b.columnsFormat[sortConfig.sortKey].value;
 
         if (
           //@ts-ignore
-          a.rows[sortConfig.sortKey].isNumeric &&
+          a.columnsFormat[sortConfig.sortKey].isNumeric &&
           //@ts-ignore
-          b.rows[sortConfig.sortKey].isNumeric
+          b.columnsFormat[sortConfig.sortKey].isNumeric
         ) {
           return sortConfig.direction === "asc"
             ? Number(aValue) - Number(bValue)
@@ -401,7 +401,7 @@ export default function CustomTable({
               </Td>
             )}
 
-            {row.rows.map((col, colIndex) => (
+            {row.columnsFormat.map((col, colIndex) => (
               <Td
                 key={colIndex}
                 whiteSpace={"nowrap"}

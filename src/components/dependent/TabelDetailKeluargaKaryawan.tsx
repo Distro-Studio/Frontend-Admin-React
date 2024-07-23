@@ -53,22 +53,22 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
     },
   ];
 
-  const formattedData = data.map((anggota) => ({
-    id: anggota.id,
-    rows: [
+  const formattedData = data.map((item) => ({
+    id: item.id,
+    columnsFormat: [
       {
-        value: anggota.nama,
-        td: anggota.nama,
+        value: item.nama,
+        td: item.nama,
       },
       {
-        value: anggota.hubungan.label,
-        td: anggota.hubungan.label,
+        value: item.hubungan.label,
+        td: item.hubungan.label,
       },
       {
-        value: anggota.status_hidup,
+        value: item.status_hidup,
         td: (
           <BooleanBadge
-            data={anggota.status_hidup}
+            data={item.status_hidup}
             trueValue="Hidup"
             falseValue="Meninggal"
             w={"120px"}
@@ -79,20 +79,20 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
         },
       },
       {
-        value: anggota.pendidikan_terakhir,
-        td: anggota.pendidikan_terakhir,
+        value: item.pendidikan_terakhir,
+        td: item.pendidikan_terakhir,
       },
       {
-        value: anggota.pekerjaan,
-        td: anggota.pekerjaan,
+        value: item.pekerjaan,
+        td: item.pekerjaan,
       },
       {
-        value: anggota.no_hp,
-        td: anggota.no_hp,
+        value: item.no_hp,
+        td: item.no_hp,
       },
       {
-        value: anggota.email,
-        td: anggota.email,
+        value: item.email,
+        td: item.email,
       },
     ],
   }));

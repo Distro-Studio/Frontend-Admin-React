@@ -72,7 +72,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
   ];
   const formattedData = data?.map((karyawan: Interface__DetailKaryawan) => ({
     id: karyawan.id,
-    rows: [
+    columns: [
       {
         column: "nama",
         value: karyawan.user.nama,
