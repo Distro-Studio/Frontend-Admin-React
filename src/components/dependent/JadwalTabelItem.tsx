@@ -87,7 +87,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal, index }: Props) {
         cursor={"pointer"}
         onClick={onOpen}
       >
-        <HStack justify={"space-between"}>
+        <HStack justify={"space-between"} flex={1}>
           <Box>
             <Text noOfLines={1} mb={1} fontSize={14}>
               {jadwal.label}
@@ -103,6 +103,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal, index }: Props) {
               fontSize={20}
               alignSelf={"flex-start"}
               color={"p.500"}
+              mb={"auto"}
             />
           )}
         </HStack>
@@ -155,7 +156,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal, index }: Props) {
                   <JenisKaryawanBadge data={data.unit_kerja.jenis_karyawan} />
                 </HStack>
 
-                {data.unit_kerja.jenis_karyawan !== 1 && (
+                {data.unit_kerja.jenis_karyawan === 0 && (
                   <HStack justify={"space-between"}>
                     <Text fontSize={14} w={"120px"} opacity={0.6}>
                       Jam Kerja
@@ -180,7 +181,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal, index }: Props) {
                   </FormLabel>
                   <SelectShift
                     name="shift"
-                    placeholder="Pilih jadwal"
+                    placeholder="Pilih Jadwal"
                     onConfirm={(input) => {
                       formik.setFieldValue("shift", input);
                     }}

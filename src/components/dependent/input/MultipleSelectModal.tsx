@@ -73,7 +73,7 @@ export default function MultipleSelectModal({
         return (
           option.value.toString().toLowerCase().includes(searchTerm) ||
           option.label.toString().toLowerCase().includes(searchTerm) ||
-          option.subLabel?.toString().toLowerCase().includes(searchTerm)
+          option.label2?.toString().toLowerCase().includes(searchTerm)
         );
       })
     : options;
@@ -246,7 +246,7 @@ export default function MultipleSelectModal({
                           {option.label}
                         </Text>
 
-                        <Text opacity={0.4}>{option.subLabel}</Text>
+                        <Text opacity={0.4}>{option.label2}</Text>
                       </Button>
                     ))}
                   </CContainer>
@@ -301,7 +301,7 @@ export default function MultipleSelectModal({
                         >
                           {option.label}
                         </Text>
-                        {/* <Text opacity={0.4}>{option.subLabel}</Text> */}
+                        {/* <Text opacity={0.4}>{option.label2}</Text> */}
                       </Button>
                     ))}
                   </Wrap>

@@ -56,7 +56,7 @@ export default function TerapkanJadwalKaryawanTerpilih({
     initialValues: { shift: "" as any },
     validationSchema: yup
       .object()
-      .shape({ shift: yup.string().required("Harus diisi") }),
+      .shape({ shift: yup.object().required("Harus diisi") }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
     },
@@ -149,7 +149,7 @@ export default function TerapkanJadwalKaryawanTerpilih({
                 </FormLabel>
                 <SelectShift
                   name="shift"
-                  placeholder="Pilih jadwal"
+                  placeholder="Pilih Jadwal"
                   onConfirm={(input) => {
                     formik.setFieldValue("shift", input);
                   }}

@@ -132,7 +132,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
                 </FormLabel>
                 <SelectShift
                   name="shift"
-                  placeholder="Pilih jadwal"
+                  placeholder="Pilih Jadwal"
                   onConfirm={(input) => {
                     formik.setFieldValue("shift", input);
                   }}

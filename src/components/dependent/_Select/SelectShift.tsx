@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { dummyKompetensi, dummyShift } from "../../../const/dummy";
 import { Interface__SelectOption } from "../../../constant/interfaces";
 import SingleSelectModal from "../input/SingleSelectModal";
+import formatTime from "../../../lib/formatTime";
 
 interface Props extends ButtonProps {
   name: string;
@@ -38,6 +39,7 @@ export default function SelectJadwal({
     const options = dummyShift.map((item) => ({
       value: item.id,
       label: item.nama,
+      label2: `${formatTime(item.jam_from)} - ${formatTime(item.jam_to)}`,
     }));
     setOptions(options);
   }, []);

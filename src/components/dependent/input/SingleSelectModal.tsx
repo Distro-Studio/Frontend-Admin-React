@@ -70,7 +70,7 @@ export default function SingleSelectModal({
         return (
           option.value.toString().toLowerCase().includes(searchTerm) ||
           option.label.toString().toLowerCase().includes(searchTerm) ||
-          option.subLabel?.toString().toLowerCase().includes(searchTerm)
+          option.label2?.toString().toLowerCase().includes(searchTerm)
         );
       })
     : options;
@@ -134,7 +134,7 @@ export default function SingleSelectModal({
           </Text>
 
           <Text fontWeight={400} opacity={0.4} ml={2}>
-            {inputValue && inputValue.subLabel}
+            {inputValue && inputValue.label2}
           </Text>
         </HStack>
 
@@ -202,7 +202,7 @@ export default function SingleSelectModal({
                         </Text>
 
                         <Text opacity={0.4} ml={2}>
-                          {option.subLabel}
+                          {option.label2}
                         </Text>
                       </Button>
                     ))}
@@ -239,7 +239,7 @@ export default function SingleSelectModal({
                         >
                           {option.label}
                         </Text>
-                        {/* <Text opacity={0.4}>{option.subLabel}</Text> */}
+                        {/* <Text opacity={0.4}>{option.label2}</Text> */}
                       </Button>
                     ))}
                   </Wrap>
