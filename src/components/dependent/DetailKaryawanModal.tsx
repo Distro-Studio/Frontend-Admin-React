@@ -143,12 +143,12 @@ export default function DetailKaryawanModal({
                         mb={responsiveSpacing}
                       >
                         <CContainer
-                          bg={lightDarkColor}
+                          gap={responsiveSpacing}
                           overflowY={"auto"}
                           className="scrollY"
+                          bg={lightDarkColor}
                           px={responsiveSpacing}
                           justify={"space-between"}
-                          gap={responsiveSpacing}
                         >
                           <VStack
                             gap={responsiveSpacing}

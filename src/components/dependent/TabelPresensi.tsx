@@ -1,17 +1,18 @@
-import { Box, HStack, Text } from "@chakra-ui/react";
+import { Box, HStack, Text, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import { dummyPresensi } from "../../const/dummy";
 import { responsiveSpacing } from "../../const/sizes";
 import useDataState from "../../hooks/useDataState";
+import formatTime from "../../lib/formatTime";
 import NoData from "../independent/NoData";
 import Skeleton from "../independent/Skeleton";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
 import AvatarAndNameTableData from "./AvatarAndNameTableData";
+import BooleanBadge from "./BooleanBadge";
 import CustomTable from "./CustomTable";
+import DetailPresensiKaryawanModal from "./DetailPresensiKaryawanModal";
 import Retry from "./Retry";
 import TabelFooterConfig from "./TabelFooterConfig";
-import BooleanBadge from "./BooleanBadge";
-import formatTime from "../../lib/formatTime";
 
 interface Props {
   filterConfig?: any;
@@ -22,6 +23,8 @@ export default function TabelPresensi({ filterConfig }: Props) {
   const [limitConfig, setLimitConfig] = useState<number>(10);
   // Pagination Config
   const [pageConfig, setPageConfig] = useState<number>(1);
+  // Presensi Detail Disclosure Config
+  const { isOpen, onOpen, onClose } = useDisclosure();
   // Columns Config
   // const { columnsConfig } = useKaryawanTableColumnsConfig();
 
@@ -152,6 +155,7 @@ export default function TabelPresensi({ filterConfig }: Props) {
                     <CustomTable
                       formattedHeader={formattedHeader}
                       formattedData={formattedData}
+                      onRowClick={onOpen}
                       // columnsConfig={columnsConfig}
                     />
                   </CustomTableContainer>
@@ -171,6 +175,13 @@ export default function TabelPresensi({ filterConfig }: Props) {
                         Klik row untuk melihat detail karyawan
                       </Text>
                     }
+                  />
+
+                  <DetailPresensiKaryawanModal
+                    presensi_id={1}
+                    isOpen={isOpen}
+                    onOpen={onOpen}
+                    onClose={onClose}
                   />
                 </>
               )}
