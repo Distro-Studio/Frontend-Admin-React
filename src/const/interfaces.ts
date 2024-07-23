@@ -373,7 +373,6 @@ export interface Interface__FormattedTableHeader {
   column?: string;
   th: string;
   isSortable?: boolean;
-  isHidden?: boolean; // default false
   props?: any;
   cProps?: StackProps;
 }

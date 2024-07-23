@@ -339,7 +339,7 @@ export default function CustomTable({
               onClick={() => {
                 header.isSortable && requestSort(i);
               }}
-              cursor={"pointer"}
+              cursor={header.isSortable ? "pointer" : "auto"}
               borderBottom={"none !important"}
               p={0}
               {...header?.props}

@@ -133,7 +133,7 @@ export default function SingleSelectModal({
             {inputValue ? inputValue.label : placeholder || "Pilih Salah Satu"}
           </Text>
 
-          <Text fontWeight={400} opacity={0.4}>
+          <Text fontWeight={400} opacity={0.4} ml={2}>
             {inputValue && inputValue.subLabel}
           </Text>
         </HStack>
@@ -201,7 +201,9 @@ export default function SingleSelectModal({
                           {option.label}
                         </Text>
 
-                        <Text opacity={0.4}>{option.subLabel}</Text>
+                        <Text opacity={0.4} ml={2}>
+                          {option.subLabel}
+                        </Text>
                       </Button>
                     ))}
                   </VStack>

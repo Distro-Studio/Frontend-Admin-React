@@ -10,7 +10,6 @@ import {
   Icon,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -24,25 +23,32 @@ import { useFormik } from "formik";
 import { useRef, useState } from "react";
 import * as yup from "yup";
 import { responsiveSpacing } from "../../const/sizes";
+import useBackOnClose from "../../hooks/useBackOnClose";
 import backOnClose from "../../lib/backOnCloseOld";
 import formatDate from "../../lib/formatDate";
 import formatTime from "../../lib/formatTime";
 import isDatePassed from "../../lib/isDatePassed";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
 import RequiredForm from "../form/RequiredForm";
 import SelectShift from "./_Select/SelectShift";
-import JenisKaryawanBadge from "./JenisKaryawanBadge";
 import DeleteJadwalModal from "./DeleteJadwalModal";
+import DisclosureHeader from "./DisclosureHeader";
+import JenisKaryawanBadge from "./JenisKaryawanBadge";
 
 interface Props {
   data: any;
   tgl: Date | string;
   jadwal: any;
+  index: number;
 }
 
-export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
+export default function TabelJadwalItem({ data, tgl, jadwal, index }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
+  useBackOnClose(
+    `jadwal-detail-${data.id}-${formatDate(tgl)}-${index}`,
+    isOpen,
+    onOpen,
+    onClose
+  );
   const initialRef = useRef(null);
   const [loadingUpdate, setLoadingUpdate] = useState<boolean>(false);
 
@@ -74,7 +80,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
         gap={1}
         borderRadius={8}
         w={"100%"}
-        h={"74px"}
+        minH={"74px"}
         align={"stretch"}
         justify={"center"}
         className="btn-solid clicky"
@@ -113,15 +119,16 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
       >
         <ModalOverlay />
         <ModalContent ref={initialRef}>
-          <ModalCloseButton />
-          <ModalHeader>Detail Jadwal</ModalHeader>
+          <ModalHeader>
+            <DisclosureHeader title="Detail Jadwal" />
+          </ModalHeader>
           <ModalBody>
             <VStack gap={responsiveSpacing} px={1} flexShrink={0} mb={4}>
               <Avatar
                 mb={"auto"}
                 size={"xl"}
-                src={data.foto_profil}
-                name={data.nama}
+                src={data.user.foto_profil}
+                name={data.user.nama}
               />
 
               <VStack align={"stretch"} w={"100%"} gap={3}>
@@ -130,7 +137,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
                     Nama
                   </Text>
                   <Text textAlign={"right"} fontWeight={500}>
-                    {data.nama}
+                    {data.user.nama}
                   </Text>
                 </HStack>
 
@@ -212,8 +219,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal }: Props) {
             {data.unit_kerja.jenis_karyawan === 0 && (
               <Button
                 w={"100%"}
-                className="btn-ap clicky"
-                colorScheme="ap"
+                className="btn-solid clicky"
                 onClick={() => {
                   backOnClose(onClose);
                   formik.resetForm();

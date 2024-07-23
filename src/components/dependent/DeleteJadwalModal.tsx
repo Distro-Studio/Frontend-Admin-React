@@ -4,7 +4,6 @@ import {
   ButtonProps,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -14,8 +13,10 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useRef } from "react";
+import { useErrorAlphaColor } from "../../constant/colors";
 import useBackOnClose from "../../lib/useBackOnCloseOld";
 import DeletePermanentWarning from "../independent/DeletePermanentWarning";
+import DisclosureHeader from "./DisclosureHeader";
 
 interface Props extends ButtonProps {
   data: any;
@@ -40,6 +41,9 @@ export default function DeleteJadwalModal({
   };
   const initialRef = useRef(null);
 
+  // SX
+  const errorAlphaColor = useErrorAlphaColor();
+
   return (
     <>
       <Button
@@ -48,9 +52,7 @@ export default function DeleteJadwalModal({
         colorScheme="red"
         variant={"ghost"}
         onClick={onOpen}
-        // isDisabled={loadingUpdate}
-        bg={"var(--reda)"}
-        _hover={{ bg: "var(--reda)" }}
+        bg={errorAlphaColor}
         {...props}
       >
         Hapus
@@ -64,11 +66,12 @@ export default function DeleteJadwalModal({
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Hapus Jadwal</ModalHeader>
+          <ModalHeader ref={initialRef}>
+            <DisclosureHeader title="Hapus Jadwal" />
+          </ModalHeader>
           <ModalBody>
             <VStack w={"100%"} align={"stretch"}>
-              <Text textAlign={"center"}>
+              <Text opacity={0.4}>
                 Apakah anda yakin menghapus jadwal untuk karyawan ini?
               </Text>
 
@@ -77,8 +80,7 @@ export default function DeleteJadwalModal({
               <ButtonGroup w={"100%"}>
                 <Button
                   w={"50%"}
-                  className="clicky"
-                  colorScheme="red"
+                  className="btn-solid clicky"
                   onClick={handleOnClose}
                   // isDisabled={loadingDelete}
                 >
@@ -87,10 +89,7 @@ export default function DeleteJadwalModal({
                 <Button
                   w={"50%"}
                   className="clicky"
-                  variant={"ghost"}
                   colorScheme="red"
-                  bg={"var(--reda)"}
-                  _hover={{ bg: "var(--reda)" }}
                   // isLoading={loadingDelete}
                   // onClick={deleteJadwal}
                 >

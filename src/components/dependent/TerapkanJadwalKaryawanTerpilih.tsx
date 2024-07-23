@@ -9,7 +9,6 @@ import {
   Icon,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -24,21 +23,32 @@ import { useRef } from "react";
 import * as yup from "yup";
 import { useBodyColor, useWhiteDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
+import useBackOnClose from "../../hooks/useBackOnClose";
 import backOnClose from "../../lib/backOnCloseOld";
 import formatDate from "../../lib/formatDate";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
 import RequiredForm from "../form/RequiredForm";
 import SelectShift from "./_Select/SelectShift";
+import DisclosureHeader from "./DisclosureHeader";
 import JenisKaryawanBadge from "./JenisKaryawanBadge";
 
 interface Props {
   data: any;
   tgl: Date | string;
+  index: number;
 }
 
-export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
+export default function TerapkanJadwalKaryawanTerpilih({
+  data,
+  tgl,
+  index,
+}: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
+  useBackOnClose(
+    `terapkan-jadwal-${data.id}-${formatDate(tgl)}-${index}`,
+    isOpen,
+    onOpen,
+    onClose
+  );
   const initialRef = useRef(null);
 
   const formik = useFormik({
@@ -63,7 +73,7 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
         gap={1}
         borderRadius={8}
         w={"100%"}
-        h={"74px"}
+        minH={"74px"}
         cursor={"pointer"}
         bg={bodyColor}
         color={whiteDarkColor}
@@ -87,15 +97,16 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
       >
         <ModalOverlay />
         <ModalContent ref={initialRef}>
-          <ModalCloseButton />
-          <ModalHeader>Terapkan Jadwal</ModalHeader>
+          <ModalHeader>
+            <DisclosureHeader title="Terapkan Jadwal" />
+          </ModalHeader>
           <ModalBody>
             <VStack gap={responsiveSpacing} px={1} flexShrink={0} mb={4}>
               <Avatar
                 mb={"auto"}
                 size={"xl"}
-                src={data.foto_profil}
-                name={data.nama}
+                src={data.user.foto_profil}
+                name={data.user.nama}
               />
 
               <VStack align={"stretch"} w={"100%"} gap={3}>
@@ -104,7 +115,7 @@ export default function TerapkanJadwalKaryawanTerpilih({ data, tgl }: Props) {
                     Nama
                   </Text>
                   <Text textAlign={"right"} fontWeight={500}>
-                    {data.nama}
+                    {data.user.nama}
                   </Text>
                 </HStack>
 

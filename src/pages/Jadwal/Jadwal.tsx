@@ -1,17 +1,18 @@
-import { Button, Icon, Wrap } from "@chakra-ui/react";
-import { RiUploadLine } from "@remixicon/react";
+import { Wrap } from "@chakra-ui/react";
 import { endOfWeek, startOfWeek } from "date-fns";
 import { useState } from "react";
-import FilterTabelJadwal from "../../components/dependent/FilterTabelJadwal";
+import ExportModal from "../../components/dependent/ExportModal";
+import ImportModal from "../../components/dependent/ImportModal";
+import DateRangePickerModal from "../../components/dependent/input/DateRangePickerModal";
+import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelJadwal from "../../components/dependent/TabelJadwal";
-import ImportJadwalKaryawanModal from "../../components/independent/ImportJadwalKaryawanModal";
+import FilterKaryawan from "../../components/independent/FilterKaryawan";
 import TerapkanJadwalModal from "../../components/independent/TerapkanJadwalModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
-import SearchComponent from "../../components/dependent/input/SearchComponent";
-import DateRangePickerModal from "../../components/dependent/input/DateRangePickerModal";
+import { responsiveSpacing } from "../../const/sizes";
+import useFilterKaryawan from "../../global/useFilterKaryawan";
 
 export default function Jadwal() {
   const today = new Date();
@@ -22,13 +23,12 @@ export default function Jadwal() {
     from: startOfWeekDate,
     to: endOfWeekDate,
   };
-  // console.log(defaultRangeTgl);
+
+  const { filterKaryawan } = useFilterKaryawan();
 
   // Filter Config
   const defaultFilterConfig = {
-    search: "",
-    unit_kerja: [],
-    status_karyawan: [],
+    ...filterKaryawan,
     range_tgl: defaultRangeTgl,
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
@@ -46,7 +46,12 @@ export default function Jadwal() {
   return (
     <>
       <CWrapper>
-        <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
+        <CContainer
+          p={responsiveSpacing}
+          bg={useBodyColor()}
+          borderRadius={12}
+          overflowY={"auto"}
+        >
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
             <SearchComponent
               name="search"
@@ -70,26 +75,13 @@ export default function Jadwal() {
               nonNullable
             />
 
-            <FilterTabelJadwal
-              defaultFilterConfig={defaultFilterConfig}
-              filterConfig={filterConfig}
-              setFilterConfig={setFilterConfig}
-              rangeTgl={filterConfig.range_tgl}
-            />
+            <FilterKaryawan />
 
-            <Button
-              flex={"1 1 110px"}
-              variant={"outline"}
-              colorScheme="ap"
-              className="clicky"
-              rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
-            >
-              Export
-            </Button>
+            <ExportModal url="" title="Export Jadwal" />
 
-            <ImportJadwalKaryawanModal />
+            <ImportModal url="" title="Export Jadwal" />
 
-            <TerapkanJadwalModal flex={"1 1 160px"} />
+            <TerapkanJadwalModal w={"fit-content"} />
           </Wrap>
 
           <TabelJadwal filterConfig={filterConfig} />

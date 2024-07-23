@@ -3,7 +3,18 @@ import { Interface__DetailKaryawan } from "./interfaces";
 const dummyTabelJadwalData = [
   {
     id: 1,
-    nama: "Sulenq Wazawsky",
+    user: {
+      id: 1,
+      nama: "User 1",
+      username: "username1",
+      email_verified_at: null,
+      role_id: null,
+      foto_profil: null,
+      data_completion_step: 1,
+      status_akun: 0,
+      created_at: "2024-06-11T04:39:19.000000Z",
+      updated_at: "2024-06-11T04:39:19.000000Z",
+    },
     no_induk_karyawan: "412123143",
     rm: "3214",
     nik: "3321231412412",
@@ -13,7 +24,7 @@ const dummyTabelJadwalData = [
     tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
     tgl_masuk: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
     avatar: "https://bit.ly/dan-abramov",
-    jadwal_list: [
+    list_jadwal: [
       null,
       {
         id: 2,
@@ -55,7 +66,18 @@ const dummyTabelJadwalData = [
   },
   {
     id: 2,
-    nama: "John Doe",
+    user: {
+      id: 2,
+      nama: "Jhon Doe",
+      username: "username1",
+      email_verified_at: null,
+      role_id: null,
+      foto_profil: null,
+      data_completion_step: 1,
+      status_akun: 0,
+      created_at: "2024-06-11T04:39:19.000000Z",
+      updated_at: "2024-06-11T04:39:19.000000Z",
+    },
     no_induk_karyawan: "111222333",
     rm: "1234",
     nik: "4445556667778",
@@ -65,7 +87,7 @@ const dummyTabelJadwalData = [
     tgl_lahir: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
     tgl_masuk: "Wed May 08 2024 14:25:37 GMT+0700 (Indochina Time)",
     avatar: "https://bit.ly/tioluwani-kolawole",
-    jadwal_list: [
+    list_jadwal: [
       {
         id: 2,
         tanggal: new Date(2024, 4, 14),
@@ -101,7 +123,18 @@ const dummyTabelJadwalData = [
   },
   {
     id: 3,
-    nama: "Jane Smith",
+    user: {
+      id: 3,
+      nama: "Jane Smith",
+      username: "jansmith",
+      email_verified_at: null,
+      role_id: null,
+      foto_profil: null,
+      data_completion_step: 1,
+      status_akun: 0,
+      created_at: "2024-06-11T04:39:19.000000Z",
+      updated_at: "2024-06-11T04:39:19.000000Z",
+    },
     no_induk_karyawan: "987654321",
     rm: "5678",
     nik: "8889990001112",
@@ -111,7 +144,7 @@ const dummyTabelJadwalData = [
     tgl_lahir: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
     tgl_masuk: "Wed Mar 13 2024 14:25:37 GMT+0700 (Indochina Time)",
     avatar: "https://bit.ly/kent-c-dodds",
-    jadwal_list: [
+    list_jadwal: [
       null,
       {
         id: 1,
@@ -153,7 +186,18 @@ const dummyTabelJadwalData = [
   },
   {
     id: 4,
-    nama: "Michael Johnson",
+    user: {
+      id: 3,
+      nama: "Jhonson",
+      username: "username1",
+      email_verified_at: null,
+      role_id: null,
+      foto_profil: null,
+      data_completion_step: 1,
+      status_akun: 0,
+      created_at: "2024-06-11T04:39:19.000000Z",
+      updated_at: "2024-06-11T04:39:19.000000Z",
+    },
     no_induk_karyawan: "654321789",
     rm: "9876",
     nik: "2223334445556",
@@ -163,7 +207,7 @@ const dummyTabelJadwalData = [
     tgl_lahir: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
     tgl_masuk: "Wed Jan 24 2024 14:25:37 GMT+0700 (Indochina Time)",
     avatar: "https://bit.ly/ryan-florence",
-    jadwal_list: [
+    list_jadwal: [
       {
         id: 2,
         tanggal: new Date(2024, 4, 17),
@@ -205,7 +249,18 @@ const dummyTabelJadwalData = [
   },
   {
     id: 5,
-    nama: "Amanda Lee",
+    user: {
+      id: 3,
+      nama: "User 1",
+      username: "username1",
+      email_verified_at: null,
+      role_id: null,
+      foto_profil: null,
+      data_completion_step: 1,
+      status_akun: 0,
+      created_at: "2024-06-11T04:39:19.000000Z",
+      updated_at: "2024-06-11T04:39:19.000000Z",
+    },
     no_induk_karyawan: "789456123",
     rm: "3456",
     nik: "6667778889990",
@@ -215,7 +270,7 @@ const dummyTabelJadwalData = [
     tgl_lahir: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
     tgl_masuk: "Fri May 10 2024 14:25:37 GMT+0700 (Indochina Time)",
     avatar: "https://bit.ly/prosper-baba",
-    jadwal_list: [
+    list_jadwal: [
       {
         id: 2,
         tanggal: new Date(2024, 4, 17),
@@ -269,7 +324,18 @@ const dummyTabelJadwalData = [
   },
   {
     id: 6,
-    nama: "Kevin Brown",
+    user: {
+      id: 3,
+      nama: "User 10",
+      username: "username1",
+      email_verified_at: null,
+      role_id: null,
+      foto_profil: null,
+      data_completion_step: 1,
+      status_akun: 0,
+      created_at: "2024-06-11T04:39:19.000000Z",
+      updated_at: "2024-06-11T04:39:19.000000Z",
+    },
     no_induk_karyawan: "555666777",
     rm: "2468",
     nik: "1112223334445",
@@ -279,7 +345,7 @@ const dummyTabelJadwalData = [
     tgl_lahir: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
     tgl_masuk: "Wed Nov 10 2024 14:25:37 GMT+0700 (Indochina Time)",
     avatar: "https://bit.ly/sage-adebayo",
-    jadwal_list: [
+    list_jadwal: [
       {
         id: 2,
         tanggal: new Date(2024, 4, 14),
@@ -333,7 +399,18 @@ const dummyTabelJadwalData = [
   },
   {
     id: 7,
-    nama: "Maria Garcia",
+    user: {
+      id: 3,
+      nama: "User 11",
+      username: "username1",
+      email_verified_at: null,
+      role_id: null,
+      foto_profil: null,
+      data_completion_step: 1,
+      status_akun: 0,
+      created_at: "2024-06-11T04:39:19.000000Z",
+      updated_at: "2024-06-11T04:39:19.000000Z",
+    },
     no_induk_karyawan: "123456789",
     rm: "1357",
     nik: "9990001112223",
@@ -343,7 +420,7 @@ const dummyTabelJadwalData = [
     tgl_lahir: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
     tgl_masuk: "Wed May 09 2024 14:25:37 GMT+0700 (Indochina Time)",
     avatar: "https://bit.ly/code-beast",
-    jadwal_list: [
+    list_jadwal: [
       {
         id: 3,
         tanggal: new Date(2024, 4, 17),
