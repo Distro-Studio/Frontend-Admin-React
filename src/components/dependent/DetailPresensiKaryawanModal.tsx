@@ -208,6 +208,7 @@ export default function DetailPresensiKaryawanModal({
                                   data.foto_masuk ||
                                   "/images/defaultProfilePhoto.webp"
                                 }
+                                borderRadius={12}
                               />
                             </Box>
 
@@ -221,6 +222,7 @@ export default function DetailPresensiKaryawanModal({
                                   data.foto_keluar ||
                                   "/images/defaultProfilePhoto.webp"
                                 }
+                                borderRadius={12}
                               />
                             </Box>
                           </CContainer>
