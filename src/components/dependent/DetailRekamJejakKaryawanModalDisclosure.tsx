@@ -277,15 +277,20 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
 
                               <HStack
                                 align={"stretch"}
-                                h={"8px"}
+                                h={"16px"}
                                 pl={"44px"}
                                 position={"absolute"}
                                 top={"64px"}
                                 right={0}
                                 w={"100%"}
+                                zIndex={2}
                               >
                                 <Center w={"24px"}>
-                                  <Box w={"1px"} bg={"var(--divider3)"} />
+                                  <Box
+                                    w={"1px"}
+                                    h={"16px"}
+                                    bg={"var(--divider3)"}
+                                  />
                                 </Center>
                                 <Box flex={1} bg={lightDarkColor} />
                               </HStack>
@@ -296,6 +301,7 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
                                 className="scrollY"
                                 pl={"44px"}
                                 pr={6}
+                                pt={2}
                               >
                                 {data.rekam_jejak.map(
                                   (item: any, i: number) => (
