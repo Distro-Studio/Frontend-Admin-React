@@ -6,7 +6,7 @@ interface Props extends BoxProps {
   children: any;
 }
 
-export default function DisclosureDetailKaryawan({
+export default function DetailKaryawanModalDisclosure({
   karyawan_id,
   children,
   ...props
@@ -15,7 +15,9 @@ export default function DisclosureDetailKaryawan({
 
   return (
     <>
-      <Box {...props}>{children}</Box>
+      <Box onClick={onOpen} {...props}>
+        {children}
+      </Box>
 
       <DetailKaryawanModal
         karyawan_id={karyawan_id}

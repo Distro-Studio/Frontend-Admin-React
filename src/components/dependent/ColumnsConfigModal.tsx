@@ -77,12 +77,12 @@ export default function ColumnsConfigModal({
         initialFocusRef={initialRef}
         // scrollBehavior="inside"
         allowPinchZoom
-        size={"xxl"}
+        size={"full"}
         blockScrollOnMount={false}
         isCentered
       >
         <ModalOverlay />
-        <ModalContent borderRadius={12} maxH={"calc(100vh - 32px)"}>
+        <ModalContent borderRadius={12} minH={"calc(100vh - 32px)"}>
           <ModalHeader ref={initialRef}>
             <DisclosureHeader title={title || "Config Kolom Tabel"} />
           </ModalHeader>

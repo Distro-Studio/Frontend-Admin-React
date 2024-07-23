@@ -1,4 +1,4 @@
-import { Box, HStack, Text, Tooltip, useDisclosure } from "@chakra-ui/react";
+import { Box, HStack, Text, Tooltip } from "@chakra-ui/react";
 import { useState } from "react";
 import { dummyTransferKaryawan } from "../../const/dummy";
 import { responsiveSpacing } from "../../const/sizes";
@@ -11,7 +11,6 @@ import Skeleton from "../independent/Skeleton";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
 import AvatarAndNameTableData from "./AvatarAndNameTableData";
 import CustomTable from "./CustomTable";
-import DetailKaryawanModal from "./DetailKaryawanModal";
 import Retry from "./Retry";
 import TabelFooterConfig from "./TabelFooterConfig";
 
@@ -20,8 +19,6 @@ export default function TabelRekamJejak() {
   const [limitConfig, setLimitConfig] = useState<number>(10);
   // Pagination Config
   const [pageConfig, setPageConfig] = useState<number>(1);
-  // Karyawan Detail Disclosure
-  const { isOpen, onOpen, onClose } = useDisclosure();
   // Filter Config
   const { filterKaryawan } = useFilterKaryawan();
   // Columns Config
@@ -187,9 +184,9 @@ export default function TabelRekamJejak() {
                     <CustomTable
                       formattedHeader={formattedHeader}
                       formattedData={formattedData}
-                      onRowClick={() => {
-                        onOpen();
-                      }}
+                      // onRowClick={() => {
+                      //   onOpen();
+                      // }}
                       columnsConfig={columnsConfig}
                     />
                   </CustomTableContainer>
@@ -204,18 +201,11 @@ export default function TabelRekamJejak() {
                       next_page_url: "",
                       last_page: 1,
                     }}
-                    footer={
-                      <Text opacity={0.4}>
-                        Klik row untuk melihat detail karyawan
-                      </Text>
-                    }
-                  />
-
-                  <DetailKaryawanModal
-                    karyawan_id={1}
-                    isOpen={isOpen}
-                    onOpen={onOpen}
-                    onClose={onClose}
+                    // footer={
+                    //   <Text opacity={0.4}>
+                    //     Klik row untuk melihat detail karyawan
+                    //   </Text>
+                    // }
                   />
                 </>
               )}
