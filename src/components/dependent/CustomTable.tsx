@@ -245,20 +245,27 @@ export default function CustomTable({
           //@ts-ignore
           b.columnsFormat[sortConfig.sortColumnIndex].isDate
         ) {
-          console.log(
-            sortConfig.sortColumnIndex,
-            "is date",
-            new Date(aValue as string).getTime(),
-            new Date(bValue as string).getTime(),
-            a.columnsFormat[0].value,
-            b.columnsFormat[0].value
-          );
-
           const dateA = new Date(aValue as string);
           const dateB = new Date(bValue as string);
           return sortConfig.direction === "asc"
             ? dateA.getTime() - dateB.getTime()
             : dateB.getTime() - dateA.getTime();
+        } else if (
+          //@ts-ignore
+          a.columnsFormat[sortConfig.sortColumnIndex].isTime &&
+          //@ts-ignore
+          b.columnsFormat[sortConfig.sortColumnIndex].isTime
+        ) {
+          // Extract the time portion (HH:mm:ss) from the jam_masuk string
+          const timeA = (aValue as string).split(" ")[1];
+          const timeB = (bValue as string).split(" ")[1];
+
+          // Convert the time strings to Date objects for comparison
+          const dateA = new Date(`1970-01-01T${timeA}Z`);
+          const dateB = new Date(`1970-01-01T${timeB}Z`);
+
+          //@ts-ignore
+          return sortConfig.direction === "asc" ? dateA - dateB : dateB - dateA;
         } else {
           return sortConfig.direction === "asc"
             ? String(aValue).localeCompare(String(bValue))

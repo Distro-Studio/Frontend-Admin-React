@@ -216,10 +216,12 @@ export default function TabelKaryawan() {
       {
         value: item.tgl_masuk,
         td: formatDate(item.tgl_masuk),
+        isDate: true,
       },
       {
         value: item.tgl_keluar,
         td: formatDate(item.tgl_keluar),
+        isDate: true,
       },
       {
         value: item.masa_kerja,
