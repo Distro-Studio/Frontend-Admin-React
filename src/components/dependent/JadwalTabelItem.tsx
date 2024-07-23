@@ -124,7 +124,7 @@ export default function TabelJadwalItem({ data, tgl, jadwal, index }: Props) {
             <DisclosureHeader title="Detail Jadwal" />
           </ModalHeader>
           <ModalBody>
-            <VStack gap={responsiveSpacing} px={1} flexShrink={0} mb={4}>
+            <VStack gap={responsiveSpacing} px={1} flexShrink={0}>
               <Avatar
                 mb={"auto"}
                 size={"xl"}
