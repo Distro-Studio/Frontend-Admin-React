@@ -6466,7 +6466,7 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     email: "user2@example.com",
     no_rm: "3468985",
     no_manulife: "4437835",
-    tgl_masuk: "2020-11-26",
+    tgl_masuk: "2020-11-27",
     unit_kerja: {
       id: 13,
       nama_unit: "Teknologi Informasi (TI)",
@@ -6619,7 +6619,7 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     email: "user3@example.com",
     no_rm: "124235234",
     no_manulife: "12314324",
-    tgl_masuk: "2020-11-26",
+    tgl_masuk: "2018-11-06",
     unit_kerja: {
       id: 13,
       nama_unit: "Teknologi Informasi (TI)",
@@ -6772,7 +6772,7 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     email: "user3@example.com",
     no_rm: "124235234",
     no_manulife: "12314324",
-    tgl_masuk: "2020-11-26",
+    tgl_masuk: "2017-04-13",
     unit_kerja: {
       id: 13,
       nama_unit: "Teknologi Informasi (TI)",
@@ -6925,7 +6925,7 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     email: "user3@example.com",
     no_rm: "124235234",
     no_manulife: "12314324",
-    tgl_masuk: "2020-11-26",
+    tgl_masuk: "2019-10-29",
     unit_kerja: {
       id: 13,
       nama_unit: "Teknologi Informasi (TI)",
@@ -7078,7 +7078,7 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     email: "user1@example.com",
     no_rm: "3468984",
     no_manulife: "4437834",
-    tgl_masuk: "2020-11-25",
+    tgl_masuk: "2020-11-01",
     unit_kerja: {
       id: 12,
       nama_unit: "Sumber Daya Manusia (SDM)",

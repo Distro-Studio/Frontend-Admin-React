@@ -385,6 +385,7 @@ export interface Interface__FormattedTableData {
     value: string | number | boolean | Date | null;
     td: string | number | boolean | null | React.ReactNode;
     isNumeric?: boolean; // default false
+    isDate?: boolean; // default false
     props?: any;
     cProps?: StackProps;
   }[];

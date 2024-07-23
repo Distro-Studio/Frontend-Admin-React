@@ -171,10 +171,10 @@ export default function CustomTable({
   const [selectAllRows, setSelectAllRows] = useState<boolean>(false);
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
   const [sortConfig, setSortConfig] = useState<{
-    sortKey: number;
+    sortColumnIndex: number;
     direction: "asc" | "desc";
   }>({
-    sortKey: 0,
+    sortColumnIndex: 0,
     direction: "asc",
   });
 
@@ -214,39 +214,46 @@ export default function CustomTable({
   // Sort
   const requestSort = (columnIndex: number) => {
     setSortConfig((prevConfig) => ({
-      sortKey: columnIndex,
+      sortColumnIndex: columnIndex,
       direction:
-        prevConfig.sortKey === columnIndex && prevConfig.direction === "asc"
+        prevConfig.sortColumnIndex === columnIndex &&
+        prevConfig.direction === "asc"
           ? "desc"
           : "asc",
     }));
   };
-  const isDate = (
-    dateString: string | number | boolean | Date | null
-  ): boolean => {
-    if (dateString === null || typeof dateString === "boolean") return false;
-    if (dateString instanceof Date) return true;
-    if (typeof dateString === "string") return !isNaN(Date.parse(dateString));
-    return false;
-  };
   const sortedData = () => {
-    if (sortConfig.sortKey !== null) {
+    if (sortConfig.sortColumnIndex !== null) {
       return [...tableBody].sort((a, b) => {
         //@ts-ignore
-        const aValue = a.columnsFormat[sortConfig.sortKey].value;
+        const aValue = a.columnsFormat[sortConfig.sortColumnIndex].value;
         //@ts-ignore
-        const bValue = b.columnsFormat[sortConfig.sortKey].value;
+        const bValue = b.columnsFormat[sortConfig.sortColumnIndex].value;
 
         if (
           //@ts-ignore
-          a.columnsFormat[sortConfig.sortKey].isNumeric &&
+          a.columnsFormat[sortConfig.sortColumnIndex].isNumeric &&
           //@ts-ignore
-          b.columnsFormat[sortConfig.sortKey].isNumeric
+          b.columnsFormat[sortConfig.sortColumnIndex].isNumeric
         ) {
           return sortConfig.direction === "asc"
             ? Number(aValue) - Number(bValue)
             : Number(bValue) - Number(aValue);
-        } else if (isDate(aValue) && isDate(bValue)) {
+        } else if (
+          //@ts-ignore
+          a.columnsFormat[sortConfig.sortColumnIndex].isDate &&
+          //@ts-ignore
+          b.columnsFormat[sortConfig.sortColumnIndex].isDate
+        ) {
+          console.log(
+            sortConfig.sortColumnIndex,
+            "is date",
+            new Date(aValue as string).getTime(),
+            new Date(bValue as string).getTime(),
+            a.columnsFormat[0].value,
+            b.columnsFormat[0].value
+          );
+
           const dateA = new Date(aValue as string);
           const dateB = new Date(bValue as string);
           return sortConfig.direction === "asc"
@@ -262,7 +269,7 @@ export default function CustomTable({
     return formattedData;
   };
   const renderSortIcon = (columnIndex: number) => {
-    if (sortConfig.sortKey === columnIndex) {
+    if (sortConfig.sortColumnIndex === columnIndex) {
       return (
         <>
           {sortConfig.direction === "asc" ? (

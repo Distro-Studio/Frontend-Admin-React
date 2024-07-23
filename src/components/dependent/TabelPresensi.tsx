@@ -107,6 +107,7 @@ export default function TabelPresensi({ filterConfig }: Props) {
       {
         value: item.jam_masuk,
         td: formatTime(item.jam_masuk),
+        isDate: true,
         cProps: {
           justify: "center",
         },
@@ -114,6 +115,7 @@ export default function TabelPresensi({ filterConfig }: Props) {
       {
         value: item.jam_keluar,
         td: formatTime(item.jam_keluar),
+        isDate: true,
         cProps: {
           justify: "center",
         },
