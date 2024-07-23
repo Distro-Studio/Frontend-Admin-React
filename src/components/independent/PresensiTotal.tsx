@@ -35,9 +35,9 @@ export default function PresensiTotal({ ...props }: Props) {
     <Wrap spacing={responsiveSpacing} {...props}>
       {loading && (
         <>
-          <Skeleton flex={"1 1"} h={"120px"} />
-          <Skeleton flex={"1 1"} h={"120px"} />
-          <Skeleton flex={"1 1"} h={"120px"} />
+          <Skeleton flex={"1 1"} h={"100px"} />
+          <Skeleton flex={"1 1"} h={"100px"} />
+          <Skeleton flex={"1 1"} h={"100px"} />
         </>
       )}
       {!loading && data && (
@@ -45,12 +45,12 @@ export default function PresensiTotal({ ...props }: Props) {
           <VStack
             borderRadius={12}
             px={responsiveSpacing}
+            // py={[4, null, 5]}
             justify={"center"}
-            py={[4, null, 5]}
             bg={"var(--p500a4)"}
             align={"flex-start"}
             flex={"1 1 350px"}
-            h={"120px"}
+            h={"100px"}
           >
             {/* <Text fontWeight={600} color="p.500">
               Kehadiran
@@ -90,11 +90,11 @@ export default function PresensiTotal({ ...props }: Props) {
             borderRadius={12}
             px={responsiveSpacing}
             justify={"center"}
-            py={[4, null, 5]}
+            // py={[4, null, 5]}
             bg={errorAlphaColor}
             align={"flex-start"}
             flex={"1 1 250px"}
-            h={"120px"}
+            h={"100px"}
           >
             {/* <Text fontWeight={600} color={"red.400"}>
               Tidak Hadir
@@ -134,11 +134,11 @@ export default function PresensiTotal({ ...props }: Props) {
             borderRadius={12}
             px={responsiveSpacing}
             justify={"center"}
-            py={[4, null, 5]}
+            // py={[4, null, 5]}
             bg={"var(--divider)"}
             align={"flex-start"}
             flex={"1 1 200px"}
-            h={"120px"}
+            h={"100px"}
           >
             {/* <Text fontWeight={600} color={"var(--divider-text)"}>
               Libur

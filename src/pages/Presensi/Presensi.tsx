@@ -47,7 +47,12 @@ export default function Presensi() {
       <CWrapper>
         <PresensiTotal mb={responsiveSpacing} />
 
-        <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
+        <CContainer
+          p={responsiveSpacing}
+          bg={useBodyColor()}
+          borderRadius={12}
+          overflowY={"auto"}
+        >
           <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
             <SearchComponent
               flex={"1 0 200px"}
