@@ -15,10 +15,9 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import { useRef } from "react";
 import * as yup from "yup";
+import useBackOnClose from "../../hooks/useBackOnClose";
 import backOnClose from "../../lib/backOnCloseOld";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
 import MultiSelectKaryawan from "../dependent/_Select/MultiSelectKaryawan";
 import SelectShift from "../dependent/_Select/SelectShift";
 import DisclosureHeader from "../dependent/DisclosureHeader";
@@ -29,19 +28,18 @@ interface Props extends ButtonProps {}
 
 export default function TerapkanJadwalModal({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
-  const initialRef = useRef(null);
+  useBackOnClose("terapkan-jadwal-batch-modal", isOpen, onOpen, onClose);
 
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      karyawan_list: [],
-      tgl_mulai: "",
-      tgl_selesai: "",
-      shift: "" as any,
+      list_karyawan: undefined,
+      tgl_mulai: undefined,
+      tgl_selesai: undefined,
+      shift: undefined,
     },
     validationSchema: yup.object().shape({
-      karyawan_list: yup.array().min(1, "Harus diisi").required("Harus diisi"),
+      list_karyawan: yup.array().min(1, "Harus diisi").required("Harus diisi"),
       tgl_mulai: yup.string().required("Harus diisi"),
       tgl_selesai: yup.string().required("Harus diisi"),
       shift: yup.object().required("Harus diisi"),
@@ -68,30 +66,30 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
           backOnClose(onClose);
           formik.resetForm();
         }}
-        initialFocusRef={initialRef}
         isCentered
+        blockScrollOnMount={false}
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader p={0} ref={initialRef}>
+          <ModalHeader p={0}>
             <DisclosureHeader title="Terapkan Jadwal" />
           </ModalHeader>
           <ModalBody>
             <form id="terapkanJadwalForm" onSubmit={formik.handleSubmit}>
-              <FormControl mb={4} isInvalid={!!formik.errors.karyawan_list}>
+              <FormControl mb={4} isInvalid={!!formik.errors.list_karyawan}>
                 <FormLabel>
                   Karyawan
                   <RequiredForm />
                 </FormLabel>
                 <MultiSelectKaryawan
-                  formik={formik}
-                  name="karyawan_list"
-                  placeholder="Pilih Multi Karyawan"
-                  initialSelected={formik.values.karyawan_list}
-                  noUseBackOnClose
+                  name="list_karyawan"
+                  onConfirm={(input) => {
+                    formik.setFieldValue("list_karyawan", input);
+                  }}
+                  inputValue={formik.values.list_karyawan}
                 />
                 <FormErrorMessage>
-                  {formik.errors.karyawan_list as string}
+                  {formik.errors.list_karyawan as string}
                 </FormErrorMessage>
               </FormControl>
 

@@ -177,6 +177,7 @@ export default function SingleSelectModal({
                     {fo.map((option, i) => (
                       <Button
                         key={i}
+                        px={4}
                         justifyContent={"space-between"}
                         className="btn-outline"
                         onClick={() => {
@@ -201,7 +202,14 @@ export default function SingleSelectModal({
                           {option.label}
                         </Text>
 
-                        <Text opacity={0.4} ml={2}>
+                        <Text
+                          ml={4}
+                          opacity={0.4}
+                          maxW={"120px"}
+                          whiteSpace={"nowrap"}
+                          overflow={"hidden"}
+                          textOverflow={"ellipsis"}
+                        >
                           {option.label2}
                         </Text>
                       </Button>

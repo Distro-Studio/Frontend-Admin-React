@@ -203,6 +203,7 @@ export default function MultipleSelectModal({
                     {fo.map((option, i) => (
                       <Button
                         key={i}
+                        px={4}
                         justifyContent={"space-between"}
                         className="btn-outline"
                         onClick={() => {
@@ -246,7 +247,16 @@ export default function MultipleSelectModal({
                           {option.label}
                         </Text>
 
-                        <Text opacity={0.4}>{option.label2}</Text>
+                        <Text
+                          ml={4}
+                          opacity={0.4}
+                          maxW={"120px"}
+                          whiteSpace={"nowrap"}
+                          overflow={"hidden"}
+                          textOverflow={"ellipsis"}
+                        >
+                          {option.label2}
+                        </Text>
                       </Button>
                     ))}
                   </CContainer>

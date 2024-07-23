@@ -1,119 +1,66 @@
-import { Button, ButtonProps, Text } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
+import { ButtonProps, useDisclosure } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { dummyKaryawanList } from "../../../const/dummy";
-import { Select__Item__Interface } from "../../../const/interfaces";
-import Select from "../../input/Select";
+import { Interface__SelectOption } from "../../../constant/interfaces";
+import MultipleSelectModal from "../input/MultipleSelectModal";
 
 interface Props extends ButtonProps {
-  placeholder: string;
-  initialSelected?: any;
-  formik?: any;
-  name?: string;
-  confirmSelect?: (newSelectedValue: any) => void;
-  noUseBackOnClose?: boolean;
-  noSearch?: boolean;
-  modalSize?: string;
+  name: string;
+  onConfirm: (inputValue: Interface__SelectOption[] | undefined) => void;
+  inputValue: Interface__SelectOption[] | undefined;
+  withSearch?: boolean;
+  optionsDisplay?: "list" | "chip";
+  isError?: boolean;
+  placeholder?: string;
+  nonNullable?: boolean;
 }
 
-export default function MultiSelectKaryawan({
-  placeholder,
-  initialSelected,
-  formik,
+export default function SelectMultiKaryawan({
   name,
-  confirmSelect,
-  noUseBackOnClose,
-  noSearch,
-  modalSize,
+  onConfirm,
+  inputValue,
+  withSearch,
+  optionsDisplay = "list",
+  isError,
+  placeholder,
+  nonNullable,
   ...props
 }: Props) {
-  const [search, setSearch] = useState<string>("");
-  const [options, setOptions] = useState<any | null>(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [options, setOptions] = useState<Interface__SelectOption[] | undefined>(
+    undefined
+  );
+
   useEffect(() => {
-    const selectOptions = dummyKaryawanList.map((item) => ({
+    // TODO get all unit kerja
+
+    const options = dummyKaryawanList.map((item) => ({
       value: item.id,
       label: item.user.nama,
-      label2: item.unit_kerja.nama_unit,
+      // label2: item.unit_kerja.nama_unit,
     }));
-    setOptions(selectOptions);
-    // TODO get karyawan list
+    setOptions(options);
   }, []);
 
-  const filteredOptions = options?.filter((option: any) =>
-    option.label.toLowerCase().includes(search.toLocaleLowerCase())
-  );
-  const [selected, setSelected] = useState<Select__Item__Interface[]>(
-    initialSelected || []
-  );
-
-  const selectComponentRef = useRef<{ handleOnClose: () => void } | null>(null);
-
   return (
-    <Select
-      ref={selectComponentRef}
-      placeholder={placeholder}
-      initialSelected={initialSelected}
-      selected={selected}
-      setSelected={setSelected}
-      formik={formik}
+    <MultipleSelectModal
+      id="select-unit_kerja-modal"
       name={name}
-      noUseBackOnClose={noUseBackOnClose}
-      search={search}
-      setSearch={setSearch}
-      noSearch={noSearch}
-      modalSize={modalSize}
-      confirmSelect={confirmSelect}
-      isMultiSelect
+      isOpen={isOpen}
+      onOpen={onOpen}
+      onClose={onClose}
+      options={options}
+      onConfirm={(input) => {
+        onConfirm(input);
+      }}
+      inputValue={inputValue}
+      withSearch={withSearch}
+      optionsDisplay={optionsDisplay}
+      isError={isError}
+      placeholder={placeholder || "Multi Pilih Karyawan"}
+      nonNullable={nonNullable}
       {...props}
-    >
-      {filteredOptions?.map((option: any, i: number) => (
-        <Button
-          _hover={{
-            bg: "var(--divider) !important",
-          }}
-          border={"1px solid var(--divider)"}
-          borderColor={
-            selected.some((item) => item.value === option.value)
-              ? "var(--p500a1)"
-              : ""
-          }
-          bg={
-            selected.some((item) => item.value === option.value)
-              ? "var(--p500a3) !important"
-              : ""
-          }
-          key={i}
-          onClick={() => {
-            const isSelected = selected.some(
-              (item) => item.value === option.value
-            );
-            let newSelected;
-
-            if (isSelected) {
-              newSelected = selected.filter(
-                (item) => item.value !== option.value
-              );
-            } else {
-              newSelected = [...selected, option];
-            }
-
-            setSelected(newSelected);
-          }}
-          gap={4}
-          justifyContent={"space-between"}
-          fontWeight={500}
-        >
-          <Text>{option.label}</Text>
-          <Text opacity={0.6} fontWeight={400} fontSize={14}>
-            {option.label2}
-          </Text>
-        </Button>
-      ))}
-
-      {filteredOptions && filteredOptions.length === 0 && (
-        <Text textAlign={"center"} my={2}>
-          Opsi tidak ditemukan
-        </Text>
-      )}
-    </Select>
+    />
   );
 }

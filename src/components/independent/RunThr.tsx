@@ -34,10 +34,10 @@ export default function RunThr({ ...props }: Props) {
 
   const formik = useFormik({
     validateOnChange: semuaKaryawan,
-    initialValues: { semua_karyawan: false, karyawan_list: [], tanggal: "" },
+    initialValues: { semua_karyawan: false, list_karyawan: [], tanggal: "" },
     validationSchema: yup.object().shape({
       semua_karyawan: yup.boolean(),
-      karyawan_list: semuaKaryawan
+      list_karyawan: semuaKaryawan
         ? yup.mixed()
         : yup.array().min(1, "Harus diisi").required("Harus diisi"),
       tanggal: yup.string().required("Harus diisi"),
@@ -85,21 +85,22 @@ export default function RunThr({ ...props }: Props) {
             </Checkbox>
 
             <form id="runThrForm" onSubmit={formik.handleSubmit}>
-              <FormControl mb={4} isInvalid={!!formik.errors.karyawan_list}>
+              <FormControl mb={4} isInvalid={!!formik.errors.list_karyawan}>
                 <FormLabel>
                   Karyawan
                   <RequiredForm />
                 </FormLabel>
                 <MultiSelectKaryawan
-                  formik={formik}
-                  name="karyawan_list"
+                  name="list_karyawan"
                   placeholder="Pilih Multi Karyawan"
-                  initialSelected={formik.values.karyawan_list}
-                  noUseBackOnClose
+                  onConfirm={(input) => {
+                    formik.setFieldValue("list_karyawan", input);
+                  }}
+                  inputValue={formik.values.list_karyawan}
                   isDisabled={formik.values.semua_karyawan}
                 />
                 <FormErrorMessage>
-                  {formik.errors.karyawan_list as string}
+                  {formik.errors.list_karyawan as string}
                 </FormErrorMessage>
               </FormControl>
 
