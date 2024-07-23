@@ -8,7 +8,7 @@ const dashboardItemHeight = "600px";
 
 const dashboardItemMinWidth = "300px";
 
-const responsiveSpacing = [4, null, 6];
+const responsiveSpacing = [2, null, 4];
 
 const responsiveSpacing2 = [6, null, 8];
 
