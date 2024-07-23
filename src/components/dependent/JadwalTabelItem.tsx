@@ -179,12 +179,12 @@ export default function TabelJadwalItem({ data, tgl, jadwal, index }: Props) {
                     <RequiredForm />
                   </FormLabel>
                   <SelectShift
-                    formik={formik}
                     name="shift"
-                    placeholder="Pilih shift"
-                    initialSelected={formik.values.shift}
-                    isDisabled={isDatePassed(data.tgl_masuk)}
-                    noUseBackOnClose
+                    placeholder="Pilih jadwal"
+                    onConfirm={(input) => {
+                      formik.setFieldValue("shift", input);
+                    }}
+                    inputValue={formik.values.shift}
                   />
                   <FormErrorMessage>
                     {formik.errors.shift as string}

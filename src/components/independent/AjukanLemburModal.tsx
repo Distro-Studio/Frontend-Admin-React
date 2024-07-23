@@ -132,10 +132,11 @@ export default function AjukanLemburModal({ ...props }: Props) {
                 </FormLabel>
                 <SelectShift
                   name="shift"
-                  formik={formik}
-                  placeholder="Pilih Shift"
-                  initialSelected={formik.values.shift}
-                  noUseBackOnClose
+                  placeholder="Pilih jadwal"
+                  onConfirm={(input) => {
+                    formik.setFieldValue("shift", input);
+                  }}
+                  inputValue={formik.values.shift}
                 />
                 <FormErrorMessage>
                   {formik.errors.shift as string}

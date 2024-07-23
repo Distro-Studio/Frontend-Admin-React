@@ -150,11 +150,12 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
                   <RequiredForm />
                 </FormLabel>
                 <SelectShift
-                  formik={formik}
                   name="shift"
-                  placeholder="Pilih shift"
-                  initialSelected={formik.values.shift}
-                  noUseBackOnClose
+                  placeholder="Pilih jadwal"
+                  onConfirm={(input) => {
+                    formik.setFieldValue("shift", input);
+                  }}
+                  inputValue={formik.values.shift}
                 />
                 <FormErrorMessage>
                   {formik.errors.shift as string}
