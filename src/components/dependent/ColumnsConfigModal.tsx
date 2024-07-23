@@ -181,8 +181,8 @@ export default function ColumnsConfigModal({
                 {selected.map((columnIndex, i) => (
                   <Badge
                     textTransform={"none"}
-                    bg={"var(--p500a5)"}
-                    color={"p.500"}
+                    bg={"var(--divider)"}
+                    color={"var(--divider-text)"}
                     // border={"1px solid var(--p500a2)"}
                     fontWeight={450}
                     fontSize={"md"}
