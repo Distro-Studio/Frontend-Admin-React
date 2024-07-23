@@ -77,7 +77,7 @@ export default function TabelJadwal({ filterConfig }: Props) {
             <TabelJadwalItem
               data={item}
               jadwal={jadwal}
-              tgl={new Date()}
+              // tgl={new Date()}
               index={i}
               rowIndex={rowIndex}
             />
@@ -85,7 +85,7 @@ export default function TabelJadwal({ filterConfig }: Props) {
             // "-"
             <TerapkanJadwalKaryawanTerpilih
               data={item}
-              tgl={new Date()}
+              // tgl={new Date()}
               index={i}
               rowIndex={rowIndex}
             />

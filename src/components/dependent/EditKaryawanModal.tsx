@@ -20,7 +20,7 @@ import {
   useDisclosure,
   useSteps,
 } from "@chakra-ui/react";
-import { RiEditLine } from "@remixicon/react";
+import { RiEditFill } from "@remixicon/react";
 import { useRef } from "react";
 import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
@@ -56,7 +56,7 @@ export default function EditKaryawanModal({ initialData, ...props }: Props) {
         flex={"1 0 100px"}
         colorScheme="ap"
         className="btn-ap clicky"
-        leftIcon={<Icon as={RiEditLine} fontSize={iconSize} />}
+        leftIcon={<Icon as={RiEditFill} fontSize={iconSize} />}
         onClick={onOpen}
         pl={5}
         {...props}

@@ -16,7 +16,7 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import { RiArrowUpDownLine } from "@remixicon/react";
+import { RiArrowUpDownLine, RiCalendarCheckFill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
@@ -25,6 +25,7 @@ import useBackOnClose from "../../lib/useBackOnCloseOld";
 import SelectKaryawan from "../dependent/_Select/SelectKaryawan";
 import SelectShiftKaryawan from "../dependent/_Select/SelectShiftKaryawan";
 import RequiredForm from "../form/RequiredForm";
+import { iconSize } from "../../const/sizes";
 
 interface Props extends ButtonProps {}
 
@@ -58,6 +59,8 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
         colorScheme="ap"
         className="btn-ap clicky"
         onClick={onOpen}
+        leftIcon={<Icon as={RiCalendarCheckFill} fontSize={iconSize} />}
+        pl={5}
         {...props}
       >
         Ajukan Penukaran Jadwal

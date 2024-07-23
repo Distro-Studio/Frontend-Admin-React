@@ -172,7 +172,7 @@ export default function TabelPresensi({ filterConfig }: Props) {
                     }}
                     footer={
                       <Text opacity={0.4}>
-                        Klik row untuk melihat detail karyawan
+                        Klik row untuk melihat detail presensi
                       </Text>
                     }
                   />

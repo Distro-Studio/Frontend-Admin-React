@@ -29,7 +29,7 @@ import {
   useDisclosure,
   useSteps,
 } from "@chakra-ui/react";
-import { RiAddFill } from "@remixicon/react";
+import { RiAddCircleFill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
@@ -641,7 +641,7 @@ export default function TambahKaryawanModal({ ...props }: Props) {
       <Button
         colorScheme="ap"
         className="btn-ap clicky"
-        leftIcon={<Icon as={RiAddFill} fontSize={iconSize} />}
+        leftIcon={<Icon as={RiAddCircleFill} fontSize={iconSize} />}
         onClick={onOpen}
         pl={5}
         {...props}

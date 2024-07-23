@@ -17,11 +17,12 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import { RiAddFill } from "@remixicon/react";
+import { RiUserSharedFill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
 import { iconSize } from "../../const/sizes";
+import useBackOnClose from "../../hooks/useBackOnClose";
 import backOnClose from "../../lib/backOnCloseOld";
 import SelectJabatan from "../dependent/_Select/SelectJabatan";
 import SelectKaryawan from "../dependent/_Select/SelectKaryawan";
@@ -33,7 +34,6 @@ import DatePickerModal from "../dependent/input/DatePickerModal";
 import RequiredForm from "../form/RequiredForm";
 import FileInput from "../input/FileInput";
 import Textarea from "../input/Textarea";
-import useBackOnClose from "../../hooks/useBackOnClose";
 
 interface Props extends ButtonProps {}
 
@@ -77,10 +77,10 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
     <>
       <Button
         colorScheme="ap"
-        pl={5}
         className="btn-ap clicky"
         onClick={onOpen}
-        leftIcon={<Icon as={RiAddFill} fontSize={iconSize} />}
+        leftIcon={<Icon as={RiUserSharedFill} fontSize={iconSize} />}
+        pl={5}
         {...props}
       >
         Transfer Karyawan

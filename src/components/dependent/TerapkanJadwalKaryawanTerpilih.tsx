@@ -32,7 +32,7 @@ import JenisKaryawanBadge from "./JenisKaryawanBadge";
 
 interface Props {
   data: any;
-  tgl: Date | string;
+  tgl?: Date | string;
   index?: number;
   rowIndex?: number;
 }
@@ -121,9 +121,11 @@ export default function TerapkanJadwalKaryawanTerpilih({
 
                 <HStack justify={"space-between"}>
                   <Text fontSize={14} w={"120px"} opacity={0.6}>
-                    Tanggal
+                    Tanggal Masuk
                   </Text>
-                  <Text textAlign={"right"}>{formatDate(tgl as string)}</Text>
+                  <Text textAlign={"right"}>
+                    {formatDate(data.tgl_masuk as string)}
+                  </Text>
                 </HStack>
 
                 <HStack justify={"space-between"}>

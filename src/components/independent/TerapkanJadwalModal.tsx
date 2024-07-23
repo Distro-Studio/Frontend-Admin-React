@@ -5,6 +5,7 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Icon,
   Modal,
   ModalBody,
   ModalContent,
@@ -23,6 +24,8 @@ import SelectShift from "../dependent/_Select/SelectShift";
 import DisclosureHeader from "../dependent/DisclosureHeader";
 import DatePickerModal from "../dependent/input/DatePickerModal";
 import RequiredForm from "../form/RequiredForm";
+import { iconSize } from "../../const/sizes";
+import { RiCalendarFill } from "@remixicon/react";
 
 interface Props extends ButtonProps {}
 
@@ -55,6 +58,8 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
         colorScheme="ap"
         className="btn-ap clicky"
         onClick={onOpen}
+        leftIcon={<Icon as={RiCalendarFill} fontSize={iconSize} />}
+        pl={5}
         {...props}
       >
         Terapkan Jadwal
