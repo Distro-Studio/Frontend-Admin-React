@@ -59,7 +59,6 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
         className="btn-ap clicky"
         onClick={onOpen}
         leftIcon={<Icon as={RiCalendarFill} fontSize={iconSize} />}
-        pl={5}
         {...props}
       >
         Terapkan Jadwal

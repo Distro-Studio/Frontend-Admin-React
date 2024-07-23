@@ -60,10 +60,9 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
         className="btn-ap clicky"
         onClick={onOpen}
         leftIcon={<Icon as={RiCalendarCheckFill} fontSize={iconSize} />}
-        pl={5}
         {...props}
       >
-        Ajukan Penukaran Jadwal
+        Ajukan Tukar Jadwal
       </Button>
 
       <Modal
@@ -78,7 +77,7 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Ajukan Penukaran Jadwal</ModalHeader>
+          <ModalHeader ref={initialRef}>Ajukan Tukar Jadwal</ModalHeader>
           <ModalBody>
             <form id="ajukanPenukaranJadwalForm" onSubmit={formik.handleSubmit}>
               <FormControl

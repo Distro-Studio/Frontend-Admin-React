@@ -4,6 +4,7 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Icon,
   Input,
   InputGroup,
   InputRightElement,
@@ -25,6 +26,8 @@ import useBackOnClose from "../../lib/useBackOnCloseOld";
 import SelectKaryawan from "../dependent/_Select/SelectKaryawan";
 import SelectTipeCuti from "../dependent/_Select/SelectTipeCuti";
 import RequiredForm from "../form/RequiredForm";
+import { RiCalendarCloseFill } from "@remixicon/react";
+import { iconSize } from "../../const/sizes";
 
 interface Props extends ButtonProps {}
 
@@ -56,6 +59,7 @@ export default function AjukanCutiModal({ ...props }: Props) {
         colorScheme="ap"
         className="btn-ap clicky"
         onClick={onOpen}
+        leftIcon={<Icon as={RiCalendarCloseFill} fontSize={iconSize} />}
         {...props}
       >
         Ajukan Cuti

@@ -59,7 +59,7 @@ export default function Lembur() {
               Export
             </Button>
 
-            <AjukanLemburModal flex={"1 1 220px"} />
+            <AjukanLemburModal w={"fit-content"} />
           </Wrap>
 
           <TabelLembur filterConfig={filterConfig} />

@@ -4,6 +4,7 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Icon,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -27,6 +28,8 @@ import RequiredForm from "../form/RequiredForm";
 import Textarea from "../input/Textarea";
 import TimeInput from "../input/TimeInput";
 import DatePickerModal from "../dependent/input/DatePickerModal";
+import { RiCalendarScheduleFill } from "@remixicon/react";
+import { iconSize } from "../../const/sizes";
 
 interface Props extends ButtonProps {}
 
@@ -66,6 +69,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
         colorScheme="ap"
         className="btn-ap clicky"
         onClick={onOpen}
+        leftIcon={<Icon as={RiCalendarScheduleFill} fontSize={iconSize} />}
         {...props}
       >
         Ajukan Lembur

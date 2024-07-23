@@ -1,15 +1,15 @@
-import { Button, Icon, Wrap } from "@chakra-ui/react";
-import { RiUploadLine } from "@remixicon/react";
+import { Wrap } from "@chakra-ui/react";
 import { useState } from "react";
 import SelectMultiStatusCuti from "../../components/dependent/_Select/SelectMultiStatusCuti";
 import SelectMultiTipeCuti from "../../components/dependent/_Select/SelectMultiTipeCuti";
-import TabelCuti from "../../components/dependent/TabelCuti";
+import ExportModal from "../../components/dependent/ExportModal";
 import SearchComponent from "../../components/dependent/SearchComponent";
+import TabelCuti from "../../components/dependent/TabelCuti";
 import AjukanCutiModal from "../../components/independent/AjukanCutiModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { responsiveSpacing } from "../../const/sizes";
 
 export default function Cuti() {
   // Filter Config
@@ -68,17 +68,9 @@ export default function Cuti() {
               maxDisplayed={1}
             />
 
-            <Button
-              flex={"1 1 110px"}
-              variant={"outline"}
-              colorScheme="ap"
-              className="clicky"
-              rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
-            >
-              Export
-            </Button>
+            <ExportModal url="" title="Export Cuti" />
 
-            <AjukanCutiModal flex={"1 1 220px"} />
+            <AjukanCutiModal w={"fit-content"} />
           </Wrap>
 
           <TabelCuti filterConfig={filterConfig} />
