@@ -8,23 +8,131 @@ import {
   Center,
   HStack,
   Icon,
+  Image,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { RiCircleFill } from "@remixicon/react";
+import { RiArrowRightLine, RiCircleFill, RiFileLine } from "@remixicon/react";
 import { useState } from "react";
 import formatDate from "../../lib/formatDate";
 import CContainer from "../wrapper/CContainer";
 import SmallLink from "./SmallLink";
+import BooleanBadge from "./BooleanBadge";
+import formatNumber from "../../lib/formatNumber";
+import { Link } from "react-router-dom";
 
 const PerubahanDataItem = ({ data }: { data: any }) => {
+  const dataLabels = {
+    foto_profil: "Foto Profil",
+    nama: "Nama Lengkap",
+    tgl_lahir: "Tanggal Lahir",
+    no_hp: "Nomor Telpon",
+    jenis_kelamin: "Jenis Kelamin",
+    nik_ktp: "Nomor Induk Kependudukan",
+    no_kk: "Nomor Kartu Keluarga",
+    agama: "Agama",
+    golongan_darah: "Golongan Darah",
+    tinggi_badan: "Tinggi Badan",
+    alamat: "Alamat",
+    no_ijazah: "Nomor Ijazah Terakhir",
+    tahun_lulus: "Tahun Lulus Ijazah Terakhir",
+    keluarga: "Keluarga",
+    ktp: "KTP",
+    kk: "Kartu Keluarga",
+    sip: "SIP",
+    bpjsksh: "BPJS Kesehatan",
+    bpjsktk: "BPJS Ketenagakerjaan",
+    ijazah: "Ijazah Terakhir",
+    sertifikat_kompetensi: "Sertifikat Kompetensi",
+  };
+
+  const PerubahanDataRenderer = ({ kolom, type }: any) => {
+    switch (kolom) {
+      default:
+        return <Text>{data[type]}</Text>;
+      case "foto_profil":
+        return (
+          <Image
+            src={data[type]}
+            aspectRatio={1}
+            objectFit={"cover"}
+            borderRadius={"full"}
+          />
+        );
+      case "tgl_lahir":
+        return <Text whiteSpace={"nowrap"}>{formatDate(data[type])}</Text>;
+      case "golongan_darah":
+      case "agama":
+        return <Text whiteSpace={"nowrap"}>{data[type].label}</Text>;
+      case "tinggi_badan":
+        return <Text whiteSpace={"nowrap"}>{formatNumber(data[type])} cm</Text>;
+      case "ktp":
+      case "bpjsksh":
+      case "bpjsktk":
+      case "ijazah":
+      case "sertifikat_kompetensi":
+        return (
+          <Link to={data[type]}>
+            <CContainer
+              p={4}
+              borderRadius={8}
+              align={"center"}
+              // border={"1px solid var(--divider)"}
+            >
+              <Icon as={RiFileLine} fontSize={52} />
+              <Text fontSize={12} mt={2} noOfLines={1} opacity={0.4}>
+                {data[type]}
+              </Text>
+            </CContainer>
+          </Link>
+        );
+    }
+  };
+
   return (
     <CContainer gap={3}>
       <HStack>
         <Text minW={"160px"} opacity={0.6}>
-          Tanggal Pengajuan
+          Kolom
         </Text>
-        <Text fontWeight={500}>{formatDate(data.created_at)}</Text>
+        {/* @ts-ignore */}
+        <Text fontWeight={500}>{dataLabels[data.kolom]}</Text>
+      </HStack>
+
+      <HStack>
+        <Text minW={"160px"} opacity={0.6}>
+          Status
+        </Text>
+        <BooleanBadge
+          data={data.status_perubahan}
+          trueValue="Disetujui"
+          falseValue="Ditolak"
+        />
+      </HStack>
+
+      <HStack>
+        <Text minW={"160px"} opacity={0.6}>
+          Tanggal Diproses
+        </Text>
+        <Text fontWeight={500}>{formatDate(data.tgl_diproses)}</Text>
+      </HStack>
+
+      <HStack>
+        <Text minW={"160px"} opacity={0.6}>
+          Data Pengajuan
+        </Text>
+
+        <HStack>
+          <Box flex={1}>
+            <PerubahanDataRenderer kolom={data.kolom} type={"original_data"} />
+          </Box>
+
+          <Icon as={RiArrowRightLine} mx={5} />
+
+          <Box flex={1}>
+            <PerubahanDataRenderer kolom={data.kolom} type={"updated_data"} />
+          </Box>
+        </HStack>
       </HStack>
     </CContainer>
   );
@@ -33,13 +141,6 @@ const PerubahanDataItem = ({ data }: { data: any }) => {
 const TransferKaryanItem = ({ data }: { data: any }) => {
   return (
     <CContainer gap={3}>
-      <HStack>
-        <Text minW={"160px"} opacity={0.6}>
-          Tanggal Pengajuan
-        </Text>
-        <Text fontWeight={500}>{formatDate(data.created_at)}</Text>
-      </HStack>
-
       <HStack>
         <Text minW={"160px"} opacity={0.6}>
           Tanggal Mulai
@@ -128,7 +229,6 @@ export default function DetailRekamJejakItem({ dataList, data, index }: Props) {
 
       {/* Content */}
       <Box
-        // w={isOpen ? "100%" : "auto"}
         w={"100%"}
         transition={"200ms"}
         pt={2}
@@ -151,9 +251,13 @@ export default function DetailRekamJejakItem({ dataList, data, index }: Props) {
                 setIsOpen(!isOpen);
               }}
             >
-              <Text fontWeight={600} fontSize={18}>
-                {data.kategori.label}
-              </Text>
+              <HStack>
+                <Text fontWeight={600} fontSize={18}>
+                  {data.kategori.label}
+                </Text>
+                <Text>-</Text>
+                <Text>{formatDate(data.created_at)}</Text>
+              </HStack>
               <AccordionIcon ml={4} />
             </AccordionButton>
 

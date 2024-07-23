@@ -64,10 +64,9 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
         kolom: "tgl_lahir",
         original_data: "2001-11-01",
         updated_data: "2001-11-05",
-        status_perubahan: null,
-        tgl_disetujui: "2024-07-11",
+        status_perubahan: true,
         created_at: "2024-07-10",
-        updated_at: null,
+        updated_at: "2024-07-11",
       },
       created_at: "2023-05-02",
     },
@@ -150,9 +149,8 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
         original_data: "/images/reza.jpg",
         updated_data: "/images/gear5.jpg",
         status_perubahan: false,
-        tgl_disetujui: "2024-07-11",
-        created_at: "2024-07-10",
-        updated_at: null,
+        created_at: "2024-07-22",
+        updated_at: "2024-07-23",
       },
       created_at: "2024-07-22",
     },
@@ -278,7 +276,8 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
                               </Wrap>
 
                               <HStack
-                                h={"12px"}
+                                align={"stretch"}
+                                h={"8px"}
                                 pl={"44px"}
                                 position={"absolute"}
                                 top={"64px"}
@@ -286,13 +285,9 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
                                 w={"100%"}
                               >
                                 <Center w={"24px"}>
-                                  <Box
-                                    h={"12px"}
-                                    w={"1px"}
-                                    bg={"var(--divider3)"}
-                                  />
+                                  <Box w={"1px"} bg={"var(--divider3)"} />
                                 </Center>
-                                <Box flex={1} h={"12px"} bg={lightDarkColor} />
+                                <Box flex={1} bg={lightDarkColor} />
                               </HStack>
 
                               <CContainer
