@@ -10,6 +10,8 @@ import AvatarAndNameTableData from "./AvatarAndNameTableData";
 import CustomTable from "./CustomTable";
 import Retry from "./Retry";
 import TabelFooterConfig from "./TabelFooterConfig";
+import BooleanBadge from "./BooleanBadge";
+import formatTime from "../../lib/formatTime";
 
 interface Props {
   filterConfig?: any;
@@ -45,16 +47,27 @@ export default function TabelPresensi({ filterConfig }: Props) {
       },
     },
     {
+      th: "Jenis Karyawan",
+      isSortable: true,
+      justify: "center",
+    },
+    {
       th: "Unit Kerja",
       isSortable: true,
     },
     {
       th: "Presensi Masuk",
       isSortable: true,
+      cProps: {
+        justify: "center",
+      },
     },
     {
       th: "Presensi keluar",
       isSortable: true,
+      cProps: {
+        justify: "center",
+      },
     },
   ];
   const formattedData = data?.map((item: any) => ({
@@ -72,7 +85,39 @@ export default function TabelPresensi({ filterConfig }: Props) {
           borderRight: "1px solid var(--divider3)",
         },
       },
-      {},
+      {
+        value: item.unit_kerja.jenis_karyawan,
+        td: (
+          <BooleanBadge
+            w={"120px"}
+            data={item.unit_kerja.jenis_karyawan}
+            colorScheme={item.unit_kerja.jenis_karyawan ? "cyan" : "orange"}
+            trueValue="Shift"
+            falseValue="Non-Shift"
+          />
+        ),
+        cProps: {
+          justify: "center",
+        },
+      },
+      {
+        value: item.unit_kerja.nama_unit,
+        td: item.unit_kerja.nama_unit,
+      },
+      {
+        value: item.jam_masuk,
+        td: formatTime(item.jam_masuk),
+        cProps: {
+          justify: "center",
+        },
+      },
+      {
+        value: item.jam_keluar,
+        td: formatTime(item.jam_keluar),
+        cProps: {
+          justify: "center",
+        },
+      },
     ],
   }));
 

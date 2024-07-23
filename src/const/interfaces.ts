@@ -408,10 +408,7 @@ export interface Interface__User {
 export interface Interface__UnitKerja {
   id: number;
   nama_unit: string;
-  jenis_karyawan: {
-    id: number;
-    label: string;
-  };
+  jenis_karyawan: boolean | number | null;
   created_at: Date | string;
   updated_at: Date | string | null;
 }

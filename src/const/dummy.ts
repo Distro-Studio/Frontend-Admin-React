@@ -402,7 +402,7 @@ const dummyKaryawanList = [
     id: 1,
     user: {
       id: 2,
-      nama: "User 0",
+      nama: "User's Name Wich Can Be Long 0",
       username: "username0",
       email_verified_at: null,
       role_id: null,
@@ -527,7 +527,7 @@ const dummyKaryawanList = [
     id: 2,
     user: {
       id: 3,
-      nama: "User 1",
+      nama: "User's Name Wich Can Be Long 1",
       username: "username1",
       email_verified_at: null,
       role_id: null,
@@ -652,7 +652,7 @@ const dummyKaryawanList = [
     id: 3,
     user: {
       id: 4,
-      nama: "User 2",
+      nama: "User's Name Wich Can Be Long 2",
       username: "username2",
       email_verified_at: null,
       role_id: null,
@@ -777,7 +777,7 @@ const dummyKaryawanList = [
     id: 4,
     user: {
       id: 5,
-      nama: "User 3",
+      nama: "User's Name Wich Can Be Long 3",
       username: "username3",
       email_verified_at: null,
       role_id: null,
@@ -902,7 +902,7 @@ const dummyKaryawanList = [
     id: 5,
     user: {
       id: 6,
-      nama: "User 4",
+      nama: "User's Name Wich Can Be Long 4",
       username: "username4",
       email_verified_at: null,
       role_id: null,
@@ -1027,7 +1027,7 @@ const dummyKaryawanList = [
     id: 6,
     user: {
       id: 7,
-      nama: "User 5",
+      nama: "User's Name Wich Can Be Long 5",
       username: "username5",
       email_verified_at: null,
       role_id: null,
@@ -1152,7 +1152,7 @@ const dummyKaryawanList = [
     id: 7,
     user: {
       id: 8,
-      nama: "User 6",
+      nama: "User's Name Wich Can Be Long 6",
       username: "username6",
       email_verified_at: null,
       role_id: null,
@@ -1277,7 +1277,7 @@ const dummyKaryawanList = [
     id: 8,
     user: {
       id: 9,
-      nama: "User 7",
+      nama: "User's Name Wich Can Be Long 7",
       username: "username7",
       email_verified_at: null,
       role_id: null,
@@ -1402,7 +1402,7 @@ const dummyKaryawanList = [
     id: 9,
     user: {
       id: 10,
-      nama: "User 8",
+      nama: "User's Name Wich Can Be Long 8",
       username: "username8",
       email_verified_at: null,
       role_id: null,
@@ -1527,7 +1527,7 @@ const dummyKaryawanList = [
     id: 10,
     user: {
       id: 11,
-      nama: "User 9",
+      nama: "User's Name Wich Can Be Long 9",
       username: "username9",
       email_verified_at: null,
       role_id: null,
@@ -1653,7 +1653,7 @@ const dummyKaryawanList = [
 const dummyAkunKaryawan = [
   {
     id: 2,
-    nama: "User 0",
+    nama: "User's Name Wich Can Be Long 0",
     nik: "1388823",
     email: "user0@example.com",
     username: "username0",
@@ -1663,7 +1663,7 @@ const dummyAkunKaryawan = [
   },
   {
     id: 3,
-    nama: "User 1",
+    nama: "User's Name Wich Can Be Long 1",
     nik: "1189953",
     email: "user1@example.com",
     username: "username1",
@@ -1673,7 +1673,7 @@ const dummyAkunKaryawan = [
   },
   {
     id: 4,
-    nama: "User 2",
+    nama: "User's Name Wich Can Be Long 2",
     nik: "3668186",
     email: "user2@example.com",
     username: "username2",
@@ -1683,7 +1683,7 @@ const dummyAkunKaryawan = [
   },
   {
     id: 5,
-    nama: "User 3",
+    nama: "User's Name Wich Can Be Long 3",
     nik: "1695036",
     email: "user3@example.com",
     username: "username3",
@@ -1693,7 +1693,7 @@ const dummyAkunKaryawan = [
   },
   {
     id: 6,
-    nama: "User 4",
+    nama: "User's Name Wich Can Be Long 4",
     nik: "1142378",
     email: "user4@example.com",
     username: "username4",
@@ -1703,7 +1703,7 @@ const dummyAkunKaryawan = [
   },
   {
     id: 7,
-    nama: "User 5",
+    nama: "User's Name Wich Can Be Long 5",
     nik: "2186518",
     email: "user5@example.com",
     username: "username5",
@@ -1713,7 +1713,7 @@ const dummyAkunKaryawan = [
   },
   {
     id: 8,
-    nama: "User 6",
+    nama: "User's Name Wich Can Be Long 6",
     nik: "3849682",
     email: "user6@example.com",
     username: "username6",
@@ -1723,7 +1723,7 @@ const dummyAkunKaryawan = [
   },
   {
     id: 9,
-    nama: "User 7",
+    nama: "User's Name Wich Can Be Long 7",
     nik: "2850736",
     email: "user7@example.com",
     username: "username7",
@@ -1733,7 +1733,7 @@ const dummyAkunKaryawan = [
   },
   {
     id: 10,
-    nama: "User 8",
+    nama: "User's Name Wich Can Be Long 8",
     nik: "4992690",
     email: "user8@example.com",
     username: "username8",
@@ -3650,7 +3650,7 @@ const dummyPresensi = [
     id: 2,
     user: {
       id: 2,
-      nama: "User 0",
+      nama: "User's Name Wich Can Be Long 0",
       username: "username0",
       email_verified_at: null,
       role_id: null,
@@ -3689,7 +3689,7 @@ const dummyPresensi = [
     id: 3,
     user: {
       id: 3,
-      nama: "User 1",
+      nama: "User's Name Wich Can Be Long 1",
       username: "username1",
       email_verified_at: null,
       role_id: null,
@@ -3728,7 +3728,7 @@ const dummyPresensi = [
     id: 4,
     user: {
       id: 12,
-      nama: "User 10",
+      nama: "User's Name Wich Can Be Long 10",
       username: "username10",
       email_verified_at: null,
       role_id: null,
@@ -3767,7 +3767,7 @@ const dummyPresensi = [
     id: 5,
     user: {
       id: 13,
-      nama: "User 11",
+      nama: "User's Name Wich Can Be Long 11",
       username: "username11",
       email_verified_at: null,
       role_id: null,
@@ -3806,7 +3806,7 @@ const dummyPresensi = [
     id: 6,
     user: {
       id: 14,
-      nama: "User 12",
+      nama: "User's Name Wich Can Be Long 12",
       username: "username12",
       email_verified_at: null,
       role_id: null,
@@ -3845,7 +3845,7 @@ const dummyPresensi = [
     id: 7,
     user: {
       id: 15,
-      nama: "User 13",
+      nama: "User's Name Wich Can Be Long 13",
       username: "username13",
       email_verified_at: null,
       role_id: null,
@@ -3884,7 +3884,7 @@ const dummyPresensi = [
     id: 8,
     user: {
       id: 16,
-      nama: "User 14",
+      nama: "User's Name Wich Can Be Long 14",
       username: "username14",
       email_verified_at: null,
       role_id: null,
@@ -3923,7 +3923,7 @@ const dummyPresensi = [
     id: 9,
     user: {
       id: 17,
-      nama: "User 15",
+      nama: "User's Name Wich Can Be Long 15",
       username: "username15",
       email_verified_at: null,
       role_id: null,
@@ -3962,7 +3962,7 @@ const dummyPresensi = [
     id: 10,
     user: {
       id: 18,
-      nama: "User 16",
+      nama: "User's Name Wich Can Be Long 16",
       username: "username16",
       email_verified_at: null,
       role_id: null,
@@ -4353,7 +4353,7 @@ const dummyTransferKaryawan = [
     id: 2,
     user: {
       id: 2,
-      nama: "User 0",
+      nama: "User's Name Wich Can Be Long 0",
       username: "username0",
       email_verified_at: null,
       role_id: null,
@@ -4462,7 +4462,7 @@ const dummyTransferKaryawan = [
     id: 3,
     user: {
       id: 3,
-      nama: "User 1",
+      nama: "User's Name Wich Can Be Long 1",
       username: "username1",
       email_verified_at: null,
       role_id: null,
@@ -4571,7 +4571,7 @@ const dummyTransferKaryawan = [
     id: 4,
     user: {
       id: 12,
-      nama: "User 10",
+      nama: "User's Name Wich Can Be Long 10",
       username: "username10",
       email_verified_at: null,
       role_id: null,
@@ -4680,7 +4680,7 @@ const dummyTransferKaryawan = [
     id: 5,
     user: {
       id: 13,
-      nama: "User 11",
+      nama: "User's Name Wich Can Be Long 11",
       username: "username11",
       email_verified_at: null,
       role_id: null,
@@ -4789,7 +4789,7 @@ const dummyTransferKaryawan = [
     id: 6,
     user: {
       id: 14,
-      nama: "User 12",
+      nama: "User's Name Wich Can Be Long 12",
       username: "username12",
       email_verified_at: null,
       role_id: null,
@@ -4898,7 +4898,7 @@ const dummyTransferKaryawan = [
     id: 7,
     user: {
       id: 15,
-      nama: "User 13",
+      nama: "User's Name Wich Can Be Long 13",
       username: "username13",
       email_verified_at: null,
       role_id: null,
@@ -5007,7 +5007,7 @@ const dummyTransferKaryawan = [
     id: 8,
     user: {
       id: 16,
-      nama: "User 14",
+      nama: "User's Name Wich Can Be Long 14",
       username: "username14",
       email_verified_at: null,
       role_id: null,
@@ -5116,7 +5116,7 @@ const dummyTransferKaryawan = [
     id: 9,
     user: {
       id: 17,
-      nama: "User 15",
+      nama: "User's Name Wich Can Be Long 15",
       username: "username15",
       email_verified_at: null,
       role_id: null,
@@ -5225,7 +5225,7 @@ const dummyTransferKaryawan = [
     id: 10,
     user: {
       id: 18,
-      nama: "User 16",
+      nama: "User's Name Wich Can Be Long 16",
       username: "username16",
       email_verified_at: null,
       role_id: null,
@@ -5337,7 +5337,7 @@ const dummyKeluargaKaryawan = [
     id: 1,
     user: {
       id: 2,
-      nama: "User 0",
+      nama: "User's Name Wich Can Be Long 0",
       username: "username0",
       email_verified_at: null,
       role_id: null,
@@ -5354,7 +5354,7 @@ const dummyKeluargaKaryawan = [
     id: 2,
     user: {
       id: 3,
-      nama: "User 1",
+      nama: "User's Name Wich Can Be Long 1",
       username: "username1",
       email_verified_at: null,
       role_id: null,
@@ -5371,7 +5371,7 @@ const dummyKeluargaKaryawan = [
     id: 3,
     user: {
       id: 4,
-      nama: "User 2",
+      nama: "User's Name Wich Can Be Long 2",
       username: "username2",
       email_verified_at: null,
       role_id: null,
@@ -5388,7 +5388,7 @@ const dummyKeluargaKaryawan = [
     id: 4,
     user: {
       id: 5,
-      nama: "User 3",
+      nama: "User's Name Wich Can Be Long 3",
       username: "username3",
       email_verified_at: null,
       role_id: null,
@@ -5405,7 +5405,7 @@ const dummyKeluargaKaryawan = [
     id: 5,
     user: {
       id: 6,
-      nama: "User 4",
+      nama: "User's Name Wich Can Be Long 4",
       username: "username4",
       email_verified_at: null,
       role_id: null,
@@ -5422,7 +5422,7 @@ const dummyKeluargaKaryawan = [
     id: 6,
     user: {
       id: 7,
-      nama: "User 5",
+      nama: "User's Name Wich Can Be Long 5",
       username: "username5",
       email_verified_at: null,
       role_id: null,
@@ -5439,7 +5439,7 @@ const dummyKeluargaKaryawan = [
     id: 7,
     user: {
       id: 8,
-      nama: "User 6",
+      nama: "User's Name Wich Can Be Long 6",
       username: "username6",
       email_verified_at: null,
       role_id: null,
@@ -5456,7 +5456,7 @@ const dummyKeluargaKaryawan = [
     id: 8,
     user: {
       id: 9,
-      nama: "User 7",
+      nama: "User's Name Wich Can Be Long 7",
       username: "username7",
       email_verified_at: null,
       role_id: null,
@@ -5473,7 +5473,7 @@ const dummyKeluargaKaryawan = [
     id: 9,
     user: {
       id: 10,
-      nama: "User 8",
+      nama: "User's Name Wich Can Be Long 8",
       username: "username8",
       email_verified_at: null,
       role_id: null,
@@ -5490,7 +5490,7 @@ const dummyKeluargaKaryawan = [
     id: 10,
     user: {
       id: 11,
-      nama: "User 9",
+      nama: "User's Name Wich Can Be Long 9",
       username: "username9",
       email_verified_at: null,
       role_id: null,
@@ -5571,7 +5571,7 @@ const dummyDetailKeluargaKaryawan = {
     updated_at: "2024-06-08T03:43:48.000000Z",
     users: {
       id: 4,
-      nama: "User 2",
+      nama: "User's Name Wich Can Be Long 2",
       username: "username2",
       email_verified_at: null,
       role_id: null,
@@ -5652,7 +5652,7 @@ const dummyPekerjaKontrak = [
     id: 5,
     user: {
       id: 6,
-      nama: "User 4",
+      nama: "User's Name Wich Can Be Long 4",
       username: "username4",
       email_verified_at: null,
       role_id: null,
@@ -5678,7 +5678,7 @@ const dummyPekerjaKontrak = [
     id: 6,
     user: {
       id: 7,
-      nama: "User 5",
+      nama: "User's Name Wich Can Be Long 5",
       username: "username5",
       email_verified_at: null,
       role_id: null,
@@ -5704,7 +5704,7 @@ const dummyPekerjaKontrak = [
     id: 9,
     user: {
       id: 10,
-      nama: "User 8",
+      nama: "User's Name Wich Can Be Long 8",
       username: "username8",
       email_verified_at: null,
       role_id: null,
@@ -5730,7 +5730,7 @@ const dummyPekerjaKontrak = [
     id: 11,
     user: {
       id: 12,
-      nama: "User 10",
+      nama: "User's Name Wich Can Be Long 10",
       username: "username10",
       email_verified_at: null,
       role_id: null,
@@ -5756,7 +5756,7 @@ const dummyPekerjaKontrak = [
     id: 12,
     user: {
       id: 13,
-      nama: "User 11",
+      nama: "User's Name Wich Can Be Long 11",
       username: "username11",
       email_verified_at: null,
       role_id: null,
@@ -5782,7 +5782,7 @@ const dummyPekerjaKontrak = [
     id: 13,
     user: {
       id: 14,
-      nama: "User 12",
+      nama: "User's Name Wich Can Be Long 12",
       username: "username12",
       email_verified_at: null,
       role_id: null,
@@ -5808,7 +5808,7 @@ const dummyPekerjaKontrak = [
     id: 16,
     user: {
       id: 17,
-      nama: "User 15",
+      nama: "User's Name Wich Can Be Long 15",
       username: "username15",
       email_verified_at: null,
       role_id: null,
@@ -5834,7 +5834,7 @@ const dummyPekerjaKontrak = [
     id: 19,
     user: {
       id: 20,
-      nama: "User 18",
+      nama: "User's Name Wich Can Be Long 18",
       username: "username18",
       email_verified_at: null,
       role_id: null,
@@ -5860,7 +5860,7 @@ const dummyPekerjaKontrak = [
     id: 22,
     user: {
       id: 23,
-      nama: "User 21",
+      nama: "User's Name Wich Can Be Long 21",
       username: "username21",
       email_verified_at: null,
       role_id: null,
@@ -5886,7 +5886,7 @@ const dummyPekerjaKontrak = [
     id: 24,
     user: {
       id: 25,
-      nama: "User 23",
+      nama: "User's Name Wich Can Be Long 23",
       username: "username23",
       email_verified_at: null,
       role_id: null,
@@ -6051,7 +6051,7 @@ const dummyRekamJejak = [
     id: 1,
     user: {
       id: 2,
-      nama: "User 0",
+      nama: "User's Name Wich Can Be Long 0",
       username: "username0",
       email_verified_at: null,
       role_id: null,
@@ -6074,7 +6074,7 @@ const dummyRekamJejak = [
     id: 2,
     user: {
       id: 3,
-      nama: "User 1",
+      nama: "User's Name Wich Can Be Long 1",
       username: "username1",
       email_verified_at: null,
       role_id: null,
@@ -6097,7 +6097,7 @@ const dummyRekamJejak = [
     id: 3,
     user: {
       id: 4,
-      nama: "User 2",
+      nama: "User's Name Wich Can Be Long 2",
       username: "username2",
       email_verified_at: null,
       role_id: null,
@@ -6120,7 +6120,7 @@ const dummyRekamJejak = [
     id: 4,
     user: {
       id: 5,
-      nama: "User 3",
+      nama: "User's Name Wich Can Be Long 3",
       username: "username3",
       email_verified_at: null,
       role_id: null,
@@ -6143,7 +6143,7 @@ const dummyRekamJejak = [
     id: 5,
     user: {
       id: 6,
-      nama: "User 4",
+      nama: "User's Name Wich Can Be Long 4",
       username: "username4",
       email_verified_at: null,
       role_id: null,
@@ -6166,7 +6166,7 @@ const dummyRekamJejak = [
     id: 6,
     user: {
       id: 7,
-      nama: "User 5",
+      nama: "User's Name Wich Can Be Long 5",
       username: "username5",
       email_verified_at: null,
       role_id: null,
@@ -6189,7 +6189,7 @@ const dummyRekamJejak = [
     id: 7,
     user: {
       id: 8,
-      nama: "User 6",
+      nama: "User's Name Wich Can Be Long 6",
       username: "username6",
       email_verified_at: null,
       role_id: null,
@@ -6212,7 +6212,7 @@ const dummyRekamJejak = [
     id: 8,
     user: {
       id: 9,
-      nama: "User 7",
+      nama: "User's Name Wich Can Be Long 7",
       username: "username7",
       email_verified_at: null,
       role_id: null,
@@ -6235,7 +6235,7 @@ const dummyRekamJejak = [
     id: 9,
     user: {
       id: 10,
-      nama: "User 8",
+      nama: "User's Name Wich Can Be Long 8",
       username: "username8",
       email_verified_at: null,
       role_id: null,
@@ -6258,7 +6258,7 @@ const dummyRekamJejak = [
     id: 10,
     user: {
       id: 11,
-      nama: "User 9",
+      nama: "User's Name Wich Can Be Long 9",
       username: "username9",
       email_verified_at: null,
       role_id: null,
@@ -6317,7 +6317,7 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     unit_kerja: {
       id: 12,
       nama_unit: "Sumber Daya Manusia (SDM)",
-      jenis_karyawan: { id: 0, label: "Non-Shift" },
+      jenis_karyawan: 0,
       created_at: "2024-03-20T23:48:34.000000Z",
       updated_at: "2024-06-06T23:48:34.000000Z",
     },
@@ -6470,7 +6470,7 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     unit_kerja: {
       id: 13,
       nama_unit: "Teknologi Informasi (TI)",
-      jenis_karyawan: { id: 1, label: "Shift" },
+      jenis_karyawan: 1,
       created_at: "2024-03-21T23:48:34.000000Z",
       updated_at: "2024-06-07T23:48:34.000000Z",
     },
@@ -6623,7 +6623,7 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     unit_kerja: {
       id: 13,
       nama_unit: "Teknologi Informasi (TI)",
-      jenis_karyawan: { id: 1, label: "Shift" },
+      jenis_karyawan: 1,
       created_at: "2024-03-21T23:48:34.000000Z",
       updated_at: "2024-06-07T23:48:34.000000Z",
     },
@@ -6776,7 +6776,7 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     unit_kerja: {
       id: 13,
       nama_unit: "Teknologi Informasi (TI)",
-      jenis_karyawan: { id: 1, label: "Shift" },
+      jenis_karyawan: 1,
       created_at: "2024-03-21T23:48:34.000000Z",
       updated_at: "2024-06-07T23:48:34.000000Z",
     },
@@ -6929,7 +6929,7 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     unit_kerja: {
       id: 13,
       nama_unit: "Teknologi Informasi (TI)",
-      jenis_karyawan: { id: 1, label: "Shift" },
+      jenis_karyawan: 1,
       created_at: "2024-03-21T23:48:34.000000Z",
       updated_at: "2024-06-07T23:48:34.000000Z",
     },
@@ -7043,6 +7043,159 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
     },
     created_at: "2024-06-07T23:48:35.000000Z",
     updated_at: "2024-06-07T23:48:35.000000Z",
+  },
+
+  {
+    id: 1,
+    user: {
+      id: 1,
+      nama: "Very Very Long Name as Possible",
+      username: "username1",
+      email_verified_at: null,
+      role_id: null,
+      foto_profil: null,
+      data_completion_step: 1,
+      status_aktif: 1,
+      created_at: "2024-06-06T23:48:35.000000Z",
+      updated_at: "2024-06-06T23:48:35.000000Z",
+      roles: [
+        {
+          id: 3,
+          name: "Admin",
+          deskripsi:
+            "satellites native some bottle blanket extra continued young married lost far great door short quick example tin teeth variety shadow does line met these",
+          guard_name: "web",
+          created_at: "2024-04-19T23:48:34.000000Z",
+          updated_at: "2024-06-06T23:48:34.000000Z",
+          pivot: {
+            model_type: "App\\Models\\User",
+            model_id: 1,
+            role_id: 3,
+          },
+        },
+      ],
+    },
+    email: "user1@example.com",
+    no_rm: "3468984",
+    no_manulife: "4437834",
+    tgl_masuk: "2020-11-25",
+    unit_kerja: {
+      id: 12,
+      nama_unit: "Sumber Daya Manusia (SDM)",
+      jenis_karyawan: 1,
+      created_at: "2024-03-20T23:48:34.000000Z",
+      updated_at: "2024-06-06T23:48:34.000000Z",
+    },
+    jabatan: {
+      id: 16,
+      nama_jabatan: "Tenaga Radiologi",
+      is_struktural: 0,
+      tunjangan: 1697689,
+      created_at: "2023-07-14T23:48:34.000000Z",
+      updated_at: "2024-06-06T23:48:34.000000Z",
+    },
+    kompetensi: {
+      id: 4,
+      nama_kompetensi: "Ahli Radiologi",
+      jenis_kompetensi: 1,
+      total_tunjangan: 2629416,
+      created_at: "2024-04-29T23:48:34.000000Z",
+      updated_at: "2024-06-06T23:48:34.000000Z",
+    },
+    nik: "2329429",
+    nik_ktp: "327640",
+    status_karyawan: {
+      id: 2,
+      label: "Kontrak",
+    },
+    tempat_lahir: "Subang",
+    tgl_lahir: "1924-06-02",
+    kelompok_gaji: {
+      id: 15,
+      nama_kelompok: "Q",
+      besaran_gaji: 4808596,
+      created_at: "2024-05-11T23:48:34.000000Z",
+      updated_at: "2024-06-06T23:48:34.000000Z",
+    },
+    no_rekening: "300652572",
+    tunjangan_jabatan: 6350127,
+    tunjangan_fungsional: 1602565,
+    tunjangan_khusus: 2193815,
+    tunjangan_lainnya: 2205493,
+    uang_lembur: 974476,
+    uang_makan: 1467478,
+    ptkp: {
+      id: 4,
+      kode_ptkp: "K/2",
+      kategori_ter_id: 2,
+      created_at: "2024-06-06T23:48:34.000000Z",
+      updated_at: "2024-06-06T23:48:34.000000Z",
+    },
+    tgl_keluar: "2023-04-01",
+    no_kk: "155272565",
+    alamat: "Jalan Imam Bonjol no. 56, Semarang, Jawa Tengah",
+    gelar_depan: "apt.",
+    no_hp: "171392948",
+    no_bpjsksh: "297109472",
+    no_bpjsktk: "415654976",
+    tgl_diangkat: "2023-04-01",
+    masa_kerja: 50,
+    npwp: "75485344",
+    jenis_kelamin: {
+      id: 1,
+      label: "Laki-laki",
+    },
+    agama: {
+      id: 1,
+      label: "Islam",
+    },
+    golongan_darah: {
+      id: 1,
+      label: "A",
+    },
+    tinggi_badan: 175,
+    berat_badan: 70,
+    no_ijazah: "IJ/VII/147397979",
+    tahun_lulus: 2015,
+    no_str: "STR/01/RA/12164",
+    masa_berlaku_str: "2024-05-23",
+    no_sip: "161652",
+    masa_berlaku_sip: "2024-05-23",
+    tgl_berakhir_pks: "2023-04-01",
+    masa_diklat: 1,
+    jumlah_keluarga: 3,
+    ibu: {
+      id: 1,
+      hubungan: {
+        id: 2,
+        label: "Ibu",
+      },
+      nama: "Siti Hajar",
+      pendidikan_terakhir: "S1 Ekonomi",
+      pekerjaan: "Direktur Pertamina",
+      status_hidup: 1,
+      no_hp: "086817237816",
+      email: "siti@email.com",
+      created_at: "2024-07-01",
+      updated_at: "2024-07-01",
+    },
+    ayah: {
+      id: 2,
+      hubungan: {
+        id: 1,
+        label: "Ayah",
+      },
+      nama: "Abu Hajar",
+      pendidikan_terakhir: "S2 Matematika",
+      pekerjaan: "Astronom",
+      status_hidup: 1,
+      no_hp: "08971287367823",
+      email: "hajarabu@email.com",
+      created_at: "2024-07-01",
+      updated_at: "2024-07-01",
+    },
+    created_at: "2024-06-06T23:48:35.000000Z",
+    updated_at: "2024-06-06T23:48:35.000000Z",
   },
 ];
 
