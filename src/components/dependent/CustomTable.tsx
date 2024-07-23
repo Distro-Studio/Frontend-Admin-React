@@ -178,12 +178,14 @@ export default function CustomTable({
     direction: "asc",
   });
 
+  // Row Click
   const handleRowClick = (rowData: any) => {
     if (onRowClick) {
       onRowClick(rowData);
     }
   };
 
+  // Batch Actions
   const handleSelectAllRows = (isChecked: boolean) => {
     setSelectAllRows(!selectAllRows);
     if (!isChecked) {
@@ -209,6 +211,7 @@ export default function CustomTable({
     });
   };
 
+  // Sort
   const requestSort = (columnIndex: number) => {
     setSortConfig((prevConfig) => ({
       sortKey: columnIndex,
@@ -217,6 +220,14 @@ export default function CustomTable({
           ? "desc"
           : "asc",
     }));
+  };
+  const isDate = (
+    dateString: string | number | boolean | Date | null
+  ): boolean => {
+    if (dateString === null || typeof dateString === "boolean") return false;
+    if (dateString instanceof Date) return true;
+    if (typeof dateString === "string") return !isNaN(Date.parse(dateString));
+    return false;
   };
   const sortedData = () => {
     if (sortConfig.sortKey !== null) {
@@ -235,6 +246,12 @@ export default function CustomTable({
           return sortConfig.direction === "asc"
             ? Number(aValue) - Number(bValue)
             : Number(bValue) - Number(aValue);
+        } else if (isDate(aValue) && isDate(bValue)) {
+          const dateA = new Date(aValue as string);
+          const dateB = new Date(bValue as string);
+          return sortConfig.direction === "asc"
+            ? dateA.getTime() - dateB.getTime()
+            : dateB.getTime() - dateA.getTime();
         } else {
           return sortConfig.direction === "asc"
             ? String(aValue).localeCompare(String(bValue))
