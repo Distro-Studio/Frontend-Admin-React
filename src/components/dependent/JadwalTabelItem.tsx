@@ -127,7 +127,7 @@ export default function TabelJadwalItem({
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            <DisclosureHeader title={"Jancok"} />
+            <DisclosureHeader title={"Detail Jadwal"} />
           </ModalHeader>
           <ModalBody>
             <VStack gap={responsiveSpacing} px={1} flexShrink={0}>
