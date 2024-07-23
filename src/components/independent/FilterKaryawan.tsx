@@ -41,7 +41,7 @@ export default function FilterKaryawan({ ...props }: Props) {
     useFilterKaryawan();
 
   const [localFilterConfig, setLocalFilterConfig] = useState<any | null>(
-    defaultFilterKaryawan
+    filterKaryawan
   );
 
   function filterData() {
