@@ -545,8 +545,8 @@ button[aria-label="Close"] > svg {
   height: 40px !important;
 }
 .rdp-button {
-  width: 36px !important;
-  height: 36px !important;
+  width: 40px !important;
+  height: 40px !important;
   border-radius: 800px !important;
   transition: 200ms;
   /* margin-left: 5px !important; */

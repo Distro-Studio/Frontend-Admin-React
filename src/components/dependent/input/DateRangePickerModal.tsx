@@ -57,6 +57,8 @@ export default function DateRangePickerModal({
   maxRange,
   ...props
 }: Props) {
+  console.log(inputValue);
+
   const initialRef = useRef(null);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -360,38 +362,36 @@ export default function DateRangePickerModal({
             </VStack>
           </ModalBody>
 
-          <ModalFooter>
-            <VStack align={"stretch"} gap={0} w={"100%"}>
-              <Button
-                w={"100%"}
-                className="btn-solid clicky"
-                onClick={() => {
-                  setSelected(undefined);
-                }}
-              >
-                Clear
-              </Button>
+          <ModalFooter gap={2}>
+            <Button
+              w={"100%"}
+              className="btn-solid clicky"
+              onClick={() => {
+                setSelected(undefined);
+              }}
+            >
+              Clear
+            </Button>
 
-              <Button
-                mt={2}
-                colorScheme="ap"
-                className="btn-ap clicky"
-                w={"100%"}
-                isDisabled={
-                  nonNullable
-                    ? selected && selected.from && selected.to
-                      ? false
-                      : true
-                    : (selected && selected.from && selected.to) ||
-                      selected === undefined
+            <Button
+              mt={2}
+              colorScheme="ap"
+              className="btn-ap clicky"
+              w={"100%"}
+              isDisabled={
+                nonNullable
+                  ? selected && selected.from && selected.to
                     ? false
                     : true
-                }
-                onClick={confirmSelected}
-              >
-                Konfirmasi
-              </Button>
-            </VStack>
+                  : (selected && selected.from && selected.to) ||
+                    selected === undefined
+                  ? false
+                  : true
+              }
+              onClick={confirmSelected}
+            >
+              Konfirmasi
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

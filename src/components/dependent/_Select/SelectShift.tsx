@@ -1,9 +1,9 @@
 import { ButtonProps, useDisclosure } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { dummyKompetensi, dummyShift } from "../../../const/dummy";
+import { dummyShift } from "../../../const/dummy";
 import { Interface__SelectOption } from "../../../constant/interfaces";
-import SingleSelectModal from "../input/SingleSelectModal";
 import formatTime from "../../../lib/formatTime";
+import SingleSelectModal from "../input/SingleSelectModal";
 
 interface Props extends ButtonProps {
   name: string;
