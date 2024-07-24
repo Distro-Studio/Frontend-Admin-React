@@ -1,16 +1,16 @@
-import { Wrap } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ExportModal from "../../components/dependent/ExportModal";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelTransferKarywan from "../../components/dependent/TabelTransferKaryawan";
 import AjukanTransferKaryawanModal from "../../components/independent/AjukanTransferKaryawanModal";
 import FilterKaryawan from "../../components/independent/FilterKaryawan";
+import TransferKaryawanTableColumnsConfig from "../../components/independent/TransferKaryawanTableColumnsConfig";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
-import { useBodyColor } from "../../const/colors";
+import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
-import TransferKaryawanTableColumnsConfig from "../../components/independent/TransferKaryawanTableColumnsConfig";
 
 export default function TransferKaryawan() {
   // Filter Config
@@ -31,17 +31,30 @@ export default function TransferKaryawan() {
     console.log("Current filterKaryawan state:", filterKaryawan);
   }, [filterKaryawan]);
 
+  // SX
+  const lightDarkColor = useLightDarkColor();
+
   return (
     <>
       <CWrapper overflowY={"auto"}>
         <CContainer
-          overflowY={"auto"}
-          p={responsiveSpacing}
-          bg={useBodyColor()}
-          borderRadius={12}
           flex={1}
+          px={responsiveSpacing}
+          pb={responsiveSpacing}
+          pt={0}
+          bg={lightDarkColor}
+          borderRadius={12}
+          overflowY={"auto"}
+          className="scrollY"
         >
-          <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
+          <HStack
+            py={responsiveSpacing}
+            justify={"space-between"}
+            w={"100%"}
+            className="tabelConfig scrollX"
+            overflowX={"auto"}
+            flexShrink={0}
+          >
             <SearchComponent
               flex={"1 0 200px"}
               name="search"
@@ -58,7 +71,7 @@ export default function TransferKaryawan() {
             <ExportModal url="" title="Export Transfer Karyawan" />
 
             <AjukanTransferKaryawanModal w={"max-content"} />
-          </Wrap>
+          </HStack>
 
           <TabelTransferKarywan />
         </CContainer>

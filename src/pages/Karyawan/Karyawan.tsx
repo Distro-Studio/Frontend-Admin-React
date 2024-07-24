@@ -46,12 +46,13 @@ export default function Karyawan() {
           bg={lightDarkColor}
           borderRadius={12}
           overflowY={"auto"}
+          className="scrollY"
         >
           <HStack
             py={responsiveSpacing}
             justify={"space-between"}
             w={"100%"}
-            className="tabelConfig noScroll"
+            className="tabelConfig scrollX"
             overflowX={"auto"}
             flexShrink={0}
           >
@@ -72,7 +73,7 @@ export default function Karyawan() {
 
             <ImportModal url={""} title={"Import Karyawan"} px={6} />
 
-            <TambahKaryawanModal w={"max-content"} />
+            <TambahKaryawanModal minW={"fit-content"} />
           </HStack>
 
           <TabelKaryawan />

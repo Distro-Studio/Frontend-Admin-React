@@ -1,9 +1,9 @@
-import { Button, Icon, Wrap } from "@chakra-ui/react";
+import { Button, HStack, Icon } from "@chakra-ui/react";
 import { RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
 import SelectMultiKompensasi from "../../components/dependent/_Select/SelectMultiKompensasi";
-import TabelLembur from "../../components/dependent/TabelLembur";
 import SearchComponent from "../../components/dependent/SearchComponent";
+import TabelLembur from "../../components/dependent/TabelLembur";
 import AjukanLemburModal from "../../components/independent/AjukanLemburModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -27,8 +27,21 @@ export default function Lembur() {
   return (
     <>
       <CWrapper>
-        <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
-          <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
+        <CContainer
+          p={responsiveSpacing}
+          bg={useBodyColor()}
+          borderRadius={12}
+          overflowY={"auto"}
+          className="scrollY"
+        >
+          <HStack
+            py={responsiveSpacing}
+            justify={"space-between"}
+            w={"100%"}
+            className="tabelConfig scrollX"
+            overflowX={"auto"}
+            flexShrink={0}
+          >
             <SearchComponent
               search={filterConfig.search}
               setSearch={(newSearch) => {
@@ -38,7 +51,6 @@ export default function Lembur() {
                 }));
               }}
             />
-
             <SelectMultiKompensasi
               nullLabel={"Semua Kompensasi"}
               placeholder="Filter Kompensasi"
@@ -48,7 +60,6 @@ export default function Lembur() {
               flex={"1 1 165px"}
               maxDisplayed={1}
             />
-
             <Button
               flex={"1 1 110px"}
               variant={"outline"}
@@ -58,9 +69,8 @@ export default function Lembur() {
             >
               Export
             </Button>
-
-            <AjukanLemburModal w={"fit-content"} />
-          </Wrap>
+            <AjukanLemburModal minW={"fit-content"} />
+          </HStack>
 
           <TabelLembur filterConfig={filterConfig} />
         </CContainer>

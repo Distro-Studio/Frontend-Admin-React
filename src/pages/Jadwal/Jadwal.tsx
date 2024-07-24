@@ -1,4 +1,4 @@
-import { Wrap } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import { endOfWeek, startOfWeek } from "date-fns";
 import { useState } from "react";
 import ExportModal from "../../components/dependent/ExportModal";
@@ -10,7 +10,7 @@ import FilterKaryawan from "../../components/independent/FilterKaryawan";
 import TerapkanJadwalModal from "../../components/independent/TerapkanJadwalModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
-import { useBodyColor } from "../../const/colors";
+import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
 
@@ -43,17 +43,30 @@ export default function Jadwal() {
     }));
   };
 
+  // SX
+  const lightDarkColor = useLightDarkColor();
+
   return (
     <>
       <CWrapper>
         <CContainer
-          p={responsiveSpacing}
-          bg={useBodyColor()}
+          flex={1}
+          px={responsiveSpacing}
+          pb={responsiveSpacing}
+          pt={0}
+          bg={lightDarkColor}
           borderRadius={12}
           overflowY={"auto"}
-          flex={1}
+          className="scrollY"
         >
-          <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
+          <HStack
+            py={responsiveSpacing}
+            justify={"space-between"}
+            w={"100%"}
+            className="tabelConfig scrollX"
+            overflowX={"auto"}
+            flexShrink={0}
+          >
             <SearchComponent
               name="search"
               flex={"1 1 165px"}
@@ -65,7 +78,6 @@ export default function Jadwal() {
               }}
               inputValue={filterConfig.search}
             />
-
             <DateRangePickerModal
               id="jadwal-date-range"
               name="date-range"
@@ -75,15 +87,11 @@ export default function Jadwal() {
               maxRange={7}
               nonNullable
             />
-
             <FilterKaryawan />
-
             <ExportModal url="" title="Export Jadwal" />
-
             <ImportModal url="" title="Export Jadwal" />
-
-            <TerapkanJadwalModal w={"fit-content"} />
-          </Wrap>
+            <TerapkanJadwalModal minW={"fit-content"} />
+          </HStack>
 
           <TabelJadwal filterConfig={filterConfig} />
         </CContainer>

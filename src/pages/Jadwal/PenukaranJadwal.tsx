@@ -1,5 +1,6 @@
-import { Wrap } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import SelectStatusPenukaranJadwal from "../../components/dependent/_Select/SelectStatusPenukaranJadwal";
 import ExportModal from "../../components/dependent/ExportModal";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelTukarJadwal from "../../components/dependent/TabelTukarJadwal";
@@ -10,7 +11,6 @@ import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
-import SelectStatusPenukaranJadwal from "../../components/dependent/_Select/SelectStatusPenukaranJadwal";
 
 export default function PenukaranJadwal() {
   // Filter Config
@@ -43,8 +43,16 @@ export default function PenukaranJadwal() {
           bg={useBodyColor()}
           borderRadius={12}
           overflowY={"auto"}
+          className="scrollY"
         >
-          <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
+          <HStack
+            py={responsiveSpacing}
+            justify={"space-between"}
+            w={"100%"}
+            className="tabelConfig scrollX"
+            overflowX={"auto"}
+            flexShrink={0}
+          >
             <SearchComponent
               flex={"1 0 200px"}
               name="search"
@@ -53,7 +61,6 @@ export default function PenukaranJadwal() {
               }}
               inputValue={search}
             />
-
             <SelectStatusPenukaranJadwal
               name="status_penukaran"
               onConfirm={(input) => {
@@ -63,15 +70,12 @@ export default function PenukaranJadwal() {
                 }));
               }}
               inputValue={filterConfig.status_pertukaran}
-              w={"fit-content"}
+              minW={"fit-content"}
             />
-
             <FilterKaryawan />
-
             <ExportModal url="" title="Export Penukaran Jadwal" />
-
-            <AjukanPenukaranJadwalModal w={"fit-content"} />
-          </Wrap>
+            <AjukanPenukaranJadwalModal minW={"fit-content"} />
+          </HStack>
 
           <TabelTukarJadwal filterConfig={filterConfig} />
         </CContainer>

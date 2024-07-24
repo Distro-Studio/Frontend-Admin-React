@@ -1,4 +1,4 @@
-import { Wrap } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import { useState } from "react";
 import SelectMultiStatusCuti from "../../components/dependent/_Select/SelectMultiStatusCuti";
 import SelectMultiTipeCuti from "../../components/dependent/_Select/SelectMultiTipeCuti";
@@ -36,8 +36,21 @@ export default function Cuti() {
   return (
     <>
       <CWrapper>
-        <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
-          <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
+        <CContainer
+          p={responsiveSpacing}
+          bg={useBodyColor()}
+          borderRadius={12}
+          overflowY={"auto"}
+          className="scrollY"
+        >
+          <HStack
+            py={responsiveSpacing}
+            justify={"space-between"}
+            w={"100%"}
+            className="tabelConfig scrollX"
+            overflowX={"auto"}
+            flexShrink={0}
+          >
             <SearchComponent
               search={filterConfig.search}
               setSearch={(newSearch) => {
@@ -47,7 +60,6 @@ export default function Cuti() {
                 }));
               }}
             />
-
             <SelectMultiTipeCuti
               placeholder="Filter Tipe Cuti"
               nullLabel={"Semua Tipe Cuti"}
@@ -57,7 +69,6 @@ export default function Cuti() {
               flex={"1 1 165px"}
               maxDisplayed={1}
             />
-
             <SelectMultiStatusCuti
               placeholder="Filter Status Cuti"
               nullLabel={"Semua Status Cuti"}
@@ -67,11 +78,9 @@ export default function Cuti() {
               flex={"1 1 165px"}
               maxDisplayed={1}
             />
-
             <ExportModal url="" title="Export Cuti" />
-
-            <AjukanCutiModal w={"fit-content"} />
-          </Wrap>
+            <AjukanCutiModal minW={"fit-content"} />
+          </HStack>
 
           <TabelCuti filterConfig={filterConfig} />
         </CContainer>
