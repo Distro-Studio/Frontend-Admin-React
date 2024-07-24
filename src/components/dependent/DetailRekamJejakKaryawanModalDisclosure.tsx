@@ -241,7 +241,9 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
                                 // mb={responsiveSpacing}
                               >
                                 <Avatar
-                                  size={"lg"}
+                                  size={"md"}
+                                  w={"55px"}
+                                  h={"55px"}
                                   src={data.foto_profil}
                                   name={data.nama}
                                 />
@@ -283,10 +285,10 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
 
                               <HStack
                                 align={"stretch"}
-                                h={"16px"}
-                                pl={"44px"}
+                                h={"20px"}
+                                pl={"36px"}
                                 position={"absolute"}
-                                top={"64px"}
+                                top={"60px"}
                                 right={0}
                                 w={"100%"}
                                 zIndex={2}
@@ -294,7 +296,7 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
                                 <Center w={"24px"}>
                                   <Box
                                     w={"1px"}
-                                    h={"16px"}
+                                    h={"20px"}
                                     bg={"var(--divider3)"}
                                   />
                                 </Center>
@@ -305,9 +307,9 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
                                 flex={1}
                                 overflowY={"auto"}
                                 className="scrollY"
-                                pl={"44px"}
+                                pl={"36px"}
                                 pr={6}
-                                pt={2}
+                                pt={responsiveSpacing}
                               >
                                 {data.rekam_jejak.map(
                                   (item: any, i: number) => (
