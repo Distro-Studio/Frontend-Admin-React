@@ -51,7 +51,9 @@ export default function TabelKaryawan() {
   >({
     initialData: dummyKaryawans,
     url: "",
-    payload: filterKaryawan,
+    payload: {
+      filterConfig: filterKaryawan,
+    },
     limit: limitConfig,
     dependencies: [limitConfig, pageConfig, filterKaryawan],
   });

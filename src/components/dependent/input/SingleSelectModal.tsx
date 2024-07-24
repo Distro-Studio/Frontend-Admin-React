@@ -103,7 +103,6 @@ export default function SingleSelectModal({
     <>
       <Button
         className="btn-clear"
-        px={"16px !important"}
         border={"1px solid var(--divider3)"}
         borderColor={isError ? errorColor : ""}
         borderRadius={8}
@@ -120,6 +119,8 @@ export default function SingleSelectModal({
         justifyContent={"space-between"}
         w={"100%"}
         role="group"
+        px={"12px !important"}
+        pl={"16px !important"}
         {...props}
       >
         <HStack>

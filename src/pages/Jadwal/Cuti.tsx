@@ -82,10 +82,11 @@ export default function Cuti() {
               }}
               inputValue={filterConfig.jenis_cuti}
               optionsDisplay="chip"
+              pr={5}
             />
 
             <MultiSelectStatusCuti
-              name="status_cuti"
+              name={"status_cuti"}
               minW={"fit-content"}
               w={"fit-content"}
               placeholder="Filter Status Cuti"
@@ -97,7 +98,9 @@ export default function Cuti() {
               }}
               inputValue={filterConfig.status_cuti}
               optionsDisplay="chip"
+              pr={5}
             />
+
             <ExportModal url="" title="Export Cuti" />
 
             <AjukanCutiModal minW={"fit-content"} />
