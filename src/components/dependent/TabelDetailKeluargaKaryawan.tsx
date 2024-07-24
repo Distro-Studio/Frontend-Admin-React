@@ -8,17 +8,6 @@ interface Props {
 }
 
 export default function TabelDetailKeluargaKaryawan({ data }: Props) {
-  // Row Options Config
-  // const rowOptions = [
-  //   {
-  //     label: "Edit",
-  //     icon: <Icon as={RiEditLine} fontSize={iconSize} opacity={0.4} />,
-  //     callback: (row: any) => {
-  //       console.log(row);
-  //     },
-  //   },
-  // ];
-
   const formattedHeader = [
     {
       th: "Nama",

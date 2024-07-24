@@ -17,6 +17,8 @@ export default function AvatarAndNameTableData({
   withJenisKaryawan,
   ...props
 }: Props) {
+  console.log(data);
+  
   return (
     <HStack
       w={"180px"}
@@ -29,7 +31,7 @@ export default function AvatarAndNameTableData({
       <DetailKaryawanModalDisclosure karyawan_id={data.id}>
         <Avatar
           cursor={"pointer"}
-          src={data.user.foto_profil || ""}
+          src={data.user?.foto_profil || ""}
           name={data.user.nama}
           size={withJenisKaryawan ? "md" : "sm"}
         />

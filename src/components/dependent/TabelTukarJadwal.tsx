@@ -1,294 +1,208 @@
 import {
-  Avatar,
+  Box,
+  Button,
   HStack,
-  Icon,
-  Table,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
 import { useState } from "react";
-import { useBodyColor, useContentBgColor } from "../../const/colors";
-import { dummyKaryawanList } from "../../const/dummy";
-import { Tabel__Column__Interface } from "../../const/interfaces";
+import { dummyTukarJadwals } from "../../const/dummy";
+import { responsiveSpacing } from "../../const/sizes";
+import useFilterKaryawan from "../../global/useFilterKaryawan";
+import useBackOnClose from "../../hooks/useBackOnClose";
+import useDataState from "../../hooks/useDataState";
+import backOnClose from "../../lib/backOnClose";
 import formatDate from "../../lib/formatDate";
-import ComponentSpinner from "../independent/ComponentSpinner";
-import TabelContainer from "../wrapper/CustomTableContainer";
+import NoData from "../independent/NoData";
+import Skeleton from "../independent/Skeleton";
+import CustomTableContainer from "../wrapper/CustomTableContainer";
 import BooleanBadge from "./BooleanBadge";
+import CustomTable from "./CustomTable";
+import DisclosureHeader from "./DisclosureHeader";
+import Retry from "./Retry";
 import TabelFooterConfig from "./TabelFooterConfig";
+import AvatarAndNameTableData from "./AvatarAndNameTableData";
+
+const PertukaranJadwalModal = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  useBackOnClose(`pertukaran-jadwal-modal`, isOpen, onOpen, onClose);
+
+  return (
+    <>
+      <Button
+        colorScheme="ap"
+        variant={"ghost"}
+        className="clicky"
+        onClick={onOpen}
+      >
+        Lihat
+      </Button>
+
+      <Modal isOpen={isOpen} onClose={backOnClose} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            <DisclosureHeader title={"Pertukaran Jadwal"} />
+          </ModalHeader>
+          <ModalBody></ModalBody>
+          <ModalFooter></ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+};
 
 interface Props {
   filterConfig?: any;
 }
 
 export default function TabelKaryawan({ filterConfig }: Props) {
-  const columns: Tabel__Column__Interface[] = [
+  // Limit Config
+  const [limitConfig, setLimitConfig] = useState<number>(10);
+  // Pagination Config
+  const [pageConfig, setPageConfig] = useState<number>(1);
+  // Filter Config
+  const { filterKaryawan } = useFilterKaryawan();
+
+  const { error, loading, data, retry } = useDataState<any>({
+    initialData: dummyTukarJadwals,
+    url: "",
+    payload: [filterKaryawan],
+    dependencies: [],
+  });
+
+  const formattedHeader = [
     {
-      key: "created_at",
-      label: "Tanggal Pengajuan",
-      dataType: "date",
+      th: "Tanggal Pengajuan",
+      isSortable: true,
     },
     {
-      key: "unit_kerja",
-      label: "Unit Kerja",
-      dataType: "string",
+      th: "Status Pertukaran",
+      isSortable: true,
+      cProps: {
+        justify: "center",
+      },
     },
     {
-      key: "nama",
-      label: "Karyawan Pengajuan",
-      dataType: "avatarAndName",
+      th: "Unit Kerja",
+      isSortable: true,
     },
     {
-      key: "jadwal_pengajuan",
-      label: "Jadwal Pengajuan",
-      dataType: "date",
+      th: "Karyawan Pengajuan",
+      isSortable: true,
     },
     {
-      key: "user_ditukar",
-      label: "Karyawan Ditukar",
-      dataType: "string",
+      th: "Karyawan Ditukar",
+      isSortable: true,
     },
     {
-      key: "jadwal_ditukar",
-      label: "Jadwal Ditukar",
-      dataType: "date",
-    },
-    {
-      key: "status_penukaran",
-      label: "Status Penukaran",
-      dataType: "badge",
-      preferredTextAlign: "center",
+      th: "Pertukaran Jadwal",
+      cProps: {
+        justify: "center",
+      },
     },
   ];
 
-  //! DEBUG
-  // console.log(filterConfig);
-  //! DEBUG
-
-  //TODO get karyawan
-
-  const [data] = useState<any[] | null>(dummyKaryawanList);
-  const [loading] = useState<boolean>(false);
-
-  // Limit Config
-  const [limitConfig, setLimitConfig] = useState<number>(10);
-
-  // Pagination Config
-  const [pageConfig, setPageConfig] = useState<number>(1);
-
-  // Sort Config
-  const [sortConfig, setSortConfig] = useState<{
-    key: string;
-    direction: "asc" | "desc";
-  } | null>({ key: columns[0].key, direction: "asc" });
-  const sortedData = data && [...data];
-  if (sortConfig !== null && sortedData) {
-    sortedData.sort((a, b) => {
-      //@ts-ignore
-      let aValue = a[sortConfig.key];
-      //@ts-ignore
-      let bValue = b[sortConfig.key];
-
-      // Handle nested properties
-      if (sortConfig.key === "nama") {
-        aValue = a.user?.nama;
-        bValue = b.user?.nama;
-      } else if (sortConfig.key === "unit_kerja") {
-        aValue = a.unit_kerja?.nama_unit;
-        bValue = b.unit_kerja?.nama_unit;
-      } else if (sortConfig.key === "status") {
-        aValue = !a.tgl_keluar ? 1 : 0;
-        bValue = !b.tgl_keluar ? 1 : 0;
-      } else if (sortConfig.key === "tgl_keluar") {
-        aValue = a.tgl_keluar;
-        bValue = b.tgl_keluar;
-      }
-
-      if (aValue === null && bValue === null) return 0;
-      if (aValue === null) return 1; // Nilai null di bawah
-      if (bValue === null) return -1; // Nilai null di bawah
-
-      if (aValue < bValue) {
-        return sortConfig.direction === "asc" ? -1 : 1;
-      }
-      if (aValue > bValue) {
-        return sortConfig.direction === "asc" ? 1 : -1;
-      }
-      return 0;
-    });
-  }
-  const sort = (key: string) => {
-    let direction: "asc" | "desc" = "asc";
-    if (
-      sortConfig &&
-      sortConfig.key === key &&
-      sortConfig.direction === "asc"
-    ) {
-      direction = "desc";
-    }
-    setSortConfig({ key, direction });
-  };
-
-  // SX
-  const contentBgColor = useContentBgColor();
-  const bodyColor = useBodyColor();
+  const formattedData = data?.map((item: any) => ({
+    id: item.id,
+    columnsFormat: [
+      {
+        value: item.created_at,
+        td: formatDate(item.created_at),
+      },
+      {
+        value: item.status_penukaran,
+        td: (
+          <BooleanBadge
+            w={"120px"}
+            data={item.status_penukaran}
+            trueValue="Disetujui"
+            falseValue="Ditolak"
+          />
+        ),
+        cProps: {
+          justify: "center",
+        },
+      },
+      {
+        value: item.unit_kerja.nama_unit,
+        td: item.unit_kerja.nama_unit,
+      },
+      {
+        value: item.user.nama,
+        td: <AvatarAndNameTableData data={item} />,
+      },
+      {
+        value: item.user_ditukar.nama,
+        td: <AvatarAndNameTableData data={item} />,
+      },
+      {
+        value: item.jadwal_pengajuan.tgl_mulai,
+        td: <PertukaranJadwalModal />,
+        cProps: {
+          justify: "center",
+        },
+      },
+    ],
+  }));
 
   return (
     <>
-      {loading && <ComponentSpinner mt={4} />}
-
-      {!loading && sortedData && (
+      {error && (
+        <Box my={"auto"}>
+          <Retry loading={loading} retry={retry} />
+        </Box>
+      )}
+      {!error && (
         <>
-          <TabelContainer>
-            <Table minW={"100%"}>
-              <Thead>
-                <Tr position={"sticky"} top={0} zIndex={3}>
-                  {columns.map((column, i) => (
-                    <Th
-                      key={i}
-                      whiteSpace={"nowrap"}
-                      onClick={() => {
-                        if (column.dataType !== "action") {
-                          sort(column.key);
-                        }
-                      }}
-                      cursor={"pointer"}
-                      borderBottom={"none !important"}
-                      bg={bodyColor}
-                      zIndex={2}
-                      p={0}
-                      {...column.thProps}
-                    >
-                      {column.dataType === "action" ||
-                      column.dataType === "link" ? (
-                        <HStack
-                          justify={"center"}
-                          borderBottom={"1px solid var(--divider3)"}
-                          px={4}
-                          py={3}
-                          h={"52px"}
-                          pl={i === 0 ? 4 : ""}
-                          pr={i === columns.length - 1 ? 4 : ""}
-                          {...column.thContentProps}
-                        >
-                          <Text>{column.label}</Text>
-                        </HStack>
-                      ) : (
-                        <HStack
-                          justify={
-                            column.preferredTextAlign === "center"
-                              ? "center"
-                              : column.dataType === "numeric"
-                              ? "flex-end"
-                              : "space-between"
-                          }
-                          borderBottom={"1px solid var(--divider3)"}
-                          px={4}
-                          py={3}
-                          h={"52px"}
-                          pl={i === 0 ? 4 : ""}
-                          pr={i === columns.length - 1 ? 4 : ""}
-                          {...column.thContentProps}
-                        >
-                          <Text
-                            fontWeight={600}
-                            flexShrink={0}
-                            lineHeight={1.2}
-                          >
-                            {column.label}
-                          </Text>
+          {loading && (
+            <>
+              <Skeleton flex={1} mx={"auto"} />
+              <HStack justify={"space-between"} mt={responsiveSpacing}>
+                <Skeleton maxW={"120px"} />
+                <Skeleton maxW={"300px"} h={"20px"} />
+                <Skeleton maxW={"112px"} />
+              </HStack>
+            </>
+          )}
+          {!loading && (
+            <>
+              {!formattedData && <NoData />}
 
-                          {sortConfig && sortConfig.key === column.key && (
-                            <>
-                              {sortConfig.direction === "asc" ? (
-                                <Icon
-                                  as={RiArrowUpLine}
-                                  color={"p.500"}
-                                  fontSize={16}
-                                />
-                              ) : (
-                                <Icon
-                                  as={RiArrowDownLine}
-                                  color={"p.500"}
-                                  fontSize={16}
-                                />
-                              )}
-                            </>
-                          )}
-                        </HStack>
-                      )}
-                    </Th>
-                  ))}
-                </Tr>
-              </Thead>
+              {formattedData && (
+                <>
+                  <CustomTableContainer>
+                    <CustomTable
+                      formattedHeader={formattedHeader}
+                      formattedData={formattedData}
+                    />
+                  </CustomTableContainer>
 
-              <Tbody>
-                {sortedData.map((row, i) => (
-                  <Tr
-                    h={"72px"}
-                    key={i}
-                    bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                  >
-                    <Td whiteSpace={"nowrap"}>
-                      {formatDate(row.tgl_lahir as string)}
-                    </Td>
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
-                    <Td whiteSpace={"nowrap"}>
-                      <HStack>
-                        <Avatar
-                          size={"sm"}
-                          name={row.user.nama}
-                          src={row.user.foto_profil}
-                        />
-                        <Text>{row.user.nama}</Text>
-                      </HStack>
-                    </Td>
-                    <Td whiteSpace={"nowrap"}>
-                      {formatDate(row.tgl_lahir as string)}
-                    </Td>
-                    <Td whiteSpace={"nowrap"}>
-                      <HStack>
-                        <Avatar
-                          size={"sm"}
-                          name={row.user.nama}
-                          src={row.user.foto_profil}
-                        />
-                        <Text>{row.user.nama}</Text>
-                      </HStack>
-                    </Td>
-                    <Td whiteSpace={"nowrap"}>
-                      {formatDate(row.tgl_lahir as string)}
-                    </Td>
-                    <Td whiteSpace={"nowrap"} textAlign={"center"}>
-                      <BooleanBadge
-                        data={Math.random() < 0.5 ? 0 : 1}
-                        trueValue="Disetujui"
-                        falseValue="Ditolak"
-                        w={"100%"}
-                        maxW={"150px"}
-                      />
-                    </Td>
-                  </Tr>
-                ))}
-              </Tbody>
-            </Table>
-          </TabelContainer>
-
-          <TabelFooterConfig
-            limitConfig={limitConfig}
-            setLimitConfig={setLimitConfig}
-            pageConfig={pageConfig}
-            setPageConfig={setPageConfig}
-            paginationData={{
-              prev_page_url: "",
-              next_page_url: "",
-              last_page: 1,
-            }}
-          />
+                  <TabelFooterConfig
+                    limitConfig={limitConfig}
+                    setLimitConfig={setLimitConfig}
+                    pageConfig={pageConfig}
+                    setPageConfig={setPageConfig}
+                    paginationData={{
+                      prev_page_url: "",
+                      next_page_url: "",
+                      last_page: 1,
+                    }}
+                    // footer={
+                    //   <Text opacity={0.4}>
+                    //     Klik row untuk melihat detail karyawan
+                    //   </Text>
+                    // }
+                  />
+                </>
+              )}
+            </>
+          )}
         </>
       )}
     </>
