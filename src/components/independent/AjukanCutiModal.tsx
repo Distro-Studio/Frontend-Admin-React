@@ -104,10 +104,10 @@ export default function AjukanCutiModal({ ...props }: Props) {
                 </FormLabel>
                 <SelectTipeCuti
                   name="tipe_cuti"
-                  formik={formik}
-                  placeholder="Pilih Tipe Cuti"
-                  initialSelected={formik.values.tipe_cuti}
-                  noUseBackOnClose
+                  onConfirm={(input) => {
+                    formik.setFieldValue("tipe_cuti", input);
+                  }}
+                  inputValue={formik.values.tipe_cuti}
                 />
                 <FormErrorMessage>
                   {formik.errors.tipe_cuti as string}

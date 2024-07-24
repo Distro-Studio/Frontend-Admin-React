@@ -16,7 +16,7 @@ interface Props extends ButtonProps {
   nonNullable?: boolean;
 }
 
-export default function SelectMultiKaryawan({
+export default function MultiSelectTipeCuti({
   name,
   onConfirm,
   inputValue,
@@ -47,7 +47,7 @@ export default function SelectMultiKaryawan({
 
   return (
     <MultipleSelectModal
-      id="select-unit_kerja-modal"
+      id="multi-select-tipe-cuti-modal"
       name={name}
       isOpen={isOpen}
       onOpen={onOpen}
@@ -61,7 +61,7 @@ export default function SelectMultiKaryawan({
       optionsDisplay={optionsDisplay}
       maxSelectedDisplay={maxSelectedDisplay}
       isError={isError}
-      placeholder={placeholder || "Multi Pilih Jenis Cuti"}
+      placeholder={placeholder || "Multi Pilih Tipe Cuti"}
       nonNullable={nonNullable}
       {...props}
     />

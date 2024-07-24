@@ -172,10 +172,10 @@ export default function AjukanLemburModal({ ...props }: Props) {
                   </FormLabel>
                   <SelectTipeCuti
                     name="tipe"
-                    formik={formik}
-                    placeholder="Pilih Tipe"
-                    initialSelected={formik.values.tipe}
-                    noUseBackOnClose
+                    onConfirm={(input) => {
+                      formik.setFieldValue("tipe", input);
+                    }}
+                    inputValue={formik.values.tipe}
                   />
                   <FormErrorMessage>
                     {formik.errors.tipe as string}

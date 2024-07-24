@@ -1,7 +1,7 @@
 import { HStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import MultiSelectStatusCuti from "../../components/dependent/_Select/MultiSelectStatusCuti";
-import MultiSelectJenisCuti from "../../components/dependent/_Select/MultiSelectJenisCuti";
+import MultiSelectTipeCuti from "../../components/dependent/_Select/MultiSelectTipeCuti";
 import ExportModal from "../../components/dependent/ExportModal";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelCuti from "../../components/dependent/TabelCuti";
@@ -69,11 +69,11 @@ export default function Cuti() {
               inputValue={search}
             />
 
-            <MultiSelectJenisCuti
+            <MultiSelectTipeCuti
               name={"jenis_cuti"}
               minW={"fit-content"}
               maxW={"165px !important"}
-              placeholder="Filter Jenis Cuti"
+              placeholder="Filter Tipe Cuti"
               onConfirm={(input: any) => {
                 setFilterConfig((ps: any) => ({
                   ...ps,
