@@ -189,7 +189,7 @@ export const globalTheme = extendTheme({
           // bg: props.colorMode === "dark" ? "dark" : "white",
           bg: "#252525ee",
           color: "white",
-          backdropFilter: "blur(40px)",
+          backdropFilter: "blur(10px)",
           border: "1px solid var(--divider3)",
           overflow: "hidden",
           boxShadow: "none",

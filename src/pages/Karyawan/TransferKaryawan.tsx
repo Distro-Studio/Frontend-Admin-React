@@ -70,7 +70,7 @@ export default function TransferKaryawan() {
 
             <ExportModal url="" title="Export Transfer Karyawan" />
 
-            <AjukanTransferKaryawanModal w={"max-content"} />
+            <AjukanTransferKaryawanModal minW={"fit-content"} />
           </HStack>
 
           <TabelTransferKarywan />
