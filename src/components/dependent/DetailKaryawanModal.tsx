@@ -143,8 +143,7 @@ export default function DetailKaryawanModal({
                         mb={responsiveSpacing}
                       >
                         <CContainer
-                          gap={responsiveSpacing}
-                          overflowY={"auto"}
+                          overflowY={[null, null, null, "auto"]}
                           className="scrollY"
                           bg={lightDarkColor}
                           px={responsiveSpacing}
@@ -154,6 +153,7 @@ export default function DetailKaryawanModal({
                             gap={responsiveSpacing}
                             borderRadius={12}
                             align={"center"}
+                            mb={12}
                           >
                             <Avatar
                               w={"200px"}
@@ -423,7 +423,8 @@ export default function DetailKaryawanModal({
                           className="scrollY"
                         >
                           <HStack
-                            px={[0, null, 5]}
+                            pr={[0, null, 5]}
+                            pl={[0, null, 4]}
                             position={"sticky"}
                             top={"0"}
                             bg={lightDarkColor}

@@ -1,12 +1,12 @@
-import { HStack } from "@chakra-ui/react";
+import { HStack, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import { responsiveSpacing } from "../../const/sizes";
 import formatNumber from "../../lib/formatNumber";
 import NotFound from "../independent/NotFound";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
 import AvatarAndNameTableData from "./AvatarAndNameTableData";
-import BooleanBadge from "./BooleanBadge";
 import CustomTable from "./CustomTable";
+import DetailPenggajianKaryawanModal from "./DetailPenggajianKaryawanModal";
 import SearchComponent from "./input/SearchComponent";
 
 interface Props {
@@ -14,6 +14,9 @@ interface Props {
 }
 
 export default function TabelDetailPenggajian({ data }: Props) {
+  // Detail Penggajian Karyawan Disclosure
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const [search, setSearch] = useState("");
 
   const fd = data.filter((item) => {
@@ -33,13 +36,6 @@ export default function TabelDetailPenggajian({ data }: Props) {
       },
       cProps: {
         borderRight: "1px solid var(--divider3)",
-      },
-    },
-    {
-      th: "Verifikasi Penggajian",
-      isSortable: true,
-      cProps: {
-        justify: "center",
       },
     },
     {
@@ -89,20 +85,6 @@ export default function TabelDetailPenggajian({ data }: Props) {
         },
       },
       {
-        value: item.status_penggajian,
-        td: (
-          <BooleanBadge
-            data={item.status_penggajian}
-            trueValue="Diverifikasi"
-            falseValue="Belum Diverifikasi"
-            w={"150px"}
-          />
-        ),
-        cProps: {
-          justify: "center",
-        },
-      },
-      {
         value: item.unit_kerja.nama_unit,
         td: item.unit_kerja.nama_unit,
       },
@@ -149,10 +131,18 @@ export default function TabelDetailPenggajian({ data }: Props) {
           <CustomTable
             formattedHeader={formattedHeader}
             formattedData={formattedData}
+            onRowClick={onOpen}
             // rowOptions={rowOptions}
           />
         </CustomTableContainer>
       )}
+
+      <DetailPenggajianKaryawanModal
+        karyawan_id={1}
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onClose={onClose}
+      />
     </>
   );
 }

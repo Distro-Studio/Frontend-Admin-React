@@ -11,13 +11,14 @@ import {
   VStack,
   Wrap,
 } from "@chakra-ui/react";
+import { RiSendPlaneFill } from "@remixicon/react";
 import { useRef } from "react";
 import { responsiveSpacing } from "../../const/sizes";
+import { iconSize } from "../../constant/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import useDataState from "../../hooks/useDataState";
 import backOnClose from "../../lib/backOnClose";
 import formatDate from "../../lib/formatDate";
-import formatNumber from "../../lib/formatNumber";
 import ComponentSpinner from "../independent/ComponentSpinner";
 import NoData from "../independent/NoData";
 import CContainer from "../wrapper/CContainer";
@@ -25,8 +26,6 @@ import BooleanBadge from "./BooleanBadge";
 import DisclosureHeader from "./DisclosureHeader";
 import Retry from "./Retry";
 import TabelDetailPenggajian from "./TabelDetailPenggajian";
-import { RiSendPlaneFill } from "@remixicon/react";
-import { iconSize } from "../../constant/sizes";
 
 interface Props {
   penggajian_id: number;
@@ -223,17 +222,6 @@ export default function DetailPenggajianModal({
                           </Text>
                           <Text fontWeight={500}>
                             {formatDate(data.data_riwayat.update_terakhir)}
-                          </Text>
-                        </VStack>
-
-                        <VStack align={"stretch"}>
-                          <Text fontSize={14} opacity={0.6}>
-                            Penggajian Diverifikasi
-                          </Text>
-                          <Text fontWeight={500}>
-                            {formatNumber(
-                              data.data_riwayat.karyawan_verifikasi
-                            )}
                           </Text>
                         </VStack>
 
