@@ -57,7 +57,7 @@ export default function TabelCuti({ filterConfig }: Props) {
       },
     },
     {
-      th: "Jenis Cuti",
+      th: "Tipe Cuti",
       isSortable: true,
     },
     {

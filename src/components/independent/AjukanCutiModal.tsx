@@ -5,48 +5,42 @@ import {
   FormErrorMessage,
   FormLabel,
   Icon,
-  Input,
-  InputGroup,
-  InputRightElement,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { RiCalendarCloseFill } from "@remixicon/react";
 import { useFormik } from "formik";
-import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../lib/backOnCloseOld";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
+import { iconSize } from "../../const/sizes";
 import SelectKaryawan from "../dependent/_Select/SelectKaryawan";
 import SelectTipeCuti from "../dependent/_Select/SelectTipeCuti";
+import DisclosureHeader from "../dependent/DisclosureHeader";
+import DateRangePickerModal from "../dependent/input/DateRangePickerModal";
 import RequiredForm from "../form/RequiredForm";
-import { RiCalendarCloseFill } from "@remixicon/react";
-import { iconSize } from "../../const/sizes";
-
+import useBackOnClose from "../../hooks/useBackOnClose";
+import backOnClose from "../../lib/backOnClose";
 interface Props extends ButtonProps {}
 
 export default function AjukanCutiModal({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
-  const initialRef = useRef(null);
+  useBackOnClose("ajukan-cuti-modal", isOpen, onOpen, onClose);
 
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
       karyawan: "" as any,
       tipe_cuti: "" as any,
-      durasi: "",
+      range_tgl: undefined,
     },
     validationSchema: yup.object().shape({
       karyawan: yup.object().required("Harus diisi"),
       tipe_cuti: yup.object().required("Harus diisi"),
-      durasi: yup.string().required("Harus diisi"),
+      range_tgl: yup.object().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
@@ -68,16 +62,16 @@ export default function AjukanCutiModal({ ...props }: Props) {
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          backOnClose(onClose);
+          backOnClose();
           formik.resetForm();
         }}
-        initialFocusRef={initialRef}
         isCentered
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Ajukan Cuti</ModalHeader>
+          <ModalHeader>
+            <DisclosureHeader title="Ajukan Cuti" />
+          </ModalHeader>
           <ModalBody>
             <form id="ajukanCutiForm" onSubmit={formik.handleSubmit}>
               <FormControl
@@ -120,19 +114,21 @@ export default function AjukanCutiModal({ ...props }: Props) {
                 </FormErrorMessage>
               </FormControl>
 
-              <FormControl isInvalid={formik.errors.durasi ? true : false}>
+              <FormControl isInvalid={formik.errors.range_tgl ? true : false}>
                 <FormLabel>
-                  Durasi
+                  Rentang Tanggal
                   <RequiredForm />
                 </FormLabel>
-                <InputGroup>
-                  <Input name="durasi" placeholder="5" pr={16} />
-                  <InputRightElement w={"fit-content"} flexShrink={0} px={4}>
-                    <Text>Hari</Text>
-                  </InputRightElement>
-                </InputGroup>
+                <DateRangePickerModal
+                  id="ajukan-cuti-date-range-picker-modal"
+                  name="range_tgl"
+                  onConfirm={(input) => {
+                    formik.setFieldValue("range_tgl", input);
+                  }}
+                  inputValue={formik.values.range_tgl}
+                />
                 <FormErrorMessage>
-                  {formik.errors.durasi as string}
+                  {formik.errors.range_tgl as string}
                 </FormErrorMessage>
               </FormControl>
             </form>
