@@ -2,11 +2,13 @@ import { Box, BoxProps, useDisclosure } from "@chakra-ui/react";
 import DetailKaryawanModal from "./DetailKaryawanModal";
 
 interface Props extends BoxProps {
-  karyawan_id: number;
+  user_id: number;
+  karyawan_id?: number;
   children: any;
 }
 
 export default function DetailKaryawanModalDisclosure({
+  user_id,
   karyawan_id,
   children,
   ...props
@@ -27,6 +29,7 @@ export default function DetailKaryawanModalDisclosure({
       </Box>
 
       <DetailKaryawanModal
+        user_id={user_id}
         karyawan_id={karyawan_id}
         isOpen={isOpen}
         onOpen={onOpen}

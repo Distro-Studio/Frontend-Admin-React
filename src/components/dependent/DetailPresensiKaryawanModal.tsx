@@ -159,7 +159,7 @@ export default function DetailPresensiKaryawanModal({
                             my={"auto"}
                           >
                             <DetailKaryawanModalDisclosure
-                              karyawan_id={data.user.id}
+                              user_id={data.user.id}
                             >
                               <Avatar
                                 w={"200px"}

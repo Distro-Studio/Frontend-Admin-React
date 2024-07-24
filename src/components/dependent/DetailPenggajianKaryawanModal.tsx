@@ -2,17 +2,15 @@ import {
   Avatar,
   Box,
   HStack,
-  Icon,
   Modal,
   ModalBody,
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  SimpleGrid,
   Text,
   VStack,
+  Wrap,
 } from "@chakra-ui/react";
-import { RiCircleFill } from "@remixicon/react";
 import { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { useLightDarkColor } from "../../const/colors";
@@ -20,16 +18,15 @@ import { responsiveSpacing } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import useDataState from "../../hooks/useDataState";
 import backOnClose from "../../lib/backOnClose";
+import formatNumber from "../../lib/formatNumber";
 import ComponentSpinner from "../independent/ComponentSpinner";
 import FlexLine from "../independent/FlexLine";
 import NoData from "../independent/NoData";
 import CContainer from "../wrapper/CContainer";
-import BooleanBadge from "./BooleanBadge";
 import DetailKaryawanModalDisclosure from "./DetailKaryawanModalDisclosure";
 import DisclosureHeader from "./DisclosureHeader";
 import Retry from "./Retry";
 import SearchComponent from "./input/SearchComponent";
-import formatNumber from "../../lib/formatNumber";
 
 interface Props {
   karyawan_id: number;
@@ -204,259 +201,147 @@ export default function DetailPenggajianKaryawanModal({
                       h={"calc(100vh - 70px)"}
                       overflowY={"auto"}
                       className="scrollY"
+                      mb={responsiveSpacing}
                     >
-                      <SimpleGrid
-                        columns={[1, null, null, 2]}
-                        flex={1}
+                      <CContainer
+                        gap={responsiveSpacing}
                         overflowY={"auto"}
                         className="scrollY"
-                        mb={responsiveSpacing}
                       >
-                        <CContainer
-                          gap={responsiveSpacing}
-                          overflowY={[null, null, null, "auto"]}
-                          className="scrollY"
-                          bg={lightDarkColor}
+                        <Wrap
+                          spacing={responsiveSpacing}
+                          align={"center"}
                           px={responsiveSpacing}
-                          justify={"center"}
+                        >
+                          <DetailKaryawanModalDisclosure user_id={data.user.id}>
+                            <Avatar
+                              size={"md"}
+                              w={"55px"}
+                              h={"55px"}
+                              src={data.user.foto_profil}
+                              name={data.user.nama}
+                            />
+                          </DetailKaryawanModalDisclosure>
+
+                          <VStack align={"stretch"}>
+                            <Text fontSize={14} opacity={0.6}>
+                              Nama Karyawan
+                            </Text>
+                            <Text fontWeight={500}>{data.user.nama}</Text>
+                          </VStack>
+
+                          <VStack align={"stretch"}>
+                            <Text fontSize={14} opacity={0.6}>
+                              Kelompok Gaji
+                            </Text>
+                            <Text fontWeight={500}>
+                              {data.kelompok_gaji.nama_kelompok}
+                            </Text>
+                          </VStack>
+
+                          <VStack align={"stretch"}>
+                            <Text fontSize={14} opacity={0.6}>
+                              Kode PTKP
+                            </Text>
+                            <Text fontWeight={500}>{data.ptkp.kode_ptkp} </Text>
+                          </VStack>
+                        </Wrap>
+
+                        <HStack
+                          pr={[0, null, 5]}
+                          pl={[0, null, 4]}
+                          position={"sticky"}
+                          top={"0"}
+                          bg={lightDarkColor}
+                          zIndex={2}
+                        >
+                          <SearchComponent
+                            name="search"
+                            onChangeSetter={(input) => {
+                              setSearch(input);
+                            }}
+                            inputValue={search}
+                          />
+                        </HStack>
+
+                        <CContainer
+                          flex={1}
+                          overflowY={"auto"}
+                          bg={lightDarkColor}
+                          gap={responsiveSpacing}
                         >
                           <VStack
+                            align={"stretch"}
                             gap={responsiveSpacing}
-                            borderRadius={12}
-                            align={"center"}
-                            mb={[12, null, null, 0]}
+                            flex={1}
+                            overflowY={"auto"}
+                            className="scrollY"
+                            px={responsiveSpacing}
                           >
-                            <DetailKaryawanModalDisclosure
-                              karyawan_id={karyawan_id}
-                            >
-                              <Avatar
-                                w={"200px"}
-                                h={"200px"}
-                                size={"xxl"}
-                                fontSize={"64px !important"}
-                                src={data.user.foto_profil}
-                                name={data.user.nama}
-                              />
-                            </DetailKaryawanModalDisclosure>
-
-                            <VStack gap={1}>
-                              <Text
-                                fontWeight={700}
-                                fontSize={32}
-                                lineHeight={1.3}
-                              >
-                                {data.user.nama}
+                            <VStack align={"stretch"} gap={0}>
+                              <Text fontSize={20} fontWeight={600} mb={4}>
+                                Rincian Penggajian
                               </Text>
 
-                              <HStack mb={2}>
-                                <HStack opacity={0.6}>
-                                  <Text>{data.email}</Text>
-                                  <Icon
-                                    as={RiCircleFill}
-                                    fontSize={8}
-                                    opacity={0.4}
-                                  />
-                                  <Text>{data.user.username}</Text>
-                                </HStack>
-                              </HStack>
+                              <VStack
+                                align={"stretch"}
+                                gap={4}
+                                // ref={dataPresensiRef}
+                              >
+                                {data.detail_gaji.map(
+                                  (item: any, i: number) => (
+                                    <HStack key={i} justify={"space-between"}>
+                                      <Box opacity={0.6}>
+                                        <Highlighter
+                                          highlightClassName="hw"
+                                          unhighlightClassName="uw"
+                                          searchWords={searchQuery}
+                                          autoEscape={true}
+                                          textToHighlight={item.nama_detail}
+                                        />
+                                      </Box>
+                                      <FlexLine />
+                                      <Text
+                                        fontWeight={500}
+                                        textAlign={"right"}
+                                        color={
+                                          item.kategori === "Pengurang"
+                                            ? "red.400"
+                                            : ""
+                                        }
+                                      >
+                                        {item.kategori === "Pengurang"
+                                          ? "-"
+                                          : ""}{" "}
+                                        Rp {formatNumber(item.besaran) || 0}
+                                      </Text>
+                                    </HStack>
+                                  )
+                                )}
 
-                              <HStack>
-                                <BooleanBadge
-                                  w={"fit-content"}
-                                  borderRadius={"full"}
-                                  data={data.user.status_aktif}
-                                  trueValue="Aktif"
-                                  falseValue="Tidak Aktif"
-                                  fontSize={13}
-                                />
-                              </HStack>
+                                <HStack
+                                  justify={"space-between"}
+                                  borderTop={"1px solid var(--divider3)"}
+                                  pt={4}
+                                  mt={1}
+                                >
+                                  <Text fontSize={20} opacity={0.6}>
+                                    Take Home Pay
+                                  </Text>
+                                  <FlexLine />
+                                  <Text
+                                    fontSize={20}
+                                    fontWeight={500}
+                                    textAlign={"right"}
+                                  >
+                                    Rp {formatNumber(data.take_home_pay)}
+                                  </Text>
+                                </HStack>
+                              </VStack>
                             </VStack>
                           </VStack>
                         </CContainer>
-
-                        <CContainer
-                          gap={responsiveSpacing}
-                          overflowY={[null, null, null, "auto"]}
-                          className="scrollY"
-                        >
-                          <HStack
-                            pr={[0, null, 5]}
-                            pl={[0, null, 4]}
-                            position={"sticky"}
-                            top={"0"}
-                            bg={lightDarkColor}
-                            zIndex={2}
-                          >
-                            <SearchComponent
-                              name="search"
-                              onChangeSetter={(input) => {
-                                setSearch(input);
-                              }}
-                              inputValue={search}
-                            />
-                          </HStack>
-
-                          <CContainer
-                            flex={1}
-                            overflowY={"auto"}
-                            bg={lightDarkColor}
-                            gap={responsiveSpacing}
-                          >
-                            <VStack
-                              align={"stretch"}
-                              gap={responsiveSpacing}
-                              flex={1}
-                              overflowY={"auto"}
-                              className="scrollY"
-                              px={responsiveSpacing}
-                            >
-                              <VStack align={"stretch"} gap={0}>
-                                <Text fontSize={20} fontWeight={600} mb={4}>
-                                  Data Penggajian
-                                </Text>
-
-                                <VStack
-                                  align={"stretch"}
-                                  w={"100%"}
-                                  gap={4}
-                                  minH={"150px"}
-                                  // bg={"red"}
-                                >
-                                  <HStack justify={"space-between"}>
-                                    {/* <Text opacity={0.6}>Email</Text> */}
-                                    <Box opacity={0.6}>
-                                      <Highlighter
-                                        highlightClassName="hw"
-                                        unhighlightClassName="uw"
-                                        searchWords={searchQuery}
-                                        autoEscape={true}
-                                        textToHighlight="Kelompok Gaji"
-                                      />
-                                    </Box>
-                                    <FlexLine />
-                                    <Text fontWeight={500} textAlign={"right"}>
-                                      {data.kelompok_gaji.nama_kelompok}
-                                    </Text>
-                                  </HStack>
-
-                                  <HStack justify={"space-between"}>
-                                    {/* <Text opacity={0.6}>No. Induk Karyawan</Text> */}
-                                    <Box opacity={0.6}>
-                                      <Highlighter
-                                        highlightClassName="hw"
-                                        unhighlightClassName="uw"
-                                        searchWords={searchQuery}
-                                        autoEscape={true}
-                                        textToHighlight="NPWP"
-                                      />
-                                    </Box>
-                                    <FlexLine />
-                                    <Text fontWeight={500} textAlign={"right"}>
-                                      {data.npwp}
-                                    </Text>
-                                  </HStack>
-
-                                  <HStack justify={"space-between"}>
-                                    {/* <Text opacity={0.6}>Email</Text> */}
-                                    <Box opacity={0.6}>
-                                      <Highlighter
-                                        highlightClassName="hw"
-                                        unhighlightClassName="uw"
-                                        searchWords={searchQuery}
-                                        autoEscape={true}
-                                        textToHighlight="No. Rekening"
-                                      />
-                                    </Box>
-                                    <FlexLine />
-                                    <Text fontWeight={500} textAlign={"right"}>
-                                      {data.no_rek}
-                                    </Text>
-                                  </HStack>
-
-                                  <HStack justify={"space-between"}>
-                                    {/* <Text opacity={0.6}>No. Induk Karyawan</Text> */}
-                                    <Box opacity={0.6}>
-                                      <Highlighter
-                                        highlightClassName="hw"
-                                        unhighlightClassName="uw"
-                                        searchWords={searchQuery}
-                                        autoEscape={true}
-                                        textToHighlight="Kode PTKP"
-                                      />
-                                    </Box>
-                                    <FlexLine />
-                                    <Text fontWeight={500} textAlign={"right"}>
-                                      {data.ptkp.kode_ptkp}
-                                    </Text>
-                                  </HStack>
-                                </VStack>
-                              </VStack>
-
-                              <VStack align={"stretch"} gap={0}>
-                                <Text fontSize={20} fontWeight={600} mb={4}>
-                                  Rincian Penggajian
-                                </Text>
-
-                                <VStack
-                                  align={"stretch"}
-                                  gap={4}
-                                  // ref={dataPresensiRef}
-                                >
-                                  {data.detail_gaji.map(
-                                    (item: any, i: number) => (
-                                      <HStack key={i} justify={"space-between"}>
-                                        <Box opacity={0.6}>
-                                          <Highlighter
-                                            highlightClassName="hw"
-                                            unhighlightClassName="uw"
-                                            searchWords={searchQuery}
-                                            autoEscape={true}
-                                            textToHighlight={item.nama_detail}
-                                          />
-                                        </Box>
-                                        <FlexLine />
-                                        <Text
-                                          fontWeight={500}
-                                          textAlign={"right"}
-                                          color={
-                                            item.kategori === "Pengurang"
-                                              ? "red.400"
-                                              : ""
-                                          }
-                                        >
-                                          {item.kategori === "Pengurang"
-                                            ? "-"
-                                            : ""}{" "}
-                                          Rp {formatNumber(item.besaran) || 0}
-                                        </Text>
-                                      </HStack>
-                                    )
-                                  )}
-
-                                  <HStack
-                                    justify={"space-between"}
-                                    borderTop={"1px solid var(--divider3)"}
-                                    pt={4}
-                                    mt={1}
-                                  >
-                                    <Text fontSize={20} opacity={0.6}>
-                                      Take Home Pay
-                                    </Text>
-                                    <FlexLine />
-                                    <Text
-                                      fontSize={20}
-                                      fontWeight={500}
-                                      textAlign={"right"}
-                                    >
-                                      Rp {formatNumber(data.take_home_pay)}
-                                    </Text>
-                                  </HStack>
-                                </VStack>
-                              </VStack>
-                            </VStack>
-                          </CContainer>
-                        </CContainer>
-                      </SimpleGrid>
+                      </CContainer>
                     </CContainer>
                   )}
                 </>

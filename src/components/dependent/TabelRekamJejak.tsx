@@ -176,7 +176,7 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
                   />
 
                   <DetailKaryawanModal
-                    karyawan_id={1}
+                    user_id={1}
                     isOpen={isOpen}
                     onOpen={onOpen}
                     onClose={onClose}

@@ -278,6 +278,7 @@ export default function TabelKaryawan() {
                       formattedHeader={formattedHeader}
                       formattedData={formattedData}
                       onRowClick={() => {
+                        //TODO buat ada query paramnya
                         onOpen();
                       }}
                       columnsConfig={columnsConfig}
@@ -304,7 +305,7 @@ export default function TabelKaryawan() {
                   />
 
                   <DetailKaryawanModal
-                    karyawan_id={1}
+                    user_id={1}
                     isOpen={isOpen}
                     onOpen={onOpen}
                     onClose={onClose}

@@ -54,19 +54,21 @@ import SmallLink from "./SmallLink";
 import SearchComponent from "./input/SearchComponent";
 
 interface Props {
-  karyawan_id: number;
+  user_id: number;
+  karyawan_id?: number;
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 }
 export default function DetailKaryawanModal({
+  user_id,
   karyawan_id,
   isOpen,
   onOpen,
   onClose,
 }: Props) {
   useBackOnClose(
-    `detail-karyawan-modal-${karyawan_id}`,
+    `detail-karyawan-modal-${user_id}-${karyawan_id}`,
     isOpen,
     onOpen,
     onClose
@@ -246,7 +248,7 @@ export default function DetailKaryawanModal({
 
                             {/* Rekam Jejak */}
                             <DetailRekamJejakKaryawanModalDisclosure
-                              karyawan_id={karyawan_id}
+                              karyawan_id={data.id}
                               flexShrink={0}
                             >
                               <VStack
@@ -274,7 +276,7 @@ export default function DetailKaryawanModal({
 
                             {/* Data Keluarga */}
                             <DetailKeluargaKaryawanModalDisclosure
-                              karyawan_id={karyawan_id}
+                              karyawan_id={data.id}
                               flexShrink={0}
                             >
                               <VStack
@@ -302,7 +304,7 @@ export default function DetailKaryawanModal({
 
                             {/* Dokumen */}
                             <DokumenKaryawanModalDisclosure
-                              karyawan_id={karyawan_id}
+                              karyawan_id={data.id}
                               flexShrink={0}
                             >
                               <VStack
