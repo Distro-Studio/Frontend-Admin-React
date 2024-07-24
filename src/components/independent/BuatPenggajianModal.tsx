@@ -1,7 +1,9 @@
 import {
   Button,
   ButtonGroup,
+  ButtonProps,
   HStack,
+  Icon,
   Modal,
   ModalBody,
   ModalContent,
@@ -11,14 +13,18 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useRef } from "react";
-import backOnClose from "../../lib/backOnCloseOld";
+import { RiFileList3Fill } from "@remixicon/react";
 import { useFormik } from "formik";
+import { useRef } from "react";
 import * as yup from "yup";
-import BackOnCloseButton from "./BackOnCloseButton";
+import { iconSize } from "../../const/sizes";
+import backOnClose from "../../lib/backOnCloseOld";
 import useBackOnClose from "../../lib/useBackOnCloseOld";
+import BackOnCloseButton from "./BackOnCloseButton";
 
-export default function BuatPenggajianModal() {
+interface Props extends ButtonProps {}
+
+export default function BuatPenggajianModal({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(isOpen, onClose);
   const initialRef = useRef(null);
@@ -35,10 +41,12 @@ export default function BuatPenggajianModal() {
   return (
     <>
       <Button
-        flex={"1 1 110px"}
         className="btn-ap clicky"
         colorScheme="ap"
         onClick={onOpen}
+        leftIcon={<Icon as={RiFileList3Fill} fontSize={iconSize} />}
+        pl={5}
+        {...props}
       >
         Buat Penggajian
       </Button>
