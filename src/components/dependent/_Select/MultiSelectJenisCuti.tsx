@@ -10,6 +10,7 @@ interface Props extends ButtonProps {
   inputValue: Interface__SelectOption[] | undefined;
   withSearch?: boolean;
   optionsDisplay?: "list" | "chip";
+  maxSelectedDisplay?: number;
   isError?: boolean;
   placeholder?: string;
   nonNullable?: boolean;
@@ -21,6 +22,7 @@ export default function SelectMultiKaryawan({
   inputValue,
   withSearch,
   optionsDisplay = "list",
+  maxSelectedDisplay = 2,
   isError,
   placeholder,
   nonNullable,
@@ -57,6 +59,7 @@ export default function SelectMultiKaryawan({
       inputValue={inputValue}
       withSearch={withSearch}
       optionsDisplay={optionsDisplay}
+      maxSelectedDisplay={maxSelectedDisplay}
       isError={isError}
       placeholder={placeholder || "Multi Pilih Jenis Cuti"}
       nonNullable={nonNullable}

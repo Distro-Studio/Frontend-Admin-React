@@ -37,6 +37,7 @@ interface Props {
   inputValue: Interface__SelectOption[] | undefined;
   withSearch?: boolean;
   optionsDisplay?: "list" | "chip";
+  maxSelectedDisplay?: number;
   isError?: boolean;
   placement?: "top" | "bottom" | "left" | "right";
   placeholder?: string;
@@ -54,6 +55,7 @@ export default function MultipleSelectModal({
   inputValue,
   withSearch,
   optionsDisplay = "list",
+  maxSelectedDisplay = 2,
   isError,
   placement = "bottom",
   placeholder,
@@ -127,11 +129,11 @@ export default function MultipleSelectModal({
         {...props}
       >
         <Box overflowX={"auto"} className="noScroll">
-          <HStack w={"max-content"}>
+          <HStack w={"100%"}>
             {inputValue ? (
               inputValue.map((value, i) => {
                 return (
-                  i < 2 && (
+                  i < maxSelectedDisplay && (
                     <Badge
                       key={i}
                       borderRadius={6}
@@ -156,9 +158,11 @@ export default function MultipleSelectModal({
               </Text>
             )}
 
-            {inputValue && inputValue.length - 2 > 0 && (
+            {inputValue && inputValue.length - maxSelectedDisplay > 0 && (
               <Badge bg={"var(--divider)"} h={"24px"} pt={"5.5px"}>
-                +{inputValue.length - 2 > 0 && inputValue.length - 2}
+                +
+                {inputValue.length - maxSelectedDisplay > 0 &&
+                  inputValue.length - maxSelectedDisplay}
               </Badge>
             )}
           </HStack>

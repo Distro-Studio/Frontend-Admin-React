@@ -70,9 +70,9 @@ export default function Cuti() {
             />
 
             <MultiSelectJenisCuti
-              name="jenis_cuti"
+              name={"jenis_cuti"}
               minW={"fit-content"}
-              w={"fit-content"}
+              maxW={"165px !important"}
               placeholder="Filter Jenis Cuti"
               onConfirm={(input: any) => {
                 setFilterConfig((ps: any) => ({
@@ -83,12 +83,13 @@ export default function Cuti() {
               inputValue={filterConfig.jenis_cuti}
               optionsDisplay="chip"
               pr={5}
+              maxSelectedDisplay={1}
             />
 
             <MultiSelectStatusCuti
               name={"status_cuti"}
               minW={"fit-content"}
-              w={"fit-content"}
+              maxW={"165px !important"}
               placeholder="Filter Status Cuti"
               onConfirm={(input: any) => {
                 setFilterConfig((ps: any) => ({
@@ -99,6 +100,7 @@ export default function Cuti() {
               inputValue={filterConfig.status_cuti}
               optionsDisplay="chip"
               pr={5}
+              maxSelectedDisplay={1}
             />
 
             <ExportModal url="" title="Export Cuti" />
