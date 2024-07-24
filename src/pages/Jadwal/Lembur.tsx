@@ -41,8 +41,11 @@ export default function Lembur() {
     <>
       <CWrapper>
         <CContainer
-          p={responsiveSpacing}
-          bg={useBodyColor()}
+          flex={1}
+          px={responsiveSpacing}
+          pb={responsiveSpacing}
+          pt={0}
+          bg={lightDarkColor}
           borderRadius={12}
           overflowY={"auto"}
           className="scrollY"
