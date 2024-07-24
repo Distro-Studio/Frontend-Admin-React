@@ -64,6 +64,10 @@ export default function TabelCuti({ filterConfig }: Props) {
       th: "Durasi",
       isSortable: true,
     },
+    {
+      th: "Unit Kerja",
+      isSortable: true,
+    },
   ];
   const formattedData = data?.map((item: any) => ({
     id: item.id,
@@ -109,6 +113,11 @@ export default function TabelCuti({ filterConfig }: Props) {
       {
         value: item.durasi,
         td: `${item.durasi} hari`,
+        isNumeric: true,
+      },
+      {
+        value: item.unit_kerja.nama_unit,
+        td: item.unit_kerja.nama_unit,
         isNumeric: true,
       },
     ],
