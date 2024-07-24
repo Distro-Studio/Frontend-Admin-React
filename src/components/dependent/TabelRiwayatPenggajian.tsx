@@ -42,7 +42,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       props: {
         position: "sticky",
         left: 0,
-        zIndex: 99,
+        zIndex: 3,
         w: "180px",
       },
       cProps: {
@@ -82,7 +82,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
         props: {
           position: "sticky",
           left: 0,
-          zIndex: 99,
+          zIndex: 2,
           w: "180px",
         },
         cProps: {

@@ -26,6 +26,7 @@ import BooleanBadge from "./BooleanBadge";
 import DisclosureHeader from "./DisclosureHeader";
 import Retry from "./Retry";
 import TabelDetailPenggajian from "./TabelDetailPenggajian";
+import formatNumber from "../../lib/formatNumber";
 
 interface Props {
   penggajian_id: number;
@@ -223,6 +224,17 @@ export default function DetailPenggajianModal({
                           </Text>
                           <Text fontWeight={500}>
                             {formatDate(data.data_riwayat.update_terakhir)}
+                          </Text>
+                        </VStack>
+
+                        <VStack align={"stretch"}>
+                          <Text fontSize={14} opacity={0.6}>
+                            Karyawan Digaji
+                          </Text>
+                          <Text fontWeight={500}>
+                            {formatNumber(
+                              data.data_riwayat.karyawan_verifikasi
+                            )}
                           </Text>
                         </VStack>
 

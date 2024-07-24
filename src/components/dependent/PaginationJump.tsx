@@ -53,7 +53,7 @@ export default function PaginationJump({ page, setPage, pagination }: Props) {
             {page}
           </Text>
         </MenuButton>
-        <MenuList minW={"180px"} maxW={"180px"}>
+        <MenuList minW={"180px"} maxW={"180px"} zIndex={99}>
           <MenuGroup title={`Terakhir : ${pagination.last_page}`}></MenuGroup>
           <form id={"jumpToPageForm"} onSubmit={handleSubmit}>
             <FormControl isInvalid={!validation()}>
