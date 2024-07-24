@@ -1,44 +1,53 @@
 import { HStack } from "@chakra-ui/react";
-import { useState } from "react";
-import SelectMultiStatusCuti from "../../components/dependent/_Select/SelectMultiStatusCuti";
-import SelectMultiTipeCuti from "../../components/dependent/_Select/SelectMultiTipeCuti";
+import { useEffect, useState } from "react";
+import MultiSelectStatusCuti from "../../components/dependent/_Select/MultiSelectStatusCuti";
+import MultiSelectJenisCuti from "../../components/dependent/_Select/MultiSelectJenisCuti";
 import ExportModal from "../../components/dependent/ExportModal";
-import SearchComponent from "../../components/dependent/SearchComponent";
+import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelCuti from "../../components/dependent/TabelCuti";
 import AjukanCutiModal from "../../components/independent/AjukanCutiModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
-import { useBodyColor } from "../../const/colors";
+import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
+import useFilterKaryawan from "../../global/useFilterKaryawan";
 
 export default function Cuti() {
   // Filter Config
-  const defaultFilterConfig = {
-    search: "",
-    tipe: [],
-    status: [],
-    kompensasi: "",
-  };
-  const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
-  const confirmTipeCuti = (newTipe: any) => {
-    setFilterConfig((ps: any) => ({
-      ...ps,
-      tipe: newTipe,
-    }));
-  };
-  const confirmStatusCuti = (newStatus: any) => {
-    setFilterConfig((ps: any) => ({
-      ...ps,
-      status: newStatus,
-    }));
-  };
+  const { filterKaryawan, setFilterKaryawan } = useFilterKaryawan();
+  const [filterConfig, setFilterConfig] = useState({
+    ...filterKaryawan,
+    status_cuti: undefined,
+    jenis_cuti: undefined,
+  });
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setFilterKaryawan({ search });
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search, setFilterKaryawan]);
+
+  useEffect(() => {
+    console.log("Current filterKaryawan state:", filterKaryawan);
+  }, [filterKaryawan]);
+
+  // SX
+  const lightDarkColor = useLightDarkColor();
 
   return (
     <>
       <CWrapper>
         <CContainer
-          p={responsiveSpacing}
-          bg={useBodyColor()}
+          flex={1}
+          px={responsiveSpacing}
+          pb={responsiveSpacing}
+          pt={0}
+          bg={lightDarkColor}
           borderRadius={12}
           overflowY={"auto"}
           className="scrollY"
@@ -52,33 +61,45 @@ export default function Cuti() {
             flexShrink={0}
           >
             <SearchComponent
-              search={filterConfig.search}
-              setSearch={(newSearch) => {
+              minW={"165px"}
+              name="search"
+              onChangeSetter={(input) => {
+                setSearch(input);
+              }}
+              inputValue={search}
+            />
+
+            <MultiSelectJenisCuti
+              name="jenis_cuti"
+              minW={"fit-content"}
+              w={"fit-content"}
+              placeholder="Filter Jenis Cuti"
+              onConfirm={(input: any) => {
                 setFilterConfig((ps: any) => ({
                   ...ps,
-                  search: newSearch,
+                  jenis_cuti: input,
                 }));
               }}
+              inputValue={filterConfig.jenis_cuti}
+              optionsDisplay="chip"
             />
-            <SelectMultiTipeCuti
-              placeholder="Filter Tipe Cuti"
-              nullLabel={"Semua Tipe Cuti"}
-              initialSelected={filterConfig.tipe}
-              confirmSelect={confirmTipeCuti}
-              noSearch
-              flex={"1 1 165px"}
-              maxDisplayed={1}
-            />
-            <SelectMultiStatusCuti
+
+            <MultiSelectStatusCuti
+              name="status_cuti"
+              minW={"fit-content"}
+              w={"fit-content"}
               placeholder="Filter Status Cuti"
-              nullLabel={"Semua Status Cuti"}
-              initialSelected={filterConfig.status}
-              confirmSelect={confirmStatusCuti}
-              noSearch
-              flex={"1 1 165px"}
-              maxDisplayed={1}
+              onConfirm={(input: any) => {
+                setFilterConfig((ps: any) => ({
+                  ...ps,
+                  status_cuti: input,
+                }));
+              }}
+              inputValue={filterConfig.status_cuti}
+              optionsDisplay="chip"
             />
             <ExportModal url="" title="Export Cuti" />
+
             <AjukanCutiModal minW={"fit-content"} />
           </HStack>
 
