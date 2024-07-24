@@ -1,7 +1,6 @@
 import { ButtonProps, useDisclosure } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { dummyUnitKerja } from "../../../const/dummy";
 import { Interface__SelectOption } from "../../../constant/interfaces";
+import { optionsStatusHidup } from "../../../constant/selectOptions";
 import MultipleSelectModal from "../input/MultipleSelectModal";
 
 interface Props extends ButtonProps {
@@ -15,7 +14,7 @@ interface Props extends ButtonProps {
   nonNullable?: boolean;
 }
 
-export default function MultiSelectUnitKerja({
+export default function MultiSelectStatusHidup({
   name,
   onConfirm,
   inputValue,
@@ -28,28 +27,14 @@ export default function MultiSelectUnitKerja({
 }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const [options, setOptions] = useState<Interface__SelectOption[] | undefined>(
-    undefined
-  );
-
-  useEffect(() => {
-    // TODO get all unit kerja
-
-    const options = dummyUnitKerja.map((item) => ({
-      value: item.id,
-      label: item.nama_unit,
-    }));
-    setOptions(options);
-  }, []);
-
   return (
     <MultipleSelectModal
-      id="select-unit-kerja-modal"
+      id="select-status-hidup-modal"
       name={name}
       isOpen={isOpen}
       onOpen={onOpen}
       onClose={onClose}
-      options={options}
+      options={optionsStatusHidup}
       onConfirm={(input) => {
         onConfirm(input);
       }}
@@ -57,7 +42,7 @@ export default function MultiSelectUnitKerja({
       withSearch={withSearch}
       optionsDisplay={optionsDisplay}
       isError={isError}
-      placeholder={placeholder || "Multi Pilih Unit Kerja"}
+      placeholder={placeholder || "Multi Pilih Hubungan Keluarga"}
       nonNullable={nonNullable}
       {...props}
     />

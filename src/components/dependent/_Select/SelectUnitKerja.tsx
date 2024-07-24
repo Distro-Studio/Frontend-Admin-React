@@ -44,7 +44,7 @@ export default function SelectUnitKerja({
 
   return (
     <SingleSelectModal
-      id="select-unit_kerja-modal"
+      id="select-unit-kerja-modal"
       name={name}
       isOpen={isOpen}
       onOpen={onOpen}

@@ -7,18 +7,41 @@ import { HStack } from "@chakra-ui/react";
 import { responsiveSpacing } from "../../const/sizes";
 import SearchComponent from "./input/SearchComponent";
 import NotFound from "../independent/NotFound";
+import MultiSelectHubunganKeluarga from "./_Select/MultiSelectHubunganKeluarga";
+import MultiSelectStatusHidup from "./_Select/MultiSelectStatusHidup";
 
 interface Props {
   data: Interface__AnggotaKeluarga[];
 }
 
 export default function TabelDetailKeluargaKaryawan({ data }: Props) {
-  const [search, setSearch] = useState("");
+  // Filter Config
+  const [filterConfig, setFilterConfig] = useState({
+    search: "",
+    hubungan_keluarga: undefined as any,
+    status_hidup: undefined as any,
+  });
 
-  const fd = data.filter((item) => {
-    const searchTerm = search.toLowerCase();
-    console.log(item.nama, searchTerm);
-    return item.nama.toLowerCase().includes(searchTerm);
+  const fd = data.filter((item: any) => {
+    const searchTerm = filterConfig.search.toLowerCase();
+    const hubunganTerm = filterConfig.hubungan_keluarga;
+    const statusHidupTerm = filterConfig.status_hidup;
+
+    const matchesSearchTerm = item.nama.toLowerCase().includes(searchTerm);
+    const matchesHubunganTerm =
+      hubunganTerm && hubunganTerm.length > 0
+        ? hubunganTerm.some(
+            (filterItem: any) => filterItem.value === item.hubungan.id
+          )
+        : true;
+    const matchesStatusHidupTerm =
+      statusHidupTerm && statusHidupTerm.length > 0
+        ? statusHidupTerm.some(
+            (filterItem: any) => filterItem.value === item.status_hidup
+          )
+        : true;
+
+    return matchesSearchTerm && matchesHubunganTerm && matchesStatusHidupTerm;
   });
 
   const formattedHeader = [
@@ -105,10 +128,42 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
         <SearchComponent
           name="search"
           onChangeSetter={(input) => {
-            setSearch(input);
+            setFilterConfig((ps) => ({
+              ...ps,
+              search: input,
+            }));
           }}
-          inputValue={search}
-          maxW={"400px"}
+          inputValue={filterConfig.search}
+        />
+
+        <MultiSelectHubunganKeluarga
+          name="hubungan_keluarga"
+          onConfirm={(input) => {
+            setFilterConfig((ps) => ({
+              ...ps,
+              hubungan_keluarga: input,
+            }));
+          }}
+          inputValue={filterConfig.hubungan_keluarga}
+          optionsDisplay="chip"
+          placeholder="Filter Hubungan"
+          minW={"fit-content"}
+          w={"fit-content"}
+        />
+
+        <MultiSelectStatusHidup
+          name="status_hidup"
+          onConfirm={(input) => {
+            setFilterConfig((ps) => ({
+              ...ps,
+              status_hidup: input,
+            }));
+          }}
+          inputValue={filterConfig.status_hidup}
+          optionsDisplay="chip"
+          placeholder="Filter Status Hidup"
+          minW={"fit-content"}
+          w={"fit-content"}
         />
       </HStack>
 

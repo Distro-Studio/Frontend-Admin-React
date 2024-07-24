@@ -30,11 +30,12 @@ export default function TabelDetailPenggajian({ data }: Props) {
     const unitKerjaTerm = filterConfig.unit_kerja;
 
     const matchesSearchTerm = item.user.nama.toLowerCase().includes(searchTerm);
-    const matchesUnitKerjaTerm = unitKerjaTerm
-      ? unitKerjaTerm.some(
-          (filterUnit: any) => filterUnit.value === item.unit_kerja.id
-        )
-      : true; // Jika unitKerjaTerm kosong atau undefined, anggap cocok
+    const matchesUnitKerjaTerm =
+      unitKerjaTerm && unitKerjaTerm.length > 0
+        ? unitKerjaTerm.some(
+            (filterItem: any) => filterItem.value === item.unit_kerja.id
+          )
+        : true;
 
     return matchesSearchTerm && matchesUnitKerjaTerm;
   });
@@ -150,6 +151,7 @@ export default function TabelDetailPenggajian({ data }: Props) {
           }}
           inputValue={filterConfig.unit_kerja}
           optionsDisplay="chip"
+          placeholder="Filter Unit Kerja"
           minW={"fit-content"}
           w={"fit-content"}
         />

@@ -124,13 +124,21 @@ export default function MultipleSelectModal({
         justifyContent={"space-between"}
         w={"100%"}
         role="group"
-        px={inputValue ? "8px !important" : "12px !important"}
-        pl={inputValue ? "8px !important" : "16px !important"}
+        px={
+          inputValue && inputValue.length > 0
+            ? "8px !important"
+            : "12px !important"
+        }
+        pl={
+          inputValue && inputValue.length > 0
+            ? "8px !important"
+            : "16px !important"
+        }
         {...props}
       >
         <Box overflowX={"auto"} className="noScroll">
           <HStack w={"100%"}>
-            {inputValue ? (
+            {inputValue && inputValue.length > 0 ? (
               inputValue.map((value, i) => {
                 return (
                   i < maxSelectedDisplay && (

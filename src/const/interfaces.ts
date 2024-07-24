@@ -1,5 +1,4 @@
 import { StackProps } from "@chakra-ui/react";
-import { Interface__SelectOption } from "../constant/interfaces";
 
 export interface Attendance__Data__Interface {
   masuk: string;
