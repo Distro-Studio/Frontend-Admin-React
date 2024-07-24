@@ -109,7 +109,7 @@ export default function AjukanTukarJadwalModal({ ...props }: Props) {
                   <RequiredForm />
                 </FormLabel>
                 <SelectJadwalKaryawan
-                  karyawan_id={formik.values.user_pengajuan.id}
+                  karyawan_id={formik.values.user_pengajuan?.id}
                   isDisabled={!formik.values.user_pengajuan}
                   name="jadwal_pengajuan"
                   onConfirm={(input) => {
@@ -137,6 +137,7 @@ export default function AjukanTukarJadwalModal({ ...props }: Props) {
                   <RequiredForm />
                 </FormLabel>
                 <SelectKaryawan
+                  isDisabled={!formik.values.jadwal_pengajuan}
                   name="user_ditukar"
                   onConfirm={(input) => {
                     formik.setFieldValue("user_ditukar", input);
@@ -156,7 +157,7 @@ export default function AjukanTukarJadwalModal({ ...props }: Props) {
                   <RequiredForm />
                 </FormLabel>
                 <SelectJadwalKaryawan
-                  karyawan_id={formik.values.user_ditukar.id}
+                  karyawan_id={formik.values.user_ditukar?.id}
                   isDisabled={!formik.values.user_ditukar}
                   name="jadwal_ditukar"
                   onConfirm={(input) => {
