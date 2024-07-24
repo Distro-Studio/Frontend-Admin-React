@@ -45,7 +45,7 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      nama: "",
+      karyawan: undefined,
       tgl_mulai: "",
       tipe: "" as any,
       unit_kerja_tujuan: "" as any,
@@ -57,7 +57,7 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
       beri_tahu_karyawan: false,
     },
     validationSchema: yup.object().shape({
-      nama: yup.string().required("Harus diisi"),
+      karyawan: yup.string().required("Harus diisi"),
       tgl_mulai: yup.string().required("Harus diisi"),
       tipe: yup.mixed().required("Harus diisi"),
       unit_kerja_tujuan: yup.mixed(),
@@ -106,19 +106,20 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
           <ModalBody className="scrollY">
             <form id="transferKaryawanForm" onSubmit={formik.handleSubmit}>
               <SimpleGrid columns={[1, 2]} spacingX={4}>
-                <FormControl mb={4} isInvalid={!!formik.errors.nama}>
+                <FormControl mb={4} isInvalid={!!formik.errors.karyawan}>
                   <FormLabel>
                     Nama Karyawan
                     <RequiredForm />
                   </FormLabel>
                   <SelectKaryawan
-                    name="nama"
-                    formik={formik}
-                    placeholder="Pilih Karyawan"
-                    noUseBackOnClose
+                    name="karyawan"
+                    onConfirm={(input) => {
+                      formik.setFieldValue("karyawan", input);
+                    }}
+                    inputValue={formik.values.karyawan}
                   />
                   <FormErrorMessage>
-                    {formik.errors.nama as string}
+                    {formik.errors.karyawan as string}
                   </FormErrorMessage>
                 </FormControl>
 

@@ -54,7 +54,13 @@ export default function DetailKeluargaKaryawanModalDisclosure({
 
   return (
     <>
-      <Box onClick={onOpen} {...props}>
+      <Box
+        onClick={(e) => {
+          e.stopPropagation();
+          onOpen();
+        }}
+        {...props}
+      >
         {children}
       </Box>
 

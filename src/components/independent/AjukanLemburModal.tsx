@@ -41,7 +41,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      karyawan: "",
+      karyawan: undefined,
       tgl_pengajuan: "" as any,
       shift: "" as any,
       kompensasi: "" as any,
@@ -97,10 +97,10 @@ export default function AjukanLemburModal({ ...props }: Props) {
                 </FormLabel>
                 <SelectKaryawan
                   name="karyawan"
-                  formik={formik}
-                  placeholder="Pilih Karyawan"
-                  initialSelected={formik.values.karyawan}
-                  noUseBackOnClose
+                  onConfirm={(input) => {
+                    formik.setFieldValue("karyawan", input);
+                  }}
+                  inputValue={formik.values.karyawan}
                 />
                 <FormErrorMessage>
                   {formik.errors.karyawan as string}

@@ -150,9 +150,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
         td: (
           <AvatarAndNameTableData
             data={{
-              id: item.user.id,
-              nama: item.user.nama,
-              foto_profil: item.user.foto_profil,
+              id: item.user_ditukar.id,
+              nama: item.user_ditukar.nama,
+              foto_profil: item.user_ditukar.foto_profil,
             }}
           />
         ),

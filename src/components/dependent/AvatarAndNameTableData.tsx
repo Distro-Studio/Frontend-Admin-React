@@ -17,14 +17,7 @@ export default function AvatarAndNameTableData({ data, ...props }: Props) {
   console.log(data);
 
   return (
-    <HStack
-      w={"180px"}
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
-      gap={3}
-      {...props}
-    >
+    <HStack w={"180px"} gap={3} {...props}>
       <DetailKaryawanModalDisclosure karyawan_id={data.id}>
         <Avatar
           cursor={"pointer"}

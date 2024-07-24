@@ -4,11 +4,11 @@ import SelectStatusPenukaranJadwal from "../../components/dependent/_Select/Sele
 import ExportModal from "../../components/dependent/ExportModal";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelTukarJadwal from "../../components/dependent/TabelTukarJadwal";
-import AjukanPenukaranJadwalModal from "../../components/independent/AjukanPenukaranJadwalModal";
+import AjukanTukarJadwalModal from "../../components/independent/AjukanTukarJadwalModal";
 import FilterKaryawan from "../../components/independent/FilterKaryawan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
-import { useBodyColor } from "../../const/colors";
+import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
 
@@ -35,12 +35,18 @@ export default function PenukaranJadwal() {
     console.log("Current filterKaryawan state:", filterKaryawan);
   }, [filterKaryawan]);
 
+  // SX
+  const lightDarkColor = useLightDarkColor();
+
   return (
     <>
       <CWrapper>
         <CContainer
-          p={responsiveSpacing}
-          bg={useBodyColor()}
+          flex={1}
+          px={responsiveSpacing}
+          pb={responsiveSpacing}
+          pt={0}
+          bg={lightDarkColor}
           borderRadius={12}
           overflowY={"auto"}
           className="scrollY"
@@ -75,7 +81,7 @@ export default function PenukaranJadwal() {
             />
             <FilterKaryawan />
             <ExportModal url="" title="Export Penukaran Jadwal" />
-            <AjukanPenukaranJadwalModal minW={"fit-content"} />
+            <AjukanTukarJadwalModal minW={"fit-content"} />
           </HStack>
 
           <TabelTukarJadwal filterConfig={filterConfig} />

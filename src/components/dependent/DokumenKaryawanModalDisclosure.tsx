@@ -136,7 +136,13 @@ export default function DokumenKaryawanModalDisclosure({
 
   return (
     <>
-      <Box onClick={onOpen} {...props}>
+      <Box
+        onClick={(e) => {
+          e.stopPropagation();
+          onOpen();
+        }}
+        {...props}
+      >
         {children}
       </Box>
 

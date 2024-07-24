@@ -9,7 +9,6 @@ import {
   Icon,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -20,18 +19,19 @@ import { RiArrowUpDownLine, RiCalendarCheckFill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../lib/backOnCloseOld";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
-import SelectKaryawan from "../dependent/_Select/SelectKaryawan";
-import SelectShiftKaryawan from "../dependent/_Select/SelectShiftKaryawan";
-import RequiredForm from "../form/RequiredForm";
 import { iconSize } from "../../const/sizes";
+import useBackOnClose from "../../hooks/useBackOnClose";
+import backOnClose from "../../lib/backOnClose";
+import SelectKaryawan from "../dependent/_Select/SelectKaryawan";
+import SelectJadwalKaryawan from "../dependent/_Select/SelectJadwalKaryawan";
+import DisclosureHeader from "../dependent/DisclosureHeader";
+import RequiredForm from "../form/RequiredForm";
 
 interface Props extends ButtonProps {}
 
-export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
+export default function AjukanTukarJadwalModal({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
+  useBackOnClose("ajukan-tukar-jadwal-modal", isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
   const formik = useFormik({
@@ -68,7 +68,7 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          backOnClose(onClose);
+          backOnClose();
           formik.resetForm();
         }}
         initialFocusRef={initialRef}
@@ -76,8 +76,9 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Ajukan Tukar Jadwal</ModalHeader>
+          <ModalHeader ref={initialRef}>
+            <DisclosureHeader title="Ajukan Tukar Jadwal" />
+          </ModalHeader>
           <ModalBody>
             <form id="ajukanPenukaranJadwalForm" onSubmit={formik.handleSubmit}>
               <FormControl
@@ -90,10 +91,10 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
                 </FormLabel>
                 <SelectKaryawan
                   name="user_pengajuan"
-                  formik={formik}
-                  placeholder="Pilih Karyawan"
-                  initialSelected={formik.values.user_pengajuan}
-                  noUseBackOnClose
+                  onConfirm={(input) => {
+                    formik.setFieldValue("user_pengajuan", input);
+                  }}
+                  inputValue={formik.values.user_pengajuan}
                 />
                 <FormErrorMessage>
                   {formik.errors.user_pengajuan as string}
@@ -107,12 +108,14 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
                   Jadwal Pengajuan
                   <RequiredForm />
                 </FormLabel>
-                <SelectShiftKaryawan
+                <SelectJadwalKaryawan
+                  karyawan_id={formik.values.user_pengajuan.id}
+                  isDisabled={!formik.values.user_pengajuan}
                   name="jadwal_pengajuan"
-                  formik={formik}
-                  placeholder="Pilih Shift Karyawan"
-                  initialSelected={formik.values.jadwal_pengajuan}
-                  noUseBackOnClose
+                  onConfirm={(input) => {
+                    formik.setFieldValue("jadwal_pengajuan", input);
+                  }}
+                  inputValue={formik.values.jadwal_pengajuan}
                 />
                 <FormErrorMessage>
                   {formik.errors.jadwal_pengajuan as string}
@@ -135,10 +138,10 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
                 </FormLabel>
                 <SelectKaryawan
                   name="user_ditukar"
-                  formik={formik}
-                  placeholder="Pilih Karyawan"
-                  initialSelected={formik.values.user_ditukar}
-                  noUseBackOnClose
+                  onConfirm={(input) => {
+                    formik.setFieldValue("user_ditukar", input);
+                  }}
+                  inputValue={formik.values.user_ditukar}
                 />
                 <FormErrorMessage>
                   {formik.errors.user_ditukar as string}
@@ -152,12 +155,14 @@ export default function AjukanPenukaranJadwalModal({ ...props }: Props) {
                   Jadwal Ditukar
                   <RequiredForm />
                 </FormLabel>
-                <SelectShiftKaryawan
+                <SelectJadwalKaryawan
+                  karyawan_id={formik.values.user_ditukar.id}
+                  isDisabled={!formik.values.user_ditukar}
                   name="jadwal_ditukar"
-                  formik={formik}
-                  placeholder="Pilih Shift Karyawan"
-                  initialSelected={formik.values.jadwal_ditukar}
-                  noUseBackOnClose
+                  onConfirm={(input) => {
+                    formik.setFieldValue("jadwal_ditukar", input);
+                  }}
+                  inputValue={formik.values.jadwal_ditukar}
                 />
                 <FormErrorMessage>
                   {formik.errors.jadwal_ditukar as string}

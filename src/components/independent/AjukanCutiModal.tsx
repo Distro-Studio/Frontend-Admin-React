@@ -90,10 +90,10 @@ export default function AjukanCutiModal({ ...props }: Props) {
                 </FormLabel>
                 <SelectKaryawan
                   name="karyawan"
-                  formik={formik}
-                  placeholder="Pilih Karyawan"
-                  initialSelected={formik.values.karyawan}
-                  noUseBackOnClose
+                  onConfirm={(input) => {
+                    formik.setFieldValue("karyawan", input);
+                  }}
+                  inputValue={formik.values.karyawan}
                 />
                 <FormErrorMessage>
                   {formik.errors.karyawan as string}

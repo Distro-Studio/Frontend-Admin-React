@@ -90,7 +90,7 @@ export default function Jadwal() {
             />
             <FilterKaryawan />
             <ExportModal url="" title="Export Jadwal" />
-            <ImportModal url="" title="Export Jadwal" />
+            <ImportModal url="" title="Import Jadwal" />
             <TerapkanJadwalModal minW={"fit-content"} />
           </HStack>
 
