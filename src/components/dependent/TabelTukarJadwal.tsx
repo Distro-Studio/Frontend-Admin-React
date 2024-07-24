@@ -135,11 +135,27 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       },
       {
         value: item.user.nama,
-        td: <AvatarAndNameTableData data={item} />,
+        td: (
+          <AvatarAndNameTableData
+            data={{
+              id: item.user.id,
+              nama: item.user.nama,
+              foto_profil: item.user.foto_profil,
+            }}
+          />
+        ),
       },
       {
         value: item.user_ditukar.nama,
-        td: <AvatarAndNameTableData data={item} />,
+        td: (
+          <AvatarAndNameTableData
+            data={{
+              id: item.user.id,
+              nama: item.user.nama,
+              foto_profil: item.user.foto_profil,
+            }}
+          />
+        ),
       },
       {
         value: item.jadwal_pengajuan.tgl_mulai,
