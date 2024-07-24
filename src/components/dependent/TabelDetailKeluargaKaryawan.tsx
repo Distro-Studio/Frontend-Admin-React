@@ -1,13 +1,26 @@
+import { useState } from "react";
 import { Interface__AnggotaKeluarga } from "../../const/interfaces";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
 import BooleanBadge from "./BooleanBadge";
 import CustomTable from "./CustomTable";
+import { HStack } from "@chakra-ui/react";
+import { responsiveSpacing } from "../../const/sizes";
+import SearchComponent from "./input/SearchComponent";
+import NotFound from "../independent/NotFound";
 
 interface Props {
   data: Interface__AnggotaKeluarga[];
 }
 
 export default function TabelDetailKeluargaKaryawan({ data }: Props) {
+  const [search, setSearch] = useState("");
+
+  const fd = data.filter((item) => {
+    const searchTerm = search.toLowerCase();
+    console.log(item.nama, searchTerm);
+    return item.nama.toLowerCase().includes(searchTerm);
+  });
+
   const formattedHeader = [
     {
       th: "Nama",
@@ -42,7 +55,7 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
     },
   ];
 
-  const formattedData = data.map((item) => ({
+  const formattedData = fd.map((item) => ({
     id: item.id,
     columnsFormat: [
       {
@@ -87,12 +100,29 @@ export default function TabelDetailKeluargaKaryawan({ data }: Props) {
   }));
 
   return (
-    <CustomTableContainer>
-      <CustomTable
-        formattedHeader={formattedHeader}
-        formattedData={formattedData}
-        // rowOptions={rowOptions}
-      />
-    </CustomTableContainer>
+    <>
+      <HStack mb={responsiveSpacing}>
+        <SearchComponent
+          name="search"
+          onChangeSetter={(input) => {
+            setSearch(input);
+          }}
+          inputValue={search}
+          maxW={"400px"}
+        />
+      </HStack>
+
+      {fd.length === 0 && <NotFound />}
+
+      {fd.length > 0 && (
+        <CustomTableContainer>
+          <CustomTable
+            formattedHeader={formattedHeader}
+            formattedData={formattedData}
+            // rowOptions={rowOptions}
+          />
+        </CustomTableContainer>
+      )}
+    </>
   );
 }

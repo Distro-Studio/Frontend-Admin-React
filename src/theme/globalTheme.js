@@ -102,6 +102,7 @@ export const globalTheme = extendTheme({
         p: "4px 12px",
         borderRadius: 6,
         fontSize: [10, null, 12],
+        fontWeight: 500,
         // textTransform: "none",
       }),
     },

@@ -61,7 +61,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       isSortable: true,
     },
     {
-      th: "Karyawan Digaji",
+      th: "Penggajian Diverifikasi",
       isSortable: true,
       cProps: {
         justify: "end",

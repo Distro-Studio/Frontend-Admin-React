@@ -1,22 +1,32 @@
 import {
   Box,
+  Button,
+  Icon,
   Modal,
   ModalBody,
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  Text,
+  VStack,
+  Wrap,
 } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
-import { useLightDarkColor } from "../../const/colors";
-import { dummyDetailKaryawan } from "../../const/dummy";
+import { useRef } from "react";
+import { responsiveSpacing } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import useDataState from "../../hooks/useDataState";
 import backOnClose from "../../lib/backOnClose";
+import formatDate from "../../lib/formatDate";
+import formatNumber from "../../lib/formatNumber";
 import ComponentSpinner from "../independent/ComponentSpinner";
 import NoData from "../independent/NoData";
 import CContainer from "../wrapper/CContainer";
+import BooleanBadge from "./BooleanBadge";
 import DisclosureHeader from "./DisclosureHeader";
 import Retry from "./Retry";
+import TabelDetailPenggajian from "./TabelDetailPenggajian";
+import { RiSendPlaneFill } from "@remixicon/react";
+import { iconSize } from "../../constant/sizes";
 
 interface Props {
   penggajian_id: number;
@@ -38,30 +48,121 @@ export default function DetailPenggajianModal({
   );
   const initialRef = useRef(null);
 
+  const dummy = {
+    data_riwayat: {
+      id: 3,
+      periode: "2024-07-01",
+      karyawan_verifikasi: 361,
+      status_riwayat_gaji: 0,
+      update_terakhir: "2024-07-06T13:04:47.000000Z",
+    },
+    data_penggajian: [
+      {
+        id: 5,
+        user: {
+          id: 2,
+          nama: "User 0",
+          username: "username0",
+          role_id: null,
+          foto_profil: null,
+          status_akun: 1,
+          data_completion_step: 0,
+          created_at: "2024-07-06 10:04:37",
+          updated_at: "2024-07-06 10:04:37",
+        },
+        unit_kerja: {
+          id: 18,
+          nama_unit: "Kebersihan",
+          jenis_karyawan: 1,
+          deleted_at: null,
+          created_at: "2023-11-09 10:04:37",
+          updated_at: "2024-07-06 10:04:37",
+        },
+        kelompok_gaji: {
+          id: 10,
+          nama_kelompok: "Kelompok Gaji J",
+          besaran_gaji: 7950315,
+          deleted_at: null,
+          created_at: "2023-11-23 10:04:37",
+          updated_at: "2024-07-06 10:04:37",
+        },
+        take_home_pay: 9469015,
+        status_penggajian: 1,
+      },
+      {
+        id: 6,
+        user: {
+          id: 3,
+          nama: "User 1",
+          username: "username1",
+          role_id: null,
+          foto_profil: null,
+          status_akun: 1,
+          data_completion_step: 0,
+          created_at: "2024-07-06 10:04:38",
+          updated_at: "2024-07-06 10:04:38",
+        },
+        unit_kerja: {
+          id: 17,
+          nama_unit: "Psikiatri",
+          jenis_karyawan: 0,
+          deleted_at: null,
+          created_at: "2024-06-06 10:04:37",
+          updated_at: "2024-07-06 10:04:37",
+        },
+        kelompok_gaji: {
+          id: 4,
+          nama_kelompok: "Kelompok Gaji D",
+          besaran_gaji: 5307936,
+          deleted_at: null,
+          created_at: "2023-10-07 10:04:37",
+          updated_at: "2024-07-06 10:04:37",
+        },
+        take_home_pay: 6674661,
+        status_penggajian: 0,
+      },
+      {
+        id: 7,
+        user: {
+          id: 4,
+          nama: "User 2",
+          username: "username2",
+          role_id: null,
+          foto_profil: null,
+          status_akun: 1,
+          data_completion_step: 0,
+          created_at: "2024-07-06 10:04:38",
+          updated_at: "2024-07-06 10:04:38",
+        },
+        unit_kerja: {
+          id: 13,
+          nama_unit: "Pendidikan dan Pelatihan",
+          jenis_karyawan: 1,
+          deleted_at: null,
+          created_at: "2024-06-10 10:04:37",
+          updated_at: "2024-07-06 10:04:37",
+        },
+        kelompok_gaji: {
+          id: 21,
+          nama_kelompok: "Kelompok Gaji U",
+          besaran_gaji: 9126962,
+          deleted_at: null,
+          created_at: "2024-03-05 10:04:37",
+          updated_at: "2024-07-06 10:04:37",
+        },
+        take_home_pay: 10211356,
+        status_penggajian: 0,
+      },
+    ],
+  };
+
   const { error, loading, data, retry } = useDataState<any>({
-    initialData: dummyDetailKaryawan,
+    initialData: dummy,
     url: "",
     dependencies: [],
   });
-  const [search, setSearch] = useState<string>("");
-  const [searchQuery, setSearchQuery] = useState<string[]>([]);
-
-  useEffect(() => {
-    const words = search.split(" ").filter((word) => word.length > 0);
-    const modifiedWords = words.reduce((acc: string[], word) => {
-      acc.push(word);
-      if (word.toLowerCase() === "nomor") {
-        acc.push("no.");
-      } else if (word.toLowerCase() === "nik") {
-        acc.push("no. induk karyawan");
-      }
-      return acc;
-    }, []);
-    setSearchQuery(modifiedWords);
-  }, [search]);
 
   // SX
-  const lightDarkColor = useLightDarkColor();
 
   return (
     <Modal
@@ -77,7 +178,7 @@ export default function DetailPenggajianModal({
         <ModalHeader ref={initialRef}>
           <DisclosureHeader title={"Detail Penggajian"} />
         </ModalHeader>
-        <ModalBody px={0}>
+        <ModalBody>
           {error && (
             <Box my={"auto"}>
               <Retry loading={loading} retry={retry} />
@@ -96,10 +197,74 @@ export default function DetailPenggajianModal({
 
                   {(data || (data && data.length > 0)) && (
                     <CContainer
-                      h={"calc(100vh - 70px)"}
                       overflowY={"auto"}
                       className="scrollY"
-                    ></CContainer>
+                      borderRadius={12}
+                      flex={1}
+                      pb={6}
+                    >
+                      <Wrap
+                        spacing={responsiveSpacing}
+                        mb={responsiveSpacing}
+                        align={"center"}
+                      >
+                        <VStack align={"stretch"}>
+                          <Text fontSize={14} opacity={0.6}>
+                            Periode
+                          </Text>
+                          <Text fontWeight={500}>
+                            {formatDate(data.data_riwayat.periode, "periode")}
+                          </Text>
+                        </VStack>
+
+                        <VStack align={"stretch"}>
+                          <Text fontSize={14} opacity={0.6}>
+                            Pembaruan Terakhir
+                          </Text>
+                          <Text fontWeight={500}>
+                            {formatDate(data.data_riwayat.update_terakhir)}
+                          </Text>
+                        </VStack>
+
+                        <VStack align={"stretch"}>
+                          <Text fontSize={14} opacity={0.6}>
+                            Penggajian Diverifikasi
+                          </Text>
+                          <Text fontWeight={500}>
+                            {formatNumber(
+                              data.data_riwayat.karyawan_verifikasi
+                            )}
+                          </Text>
+                        </VStack>
+
+                        <VStack align={"stretch"}>
+                          <Text fontSize={14} opacity={0.6}>
+                            Status Penggajian
+                          </Text>
+                          <BooleanBadge
+                            w={"150px"}
+                            data={data.data_riwayat.status_riwayat_gaji}
+                            trueValue="Dipublikasi"
+                            falseValue="Belum Dipublikasi"
+                          />
+                        </VStack>
+
+                        <Button
+                          ml={"auto"}
+                          size={"lg"}
+                          colorScheme="ap"
+                          className="btn-ap clicky"
+                          leftIcon={
+                            <Icon as={RiSendPlaneFill} fontSize={iconSize} />
+                          }
+                          pl={5}
+                        >
+                          Publikasi
+                        </Button>
+                      </Wrap>
+
+                      <TabelDetailPenggajian data={data.data_penggajian} />
+                    </CContainer>
                   )}
                 </>
               )}
