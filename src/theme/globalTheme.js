@@ -187,9 +187,9 @@ export const globalTheme = extendTheme({
         },
         list: {
           // bg: props.colorMode === "dark" ? "dark" : "white",
-          bg: "#222222aa",
+          bg: "#252525ee",
           color: "white",
-          backdropFilter: "blur(10px)",
+          backdropFilter: "blur(40px)",
           border: "1px solid var(--divider3)",
           overflow: "hidden",
           boxShadow: "none",
@@ -216,6 +216,9 @@ export const globalTheme = extendTheme({
         dialog: {
           bg: props.colorMode === "dark" ? "dark" : "white",
           color: props.colorMode === "dark" ? "wt" : "bt",
+          // bg: "#252525ee",
+          // color: "white !important",
+          backdropFilter: "blur(40px)",
           boxShadow: "none",
           borderRadius: 12,
           // m: 4,
@@ -322,9 +325,11 @@ export const globalTheme = extendTheme({
 
     Tooltip: {
       baseStyle: {
-        bg: "dark",
+        bg: "#252525ee",
         color: "white !important",
-        "--popper-arrow-bg": "#0097e8",
+        "--popper-arrow-bg": "#252525ee",
+        backdropFilter: "blur(40px)",
+        border: "1px solid var(--divider3)",
         borderRadius: 8,
         px: 4,
         py: 2,

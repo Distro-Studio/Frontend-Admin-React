@@ -282,6 +282,7 @@ export default function TabelKaryawan() {
                       }}
                       columnsConfig={columnsConfig}
                       rowOptions={rowOptions}
+                      batchActions={rowOptions}
                     />
                   </CustomTableContainer>
 
