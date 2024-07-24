@@ -8,24 +8,27 @@ import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
+import NumberInput from "../../components/dependent/input/NumberInput";
 
 export default function Penggajian() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
+    tahun: new Date().getFullYear(),
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
   const [search, setSearch] = useState("");
+  const [tahun, setTahun] = useState<any>(new Date().getFullYear());
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      setFilterConfig({ search });
+      setFilterConfig({ search: search, tahun: tahun });
     }, 300);
 
     return () => {
       clearTimeout(handler);
     };
-  }, [search, setFilterConfig]);
+  }, [search, tahun, setFilterConfig]);
 
   useEffect(() => {
     console.log(filterConfig);
@@ -63,8 +66,22 @@ export default function Penggajian() {
               }}
               inputValue={search}
             />
+
+            <NumberInput
+              name="search"
+              onChangeSetter={(input) => {
+                setTahun(input);
+              }}
+              inputValue={tahun}
+              placeholder={"Periode Tahun"}
+              noFormat
+              flex={"1 1 320px"}
+            />
+
             <ExportModal url="" title="Export Penggajian" />
+
             <ExportModal url="" title="Import Penggajian" />
+
             <BuatPenggajianModal minW={"fit-content"} />
           </HStack>
 

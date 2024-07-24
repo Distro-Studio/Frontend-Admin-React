@@ -9,6 +9,7 @@ interface Props extends InputProps {
   inputValue: number | undefined;
   isError?: boolean;
   placeholder?: string;
+  noFormat?: boolean;
 }
 
 export default function NumberInput({
@@ -17,6 +18,7 @@ export default function NumberInput({
   inputValue,
   isError,
   placeholder,
+  noFormat,
   ...props
 }: Props) {
   return (
@@ -31,7 +33,9 @@ export default function NumberInput({
           onChangeSetter(parseNumber(i));
         }
       }}
-      inputValue={formatNumber(inputValue) || ""}
+      inputValue={
+        (noFormat ? inputValue?.toString() : formatNumber(inputValue)) || ""
+      }
       placeholder={placeholder}
       {...props}
     />
