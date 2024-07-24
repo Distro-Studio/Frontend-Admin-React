@@ -186,7 +186,10 @@ export const globalTheme = extendTheme({
           borderColor: "var(--divider3)",
         },
         list: {
-          bg: props.colorMode === "dark" ? "dark" : "white",
+          // bg: props.colorMode === "dark" ? "dark" : "white",
+          bg: "#222222aa",
+          color: "white",
+          backdropFilter: "blur(10px)",
           border: "1px solid var(--divider3)",
           overflow: "hidden",
           boxShadow: "none",
