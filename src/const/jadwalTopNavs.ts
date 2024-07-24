@@ -4,7 +4,7 @@ const jadwalTopNavs = [
     link: "/jadwal",
   },
   {
-    label: "Penukaran Jadwal",
+    label: "Penukaran Shift",
     link: "/jadwal/penukaran-jadwal",
   },
   {

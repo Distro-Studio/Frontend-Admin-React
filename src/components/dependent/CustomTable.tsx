@@ -161,10 +161,10 @@ export default function CustomTable({
 
   const tableBody = columnsConfig
     ? formattedData.map((data) => {
-        const filteredRows = columnsConfig.map(
+        const filteredColumns = columnsConfig.map(
           (columnIndex) => data.columnsFormat[columnIndex]
         );
-        return { ...data, columns: filteredRows };
+        return { ...data, columnsFormat: filteredColumns };
       })
     : formattedData;
 
@@ -275,6 +275,7 @@ export default function CustomTable({
     }
     return formattedData;
   };
+
   const renderSortIcon = (columnIndex: number) => {
     if (sortConfig.sortColumnIndex === columnIndex) {
       return (

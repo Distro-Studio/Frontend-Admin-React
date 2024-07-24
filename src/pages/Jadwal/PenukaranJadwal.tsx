@@ -54,7 +54,7 @@ export default function PenukaranJadwal() {
             flexShrink={0}
           >
             <SearchComponent
-              flex={"1 0 200px"}
+              minW={"165px"}
               name="search"
               onChangeSetter={(input) => {
                 setSearch(input);
@@ -71,6 +71,7 @@ export default function PenukaranJadwal() {
               }}
               inputValue={filterConfig.status_pertukaran}
               minW={"fit-content"}
+              w={"fit-content"}
             />
             <FilterKaryawan />
             <ExportModal url="" title="Export Penukaran Jadwal" />

@@ -71,6 +71,20 @@ export default function TabelKaryawan() {
       },
     },
     {
+      th: "Status Aktif",
+      isSortable: true,
+      cProps: {
+        justify: "center",
+      },
+    },
+    {
+      th: "Status Karyawan",
+      isSortable: true,
+      cProps: {
+        justify: "center",
+      },
+    },
+    {
       th: "No. Induk Karyawan",
       isSortable: true,
     },
@@ -83,26 +97,12 @@ export default function TabelKaryawan() {
       isSortable: true,
     },
     {
-      th: "Status Karyawan",
-      isSortable: true,
-      cProps: {
-        justify: "center",
-      },
-    },
-    {
       th: "Email",
       isSortable: true,
     },
     {
       th: "Username",
       isSortable: true,
-    },
-    {
-      th: "Status Aktif",
-      isSortable: true,
-      cProps: {
-        justify: "center",
-      },
     },
     {
       th: "Ayah",
@@ -154,6 +154,29 @@ export default function TabelKaryawan() {
         },
       },
       {
+        value: item.user.status_aktif,
+        td: (
+          <BooleanBadge
+            data={item.user.status_aktif}
+            trueValue="Aktif"
+            falseValue="Tidak Aktif"
+            w={"120px"}
+          />
+        ),
+        cProps: {
+          justify: "center",
+        },
+      },
+      {
+        value: item.status_karyawan.label,
+        td: (
+          <StatusKaryawanBadge w={"120px"} data={item.status_karyawan.label} />
+        ),
+        cProps: {
+          justify: "center",
+        },
+      },
+      {
         value: item.nik,
         td: item.nik,
         isNumeric: true,
@@ -168,35 +191,12 @@ export default function TabelKaryawan() {
         td: item.unit_kerja.nama_unit,
       },
       {
-        value: item.status_karyawan.label,
-        td: (
-          <StatusKaryawanBadge w={"120px"} data={item.status_karyawan.label} />
-        ),
-        cProps: {
-          justify: "center",
-        },
-      },
-      {
         value: item.email,
         td: item.email,
       },
       {
         value: item.user.username,
         td: item.user.username,
-      },
-      {
-        value: item.user.status_aktif,
-        td: (
-          <BooleanBadge
-            data={item.user.status_aktif}
-            trueValue="Aktif"
-            falseValue="Tidak Aktif"
-            w={"120px"}
-          />
-        ),
-        cProps: {
-          justify: "center",
-        },
       },
       {
         value: item.ayah.nama,

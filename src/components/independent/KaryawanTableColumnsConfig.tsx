@@ -16,13 +16,13 @@ export default function KaryawanTableColumnsConfig({ title, ...props }: Props) {
 
   const allColumns = [
     { column: "nama", label: "Nama" },
+    { column: "status_aktif", label: "Status Aktif" },
+    { column: "status_karyawan", label: "Status Karyawan" },
     { column: "nik", label: "Nik" },
     { column: "no_rm", label: "No. Rekam Medis" },
     { column: "unit_kerja", label: "Unit Kerja" },
-    { column: "status_karyawan", label: "Status Karyawan" },
     { column: "email", label: "Email" },
     { column: "username", label: "Username" },
-    { column: "status_aktif", label: "Status Aktif" },
     { column: "ayah", label: "Ayah" },
     { column: "ibu", label: "Ibu" },
     { column: "jumlah_keluarga", label: "Jumlah Keluarga" },
@@ -39,7 +39,7 @@ export default function KaryawanTableColumnsConfig({ title, ...props }: Props) {
     },
     {
       label: "Karyawan",
-      columns: [0, 1, 2, 3, 4],
+      columns: [0, 1, 2, 3, 4, 5],
     },
     {
       label: "Akun",
