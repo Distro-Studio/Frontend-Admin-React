@@ -7,7 +7,7 @@ import TabelLembur from "../../components/dependent/TabelLembur";
 import AjukanLemburModal from "../../components/independent/AjukanLemburModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
-import { useBodyColor, useLightDarkColor } from "../../const/colors";
+import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
 
