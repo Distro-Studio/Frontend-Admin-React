@@ -163,8 +163,6 @@ export default function DateRangePickerModal({
   const errorColor = useErrorColor();
   const warningColor = useWarningColor();
 
-  console.log(inputValue);
-
   return (
     <>
       <Button
