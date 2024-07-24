@@ -19,6 +19,7 @@ import useBackOnClose from "../../hooks/useBackOnClose";
 import useDataState from "../../hooks/useDataState";
 import backOnClose from "../../lib/backOnClose";
 import formatDate from "../../lib/formatDate";
+import formatNumber from "../../lib/formatNumber";
 import ComponentSpinner from "../independent/ComponentSpinner";
 import NoData from "../independent/NoData";
 import CContainer from "../wrapper/CContainer";
@@ -26,7 +27,6 @@ import BooleanBadge from "./BooleanBadge";
 import DisclosureHeader from "./DisclosureHeader";
 import Retry from "./Retry";
 import TabelDetailPenggajian from "./TabelDetailPenggajian";
-import formatNumber from "../../lib/formatNumber";
 
 interface Props {
   penggajian_id: number;
@@ -34,6 +34,7 @@ interface Props {
   onOpen: () => void;
   onClose: () => void;
 }
+
 export default function DetailPenggajianModal({
   penggajian_id,
   isOpen,
@@ -264,15 +265,7 @@ export default function DetailPenggajianModal({
                         </Button>
                       </Wrap>
 
-                      <TabelDetailPenggajian data={data.data_penggajian} />
-
-                      <Text
-                        opacity={0.4}
-                        textAlign={"center"}
-                        mt={responsiveSpacing}
-                      >
-                        Klik row untuk melihat detail penggajian karyawan
-                      </Text>
+                      <TabelDetailPenggajian data={data} />
                     </CContainer>
                   )}
                 </>

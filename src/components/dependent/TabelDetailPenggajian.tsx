@@ -1,27 +1,42 @@
-import { HStack, useDisclosure } from "@chakra-ui/react";
+import { HStack, Text, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import { responsiveSpacing } from "../../const/sizes";
+import formatDate from "../../lib/formatDate";
 import formatNumber from "../../lib/formatNumber";
 import NotFound from "../independent/NotFound";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
+import MultiSelectUnitKerja from "./_Select/MultiSelectUnitKerja";
 import AvatarAndNameTableData from "./AvatarAndNameTableData";
 import CustomTable from "./CustomTable";
 import DetailPenggajianKaryawanModal from "./DetailPenggajianKaryawanModal";
+import ExportModal from "./ExportModal";
 import SearchComponent from "./input/SearchComponent";
 
 interface Props {
-  data: any[];
+  data: any;
 }
 
 export default function TabelDetailPenggajian({ data }: Props) {
   // Detail Penggajian Karyawan Disclosure
   const { isOpen, onOpen, onClose } = useDisclosure();
+  // Filter Config
+  const [filterConfig, setFilterConfig] = useState({
+    search: "",
+    unit_kerja: undefined as any,
+  });
 
-  const [search, setSearch] = useState("");
+  const fd = data.data_penggajian.filter((item: any) => {
+    const searchTerm = filterConfig.search.toLowerCase();
+    const unitKerjaTerm = filterConfig.unit_kerja;
 
-  const fd = data.filter((item) => {
-    const searchTerm = search.toLowerCase();
-    return item.user.nama.toLowerCase().includes(searchTerm);
+    const matchesSearchTerm = item.user.nama.toLowerCase().includes(searchTerm);
+    const matchesUnitKerjaTerm = unitKerjaTerm
+      ? unitKerjaTerm.some(
+          (filterUnit: any) => filterUnit.value === item.unit_kerja.id
+        )
+      : true; // Jika unitKerjaTerm kosong atau undefined, anggap cocok
+
+    return matchesSearchTerm && matchesUnitKerjaTerm;
   });
 
   const formattedHeader = [
@@ -61,7 +76,7 @@ export default function TabelDetailPenggajian({ data }: Props) {
       },
     },
   ];
-  const formattedData = fd.map((item) => ({
+  const formattedData = fd.map((item: any) => ({
     id: item.id,
     columnsFormat: [
       {
@@ -117,24 +132,54 @@ export default function TabelDetailPenggajian({ data }: Props) {
         <SearchComponent
           name="search"
           onChangeSetter={(input) => {
-            setSearch(input);
+            setFilterConfig((ps) => ({
+              ...ps,
+              search: input,
+            }));
           }}
-          inputValue={search}
-          maxW={"400px"}
+          inputValue={filterConfig.search}
+        />
+
+        <MultiSelectUnitKerja
+          name="unit_kerja"
+          onConfirm={(input) => {
+            setFilterConfig((ps) => ({
+              ...ps,
+              unit_kerja: input,
+            }));
+          }}
+          inputValue={filterConfig.unit_kerja}
+          optionsDisplay="chip"
+          minW={"fit-content"}
+          w={"fit-content"}
+        />
+
+        <ExportModal
+          url=""
+          title={`Export Penggajian ${formatDate(
+            data.data_riwayat.periode,
+            "periode"
+          )}`}
         />
       </HStack>
 
       {fd.length === 0 && <NotFound />}
 
       {fd.length > 0 && (
-        <CustomTableContainer>
-          <CustomTable
-            formattedHeader={formattedHeader}
-            formattedData={formattedData}
-            onRowClick={onOpen}
-            // rowOptions={rowOptions}
-          />
-        </CustomTableContainer>
+        <>
+          <CustomTableContainer>
+            <CustomTable
+              formattedHeader={formattedHeader}
+              formattedData={formattedData}
+              onRowClick={onOpen}
+              // rowOptions={rowOptions}
+            />
+          </CustomTableContainer>
+
+          <Text opacity={0.4} textAlign={"center"} mt={responsiveSpacing}>
+            Klik row untuk melihat detail penggajian karyawan
+          </Text>
+        </>
       )}
 
       <DetailPenggajianKaryawanModal

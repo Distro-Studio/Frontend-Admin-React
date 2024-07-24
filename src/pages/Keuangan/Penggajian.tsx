@@ -80,8 +80,6 @@ export default function Penggajian() {
 
             <ExportModal url="" title="Export Penggajian" />
 
-            <ExportModal url="" title="Import Penggajian" />
-
             <BuatPenggajianModal minW={"fit-content"} />
           </HStack>
 
