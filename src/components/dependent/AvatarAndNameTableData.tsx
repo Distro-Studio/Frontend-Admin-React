@@ -14,8 +14,6 @@ interface Props extends StackProps {
 }
 
 export default function AvatarAndNameTableData({ data, ...props }: Props) {
-  console.log(data);
-
   return (
     <HStack w={"180px"} gap={3} {...props}>
       <DetailKaryawanModalDisclosure karyawan_id={data.id}>

@@ -1,28 +1,41 @@
-import { Button, HStack, Icon } from "@chakra-ui/react";
-import { RiUploadLine } from "@remixicon/react";
-import { useState } from "react";
+import { HStack } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import SelectMultiKompensasi from "../../components/dependent/_Select/SelectMultiKompensasi";
-import SearchComponent from "../../components/dependent/SearchComponent";
+import ExportModal from "../../components/dependent/ExportModal";
+import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelLembur from "../../components/dependent/TabelLembur";
 import AjukanLemburModal from "../../components/independent/AjukanLemburModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
-import { useBodyColor } from "../../const/colors";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { useBodyColor, useLightDarkColor } from "../../const/colors";
+import { responsiveSpacing } from "../../const/sizes";
+import useFilterKaryawan from "../../global/useFilterKaryawan";
 
 export default function Lembur() {
   // Filter Config
-  const defaultFilterConfig = {
-    search: "",
-    kompensasi: [],
-  };
-  const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
-  const confirmSelectKompensasi = (newKompensasi: any) => {
-    setFilterConfig((ps: any) => ({
-      ...ps,
-      kompensasi: newKompensasi,
-    }));
-  };
+  const { filterKaryawan, setFilterKaryawan } = useFilterKaryawan();
+  const [filterConfig, setFilterConfig] = useState({
+    ...filterKaryawan,
+    kompensasi: undefined,
+  });
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setFilterKaryawan({ search });
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search, setFilterKaryawan]);
+
+  useEffect(() => {
+    console.log("Current filterKaryawan state:", filterKaryawan);
+  }, [filterKaryawan]);
+
+  // SX
+  const lightDarkColor = useLightDarkColor();
 
   return (
     <>
@@ -43,32 +56,27 @@ export default function Lembur() {
             flexShrink={0}
           >
             <SearchComponent
-              search={filterConfig.search}
-              setSearch={(newSearch) => {
-                setFilterConfig((ps: any) => ({
-                  ...ps,
-                  search: newSearch,
-                }));
+              minW={"165px"}
+              name="search"
+              onChangeSetter={(input) => {
+                setSearch(input);
               }}
+              inputValue={search}
             />
             <SelectMultiKompensasi
-              nullLabel={"Semua Kompensasi"}
+              name="kompensasi"
               placeholder="Filter Kompensasi"
-              initialSelected={filterConfig.kompensasi}
-              confirmSelect={confirmSelectKompensasi}
-              noSearch
-              flex={"1 1 165px"}
-              maxDisplayed={1}
+              onConfirm={(input: any) => {
+                setFilterConfig((ps: any) => ({
+                  ...ps,
+                  kompensasi: input,
+                }));
+              }}
+              inputValue={filterConfig.kompensasi}
+              minW={"fit-content"}
+              w={"fit-content"}
             />
-            <Button
-              flex={"1 1 110px"}
-              variant={"outline"}
-              colorScheme="ap"
-              className="clicky"
-              rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
-            >
-              Export
-            </Button>
+            <ExportModal url="" title="Export Lembur" />
             <AjukanLemburModal minW={"fit-content"} />
           </HStack>
 
