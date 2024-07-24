@@ -36,12 +36,18 @@ const formatDate = (dateString: Date | string, options?: any) => {
     day: "numeric",
   };
 
+  const periodeFormat: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+  };
+
   const prefixOptions: Record<string, Intl.DateTimeFormatOptions> = {
     basic: defaultFormat,
     basicShort: basicShortFormat,
     long: longFormat,
     longShort: longShortFormat,
     short: shortFormat,
+    periode: periodeFormat,
   };
 
   const date = new Date(dateString);

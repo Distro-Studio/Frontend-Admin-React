@@ -1,317 +1,182 @@
-import {
-  Badge,
-  Button,
-  Center,
-  HStack,
-  Icon,
-  Table,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr,
-  VStack,
-} from "@chakra-ui/react";
-import {
-  RiArrowDownLine,
-  RiArrowUpLine,
-  RiFileList3Line,
-} from "@remixicon/react";
+import { Box, HStack, Text, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useBodyColor, useContentBgColor } from "../../const/colors";
 import { dummyRiwayatPenggajian } from "../../const/dummy";
-import {
-  Riwayat__Penggajian__Interface,
-  Tabel__Column__Interface,
-} from "../../const/interfaces";
+import { responsiveSpacing } from "../../const/sizes";
+import useDataState from "../../hooks/useDataState";
 import formatDate from "../../lib/formatDate";
-import formatNumber from "../../lib/formatNumber";
-import ComponentSpinner from "../independent/ComponentSpinner";
-import TabelContainer from "../wrapper/CustomTableContainer";
+import NoData from "../independent/NoData";
+import Skeleton from "../independent/Skeleton";
+import CustomTableContainer from "../wrapper/CustomTableContainer";
+import BooleanBadge from "./BooleanBadge";
+import CustomTable from "./CustomTable";
+import DetailPenggajianModal from "./DetailPenggajianModal";
+import Retry from "./Retry";
 import TabelFooterConfig from "./TabelFooterConfig";
 
 interface Props {
-  filterConfig?: any;
+  filterConfig: any;
 }
 
-export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
-  const columns: Tabel__Column__Interface[] = [
-    {
-      key: "periode",
-      label: "Periode",
-      dataType: "date",
-    },
-    {
-      key: "updated_at",
-      label: "Pembaruan Terakhir",
-      dataType: "date",
-    },
-    {
-      key: "total_karyawan_diverifikasi",
-      label: "Karyawan Diverifikasi",
-      dataType: "number",
-      preferredTextAlign: "center",
-    },
-    {
-      key: "laporan",
-      label: "Laporan",
-      dataType: "link",
-      preferredTextAlign: "center",
-    },
-    {
-      key: "status_penggajian",
-      label: "Status",
-      dataType: "badge",
-      preferredTextAlign: "center",
-    },
-  ];
-
-  //! DEBUG
-  // console.log(filterConfig);
-  //! DEBUG
-
-  //TODO get karyawan
-
-  const [data] = useState<Riwayat__Penggajian__Interface[] | null>(
-    dummyRiwayatPenggajian
-  );
-  const [loading] = useState<boolean>(false);
-
+export default function TabelKaryawan({ filterConfig }: Props) {
   // Limit Config
   const [limitConfig, setLimitConfig] = useState<number>(10);
-
   // Pagination Config
   const [pageConfig, setPageConfig] = useState<number>(1);
+  // Karyawan Detail Disclosure
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  // Sort Config
-  const [sortConfig, setSortConfig] = useState<{
-    key: string;
-    direction: "asc" | "desc";
-  } | null>({ key: columns[0].key, direction: "asc" });
-  const sortedData = data && [...data];
-  if (sortConfig !== null && sortedData) {
-    sortedData.sort((a, b) => {
-      //@ts-ignore
-      if (a[sortConfig.key] < b[sortConfig.key]) {
-        return sortConfig.direction === "asc" ? -1 : 1;
-      }
-      //@ts-ignore
-      if (a[sortConfig.key] > b[sortConfig.key]) {
-        return sortConfig.direction === "asc" ? 1 : -1;
-      }
-      return 0;
-    });
-  }
-  const sort = (key: string) => {
-    let direction: "asc" | "desc" = "asc";
-    if (
-      sortConfig &&
-      sortConfig.key === key &&
-      sortConfig.direction === "asc"
-    ) {
-      direction = "desc";
-    }
-    setSortConfig({ key, direction });
-  };
+  const { error, loading, data, retry } = useDataState<any[]>({
+    initialData: dummyRiwayatPenggajian,
+    url: "",
+    payload: {
+      filterConfig: filterConfig,
+    },
+    limit: limitConfig,
+    dependencies: [limitConfig, pageConfig, filterConfig],
+  });
 
-  // SX
-  const contentBgColor = useContentBgColor();
-  const bodyColor = useBodyColor();
+  const formattedHeader = [
+    {
+      th: "Periode",
+      isSortable: true,
+      props: {
+        position: "sticky",
+        left: 0,
+        zIndex: 99,
+        w: "180px",
+      },
+      cProps: {
+        borderRight: "1px solid var(--divider3)",
+      },
+    },
+    {
+      th: "Status Penggajian",
+      isSortable: true,
+      cProps: {
+        justify: "center",
+      },
+    },
+    {
+      th: "Pembaruan Terakhir",
+      isSortable: true,
+    },
+    {
+      th: "Karyawan Digaji",
+      isSortable: true,
+      cProps: {
+        justify: "end",
+      },
+    },
+  ];
+  const formattedData = data?.map((item: any) => ({
+    id: item.id,
+    columnsFormat: [
+      {
+        value: item.periode,
+        td: formatDate(item.periode, "periode"),
+        isDate: true,
+        props: {
+          position: "sticky",
+          left: 0,
+          zIndex: 99,
+          w: "180px",
+        },
+        cProps: {
+          borderRight: "1px solid var(--divider3)",
+        },
+      },
+      {
+        value: item.status_riwayat_gaji,
+        td: (
+          <BooleanBadge
+            w={"150px"}
+            data={item.status_riwayat_gaji}
+            trueValue="Dipublikasi"
+            falseValue="Belum Dipublikasi"
+          />
+        ),
+        isNumeric: true,
+        cProps: {
+          justify: "center",
+        },
+      },
+      {
+        value: item.updated_at,
+        td: formatDate(item.updated_at),
+        isDate: true,
+      },
+      {
+        value: item.karyawan_verifikasi,
+        td: item.karyawan_verifikasi,
+        isNumeric: true,
+        cProps: {
+          justify: "end",
+        },
+      },
+    ],
+  }));
 
   return (
     <>
-      {loading && <ComponentSpinner mt={4} />}
-
-      {!loading && sortedData && (
+      {error && (
+        <Box my={"auto"}>
+          <Retry loading={loading} retry={retry} />
+        </Box>
+      )}
+      {!error && (
         <>
-          <TabelContainer>
-            <Table minW={"100%"}>
-              <Thead>
-                <Tr position={"sticky"} top={0} zIndex={3}>
-                  {columns.map((column, i) => (
-                    <Th
-                      key={i}
-                      whiteSpace={"nowrap"}
-                      onClick={() => {
-                        if (
-                          column.dataType !== "action" &&
-                          column.dataType !== "link" &&
-                          column.dataType !== "modal"
-                        ) {
-                          sort(column.key);
-                        }
-                      }}
-                      cursor={"pointer"}
-                      borderBottom={"none !important"}
-                      bg={bodyColor}
-                      zIndex={2}
-                      p={0}
-                      {...column.thProps}
-                    >
-                      {column.dataType === "action" ||
-                      (column.dataType === "link" &&
-                        column.dataType === "link") ? (
-                        <HStack
-                          justify={"center"}
-                          borderBottom={"1px solid var(--divider3)"}
-                          px={4}
-                          py={3}
-                          h={"52px"}
-                          pl={i === 0 ? 4 : ""}
-                          pr={i === columns.length - 1 ? 4 : ""}
-                          {...column.thContentProps}
-                        >
-                          <Text>{column.label}</Text>
-                        </HStack>
-                      ) : (
-                        <HStack
-                          justify={
-                            column.preferredTextAlign === "center"
-                              ? "center"
-                              : column.dataType === "numeric"
-                              ? "flex-end"
-                              : "space-between"
-                          }
-                          borderBottom={"1px solid var(--divider3)"}
-                          px={4}
-                          py={3}
-                          h={"52px"}
-                          pl={i === 0 ? 4 : ""}
-                          pr={i === columns.length - 1 ? 4 : ""}
-                          {...column.thContentProps}
-                        >
-                          <Text
-                            fontWeight={600}
-                            flexShrink={0}
-                            lineHeight={1.2}
-                          >
-                            {column.label}
-                          </Text>
+          {loading && (
+            <>
+              <Skeleton flex={1} mx={"auto"} />
+              <HStack justify={"space-between"} mt={responsiveSpacing}>
+                <Skeleton maxW={"120px"} />
+                <Skeleton maxW={"300px"} h={"20px"} />
+                <Skeleton maxW={"112px"} />
+              </HStack>
+            </>
+          )}
+          {!loading && (
+            <>
+              {!formattedData && <NoData />}
 
-                          {sortConfig && sortConfig.key === column.key && (
-                            <>
-                              {sortConfig.direction === "asc" ? (
-                                <Icon
-                                  as={RiArrowUpLine}
-                                  color={"p.500"}
-                                  fontSize={16}
-                                />
-                              ) : (
-                                <Icon
-                                  as={RiArrowDownLine}
-                                  color={"p.500"}
-                                  fontSize={16}
-                                />
-                              )}
-                            </>
-                          )}
-                        </HStack>
-                      )}
-                    </Th>
-                  ))}
+              {formattedData && (
+                <>
+                  <CustomTableContainer>
+                    <CustomTable
+                      formattedHeader={formattedHeader}
+                      formattedData={formattedData}
+                      initialSortOrder="desc"
+                      onRowClick={onOpen}
+                    />
+                  </CustomTableContainer>
 
-                  {/* Kolom tetap di sebelah kanan */}
-                  <Th
-                    position={"sticky"}
-                    top={0}
-                    right={0}
-                    borderBottom={"none !important"}
-                    p={0}
-                    bg={bodyColor}
-                    zIndex={2}
-                  >
-                    <Center
-                      px={4}
-                      py={3}
-                      zIndex={99}
-                      borderLeft={"1px solid var(--divider3)"}
-                      borderBottom={"1px solid var(--divider3)"}
-                      h={"52px"}
-                    >
-                      <Text>Aksi</Text>
-                    </Center>
-                  </Th>
-                </Tr>
-              </Thead>
+                  <TabelFooterConfig
+                    limitConfig={limitConfig}
+                    setLimitConfig={setLimitConfig}
+                    pageConfig={pageConfig}
+                    setPageConfig={setPageConfig}
+                    paginationData={{
+                      prev_page_url: "",
+                      next_page_url: "",
+                      last_page: 1,
+                    }}
+                    footer={
+                      <Text opacity={0.4}>
+                        Klik row untuk melihat laporan penggajian
+                      </Text>
+                    }
+                  />
 
-              <Tbody>
-                {sortedData.map((row, i) => (
-                  <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
-                    <Td whiteSpace={"nowrap"}>
-                      {formatDate(row.periode, {
-                        month: "short",
-                        year: "numeric",
-                      })}
-                    </Td>
-                    <Td whiteSpace={"nowrap"}>{formatDate(row.updated_at)}</Td>
-                    <Td whiteSpace={"nowrap"} textAlign={"center"}>
-                      {formatNumber(row.total_karyawan_terverifikasi)}
-                    </Td>
-                    <Td textAlign={"center"} whiteSpace={"nowrap"}>
-                      <Button
-                        leftIcon={<Icon as={RiFileList3Line} />}
-                        colorScheme="ap"
-                        className="clicky"
-                        variant={"ghost"}
-                        as={Link}
-                        to={`/keuangan/riwayat-penggajian/laporan/${row.laporan.id}`}
-                      >
-                        Lihat
-                      </Button>
-                    </Td>
-                    <Td whiteSpace={"nowrap"}>
-                      <Badge w={"100%"} textAlign={"center"} colorScheme="ap">
-                        {row.status}
-                      </Badge>
-                    </Td>
-
-                    {/* Kolom tetap di sebelah kanan */}
-                    <Td
-                      position={"sticky"}
-                      top={0}
-                      right={0}
-                      borderBottom={"none !important"}
-                      p={0}
-                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                      zIndex={1}
-                      w={"150px"}
-                    >
-                      <VStack
-                        borderLeft={"1px solid var(--divider3)"}
-                        w={"150px"}
-                        h={"72px"}
-                        px={4}
-                        align={"stretch"}
-                        justify={"center"}
-                      >
-                        <Button
-                          colorScheme="ap"
-                          variant={"ghost"}
-                          className="clicky"
-                        >
-                          Publikasi
-                        </Button>
-                      </VStack>
-                    </Td>
-                  </Tr>
-                ))}
-              </Tbody>
-            </Table>
-          </TabelContainer>
-
-          <TabelFooterConfig
-            limitConfig={limitConfig}
-            setLimitConfig={setLimitConfig}
-            pageConfig={pageConfig}
-            setPageConfig={setPageConfig}
-            paginationData={{
-              prev_page_url: "",
-              next_page_url: "",
-              last_page: 1,
-            }}
-          />
+                  <DetailPenggajianModal
+                    penggajian_id={1}
+                    isOpen={isOpen}
+                    onOpen={onOpen}
+                    onClose={onClose}
+                  />
+                </>
+              )}
+            </>
+          )}
         </>
       )}
     </>

@@ -145,6 +145,8 @@ interface Props {
   columnsConfig?: number[];
   batchActions?: Interface__BatchAction[];
   rowOptions?: Interface__RowOption[];
+  initialSortOrder?: "asc" | "desc";
+  initialSortColumnIndex?: number;
 }
 
 export default function CustomTable({
@@ -154,6 +156,8 @@ export default function CustomTable({
   batchActions,
   columnsConfig,
   rowOptions,
+  initialSortOrder,
+  initialSortColumnIndex,
 }: Props) {
   const tableHeader = columnsConfig
     ? columnsConfig.map((columnIndex) => formattedHeader[columnIndex])
@@ -174,8 +178,8 @@ export default function CustomTable({
     sortColumnIndex: number;
     direction: "asc" | "desc";
   }>({
-    sortColumnIndex: 0,
-    direction: "asc",
+    sortColumnIndex: initialSortColumnIndex || 0,
+    direction: initialSortOrder || "asc",
   });
 
   // Row Click

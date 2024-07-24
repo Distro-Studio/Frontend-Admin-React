@@ -20,18 +20,15 @@ import {
   RiFileList3Line,
 } from "@remixicon/react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useBodyColor, useContentBgColor } from "../../const/colors";
 import { dummyRiwayatPenggajian } from "../../const/dummy";
-import {
-  Riwayat__Penggajian__Interface,
-  Tabel__Column__Interface,
-} from "../../const/interfaces";
+import { Tabel__Column__Interface } from "../../const/interfaces";
 import formatDate from "../../lib/formatDate";
 import formatNumber from "../../lib/formatNumber";
 import ComponentSpinner from "../independent/ComponentSpinner";
 import TabelContainer from "../wrapper/CustomTableContainer";
 import TabelFooterConfig from "./TabelFooterConfig";
-import { Link } from "react-router-dom";
 
 interface Props {
   filterConfig?: any;
@@ -75,9 +72,7 @@ export default function TabelThr({ filterConfig }: Props) {
 
   //TODO get karyawan
 
-  const [data] = useState<Riwayat__Penggajian__Interface[] | null>(
-    dummyRiwayatPenggajian
-  );
+  const [data] = useState<any[] | null>(dummyRiwayatPenggajian);
   const [loading] = useState<boolean>(false);
 
   // Limit Config

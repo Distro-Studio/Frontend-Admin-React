@@ -6,7 +6,7 @@ import TabelRiwayatPenggajian from "../../components/dependent/TabelRiwayatPengg
 import BuatPenggajianModal from "../../components/independent/BuatPenggajianModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
-import { useBodyColor, useLightDarkColor } from "../../const/colors";
+import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 
 export default function Penggajian() {
