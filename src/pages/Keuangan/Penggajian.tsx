@@ -6,7 +6,7 @@ import TabelRiwayatPenggajian from "../../components/dependent/TabelRiwayatPengg
 import BuatPenggajianModal from "../../components/independent/BuatPenggajianModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
-import { useBodyColor } from "../../const/colors";
+import { useBodyColor, useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 
 export default function Penggajian() {
@@ -31,10 +31,22 @@ export default function Penggajian() {
     console.log(filterConfig);
   }, [filterConfig]);
 
+  // SX
+  const lightDarkColor = useLightDarkColor();
+
   return (
     <>
       <CWrapper>
-        <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
+        <CContainer
+          flex={1}
+          px={responsiveSpacing}
+          pb={responsiveSpacing}
+          pt={0}
+          bg={lightDarkColor}
+          borderRadius={12}
+          overflowY={"auto"}
+          className="scrollY"
+        >
           <HStack
             py={responsiveSpacing}
             justify={"space-between"}
