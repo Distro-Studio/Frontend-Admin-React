@@ -267,7 +267,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
                       <BooleanBadge
                         data={Math.random() < 0.5 ? 0 : 1}
                         trueValue="Disetujui"
-                        falseValue="tidak disetujui"
+                        falseValue="Ditolak"
                         w={"100%"}
                         maxW={"150px"}
                       />

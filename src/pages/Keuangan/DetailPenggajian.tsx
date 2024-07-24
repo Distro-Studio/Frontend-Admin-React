@@ -287,7 +287,7 @@ export default function DetailPenggajian() {
 
             <ButtonGroup ml={"auto"}>
               <Button colorScheme="red" variant={"outline"} className="clicky">
-                Tidak Disetujui
+                Ditolak
               </Button>
               <Button colorScheme="ap" className="btn-ap clicky">
                 Disetujui

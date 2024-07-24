@@ -111,7 +111,7 @@ export default function DetailVerifikasiBerkas() {
 
             <ButtonGroup ml={"auto"} mt={responsiveSpacing}>
               <Button colorScheme="red" variant={"outline"} className="clicky">
-                Tidak Disetujui
+                Ditolak
               </Button>
               <Button colorScheme="ap" className="btn-ap clicky">
                 Disetujui
