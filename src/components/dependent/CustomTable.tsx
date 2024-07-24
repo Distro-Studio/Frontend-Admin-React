@@ -12,6 +12,7 @@ import {
   MenuList,
   Portal,
   Table,
+  TableRowProps,
   Tbody,
   Td,
   Text,
@@ -147,6 +148,7 @@ interface Props {
   rowOptions?: Interface__RowOption[];
   initialSortOrder?: "asc" | "desc";
   initialSortColumnIndex?: number;
+  trBodyProps?: TableRowProps;
 }
 
 export default function CustomTable({
@@ -158,6 +160,7 @@ export default function CustomTable({
   rowOptions,
   initialSortOrder,
   initialSortColumnIndex,
+  trBodyProps,
 }: Props) {
   const tableHeader = columnsConfig
     ? columnsConfig.map((columnIndex) => formattedHeader[columnIndex])
@@ -397,6 +400,8 @@ export default function CustomTable({
             transition={"200ms"}
             onClick={handleRowClick}
             cursor={onRowClick ? "pointer" : "auto"}
+            px={2}
+            {...trBodyProps}
           >
             {batchActions && (
               <Td
