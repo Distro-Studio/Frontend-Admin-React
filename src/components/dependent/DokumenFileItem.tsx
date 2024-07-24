@@ -32,7 +32,7 @@ export default function DokumenFileItem({ data, ...props }: Props) {
         overflow={"clip"}
         {...props}
       >
-        <HStack justify={"space-between"} py={2} px={3}>
+        <HStack justify={"space-between"} py={3} px={4}>
           <HStack>
             <Text fontWeight={500} noOfLines={1}>
               {data.nama}
@@ -41,7 +41,7 @@ export default function DokumenFileItem({ data, ...props }: Props) {
         </HStack>
 
         <CContainer align={"center"} py={2} px={4} gap={1}>
-          <FileTypeIcon type={dataType} fontSize={64} />
+          <FileTypeIcon type={dataType} fontSize={72} />
         </CContainer>
 
         <HStack opacity={0.4} p={2} justify={"space-between"}>

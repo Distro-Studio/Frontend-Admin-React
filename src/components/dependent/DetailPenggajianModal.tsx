@@ -253,6 +253,14 @@ export default function DetailPenggajianModal({
                       </Wrap>
 
                       <TabelDetailPenggajian data={data.data_penggajian} />
+
+                      <Text
+                        opacity={0.4}
+                        textAlign={"center"}
+                        mt={responsiveSpacing}
+                      >
+                        Klik row untuk melihat detail penggajian karyawan
+                      </Text>
                     </CContainer>
                   )}
                 </>
