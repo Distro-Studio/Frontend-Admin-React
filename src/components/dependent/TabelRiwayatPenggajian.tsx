@@ -61,11 +61,15 @@ export default function TabelKaryawan({ filterConfig }: Props) {
       isSortable: true,
     },
     {
-      th: "Penggajian Diverifikasi",
+      th: "Karyawan Digaji",
       isSortable: true,
       cProps: {
-        justify: "end",
+        justify: "center",
       },
+    },
+    {
+      th: "Dibuat",
+      isSortable: true,
     },
   ];
   const formattedData = data?.map((item: any) => ({
@@ -110,8 +114,13 @@ export default function TabelKaryawan({ filterConfig }: Props) {
         td: item.karyawan_verifikasi,
         isNumeric: true,
         cProps: {
-          justify: "end",
+          justify: "center",
         },
+      },
+      {
+        value: item.created_at,
+        td: formatDate(item.created_at),
+        isDate: true,
       },
     ],
   }));
