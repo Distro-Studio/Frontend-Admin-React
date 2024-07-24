@@ -1,70 +1,91 @@
-import {
-  Button,
-  Icon,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Wrap,
-} from "@chakra-ui/react";
-import { RiSearchLine, RiUploadLine } from "@remixicon/react";
-import { useState } from "react";
-import PeriodeTahunRiwayatPenggajian from "../../components/dependent/PeriodeTahunRiwayatPenggajian";
-import TabelThr from "../../components/dependent/TabelThr";
+import { HStack } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import ExportModal from "../../components/dependent/ExportModal";
+import NumberInput from "../../components/dependent/input/NumberInput";
+import SearchComponent from "../../components/dependent/input/SearchComponent";
+import TabelRiwayatThr from "../../components/dependent/TabelRiwayatThr";
+import BuatPenggajianModal from "../../components/independent/BuatPenggajianModal";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
-import { useBodyColor } from "../../const/colors";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
-import RunThr from "../../components/independent/RunThr";
+import { useLightDarkColor } from "../../const/colors";
+import { responsiveSpacing } from "../../const/sizes";
 
 export default function Thr() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
-    periode_tahun: "",
+    tahun: new Date().getFullYear(),
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
+  const [search, setSearch] = useState("");
+  const [tahun, setTahun] = useState<any>(new Date().getFullYear());
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setFilterConfig({ search: search, tahun: tahun });
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search, tahun, setFilterConfig]);
+
+  useEffect(() => {
+    console.log(filterConfig);
+  }, [filterConfig]);
+
+  // SX
+  const lightDarkColor = useLightDarkColor();
 
   return (
     <>
       <CWrapper>
-        <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
-          <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
-            <InputGroup flex={"1 1 165px"}>
-              <InputLeftElement>
-                <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
-              </InputLeftElement>
-              <Input
-                placeholder="Pencarian"
-                flex={"1 1 0"}
-                onChange={(e) => {
-                  setFilterConfig((ps: any) => ({
-                    ...ps,
-                    search: e.target.value,
-                  }));
-                }}
-                value={filterConfig.search}
-              />
-            </InputGroup>
-
-            <PeriodeTahunRiwayatPenggajian
-              filterConfig={filterConfig}
-              setFilterConfig={setFilterConfig}
+        <CContainer
+          flex={1}
+          px={responsiveSpacing}
+          pb={responsiveSpacing}
+          pt={0}
+          bg={lightDarkColor}
+          borderRadius={12}
+          overflowY={"auto"}
+          className="scrollY"
+        >
+          <HStack
+            py={responsiveSpacing}
+            justify={"space-between"}
+            w={"100%"}
+            className="tabelConfig scrollX"
+            overflowX={"auto"}
+            flexShrink={0}
+          >
+            <SearchComponent
+              minW={"165px"}
+              name="search"
+              onChangeSetter={(input) => {
+                setSearch(input);
+              }}
+              inputValue={search}
             />
 
-            <Button
-              flex={"1 1 110px"}
-              variant={"outline"}
-              colorScheme="ap"
-              className="clicky"
-              rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
-            >
-              Export
-            </Button>
+            <NumberInput
+              name="search"
+              onChangeSetter={(input) => {
+                setTahun(input);
+              }}
+              inputValue={tahun}
+              placeholder={"Periode Tahun"}
+              noFormat
+              flex={"1 1 320px"}
+            />
 
-            <RunThr flex={"1 1 110px"} />
-          </Wrap>
+            <ExportModal url="" title="Export Penggajian" />
 
-          <TabelThr filterConfig={filterConfig} />
+            <ExportModal url="" title="Import Penggajian" />
+
+            <BuatPenggajianModal minW={"fit-content"} />
+          </HStack>
+
+          <TabelRiwayatThr filterConfig={filterConfig} />
         </CContainer>
       </CWrapper>
     </>
