@@ -11,11 +11,11 @@ import {
   ModalOverlay,
   SimpleGrid,
   Text,
+  VStack,
 } from "@chakra-ui/react";
-import { RiArrowRightUpLine } from "@remixicon/react";
+import { RiCircleFill } from "@remixicon/react";
 import { useRef } from "react";
 import { responsiveSpacing } from "../../const/sizes";
-import { iconSize } from "../../constant/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import useDataState from "../../hooks/useDataState";
 import backOnClose from "../../lib/backOnClose";
@@ -29,8 +29,8 @@ import CContainer from "../wrapper/CContainer";
 import BooleanBadge from "./BooleanBadge";
 import DetailKaryawanModalDisclosure from "./DetailKaryawanModalDisclosure";
 import DisclosureHeader from "./DisclosureHeader";
-import Retry from "./Retry";
 import LokasiPresensi from "./LokasiPresensi";
+import Retry from "./Retry";
 
 interface Props {
   presensi_id: number;
@@ -68,7 +68,7 @@ export default function DetailPresensiKaryawanModal({
     },
     unit_kerja: {
       id: 2,
-      nama_unit: "TIK",
+      nama_unit: "Dokter Bedah Neurologi",
       jenis_karyawan: 1,
       created_at: "2024-04-04T03:18:23.000000Z",
       updated_at: "2024-05-07T03:18:23.000000Z",
@@ -152,34 +152,47 @@ export default function DetailPresensiKaryawanModal({
                           className="scrollY"
                           px={responsiveSpacing}
                         >
-                          <DetailKaryawanModalDisclosure
-                            karyawan_id={data.user.id}
+                          <VStack
+                            gap={responsiveSpacing}
+                            borderRadius={12}
+                            align={"center"}
+                            my={"auto"}
                           >
-                            <HStack
-                              p={responsiveSpacing}
-                              bg={"var(--divider)"}
-                              gap={responsiveSpacing}
-                              borderRadius={12}
-                              align={"center"}
-                              cursor={"pointer"}
-                              className="clicky"
+                            <DetailKaryawanModalDisclosure
+                              karyawan_id={data.user.id}
                             >
                               <Avatar
-                                size={"xl"}
+                                w={"200px"}
+                                h={"200px"}
+                                size={"xxl"}
                                 fontSize={"64px !important"}
                                 src={data.user.foto_profil}
                                 name={data.user.nama}
                               />
+                            </DetailKaryawanModalDisclosure>
 
-                              <CContainer gap={3}>
-                                <Text
-                                  fontWeight={700}
-                                  fontSize={20}
-                                  lineHeight={1.3}
-                                >
-                                  {data.user.nama}
-                                </Text>
+                            <VStack gap={1}>
+                              <Text
+                                fontWeight={700}
+                                fontSize={32}
+                                lineHeight={1.3}
+                              >
+                                {data.user.nama}
+                              </Text>
 
+                              <HStack mb={2}>
+                                <HStack opacity={0.6}>
+                                  <Text>{data.email}</Text>
+                                  <Icon
+                                    as={RiCircleFill}
+                                    fontSize={8}
+                                    opacity={0.4}
+                                  />
+                                  <Text>{data.unit_kerja.nama_unit}</Text>
+                                </HStack>
+                              </HStack>
+
+                              <HStack>
                                 <BooleanBadge
                                   w={"fit-content"}
                                   borderRadius={"full"}
@@ -188,49 +201,9 @@ export default function DetailPresensiKaryawanModal({
                                   falseValue="Tidak Aktif"
                                   fontSize={13}
                                 />
-                              </CContainer>
-
-                              <Icon
-                                as={RiArrowRightUpLine}
-                                fontSize={iconSize}
-                                mb={"auto"}
-                              />
-                            </HStack>
-                          </DetailKaryawanModalDisclosure>
-
-                          <CContainer mt={"auto"} gap={responsiveSpacing}>
-                            <Box flex={"1 1 200px"}>
-                              <Text fontSize={20} fontWeight={600} mb={4}>
-                                Foto Presensi Masuk
-                              </Text>
-
-                              <Image
-                                src={
-                                  data.foto_masuk ||
-                                  "/images/defaultProfilePhoto.webp"
-                                }
-                                borderRadius={12}
-                                aspectRatio={1}
-                                objectFit={"cover"}
-                              />
-                            </Box>
-
-                            <Box flex={"1 1 200px"}>
-                              <Text fontSize={20} fontWeight={600} mb={4}>
-                                Foto Presensi Keluar
-                              </Text>
-
-                              <Image
-                                src={
-                                  data.foto_keluar ||
-                                  "/images/defaultProfilePhoto.webp"
-                                }
-                                borderRadius={12}
-                                aspectRatio={1}
-                                objectFit={"cover"}
-                              />
-                            </Box>
-                          </CContainer>
+                              </HStack>
+                            </VStack>
+                          </VStack>
                         </CContainer>
 
                         <CContainer
@@ -356,16 +329,54 @@ export default function DetailPresensiKaryawanModal({
                                   {data.long || "-"}
                                 </Text>
                               </HStack>
-
-                              <LokasiPresensi
-                                center={{ lat: data.lat, lng: data.long }}
-                                officeCenter={{
-                                  lat: data.lat,
-                                  lng: data.long,
-                                }}
-                                presence_radius={100}
-                              />
                             </CContainer>
+                          </Box>
+
+                          <Box flex={"1 1 200px"}>
+                            <Text fontSize={20} fontWeight={600} mb={4}>
+                              Lokasi Presensi
+                            </Text>
+
+                            <LokasiPresensi
+                              center={{ lat: data.lat, lng: data.long }}
+                              officeCenter={{
+                                lat: data.lat,
+                                lng: data.long,
+                              }}
+                              presence_radius={100}
+                            />
+                          </Box>
+
+                          <Box flex={"1 1 200px"}>
+                            <Text fontSize={20} fontWeight={600} mb={4}>
+                              Foto Presensi Masuk
+                            </Text>
+
+                            <Image
+                              src={
+                                data.foto_masuk ||
+                                "/images/defaultProfilePhoto.webp"
+                              }
+                              borderRadius={12}
+                              aspectRatio={1}
+                              objectFit={"cover"}
+                            />
+                          </Box>
+
+                          <Box flex={"1 1 200px"}>
+                            <Text fontSize={20} fontWeight={600} mb={4}>
+                              Foto Presensi Keluar
+                            </Text>
+
+                            <Image
+                              src={
+                                data.foto_keluar ||
+                                "/images/defaultProfilePhoto.webp"
+                              }
+                              borderRadius={12}
+                              aspectRatio={1}
+                              objectFit={"cover"}
+                            />
                           </Box>
                         </CContainer>
                       </SimpleGrid>

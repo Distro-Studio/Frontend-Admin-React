@@ -31,6 +31,7 @@ export default function LokasiPresensi({
   presence_radius,
   zoom = 20,
 }: Props) {
+  console.log(center);
   const userIcon = new L.Icon({
     iconUrl: "/vectors/icons/userPin.svg",
     iconSize: [64, 64], // Ukuran ikon
@@ -45,6 +46,7 @@ export default function LokasiPresensi({
     width: `100%`,
     height: `auto`,
     borderRadius: "12px",
+    aspectRatio: 1,
     // padding: "8px",
   };
 
@@ -74,6 +76,7 @@ export default function LokasiPresensi({
         maxZoom={maxZoomLevel}
         maxBounds={maxBounds}
         maxBoundsViscosity={1.0} // Biarkan peta memantul ketika mencapai batas
+        scrollWheelZoom={false} // Nonaktifkan scroll zoom
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 

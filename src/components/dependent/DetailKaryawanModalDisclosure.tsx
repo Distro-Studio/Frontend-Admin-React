@@ -20,6 +20,7 @@ export default function DetailKaryawanModalDisclosure({
           e.stopPropagation();
           onOpen();
         }}
+        cursor={"pointer"}
         {...props}
       >
         {children}

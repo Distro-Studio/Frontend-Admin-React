@@ -59,6 +59,7 @@ export default function DetailKeluargaKaryawanModalDisclosure({
           e.stopPropagation();
           onOpen();
         }}
+        cursor={"pointer"}
         {...props}
       >
         {children}
