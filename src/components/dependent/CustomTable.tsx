@@ -401,6 +401,7 @@ export default function CustomTable({
             onClick={handleRowClick}
             cursor={onRowClick ? "pointer" : "auto"}
             px={2}
+            borderBottom={"1px solid var(--divider)"}
             {...trBodyProps}
           >
             {batchActions && (
