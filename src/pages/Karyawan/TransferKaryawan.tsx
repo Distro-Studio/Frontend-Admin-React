@@ -56,7 +56,7 @@ export default function TransferKaryawan() {
             flexShrink={0}
           >
             <SearchComponent
-              flex={"1 0 200px"}
+              minW={"165px"}
               name="search"
               onChangeSetter={(input) => {
                 setSearch(input);

@@ -69,7 +69,7 @@ export default function Jadwal() {
           >
             <SearchComponent
               name="search"
-              flex={"1 1 165px"}
+              minW={"165px"}
               onChangeSetter={(inputValue) => {
                 setFilterConfig((ps: any) => ({
                   ...ps,
@@ -81,7 +81,8 @@ export default function Jadwal() {
             <DateRangePickerModal
               id="jadwal-date-range"
               name="date-range"
-              flex={"1 1 160px"}
+              minW={"140px"}
+              w={"fit-content"}
               onConfirm={confirmDateRange}
               inputValue={filterConfig.range_tgl}
               maxRange={7}

@@ -23,6 +23,20 @@ export default function Presensi() {
     tgl: [today],
   });
   const [search, setSearch] = useState("");
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setFilterKaryawan({ search });
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search, setFilterKaryawan]);
+
+  useEffect(() => {
+    console.log("Current filterKaryawan state:", filterKaryawan);
+  }, [filterKaryawan]);
+
   const confirmDate = (newDate: Date | undefined) => {
     setFilterConfig((ps: any) => ({ ...ps, tgl: [newDate] }));
   };
@@ -64,7 +78,7 @@ export default function Presensi() {
             flexShrink={0}
           >
             <SearchComponent
-              flex={"1 0 200px"}
+              minW={"165px"}
               name="search"
               onChangeSetter={(input) => {
                 setSearch(input);
@@ -74,6 +88,7 @@ export default function Presensi() {
             <DatePickerModal
               id="presensi-date-picker"
               name="'date-picker"
+              minW={"fit-content"}
               w={"fit-content"}
               onConfirm={confirmDate}
               inputValue={filterConfig.tgl[0]}

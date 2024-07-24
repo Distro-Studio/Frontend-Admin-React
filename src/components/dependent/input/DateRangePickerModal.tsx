@@ -74,7 +74,7 @@ export default function DateRangePickerModal({
   const [selected, setSelected] = useState<any>(inputValue);
 
   function handleSelect(range: any) {
-    if (maxRange && range?.from && range?.to) {
+    if (maxRange && countDateRange(range?.from, range?.to) <= maxRange) {
       const diffTime = Math.abs(range.to - range.from);
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       if (diffDays > maxRange - 1) {
@@ -163,6 +163,8 @@ export default function DateRangePickerModal({
   const errorColor = useErrorColor();
   const warningColor = useWarningColor();
 
+  console.log(inputValue);
+
   return (
     <>
       <Button
@@ -201,11 +203,11 @@ export default function DateRangePickerModal({
             mr={4}
           >{`${
             inputValue?.from
-              ? `${formatDate(inputValue.from, "short")}`
+              ? `${formatDate(inputValue.from, "basicShort")}`
               : "Pilih tanggal awal"
           } - ${
             inputValue?.to
-              ? `${formatDate(inputValue.to, "short")}`
+              ? `${formatDate(inputValue.to, "basicShort")}`
               : "Pilih tanggal akhir"
           } ${
             inputValue && inputValue.from && inputValue.to
@@ -338,11 +340,11 @@ export default function DateRangePickerModal({
                       >
                         {`${
                           selected?.from
-                            ? `${formatDate(selected.from, "short")}`
+                            ? `${formatDate(selected.from, "basicShort")}`
                             : "Pilih tanggal awal"
                         } - ${
                           selected?.to
-                            ? `${formatDate(selected.to, "short")}`
+                            ? `${formatDate(selected.to, "basicShort")}`
                             : "Pilih tanggal akhir"
                         } ${
                           selected && selected.from && selected.to
