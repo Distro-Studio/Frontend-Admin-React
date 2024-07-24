@@ -1,4 +1,5 @@
 import { ChakraProvider } from "@chakra-ui/react";
+import "leaflet/dist/leaflet.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavContainer from "./components/wrapper/NavContainer";
 import jadwalTopNavs from "./const/jadwalTopNavs";

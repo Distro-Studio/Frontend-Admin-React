@@ -30,6 +30,7 @@ import BooleanBadge from "./BooleanBadge";
 import DetailKaryawanModalDisclosure from "./DetailKaryawanModalDisclosure";
 import DisclosureHeader from "./DisclosureHeader";
 import Retry from "./Retry";
+import LokasiPresensi from "./LokasiPresensi";
 
 interface Props {
   presensi_id: number;
@@ -209,6 +210,8 @@ export default function DetailPresensiKaryawanModal({
                                   "/images/defaultProfilePhoto.webp"
                                 }
                                 borderRadius={12}
+                                aspectRatio={1}
+                                objectFit={"cover"}
                               />
                             </Box>
 
@@ -223,6 +226,8 @@ export default function DetailPresensiKaryawanModal({
                                   "/images/defaultProfilePhoto.webp"
                                 }
                                 borderRadius={12}
+                                aspectRatio={1}
+                                objectFit={"cover"}
                               />
                             </Box>
                           </CContainer>
@@ -351,6 +356,15 @@ export default function DetailPresensiKaryawanModal({
                                   {data.long || "-"}
                                 </Text>
                               </HStack>
+
+                              <LokasiPresensi
+                                center={{ lat: data.lat, lng: data.long }}
+                                officeCenter={{
+                                  lat: data.lat,
+                                  lng: data.long,
+                                }}
+                                presence_radius={100}
+                              />
                             </CContainer>
                           </Box>
                         </CContainer>
