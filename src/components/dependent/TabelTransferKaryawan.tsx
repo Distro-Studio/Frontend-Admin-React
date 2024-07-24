@@ -90,7 +90,15 @@ export default function TabelRekamJejak() {
     columnsFormat: [
       {
         value: item.user.nama,
-        td: <AvatarAndNameTableData data={item} />,
+        td: (
+          <AvatarAndNameTableData
+            data={{
+              id: item.user.id,
+              nama: item.user.nama,
+              foto_profil: item.user.foto_profil,
+            }}
+          />
+        ),
         props: {
           position: "sticky",
           left: 0,

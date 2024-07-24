@@ -59,7 +59,16 @@ export default function TabelJadwal({ filterConfig }: Props) {
     columnsFormat: [
       {
         value: item.user.nama,
-        td: <AvatarAndNameTableData data={item} withJenisKaryawan />,
+        td: (
+          <AvatarAndNameTableData
+            data={{
+              id: item.user.id,
+              nama: item.user.nama,
+              foto_profil: item.user.foto_profil,
+              unit_kerja: item.unit_kerja,
+            }}
+          />
+        ),
         props: {
           position: "sticky",
           left: 0,

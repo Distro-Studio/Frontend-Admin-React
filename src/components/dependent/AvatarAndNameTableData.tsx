@@ -1,24 +1,21 @@
 import { Avatar, HStack, StackProps, Text, Tooltip } from "@chakra-ui/react";
-import {
-  Interface__DetailKaryawan,
-  Interface__Karyawan,
-} from "../../const/interfaces";
-import DetailKaryawanModalDisclosure from "./DetailKaryawanModalDisclosure";
+import { Interface__UnitKerja } from "../../const/interfaces";
 import CContainer from "../wrapper/CContainer";
 import BooleanBadge from "./BooleanBadge";
+import DetailKaryawanModalDisclosure from "./DetailKaryawanModalDisclosure";
 
 interface Props extends StackProps {
-  data: Interface__Karyawan | Interface__DetailKaryawan;
-  withJenisKaryawan?: boolean;
+  data: {
+    id: number;
+    nama: string;
+    foto_profil: string | null;
+    unit_kerja?: Interface__UnitKerja;
+  };
 }
 
-export default function AvatarAndNameTableData({
-  data,
-  withJenisKaryawan,
-  ...props
-}: Props) {
+export default function AvatarAndNameTableData({ data, ...props }: Props) {
   console.log(data);
-  
+
   return (
     <HStack
       w={"180px"}
@@ -31,25 +28,25 @@ export default function AvatarAndNameTableData({
       <DetailKaryawanModalDisclosure karyawan_id={data.id}>
         <Avatar
           cursor={"pointer"}
-          src={data.user?.foto_profil || ""}
-          name={data.user.nama}
-          size={withJenisKaryawan ? "md" : "sm"}
+          src={data.foto_profil || ""}
+          name={data.nama}
+          size={data.unit_kerja ? "md" : "sm"}
         />
       </DetailKaryawanModalDisclosure>
 
       <CContainer gap={2} overflow={"hidden"}>
-        <Tooltip label={data.user.nama} placement="right">
+        <Tooltip label={data.nama} placement="right">
           <Text
             w={"100%"}
             whiteSpace={"nowrap"}
             overflow={"hidden"}
             textOverflow={"ellipsis"}
           >
-            {data.user.nama}
+            {data.nama}
           </Text>
         </Tooltip>
 
-        {withJenisKaryawan && (
+        {data.unit_kerja && (
           <BooleanBadge
             data={data.unit_kerja.jenis_karyawan}
             colorScheme={data.unit_kerja.jenis_karyawan ? "cyan" : "orange"}

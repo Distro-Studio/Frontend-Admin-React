@@ -70,13 +70,21 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       isSortable: true,
     },
   ];
-  const formattedData = data?.map((karyawan: Interface__DetailKaryawan) => ({
-    id: karyawan.id,
+  const formattedData = data?.map((item: Interface__DetailKaryawan) => ({
+    id: item.id,
     columns: [
       {
         column: "nama",
-        value: karyawan.user.nama,
-        td: <AvatarAndNameTableData data={karyawan} />,
+        value: item.user.nama,
+        td: (
+          <AvatarAndNameTableData
+            data={{
+              id: item.user.id,
+              nama: item.user.nama,
+              foto_profil: item.user.foto_profil,
+            }}
+          />
+        ),
         props: {
           position: "sticky",
           left: "52px",
@@ -88,18 +96,18 @@ export default function TabelRekamJejak({ filterConfig }: Props) {
       },
       {
         column: "tgl_masuk",
-        value: karyawan.tgl_masuk,
-        td: formatDate(karyawan.tgl_masuk),
+        value: item.tgl_masuk,
+        td: formatDate(item.tgl_masuk),
       },
       {
         column: "tgl_keluar",
-        value: karyawan.tgl_keluar,
-        td: formatDate(karyawan.tgl_keluar),
+        value: item.tgl_keluar,
+        td: formatDate(item.tgl_keluar),
       },
       {
         column: "masa_kerja",
-        value: karyawan.masa_kerja,
-        td: formatMasaKerja(karyawan.masa_kerja),
+        value: item.masa_kerja,
+        td: formatMasaKerja(item.masa_kerja),
       },
       {
         column: "promosi",
