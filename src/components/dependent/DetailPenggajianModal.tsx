@@ -177,7 +177,7 @@ export default function DetailPenggajianModal({
         <ModalHeader ref={initialRef}>
           <DisclosureHeader title={"Detail Penggajian"} />
         </ModalHeader>
-        <ModalBody>
+        <ModalBody px={0}>
           {error && (
             <Box my={"auto"}>
               <Retry loading={loading} retry={retry} />
@@ -200,6 +200,7 @@ export default function DetailPenggajianModal({
                       className="scrollY"
                       borderRadius={12}
                       flex={1}
+                      px={6}
                       pb={6}
                     >
                       <Wrap
