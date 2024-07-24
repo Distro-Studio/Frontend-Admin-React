@@ -45,6 +45,7 @@ export default function TabelKaryawan() {
       ),
     },
   ];
+  const [userId, setUserId] = useState<number | undefined>(undefined);
 
   const { error, loading, data, retry } = useDataState<
     Interface__DetailKaryawan[]
@@ -141,7 +142,7 @@ export default function TabelKaryawan() {
     },
   ];
   const formattedData = data?.map((item: Interface__DetailKaryawan) => ({
-    id: item.id,
+    id: item.user.id,
     columnsFormat: [
       {
         value: item.user.nama,
@@ -277,8 +278,8 @@ export default function TabelKaryawan() {
                     <CustomTable
                       formattedHeader={formattedHeader}
                       formattedData={formattedData}
-                      onRowClick={() => {
-                        //TODO buat ada query paramnya
+                      onRowClick={(row) => {
+                        setUserId(row.id);
                         onOpen();
                       }}
                       columnsConfig={columnsConfig}
@@ -304,12 +305,14 @@ export default function TabelKaryawan() {
                     }
                   />
 
-                  <DetailKaryawanModal
-                    user_id={1}
-                    isOpen={isOpen}
-                    onOpen={onOpen}
-                    onClose={onClose}
-                  />
+                  {userId && (
+                    <DetailKaryawanModal
+                      user_id={userId}
+                      isOpen={isOpen}
+                      onOpen={onOpen}
+                      onClose={onClose}
+                    />
+                  )}
                 </>
               )}
             </>
