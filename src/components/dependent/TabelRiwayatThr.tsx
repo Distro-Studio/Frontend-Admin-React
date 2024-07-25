@@ -9,10 +9,9 @@ import Skeleton from "../independent/Skeleton";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
 import BooleanBadge from "./BooleanBadge";
 import CustomTable from "./CustomTable";
-import DetailPenggajianModal from "./DetailPenggajianModal";
+import DetailThrModal from "./DetailThrModal";
 import Retry from "./Retry";
 import TabelFooterConfig from "./TabelFooterConfig";
-import DetailThrModal from "./DetailThrModal";
 
 interface Props {
   filterConfig: any;

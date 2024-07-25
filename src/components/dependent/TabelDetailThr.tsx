@@ -158,7 +158,7 @@ export default function TabelDetailThr({ data }: Props) {
 
         <ExportModal
           url=""
-          title={`Export Penggajian ${formatDate(
+          title={`Export THR ${formatDate(
             data.data_riwayat.periode,
             "periode"
           )}`}
