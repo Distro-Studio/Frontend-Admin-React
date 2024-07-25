@@ -6,14 +6,13 @@ import {
   Wrap,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
 import * as yup from "yup";
+import PengaturanNavs from "../../components/dependent/PengaturanNavs";
 import RequiredForm from "../../components/form/RequiredForm";
 import PasswordInput from "../../components/input/PasswordInput";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
-import pengaturanTopNavs from "../../const/pengaturanTopNavs";
 import { responsiveSpacing } from "../../const/sizes";
 
 export default function PengaturanUbahKataSandi() {
@@ -39,28 +38,7 @@ export default function PengaturanUbahKataSandi() {
     <>
       <CWrapper>
         <Wrap spacing={responsiveSpacing} align={"flex-start"}>
-          <CContainer
-            p={4}
-            bg={useBodyColor()}
-            borderRadius={12}
-            w={"230px"}
-            flexShrink={0}
-            gap={2}
-          >
-            {pengaturanTopNavs[0].subNavs?.map((nav, i) => (
-              <Button
-                key={i}
-                justifyContent={"flex-start"}
-                className={i === 1 ? "btn-apa clicky" : "btn clicky"}
-                fontWeight={500}
-                as={Link}
-                to={nav.link}
-                h={"50px"}
-              >
-                {nav.label}
-              </Button>
-            ))}
-          </CContainer>
+          <PengaturanNavs activeTopNavs={0} active={1} />
 
           <CContainer
             p={responsiveSpacing}

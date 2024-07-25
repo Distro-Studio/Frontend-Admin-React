@@ -1,14 +1,13 @@
 import { Button, Icon, Wrap } from "@chakra-ui/react";
 import { RiDownloadLine, RiUploadLine } from "@remixicon/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import TabelKelolaRole from "../../components/dependent/TabelPengaturanKelolaRole";
+import PengaturanNavs from "../../components/dependent/PengaturanNavs";
 import SearchComponent from "../../components/dependent/SearchComponent";
+import TabelKelolaRole from "../../components/dependent/TabelPengaturanKelolaRole";
 import TambahRole from "../../components/independent/TambahRole";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
-import pengaturanTopNavs from "../../const/pengaturanTopNavs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 
 export default function PengaturanKelolaRole() {
@@ -22,29 +21,7 @@ export default function PengaturanKelolaRole() {
     <>
       <CWrapper>
         <Wrap spacing={responsiveSpacing} align={"flex-start"}>
-          <CContainer
-            p={4}
-            bg={useBodyColor()}
-            borderRadius={12}
-            w={"230px"}
-            flex={"0 0 230px"}
-            flexShrink={0}
-            gap={2}
-          >
-            {pengaturanTopNavs[0].subNavs?.map((nav, i) => (
-              <Button
-                key={i}
-                justifyContent={"flex-start"}
-                className={i === 0 ? "btn-apa clicky" : "btn clicky"}
-                fontWeight={500}
-                as={Link}
-                to={nav.link}
-                h={"50px"}
-              >
-                {nav.label}
-              </Button>
-            ))}
-          </CContainer>
+          <PengaturanNavs activeTopNavs={0} active={0} />
 
           <CContainer
             p={responsiveSpacing}
