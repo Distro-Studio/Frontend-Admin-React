@@ -5,6 +5,7 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Icon,
   Modal,
   ModalBody,
   ModalContent,
@@ -23,6 +24,8 @@ import DatePickerModal from "../dependent/input/DatePickerModal";
 import RequiredForm from "../form/RequiredForm";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import backOnClose from "../../lib/backOnClose";
+import { RiCalendarEventFill } from "@remixicon/react";
+import { iconSize } from "../../const/sizes";
 
 interface Props extends ButtonProps {}
 
@@ -54,6 +57,7 @@ export default function RunThr({ ...props }: Props) {
         className="btn-ap clicky"
         colorScheme="ap"
         onClick={onOpen}
+        leftIcon={<Icon as={RiCalendarEventFill} fontSize={iconSize} />}
         {...props}
       >
         Run THR

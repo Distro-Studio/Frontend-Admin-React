@@ -50,7 +50,7 @@ export default function TabelRiwayatThr({ filterConfig }: Props) {
       },
     },
     {
-      th: "Status Penggajian",
+      th: "Status THR",
       isSortable: true,
       cProps: {
         justify: "center",
@@ -61,7 +61,7 @@ export default function TabelRiwayatThr({ filterConfig }: Props) {
       isSortable: true,
     },
     {
-      th: "Karyawan Digaji",
+      th: "Karyawan Dapat THR",
       isSortable: true,
       cProps: {
         justify: "center",
