@@ -223,278 +223,290 @@ export default function DetailPresensiKaryawanModal({
 
                       <CContainer
                         gap={responsiveSpacing}
-                        overflowY={[null, null, null, "auto"]}
+                        overflowY={"auto"}
                         className="scrollY"
-                        px={responsiveSpacing}
                       >
-                        <SimpleGrid columns={[1, null]} gap={responsiveSpacing}>
-                          <Box>
-                            <Text fontSize={20} fontWeight={600} mb={4}>
-                              Data Jadwal
-                            </Text>
-
-                            <CContainer gap={4}>
-                              <HStack justify={"space-between"}>
-                                <Box opacity={0.6}>
-                                  <Highlighter
-                                    highlightClassName="hw"
-                                    unhighlightClassName="uw"
-                                    searchWords={searchQuery}
-                                    autoEscape={true}
-                                    textToHighlight={"Label"}
-                                  />
-                                </Box>
-                                <FlexLine />
-                                <Text fontWeight={500} textAlign={"right"}>
-                                  {data.jadwal.nama}
-                                </Text>
-                              </HStack>
-
-                              <HStack justify={"space-between"}>
-                                <Box opacity={0.6}>
-                                  <Highlighter
-                                    highlightClassName="hw"
-                                    unhighlightClassName="uw"
-                                    searchWords={searchQuery}
-                                    autoEscape={true}
-                                    textToHighlight={"Jadwal Tanggal Masuk"}
-                                  />
-                                </Box>
-                                <FlexLine />
-                                <Text fontWeight={500} textAlign={"right"}>
-                                  {formatDate(data.jadwal.jam_from, "short")}
-                                </Text>
-                              </HStack>
-
-                              <HStack justify={"space-between"}>
-                                <Box opacity={0.6}>
-                                  <Highlighter
-                                    highlightClassName="hw"
-                                    unhighlightClassName="uw"
-                                    searchWords={searchQuery}
-                                    autoEscape={true}
-                                    textToHighlight={"Jadwal Jam Masuk"}
-                                  />
-                                </Box>
-                                <FlexLine />
-                                <Text fontWeight={500} textAlign={"right"}>
-                                  {formatTime(data.jadwal.jam_from)}
-                                </Text>
-                              </HStack>
-
-                              <HStack justify={"space-between"}>
-                                <Box opacity={0.6}>
-                                  <Highlighter
-                                    highlightClassName="hw"
-                                    unhighlightClassName="uw"
-                                    searchWords={searchQuery}
-                                    autoEscape={true}
-                                    textToHighlight={"Jadwal Jam Keluar"}
-                                  />
-                                </Box>
-                                <FlexLine />
-                                <Text fontWeight={500} textAlign={"right"}>
-                                  {formatTime(data.jadwal.jam_to)}
-                                </Text>
-                              </HStack>
-                            </CContainer>
-                          </Box>
-
-                          <Box>
-                            <Text fontSize={20} fontWeight={600} mb={4}>
-                              Data Presensi
-                            </Text>
-
-                            <CContainer gap={4}>
-                              <HStack justify={"space-between"}>
-                                <Box opacity={0.6}>
-                                  <Highlighter
-                                    highlightClassName="hw"
-                                    unhighlightClassName="uw"
-                                    searchWords={searchQuery}
-                                    autoEscape={true}
-                                    textToHighlight={"Presensi Masuk"}
-                                  />
-                                </Box>
-                                <FlexLine />
-                                <Text fontWeight={500} textAlign={"right"}>
-                                  {formatTime(data.jam_masuk)}
-                                </Text>
-                              </HStack>
-
-                              <HStack justify={"space-between"}>
-                                <Text opacity={0.6}>Presensi Keluar</Text>
-                                <FlexLine />
-                                <Text fontWeight={500} textAlign={"right"}>
-                                  {formatTime(data.jam_keluar)}
-                                </Text>
-                              </HStack>
-
-                              <HStack justify={"space-between"}>
-                                <Box opacity={0.6}>
-                                  <Highlighter
-                                    highlightClassName="hw"
-                                    unhighlightClassName="uw"
-                                    searchWords={searchQuery}
-                                    autoEscape={true}
-                                    textToHighlight={"Tanggal Masuk"}
-                                  />
-                                </Box>
-                                <FlexLine />
-                                <Text fontWeight={500} textAlign={"right"}>
-                                  {formatDate(data.jam_masuk, "short")}
-                                </Text>
-                              </HStack>
-
-                              <HStack justify={"space-between"}>
-                                <Box opacity={0.6}>
-                                  <Highlighter
-                                    highlightClassName="hw"
-                                    unhighlightClassName="uw"
-                                    searchWords={searchQuery}
-                                    autoEscape={true}
-                                    textToHighlight={"Tanggal Keluar "}
-                                  />
-                                </Box>
-                                <FlexLine />
-                                <Text fontWeight={500} textAlign={"right"}>
-                                  {formatDate(data.jam_keluar, "short")}
-                                </Text>
-                              </HStack>
-
-                              <HStack justify={"space-between"}>
-                                <Box opacity={0.6}>
-                                  <Highlighter
-                                    highlightClassName="hw"
-                                    unhighlightClassName="uw"
-                                    searchWords={searchQuery}
-                                    autoEscape={true}
-                                    textToHighlight={"Durasi Kerja"}
-                                  />
-                                </Box>
-                                <FlexLine />
-                                <Text fontWeight={500} textAlign={"right"}>
-                                  {formatDuration(data.durasi)}
-                                </Text>
-                              </HStack>
-
-                              <HStack justify={"space-between"}>
-                                <Box opacity={0.6}>
-                                  <Highlighter
-                                    highlightClassName="hw"
-                                    unhighlightClassName="uw"
-                                    searchWords={searchQuery}
-                                    autoEscape={true}
-                                    textToHighlight={"Kategori Presensi"}
-                                  />
-                                </Box>
-                                <FlexLine />
-                                <Text fontWeight={500} textAlign={"right"}>
-                                  {data.kategori || "-"}
-                                </Text>
-                              </HStack>
-
-                              <HStack justify={"space-between"}>
-                                <Box opacity={0.6}>
-                                  <Highlighter
-                                    highlightClassName="hw"
-                                    unhighlightClassName="uw"
-                                    searchWords={searchQuery}
-                                    autoEscape={true}
-                                    textToHighlight={"Absen"}
-                                  />
-                                </Box>
-                                <FlexLine />
-                                <Text fontWeight={500} textAlign={"right"}>
-                                  {data.absensi || "-"}
-                                </Text>
-                              </HStack>
-
-                              <HStack justify={"space-between"}>
-                                <Box opacity={0.6}>
-                                  <Highlighter
-                                    highlightClassName="hw"
-                                    unhighlightClassName="uw"
-                                    searchWords={searchQuery}
-                                    autoEscape={true}
-                                    textToHighlight={"Latitude"}
-                                  />
-                                </Box>
-                                <FlexLine />
-                                <Text fontWeight={500} textAlign={"right"}>
-                                  {data.lat || "-"}
-                                </Text>
-                              </HStack>
-
-                              <HStack justify={"space-between"}>
-                                <Box opacity={0.6}>
-                                  <Highlighter
-                                    highlightClassName="hw"
-                                    unhighlightClassName="uw"
-                                    searchWords={searchQuery}
-                                    autoEscape={true}
-                                    textToHighlight={"Longitude"}
-                                  />
-                                </Box>
-                                <FlexLine />
-                                <Text fontWeight={500} textAlign={"right"}>
-                                  {data.long || "-"}
-                                </Text>
-                              </HStack>
-                            </CContainer>
-                          </Box>
-                        </SimpleGrid>
-
                         <SimpleGrid
-                          columns={[1, null, 3]}
+                          columns={[1, null, 2]}
                           gap={responsiveSpacing}
+                          overflowY={"auto"}
                         >
-                          <Box flex={"1 1 200px"}>
-                            <Text fontSize={20} fontWeight={600} mb={4}>
-                              Lokasi Presensi
-                            </Text>
+                          <CContainer
+                            gap={responsiveSpacing}
+                            overflowY={"auto"}
+                            className="scrollY"
+                            px={responsiveSpacing}
+                          >
+                            <Box>
+                              <Text fontSize={20} fontWeight={600} mb={4}>
+                                Data Jadwal
+                              </Text>
 
-                            <LokasiPresensi
-                              center={{ lat: data.lat, lng: data.long }}
-                              officeCenter={{
-                                lat: data.lat,
-                                lng: data.long,
-                              }}
-                              presence_radius={100}
-                            />
-                          </Box>
+                              <CContainer gap={4}>
+                                <HStack justify={"space-between"}>
+                                  <Box opacity={0.6}>
+                                    <Highlighter
+                                      highlightClassName="hw"
+                                      unhighlightClassName="uw"
+                                      searchWords={searchQuery}
+                                      autoEscape={true}
+                                      textToHighlight={"Label"}
+                                    />
+                                  </Box>
+                                  <FlexLine />
+                                  <Text fontWeight={500} textAlign={"right"}>
+                                    {data.jadwal.nama}
+                                  </Text>
+                                </HStack>
 
-                          <Box flex={"1 1 200px"}>
-                            <Text fontSize={20} fontWeight={600} mb={4}>
-                              Foto Presensi Masuk
-                            </Text>
+                                <HStack justify={"space-between"}>
+                                  <Box opacity={0.6}>
+                                    <Highlighter
+                                      highlightClassName="hw"
+                                      unhighlightClassName="uw"
+                                      searchWords={searchQuery}
+                                      autoEscape={true}
+                                      textToHighlight={"Jadwal Tanggal Masuk"}
+                                    />
+                                  </Box>
+                                  <FlexLine />
+                                  <Text fontWeight={500} textAlign={"right"}>
+                                    {formatDate(data.jadwal.jam_from, "short")}
+                                  </Text>
+                                </HStack>
 
-                            <Image
-                              src={
-                                data.foto_masuk ||
-                                "/images/defaultProfilePhoto.webp"
-                              }
-                              borderRadius={12}
-                              aspectRatio={1}
-                              objectFit={"cover"}
-                            />
-                          </Box>
+                                <HStack justify={"space-between"}>
+                                  <Box opacity={0.6}>
+                                    <Highlighter
+                                      highlightClassName="hw"
+                                      unhighlightClassName="uw"
+                                      searchWords={searchQuery}
+                                      autoEscape={true}
+                                      textToHighlight={"Jadwal Jam Masuk"}
+                                    />
+                                  </Box>
+                                  <FlexLine />
+                                  <Text fontWeight={500} textAlign={"right"}>
+                                    {formatTime(data.jadwal.jam_from)}
+                                  </Text>
+                                </HStack>
 
-                          <Box flex={"1 1 200px"}>
-                            <Text fontSize={20} fontWeight={600} mb={4}>
-                              Foto Presensi Keluar
-                            </Text>
+                                <HStack justify={"space-between"}>
+                                  <Box opacity={0.6}>
+                                    <Highlighter
+                                      highlightClassName="hw"
+                                      unhighlightClassName="uw"
+                                      searchWords={searchQuery}
+                                      autoEscape={true}
+                                      textToHighlight={"Jadwal Jam Keluar"}
+                                    />
+                                  </Box>
+                                  <FlexLine />
+                                  <Text fontWeight={500} textAlign={"right"}>
+                                    {formatTime(data.jadwal.jam_to)}
+                                  </Text>
+                                </HStack>
+                              </CContainer>
+                            </Box>
 
-                            <Image
-                              src={
-                                data.foto_keluar ||
-                                "/images/defaultProfilePhoto.webp"
-                              }
-                              borderRadius={12}
-                              aspectRatio={1}
-                              objectFit={"cover"}
-                            />
-                          </Box>
+                            <Box>
+                              <Text fontSize={20} fontWeight={600} mb={4}>
+                                Data Presensi
+                              </Text>
+
+                              <CContainer gap={4}>
+                                <HStack justify={"space-between"}>
+                                  <Box opacity={0.6}>
+                                    <Highlighter
+                                      highlightClassName="hw"
+                                      unhighlightClassName="uw"
+                                      searchWords={searchQuery}
+                                      autoEscape={true}
+                                      textToHighlight={"Presensi Masuk"}
+                                    />
+                                  </Box>
+                                  <FlexLine />
+                                  <Text fontWeight={500} textAlign={"right"}>
+                                    {formatTime(data.jam_masuk)}
+                                  </Text>
+                                </HStack>
+
+                                <HStack justify={"space-between"}>
+                                  <Text opacity={0.6}>Presensi Keluar</Text>
+                                  <FlexLine />
+                                  <Text fontWeight={500} textAlign={"right"}>
+                                    {formatTime(data.jam_keluar)}
+                                  </Text>
+                                </HStack>
+
+                                <HStack justify={"space-between"}>
+                                  <Box opacity={0.6}>
+                                    <Highlighter
+                                      highlightClassName="hw"
+                                      unhighlightClassName="uw"
+                                      searchWords={searchQuery}
+                                      autoEscape={true}
+                                      textToHighlight={"Tanggal Masuk"}
+                                    />
+                                  </Box>
+                                  <FlexLine />
+                                  <Text fontWeight={500} textAlign={"right"}>
+                                    {formatDate(data.jam_masuk, "short")}
+                                  </Text>
+                                </HStack>
+
+                                <HStack justify={"space-between"}>
+                                  <Box opacity={0.6}>
+                                    <Highlighter
+                                      highlightClassName="hw"
+                                      unhighlightClassName="uw"
+                                      searchWords={searchQuery}
+                                      autoEscape={true}
+                                      textToHighlight={"Tanggal Keluar "}
+                                    />
+                                  </Box>
+                                  <FlexLine />
+                                  <Text fontWeight={500} textAlign={"right"}>
+                                    {formatDate(data.jam_keluar, "short")}
+                                  </Text>
+                                </HStack>
+
+                                <HStack justify={"space-between"}>
+                                  <Box opacity={0.6}>
+                                    <Highlighter
+                                      highlightClassName="hw"
+                                      unhighlightClassName="uw"
+                                      searchWords={searchQuery}
+                                      autoEscape={true}
+                                      textToHighlight={"Durasi Kerja"}
+                                    />
+                                  </Box>
+                                  <FlexLine />
+                                  <Text fontWeight={500} textAlign={"right"}>
+                                    {formatDuration(data.durasi)}
+                                  </Text>
+                                </HStack>
+
+                                <HStack justify={"space-between"}>
+                                  <Box opacity={0.6}>
+                                    <Highlighter
+                                      highlightClassName="hw"
+                                      unhighlightClassName="uw"
+                                      searchWords={searchQuery}
+                                      autoEscape={true}
+                                      textToHighlight={"Kategori Presensi"}
+                                    />
+                                  </Box>
+                                  <FlexLine />
+                                  <Text fontWeight={500} textAlign={"right"}>
+                                    {data.kategori || "-"}
+                                  </Text>
+                                </HStack>
+
+                                <HStack justify={"space-between"}>
+                                  <Box opacity={0.6}>
+                                    <Highlighter
+                                      highlightClassName="hw"
+                                      unhighlightClassName="uw"
+                                      searchWords={searchQuery}
+                                      autoEscape={true}
+                                      textToHighlight={"Absen"}
+                                    />
+                                  </Box>
+                                  <FlexLine />
+                                  <Text fontWeight={500} textAlign={"right"}>
+                                    {data.absensi || "-"}
+                                  </Text>
+                                </HStack>
+
+                                <HStack justify={"space-between"}>
+                                  <Box opacity={0.6}>
+                                    <Highlighter
+                                      highlightClassName="hw"
+                                      unhighlightClassName="uw"
+                                      searchWords={searchQuery}
+                                      autoEscape={true}
+                                      textToHighlight={"Latitude"}
+                                    />
+                                  </Box>
+                                  <FlexLine />
+                                  <Text fontWeight={500} textAlign={"right"}>
+                                    {data.lat || "-"}
+                                  </Text>
+                                </HStack>
+
+                                <HStack justify={"space-between"}>
+                                  <Box opacity={0.6}>
+                                    <Highlighter
+                                      highlightClassName="hw"
+                                      unhighlightClassName="uw"
+                                      searchWords={searchQuery}
+                                      autoEscape={true}
+                                      textToHighlight={"Longitude"}
+                                    />
+                                  </Box>
+                                  <FlexLine />
+                                  <Text fontWeight={500} textAlign={"right"}>
+                                    {data.long || "-"}
+                                  </Text>
+                                </HStack>
+                              </CContainer>
+                            </Box>
+                          </CContainer>
+
+                          <CContainer
+                            gap={responsiveSpacing}
+                            overflowY={"auto"}
+                            className="scrollY"
+                            px={responsiveSpacing}
+                          >
+                            <Box flex={"1 1 200px"}>
+                              <Text fontSize={20} fontWeight={600} mb={4}>
+                                Lokasi Presensi
+                              </Text>
+
+                              <LokasiPresensi
+                                center={{ lat: data.lat, lng: data.long }}
+                                officeCenter={{
+                                  lat: data.lat,
+                                  lng: data.long,
+                                }}
+                                presence_radius={100}
+                              />
+                            </Box>
+
+                            <Box flex={"1 1 200px"}>
+                              <Text fontSize={20} fontWeight={600} mb={4}>
+                                Foto Presensi Masuk
+                              </Text>
+
+                              <Image
+                                src={
+                                  data.foto_masuk ||
+                                  "/images/defaultProfilePhoto.webp"
+                                }
+                                borderRadius={12}
+                                aspectRatio={1}
+                                objectFit={"cover"}
+                              />
+                            </Box>
+
+                            <Box flex={"1 1 200px"}>
+                              <Text fontSize={20} fontWeight={600} mb={4}>
+                                Foto Presensi Keluar
+                              </Text>
+
+                              <Image
+                                src={
+                                  data.foto_keluar ||
+                                  "/images/defaultProfilePhoto.webp"
+                                }
+                                borderRadius={12}
+                                aspectRatio={1}
+                                objectFit={"cover"}
+                              />
+                            </Box>
+                          </CContainer>
                         </SimpleGrid>
                       </CContainer>
                     </CContainer>
