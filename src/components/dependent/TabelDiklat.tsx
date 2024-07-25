@@ -71,7 +71,11 @@ const PesertaModal = ({ data }: { data: any }) => {
                       maxW={"fit-content"}
                     />
 
-                    <Icon as={RiArrowRightUpLine} fontSize={iconSize} />
+                    <Icon
+                      as={RiArrowRightUpLine}
+                      fontSize={iconSize}
+                      opacity={0.4}
+                    />
                   </HStack>
                 </DetailKaryawanModalDisclosure>
               ))}
@@ -410,6 +414,9 @@ export default function TabelDiklat({ filterConfig }: Props) {
     {
       th: "Waktu",
       isSortable: true,
+      cProps: {
+        justify: "center",
+      },
     },
     {
       th: "Penanggung Jawab",
@@ -452,6 +459,10 @@ export default function TabelDiklat({ filterConfig }: Props) {
       {
         value: item.waktu,
         td: formatTime(item.waktu),
+        isTime: true,
+        cProps: {
+          justify: "center",
+        },
       },
       {
         value: item.penanggung_jawab,
