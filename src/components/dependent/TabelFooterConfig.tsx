@@ -60,7 +60,9 @@ export default function TabelFooterConfig({
             }
           >
             <HStack>
-              <Text color={"p.500"}>{limitConfig}</Text>
+              <Text color={"p.500"}>
+                {limitConfig === -1 ? "Semua" : limitConfig}
+              </Text>
               <Text>Row</Text>
             </HStack>
           </MenuButton>
@@ -89,6 +91,15 @@ export default function TabelFooterConfig({
               }}
             >
               100
+            </MenuItem>
+
+            <MenuItem
+              color={limitConfig === -1 ? "p.500" : ""}
+              onClick={() => {
+                setLimitConfig(-1);
+              }}
+            >
+              Semua
             </MenuItem>
           </MenuList>
         </Menu>

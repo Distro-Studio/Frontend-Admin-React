@@ -187,7 +187,7 @@ export const globalTheme = extendTheme({
         },
         list: {
           // bg: props.colorMode === "dark" ? "dark" : "white",
-          bg: "#252525ee",
+          bg: "#353535dd",
           color: "white",
           backdropFilter: "blur(10px)",
           border: "1px solid var(--divider3)",
@@ -200,7 +200,7 @@ export const globalTheme = extendTheme({
         item: {
           // borderRadius: "6px",
           bg: "transparent",
-          _hover: { bg: "var(--divider)" },
+          _hover: { bg: "var(--divider3)" },
           fontSize: 14,
           py: 3,
           px: 4,
