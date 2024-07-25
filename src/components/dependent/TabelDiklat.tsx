@@ -82,7 +82,11 @@ const PesertaModal = ({ data }: { data: any }) => {
             </CContainer>
           </ModalBody>
           <ModalFooter>
-            <Button w={"100%"} className="btn-solid clicky">
+            <Button
+              onClick={backOnClose}
+              w={"100%"}
+              className="btn-solid clicky"
+            >
               Mengerti
             </Button>
           </ModalFooter>
