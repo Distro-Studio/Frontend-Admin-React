@@ -65,7 +65,7 @@ const BatchActions = ({
 
       <Portal containerRef={tableRef}>
         <MenuList zIndex={10}>
-          <MenuGroup title={`${selectedRows.length} Terpilih`}>
+          <MenuGroup title={`${selectedRows.length} Terpilih`} fontWeight={400}>
             <MenuDivider />
 
             <MenuItem
