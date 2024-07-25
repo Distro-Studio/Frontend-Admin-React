@@ -214,7 +214,8 @@ export default function DateRangePickerModal({
           }`}</Text>
         ) : (
           <Text
-            opacity={0.3}
+            //@ts-ignore
+            color={props?._placeholder?.color || "#96969691"}
             overflow={"hidden"}
             whiteSpace={"nowrap"}
             textOverflow={"ellipsis"}

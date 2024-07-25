@@ -153,7 +153,11 @@ export default function DatePickerModal({
         {inputValue ? (
           <Text>{formatDate(inputValue, dateFormatOptions)}</Text>
         ) : (
-          <Text opacity={0.3}>{placeholder || `Pilih Tanggal`}</Text>
+          <Text //@ts-ignore
+            color={props?._placeholder?.color || "#96969691"}
+          >
+            {placeholder || `Pilih Tanggal`}
+          </Text>
         )}
 
         <Icon as={RiCalendarLine} ml={4} />

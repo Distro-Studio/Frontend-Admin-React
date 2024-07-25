@@ -180,6 +180,7 @@ input::placeholder,
 textarea::placeholder {
   /* opacity: 0.5; */
   color: #96969691;
+  /* color: var(--divider-text); */
 }
 input:focus,
 input:focus-visible,

@@ -157,7 +157,11 @@ export default function MultipleSelectModal({
                 );
               })
             ) : placeholder ? (
-              <Text opacity={0.3} fontWeight={400}>
+              <Text
+                //@ts-ignore
+                color={props?._placeholder?.color || "#96969691"}
+                fontWeight={400}
+              >
                 {placeholder}
               </Text>
             ) : (

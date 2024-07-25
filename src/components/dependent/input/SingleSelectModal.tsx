@@ -124,15 +124,27 @@ export default function SingleSelectModal({
         {...props}
       >
         <HStack>
-          <Text
-            opacity={inputValue ? 1 : 0.3}
-            fontWeight={400}
-            overflow={"hidden"}
-            whiteSpace={"nowrap"}
-            textOverflow={"ellipsis"}
-          >
-            {inputValue ? inputValue.label : placeholder || "Pilih Salah Satu"}
-          </Text>
+          {inputValue ? (
+            <Text
+              fontWeight={400}
+              overflow={"hidden"}
+              whiteSpace={"nowrap"}
+              textOverflow={"ellipsis"}
+            >
+              {inputValue.label}
+            </Text>
+          ) : (
+            <Text
+              //@ts-ignore
+              color={props?._placeholder?.color || "#96969691"}
+              fontWeight={400}
+              overflow={"hidden"}
+              whiteSpace={"nowrap"}
+              textOverflow={"ellipsis"}
+            >
+              {placeholder || "Pilih Salah Satu"}
+            </Text>
+          )}
 
           <Text fontWeight={400} opacity={0.4} ml={2}>
             {inputValue && inputValue.label2}

@@ -149,6 +149,7 @@ export default function TabelDetailThr({ data }: Props) {
           inputValue={filterConfig.unit_kerja}
           optionsDisplay="chip"
           placeholder="Filter Unit Kerja"
+          _placeholder={{ color: "var(--divider-text)" }}
           minW={"fit-content"}
           w={"fit-content"}
         />

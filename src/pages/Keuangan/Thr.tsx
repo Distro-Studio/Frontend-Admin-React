@@ -74,6 +74,8 @@ export default function Thr() {
               }}
               inputValue={tahun}
               placeholder={"Periode Tahun"}
+              _placeholder={{ color: "var(--divider-text)" }}
+              opacity={1}
               noFormat
               flex={"1 1 320px"}
             />
