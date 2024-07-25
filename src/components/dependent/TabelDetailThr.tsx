@@ -1,4 +1,4 @@
-import { HStack, Text } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import { useState } from "react";
 import { responsiveSpacing } from "../../const/sizes";
 import formatDate from "../../lib/formatDate";
@@ -67,7 +67,7 @@ export default function TabelDetailThr({ data }: Props) {
       },
     },
     {
-      th: "Take Home Pay",
+      th: "Nominal THR",
       isSortable: true,
       cProps: {
         justify: "end",
@@ -172,10 +172,6 @@ export default function TabelDetailThr({ data }: Props) {
               formattedData={formattedData}
             />
           </CustomTableContainer>
-
-          <Text opacity={0.4} textAlign={"center"} mt={responsiveSpacing}>
-            Klik row untuk melihat detail penggajian karyawan
-          </Text>
         </>
       )}
     </>
