@@ -12,7 +12,10 @@ export default function BackOnCloseButton({ ...props }: Props) {
       h="30px !important"
       borderRadius={"full"}
       className="btn"
-      onClick={backOnClose}
+      onClick={(e) => {
+        e.stopPropagation();
+        backOnClose();
+      }}
       {...props}
     />
   );

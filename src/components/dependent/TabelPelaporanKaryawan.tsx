@@ -1,321 +1,209 @@
-import {
-  Avatar,
-  Button,
-  Center,
-  HStack,
-  Icon,
-  Table,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr,
-  VStack,
-} from "@chakra-ui/react";
-import {
-  RiArrowDownLine,
-  RiArrowRightSLine,
-  RiArrowUpLine,
-} from "@remixicon/react";
+import { Box, HStack, Image } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useBodyColor, useContentBgColor } from "../../const/colors";
-import { dummyKaryawanList } from "../../const/dummy";
-import { Tabel__Column__Interface } from "../../const/interfaces";
-import ComponentSpinner from "../independent/ComponentSpinner";
-import TabelContainer from "../wrapper/CustomTableContainer";
+import { responsiveSpacing } from "../../const/sizes";
+import useDataState from "../../hooks/useDataState";
+import formatDate from "../../lib/formatDate";
+import NoData from "../independent/NoData";
+import Skeleton from "../independent/Skeleton";
+import CustomTableContainer from "../wrapper/CustomTableContainer";
+import AvatarAndNameTableData from "./AvatarAndNameTableData";
+import CustomTable from "./CustomTable";
+import Retry from "./Retry";
 import TabelFooterConfig from "./TabelFooterConfig";
+import ViewPhotoModalDisclosure from "./ViewPhotoModalDisclosure";
 
 interface Props {
-  filterConfig?: any;
+  filterConfig: any;
 }
 
 export default function TabelPelaporanKaryawan({ filterConfig }: Props) {
-  const columns: Tabel__Column__Interface[] = [
-    {
-      key: "pelaku",
-      label: "Pelaku",
-      dataType: "avatarAndName",
-    },
-    {
-      key: "tgl",
-      label: "Tanggal",
-      dataType: "string",
-    },
-    {
-      key: "lokasi",
-      label: "Lokasi",
-      dataType: "string",
-    },
-    {
-      key: "nama",
-      label: "Nama Pelapor",
-      dataType: "avatarAndName",
-    },
-  ];
-
-  //! DEBUG
-  // console.log(filterConfig);
-  //! DEBUG
-
-  //TODO get karyawan
-
-  const [data] = useState<any[] | null>(dummyKaryawanList);
-  const [loading] = useState<boolean>(false);
-
   // Limit Config
   const [limitConfig, setLimitConfig] = useState<number>(10);
-
   // Pagination Config
   const [pageConfig, setPageConfig] = useState<number>(1);
 
-  // Sort Config
-  const [sortConfig, setSortConfig] = useState<{
-    key: string;
-    direction: "asc" | "desc";
-  } | null>({ key: columns[0].key, direction: "asc" });
-  const sortedData = data && [...data];
-  if (sortConfig !== null && sortedData) {
-    sortedData.sort((a, b) => {
-      //@ts-ignore
-      let aValue = a[sortConfig.key];
-      //@ts-ignore
-      let bValue = b[sortConfig.key];
+  const dummy = [
+    {
+      pelapor: {
+        id: 3,
+        nama: "Jolitos Kurniawan",
+        username: "username1",
+        email_verified_at: null,
+        role_id: null,
+        foto_profil: "https://bit.ly/dan-abramov",
+        data_completion_step: 1,
+        status_aktif: 1,
+        created_at: "2024-06-06T23:48:35.000000Z",
+        updated_at: "2024-06-06T23:48:35.000000Z",
+        roles: [
+          {
+            id: 3,
+            name: "Admin",
+            deskripsi:
+              "satellites native some bottle blanket extra continued young married lost far great door short quick example tin teeth variety shadow does line met these",
+            guard_name: "web",
+            created_at: "2024-04-19T23:48:34.000000Z",
+            updated_at: "2024-06-06T23:48:34.000000Z",
+            pivot: {
+              model_type: "App\\Models\\User",
+              model_id: 3,
+              role_id: 3,
+            },
+          },
+        ],
+      },
+      pelaku: "Jolitos Kurniawan",
+      tgl_kejadian: "2024-01-04",
+      lokasi: "Parkiran Gedung C",
+      kronologi: "lorem ipsum",
+      upload_foto: "/images/gear5.jpg",
+    },
+  ];
 
-      // Handle nested properties
-      if (sortConfig.key === "nama") {
-        aValue = a.user?.nama;
-        bValue = b.user?.nama;
-      } else if (sortConfig.key === "unit_kerja") {
-        aValue = a.unit_kerja?.nama_unit;
-        bValue = b.unit_kerja?.nama_unit;
-      } else if (sortConfig.key === "kelompok_gaji") {
-        aValue = a.kelompok_gaji.nama_kelompok;
-        bValue = b.kelompok_gaji.nama_kelompok;
-      }
+  const { error, loading, data, retry } = useDataState<any[]>({
+    initialData: dummy,
+    url: "",
+    payload: {
+      filterConfig: filterConfig,
+    },
+    limit: limitConfig,
+    dependencies: [limitConfig, pageConfig, filterConfig],
+  });
 
-      if (aValue === null && bValue === null) return 0;
-      if (aValue === null) return 1; // Nilai null di bawah
-      if (bValue === null) return -1; // Nilai null di bawah
-
-      if (aValue < bValue) {
-        return sortConfig.direction === "asc" ? -1 : 1;
-      }
-      if (aValue > bValue) {
-        return sortConfig.direction === "asc" ? 1 : -1;
-      }
-      return 0;
-    });
-  }
-  const sort = (key: string) => {
-    let direction: "asc" | "desc" = "asc";
-    if (
-      sortConfig &&
-      sortConfig.key === key &&
-      sortConfig.direction === "asc"
-    ) {
-      direction = "desc";
-    }
-    setSortConfig({ key, direction });
-  };
-
-  // SX
-  const contentBgColor = useContentBgColor();
-  const bodyColor = useBodyColor();
+  const formattedHeader = [
+    {
+      th: "Pelapor",
+      isSortable: true,
+      props: {
+        position: "sticky",
+        left: 0,
+        zIndex: 3,
+        w: "180px",
+      },
+      cProps: {
+        borderRight: "1px solid var(--divider3)",
+      },
+    },
+    {
+      th: "Pelaku",
+      isSortable: true,
+    },
+    {
+      th: "Tanggal Kejadian",
+      cProps: {
+        justify: "center",
+      },
+    },
+    {
+      th: "Lokasi",
+      isSortable: true,
+    },
+    {
+      th: "Kronologi",
+      isSortable: true,
+    },
+    {
+      th: "Foto",
+    },
+  ];
+  const formattedData = data?.map((item: any) => ({
+    id: item.id,
+    columnsFormat: [
+      {
+        value: item.pelapor.nama,
+        td: (
+          <AvatarAndNameTableData
+            data={{
+              id: item.pelapor.id,
+              nama: item.pelapor.nama,
+              foto_profil: item.pelapor.foto_profil,
+            }}
+          />
+        ),
+        props: {
+          position: "sticky",
+          left: 0,
+          zIndex: 2,
+        },
+        cProps: {
+          borderRight: "1px solid var(--divider3)",
+        },
+      },
+      {
+        value: item.pelaku,
+        td: item.pelaku,
+      },
+      {
+        value: item.tgl_kejadian,
+        td: formatDate(item.tgl_kejadian),
+        isDate: true,
+      },
+      {
+        value: item.lokasi,
+        td: item.lokasi,
+      },
+      {
+        value: item.kronologi,
+        td: item.kronologi,
+      },
+      {
+        value: item.upload_foto,
+        td: (
+          <ViewPhotoModalDisclosure src={item.upload_foto}>
+            <Image src={item.upload_foto} borderRadius={6} />
+          </ViewPhotoModalDisclosure>
+        ),
+      },
+    ],
+  }));
 
   return (
     <>
-      {loading && <ComponentSpinner mt={4} />}
-
-      {!loading && sortedData && (
+      {error && (
+        <Box my={"auto"}>
+          <Retry loading={loading} retry={retry} />
+        </Box>
+      )}
+      {!error && (
         <>
-          <TabelContainer>
-            <Table minW={"100%"}>
-              <Thead>
-                <Tr position={"sticky"} top={0} zIndex={3}>
-                  {columns.map((column, i) => (
-                    <Th
-                      key={i}
-                      whiteSpace={"nowrap"}
-                      onClick={() => {
-                        if (column.dataType !== "action") {
-                          sort(column.key);
-                        }
-                      }}
-                      cursor={"pointer"}
-                      borderBottom={"none !important"}
-                      bg={bodyColor}
-                      zIndex={2}
-                      p={0}
-                      {...column.thProps}
-                    >
-                      {column.dataType === "action" ||
-                      column.dataType === "link" ? (
-                        <HStack
-                          justify={"center"}
-                          borderBottom={"1px solid var(--divider3)"}
-                          px={4}
-                          py={3}
-                          h={"52px"}
-                          pl={i === 0 ? 4 : ""}
-                          pr={i === columns.length - 1 ? 4 : ""}
-                          {...column.thContentProps}
-                        >
-                          <Text>{column.label}</Text>
-                        </HStack>
-                      ) : (
-                        <HStack
-                          justify={
-                            column.preferredTextAlign === "center"
-                              ? "center"
-                              : column.dataType === "numeric"
-                              ? "flex-end"
-                              : "space-between"
-                          }
-                          borderBottom={"1px solid var(--divider3)"}
-                          px={4}
-                          py={3}
-                          h={"52px"}
-                          pl={i === 0 ? 4 : ""}
-                          pr={i === columns.length - 1 ? 4 : ""}
-                          {...column.thContentProps}
-                        >
-                          <Text
-                            fontWeight={600}
-                            flexShrink={0}
-                            lineHeight={1.2}
-                          >
-                            {column.label}
-                          </Text>
+          {loading && (
+            <>
+              <Skeleton flex={1} mx={"auto"} />
+              <HStack justify={"space-between"} mt={responsiveSpacing}>
+                <Skeleton maxW={"120px"} />
+                <Skeleton maxW={"300px"} h={"20px"} />
+                <Skeleton maxW={"112px"} />
+              </HStack>
+            </>
+          )}
+          {!loading && (
+            <>
+              {!formattedData && <NoData />}
 
-                          {sortConfig && sortConfig.key === column.key && (
-                            <>
-                              {sortConfig.direction === "asc" ? (
-                                <Icon
-                                  as={RiArrowUpLine}
-                                  color={"p.500"}
-                                  fontSize={16}
-                                />
-                              ) : (
-                                <Icon
-                                  as={RiArrowDownLine}
-                                  color={"p.500"}
-                                  fontSize={16}
-                                />
-                              )}
-                            </>
-                          )}
-                        </HStack>
-                      )}
-                    </Th>
-                  ))}
+              {formattedData && (
+                <>
+                  <CustomTableContainer>
+                    <CustomTable
+                      formattedHeader={formattedHeader}
+                      formattedData={formattedData}
+                    />
+                  </CustomTableContainer>
 
-                  {/* Kolom tetap di sebelah kanan */}
-                  <Th
-                    position={"sticky"}
-                    top={0}
-                    right={0}
-                    borderBottom={"none !important"}
-                    p={0}
-                    bg={bodyColor}
-                    zIndex={2}
-                  >
-                    <Center
-                      px={4}
-                      py={3}
-                      zIndex={99}
-                      borderLeft={"1px solid var(--divider3)"}
-                      borderBottom={"1px solid var(--divider3)"}
-                      h={"52px"}
-                    >
-                      <Text>Detail</Text>
-                    </Center>
-                  </Th>
-                </Tr>
-              </Thead>
-
-              <Tbody>
-                {sortedData.map((row, i) => (
-                  <Tr
-                    h={"72px"}
-                    key={i}
-                    bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                  >
-                    <Td whiteSpace={"nowrap"}>
-                      <HStack>
-                        <Avatar
-                          size={"sm"}
-                          name={row.user.nama}
-                          src={row.user.foto_profil}
-                        />
-                        <Text>{row.user.nama}</Text>
-                      </HStack>
-                    </Td>
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
-                    <Td whiteSpace={"nowrap"}>
-                      <HStack>
-                        <Avatar
-                          size={"sm"}
-                          name={row.user.nama}
-                          src={row.user.foto_profil}
-                        />
-                        <Text>{row.user.nama}</Text>
-                      </HStack>
-                    </Td>
-
-                    {/* Kolom tetap di sebelah kanan */}
-                    <Td
-                      position={"sticky"}
-                      top={0}
-                      right={0}
-                      borderBottom={"none !important"}
-                      p={0}
-                      bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                      zIndex={1}
-                      w={"150px"}
-                    >
-                      <VStack
-                        borderLeft={"1px solid var(--divider3)"}
-                        w={"150px"}
-                        h={"72px"}
-                        px={4}
-                        align={"stretch"}
-                        justify={"center"}
-                      >
-                        <Button
-                          colorScheme="ap"
-                          variant={"ghost"}
-                          className="clicky"
-                          as={Link}
-                          to={`/perusahaan/pelaporan-karyawan/${row.id}`}
-                          rightIcon={
-                            <Icon as={RiArrowRightSLine} fontSize={20} />
-                          }
-                          pr={3}
-                        >
-                          Detail
-                        </Button>
-                      </VStack>
-                    </Td>
-                  </Tr>
-                ))}
-              </Tbody>
-            </Table>
-          </TabelContainer>
-
-          <TabelFooterConfig
-            limitConfig={limitConfig}
-            setLimitConfig={setLimitConfig}
-            pageConfig={pageConfig}
-            setPageConfig={setPageConfig}
-            paginationData={{
-              prev_page_url: "",
-              next_page_url: "",
-              last_page: 1,
-            }}
-          />
+                  <TabelFooterConfig
+                    limitConfig={limitConfig}
+                    setLimitConfig={setLimitConfig}
+                    pageConfig={pageConfig}
+                    setPageConfig={setPageConfig}
+                    paginationData={{
+                      prev_page_url: "",
+                      next_page_url: "",
+                      last_page: 1,
+                    }}
+                  />
+                </>
+              )}
+            </>
+          )}
         </>
       )}
     </>
