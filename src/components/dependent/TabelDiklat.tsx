@@ -56,7 +56,7 @@ const PesertaModal = ({ data }: { data: any }) => {
           <ModalHeader>
             <DisclosureHeader title={"Peserta Diklat"} />
           </ModalHeader>
-          <ModalBody>
+          <ModalBody className="scrollY">
             <CContainer gap={2}>
               {data.peserta.map((peserta: any, i: number) => (
                 <DetailKaryawanModalDisclosure key={i} user_id={peserta.id}>
