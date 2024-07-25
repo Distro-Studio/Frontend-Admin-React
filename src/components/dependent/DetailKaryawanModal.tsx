@@ -54,18 +54,25 @@ import SmallLink from "./SmallLink";
 import SearchComponent from "./input/SearchComponent";
 
 interface Props {
+  id?: string;
   user_id: number;
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 }
 export default function DetailKaryawanModal({
+  id,
   user_id,
   isOpen,
   onOpen,
   onClose,
 }: Props) {
-  useBackOnClose(`detail-karyawan-modal-${user_id}`, isOpen, onOpen, onClose);
+  useBackOnClose(
+    id || `detail-karyawan-modal-${user_id}`,
+    isOpen,
+    onOpen,
+    onClose
+  );
   const initialRef = useRef(null);
 
   const { error, loading, data, retry } = useDataState<any>({

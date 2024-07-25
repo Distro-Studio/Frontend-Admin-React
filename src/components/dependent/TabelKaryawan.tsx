@@ -307,6 +307,7 @@ export default function TabelKaryawan() {
 
                   {userId && (
                     <DetailKaryawanModal
+                      id={"detail-karyawan-row-on-click-modal"}
                       user_id={userId}
                       isOpen={isOpen}
                       onOpen={onOpen}

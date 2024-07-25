@@ -20,6 +20,7 @@ import DisclosureHeader from "./DisclosureHeader";
 import Retry from "./Retry";
 
 interface Props extends BoxProps {
+  id?: string;
   role_id: number;
   role_name: string;
   isOpen: boolean;
@@ -27,6 +28,7 @@ interface Props extends BoxProps {
   onClose: () => void;
 }
 export default function DetailKelolaRoleModal({
+  id,
   role_id,
   role_name,
   isOpen,
@@ -35,7 +37,7 @@ export default function DetailKelolaRoleModal({
   ...props
 }: Props) {
   useBackOnClose(
-    `detail-kelola-role-modal-${role_id}`,
+    id || `detail-kelola-role-modal-${role_id}`,
     isOpen,
     onOpen,
     onClose
