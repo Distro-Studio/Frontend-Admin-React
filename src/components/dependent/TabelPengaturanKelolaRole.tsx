@@ -103,7 +103,6 @@ export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
                       formattedHeader={formattedHeader}
                       formattedData={formattedData}
                       onRowClick={(rowData) => {
-                        console.log(rowData);
                         setRole(rowData);
                         onOpen();
                       }}
