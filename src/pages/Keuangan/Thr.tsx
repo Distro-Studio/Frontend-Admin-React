@@ -1,14 +1,14 @@
 import { HStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ExportModal from "../../components/dependent/ExportModal";
+import NumberInput from "../../components/dependent/input/NumberInput";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelRiwayatPenggajian from "../../components/dependent/TabelRiwayatPenggajian";
-import BuatPenggajianModal from "../../components/independent/BuatPenggajianModal";
+import RunThr from "../../components/independent/RunThr";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
-import NumberInput from "../../components/dependent/input/NumberInput";
 
 export default function Thr() {
   // Filter Config
@@ -80,7 +80,7 @@ export default function Thr() {
 
             <ExportModal url="" title="Export Penggajian" />
 
-            <BuatPenggajianModal minW={"fit-content"} />
+            <RunThr minW={"fit-content"} />
           </HStack>
 
           <TabelRiwayatPenggajian filterConfig={filterConfig} />

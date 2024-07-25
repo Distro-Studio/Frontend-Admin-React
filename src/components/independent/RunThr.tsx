@@ -7,27 +7,28 @@ import {
   FormLabel,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useRef, useState } from "react";
 import * as yup from "yup";
-import backOnClose from "../../lib/backOnCloseOld";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
 import MultiSelectKaryawan from "../dependent/_Select/MultiSelectKaryawan";
-import RequiredForm from "../form/RequiredForm";
+import DisclosureHeader from "../dependent/DisclosureHeader";
 import DatePickerModal from "../dependent/input/DatePickerModal";
+import RequiredForm from "../form/RequiredForm";
+import useBackOnClose from "../../hooks/useBackOnClose";
+import backOnClose from "../../lib/backOnClose";
 
 interface Props extends ButtonProps {}
 
 export default function RunThr({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
+  useBackOnClose("run-thr-modal", isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
   const [semuaKaryawan, setSemuaKaryawan] = useState<boolean>(false);
@@ -61,16 +62,18 @@ export default function RunThr({ ...props }: Props) {
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          backOnClose(onClose);
+          backOnClose();
           formik.resetForm();
         }}
         initialFocusRef={initialRef}
+        blockScrollOnMount={false}
         isCentered
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Run THR</ModalHeader>
+          <ModalHeader ref={initialRef}>
+            <DisclosureHeader title="Run THR" />
+          </ModalHeader>
           <ModalBody>
             <Checkbox
               name="semua_karyawan"
@@ -81,7 +84,7 @@ export default function RunThr({ ...props }: Props) {
               colorScheme="ap"
               mb={4}
             >
-              Semua Karyawan
+              <Text mt={"-3px"}>Semua Karyawan</Text>
             </Checkbox>
 
             <form id="runThrForm" onSubmit={formik.handleSubmit}>
