@@ -1,8 +1,4 @@
 import {
-  Accordion,
-  AccordionButton,
-  AccordionItem,
-  AccordionPanel,
   Box,
   Button,
   HStack,
@@ -17,19 +13,20 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { responsiveSpacing } from "../../const/sizes";
+import useBackOnClose from "../../hooks/useBackOnClose";
 import useDataState from "../../hooks/useDataState";
+import backOnClose from "../../lib/backOnClose";
+import formatDate from "../../lib/formatDate";
+import FlexLine from "../independent/FlexLine";
 import NoData from "../independent/NoData";
 import Skeleton from "../independent/Skeleton";
+import CContainer from "../wrapper/CContainer";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
 import AvatarAndNameTableData from "./AvatarAndNameTableData";
 import CustomTable from "./CustomTable";
+import DisclosureHeader from "./DisclosureHeader";
 import Retry from "./Retry";
 import TabelFooterConfig from "./TabelFooterConfig";
-import useBackOnClose from "../../hooks/useBackOnClose";
-import backOnClose from "../../lib/backOnClose";
-import DisclosureHeader from "./DisclosureHeader";
-import CContainer from "../wrapper/CContainer";
-import formatDate from "../../lib/formatDate";
 
 const PenilaianList = ({ data }: { data: any }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -58,29 +55,28 @@ const PenilaianList = ({ data }: { data: any }) => {
             <DisclosureHeader title={"Daftar Penilaian"} />
           </ModalHeader>
 
-          <ModalBody>
+          <ModalBody px={0}>
             <CContainer gap={2}>
-              <Accordion allowMultiple>
-                {data.penilaians.map((item: any, i: number) => (
-                  <AccordionItem key={i}>
-                    <AccordionButton justifyContent={"space-between"} p={4}>
-                      <AvatarAndNameTableData
-                        data={{
-                          id: item.user_penilai.id,
-                          nama: item.user_penilai.nama,
-                          foto_profil: item.user_penilai.foto_profil,
-                        }}
-                      />
+              <HStack justify={"space-between"} gap={4} px={6}>
+                <Text fontWeight={600}>Rata - Rata</Text>
+                <Text fontWeight={600}>{data.rata_rata}</Text>
+              </HStack>
 
-                      <Text>{item.rata_rata}</Text>
-                    </AccordionButton>
-                    <AccordionPanel>
-                      <Text>Pertanyaan</Text>
-                      <Text>21</Text>
-                    </AccordionPanel>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+              {data.penilaians.map((item: any, i: number) => (
+                <HStack key={i} px={6} py={2} justify={"space-between"}>
+                  <AvatarAndNameTableData
+                    data={{
+                      id: item.user_penilai.id,
+                      nama: item.user_penilai.nama,
+                      foto_profil: item.user_penilai.foto_profil,
+                    }}
+                  />
+
+                  <FlexLine />
+
+                  <Text>{item.rata_rata}</Text>
+                </HStack>
+              ))}
             </CContainer>
           </ModalBody>
 

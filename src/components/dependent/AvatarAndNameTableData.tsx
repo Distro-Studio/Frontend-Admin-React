@@ -26,7 +26,7 @@ export default function AvatarAndNameTableData({ data, ...props }: Props) {
       </DetailKaryawanModalDisclosure>
 
       <CContainer gap={2} overflow={"hidden"}>
-        <Tooltip label={data.nama} placement="right">
+        <Tooltip label={data.nama} placement="right" openDelay={500}>
           <Text
             w={"100%"}
             whiteSpace={"nowrap"}
