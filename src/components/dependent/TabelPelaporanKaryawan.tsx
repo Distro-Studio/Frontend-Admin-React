@@ -1,4 +1,4 @@
-import { Box, HStack, Image } from "@chakra-ui/react";
+import { Box, Button, HStack } from "@chakra-ui/react";
 import { useState } from "react";
 import { responsiveSpacing } from "../../const/sizes";
 import useDataState from "../../hooks/useDataState";
@@ -150,7 +150,9 @@ export default function TabelPelaporanKaryawan({ filterConfig }: Props) {
         value: item.upload_foto,
         td: (
           <ViewPhotoModalDisclosure src={item.upload_foto}>
-            <Image src={item.upload_foto} borderRadius={6} />
+            <Button colorScheme="ap" variant={"ghost"} className="clicky">
+              Lihat
+            </Button>
           </ViewPhotoModalDisclosure>
         ),
       },

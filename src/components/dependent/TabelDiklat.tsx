@@ -36,7 +36,12 @@ const PesertaModal = ({ data }: { data: any }) => {
 
   return (
     <>
-      <Button colorScheme="ap" variant={"ghost"} onClick={onOpen}>
+      <Button
+        colorScheme="ap"
+        variant={"ghost"}
+        className="clicky"
+        onClick={onOpen}
+      >
         Lihat
       </Button>
 
