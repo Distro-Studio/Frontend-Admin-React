@@ -255,6 +255,7 @@ export default function DetailThrModal({
                             <Icon as={RiSendPlaneFill} fontSize={iconSize} />
                           }
                           pl={5}
+                          isDisabled={!data.data_riwayat.status_riwayat_gaji}
                         >
                           Publikasi
                         </Button>

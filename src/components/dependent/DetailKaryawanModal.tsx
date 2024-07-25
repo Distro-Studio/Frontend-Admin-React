@@ -55,24 +55,17 @@ import SearchComponent from "./input/SearchComponent";
 
 interface Props {
   user_id: number;
-  karyawan_id?: number;
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 }
 export default function DetailKaryawanModal({
   user_id,
-  karyawan_id,
   isOpen,
   onOpen,
   onClose,
 }: Props) {
-  useBackOnClose(
-    `detail-karyawan-modal-${user_id}-${karyawan_id}`,
-    isOpen,
-    onOpen,
-    onClose
-  );
+  useBackOnClose(`detail-karyawan-modal-${user_id}`, isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
   const { error, loading, data, retry } = useDataState<any>({
