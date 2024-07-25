@@ -30,9 +30,11 @@ import FilterTglMasuk from "../dependent/_FilterOptions/FilterTglMasuk";
 import FilterUnitKerja from "../dependent/_FilterOptions/FilterUnitKerja";
 import DisclosureHeader from "../dependent/DisclosureHeader";
 
-interface Props extends ButtonProps {}
+interface Props extends ButtonProps {
+  title?: string;
+}
 
-export default function FilterKaryawan({ ...props }: Props) {
+export default function FilterKaryawan({ title, ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose("filter-karyawan", isOpen, onOpen, onClose);
   const initialRef = useRef(null);
@@ -133,7 +135,7 @@ export default function FilterKaryawan({ ...props }: Props) {
 
         <ModalContent minW={"328px"}>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title="Filter Karyawan" />
+            <DisclosureHeader title={title || "Filter Karyawan"} />
           </ModalHeader>
 
           <ModalBody>

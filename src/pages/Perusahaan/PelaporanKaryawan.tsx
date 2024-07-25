@@ -62,7 +62,7 @@ export default function PelaporanKaryawan() {
               inputValue={search}
             />
 
-            <FilterKaryawan />
+            <FilterKaryawan title="Filter Karyawan Pelapor" />
 
             <ExportModal url="" title="Export Penggajian" />
           </HStack>
