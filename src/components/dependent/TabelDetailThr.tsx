@@ -1,4 +1,4 @@
-import { HStack, Text, useDisclosure } from "@chakra-ui/react";
+import { HStack, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { responsiveSpacing } from "../../const/sizes";
 import formatDate from "../../lib/formatDate";
@@ -8,7 +8,6 @@ import CustomTableContainer from "../wrapper/CustomTableContainer";
 import MultiSelectUnitKerja from "./_Select/MultiSelectUnitKerja";
 import AvatarAndNameTableData from "./AvatarAndNameTableData";
 import CustomTable from "./CustomTable";
-import DetailPenggajianKaryawanModal from "./DetailPenggajianKaryawanModal";
 import ExportModal from "./ExportModal";
 import SearchComponent from "./input/SearchComponent";
 
@@ -17,8 +16,6 @@ interface Props {
 }
 
 export default function TabelDetailThr({ data }: Props) {
-  // Detail Penggajian Karyawan Disclosure
-  const { isOpen, onOpen, onClose } = useDisclosure();
   // Filter Config
   const [filterConfig, setFilterConfig] = useState({
     search: "",
@@ -173,8 +170,6 @@ export default function TabelDetailThr({ data }: Props) {
             <CustomTable
               formattedHeader={formattedHeader}
               formattedData={formattedData}
-              onRowClick={onOpen}
-              // rowOptions={rowOptions}
             />
           </CustomTableContainer>
 
@@ -183,13 +178,6 @@ export default function TabelDetailThr({ data }: Props) {
           </Text>
         </>
       )}
-
-      <DetailPenggajianKaryawanModal
-        karyawan_id={1}
-        isOpen={isOpen}
-        onOpen={onOpen}
-        onClose={onClose}
-      />
     </>
   );
 }
