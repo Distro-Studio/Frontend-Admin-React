@@ -2,7 +2,7 @@ import { HStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ExportModal from "../../components/dependent/ExportModal";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
-import TabelPelaporanKaryawan from "../../components/dependent/TabelPelaporanKaryawan";
+import TabelPenilaianKaryawan from "../../components/dependent/TabelPenilaianKaryawan";
 import FilterKaryawan from "../../components/independent/FilterKaryawan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -67,7 +67,7 @@ export default function PenilaianKaryawan() {
             <ExportModal url="" title="Export Penggajian" />
           </HStack>
 
-          <TabelPelaporanKaryawan filterConfig={filterKaryawan} />
+          <TabelPenilaianKaryawan filterConfig={filterKaryawan} />
         </CContainer>
       </CWrapper>
     </>

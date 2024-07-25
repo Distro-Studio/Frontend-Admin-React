@@ -15,7 +15,7 @@ interface Props extends StackProps {
 
 export default function AvatarAndNameTableData({ data, ...props }: Props) {
   return (
-    <HStack maxW={"180px"} gap={3} {...props}>
+    <HStack w={"100%"} maxW={"180px"} gap={3} {...props}>
       <DetailKaryawanModalDisclosure user_id={data.id}>
         <Avatar
           cursor={"pointer"}
@@ -43,6 +43,7 @@ export default function AvatarAndNameTableData({ data, ...props }: Props) {
             colorScheme={data.unit_kerja.jenis_karyawan ? "cyan" : "orange"}
             trueValue="Shift"
             falseValue="Non-Shift"
+            w={"100%"}
           />
         )}
       </CContainer>
