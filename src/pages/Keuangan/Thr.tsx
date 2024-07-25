@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import ExportModal from "../../components/dependent/ExportModal";
 import NumberInput from "../../components/dependent/input/NumberInput";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
-import TabelRiwayatPenggajian from "../../components/dependent/TabelRiwayatPenggajian";
+import TabelRiwayatThr from "../../components/dependent/TabelRiwayatThr";
 import RunThr from "../../components/independent/RunThr";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -83,7 +83,7 @@ export default function Thr() {
             <RunThr minW={"fit-content"} />
           </HStack>
 
-          <TabelRiwayatPenggajian filterConfig={filterConfig} />
+          <TabelRiwayatThr filterConfig={filterConfig} />
         </CContainer>
       </CWrapper>
     </>
