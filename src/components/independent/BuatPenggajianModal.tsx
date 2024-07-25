@@ -1,4 +1,7 @@
 import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
   Button,
   ButtonProps,
   Checkbox,
@@ -20,6 +23,7 @@ import { iconSize } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import backOnClose from "../../lib/backOnClose";
 import DisclosureHeader from "../dependent/DisclosureHeader";
+import CContainer from "../wrapper/CContainer";
 
 interface Props extends ButtonProps {}
 
@@ -81,9 +85,19 @@ export default function BuatPenggajianModal({ ...props }: Props) {
           </ModalBody>
 
           <ModalFooter>
-            <Button w={"100%"} className="btn-ap clicky" colorScheme="ap">
-              Buat Penggajian
-            </Button>
+            <CContainer>
+              <Alert status="warning" alignItems={"start"} mb={4}>
+                <AlertIcon mt={1} />
+                <AlertDescription>
+                  Silakan cek atau refresh tabel penggajian secara berkala
+                  karena pembuatan gaji memerlukan waktu.
+                </AlertDescription>
+              </Alert>
+
+              <Button w={"100%"} className="btn-ap clicky" colorScheme="ap">
+                Buat Penggajian
+              </Button>
+            </CContainer>
           </ModalFooter>
         </ModalContent>
       </Modal>
