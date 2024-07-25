@@ -171,8 +171,8 @@ export default function PeriodPickerModal({
                   <Button
                     key={i}
                     flex={"1 1 100px"}
-                    borderColor={i === bulanLocal ? "p.500" : ""}
-                    bg={i === bulanLocal ? "var(--p500a3) !important" : ""}
+                    borderColor={i === bulanLocal ? "var(--p500)" : ""}
+                    bg={i === bulanLocal ? "var(--p500a5) !important" : ""}
                     className="btn-outline"
                     onClick={() => {
                       setBulanLocal(i);
