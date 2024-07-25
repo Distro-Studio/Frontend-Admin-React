@@ -23,6 +23,8 @@ export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
   // Disclosure Config
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const [role, setRole] = useState<any>(undefined);
+
   const { error, loading, data, retry } = useDataState<any[]>({
     initialData: dummyKelolaRole,
     url: "",
@@ -100,7 +102,11 @@ export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
                     <CustomTable
                       formattedHeader={formattedHeader}
                       formattedData={formattedData}
-                      onRowClick={onOpen}
+                      onRowClick={(rowData) => {
+                        console.log(rowData);
+                        setRole(rowData);
+                        onOpen();
+                      }}
                     />
                   </CustomTableContainer>
 
@@ -121,12 +127,15 @@ export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
                     }
                   />
 
-                  <DetailKelolaRoleModal
-                    role_id={1}
-                    isOpen={isOpen}
-                    onOpen={onOpen}
-                    onClose={onClose}
-                  />
+                  {role && (
+                    <DetailKelolaRoleModal
+                      role_id={role.id}
+                      role_name={role.columnsFormat[0].value}
+                      isOpen={isOpen}
+                      onOpen={onOpen}
+                      onClose={onClose}
+                    />
+                  )}
                 </>
               )}
             </>

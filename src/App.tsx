@@ -28,7 +28,6 @@ import PengaturanCuti from "./pages/Pengaturan/PengaturanCuti";
 import PengaturanHariLibur from "./pages/Pengaturan/PengaturanHariLibur";
 import PengaturanJabatan from "./pages/Pengaturan/PengaturanJabatan";
 import PengaturanJadwalPenggajian from "./pages/Pengaturan/PengaturanJadwalPenggajian";
-import PengaturanKeizinan from "./pages/Pengaturan/PengaturanKeizinan";
 import PengaturanKelolaRole from "./pages/Pengaturan/PengaturanKelolaRole";
 import PengaturanKelompokGaji from "./pages/Pengaturan/PengaturanKelompokGaji";
 import PengaturanKompetensi from "./pages/Pengaturan/PengaturanKompetensi";
@@ -355,19 +354,6 @@ export const App = () => (
               topNavActive={0}
             >
               <PengaturanKelolaRole />
-            </NavContainer>
-          }
-        />
-        <Route
-          path="/pengaturan/akun/kelola-role/:role_id/:role_name"
-          element={
-            <NavContainer
-              active={6}
-              title="Atur Keizinan"
-              left={"back"}
-              // backLink="/pengaturan/akun/kelola-role"
-            >
-              <PengaturanKeizinan />
             </NavContainer>
           }
         />

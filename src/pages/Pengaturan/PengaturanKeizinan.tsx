@@ -1,14 +1,17 @@
 import { Button, Checkbox, HStack, Text, Wrap } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
 import TabelKeizinan from "../../components/dependent/TabelPengaturanKeizinan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
-import { useBodyColor } from "../../const/colors";
+import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 
-export default function PengaturanKeizinan() {
-  const { role_id, role_name } = useParams();
+interface Props {
+  role_id: number;
+  role_name: string;
+}
+
+export default function PengaturanKeizinan({ role_id, role_name }: Props) {
   //! DEBUG
   const dummy = {
     User: {
@@ -178,10 +181,13 @@ export default function PengaturanKeizinan() {
     }
   }, [role_id]);
 
+  // SX
+  const lightDarkColor = useLightDarkColor();
+
   return (
     <>
       <CWrapper>
-        <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
+        <CContainer bg={lightDarkColor} borderRadius={12}>
           <Wrap justify={"space-between"} mb={responsiveSpacing}>
             <HStack gap={8}>
               <HStack>

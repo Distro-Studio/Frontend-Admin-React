@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   BoxProps,
   Modal,
@@ -7,31 +6,29 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  Text,
-  VStack,
-  Wrap,
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import { dummyDetailKeluargaKaryawan } from "../../const/dummy";
-import { responsiveSpacing } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import useDataState from "../../hooks/useDataState";
 import backOnClose from "../../lib/backOnClose";
+import PengaturanKeizinan from "../../pages/Pengaturan/PengaturanKeizinan";
 import ComponentSpinner from "../independent/ComponentSpinner";
 import NoData from "../independent/NoData";
 import CContainer from "../wrapper/CContainer";
 import DisclosureHeader from "./DisclosureHeader";
 import Retry from "./Retry";
-import TabelDetailKeluargaKaryawan from "./TabelDetailKeluargaKaryawan";
 
 interface Props extends BoxProps {
   role_id: number;
+  role_name: string;
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 }
 export default function DetailKelolaRoleModal({
   role_id,
+  role_name,
   isOpen,
   onOpen,
   onClose,
@@ -68,7 +65,8 @@ export default function DetailKelolaRoleModal({
         <ModalHeader ref={initialRef}>
           <DisclosureHeader title={"Detail Keluarga Karyawan"} />
         </ModalHeader>
-        <ModalBody>
+
+        <ModalBody px={0}>
           {error && (
             <Box my={"auto"}>
               <Retry loading={loading} retry={retry} />
@@ -93,50 +91,10 @@ export default function DetailKelolaRoleModal({
                       flex={1}
                       pb={6}
                     >
-                      <Wrap
-                        spacing={responsiveSpacing}
-                        mb={responsiveSpacing}
-                        align={"center"}
-                      >
-                        <Avatar
-                          size={"md"}
-                          w={"55px"}
-                          h={"55px"}
-                          src={data.user.foto_profil}
-                          name={data.user.nama}
-                        />
-
-                        <VStack align={"stretch"}>
-                          <Text fontSize={14} opacity={0.6}>
-                            Nama Karyawan
-                          </Text>
-                          <Text fontWeight={500}>{data.user.nama}</Text>
-                        </VStack>
-
-                        <VStack align={"stretch"}>
-                          <Text fontSize={14} opacity={0.6}>
-                            Jumlah Keluarga
-                          </Text>
-                          <Text fontWeight={500}>
-                            {data.jumlah_keluarga || 0}
-                          </Text>
-                        </VStack>
-
-                        {/* <HStack ml={"auto"}>
-                            <Button
-                              leftIcon={
-                                <Icon as={RiCheckboxFill} fontSize={iconSize} />
-                              }
-                              pl={5}
-                              className="btn-ap clicky"
-                              colorScheme="ap"
-                            >
-                              Persetujuan
-                            </Button>
-                          </HStack> */}
-                      </Wrap>
-
-                      <TabelDetailKeluargaKaryawan data={data.data_keluarga} />
+                      <PengaturanKeizinan
+                        role_id={role_id}
+                        role_name={role_name}
+                      />
                     </CContainer>
                   )}
                 </>
