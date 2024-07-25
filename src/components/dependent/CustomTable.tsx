@@ -187,6 +187,7 @@ export default function CustomTable({
 
   // Row Click
   const handleRowClick = (rowData: any) => {
+    console.log(rowData);
     if (onRowClick) {
       onRowClick(rowData);
     }
@@ -398,7 +399,9 @@ export default function CustomTable({
             key={rowIndex}
             role="group"
             transition={"200ms"}
-            onClick={handleRowClick}
+            onClick={(e) => {
+              handleRowClick(row);
+            }}
             cursor={onRowClick ? "pointer" : "auto"}
             px={2}
             borderBottom={"1px solid var(--divider)"}

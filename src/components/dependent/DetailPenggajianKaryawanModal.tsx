@@ -201,146 +201,136 @@ export default function DetailPenggajianKaryawanModal({
                       h={"calc(100vh - 70px)"}
                       overflowY={"auto"}
                       className="scrollY"
+                      gap={responsiveSpacing}
                       mb={responsiveSpacing}
                     >
+                      <Wrap
+                        spacing={responsiveSpacing}
+                        align={"center"}
+                        px={responsiveSpacing}
+                      >
+                        <DetailKaryawanModalDisclosure user_id={data.user.id}>
+                          <Avatar
+                            size={"md"}
+                            w={"55px"}
+                            h={"55px"}
+                            src={data.user.foto_profil}
+                            name={data.user.nama}
+                          />
+                        </DetailKaryawanModalDisclosure>
+
+                        <VStack align={"stretch"}>
+                          <Text fontSize={14} opacity={0.6}>
+                            Nama Karyawan
+                          </Text>
+                          <Text fontWeight={500}>{data.user.nama}</Text>
+                        </VStack>
+
+                        <VStack align={"stretch"}>
+                          <Text fontSize={14} opacity={0.6}>
+                            Kelompok Gaji
+                          </Text>
+                          <Text fontWeight={500}>
+                            {data.kelompok_gaji.nama_kelompok}
+                          </Text>
+                        </VStack>
+
+                        <VStack align={"stretch"}>
+                          <Text fontSize={14} opacity={0.6}>
+                            Kode PTKP
+                          </Text>
+                          <Text fontWeight={500}>{data.ptkp.kode_ptkp} </Text>
+                        </VStack>
+                      </Wrap>
+
+                      <HStack
+                        pr={[0, null, 5]}
+                        pl={[0, null, 4]}
+                        position={"sticky"}
+                        top={"0"}
+                        bg={lightDarkColor}
+                        zIndex={2}
+                      >
+                        <SearchComponent
+                          name="search"
+                          onChangeSetter={(input) => {
+                            setSearch(input);
+                          }}
+                          inputValue={search}
+                        />
+                      </HStack>
+
                       <CContainer
                         gap={responsiveSpacing}
                         overflowY={"auto"}
                         className="scrollY"
                       >
-                        <Wrap
-                          spacing={responsiveSpacing}
-                          align={"center"}
-                          px={responsiveSpacing}
-                        >
-                          <DetailKaryawanModalDisclosure user_id={data.user.id}>
-                            <Avatar
-                              size={"md"}
-                              w={"55px"}
-                              h={"55px"}
-                              src={data.user.foto_profil}
-                              name={data.user.nama}
-                            />
-                          </DetailKaryawanModalDisclosure>
-
-                          <VStack align={"stretch"}>
-                            <Text fontSize={14} opacity={0.6}>
-                              Nama Karyawan
-                            </Text>
-                            <Text fontWeight={500}>{data.user.nama}</Text>
-                          </VStack>
-
-                          <VStack align={"stretch"}>
-                            <Text fontSize={14} opacity={0.6}>
-                              Kelompok Gaji
-                            </Text>
-                            <Text fontWeight={500}>
-                              {data.kelompok_gaji.nama_kelompok}
-                            </Text>
-                          </VStack>
-
-                          <VStack align={"stretch"}>
-                            <Text fontSize={14} opacity={0.6}>
-                              Kode PTKP
-                            </Text>
-                            <Text fontWeight={500}>{data.ptkp.kode_ptkp} </Text>
-                          </VStack>
-                        </Wrap>
-
-                        <HStack
-                          pr={[0, null, 5]}
-                          pl={[0, null, 4]}
-                          position={"sticky"}
-                          top={"0"}
-                          bg={lightDarkColor}
-                          zIndex={2}
-                        >
-                          <SearchComponent
-                            name="search"
-                            onChangeSetter={(input) => {
-                              setSearch(input);
-                            }}
-                            inputValue={search}
-                          />
-                        </HStack>
-
-                        <CContainer
+                        <VStack
+                          align={"stretch"}
+                          gap={responsiveSpacing}
                           flex={1}
                           overflowY={"auto"}
-                          bg={lightDarkColor}
-                          gap={responsiveSpacing}
+                          className="scrollY"
+                          px={responsiveSpacing}
                         >
-                          <VStack
-                            align={"stretch"}
-                            gap={responsiveSpacing}
-                            flex={1}
-                            overflowY={"auto"}
-                            className="scrollY"
-                            px={responsiveSpacing}
-                          >
-                            <VStack align={"stretch"} gap={0}>
-                              <Text fontSize={20} fontWeight={600} mb={4}>
-                                Rincian Penggajian
-                              </Text>
+                          <VStack align={"stretch"} gap={0}>
+                            <Text fontSize={20} fontWeight={600} mb={4}>
+                              Rincian Penggajian
+                            </Text>
 
-                              <VStack
-                                align={"stretch"}
-                                gap={4}
-                                // ref={dataPresensiRef}
-                              >
-                                {data.detail_gaji.map(
-                                  (item: any, i: number) => (
-                                    <HStack key={i} justify={"space-between"}>
-                                      <Box opacity={0.6}>
-                                        <Highlighter
-                                          highlightClassName="hw"
-                                          unhighlightClassName="uw"
-                                          searchWords={searchQuery}
-                                          autoEscape={true}
-                                          textToHighlight={item.nama_detail}
-                                        />
-                                      </Box>
-                                      <FlexLine />
-                                      <Text
-                                        fontWeight={500}
-                                        textAlign={"right"}
-                                        color={
-                                          item.kategori === "Pengurang"
-                                            ? "red.400"
-                                            : ""
-                                        }
-                                      >
-                                        {item.kategori === "Pengurang"
-                                          ? "-"
-                                          : ""}{" "}
-                                        Rp {formatNumber(item.besaran) || 0}
-                                      </Text>
-                                    </HStack>
-                                  )
-                                )}
-
-                                <HStack
-                                  justify={"space-between"}
-                                  borderTop={"1px solid var(--divider3)"}
-                                  pt={4}
-                                  mt={1}
-                                >
-                                  <Text fontSize={20} opacity={0.6}>
-                                    Take Home Pay
-                                  </Text>
+                            <VStack
+                              align={"stretch"}
+                              gap={4}
+                              // ref={dataPresensiRef}
+                            >
+                              {data.detail_gaji.map((item: any, i: number) => (
+                                <HStack key={i} justify={"space-between"}>
+                                  <Box opacity={0.6}>
+                                    <Highlighter
+                                      highlightClassName="hw"
+                                      unhighlightClassName="uw"
+                                      searchWords={searchQuery}
+                                      autoEscape={true}
+                                      textToHighlight={item.nama_detail}
+                                    />
+                                  </Box>
                                   <FlexLine />
                                   <Text
-                                    fontSize={20}
                                     fontWeight={500}
                                     textAlign={"right"}
+                                    color={
+                                      item.kategori === "Pengurang"
+                                        ? "red.400"
+                                        : ""
+                                    }
                                   >
-                                    Rp {formatNumber(data.take_home_pay)}
+                                    {item.kategori === "Pengurang" ? "-" : ""}{" "}
+                                    Rp {formatNumber(item.besaran) || 0}
                                   </Text>
                                 </HStack>
-                              </VStack>
+                              ))}
+
+                              <HStack
+                                justify={"space-between"}
+                                borderTop={"1px solid var(--divider3)"}
+                                pt={4}
+                                mt={1}
+                              >
+                                <Text fontSize={20} opacity={0.6}>
+                                  Take Home Pay
+                                </Text>
+                                <FlexLine />
+                                <Text
+                                  fontSize={20}
+                                  fontWeight={500}
+                                  textAlign={"right"}
+                                >
+                                  Rp {formatNumber(data.take_home_pay)}
+                                </Text>
+                              </HStack>
                             </VStack>
                           </VStack>
-                        </CContainer>
+                        </VStack>
                       </CContainer>
                     </CContainer>
                   )}

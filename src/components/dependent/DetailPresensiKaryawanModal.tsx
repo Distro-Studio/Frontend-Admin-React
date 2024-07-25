@@ -2,7 +2,6 @@ import {
   Avatar,
   Box,
   HStack,
-  Icon,
   Image,
   Modal,
   ModalBody,
@@ -12,9 +11,9 @@ import {
   SimpleGrid,
   Text,
   VStack,
+  Wrap,
 } from "@chakra-ui/react";
-import { RiCircleFill } from "@remixicon/react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { responsiveSpacing } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import useDataState from "../../hooks/useDataState";
@@ -26,11 +25,14 @@ import ComponentSpinner from "../independent/ComponentSpinner";
 import FlexLine from "../independent/FlexLine";
 import NoData from "../independent/NoData";
 import CContainer from "../wrapper/CContainer";
-import BooleanBadge from "./BooleanBadge";
 import DetailKaryawanModalDisclosure from "./DetailKaryawanModalDisclosure";
 import DisclosureHeader from "./DisclosureHeader";
 import LokasiPresensi from "./LokasiPresensi";
 import Retry from "./Retry";
+import JenisKaryawanBadge from "./JenisKaryawanBadge";
+import { useLightDarkColor } from "../../const/colors";
+import SearchComponent from "./input/SearchComponent";
+import Highlighter from "react-highlight-words";
 
 interface Props {
   presensi_id: number;
@@ -100,7 +102,25 @@ export default function DetailPresensiKaryawanModal({
     dependencies: [presensi_id],
   });
 
+  const [search, setSearch] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string[]>([]);
+
+  useEffect(() => {
+    const words = search.split(" ").filter((word) => word.length > 0);
+    const modifiedWords = words.reduce((acc: string[], word) => {
+      acc.push(word);
+      if (word.toLowerCase() === "nomor") {
+        acc.push("no.");
+      } else if (word.toLowerCase() === "nik") {
+        acc.push("no. induk karyawan");
+      }
+      return acc;
+    }, []);
+    setSearchQuery(modifiedWords);
+  }, [search]);
+
   // SX
+  const lightDarkColor = useLightDarkColor();
 
   return (
     <Modal
@@ -138,80 +158,76 @@ export default function DetailPresensiKaryawanModal({
                       h={"calc(100vh - 70px)"}
                       overflowY={"auto"}
                       className="scrollY"
+                      gap={responsiveSpacing}
+                      mb={responsiveSpacing}
                     >
-                      <SimpleGrid
-                        columns={[1, null, null, 2]}
-                        flex={1}
-                        overflowY={"auto"}
-                        className="scrollY"
-                        mb={responsiveSpacing}
+                      <Wrap
+                        spacing={responsiveSpacing}
+                        align={"center"}
+                        px={responsiveSpacing}
                       >
-                        <CContainer
-                          gap={responsiveSpacing}
-                          overflowY={[null, null, null, "auto"]}
-                          className="scrollY"
-                          px={responsiveSpacing}
-                        >
-                          <VStack
-                            gap={responsiveSpacing}
-                            borderRadius={12}
-                            align={"center"}
-                            my={"auto"}
-                          >
-                            <DetailKaryawanModalDisclosure
-                              user_id={data.user.id}
-                            >
-                              <Avatar
-                                w={"200px"}
-                                h={"200px"}
-                                size={"xxl"}
-                                fontSize={"64px !important"}
-                                src={data.user.foto_profil}
-                                name={data.user.nama}
-                              />
-                            </DetailKaryawanModalDisclosure>
+                        <DetailKaryawanModalDisclosure user_id={data.user.id}>
+                          <Avatar
+                            size={"md"}
+                            w={"55px"}
+                            h={"55px"}
+                            src={data.user.foto_profil}
+                            name={data.user.nama}
+                          />
+                        </DetailKaryawanModalDisclosure>
 
-                            <VStack gap={1}>
-                              <Text
-                                fontWeight={700}
-                                fontSize={32}
-                                lineHeight={1.3}
-                              >
-                                {data.user.nama}
-                              </Text>
+                        <VStack align={"stretch"}>
+                          <Text fontSize={14} opacity={0.6}>
+                            Nama Karyawan
+                          </Text>
+                          <Text fontWeight={500}>{data.user.nama}</Text>
+                        </VStack>
 
-                              <HStack mb={2}>
-                                <HStack opacity={0.6}>
-                                  <Text>{data.email}</Text>
-                                  <Icon
-                                    as={RiCircleFill}
-                                    fontSize={8}
-                                    opacity={0.4}
-                                  />
-                                  <Text>{data.unit_kerja.nama_unit}</Text>
-                                </HStack>
-                              </HStack>
+                        <VStack align={"stretch"}>
+                          <Text fontSize={14} opacity={0.6}>
+                            Unit Kerja
+                          </Text>
+                          <Text fontWeight={500}>
+                            {data.unit_kerja.nama_unit}
+                          </Text>
+                        </VStack>
 
-                              <HStack>
-                                <BooleanBadge
-                                  w={"fit-content"}
-                                  borderRadius={"full"}
-                                  data={data.user.status_aktif}
-                                  trueValue="Aktif"
-                                  falseValue="Tidak Aktif"
-                                  fontSize={13}
-                                />
-                              </HStack>
-                            </VStack>
-                          </VStack>
-                        </CContainer>
+                        <VStack align={"stretch"}>
+                          <Text fontSize={14} opacity={0.6}>
+                            Jenis Karyawan
+                          </Text>
+                          <Text fontWeight={500}>
+                            <JenisKaryawanBadge
+                              data={data.unit_kerja.jenis_karyawan}
+                            />
+                          </Text>
+                        </VStack>
+                      </Wrap>
 
-                        <CContainer
-                          gap={responsiveSpacing}
-                          overflowY={[null, null, null, "auto"]}
-                          className="scrollY"
-                          px={responsiveSpacing}
-                        >
+                      <HStack
+                        pr={[0, null, 5]}
+                        pl={[0, null, 4]}
+                        position={"sticky"}
+                        top={"0"}
+                        bg={lightDarkColor}
+                        zIndex={2}
+                      >
+                        <SearchComponent
+                          name="search"
+                          onChangeSetter={(input) => {
+                            setSearch(input);
+                          }}
+                          inputValue={search}
+                        />
+                      </HStack>
+
+                      <CContainer
+                        gap={responsiveSpacing}
+                        overflowY={[null, null, null, "auto"]}
+                        className="scrollY"
+                        px={responsiveSpacing}
+                      >
+                        <SimpleGrid columns={[1, null]} gap={responsiveSpacing}>
                           <Box>
                             <Text fontSize={20} fontWeight={600} mb={4}>
                               Data Jadwal
@@ -219,7 +235,15 @@ export default function DetailPresensiKaryawanModal({
 
                             <CContainer gap={4}>
                               <HStack justify={"space-between"}>
-                                <Text opacity={0.6}>Label</Text>
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight={"Label"}
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {data.jadwal.nama}
@@ -227,7 +251,15 @@ export default function DetailPresensiKaryawanModal({
                               </HStack>
 
                               <HStack justify={"space-between"}>
-                                <Text opacity={0.6}>Tanggal Masuk</Text>
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight={"Jadwal Tanggal Masuk"}
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {formatDate(data.jadwal.jam_from, "short")}
@@ -235,7 +267,15 @@ export default function DetailPresensiKaryawanModal({
                               </HStack>
 
                               <HStack justify={"space-between"}>
-                                <Text opacity={0.6}>Jadwal Masuk</Text>
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight={"Jadwal Jam Masuk"}
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {formatTime(data.jadwal.jam_from)}
@@ -243,7 +283,15 @@ export default function DetailPresensiKaryawanModal({
                               </HStack>
 
                               <HStack justify={"space-between"}>
-                                <Text opacity={0.6}>Jadwal Keluar</Text>
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight={"Jadwal Jam Keluar"}
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {formatTime(data.jadwal.jam_to)}
@@ -259,7 +307,15 @@ export default function DetailPresensiKaryawanModal({
 
                             <CContainer gap={4}>
                               <HStack justify={"space-between"}>
-                                <Text opacity={0.6}>Presensi Masuk</Text>
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight={"Presensi Masuk"}
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {formatTime(data.jam_masuk)}
@@ -275,7 +331,15 @@ export default function DetailPresensiKaryawanModal({
                               </HStack>
 
                               <HStack justify={"space-between"}>
-                                <Text opacity={0.6}>Tanggal Masuk</Text>
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight={"Tanggal Masuk"}
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {formatDate(data.jam_masuk, "short")}
@@ -283,7 +347,15 @@ export default function DetailPresensiKaryawanModal({
                               </HStack>
 
                               <HStack justify={"space-between"}>
-                                <Text opacity={0.6}>Tanggal Keluar</Text>
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight={"Tanggal Keluar "}
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {formatDate(data.jam_keluar, "short")}
@@ -291,7 +363,15 @@ export default function DetailPresensiKaryawanModal({
                               </HStack>
 
                               <HStack justify={"space-between"}>
-                                <Text opacity={0.6}>Durasi Kerja</Text>
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight={"Durasi Kerja"}
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {formatDuration(data.durasi)}
@@ -299,7 +379,15 @@ export default function DetailPresensiKaryawanModal({
                               </HStack>
 
                               <HStack justify={"space-between"}>
-                                <Text opacity={0.6}>Kategori</Text>
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight={"Kategori Presensi"}
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {data.kategori || "-"}
@@ -307,7 +395,15 @@ export default function DetailPresensiKaryawanModal({
                               </HStack>
 
                               <HStack justify={"space-between"}>
-                                <Text opacity={0.6}>Absen</Text>
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight={"Absen"}
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {data.absensi || "-"}
@@ -315,7 +411,15 @@ export default function DetailPresensiKaryawanModal({
                               </HStack>
 
                               <HStack justify={"space-between"}>
-                                <Text opacity={0.6}>Latitude</Text>
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight={"Latitude"}
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {data.lat || "-"}
@@ -323,7 +427,15 @@ export default function DetailPresensiKaryawanModal({
                               </HStack>
 
                               <HStack justify={"space-between"}>
-                                <Text opacity={0.6}>Longitude</Text>
+                                <Box opacity={0.6}>
+                                  <Highlighter
+                                    highlightClassName="hw"
+                                    unhighlightClassName="uw"
+                                    searchWords={searchQuery}
+                                    autoEscape={true}
+                                    textToHighlight={"Longitude"}
+                                  />
+                                </Box>
                                 <FlexLine />
                                 <Text fontWeight={500} textAlign={"right"}>
                                   {data.long || "-"}
@@ -331,7 +443,12 @@ export default function DetailPresensiKaryawanModal({
                               </HStack>
                             </CContainer>
                           </Box>
+                        </SimpleGrid>
 
+                        <SimpleGrid
+                          columns={[1, null, 3]}
+                          gap={responsiveSpacing}
+                        >
                           <Box flex={"1 1 200px"}>
                             <Text fontSize={20} fontWeight={600} mb={4}>
                               Lokasi Presensi
@@ -378,8 +495,8 @@ export default function DetailPresensiKaryawanModal({
                               objectFit={"cover"}
                             />
                           </Box>
-                        </CContainer>
-                      </SimpleGrid>
+                        </SimpleGrid>
+                      </CContainer>
                     </CContainer>
                   )}
                 </>

@@ -281,6 +281,7 @@ export default function TabelKaryawan() {
                       onRowClick={(row) => {
                         setUserId(row.id);
                         onOpen();
+                        console.log(row.id);
                       }}
                       columnsConfig={columnsConfig}
                       rowOptions={rowOptions}
