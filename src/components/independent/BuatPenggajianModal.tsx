@@ -1,8 +1,7 @@
 import {
   Button,
-  ButtonGroup,
   ButtonProps,
-  HStack,
+  Checkbox,
   Icon,
   Modal,
   ModalBody,
@@ -18,15 +17,15 @@ import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
 import { iconSize } from "../../const/sizes";
-import backOnClose from "../../lib/backOnCloseOld";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
-import BackOnCloseButton from "./BackOnCloseButton";
+import useBackOnClose from "../../hooks/useBackOnClose";
+import backOnClose from "../../lib/backOnClose";
+import DisclosureHeader from "../dependent/DisclosureHeader";
 
 interface Props extends ButtonProps {}
 
 export default function BuatPenggajianModal({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
+  useBackOnClose("buat-penggajian-modal", isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
   const formik = useFormik({
@@ -37,6 +36,8 @@ export default function BuatPenggajianModal({ ...props }: Props) {
       console.log(values);
     },
   });
+
+  console.log(formik.values);
 
   return (
     <>
@@ -54,7 +55,7 @@ export default function BuatPenggajianModal({ ...props }: Props) {
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          backOnClose(onClose);
+          backOnClose();
         }}
         initialFocusRef={initialRef}
         isCentered
@@ -62,43 +63,25 @@ export default function BuatPenggajianModal({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <HStack justify={"space-between"}>
-              <Text fontSize={20} fontWeight={600}>
-                Buat Penggajian
-              </Text>
-
-              <BackOnCloseButton aria-label="back on close button" />
-            </HStack>
+            <DisclosureHeader title="Buat Penggajian" />
           </ModalHeader>
+
           <ModalBody>
-            <Text mb={6}>Apakah penggajian ini menyertakan BOR?</Text>
-            <ButtonGroup w={"100%"}>
-              <Button
-                w={"50%"}
-                colorScheme={!formik.values.sertakan_bor ? "ap" : ""}
-                variant={!formik.values.sertakan_bor ? "outline" : ""}
-                className={!formik.values.sertakan_bor ? "" : "btn-outline"}
-                onClick={() => {
-                  formik.setFieldValue("sertakan_bor", false);
-                }}
-              >
-                Tidak
-              </Button>
-              <Button
-                w={"50%"}
-                colorScheme={formik.values.sertakan_bor ? "ap" : ""}
-                variant={formik.values.sertakan_bor ? "outline" : ""}
-                className={formik.values.sertakan_bor ? "" : "btn-outline"}
-                onClick={() => {
-                  formik.setFieldValue("sertakan_bor", true);
-                }}
-              >
-                Ya
-              </Button>
-            </ButtonGroup>
+            <Text mb={4} opacity={0.4}>
+              Apakah penggajian ini menyertakan BOR?
+            </Text>
+            <Checkbox
+              colorScheme="ap"
+              onChange={(e) => {
+                formik.setFieldValue("sertakan_bor", e.target.checked);
+              }}
+            >
+              <Text mt={"-3px"}>Sertakan BOR</Text>
+            </Checkbox>
           </ModalBody>
+
           <ModalFooter>
-            <Button w={"100%"} className="btn-ap clicky">
+            <Button w={"100%"} className="btn-ap clicky" colorScheme="ap">
               Buat Penggajian
             </Button>
           </ModalFooter>
