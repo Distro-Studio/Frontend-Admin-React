@@ -1,263 +1,194 @@
-import {
-  HStack,
-  Icon,
-  Table,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react";
-import { RiArrowDownLine, RiArrowUpLine } from "@remixicon/react";
+import { Box, HStack, Text, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
-import { useBodyColor, useContentBgColor } from "../../const/colors";
-import { dummyKaryawanList } from "../../const/dummy";
-import { Tabel__Column__Interface } from "../../const/interfaces";
-import formatNumber from "../../lib/formatNumber";
-import ComponentSpinner from "../independent/ComponentSpinner";
-import TabelContainer from "../wrapper/CustomTableContainer";
+import { dummyRiwayatPenggajian } from "../../const/dummy";
+import { responsiveSpacing } from "../../const/sizes";
+import useDataState from "../../hooks/useDataState";
+import formatDate from "../../lib/formatDate";
+import NoData from "../independent/NoData";
+import Skeleton from "../independent/Skeleton";
+import CustomTableContainer from "../wrapper/CustomTableContainer";
+import BooleanBadge from "./BooleanBadge";
+import CustomTable from "./CustomTable";
+import DetailThrModal from "./DetailThrModal";
+import Retry from "./Retry";
 import TabelFooterConfig from "./TabelFooterConfig";
-import DaftarPesertaDiklatModal from "./DaftarPesertaDiklatModal";
 
 interface Props {
-  filterConfig?: any;
+  filterConfig: any;
 }
 
 export default function TabelDiklat({ filterConfig }: Props) {
-  const columns: Tabel__Column__Interface[] = [
-    {
-      key: "nama",
-      label: "Nama Acara",
-      dataType: "string",
-    },
-    {
-      key: "jenis",
-      label: "Jenis Acara",
-      dataType: "string",
-    },
-    {
-      key: "tgl",
-      label: "Tanggal",
-      dataType: "string",
-    },
-    {
-      key: "tempat",
-      label: "Tempat",
-      dataType: "string",
-    },
-    {
-      key: "waktu",
-      label: "Waktu",
-      dataType: "string",
-    },
-    {
-      key: "penanggung_jawab",
-      label: "Penanggung Jawab",
-      dataType: "string",
-    },
-    {
-      key: "peserta",
-      label: "Peserta",
-      dataType: "action",
-    },
-  ];
-
-  //! DEBUG
-  // console.log(filterConfig);
-  //! DEBUG
-
-  //TODO get karyawan
-
-  const [data] = useState<any[] | null>(dummyKaryawanList);
-  const [loading] = useState<boolean>(false);
-
   // Limit Config
   const [limitConfig, setLimitConfig] = useState<number>(10);
-
   // Pagination Config
   const [pageConfig, setPageConfig] = useState<number>(1);
+  // Karyawan Detail Disclosure
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  // Sort Config
-  const [sortConfig, setSortConfig] = useState<{
-    key: string;
-    direction: "asc" | "desc";
-  } | null>({ key: columns[0].key, direction: "asc" });
-  const sortedData = data && [...data];
-  if (sortConfig !== null && sortedData) {
-    sortedData.sort((a, b) => {
-      //@ts-ignore
-      let aValue = a[sortConfig.key];
-      //@ts-ignore
-      let bValue = b[sortConfig.key];
+  const { error, loading, data, retry } = useDataState<any[]>({
+    initialData: dummyRiwayatPenggajian,
+    url: "",
+    payload: {
+      filterConfig: filterConfig,
+    },
+    limit: limitConfig,
+    dependencies: [limitConfig, pageConfig, filterConfig],
+  });
 
-      // Handle nested properties
-      if (sortConfig.key === "nama") {
-        aValue = a.user?.nama;
-        bValue = b.user?.nama;
-      } else if (sortConfig.key === "unit_kerja") {
-        aValue = a.unit_kerja?.nama_unit;
-        bValue = b.unit_kerja?.nama_unit;
-      } else if (sortConfig.key === "kelompok_gaji") {
-        aValue = a.kelompok_gaji.nama_kelompok;
-        bValue = b.kelompok_gaji.nama_kelompok;
-      }
-
-      if (aValue === null && bValue === null) return 0;
-      if (aValue === null) return 1; // Nilai null di bawah
-      if (bValue === null) return -1; // Nilai null di bawah
-
-      if (aValue < bValue) {
-        return sortConfig.direction === "asc" ? -1 : 1;
-      }
-      if (aValue > bValue) {
-        return sortConfig.direction === "asc" ? 1 : -1;
-      }
-      return 0;
-    });
-  }
-  const sort = (key: string) => {
-    let direction: "asc" | "desc" = "asc";
-    if (
-      sortConfig &&
-      sortConfig.key === key &&
-      sortConfig.direction === "asc"
-    ) {
-      direction = "desc";
-    }
-    setSortConfig({ key, direction });
-  };
-
-  // SX
-  const contentBgColor = useContentBgColor();
-  const bodyColor = useBodyColor();
+  const formattedHeader = [
+    {
+      th: "Nama Acara",
+      isSortable: true,
+      props: {
+        position: "sticky",
+        left: 0,
+        zIndex: 3,
+        w: "180px",
+      },
+      cProps: {
+        borderRight: "1px solid var(--divider3)",
+      },
+    },
+    {
+      th: "Tanggal Pelaksanaan",
+      isSortable: true,
+    },
+    {
+      th: "Peserta",
+      isSortable: true,
+    },
+    {
+      th: "Kategori Acara",
+      isSortable: true,
+    },
+    {
+      th: "Tempat",
+      isSortable: true,
+    },
+    {
+      th: "Waktu",
+      isSortable: true,
+    },
+    {
+      th: "Penanggung Jawab",
+      isSortable: true,
+    },
+  ];
+  const formattedData = data?.map((item: any) => ({
+    id: item.id,
+    columnsFormat: [
+      {
+        value: item.periode,
+        td: formatDate(item.periode, "periode"),
+        isDate: true,
+        props: {
+          position: "sticky",
+          left: 0,
+          zIndex: 2,
+          w: "180px",
+        },
+        cProps: {
+          borderRight: "1px solid var(--divider3)",
+        },
+      },
+      {
+        value: item.status_riwayat_gaji,
+        td: (
+          <BooleanBadge
+            w={"150px"}
+            data={item.status_riwayat_gaji}
+            trueValue="Dipublikasi"
+            falseValue="Belum Dipublikasi"
+          />
+        ),
+        isNumeric: true,
+        cProps: {
+          justify: "center",
+        },
+      },
+      {
+        value: item.updated_at,
+        td: formatDate(item.updated_at),
+        isDate: true,
+      },
+      {
+        value: item.karyawan_verifikasi,
+        td: item.karyawan_verifikasi,
+        isNumeric: true,
+        cProps: {
+          justify: "center",
+        },
+      },
+      {
+        value: item.created_at,
+        td: formatDate(item.created_at),
+        isDate: true,
+      },
+    ],
+  }));
 
   return (
     <>
-      {loading && <ComponentSpinner mt={4} />}
-
-      {!loading && sortedData && (
+      {error && (
+        <Box my={"auto"}>
+          <Retry loading={loading} retry={retry} />
+        </Box>
+      )}
+      {!error && (
         <>
-          <TabelContainer>
-            <Table minW={"100%"}>
-              <Thead>
-                <Tr position={"sticky"} top={0} zIndex={3}>
-                  {columns.map((column, i) => (
-                    <Th
-                      key={i}
-                      whiteSpace={"nowrap"}
-                      onClick={() => {
-                        if (column.dataType !== "action") {
-                          sort(column.key);
-                        }
-                      }}
-                      cursor={"pointer"}
-                      borderBottom={"none !important"}
-                      bg={bodyColor}
-                      zIndex={2}
-                      p={0}
-                      {...column.thProps}
-                    >
-                      {column.dataType === "action" ||
-                      column.dataType === "link" ? (
-                        <HStack
-                          justify={"center"}
-                          borderBottom={"1px solid var(--divider3)"}
-                          px={4}
-                          py={3}
-                          h={"52px"}
-                          pl={i === 0 ? 4 : ""}
-                          pr={i === columns.length - 1 ? 4 : ""}
-                          {...column.thContentProps}
-                        >
-                          <Text>{column.label}</Text>
-                        </HStack>
-                      ) : (
-                        <HStack
-                          justify={
-                            column.preferredTextAlign === "center"
-                              ? "center"
-                              : column.dataType === "numeric"
-                              ? "flex-end"
-                              : "space-between"
-                          }
-                          borderBottom={"1px solid var(--divider3)"}
-                          px={4}
-                          py={3}
-                          h={"52px"}
-                          pl={i === 0 ? 4 : ""}
-                          pr={i === columns.length - 1 ? 4 : ""}
-                          {...column.thContentProps}
-                        >
-                          <Text
-                            fontWeight={600}
-                            flexShrink={0}
-                            lineHeight={1.2}
-                          >
-                            {column.label}
-                          </Text>
+          {loading && (
+            <>
+              <Skeleton flex={1} mx={"auto"} />
+              <HStack justify={"space-between"} mt={responsiveSpacing}>
+                <Skeleton maxW={"120px"} />
+                <Skeleton maxW={"300px"} h={"20px"} />
+                <Skeleton maxW={"112px"} />
+              </HStack>
+            </>
+          )}
+          {!loading && (
+            <>
+              {!formattedData && <NoData />}
 
-                          {sortConfig && sortConfig.key === column.key && (
-                            <>
-                              {sortConfig.direction === "asc" ? (
-                                <Icon
-                                  as={RiArrowUpLine}
-                                  color={"p.500"}
-                                  fontSize={16}
-                                />
-                              ) : (
-                                <Icon
-                                  as={RiArrowDownLine}
-                                  color={"p.500"}
-                                  fontSize={16}
-                                />
-                              )}
-                            </>
-                          )}
-                        </HStack>
-                      )}
-                    </Th>
-                  ))}
-                </Tr>
-              </Thead>
+              {formattedData && (
+                <>
+                  <CustomTableContainer>
+                    <CustomTable
+                      formattedHeader={formattedHeader}
+                      formattedData={formattedData}
+                      initialSortOrder="desc"
+                      initialSortColumnIndex={1}
+                      onRowClick={onOpen}
+                    />
+                  </CustomTableContainer>
 
-              <Tbody>
-                {sortedData.map((row, i) => (
-                  <Tr
-                    h={"72px"}
-                    key={i}
-                    bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                  >
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
-                    <Td whiteSpace={"nowrap"}>{row.unit_kerja.nama_unit}</Td>
-                    <Td whiteSpace={"nowrap"}>
-                      {row.kelompok_gaji.nama_kelompok}
-                    </Td>
-                    <Td whiteSpace={"nowrap"}>
-                      Rp {formatNumber(row.no_bpjsksh)}
-                    </Td>
-                    <Td whiteSpace={"nowrap"} textAlign={"center"}>
-                      <DaftarPesertaDiklatModal data={dummyKaryawanList} />
-                    </Td>
-                  </Tr>
-                ))}
-              </Tbody>
-            </Table>
-          </TabelContainer>
+                  <TabelFooterConfig
+                    limitConfig={limitConfig}
+                    setLimitConfig={setLimitConfig}
+                    pageConfig={pageConfig}
+                    setPageConfig={setPageConfig}
+                    paginationData={{
+                      prev_page_url: "",
+                      next_page_url: "",
+                      last_page: 1,
+                    }}
+                    footer={
+                      <Text opacity={0.4}>
+                        Klik row untuk melihat laporan penggajian
+                      </Text>
+                    }
+                  />
 
-          <TabelFooterConfig
-            limitConfig={limitConfig}
-            setLimitConfig={setLimitConfig}
-            pageConfig={pageConfig}
-            setPageConfig={setPageConfig}
-            paginationData={{
-              prev_page_url: "",
-              next_page_url: "",
-              last_page: 1,
-            }}
-          />
+                  <DetailThrModal
+                    thr_id={1}
+                    isOpen={isOpen}
+                    onOpen={onOpen}
+                    onClose={onClose}
+                  />
+                </>
+              )}
+            </>
+          )}
         </>
       )}
     </>

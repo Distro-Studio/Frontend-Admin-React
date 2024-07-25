@@ -4,10 +4,10 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Icon,
   Input,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -15,11 +15,14 @@ import {
   useDisclosure,
   Wrap,
 } from "@chakra-ui/react";
+import { RiUser2Fill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
+import { iconSize } from "../../const/sizes";
 import backOnClose from "../../lib/backOnCloseOld";
 import useBackOnClose from "../../lib/useBackOnCloseOld";
+import DisclosureHeader from "../dependent/DisclosureHeader";
 import RequiredForm from "../form/RequiredForm";
 import Textarea from "../input/Textarea";
 import TimeInput from "../input/TimeInput";
@@ -66,9 +69,11 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
         className="btn-ap clicky"
         colorScheme="ap"
         onClick={onOpen}
+        leftIcon={<Icon as={RiUser2Fill} fontSize={iconSize} />}
+        pl={5}
         {...props}
       >
-        Tambah Acara Diklat
+        Ajukan Diklat
       </Button>
 
       <Modal
@@ -82,8 +87,9 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Tambah Acara Diklat</ModalHeader>
+          <ModalHeader ref={initialRef}>
+            <DisclosureHeader title="Ajukan Diklat" />
+          </ModalHeader>
           <ModalBody>
             <form id="tambahAcaraDiklatForm" onSubmit={formik.handleSubmit}>
               <FormControl mb={4} isInvalid={!!formik.errors.nama}>
