@@ -85,7 +85,11 @@ const PenilaianList = ({ data }: { data: any }) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button w={"100%"} className="btn-solid clicky">
+            <Button
+              w={"100%"}
+              className="btn-solid clicky"
+              onClick={backOnClose}
+            >
               Mengerti
             </Button>
           </ModalFooter>
