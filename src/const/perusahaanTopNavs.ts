@@ -11,10 +11,10 @@ const perusahaanTopNavs = [
     label: "Penilaian Karyawan",
     link: "/perusahaan/penilaian-karyawan",
   },
-  {
-    label: "Verifikasi Berkas",
-    link: "/perusahaan/verifikasi-berkas",
-  },
+  // {
+  //   label: "Verifikasi Berkas",
+  //   link: "/perusahaan/verifikasi-berkas",
+  // },
 ];
 
 export default perusahaanTopNavs;
