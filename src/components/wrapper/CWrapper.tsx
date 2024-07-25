@@ -2,7 +2,7 @@ import { StackProps, VStack } from "@chakra-ui/react";
 import useScreenWidth from "../../lib/useScreenWidth";
 
 interface Props extends StackProps {
-  children: any;
+  children?: any;
 }
 
 export default function CWrapper({ children, ...props }: Props) {

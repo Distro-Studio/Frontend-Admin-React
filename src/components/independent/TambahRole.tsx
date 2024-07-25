@@ -4,6 +4,7 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Icon,
   Input,
   Modal,
   ModalBody,
@@ -21,6 +22,9 @@ import { useRef } from "react";
 import backOnClose from "../../lib/backOnCloseOld";
 import RequiredForm from "../form/RequiredForm";
 import Textarea from "../input/Textarea";
+import DisclosureHeader from "../dependent/DisclosureHeader";
+import { RiAddCircleFill } from "@remixicon/react";
+import { iconSize } from "../../const/sizes";
 
 interface Props extends ButtonProps {}
 
@@ -46,6 +50,8 @@ export default function TambahRole({ ...props }: Props) {
         className="btn-ap clicky"
         colorScheme="ap"
         onClick={onOpen}
+        leftIcon={<Icon as={RiAddCircleFill} fontSize={iconSize} />}
+        pl={5}
         {...props}
       >
         Tambah Role
@@ -62,8 +68,9 @@ export default function TambahRole({ ...props }: Props) {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Tambah Role</ModalHeader>
+          <ModalHeader ref={initialRef}>
+            <DisclosureHeader title="Tambah Role" />
+          </ModalHeader>
           <ModalBody>
             <form id="tambahRoleForm">
               <FormControl mb={4} isInvalid={formik.errors.name ? true : false}>

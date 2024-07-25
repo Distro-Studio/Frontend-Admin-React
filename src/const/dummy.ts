@@ -6765,9 +6765,9 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
   },
 
   {
-    id: 3,
+    id: 4,
     user: {
-      id: 3,
+      id: 4,
       nama: "Again Another Long Name",
       username: "username3",
       email_verified_at: null,
@@ -6918,9 +6918,9 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
   },
 
   {
-    id: 3,
+    id: 5,
     user: {
-      id: 3,
+      id: 5,
       nama: "Again Another Long Name",
       username: "username3",
       email_verified_at: null,
@@ -7071,9 +7071,9 @@ const dummyKaryawans: Interface__DetailKaryawan[] = [
   },
 
   {
-    id: 1,
+    id: 6,
     user: {
-      id: 1,
+      id: 6,
       nama: "Very Very Long Name as Possible",
       username: "username1",
       email_verified_at: null,
