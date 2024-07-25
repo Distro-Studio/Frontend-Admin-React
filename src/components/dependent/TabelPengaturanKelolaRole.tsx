@@ -1,268 +1,125 @@
-import {
-  Button,
-  Center,
-  HStack,
-  Icon,
-  Table,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr,
-  VStack,
-} from "@chakra-ui/react";
-import {
-  RiArrowDownLine,
-  RiArrowRightSLine,
-  RiArrowUpLine,
-} from "@remixicon/react";
+import { Box, HStack, Text } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useBodyColor, useContentBgColor } from "../../const/colors";
 import { dummyKelolaRole } from "../../const/dummy";
-import { Tabel__Column__Interface } from "../../const/interfaces";
-import { iconSize } from "../../const/sizes";
+import { responsiveSpacing } from "../../const/sizes";
+import useDataState from "../../hooks/useDataState";
 import NoData from "../independent/NoData";
-import ComponentSpinner from "../independent/ComponentSpinner";
-import TabelContainer from "../wrapper/CustomTableContainer";
+import Skeleton from "../independent/Skeleton";
+import CustomTableContainer from "../wrapper/CustomTableContainer";
+import CustomTable from "./CustomTable";
+import Retry from "./Retry";
+import TabelFooterConfig from "./TabelFooterConfig";
 
 interface Props {
   filterConfig?: any;
 }
 
 export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
-  const columns: Tabel__Column__Interface[] = [
-    {
-      key: "name",
-      label: "Nama Role",
-      dataType: "string",
-    },
-    {
-      key: "deskripsi",
-      label: "Deskripsi",
-      dataType: "string",
-    },
-  ];
+  // Limit Config
+  const [limitConfig, setLimitConfig] = useState<number>(10);
+  // Pagination Config
+  const [pageConfig, setPageConfig] = useState<number>(1);
 
-  //! DEBUG
-  // console.log(filterConfig);
-
-  //! DEBUG
-
-  //TODO get data pengatuan kelola role
-
-  const [data] = useState<any[] | null>(dummyKelolaRole);
-  const [loading] = useState<boolean>(false);
-
-  // Filter Config
-  const fd = data?.filter((d) => {
-    const searchTerm = filterConfig.search.toLowerCase();
-    const ok =
-      d.id.toString().toLowerCase().includes(searchTerm) ||
-      d.name.toLowerCase().includes(searchTerm);
-
-    return ok;
+  const { error, loading, data, retry } = useDataState<any[]>({
+    initialData: dummyKelolaRole,
+    url: "",
+    limit: limitConfig,
+    dependencies: [limitConfig, pageConfig],
   });
 
-  // Sort Config
-  const [sortConfig, setSortConfig] = useState<{
-    key: string;
-    direction: "asc" | "desc";
-  } | null>({ key: columns[0].key, direction: "asc" });
-  const sortedData = fd && [...fd];
-  if (sortConfig !== null && sortedData) {
-    sortedData.sort((a, b) => {
-      //@ts-ignore
-      if (a[sortConfig.key] < b[sortConfig.key]) {
-        return sortConfig.direction === "asc" ? -1 : 1;
-      }
-      //@ts-ignore
-      if (a[sortConfig.key] > b[sortConfig.key]) {
-        return sortConfig.direction === "asc" ? 1 : -1;
-      }
-      return 0;
-    });
-  }
-  const sort = (key: string) => {
-    let direction: "asc" | "desc" = "asc";
-    if (
-      sortConfig &&
-      sortConfig.key === key &&
-      sortConfig.direction === "asc"
-    ) {
-      direction = "desc";
-    }
-    setSortConfig({ key, direction });
-  };
-
-  // SX
-  const contentBgColor = useContentBgColor();
-  const bodyColor = useBodyColor();
+  const formattedHeader = [
+    {
+      th: "Nama Role",
+      isSortable: true,
+      props: {
+        position: "sticky",
+        left: 0,
+        zIndex: 3,
+        w: "180px",
+      },
+      cProps: {
+        borderRight: "1px solid var(--divider3)",
+      },
+    },
+    {
+      th: "Deskripsi",
+      isSortable: true,
+    },
+  ];
+  const formattedData = data?.map((item: any) => ({
+    id: item.id,
+    columnsFormat: [
+      {
+        value: item.name,
+        td: item.name,
+        props: {
+          position: "sticky",
+          left: 0,
+          zIndex: 2,
+        },
+        cProps: {
+          borderRight: "1px solid var(--divider3)",
+        },
+      },
+      {
+        value: item.deskripsi,
+        td: item.deskripsi,
+      },
+    ],
+  }));
 
   return (
     <>
-      {loading && <ComponentSpinner mt={4} />}
-
-      {!loading && sortedData && (
+      {error && (
+        <Box my={"auto"}>
+          <Retry loading={loading} retry={retry} />
+        </Box>
+      )}
+      {!error && (
         <>
-          <TabelContainer noFooterConfig>
-            {fd && fd.length === 0 && <NoData />}
+          {loading && (
+            <>
+              <Skeleton flex={1} mx={"auto"} />
+              <HStack justify={"space-between"} mt={responsiveSpacing}>
+                <Skeleton maxW={"120px"} />
+                <Skeleton maxW={"300px"} h={"20px"} />
+                <Skeleton maxW={"112px"} />
+              </HStack>
+            </>
+          )}
+          {!loading && (
+            <>
+              {!formattedData && <NoData />}
 
-            {fd && fd.length > 0 && (
-              <Table minW={"100%"}>
-                <Thead>
-                  <Tr position={"sticky"} top={0} zIndex={3}>
-                    {columns.map((column, i) => (
-                      <Th
-                        key={i}
-                        whiteSpace={"nowrap"}
-                        onClick={() => {
-                          if (column.dataType !== "action") {
-                            sort(column.key);
-                          }
-                        }}
-                        cursor={"pointer"}
-                        borderBottom={"none !important"}
-                        bg={bodyColor}
-                        zIndex={2}
-                        p={0}
-                        {...column.thProps}
-                      >
-                        {column.dataType === "action" ||
-                        column.dataType === "link" ? (
-                          <HStack
-                            justify={"center"}
-                            borderBottom={"1px solid var(--divider3)"}
-                            px={4}
-                            py={3}
-                            h={"52px"}
-                            pl={i === 0 ? 4 : ""}
-                            pr={i === columns.length - 1 ? 4 : ""}
-                            {...column.thContentProps}
-                          >
-                            <Text>{column.label}</Text>
-                          </HStack>
-                        ) : (
-                          <HStack
-                            justify={
-                              column.preferredTextAlign === "center"
-                                ? "center"
-                                : column.dataType === "numeric"
-                                ? "flex-end"
-                                : "space-between"
-                            }
-                            borderBottom={"1px solid var(--divider3)"}
-                            px={4}
-                            py={3}
-                            h={"52px"}
-                            pl={i === 0 ? 4 : ""}
-                            pr={i === columns.length - 1 ? 4 : ""}
-                            {...column.thContentProps}
-                          >
-                            <Text
-                              fontWeight={600}
-                              flexShrink={0}
-                              lineHeight={1.2}
-                            >
-                              {column.label}
-                            </Text>
+              {formattedData && (
+                <>
+                  <CustomTableContainer>
+                    <CustomTable
+                      formattedHeader={formattedHeader}
+                      formattedData={formattedData}
+                    />
+                  </CustomTableContainer>
 
-                            {sortConfig && sortConfig.key === column.key && (
-                              <>
-                                {sortConfig.direction === "asc" ? (
-                                  <Icon
-                                    as={RiArrowUpLine}
-                                    color={"p.500"}
-                                    fontSize={16}
-                                  />
-                                ) : (
-                                  <Icon
-                                    as={RiArrowDownLine}
-                                    color={"p.500"}
-                                    fontSize={16}
-                                  />
-                                )}
-                              </>
-                            )}
-                          </HStack>
-                        )}
-                      </Th>
-                    ))}
-
-                    {/* Kolom tetap di sebelah kanan */}
-                    <Th
-                      position={"sticky"}
-                      top={0}
-                      right={0}
-                      borderBottom={"none !important"}
-                      p={0}
-                      bg={bodyColor}
-                      zIndex={2}
-                    >
-                      <Center
-                        px={4}
-                        py={3}
-                        zIndex={99}
-                        borderLeft={"1px solid var(--divider3)"}
-                        borderBottom={"1px solid var(--divider3)"}
-                        h={"52px"}
-                      >
-                        <Text whiteSpace={"nowrap"}>Edit Akses</Text>
-                      </Center>
-                    </Th>
-                  </Tr>
-                </Thead>
-
-                <Tbody>
-                  {sortedData.map((row, i) => (
-                    <Tr key={i} bg={i % 2 === 0 ? contentBgColor : bodyColor}>
-                      <Td whiteSpace={"nowrap"}>{row.name}</Td>
-                      <Td>{row.deskripsi}</Td>
-
-                      {/* Kolom tetap di sebelah kanan */}
-                      <Td
-                        position={"sticky"}
-                        top={0}
-                        right={0}
-                        borderBottom={"none !important"}
-                        p={0}
-                        bg={i % 2 === 0 ? contentBgColor : bodyColor}
-                        zIndex={1}
-                        w={"150px"}
-                      >
-                        <VStack
-                          borderLeft={"1px solid var(--divider3)"}
-                          w={"150px"}
-                          h={"72px"}
-                          px={4}
-                          align={"stretch"}
-                          justify={"center"}
-                        >
-                          <Button
-                            pr={3}
-                            colorScheme="ap"
-                            variant={"ghost"}
-                            className=" clicky"
-                            as={Link}
-                            to={`/pengaturan/akun/kelola-role/${row.id}/${row.name}`}
-                            rightIcon={
-                              <Icon
-                                as={RiArrowRightSLine}
-                                fontSize={iconSize}
-                              />
-                            }
-                          >
-                            Keizinan
-                          </Button>
-                        </VStack>
-                      </Td>
-                    </Tr>
-                  ))}
-                </Tbody>
-              </Table>
-            )}
-          </TabelContainer>
+                  <TabelFooterConfig
+                    limitConfig={limitConfig}
+                    setLimitConfig={setLimitConfig}
+                    pageConfig={pageConfig}
+                    setPageConfig={setPageConfig}
+                    paginationData={{
+                      prev_page_url: "",
+                      next_page_url: "",
+                      last_page: 1,
+                    }}
+                    footer={
+                      <Text opacity={0.4}>
+                        Klik row untuk melihat detail karyawan
+                      </Text>
+                    }
+                  />
+                </>
+              )}
+            </>
+          )}
         </>
       )}
     </>
