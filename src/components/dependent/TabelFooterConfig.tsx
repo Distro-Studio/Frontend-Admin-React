@@ -63,7 +63,7 @@ export default function TabelFooterConfig({
               <Text color={"p.500"}>
                 {limitConfig === -1 ? "Semua" : limitConfig}
               </Text>
-              <Text>Row</Text>
+              <Text fontWeight={400}>Row</Text>
             </HStack>
           </MenuButton>
 
