@@ -1,67 +1,73 @@
-import {
-  Button,
-  Icon,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Wrap,
-} from "@chakra-ui/react";
-import { RiSearchLine, RiUploadLine } from "@remixicon/react";
-import { useState } from "react";
-import FilterTabelPenggajian from "../../components/dependent/FilterTabelPenggajian";
-import TabelPenilaianKaryawan from "../../components/dependent/TabelPenilaianKaryawan";
+import { HStack } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import ExportModal from "../../components/dependent/ExportModal";
+import SearchComponent from "../../components/dependent/input/SearchComponent";
+import TabelPelaporanKaryawan from "../../components/dependent/TabelPelaporanKaryawan";
+import FilterKaryawan from "../../components/independent/FilterKaryawan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
-import { useBodyColor } from "../../const/colors";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { useLightDarkColor } from "../../const/colors";
+import { responsiveSpacing } from "../../const/sizes";
+import useFilterKaryawan from "../../global/useFilterKaryawan";
 
 export default function PenilaianKaryawan() {
   // Filter Config
-  const defaultFilterConfig = {
-    search: "",
-  };
-  const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
+  const { filterKaryawan, setFilterKaryawan } = useFilterKaryawan();
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setFilterKaryawan({ search: search });
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search, setFilterKaryawan]);
+
+  useEffect(() => {
+    console.log(filterKaryawan);
+  }, [filterKaryawan]);
+
+  // SX
+  const lightDarkColor = useLightDarkColor();
 
   return (
     <>
       <CWrapper>
-        <CContainer p={responsiveSpacing} bg={useBodyColor()} borderRadius={12}>
-          <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
-            <InputGroup flex={"1 1 165px"}>
-              <InputLeftElement>
-                <Icon as={RiSearchLine} color={"p.500"} fontSize={iconSize} />
-              </InputLeftElement>
-              <Input
-                placeholder="Pencarian"
-                flex={"1 1 0"}
-                onChange={(e) => {
-                  setFilterConfig((ps: any) => ({
-                    ...ps,
-                    search: e.target.value,
-                  }));
-                }}
-                value={filterConfig.search}
-              />
-            </InputGroup>
-
-            <FilterTabelPenggajian
-              defaultFilterConfig={defaultFilterConfig}
-              filterConfig={filterConfig}
-              setFilterConfig={setFilterConfig}
+        <CContainer
+          flex={1}
+          px={responsiveSpacing}
+          pb={responsiveSpacing}
+          pt={0}
+          bg={lightDarkColor}
+          borderRadius={12}
+          overflowY={"auto"}
+          className="scrollY"
+        >
+          <HStack
+            py={responsiveSpacing}
+            justify={"space-between"}
+            w={"100%"}
+            className="tabelConfig scrollX"
+            overflowX={"auto"}
+            flexShrink={0}
+          >
+            <SearchComponent
+              minW={"165px"}
+              name="search"
+              onChangeSetter={(input) => {
+                setSearch(input);
+              }}
+              inputValue={search}
             />
 
-            <Button
-              flex={"1 1 110px"}
-              variant={"outline"}
-              colorScheme="ap"
-              className="clicky"
-              rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
-            >
-              Export
-            </Button>
-          </Wrap>
+            <FilterKaryawan title="Filter Karyawan Pelapor" />
 
-          <TabelPenilaianKaryawan filterConfig={filterConfig} />
+            <ExportModal url="" title="Export Penggajian" />
+          </HStack>
+
+          <TabelPelaporanKaryawan filterConfig={filterKaryawan} />
         </CContainer>
       </CWrapper>
     </>
