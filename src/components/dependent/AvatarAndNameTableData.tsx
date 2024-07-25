@@ -15,7 +15,7 @@ interface Props extends StackProps {
 
 export default function AvatarAndNameTableData({ data, ...props }: Props) {
   return (
-    <HStack w={"180px"} gap={3} {...props}>
+    <HStack maxW={"180px"} gap={3} {...props}>
       <DetailKaryawanModalDisclosure user_id={data.id}>
         <Avatar
           cursor={"pointer"}
