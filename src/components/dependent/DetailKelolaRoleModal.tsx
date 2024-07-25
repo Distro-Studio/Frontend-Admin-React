@@ -35,7 +35,7 @@ export default function DetailKelolaRoleModal({
   ...props
 }: Props) {
   useBackOnClose(
-    `detail-keluarga-karyawan-modal-${role_id}`,
+    `detail-kelola-role-modal-${role_id}`,
     isOpen,
     onOpen,
     onClose
@@ -63,7 +63,7 @@ export default function DetailKelolaRoleModal({
       <ModalOverlay />
       <ModalContent borderRadius={12} minH={"calc(100vh - 32px)"}>
         <ModalHeader ref={initialRef}>
-          <DisclosureHeader title={"Detail Keluarga Karyawan"} />
+          <DisclosureHeader title={"Detail Role - Atur Keizinan"} />
         </ModalHeader>
 
         <ModalBody px={0}>

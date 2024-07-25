@@ -39,7 +39,7 @@ export default function LokasiPresensi({
 
   const officeIcon = new L.Icon({
     iconUrl: "/vectors/icons/hospital.svg",
-    iconSize: [64, 64], // Ukuran ikon
+    iconSize: [150, 150], // Ukuran ikon
   });
 
   const containerStyle = {
@@ -81,15 +81,15 @@ export default function LokasiPresensi({
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
         <Marker
-          position={[center.lat, center.lng]}
-          //@ts-ignore
-          icon={userIcon}
-        />
-
-        <Marker
           position={[officeCenter.lat, officeCenter.lng]}
           //@ts-ignore
           icon={officeIcon}
+        />
+
+        <Marker
+          position={[center.lat, center.lng]}
+          //@ts-ignore
+          icon={userIcon}
         />
 
         {/* Marker kantor */}
