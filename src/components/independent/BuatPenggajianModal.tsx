@@ -41,8 +41,6 @@ export default function BuatPenggajianModal({ ...props }: Props) {
     },
   });
 
-  console.log(formik.values);
-
   return (
     <>
       <Button
