@@ -8,23 +8,22 @@ import {
   Input,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
+import { RiAddCircleFill } from "@remixicon/react";
 import { useFormik } from "formik";
-import * as yup from "yup";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
 import { useRef } from "react";
+import * as yup from "yup";
+import { iconSize } from "../../const/sizes";
 import backOnClose from "../../lib/backOnCloseOld";
+import useBackOnClose from "../../lib/useBackOnCloseOld";
+import DisclosureHeader from "../dependent/DisclosureHeader";
 import RequiredForm from "../form/RequiredForm";
 import Textarea from "../input/Textarea";
-import DisclosureHeader from "../dependent/DisclosureHeader";
-import { RiAddCircleFill } from "@remixicon/react";
-import { iconSize } from "../../const/sizes";
 
 interface Props extends ButtonProps {}
 

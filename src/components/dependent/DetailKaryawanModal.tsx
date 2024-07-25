@@ -425,8 +425,7 @@ export default function DetailKaryawanModal({
                           className="scrollY"
                         >
                           <HStack
-                            pr={[0, null, 5]}
-                            pl={[0, null, 4]}
+                            px={[0, null, 4]}
                             position={"sticky"}
                             top={"0"}
                             bg={lightDarkColor}
