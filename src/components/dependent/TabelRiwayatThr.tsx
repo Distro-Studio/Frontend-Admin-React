@@ -12,6 +12,7 @@ import CustomTable from "./CustomTable";
 import DetailPenggajianModal from "./DetailPenggajianModal";
 import Retry from "./Retry";
 import TabelFooterConfig from "./TabelFooterConfig";
+import DetailThrModal from "./DetailThrModal";
 
 interface Props {
   filterConfig: any;
@@ -176,8 +177,8 @@ export default function TabelRiwayatThr({ filterConfig }: Props) {
                     }
                   />
 
-                  <DetailPenggajianModal
-                    penggajian_id={1}
+                  <DetailThrModal
+                    thr_id={1}
                     isOpen={isOpen}
                     onOpen={onOpen}
                     onClose={onClose}
