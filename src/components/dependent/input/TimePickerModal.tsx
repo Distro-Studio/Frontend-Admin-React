@@ -186,7 +186,11 @@ export default function TimePickerModal({
         {inputValue ? (
           <Text>{formatTimeFromDate(inputValue, withSeconds)}</Text>
         ) : (
-          <Text opacity={0.6}>{placeholder || `Pilih Waktu`}</Text>
+          <Text //@ts-ignore
+            color={props?._placeholder?.color || "#96969691"}
+          >
+            {placeholder || `Pilih Waktu`}
+          </Text>
         )}
 
         <Icon as={RiTimeLine} mb={"1px"} fontSize={17} />
