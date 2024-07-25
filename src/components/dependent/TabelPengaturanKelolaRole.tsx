@@ -1,4 +1,4 @@
-import { Box, HStack, Text } from "@chakra-ui/react";
+import { Box, HStack, Text, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import { dummyKelolaRole } from "../../const/dummy";
 import { responsiveSpacing } from "../../const/sizes";
@@ -9,6 +9,7 @@ import CustomTableContainer from "../wrapper/CustomTableContainer";
 import CustomTable from "./CustomTable";
 import Retry from "./Retry";
 import TabelFooterConfig from "./TabelFooterConfig";
+import DetailKelolaRoleModal from "./DetailKelolaRoleModal";
 
 interface Props {
   filterConfig?: any;
@@ -19,6 +20,8 @@ export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
   const [limitConfig, setLimitConfig] = useState<number>(10);
   // Pagination Config
   const [pageConfig, setPageConfig] = useState<number>(1);
+  // Disclosure Config
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { error, loading, data, retry } = useDataState<any[]>({
     initialData: dummyKelolaRole,
@@ -97,6 +100,7 @@ export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
                     <CustomTable
                       formattedHeader={formattedHeader}
                       formattedData={formattedData}
+                      onRowClick={onOpen}
                     />
                   </CustomTableContainer>
 
@@ -112,9 +116,16 @@ export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
                     }}
                     footer={
                       <Text opacity={0.4}>
-                        Klik row untuk melihat detail karyawan
+                        Klik row untuk melihat detail role
                       </Text>
                     }
+                  />
+
+                  <DetailKelolaRoleModal
+                    role_id={1}
+                    isOpen={isOpen}
+                    onOpen={onOpen}
+                    onClose={onClose}
                   />
                 </>
               )}
