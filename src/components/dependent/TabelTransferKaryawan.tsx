@@ -184,7 +184,9 @@ export default function TabelRekamJejak() {
           )}
           {!loading && (
             <>
-              {(!data || (data && data.length === 0)) && <NoData />}
+              {(!data || (data && data.length === 0)) && (
+                <NoData minH={"400px"} />
+              )}
 
               {(data || (data && data.length > 0)) && (
                 <>

@@ -155,7 +155,7 @@ export default function TabelPresensi({ filterConfig }: Props) {
           )}
           {!loading && (
             <>
-              {!formattedData && <NoData />}
+              {!formattedData && <NoData minH={"400px"} />}
 
               {formattedData && (
                 <>

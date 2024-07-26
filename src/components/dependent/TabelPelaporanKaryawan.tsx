@@ -183,7 +183,7 @@ export default function TabelPelaporanKaryawan({ filterConfig }: Props) {
           )}
           {!loading && (
             <>
-              {!formattedData && <NoData />}
+              {!formattedData && <NoData minH={"400px"} />}
 
               {formattedData && (
                 <>

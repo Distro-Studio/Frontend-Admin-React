@@ -146,7 +146,7 @@ export default function TabelRiwayatPenggajian({ filterConfig }: Props) {
           )}
           {!loading && (
             <>
-              {!formattedData && <NoData />}
+              {!formattedData && <NoData minH={"400px"} />}
 
               {formattedData && (
                 <>

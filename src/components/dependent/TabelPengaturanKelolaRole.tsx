@@ -9,6 +9,7 @@ import CustomTableContainer from "../wrapper/CustomTableContainer";
 import CustomTable from "./CustomTable";
 import DetailKelolaRoleModal from "./DetailKelolaRoleModal";
 import Retry from "./Retry";
+import NotFound from "../independent/NotFound";
 
 interface Props {
   filterConfig?: any;
@@ -24,6 +25,14 @@ export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
     initialData: dummyKelolaRole,
     url: "",
     dependencies: [],
+  });
+
+  const fd = data?.filter((item: any) => {
+    const searchTerm = filterConfig.search.toLowerCase();
+
+    const matchesSearchTerm = item.name.toLowerCase().includes(searchTerm);
+
+    return matchesSearchTerm;
   });
 
   const formattedHeader = [
@@ -45,7 +54,7 @@ export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
       isSortable: true,
     },
   ];
-  const formattedData = data?.map((item: any) => ({
+  const formattedData = fd?.map((item: any) => ({
     id: item.id,
     columnsFormat: [
       {
@@ -88,38 +97,44 @@ export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
           )}
           {!loading && (
             <>
-              {!formattedData && <NoData />}
+              {!formattedData && <NoData minH={"400px"} />}
 
               {formattedData && (
                 <>
-                  <CustomTableContainer>
-                    <CustomTable
-                      formattedHeader={formattedHeader}
-                      formattedData={formattedData}
-                      onRowClick={(rowData) => {
-                        setRole(rowData);
-                        onOpen();
-                      }}
-                    />
-                  </CustomTableContainer>
+                  {fd && fd?.length === 0 && <NotFound minH={"400px"} />}
 
-                  <Text
-                    opacity={0.4}
-                    mt={responsiveSpacing}
-                    textAlign={"center"}
-                    mx={"auto"}
-                  >
-                    Klik row untuk melihat detail role
-                  </Text>
+                  {fd && fd?.length > 0 && (
+                    <>
+                      <CustomTableContainer>
+                        <CustomTable
+                          formattedHeader={formattedHeader}
+                          formattedData={formattedData}
+                          onRowClick={(rowData) => {
+                            setRole(rowData);
+                            onOpen();
+                          }}
+                        />
+                      </CustomTableContainer>
 
-                  <DetailKelolaRoleModal
-                    id="atur-keizinan-modal"
-                    role_id={role?.id}
-                    role_name={role?.columnsFormat[0]?.value}
-                    isOpen={isOpen}
-                    onOpen={onOpen}
-                    onClose={onClose}
-                  />
+                      <Text
+                        opacity={0.4}
+                        mt={responsiveSpacing}
+                        textAlign={"center"}
+                        mx={"auto"}
+                      >
+                        Klik row untuk melihat detail role
+                      </Text>
+
+                      <DetailKelolaRoleModal
+                        id="atur-keizinan-modal"
+                        role_id={role?.id}
+                        role_name={role?.columnsFormat[0]?.value}
+                        isOpen={isOpen}
+                        onOpen={onOpen}
+                        onClose={onClose}
+                      />
+                    </>
+                  )}
                 </>
               )}
             </>

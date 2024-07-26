@@ -270,7 +270,7 @@ export default function TabelKaryawan() {
           )}
           {!loading && (
             <>
-              {!formattedData && <NoData />}
+              {!formattedData && <NoData minH={"400px"} />}
 
               {formattedData && (
                 <>

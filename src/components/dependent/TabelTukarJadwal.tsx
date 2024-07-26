@@ -188,7 +188,7 @@ export default function TabelKaryawan({ filterConfig }: Props) {
           )}
           {!loading && (
             <>
-              {!formattedData && <NoData />}
+              {!formattedData && <NoData minH={"400px"} />}
 
               {formattedData && (
                 <>
