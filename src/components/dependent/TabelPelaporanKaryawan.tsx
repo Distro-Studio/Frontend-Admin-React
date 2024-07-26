@@ -90,9 +90,6 @@ export default function TabelPelaporanKaryawan({ filterConfig }: Props) {
     },
     {
       th: "Tanggal Kejadian",
-      cProps: {
-        justify: "center",
-      },
     },
     {
       th: "Lokasi",
@@ -104,6 +101,9 @@ export default function TabelPelaporanKaryawan({ filterConfig }: Props) {
     },
     {
       th: "Foto",
+      cProps: {
+        justify: "center",
+      },
     },
   ];
   const formattedData = data?.map((item: any) => ({
@@ -155,6 +155,9 @@ export default function TabelPelaporanKaryawan({ filterConfig }: Props) {
             </Button>
           </ViewPhotoModalDisclosure>
         ),
+        cProps: {
+          justify: "center",
+        },
       },
     ],
   }));

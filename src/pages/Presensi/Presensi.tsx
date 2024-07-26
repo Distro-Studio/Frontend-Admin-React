@@ -60,7 +60,6 @@ export default function Presensi() {
         <PresensiTotal mb={responsiveSpacing} />
 
         <CContainer
-          flex={1}
           px={responsiveSpacing}
           pb={responsiveSpacing}
           pt={0}

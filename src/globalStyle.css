@@ -133,14 +133,14 @@ button:focus-visible {
 }
 
 .btn-apa:not(:disabled) {
-  background: var(--p500a4) !important;
+  background: var(--p500a5) !important;
   color: var(--p500) !important;
 }
 .btn-apa:hover:not(:disabled) {
-  background: var(--p500a3) !important;
+  background: var(--p500a4) !important;
 }
 .btn-apa:active:not(:disabled) {
-  background: var(--p500a2) !important;
+  background: var(--p500a3) !important;
 }
 
 .btn-clear {

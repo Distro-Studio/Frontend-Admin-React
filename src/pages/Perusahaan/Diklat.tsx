@@ -41,7 +41,6 @@ export default function Diklat() {
     <>
       <CWrapper>
         <CContainer
-          flex={1}
           px={responsiveSpacing}
           pb={responsiveSpacing}
           pt={0}
