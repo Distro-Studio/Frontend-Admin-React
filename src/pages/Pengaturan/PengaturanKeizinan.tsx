@@ -186,8 +186,8 @@ export default function PengaturanKeizinan({ role_id, role_name }: Props) {
 
   return (
     <>
-      <CWrapper>
-        <CContainer bg={lightDarkColor} borderRadius={12}>
+      <CWrapper overflowY={"auto"}>
+        <CContainer bg={lightDarkColor} borderRadius={12} overflowY={"auto"}>
           <Wrap justify={"space-between"} mb={responsiveSpacing}>
             <HStack gap={8}>
               <HStack>
