@@ -151,6 +151,7 @@ export default function PengaturanKeizinan({ role_id, role_name }: Props) {
     },
   };
   //! DEBUG
+
   const [data] = useState<any | null>(dummy);
   const [semuaIzin, setSemuaIzin] = useState<boolean>(false);
   const [toggleSemuaIzin, setToggleSemuaIzin] = useState<boolean>(false);
@@ -192,9 +193,7 @@ export default function PengaturanKeizinan({ role_id, role_name }: Props) {
             <HStack gap={8}>
               <HStack>
                 <Text>Role :</Text>
-                <Text fontWeight={600} fontSize={18}>
-                  {role_name}
-                </Text>
+                <Text fontWeight={600}>{role_name}</Text>
               </HStack>
 
               <HStack
@@ -209,9 +208,10 @@ export default function PengaturanKeizinan({ role_id, role_name }: Props) {
                   }} // Mengubah nilai toggleSemuaIzin
                   onClick={(e) => e.stopPropagation()} // Menghentikan propagasi event agar tidak memicu perubahan checkbox
                   isChecked={semuaIzin} // Menggunakan toggleSemuaIzin sebagai nilai isChecked
-                  size={"lg"}
                 >
-                  <Text fontWeight={500}>Semua izin</Text>
+                  <Text fontWeight={500} mt={"-3px"}>
+                    Semua izin
+                  </Text>
                 </Checkbox>
               </HStack>
             </HStack>

@@ -7,7 +7,7 @@ import {
   ModalHeader,
   ModalOverlay,
 } from "@chakra-ui/react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { dummyDetailKeluargaKaryawan } from "../../const/dummy";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import useDataState from "../../hooks/useDataState";
@@ -36,6 +36,14 @@ export default function DetailKelolaRoleModal({
   onClose,
   ...props
 }: Props) {
+  useEffect(() => {
+    if (id && isOpen) {
+      if (!role_id) {
+        backOnClose();
+      }
+    }
+  }, [id, role_id, isOpen]);
+
   useBackOnClose(
     id || `detail-kelola-role-modal-${role_id}`,
     isOpen,

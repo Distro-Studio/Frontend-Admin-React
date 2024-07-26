@@ -67,6 +67,14 @@ export default function DetailKaryawanModal({
   onOpen,
   onClose,
 }: Props) {
+  useEffect(() => {
+    if (id && isOpen) {
+      if (!user_id) {
+        backOnClose();
+      }
+    }
+  }, [id, user_id, isOpen]);
+
   useBackOnClose(
     id || `detail-karyawan-modal-${user_id}`,
     isOpen,
