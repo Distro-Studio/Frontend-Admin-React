@@ -34,6 +34,7 @@ export default function PengaturanNavs({ active, activeTopNavs }: Props) {
           to={nav.link}
           h={"50px"}
           size={"sm"}
+          px={"16px !important"}
         >
           {nav.label}
         </Button>
