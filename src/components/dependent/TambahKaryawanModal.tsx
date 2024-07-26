@@ -52,6 +52,7 @@ import useScreenWidth from "../../lib/useScreenWidth";
 import CContainer from "../wrapper/CContainer";
 import SelectPotongan from "./_Select/SelectPotongan";
 import DisclosureHeader from "./DisclosureHeader";
+import NumberInput from "./input/NumberInput";
 
 const validationSchemaStep1 = yup.object({
   // nama_karyawan: yup.string().required("Harus diisi"),
@@ -118,12 +119,12 @@ export default function TambahKaryawanModal({ ...props }: Props) {
       role: "" as any,
       kelompok_gaji: "" as any,
       no_rekening: "",
-      tunjangan_uang_lembur: "",
-      tunjangan_fungsional: "",
-      tunjangan_khusus: "",
-      tunjangan_lainnya: "",
-      uang_lembur: "",
-      uang_makan: "",
+      tunjangan_uang_lembur: undefined,
+      tunjangan_fungsional: undefined,
+      tunjangan_khusus: undefined,
+      tunjangan_lainnya: undefined,
+      uang_lembur: undefined,
+      uang_makan: undefined,
       ptkp: "" as any,
       potongan: "" as any,
       username: "",
@@ -438,12 +439,14 @@ export default function TambahKaryawanModal({ ...props }: Props) {
             <InputLeftElement pl={4}>
               <Text>Rp</Text>
             </InputLeftElement>
-            <Input
+            <NumberInput
               pl={12}
               name="tunjangan_uang_lembur"
               placeholder="500.000"
-              onChange={formik.handleChange}
-              value={formik.values.tunjangan_uang_lembur}
+              onChangeSetter={(input) => {
+                formik.setFieldValue("tunjangan_uang_lembur", input);
+              }}
+              inputValue={formik.values.tunjangan_uang_lembur}
             />
           </InputGroup>
           <FormErrorMessage>
@@ -464,12 +467,14 @@ export default function TambahKaryawanModal({ ...props }: Props) {
             <InputLeftElement pl={4}>
               <Text>Rp</Text>
             </InputLeftElement>
-            <Input
+            <NumberInput
               pl={12}
               name="tunjangan_fungsional"
               placeholder="500.000"
-              onChange={formik.handleChange}
-              value={formik.values.tunjangan_fungsional}
+              onChangeSetter={(input) => {
+                formik.setFieldValue("tunjangan_fungsional", input);
+              }}
+              inputValue={formik.values.tunjangan_fungsional}
             />
           </InputGroup>
           <FormErrorMessage>
@@ -487,14 +492,17 @@ export default function TambahKaryawanModal({ ...props }: Props) {
             <RequiredForm />
           </FormLabel>
           <InputGroup>
-            <InputLeftElement>
+            <InputLeftElement pl={4}>
               <Text>Rp</Text>
             </InputLeftElement>
-            <Input
+            <NumberInput
+              pl={12}
               name="tunjangan_khusus"
               placeholder="500.000"
-              onChange={formik.handleChange}
-              value={formik.values.tunjangan_khusus}
+              onChangeSetter={(input) => {
+                formik.setFieldValue("tunjangan_khusus", input);
+              }}
+              inputValue={formik.values.tunjangan_khusus}
             />
           </InputGroup>
           <FormErrorMessage>{formik.errors.tunjangan_khusus}</FormErrorMessage>
@@ -510,14 +518,17 @@ export default function TambahKaryawanModal({ ...props }: Props) {
             <RequiredForm />
           </FormLabel>
           <InputGroup>
-            <InputLeftElement>
+            <InputLeftElement pl={4}>
               <Text>Rp</Text>
             </InputLeftElement>
-            <Input
+            <NumberInput
+              pl={12}
               name="tunjangan_lainnya"
               placeholder="500.000"
-              onChange={formik.handleChange}
-              value={formik.values.tunjangan_lainnya}
+              onChangeSetter={(input) => {
+                formik.setFieldValue("tunjangan_lainnya", input);
+              }}
+              inputValue={formik.values.tunjangan_lainnya}
             />
           </InputGroup>
           <FormErrorMessage>{formik.errors.tunjangan_lainnya}</FormErrorMessage>
@@ -533,14 +544,17 @@ export default function TambahKaryawanModal({ ...props }: Props) {
             <RequiredForm />
           </FormLabel>
           <InputGroup>
-            <InputLeftElement>
+            <InputLeftElement pl={4}>
               <Text>Rp</Text>
             </InputLeftElement>
-            <Input
+            <NumberInput
+              pl={12}
               name="uang_lembur"
               placeholder="500.000"
-              onChange={formik.handleChange}
-              value={formik.values.uang_lembur}
+              onChangeSetter={(input) => {
+                formik.setFieldValue("uang_lembur", input);
+              }}
+              inputValue={formik.values.uang_lembur}
             />
           </InputGroup>
           <FormErrorMessage>{formik.errors.uang_lembur}</FormErrorMessage>
@@ -556,14 +570,17 @@ export default function TambahKaryawanModal({ ...props }: Props) {
             <RequiredForm />
           </FormLabel>
           <InputGroup>
-            <InputLeftElement>
+            <InputLeftElement pl={4}>
               <Text>Rp</Text>
             </InputLeftElement>
-            <Input
+            <NumberInput
+              pl={12}
               name="uang_makan"
               placeholder="500.000"
-              onChange={formik.handleChange}
-              value={formik.values.uang_makan}
+              onChangeSetter={(input) => {
+                formik.setFieldValue("uang_makan", input);
+              }}
+              inputValue={formik.values.uang_makan}
             />
           </InputGroup>
           <FormErrorMessage>{formik.errors.uang_makan}</FormErrorMessage>

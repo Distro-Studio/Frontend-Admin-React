@@ -4,12 +4,12 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Icon,
   Input,
   InputGroup,
   InputLeftElement,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -17,25 +17,27 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { RiAddCircleFill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../lib/backOnCloseOld";
-import formatNumber from "../../lib/formatNumber";
-import parseNumber from "../../lib/parseNumber";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
+import { iconSize } from "../../const/sizes";
+import DisclosureHeader from "../dependent/DisclosureHeader";
+import NumberInput from "../dependent/input/NumberInput";
 import RequiredForm from "../form/RequiredForm";
+import useBackOnClose from "../../hooks/useBackOnClose";
+import backOnClose from "../../lib/backOnClose";
 
 interface Props extends ButtonProps {}
 
 export default function TambahKelompokGaji({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
+  useBackOnClose("tambah-kelompok-gaji-modal", isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
   const formik = useFormik({
     validateOnChange: false,
-    initialValues: { nama_kelompok: "", besaran_gaji: "" as any },
+    initialValues: { nama_kelompok: undefined, besaran_gaji: undefined as any },
     validationSchema: yup.object().shape({
       nama_kelompok: yup.string().required("Harus diisi"),
       besaran_gaji: yup.number().required("Harus diisi"),
@@ -51,6 +53,8 @@ export default function TambahKelompokGaji({ ...props }: Props) {
         className="btn-ap clicky"
         colorScheme="ap"
         onClick={onOpen}
+        leftIcon={<Icon as={RiAddCircleFill} fontSize={iconSize} />}
+        pl={5}
         {...props}
       >
         Tambah Kelompok Gaji
@@ -59,7 +63,7 @@ export default function TambahKelompokGaji({ ...props }: Props) {
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          backOnClose(onClose);
+          backOnClose();
           formik.resetForm();
         }}
         initialFocusRef={initialRef}
@@ -67,8 +71,9 @@ export default function TambahKelompokGaji({ ...props }: Props) {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader ref={initialRef}> Tambah Kelompok Gaji</ModalHeader>
+          <ModalHeader ref={initialRef}>
+            <DisclosureHeader title="Tambah Kelompok Gaji" />
+          </ModalHeader>
           <ModalBody>
             <form id="tambahKelompokGajiForm" onSubmit={formik.handleSubmit}>
               <FormControl
@@ -98,26 +103,17 @@ export default function TambahKelompokGaji({ ...props }: Props) {
                   <RequiredForm />
                 </FormLabel>
                 <InputGroup>
-                  <InputLeftElement>
+                  <InputLeftElement pl={4}>
                     <Text>Rp</Text>
                   </InputLeftElement>
-                  <Input
+                  <NumberInput
+                    pl={12}
                     name="besaran_gaji"
-                    placeholder="4.000.000"
-                    onChange={(e) => {
-                      const newValue = parseNumber(e.target.value);
-                      if (newValue && newValue > 0) {
-                        formik.setFieldValue("besaran_gaji", newValue);
-                      } else {
-                        formik.setFieldValue("besaran_gaji", "");
-                      }
+                    placeholder="4.500.000"
+                    onChangeSetter={(input) => {
+                      formik.setFieldValue("besaran_gaji", input);
                     }}
-                    value={
-                      formik.values.besaran_gaji === 0 ||
-                      formik.values.besaran_gaji === ""
-                        ? ""
-                        : formatNumber(formik.values.besaran_gaji)
-                    }
+                    inputValue={formik.values.besaran_gaji}
                   />
                 </InputGroup>
                 <FormErrorMessage>
