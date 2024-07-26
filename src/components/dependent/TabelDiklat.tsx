@@ -491,7 +491,7 @@ export default function TabelDiklat({ filterConfig }: Props) {
         <>
           {loading && (
             <>
-              <Skeleton flex={1} mx={"auto"} />
+              <Skeleton minH={"300px"} flex={1} mx={"auto"} />
               <HStack justify={"space-between"} mt={responsiveSpacing}>
                 <Skeleton maxW={"120px"} />
                 <Skeleton maxW={"300px"} h={"20px"} />
