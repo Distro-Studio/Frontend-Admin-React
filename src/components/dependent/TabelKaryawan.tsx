@@ -304,16 +304,13 @@ export default function TabelKaryawan() {
                       </Text>
                     }
                   />
-
-                  {userId && (
-                    <DetailKaryawanModal
-                      id={"detail-karyawan-row-on-click-modal"}
-                      user_id={userId}
-                      isOpen={isOpen}
-                      onOpen={onOpen}
-                      onClose={onClose}
-                    />
-                  )}
+                  <DetailKaryawanModal
+                    id={"detail-karyawan-row-on-click-modal"}
+                    user_id={userId}
+                    isOpen={isOpen}
+                    onOpen={onOpen}
+                    onClose={onClose}
+                  />
                 </>
               )}
             </>

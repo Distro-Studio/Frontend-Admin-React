@@ -55,7 +55,7 @@ import SearchComponent from "./input/SearchComponent";
 
 interface Props {
   id?: string;
-  user_id: number;
+  user_id?: number;
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;

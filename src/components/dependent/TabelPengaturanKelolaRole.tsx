@@ -126,15 +126,14 @@ export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
                     }
                   />
 
-                  {role && (
-                    <DetailKelolaRoleModal
-                      role_id={role.id}
-                      role_name={role.columnsFormat[0].value}
-                      isOpen={isOpen}
-                      onOpen={onOpen}
-                      onClose={onClose}
-                    />
-                  )}
+                  <DetailKelolaRoleModal
+                    id="atur-keizinan-modal"
+                    role_id={role?.id}
+                    role_name={role?.columnsFormat[0]?.value}
+                    isOpen={isOpen}
+                    onOpen={onOpen}
+                    onClose={onClose}
+                  />
                 </>
               )}
             </>
