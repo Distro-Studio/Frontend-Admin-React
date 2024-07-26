@@ -1,7 +1,5 @@
 import { HStack, Wrap } from "@chakra-ui/react";
 import { useState } from "react";
-import ExportModal from "../../components/dependent/ExportModal";
-import ImportModal from "../../components/dependent/ImportModal";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
 import PengaturanNavs from "../../components/dependent/PengaturanNavs";
 import TabelKelolaRole from "../../components/dependent/TabelPengaturanKelolaRole";
@@ -57,14 +55,17 @@ export default function PengaturanKelolaRole() {
                 minW={"165px"}
                 name="search"
                 onChangeSetter={(input) => {
-                  setFilterConfig(input);
+                  setFilterConfig((ps: any) => ({
+                    ...ps,
+                    search: input,
+                  }));
                 }}
                 inputValue={filterConfig.search}
               />
 
-              <ExportModal url="" title="Export Kelola Role" />
+              {/* <ExportModal url="" title="Export Kelola Role" />
 
-              <ImportModal url="" title="Import Kelola Role" />
+              <ImportModal url="" title="Import Kelola Role" /> */}
 
               <TambahRole minW={"fit-content"} />
             </HStack>

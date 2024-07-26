@@ -7,19 +7,14 @@ import NoData from "../independent/NoData";
 import Skeleton from "../independent/Skeleton";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
 import CustomTable from "./CustomTable";
-import Retry from "./Retry";
-import TabelFooterConfig from "./TabelFooterConfig";
 import DetailKelolaRoleModal from "./DetailKelolaRoleModal";
+import Retry from "./Retry";
 
 interface Props {
   filterConfig?: any;
 }
 
 export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
-  // Limit Config
-  const [limitConfig, setLimitConfig] = useState<number>(10);
-  // Pagination Config
-  const [pageConfig, setPageConfig] = useState<number>(1);
   // Disclosure Config
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -28,8 +23,7 @@ export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
   const { error, loading, data, retry } = useDataState<any[]>({
     initialData: dummyKelolaRole,
     url: "",
-    limit: limitConfig,
-    dependencies: [limitConfig, pageConfig],
+    dependencies: [],
   });
 
   const formattedHeader = [
@@ -109,22 +103,14 @@ export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
                     />
                   </CustomTableContainer>
 
-                  <TabelFooterConfig
-                    limitConfig={limitConfig}
-                    setLimitConfig={setLimitConfig}
-                    pageConfig={pageConfig}
-                    setPageConfig={setPageConfig}
-                    paginationData={{
-                      prev_page_url: "",
-                      next_page_url: "",
-                      last_page: 1,
-                    }}
-                    footer={
-                      <Text opacity={0.4}>
-                        Klik row untuk melihat detail role
-                      </Text>
-                    }
-                  />
+                  <Text
+                    opacity={0.4}
+                    mt={responsiveSpacing}
+                    textAlign={"center"}
+                    mx={"auto"}
+                  >
+                    Klik row untuk melihat detail role
+                  </Text>
 
                   <DetailKelolaRoleModal
                     id="atur-keizinan-modal"
