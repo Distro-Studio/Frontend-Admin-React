@@ -32,8 +32,6 @@ export default function TabelPengaturanKelompokGaji({ filterConfig }: Props) {
       );
     },
     (rowData: any) => {
-      console.log(rowData.columnsFormat[1]);
-
       return (
         <MenuItem isDisabled={!rowData.columnsFormat[1].value}>
           <Text>Restore</Text>
