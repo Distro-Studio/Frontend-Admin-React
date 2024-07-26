@@ -1,4 +1,4 @@
-import { Box, HStack } from "@chakra-ui/react";
+import { Center, HStack } from "@chakra-ui/react";
 import { useState } from "react";
 import { dummyRiwayatCuti } from "../../const/dummy";
 import { responsiveSpacing } from "../../const/sizes";
@@ -126,9 +126,9 @@ export default function TabelCuti({ filterConfig }: Props) {
   return (
     <>
       {error && (
-        <Box my={"auto"}>
+        <Center my={"auto"} minH={"400px"}>
           <Retry loading={loading} retry={retry} />
-        </Box>
+        </Center>
       )}
       {!error && (
         <>

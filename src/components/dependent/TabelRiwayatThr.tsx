@@ -1,4 +1,4 @@
-import { Box, HStack, Text, useDisclosure } from "@chakra-ui/react";
+import { Center, HStack, Text, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import { dummyRiwayatPenggajian } from "../../const/dummy";
 import { responsiveSpacing } from "../../const/sizes";
@@ -128,9 +128,9 @@ export default function TabelRiwayatThr({ filterConfig }: Props) {
   return (
     <>
       {error && (
-        <Box my={"auto"}>
+        <Center my={"auto"} minH={"400px"}>
           <Retry loading={loading} retry={retry} />
-        </Box>
+        </Center>
       )}
       {!error && (
         <>

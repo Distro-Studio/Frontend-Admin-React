@@ -1,6 +1,6 @@
 import {
-  Box,
   Button,
+  Center,
   HStack,
   Icon,
   Modal,
@@ -483,9 +483,9 @@ export default function TabelDiklat({ filterConfig }: Props) {
   return (
     <>
       {error && (
-        <Box my={"auto"}>
+        <Center my={"auto"} minH={"400px"}>
           <Retry loading={loading} retry={retry} />
-        </Box>
+        </Center>
       )}
       {!error && (
         <>

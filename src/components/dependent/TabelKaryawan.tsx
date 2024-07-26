@@ -1,4 +1,4 @@
-import { Box, HStack, Icon, Text, useDisclosure } from "@chakra-ui/react";
+import { Center, HStack, Icon, Text, useDisclosure } from "@chakra-ui/react";
 import { RiEditLine } from "@remixicon/react";
 import { useState } from "react";
 import { dummyKaryawans } from "../../const/dummy";
@@ -252,9 +252,9 @@ export default function TabelKaryawan() {
   return (
     <>
       {error && (
-        <Box my={"auto"}>
+        <Center my={"auto"} minH={"400px"}>
           <Retry loading={loading} retry={retry} />
-        </Box>
+        </Center>
       )}
       {!error && (
         <>

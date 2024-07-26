@@ -1,4 +1,4 @@
-import { Box, Button, HStack } from "@chakra-ui/react";
+import { Button, Center, HStack } from "@chakra-ui/react";
 import { useState } from "react";
 import { responsiveSpacing } from "../../const/sizes";
 import useDataState from "../../hooks/useDataState";
@@ -165,9 +165,9 @@ export default function TabelPelaporanKaryawan({ filterConfig }: Props) {
   return (
     <>
       {error && (
-        <Box my={"auto"}>
+        <Center my={"auto"} minH={"400px"}>
           <Retry loading={loading} retry={retry} />
-        </Box>
+        </Center>
       )}
       {!error && (
         <>

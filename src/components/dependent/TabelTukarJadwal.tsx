@@ -1,6 +1,6 @@
 import {
-  Box,
   Button,
+  Center,
   HStack,
   Modal,
   ModalBody,
@@ -21,13 +21,12 @@ import formatDate from "../../lib/formatDate";
 import NoData from "../independent/NoData";
 import Skeleton from "../independent/Skeleton";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
+import AvatarAndNameTableData from "./AvatarAndNameTableData";
 import BooleanBadge from "./BooleanBadge";
 import CustomTable from "./CustomTable";
 import DisclosureHeader from "./DisclosureHeader";
 import Retry from "./Retry";
 import TabelFooterConfig from "./TabelFooterConfig";
-import AvatarAndNameTableData from "./AvatarAndNameTableData";
-
 const PertukaranJadwalModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useBackOnClose(`pertukaran-jadwal-modal`, isOpen, onOpen, onClose);
@@ -170,9 +169,9 @@ export default function TabelKaryawan({ filterConfig }: Props) {
   return (
     <>
       {error && (
-        <Box my={"auto"}>
+        <Center my={"auto"} minH={"400px"}>
           <Retry loading={loading} retry={retry} />
-        </Box>
+        </Center>
       )}
       {!error && (
         <>

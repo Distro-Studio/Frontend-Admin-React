@@ -1,4 +1,4 @@
-import { Box, HStack, Text, Tooltip } from "@chakra-ui/react";
+import { Center, HStack, Text, Tooltip } from "@chakra-ui/react";
 import { useState } from "react";
 import { dummyTransferKaryawan } from "../../const/dummy";
 import { responsiveSpacing } from "../../const/sizes";
@@ -166,9 +166,9 @@ export default function TabelRekamJejak() {
   return (
     <>
       {error && (
-        <Box my={"auto"}>
+        <Center my={"auto"} minH={"400px"}>
           <Retry loading={loading} retry={retry} />
-        </Box>
+        </Center>
       )}
       {!error && (
         <>

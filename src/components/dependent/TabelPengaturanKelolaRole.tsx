@@ -1,15 +1,15 @@
-import { Box, HStack, Text, useDisclosure } from "@chakra-ui/react";
+import { Center, HStack, Text, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import { dummyKelolaRole } from "../../const/dummy";
 import { responsiveSpacing } from "../../const/sizes";
 import useDataState from "../../hooks/useDataState";
 import NoData from "../independent/NoData";
+import NotFound from "../independent/NotFound";
 import Skeleton from "../independent/Skeleton";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
 import CustomTable from "./CustomTable";
 import DetailKelolaRoleModal from "./DetailKelolaRoleModal";
 import Retry from "./Retry";
-import NotFound from "../independent/NotFound";
 
 interface Props {
   filterConfig?: any;
@@ -79,9 +79,9 @@ export default function TabelPengaturanKelolaRole({ filterConfig }: Props) {
   return (
     <>
       {error && (
-        <Box my={"auto"}>
+        <Center my={"auto"} minH={"400px"}>
           <Retry loading={loading} retry={retry} />
-        </Box>
+        </Center>
       )}
       {!error && (
         <>

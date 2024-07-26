@@ -1,6 +1,6 @@
 import {
-  Box,
   Button,
+  Center,
   HStack,
   Modal,
   ModalBody,
@@ -324,9 +324,9 @@ export default function TabelPenilaianKaryawan({ filterConfig }: Props) {
   return (
     <>
       {error && (
-        <Box my={"auto"}>
+        <Center my={"auto"} minH={"400px"}>
           <Retry loading={loading} retry={retry} />
-        </Box>
+        </Center>
       )}
       {!error && (
         <>
