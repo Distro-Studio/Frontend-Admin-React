@@ -417,6 +417,7 @@ export default function CustomTable({
                 left={0}
                 bg={lightDarkColor}
                 zIndex={2}
+                className="btn"
               >
                 <Center
                   w={"52px"}
