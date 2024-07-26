@@ -12,6 +12,7 @@ import CustomTableContainer from "../wrapper/CustomTableContainer";
 import BooleanBadge from "./BooleanBadge";
 import CustomTable from "./CustomTable";
 import Retry from "./Retry";
+import formatDate from "../../lib/formatDate";
 
 interface Props {
   filterConfig?: any;
@@ -88,6 +89,10 @@ export default function TabelPengaturanKelompokGaji({ filterConfig }: Props) {
       },
     },
     {
+      th: "Tanggal Dihapus",
+      isSortable: true,
+    },
+    {
       th: "Besaran Gaji",
       isSortable: true,
       cProps: {
@@ -127,6 +132,11 @@ export default function TabelPengaturanKelompokGaji({ filterConfig }: Props) {
         cProps: {
           justify: "center",
         },
+      },
+      {
+        value: item.deleted_at,
+        td: item.deleted_at ? formatDate(item.deleted_at) : "",
+        isDate: true,
       },
       {
         value: item.besaran_gaji,
