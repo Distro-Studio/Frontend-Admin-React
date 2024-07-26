@@ -8,7 +8,6 @@ interface Props<T> {
   url?: string;
   payload?: any;
   limit?: number;
-  columns?: string[];
   dependencies?: any[];
   conditions?: boolean;
 }
@@ -18,7 +17,6 @@ const useDataState = <T>({
   payload,
   url,
   limit = 10,
-  columns = [],
   dependencies = [],
   conditions = true,
 }: Props<T>) => {
@@ -41,12 +39,13 @@ const useDataState = <T>({
       url: url,
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer YOUR_ACCESS_TOKEN",
+        //TODO auth token
+        Authorization: "Bearer ACCESS_TOKEN",
       },
-      params: {
+      payload: {
+        ...payload,
         limit: limit,
         offset: offset,
-        columns: columns,
       },
     };
 

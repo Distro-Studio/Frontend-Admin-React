@@ -316,12 +316,13 @@ export default function TabelKaryawan() {
 
   return (
     <>
-      {error && render.error}
-      {!error && (
-        <>
-          {loading && render.loading}
+      {loading && render.loading}
 
-          {!loading && render.loaded}
+      {!loading && (
+        <>
+          {error && render.error}
+
+          {!error && render.loaded}
         </>
       )}
     </>
