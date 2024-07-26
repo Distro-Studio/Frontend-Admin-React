@@ -1,10 +1,14 @@
-import { Button, Checkbox, HStack, Text, Wrap } from "@chakra-ui/react";
+import { Box, Button, Checkbox, HStack, Text, Wrap } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import TabelKeizinan from "../../components/dependent/TabelPengaturanKeizinan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
+import useDataState from "../../hooks/useDataState";
+import NoData from "../../components/independent/NoData";
+import Skeleton from "../../components/independent/Skeleton";
+import Retry from "../../components/dependent/Retry";
 
 interface Props {
   role_id: number;
@@ -152,10 +156,13 @@ export default function PengaturanKeizinan({ role_id, role_name }: Props) {
   };
   //! DEBUG
 
-  const [data] = useState<any | null>(dummy);
+  const { error, loading, data, retry } = useDataState<any>({
+    initialData: dummy,
+    url: "",
+    dependencies: [],
+  });
   const [semuaIzin, setSemuaIzin] = useState<boolean>(false);
   const [toggleSemuaIzin, setToggleSemuaIzin] = useState<boolean>(false);
-  const [loading] = useState<boolean>(false);
   const [simpanLoading, setSimpanLoading] = useState<boolean>(false);
   const [simpanTrigger, setSimpanTrigger] = useState<boolean | null>(null);
 
@@ -228,16 +235,46 @@ export default function PengaturanKeizinan({ role_id, role_name }: Props) {
             </Button>
           </Wrap>
 
-          <TabelKeizinan
-            data={dataToArray}
-            loading={loading}
-            toggleSemuaIzin={toggleSemuaIzin}
-            semuaIzin={semuaIzin}
-            setSemuaIzin={setSemuaIzin}
-            simpanTrigger={simpanTrigger}
-            setSimpanLoading={setSimpanLoading}
-            checkAllPermissionsTrue={checkAllPermissionsTrue}
-          />
+          {error && (
+            <Box my={"auto"}>
+              <Retry loading={loading} retry={retry} />
+            </Box>
+          )}
+          {!error && (
+            <>
+              {loading && (
+                <>
+                  <>
+                    <HStack mb={responsiveSpacing}>
+                      <Skeleton h={"40px"} mx={"auto"} />
+                      <Skeleton h={"40px"} mx={"auto"} />
+                      <Skeleton h={"40px"} mx={"auto"} ml={"auto"} />
+                    </HStack>
+                    <Skeleton h={"40px"} mx={"auto"} mb={responsiveSpacing} />
+                    <Skeleton flex={1} mx={"auto"} />
+                  </>
+                </>
+              )}
+              {!loading && (
+                <>
+                  {(!data || (data && data.length === 0)) && <NoData />}
+                  {(data || (data && data.length > 0)) && (
+                    <>
+                      <TabelKeizinan
+                        data={dataToArray}
+                        toggleSemuaIzin={toggleSemuaIzin}
+                        semuaIzin={semuaIzin}
+                        setSemuaIzin={setSemuaIzin}
+                        simpanTrigger={simpanTrigger}
+                        setSimpanLoading={setSimpanLoading}
+                        checkAllPermissionsTrue={checkAllPermissionsTrue}
+                      />
+                    </>
+                  )}
+                </>
+              )}
+            </>
+          )}
         </CContainer>
       </CWrapper>
     </>

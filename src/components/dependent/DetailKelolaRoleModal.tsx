@@ -1,5 +1,4 @@
 import {
-  Box,
   BoxProps,
   Modal,
   ModalBody,
@@ -8,16 +7,11 @@ import {
   ModalOverlay,
 } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
-import { dummyDetailKeluargaKaryawan } from "../../const/dummy";
 import useBackOnClose from "../../hooks/useBackOnClose";
-import useDataState from "../../hooks/useDataState";
 import backOnClose from "../../lib/backOnClose";
 import PengaturanKeizinan from "../../pages/Pengaturan/PengaturanKeizinan";
-import ComponentSpinner from "../independent/ComponentSpinner";
-import NoData from "../independent/NoData";
 import CContainer from "../wrapper/CContainer";
 import DisclosureHeader from "./DisclosureHeader";
-import Retry from "./Retry";
 
 interface Props extends BoxProps {
   id?: string;
@@ -52,12 +46,6 @@ export default function DetailKelolaRoleModal({
   );
   const initialRef = useRef(null);
 
-  const { error, loading, data, retry } = useDataState<any>({
-    initialData: dummyDetailKeluargaKaryawan,
-    url: "",
-    dependencies: [],
-  });
-
   // SX
 
   return (
@@ -77,40 +65,15 @@ export default function DetailKelolaRoleModal({
         </ModalHeader>
 
         <ModalBody px={0}>
-          {error && (
-            <Box my={"auto"}>
-              <Retry loading={loading} retry={retry} />
-            </Box>
-          )}
-          {!error && (
-            <>
-              {loading && (
-                <>
-                  <ComponentSpinner />
-                </>
-              )}
-              {!loading && (
-                <>
-                  {(!data || (data && data.length === 0)) && <NoData />}
-
-                  {(data || (data && data.length > 0)) && (
-                    <CContainer
-                      overflowY={"auto"}
-                      className="scrollY"
-                      borderRadius={12}
-                      flex={1}
-                      pb={6}
-                    >
-                      <PengaturanKeizinan
-                        role_id={role_id}
-                        role_name={role_name}
-                      />
-                    </CContainer>
-                  )}
-                </>
-              )}
-            </>
-          )}
+          <CContainer
+            overflowY={"auto"}
+            className="scrollY"
+            borderRadius={12}
+            flex={1}
+            pb={6}
+          >
+            <PengaturanKeizinan role_id={role_id} role_name={role_name} />
+          </CContainer>
         </ModalBody>
       </ModalContent>
     </Modal>

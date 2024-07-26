@@ -6,10 +6,10 @@ import { responsiveSpacing } from "../../const/sizes";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
 import CustomTable from "./CustomTable";
 import SearchComponent from "./input/SearchComponent";
+import NotFound from "../independent/NotFound";
 
 interface Props {
   data: any;
-  loading: boolean;
   simpanTrigger: boolean | null;
   toggleSemuaIzin: boolean;
   semuaIzin: boolean | null;
@@ -20,7 +20,6 @@ interface Props {
 
 export default function TabelPengaturanKeizinan({
   data,
-  loading,
   simpanTrigger,
   toggleSemuaIzin,
   semuaIzin,
@@ -28,13 +27,17 @@ export default function TabelPengaturanKeizinan({
   setSimpanLoading,
   checkAllPermissionsTrue,
 }: Props) {
-  console.log("data", data);
-
   // Filter Config
   const [filterConfig, setFilterConfig] = useState({
     search: "",
-    hubungan_keluarga: undefined as any,
-    status_hidup: undefined as any,
+  });
+
+  const fd = data.filter((item: any) => {
+    const searchTerm = filterConfig.search.toLowerCase();
+
+    const matchesSearchTerm = item.group.toLowerCase().includes(searchTerm);
+
+    return matchesSearchTerm;
   });
 
   const [prevToggleSemuaIzin, setPrevToggleSemuaIzin] =
@@ -146,8 +149,7 @@ export default function TabelPengaturanKeizinan({
       },
     },
   ];
-
-  const formattedData = data.map((item: any, i: number) => ({
+  const formattedData = fd.map((item: any, i: number) => ({
     id: item.id,
     columnsFormat: [
       {
@@ -343,13 +345,17 @@ export default function TabelPengaturanKeizinan({
         />
       </HStack>
 
-      <CustomTableContainer>
-        <CustomTable
-          formattedHeader={formattedHeader}
-          formattedData={formattedData}
-          // rowOptions={rowOptions}
-        />
-      </CustomTableContainer>
+      {fd.length === 0 && <NotFound />}
+
+      {fd.length > 0 && (
+        <CustomTableContainer>
+          <CustomTable
+            formattedHeader={formattedHeader}
+            formattedData={formattedData}
+            // rowOptions={rowOptions}
+          />
+        </CustomTableContainer>
+      )}
     </>
   );
 }
