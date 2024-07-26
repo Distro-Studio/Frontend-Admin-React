@@ -60,6 +60,7 @@ const BatchActions = ({
         className="btn"
         aria-label="batch actions options"
         icon={<Icon as={RiListCheck} fontSize={iconSize} />}
+        _expanded={{ bg: "var(--divider3) !important" }}
       />
 
       <Portal containerRef={tableRef}>
@@ -112,6 +113,7 @@ const RowOptions = ({ row, rowOptions, tableRef }: RowOptionsProps) => {
         className="btn"
         aria-label="row options"
         icon={<Icon as={RiMore2Fill} fontSize={iconSize} />}
+        _expanded={{ bg: "var(--divider3) !important" }}
       />
 
       <Portal containerRef={tableRef}>
