@@ -194,7 +194,14 @@ export default function PengaturanKeizinan({ role_id, role_name }: Props) {
   return (
     <>
       <CWrapper overflowY={"auto"}>
-        <CContainer bg={lightDarkColor} borderRadius={12} overflowY={"auto"}>
+        <CContainer
+          flex={1}
+          pt={0}
+          bg={lightDarkColor}
+          borderRadius={12}
+          overflowY={"auto"}
+          className="scrollY"
+        >
           <Wrap justify={"space-between"} mb={responsiveSpacing}>
             <HStack gap={8}>
               <HStack>
@@ -244,15 +251,13 @@ export default function PengaturanKeizinan({ role_id, role_name }: Props) {
             <>
               {loading && (
                 <>
-                  <>
-                    <HStack mb={responsiveSpacing}>
-                      <Skeleton h={"40px"} mx={"auto"} />
-                      <Skeleton h={"40px"} mx={"auto"} />
-                      <Skeleton h={"40px"} mx={"auto"} ml={"auto"} />
-                    </HStack>
-                    <Skeleton h={"40px"} mx={"auto"} mb={responsiveSpacing} />
-                    <Skeleton flex={1} mx={"auto"} />
-                  </>
+                  <HStack mb={responsiveSpacing}>
+                    <Skeleton h={"40px"} mx={"auto"} />
+                    <Skeleton h={"40px"} mx={"auto"} />
+                    <Skeleton h={"40px"} mx={"auto"} ml={"auto"} />
+                  </HStack>
+                  <Skeleton h={"40px"} mx={"auto"} mb={responsiveSpacing} />
+                  <Skeleton flex={1} mx={"auto"} />
                 </>
               )}
               {!loading && (
