@@ -205,6 +205,7 @@ export const globalTheme = extendTheme({
           bg: "transparent",
           _hover: { bg: "var(--divider3)" },
           fontSize: 14,
+          justifyContent: "space-between",
           py: 3,
           px: 4,
         },

@@ -1,9 +1,16 @@
-import { Center, HStack, Icon, Text, useDisclosure } from "@chakra-ui/react";
+import {
+  Center,
+  HStack,
+  Icon,
+  MenuItem,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { RiEditLine } from "@remixicon/react";
 import { useState } from "react";
 import { dummyKaryawans } from "../../const/dummy";
 import { Interface__DetailKaryawan } from "../../const/interfaces";
-import { responsiveSpacing } from "../../const/sizes";
+import { iconSize, responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
 import useKaryawanTableColumnsConfig from "../../global/useKaryawanTableColumnsConfig";
 import useDataState from "../../hooks/useDataState";
@@ -33,16 +40,13 @@ export default function TabelKaryawan() {
   const { columnsConfig } = useKaryawanTableColumnsConfig();
   // Row Options Config
   const rowOptions = [
-    {
-      callback: (row: any) => {
-        console.log(row);
-      },
-      element: (
-        <HStack w={"100%"} justify={"space-between"} gap={4}>
-          <Text>Tes Aja</Text>
-          <Icon as={RiEditLine} opacity={0.4} />
-        </HStack>
-      ),
+    (rowIds: any) => {
+      return (
+        <MenuItem>
+          <Text>Edit</Text>
+          <Icon as={RiEditLine} fontSize={iconSize} opacity={0.4} />
+        </MenuItem>
+      );
     },
   ];
   const [userId, setUserId] = useState<number | undefined>(undefined);
@@ -280,8 +284,8 @@ export default function TabelKaryawan() {
                   onOpen();
                 }}
                 columnsConfig={columnsConfig}
+                // batchActions={rowOptions}
                 rowOptions={rowOptions}
-                batchActions={rowOptions}
               />
             </CustomTableContainer>
 

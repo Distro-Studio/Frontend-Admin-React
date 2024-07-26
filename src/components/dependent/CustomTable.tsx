@@ -1,4 +1,5 @@
 import {
+  Box,
   Center,
   Checkbox,
   HStack,
@@ -29,16 +30,14 @@ import {
 import { useRef, useState } from "react";
 import { useLightDarkColor } from "../../const/colors";
 import {
-  Interface__BatchAction,
   Interface__FormattedTableData,
   Interface__FormattedTableHeader,
-  Interface__RowOption,
 } from "../../const/interfaces";
 import { iconSize } from "../../const/sizes";
 
 interface BatchActionsProps {
   selectedRows: number[];
-  batchActions: Interface__BatchAction[];
+  batchActions: any[];
   selectAllRows: boolean;
   handleSelectAllRows: (isChecked: boolean) => void;
   tableRef: any;
@@ -64,7 +63,7 @@ const BatchActions = ({
       />
 
       <Portal containerRef={tableRef}>
-        <MenuList zIndex={10}>
+        <MenuList zIndex={10} minW={"180px"}>
           <MenuGroup title={`${selectedRows.length} Terpilih`} fontWeight={400}>
             <MenuDivider />
 
@@ -82,18 +81,13 @@ const BatchActions = ({
 
             <MenuDivider />
 
-            {batchActions?.map((action, i) => (
-              <MenuItem
-                key={i}
-                justifyContent={"space-between"}
-                onClick={() => {
-                  action.callback(selectedRows);
-                }}
-                isDisabled={selectedRows.length === 0}
-              >
-                {action.element}
-              </MenuItem>
-            ))}
+            {batchActions?.map((option, i) => {
+              return option === "divider" ? (
+                <MenuDivider key={i} />
+              ) : (
+                <Box key={i}>{option(selectedRows)}</Box>
+              );
+            })}
           </MenuGroup>
         </MenuList>
       </Portal>
@@ -103,13 +97,13 @@ const BatchActions = ({
 
 interface RowOptionsProps {
   row: any;
-  rowOptions: Interface__RowOption[];
+  rowOptions: any[];
   tableRef: any;
 }
 
 const RowOptions = ({ row, rowOptions, tableRef }: RowOptionsProps) => {
   return (
-    <Menu closeOnSelect={false}>
+    <Menu>
       <MenuButton
         as={IconButton}
         h={"60px"}
@@ -121,18 +115,14 @@ const RowOptions = ({ row, rowOptions, tableRef }: RowOptionsProps) => {
       />
 
       <Portal containerRef={tableRef}>
-        <MenuList zIndex={99} className="rowOptionsList">
-          {rowOptions?.map((option, i) => (
-            <MenuItem
-              key={i}
-              justifyContent={"space-between"}
-              onClick={() => {
-                option.callback(row);
-              }}
-            >
-              {option.element}
-            </MenuItem>
-          ))}
+        <MenuList zIndex={10} className="rowOptionsList" minW={"180px"}>
+          {rowOptions?.map((option, i) => {
+            return option === "divider" ? (
+              <MenuDivider key={i} />
+            ) : (
+              <Box key={i}>{option(row)}</Box>
+            );
+          })}
         </MenuList>
       </Portal>
     </Menu>
@@ -144,8 +134,8 @@ interface Props {
   formattedData: Interface__FormattedTableData[];
   onRowClick?: (rowData: any) => void;
   columnsConfig?: number[];
-  batchActions?: Interface__BatchAction[];
-  rowOptions?: Interface__RowOption[];
+  batchActions?: any[];
+  rowOptions?: any[];
   initialSortOrder?: "asc" | "desc";
   initialSortColumnIndex?: number;
   trBodyProps?: TableRowProps;
