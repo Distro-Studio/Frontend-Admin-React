@@ -175,7 +175,6 @@ export default function PengaturanKeizinan({ role_id, role_name }: Props) {
 
   useEffect(() => {
     //TODO get permission by rolew id
-    console.log(role_id);
 
     if (checkAllPermissionsTrue(dataToArrayRef.current)) {
       setSemuaIzin(true);
