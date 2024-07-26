@@ -35,7 +35,7 @@ const useDataState = <T>({
 
   function getData() {
     const options = {
-      method: payload ? "POST" : "GET",
+      method: payload || limit ? "POST" : "GET",
       url: url,
       headers: {
         "Content-Type": "application/json",
