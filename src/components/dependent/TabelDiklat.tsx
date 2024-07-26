@@ -72,6 +72,7 @@ const PesertaModal = ({ data }: { data: any }) => {
                         nama: peserta.nama,
                         foto_profil: peserta.foto_profil,
                       }}
+                      noDetail
                       w={"fit-content"}
                       maxW={"fit-content"}
                     />

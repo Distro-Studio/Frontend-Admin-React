@@ -11,19 +11,33 @@ interface Props extends StackProps {
     foto_profil: string | null;
     unit_kerja?: Interface__UnitKerja;
   };
+  noDetail?: boolean;
 }
 
-export default function AvatarAndNameTableData({ data, ...props }: Props) {
+export default function AvatarAndNameTableData({
+  data,
+  noDetail = false,
+  ...props
+}: Props) {
   return (
     <HStack w={"100%"} maxW={"180px"} gap={3} {...props}>
-      <DetailKaryawanModalDisclosure user_id={data.id}>
+      {noDetail ? (
         <Avatar
           cursor={"pointer"}
           src={data.foto_profil || ""}
           name={data.nama}
           size={data.unit_kerja ? "md" : "sm"}
         />
-      </DetailKaryawanModalDisclosure>
+      ) : (
+        <DetailKaryawanModalDisclosure user_id={data.id}>
+          <Avatar
+            cursor={"pointer"}
+            src={data.foto_profil || ""}
+            name={data.nama}
+            size={data.unit_kerja ? "md" : "sm"}
+          />
+        </DetailKaryawanModalDisclosure>
+      )}
 
       <CContainer gap={2} overflow={"hidden"}>
         <Tooltip label={data.nama} placement="right" openDelay={500}>
