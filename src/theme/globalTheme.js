@@ -128,6 +128,9 @@ export const globalTheme = extendTheme({
           border: props.isInvalid
             ? "1.5px solid #E53E3E"
             : "3px solid var(--divider3) !important",
+          _focusVisible: {
+            boxShadow: "none !important",
+          },
         },
       }),
     },
