@@ -187,7 +187,6 @@ export default function CustomTable({
 
   // Row Click
   const handleRowClick = (rowData: any) => {
-    console.log(rowData);
     if (onRowClick) {
       onRowClick(rowData);
     }
