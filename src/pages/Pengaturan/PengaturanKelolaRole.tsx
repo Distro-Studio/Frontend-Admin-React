@@ -25,12 +25,12 @@ export default function PengaturanKelolaRole() {
     <>
       <CWrapper overflowY={"auto"}>
         <Wrap
-          flex={1}
           pt={0}
           borderRadius={12}
           overflowY={"auto"}
           className="scrollY"
           align={"start"}
+          spacing={responsiveSpacing}
         >
           <PengaturanNavs activeTopNavs={0} active={0} />
 
