@@ -1,14 +1,13 @@
 import { Box, Button, Checkbox, HStack, Text, Wrap } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
+import Retry from "../../components/dependent/Retry";
 import TabelKeizinan from "../../components/dependent/TabelPengaturanKeizinan";
+import NoData from "../../components/independent/NoData";
+import Skeleton from "../../components/independent/Skeleton";
 import CContainer from "../../components/wrapper/CContainer";
-import CWrapper from "../../components/wrapper/CWrapper";
 import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useDataState from "../../hooks/useDataState";
-import NoData from "../../components/independent/NoData";
-import Skeleton from "../../components/independent/Skeleton";
-import Retry from "../../components/dependent/Retry";
 
 interface Props {
   role_id: number;
@@ -192,96 +191,93 @@ export default function PengaturanKeizinan({ role_id, role_name }: Props) {
   const lightDarkColor = useLightDarkColor();
 
   return (
-    <>
-      <CWrapper overflowY={"auto"}>
-        <CContainer
-          flex={1}
-          pt={0}
-          bg={lightDarkColor}
-          borderRadius={12}
-          overflowY={"auto"}
-          className="scrollY"
-        >
-          <Wrap justify={"space-between"} mb={responsiveSpacing}>
-            <HStack gap={8}>
-              <HStack>
-                <Text>Role :</Text>
-                <Text fontWeight={600}>{role_name}</Text>
-              </HStack>
+    <CContainer
+      flex={1}
+      pt={0}
+      px={responsiveSpacing}
+      bg={lightDarkColor}
+      borderRadius={12}
+      overflowY={"auto"}
+      className="scrollY"
+    >
+      <Wrap justify={"space-between"} mb={responsiveSpacing}>
+        <HStack gap={8}>
+          <HStack>
+            <Text>Role :</Text>
+            <Text fontWeight={600}>{role_name}</Text>
+          </HStack>
 
-              <HStack
-                onClick={() => {
-                  setToggleSemuaIzin(!toggleSemuaIzin);
-                }}
-              >
-                <Checkbox
-                  colorScheme="ap"
-                  onChange={() => {
-                    setSemuaIzin(!semuaIzin);
-                  }} // Mengubah nilai toggleSemuaIzin
-                  onClick={(e) => e.stopPropagation()} // Menghentikan propagasi event agar tidak memicu perubahan checkbox
-                  isChecked={semuaIzin} // Menggunakan toggleSemuaIzin sebagai nilai isChecked
-                >
-                  <Text fontWeight={500} mt={"-3px"}>
-                    Semua izin
-                  </Text>
-                </Checkbox>
-              </HStack>
-            </HStack>
-
-            <Button
+          <HStack
+            onClick={() => {
+              setToggleSemuaIzin(!toggleSemuaIzin);
+            }}
+          >
+            <Checkbox
               colorScheme="ap"
-              className="btn-ap clicky"
-              minW={"120px"}
-              isLoading={simpanLoading}
-              onClick={() => {
-                setSimpanTrigger(!simpanTrigger);
-              }}
+              onChange={() => {
+                setSemuaIzin(!semuaIzin);
+              }} // Mengubah nilai toggleSemuaIzin
+              onClick={(e) => e.stopPropagation()} // Menghentikan propagasi event agar tidak memicu perubahan checkbox
+              isChecked={semuaIzin} // Menggunakan toggleSemuaIzin sebagai nilai isChecked
             >
-              Simpan
-            </Button>
-          </Wrap>
+              <Text fontWeight={500} mt={"-3px"}>
+                Semua izin
+              </Text>
+            </Checkbox>
+          </HStack>
+        </HStack>
 
-          {error && (
-            <Box my={"auto"}>
-              <Retry loading={loading} retry={retry} />
-            </Box>
-          )}
-          {!error && (
+        <Button
+          colorScheme="ap"
+          className="btn-ap clicky"
+          minW={"120px"}
+          isLoading={simpanLoading}
+          onClick={() => {
+            setSimpanTrigger(!simpanTrigger);
+          }}
+        >
+          Simpan
+        </Button>
+      </Wrap>
+
+      {error && (
+        <Box my={"auto"}>
+          <Retry loading={loading} retry={retry} />
+        </Box>
+      )}
+      {!error && (
+        <>
+          {loading && (
             <>
-              {loading && (
+              <HStack mb={responsiveSpacing}>
+                <Skeleton h={"40px"} mx={"auto"} />
+                <Skeleton h={"40px"} mx={"auto"} />
+                <Skeleton h={"40px"} mx={"auto"} ml={"auto"} />
+              </HStack>
+              <Skeleton h={"40px"} mx={"auto"} mb={responsiveSpacing} />
+              <Skeleton flex={1} mx={"auto"} />
+            </>
+          )}
+          {!loading && (
+            <>
+              {(!data || (data && data.length === 0)) && <NoData />}
+              {(data || (data && data.length > 0)) && (
                 <>
-                  <HStack mb={responsiveSpacing}>
-                    <Skeleton h={"40px"} mx={"auto"} />
-                    <Skeleton h={"40px"} mx={"auto"} />
-                    <Skeleton h={"40px"} mx={"auto"} ml={"auto"} />
-                  </HStack>
-                  <Skeleton h={"40px"} mx={"auto"} mb={responsiveSpacing} />
-                  <Skeleton flex={1} mx={"auto"} />
-                </>
-              )}
-              {!loading && (
-                <>
-                  {(!data || (data && data.length === 0)) && <NoData />}
-                  {(data || (data && data.length > 0)) && (
-                    <>
-                      <TabelKeizinan
-                        data={dataToArray}
-                        toggleSemuaIzin={toggleSemuaIzin}
-                        semuaIzin={semuaIzin}
-                        setSemuaIzin={setSemuaIzin}
-                        simpanTrigger={simpanTrigger}
-                        setSimpanLoading={setSimpanLoading}
-                        checkAllPermissionsTrue={checkAllPermissionsTrue}
-                      />
-                    </>
-                  )}
+                  <TabelKeizinan
+                    data={dataToArray}
+                    toggleSemuaIzin={toggleSemuaIzin}
+                    semuaIzin={semuaIzin}
+                    setSemuaIzin={setSemuaIzin}
+                    simpanTrigger={simpanTrigger}
+                    setSimpanLoading={setSimpanLoading}
+                    checkAllPermissionsTrue={checkAllPermissionsTrue}
+                  />
                 </>
               )}
             </>
           )}
-        </CContainer>
-      </CWrapper>
-    </>
+        </>
+      )}
+    </CContainer>
   );
 }
