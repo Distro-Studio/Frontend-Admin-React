@@ -83,8 +83,11 @@ export default function TabelPengaturanKelompokGaji({ filterConfig }: Props) {
       },
     },
     {
-      th: "Dihapus",
+      th: "Status Dihapus",
       isSortable: true,
+      cProps: {
+        justify: "center",
+      },
     },
     {
       th: "Besaran Gaji",
@@ -123,6 +126,9 @@ export default function TabelPengaturanKelompokGaji({ filterConfig }: Props) {
           ""
         ),
         isDate: true,
+        cProps: {
+          justify: "center",
+        },
       },
       {
         value: item.besaran_gaji,
