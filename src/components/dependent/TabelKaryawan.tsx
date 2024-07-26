@@ -81,15 +81,15 @@ export default function TabelKaryawan() {
       },
     },
     {
-      th: "Status Karyawan",
+      th: "No. Induk Karyawan",
+      isSortable: true,
+    },
+    {
+      th: "Status Kepegawaian",
       isSortable: true,
       cProps: {
         justify: "center",
       },
-    },
-    {
-      th: "No. Induk Karyawan",
-      isSortable: true,
     },
     {
       th: "No. Rekam Medis",
@@ -179,6 +179,11 @@ export default function TabelKaryawan() {
         },
       },
       {
+        value: item.nik,
+        td: item.nik,
+        isNumeric: true,
+      },
+      {
         value: item.status_karyawan.label,
         td: (
           <StatusKaryawanBadge w={"120px"} data={item.status_karyawan.label} />
@@ -186,11 +191,6 @@ export default function TabelKaryawan() {
         cProps: {
           justify: "center",
         },
-      },
-      {
-        value: item.nik,
-        td: item.nik,
-        isNumeric: true,
       },
       {
         value: item.no_rm,
@@ -249,72 +249,79 @@ export default function TabelKaryawan() {
     ],
   }));
 
+  const render = {
+    error: (
+      <Center my={"auto"} minH={"400px"}>
+        <Retry loading={loading} retry={retry} />
+      </Center>
+    ),
+    loading: (
+      <>
+        <Skeleton minH={"300px"} flex={1} mx={"auto"} />
+        <HStack justify={"space-between"} mt={responsiveSpacing}>
+          <Skeleton maxW={"120px"} />
+          <Skeleton maxW={"300px"} h={"20px"} />
+          <Skeleton maxW={"112px"} />
+        </HStack>
+      </>
+    ),
+    loaded: (
+      <>
+        {!formattedData && <NoData minH={"400px"} />}
+
+        {formattedData && (
+          <>
+            <CustomTableContainer>
+              <CustomTable
+                formattedHeader={formattedHeader}
+                formattedData={formattedData}
+                onRowClick={(row) => {
+                  setUserId(row.id);
+                  onOpen();
+                }}
+                columnsConfig={columnsConfig}
+                rowOptions={rowOptions}
+                batchActions={rowOptions}
+              />
+            </CustomTableContainer>
+
+            <TabelFooterConfig
+              limitConfig={limitConfig}
+              setLimitConfig={setLimitConfig}
+              pageConfig={pageConfig}
+              setPageConfig={setPageConfig}
+              paginationData={{
+                prev_page_url: "",
+                next_page_url: "",
+                last_page: 1,
+              }}
+              footer={
+                <Text opacity={0.4}>
+                  Klik row untuk melihat detail karyawan
+                </Text>
+              }
+            />
+            <DetailKaryawanModal
+              id={"detail-karyawan-row-on-click-modal"}
+              user_id={userId}
+              isOpen={isOpen}
+              onOpen={onOpen}
+              onClose={onClose}
+            />
+          </>
+        )}
+      </>
+    ),
+  };
+
   return (
     <>
-      {error && (
-        <Center my={"auto"} minH={"400px"}>
-          <Retry loading={loading} retry={retry} />
-        </Center>
-      )}
+      {error && render.error}
       {!error && (
         <>
-          {loading && (
-            <>
-              <Skeleton minH={"300px"} flex={1} mx={"auto"} />
-              <HStack justify={"space-between"} mt={responsiveSpacing}>
-                <Skeleton maxW={"120px"} />
-                <Skeleton maxW={"300px"} h={"20px"} />
-                <Skeleton maxW={"112px"} />
-              </HStack>
-            </>
-          )}
-          {!loading && (
-            <>
-              {!formattedData && <NoData minH={"400px"} />}
+          {loading && render.loading}
 
-              {formattedData && (
-                <>
-                  <CustomTableContainer>
-                    <CustomTable
-                      formattedHeader={formattedHeader}
-                      formattedData={formattedData}
-                      onRowClick={(row) => {
-                        setUserId(row.id);
-                        onOpen();
-                      }}
-                      columnsConfig={columnsConfig}
-                      rowOptions={rowOptions}
-                      batchActions={rowOptions}
-                    />
-                  </CustomTableContainer>
-
-                  <TabelFooterConfig
-                    limitConfig={limitConfig}
-                    setLimitConfig={setLimitConfig}
-                    pageConfig={pageConfig}
-                    setPageConfig={setPageConfig}
-                    paginationData={{
-                      prev_page_url: "",
-                      next_page_url: "",
-                      last_page: 1,
-                    }}
-                    footer={
-                      <Text opacity={0.4}>
-                        Klik row untuk melihat detail karyawan
-                      </Text>
-                    }
-                  />
-                  <DetailKaryawanModal
-                    id={"detail-karyawan-row-on-click-modal"}
-                    user_id={userId}
-                    isOpen={isOpen}
-                    onOpen={onOpen}
-                    onClose={onClose}
-                  />
-                </>
-              )}
-            </>
-          )}
+          {!loading && render.loaded}
         </>
       )}
     </>
