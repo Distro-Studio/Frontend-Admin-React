@@ -3,6 +3,7 @@ import {
   RiGroupFill,
   RiHome6Fill,
   RiMoneyDollarCircleFill,
+  RiSettingsLine,
   RiTimeFill,
   RiTimerFill,
 } from "@remixicon/react";
@@ -99,6 +100,17 @@ const navs = [
       {
         label: "Penilaian Karyawan",
         link: "/perusahaan/penilaian-karyawan",
+      },
+    ],
+  },
+  {
+    label: "Pengaturan",
+    link: "/pengaturan/akun/kelola-role",
+    icon: RiSettingsLine,
+    subNavs: [
+      {
+        label: "Pengaturan",
+        link: "/pengaturan/akun/kelola-role",
       },
     ],
   },

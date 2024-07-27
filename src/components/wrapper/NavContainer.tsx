@@ -13,7 +13,6 @@ import {
   Tooltip,
   VStack,
 } from "@chakra-ui/react";
-import { RiSettingsLine } from "@remixicon/react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useContentBgColor, useLightDarkColor } from "../../const/colors";
@@ -82,7 +81,7 @@ const NavMenu = ({ nav, i, active, topNavActive }: any) => {
           minW={"fit-content"}
           sx={{
             position: "absolute",
-            top: "-50px",
+            top: nav.label === "Pengaturan" ? "4px" : "-52px",
             left: "calc(100% + 42px)",
             marginLeft: "8px",
           }}
@@ -149,78 +148,19 @@ export default function NavContainer({
             w={"72px"}
             flexShrink={0}
           >
-            <VStack>
+            <VStack flex={1}>
               <Image src="/logo512.png" w={"40px"} mb={8} />
-              {navs.map((nav, i) => {
-                return nav.subNavs ? (
+
+              {navs.map((nav, i) => (
+                <Box key={i} mt={nav.label === "Pengaturan" ? "auto" : ""}>
                   <NavMenu
-                    key={i}
                     nav={nav}
                     i={i}
                     topNavActive={topNavActive}
                     active={active}
                   />
-                ) : (
-                  <Tooltip
-                    key={i}
-                    color={i === active ? "p.500" : ""}
-                    label={nav.label}
-                    placement="right"
-                  >
-                    <IconButton
-                      aria-label={`Nav Button ${nav.label}`}
-                      icon={
-                        <Icon
-                          as={nav.icon}
-                          fontSize={iconSize}
-                          opacity={active === i ? 1 : 0.6}
-                        />
-                      }
-                      className="btn"
-                      color={active === i ? "p.500" : ""}
-                      as={Link}
-                      to={nav.link}
-                    />
-                  </Tooltip>
-                );
-              })}
-            </VStack>
-
-            <VStack>
-              <Tooltip label={"Pengaturan"} placement="right" flexShrink={0}>
-                <IconButton
-                  aria-label={`Nav Button Pengaturan`}
-                  icon={
-                    <Icon
-                      as={RiSettingsLine}
-                      fontSize={iconSize}
-                      // opacity={active === i ? 1 : 0.6}
-                    />
-                  }
-                  className="btn"
-                  // color={active === i ? "p.500" : ""}
-                  as={Link}
-                  to={"/pengaturan/akun/kelola-role"}
-                />
-              </Tooltip>
-
-              {/* <Tooltip label={"Keluar"} placement="right" flexShrink={0}>
-                <IconButton
-                  flexShrink={0}
-                  aria-label="Logout Butotn"
-                  icon={
-                    <Icon
-                      as={RiLogoutBoxLine}
-                      fontSize={iconSize}
-                      transform={"scaleX(-1)"}
-                    />
-                  }
-                  bg={"var(--reda)"}
-                  _hover={{ bg: "var(--reda)" }}
-                  _active={{ bg: "var(--reda)" }}
-                  color={"red.400"}
-                />
-              </Tooltip> */}
+                </Box>
+              ))}
             </VStack>
           </VStack>
         )}
