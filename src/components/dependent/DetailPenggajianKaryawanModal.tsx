@@ -316,13 +316,17 @@ export default function DetailPenggajianKaryawanModal({
                                 pt={4}
                                 mt={1}
                               >
-                                <Text fontSize={20} opacity={0.6}>
+                                <Text
+                                  fontSize={18}
+                                  fontWeight={600}
+                                  opacity={0.6}
+                                >
                                   Take Home Pay
                                 </Text>
                                 <FlexLine />
                                 <Text
-                                  fontSize={20}
-                                  fontWeight={500}
+                                  fontSize={18}
+                                  fontWeight={600}
                                   textAlign={"right"}
                                 >
                                   Rp {formatNumber(data.take_home_pay)}
