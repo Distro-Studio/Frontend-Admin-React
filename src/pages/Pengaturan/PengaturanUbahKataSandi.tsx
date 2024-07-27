@@ -7,13 +7,13 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import PengaturanNavs from "../../components/dependent/PengaturanNavs";
 import RequiredForm from "../../components/form/RequiredForm";
 import PasswordInput from "../../components/input/PasswordInput";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
+import PengaturanNavs from "../../components/dependent/PengaturanNavs";
 
 export default function PengaturanUbahKataSandi() {
   const formik = useFormik({
@@ -38,7 +38,7 @@ export default function PengaturanUbahKataSandi() {
     <>
       <CWrapper>
         <Wrap spacing={responsiveSpacing} align={"flex-start"}>
-          <PengaturanNavs activeTopNavs={0} active={1} />
+          <PengaturanNavs activeGroup={0} active={1} />
 
           <CContainer
             p={responsiveSpacing}

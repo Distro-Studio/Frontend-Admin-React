@@ -5,7 +5,6 @@ import NavContainer from "./components/wrapper/NavContainer";
 import jadwalTopNavs from "./const/jadwalTopNavs";
 import karyawanTopNavs from "./const/karyawanTopNavs";
 import keuanganTopNavs from "./const/keuanganTopNavs";
-import pengaturanTopNavs from "./const/pengaturanTopNavs";
 import perusahaanTopNavs from "./const/perusahaanTopNavs";
 import "./globalStyle.css";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -347,12 +346,7 @@ export const App = () => (
         <Route
           path="/pengaturan/akun/kelola-role"
           element={
-            <NavContainer
-              active={6}
-              title="Pengaturan - Kelola Role"
-              topNavsData={pengaturanTopNavs}
-              topNavActive={0}
-            >
+            <NavContainer active={6} title="Pengaturan - Kelola Role">
               <PengaturanKelolaRole />
             </NavContainer>
           }
@@ -360,12 +354,7 @@ export const App = () => (
         <Route
           path="/pengaturan/akun/ubah-kata-sandi"
           element={
-            <NavContainer
-              active={6}
-              title="Pengaturan - Ubah Kata Sandi"
-              topNavsData={pengaturanTopNavs}
-              topNavActive={0}
-            >
+            <NavContainer active={6} title="Pengaturan - Ubah Kata Sandi">
               <PengaturanUbahKataSandi />
             </NavContainer>
           }
@@ -373,12 +362,7 @@ export const App = () => (
         <Route
           path="/pengaturan/karyawan/kelompok-gaji"
           element={
-            <NavContainer
-              active={6}
-              title="Pengaturan - Kelompok Gaji"
-              topNavsData={pengaturanTopNavs}
-              topNavActive={1}
-            >
+            <NavContainer active={6} title="Pengaturan - Kelompok Gaji">
               <PengaturanKelompokGaji />
             </NavContainer>
           }
@@ -386,12 +370,7 @@ export const App = () => (
         <Route
           path="/pengaturan/karyawan/jabatan"
           element={
-            <NavContainer
-              active={6}
-              title="Pengaturan - Jabatan"
-              topNavsData={pengaturanTopNavs}
-              topNavActive={1}
-            >
+            <NavContainer active={6} title="Pengaturan - Jabatan">
               <PengaturanJabatan />
             </NavContainer>
           }
@@ -399,12 +378,7 @@ export const App = () => (
         <Route
           path="/pengaturan/karyawan/unit-kerja"
           element={
-            <NavContainer
-              active={6}
-              title="Pengaturan - Unit Kerja"
-              topNavsData={pengaturanTopNavs}
-              topNavActive={1}
-            >
+            <NavContainer active={6} title="Pengaturan - Unit Kerja">
               <PengaturanUnitKerja />
             </NavContainer>
           }
@@ -412,12 +386,7 @@ export const App = () => (
         <Route
           path="/pengaturan/karyawan/kompetensi"
           element={
-            <NavContainer
-              active={6}
-              title="Pengaturan - Kompetensi"
-              topNavsData={pengaturanTopNavs}
-              topNavActive={1}
-            >
+            <NavContainer active={6} title="Pengaturan - Kompetensi">
               <PengaturanKompetensi />
             </NavContainer>
           }
@@ -425,12 +394,7 @@ export const App = () => (
         <Route
           path="/pengaturan/karyawan/kuisioner"
           element={
-            <NavContainer
-              active={6}
-              title="Pengaturan - Kuisioner"
-              topNavsData={pengaturanTopNavs}
-              topNavActive={1}
-            >
+            <NavContainer active={6} title="Pengaturan - Kuisioner">
               <PengaturanKuisioner />
             </NavContainer>
           }
@@ -438,12 +402,7 @@ export const App = () => (
         <Route
           path="/pengaturan/keuangan/premi"
           element={
-            <NavContainer
-              active={6}
-              title="Pengaturan - Premi"
-              topNavsData={pengaturanTopNavs}
-              topNavActive={2}
-            >
+            <NavContainer active={6} title="Pengaturan - Premi">
               <PengaturanPremi />
             </NavContainer>
           }
@@ -451,12 +410,7 @@ export const App = () => (
         <Route
           path="/pengaturan/keuangan/ter-pph21"
           element={
-            <NavContainer
-              active={6}
-              title="Pengaturan - TER pph21"
-              topNavsData={pengaturanTopNavs}
-              topNavActive={2}
-            >
+            <NavContainer active={6} title="Pengaturan - TER pph21">
               <PengaturanTerPph21 />
             </NavContainer>
           }
@@ -464,12 +418,7 @@ export const App = () => (
         <Route
           path="/pengaturan/keuangan/jadwal-penggajian"
           element={
-            <NavContainer
-              active={6}
-              title="Pengaturan - Jadwal Penggajian"
-              topNavsData={pengaturanTopNavs}
-              topNavActive={2}
-            >
+            <NavContainer active={6} title="Pengaturan - Jadwal Penggajian">
               <PengaturanJadwalPenggajian />
             </NavContainer>
           }
@@ -477,12 +426,7 @@ export const App = () => (
         <Route
           path="/pengaturan/keuangan/thr"
           element={
-            <NavContainer
-              active={6}
-              title="Pengaturan - THR"
-              topNavsData={pengaturanTopNavs}
-              topNavActive={2}
-            >
+            <NavContainer active={6} title="Pengaturan - THR">
               <PengaturanThr />
             </NavContainer>
           }
@@ -490,12 +434,7 @@ export const App = () => (
         <Route
           path="/pengaturan/manajemen-waktu/shift"
           element={
-            <NavContainer
-              active={6}
-              title="Pengaturan - Shift"
-              topNavsData={pengaturanTopNavs}
-              topNavActive={3}
-            >
+            <NavContainer active={6} title="Pengaturan - Shift">
               <PengaturanShift />
             </NavContainer>
           }
@@ -506,8 +445,6 @@ export const App = () => (
             <NavContainer
               active={6}
               title="Pengaturan - Hari Libur Karyawan Non-Shift"
-              topNavsData={pengaturanTopNavs}
-              topNavActive={3}
             >
               <PengaturanHariLibur />
             </NavContainer>
@@ -516,12 +453,7 @@ export const App = () => (
         <Route
           path="/pengaturan/manajemen-waktu/cuti"
           element={
-            <NavContainer
-              active={6}
-              title="Pengaturan - Tipe Cuti"
-              topNavsData={pengaturanTopNavs}
-              topNavActive={3}
-            >
+            <NavContainer active={6} title="Pengaturan - Tipe Cuti">
               <PengaturanCuti />
             </NavContainer>
           }

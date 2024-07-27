@@ -1,13 +1,13 @@
 import { HStack, Wrap } from "@chakra-ui/react";
 import { useState } from "react";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
-import PengaturanNavs from "../../components/dependent/PengaturanNavs";
 import TabelKelolaRole from "../../components/dependent/TabelPengaturanKelolaRole";
 import TambahRole from "../../components/independent/TambahRole";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
+import PengaturanNavs from "../../components/dependent/PengaturanNavs";
 
 export default function PengaturanKelolaRole() {
   // Filter Config
@@ -23,6 +23,7 @@ export default function PengaturanKelolaRole() {
     <>
       <CWrapper overflowY={"auto"}>
         <Wrap
+          flex={1}
           borderRadius={12}
           overflowY={"auto"}
           className="scrollY"
@@ -30,7 +31,7 @@ export default function PengaturanKelolaRole() {
           pt={0}
           spacing={responsiveSpacing}
         >
-          <PengaturanNavs activeTopNavs={0} active={0} />
+          <PengaturanNavs activeGroup={0} active={0} />
 
           <CContainer
             px={responsiveSpacing}

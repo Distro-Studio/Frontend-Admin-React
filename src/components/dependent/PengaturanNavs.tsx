@@ -1,16 +1,16 @@
-import React from "react";
-import CContainer from "../wrapper/CContainer";
-import { useLightDarkColor } from "../../const/colors";
-import pengaturanTopNavs from "../../const/pengaturanTopNavs";
-import { Button } from "@chakra-ui/react";
+import { Button, Icon, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { useLightDarkColor } from "../../const/colors";
+import pengaturanNavs from "../../const/pengaturanNavs";
+import { iconSize } from "../../const/sizes";
+import CContainer from "../wrapper/CContainer";
 
 interface Props {
+  activeGroup: number;
   active: number;
-  activeTopNavs: number;
 }
 
-export default function PengaturanNavs({ active, activeTopNavs }: Props) {
+export default function PengaturanNavs({ activeGroup, active }: Props) {
   // SX
   const lightDarkColor = useLightDarkColor();
 
@@ -22,22 +22,38 @@ export default function PengaturanNavs({ active, activeTopNavs }: Props) {
       w={"230px"}
       flex={"0 0 230px"}
       flexShrink={0}
-      gap={2}
+      gap={4}
+      overflowY={"auto"}
+      className="scrollY"
     >
-      {pengaturanTopNavs[activeTopNavs].subNavs?.map((nav, i) => (
-        <Button
-          key={i}
-          justifyContent={"flex-start"}
-          className={i === active ? "btn-apa clicky" : "btn clicky"}
-          fontWeight={500}
-          as={Link}
-          to={nav.link}
-          h={"50px"}
-          size={"sm"}
-          px={"16px !important"}
-        >
-          {nav.label}
-        </Button>
+      {pengaturanNavs.map((nav, i) => (
+        <CContainer key={i} gap={2}>
+          <Text fontWeight={600} opacity={0.4}>
+            {nav.groupName}
+          </Text>
+          {nav.navs.map((subNav, ii) => (
+            <Button
+              key={i}
+              justifyContent={"flex-start"}
+              leftIcon={
+                <Icon
+                  as={subNav.icon}
+                  fontSize={iconSize}
+                  // opacity={0.4}
+                />
+              }
+              className={activeGroup === i && ii === active ? "btn-apa" : "btn"}
+              fontWeight={500}
+              as={Link}
+              to={subNav.link}
+              h={"40px"}
+              size={"sm"}
+              px={"8px !important"}
+            >
+              {subNav.label}
+            </Button>
+          ))}
+        </CContainer>
       ))}
     </CContainer>
   );

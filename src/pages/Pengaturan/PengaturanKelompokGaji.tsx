@@ -1,6 +1,5 @@
 import { HStack, Wrap } from "@chakra-ui/react";
 import { useState } from "react";
-import PengaturanNavs from "../../components/dependent/PengaturanNavs";
 import TabelKelompokGaji from "../../components/dependent/TabelPengaturanKelompokGaji";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TambahKelompokGaji from "../../components/independent/TambahKelompokGaji";
@@ -8,6 +7,7 @@ import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
+import PengaturanNavs from "../../components/dependent/PengaturanNavs";
 
 export default function PengaturanKelompokGaji() {
   // Filter Config
@@ -30,7 +30,7 @@ export default function PengaturanKelompokGaji() {
           pt={0}
           spacing={responsiveSpacing}
         >
-          <PengaturanNavs activeTopNavs={1} active={0} />
+          <PengaturanNavs activeGroup={1} active={0} />
 
           <CContainer
             px={responsiveSpacing}
