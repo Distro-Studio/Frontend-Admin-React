@@ -6,11 +6,13 @@ import TambahTerPph21 from "../../components/independent/TambahTerPph21";
 import CContainer from "../../components/wrapper/CContainer";
 import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
+import MultiSelectPengaturanDeletedAt from "../../components/dependent/MultiSelectPengaturanDeletedAt";
 
 export default function PengaturanTerPph21() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
+    is_deleted: [],
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
 
@@ -45,6 +47,20 @@ export default function PengaturanTerPph21() {
             }));
           }}
           inputValue={filterConfig.search}
+        />
+
+        <MultiSelectPengaturanDeletedAt
+          name="is_deleted"
+          onConfirm={(input) => {
+            setFilterConfig((ps: any) => ({
+              ...ps,
+              is_deleted: input,
+            }));
+          }}
+          inputValue={filterConfig.is_deleted}
+          optionsDisplay="chip"
+          placeholder="Filter Dihapus"
+          maxW={"165px"}
         />
 
         <TambahTerPph21 minW={"fit-content"} />

@@ -6,6 +6,7 @@ import TambahCuti from "../../components/independent/TambahCuti";
 import CContainer from "../../components/wrapper/CContainer";
 import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
+import MultiSelectPengaturanDeletedAt from "../../components/dependent/MultiSelectPengaturanDeletedAt";
 
 export default function PengaturanTipeCuti() {
   // SX
@@ -14,6 +15,7 @@ export default function PengaturanTipeCuti() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
+    is_deleted: [],
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
 
@@ -46,6 +48,21 @@ export default function PengaturanTipeCuti() {
           }}
           inputValue={filterConfig.search}
         />
+
+        <MultiSelectPengaturanDeletedAt
+          name="is_deleted"
+          onConfirm={(input) => {
+            setFilterConfig((ps: any) => ({
+              ...ps,
+              is_deleted: input,
+            }));
+          }}
+          inputValue={filterConfig.is_deleted}
+          optionsDisplay="chip"
+          placeholder="Filter Dihapus"
+          maxW={"165px"}
+        />
+
         <TambahCuti minW={"fit-content"} />
       </HStack>
 

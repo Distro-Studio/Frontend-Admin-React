@@ -13,6 +13,7 @@ export default function PengaturanPremi() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
+    is_deleted: [],
     jenis_premi: [],
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
