@@ -18,7 +18,7 @@ import useDataState from "../../hooks/useDataState";
 import Retry from "../../components/dependent/Retry";
 import Skeleton from "../../components/independent/Skeleton";
 import NoData from "../../components/independent/NoData";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function PengaturanJadwalPenggajian() {
   const { error, loading, data, retry } = useDataState<any>({
@@ -39,11 +39,13 @@ export default function PengaturanJadwalPenggajian() {
     },
   });
 
+  const formikRef = useRef(formik);
+
   useEffect(() => {
     if (data) {
-      formik.setFieldValue("tanggal", data);
+      formikRef.current.setFieldValue("tanggal", data);
     }
-  }, [data, formik]);
+  }, [data]);
 
   return (
     <CContainer
@@ -98,6 +100,7 @@ export default function PengaturanJadwalPenggajian() {
                         Tanggal Penggajian
                         <RequiredForm />
                       </FormLabel>
+
                       <SimpleGrid w={"100%"} columns={[7]} gap={4}>
                         {Array.from({ length: 28 }).map((_, i) => (
                           <Center
@@ -127,6 +130,7 @@ export default function PengaturanJadwalPenggajian() {
                           </Center>
                         ))}
                       </SimpleGrid>
+
                       <FormErrorMessage>
                         {formik.errors.tanggal as string}
                       </FormErrorMessage>

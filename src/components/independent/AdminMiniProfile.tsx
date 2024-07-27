@@ -96,10 +96,11 @@ export default function AdminMiniProfile({ ...props }: Props) {
     <Menu>
       <MenuButton>
         <HStack
+          p={2}
+          px={4}
+          borderRadius={8}
           ref={menuButtonRef}
-          as={Button}
           className="btn-solid"
-          pl={3}
           {...props}
         >
           <Icon as={RiArrowDownSLine} fontSize={iconSize} />
