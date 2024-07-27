@@ -47,6 +47,7 @@ import VerifikasiBerkas from "./pages/Perusahaan/VerifikasiBerkas";
 import DetailPresensi from "./pages/Presensi/DetailPresensi";
 import Presensi from "./pages/Presensi/Presensi";
 import { globalTheme } from "./theme/globalTheme";
+import PengaturanContainer from "./components/wrapper/PengaturanContainer";
 
 // github pekok
 
@@ -347,7 +348,9 @@ export const App = () => (
           path="/pengaturan/akun/kelola-role"
           element={
             <NavContainer active={6} title="Pengaturan - Kelola Role">
-              <PengaturanKelolaRole />
+              <PengaturanContainer activeGroup={0} active={0}>
+                <PengaturanKelolaRole />
+              </PengaturanContainer>
             </NavContainer>
           }
         />
@@ -355,7 +358,9 @@ export const App = () => (
           path="/pengaturan/akun/ubah-kata-sandi"
           element={
             <NavContainer active={6} title="Pengaturan - Ubah Kata Sandi">
-              <PengaturanUbahKataSandi />
+              <PengaturanContainer activeGroup={0} active={1}>
+                <PengaturanUbahKataSandi />
+              </PengaturanContainer>
             </NavContainer>
           }
         />
@@ -363,7 +368,9 @@ export const App = () => (
           path="/pengaturan/karyawan/kelompok-gaji"
           element={
             <NavContainer active={6} title="Pengaturan - Kelompok Gaji">
-              <PengaturanKelompokGaji />
+              <PengaturanContainer activeGroup={1} active={0}>
+                <PengaturanKelompokGaji />
+              </PengaturanContainer>
             </NavContainer>
           }
         />
@@ -371,7 +378,9 @@ export const App = () => (
           path="/pengaturan/karyawan/jabatan"
           element={
             <NavContainer active={6} title="Pengaturan - Jabatan">
-              <PengaturanJabatan />
+              <PengaturanContainer activeGroup={1} active={1}>
+                <PengaturanJabatan />
+              </PengaturanContainer>
             </NavContainer>
           }
         />
@@ -379,7 +388,9 @@ export const App = () => (
           path="/pengaturan/karyawan/unit-kerja"
           element={
             <NavContainer active={6} title="Pengaturan - Unit Kerja">
-              <PengaturanUnitKerja />
+              <PengaturanContainer activeGroup={1} active={2}>
+                <PengaturanUnitKerja />
+              </PengaturanContainer>
             </NavContainer>
           }
         />
@@ -387,7 +398,9 @@ export const App = () => (
           path="/pengaturan/karyawan/kompetensi"
           element={
             <NavContainer active={6} title="Pengaturan - Kompetensi">
-              <PengaturanKompetensi />
+              <PengaturanContainer activeGroup={1} active={3}>
+                <PengaturanKompetensi />
+              </PengaturanContainer>
             </NavContainer>
           }
         />
@@ -395,15 +408,19 @@ export const App = () => (
           path="/pengaturan/karyawan/kuisioner"
           element={
             <NavContainer active={6} title="Pengaturan - Kuisioner">
-              <PengaturanKuisioner />
+              <PengaturanContainer activeGroup={1} active={4}>
+                <PengaturanKuisioner />
+              </PengaturanContainer>
             </NavContainer>
           }
         />
         <Route
           path="/pengaturan/keuangan/premi"
           element={
-            <NavContainer active={6} title="Pengaturan - Premi">
-              <PengaturanPremi />
+            <NavContainer active={6} title="Pengaturan - Potongan">
+              <PengaturanContainer activeGroup={2} active={0}>
+                <PengaturanPremi />
+              </PengaturanContainer>
             </NavContainer>
           }
         />
@@ -411,15 +428,19 @@ export const App = () => (
           path="/pengaturan/keuangan/ter-pph21"
           element={
             <NavContainer active={6} title="Pengaturan - TER pph21">
-              <PengaturanTerPph21 />
+              <PengaturanContainer activeGroup={2} active={1}>
+                <PengaturanTerPph21 />
+              </PengaturanContainer>
             </NavContainer>
           }
         />
         <Route
           path="/pengaturan/keuangan/jadwal-penggajian"
           element={
-            <NavContainer active={6} title="Pengaturan - Jadwal Penggajian">
-              <PengaturanJadwalPenggajian />
+            <NavContainer active={6} title="Pengaturan - Tanggal Penggajian">
+              <PengaturanContainer activeGroup={2} active={2}>
+                <PengaturanJadwalPenggajian />
+              </PengaturanContainer>
             </NavContainer>
           }
         />
@@ -427,7 +448,9 @@ export const App = () => (
           path="/pengaturan/keuangan/thr"
           element={
             <NavContainer active={6} title="Pengaturan - THR">
-              <PengaturanThr />
+              <PengaturanContainer activeGroup={2} active={3}>
+                <PengaturanThr />
+              </PengaturanContainer>
             </NavContainer>
           }
         />
@@ -435,7 +458,9 @@ export const App = () => (
           path="/pengaturan/manajemen-waktu/shift"
           element={
             <NavContainer active={6} title="Pengaturan - Shift">
-              <PengaturanShift />
+              <PengaturanContainer activeGroup={3} active={0}>
+                <PengaturanShift />
+              </PengaturanContainer>
             </NavContainer>
           }
         />
@@ -446,7 +471,9 @@ export const App = () => (
               active={6}
               title="Pengaturan - Hari Libur Karyawan Non-Shift"
             >
-              <PengaturanHariLibur />
+              <PengaturanContainer activeGroup={3} active={1}>
+                <PengaturanHariLibur />
+              </PengaturanContainer>
             </NavContainer>
           }
         />
@@ -454,7 +481,9 @@ export const App = () => (
           path="/pengaturan/manajemen-waktu/cuti"
           element={
             <NavContainer active={6} title="Pengaturan - Tipe Cuti">
-              <PengaturanCuti />
+              <PengaturanContainer activeGroup={3} active={2}>
+                <PengaturanCuti />
+              </PengaturanContainer>
             </NavContainer>
           }
         />

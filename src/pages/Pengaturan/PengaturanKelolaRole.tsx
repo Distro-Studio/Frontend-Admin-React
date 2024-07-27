@@ -1,13 +1,11 @@
-import { HStack, Wrap } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import { useState } from "react";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelKelolaRole from "../../components/dependent/TabelPengaturanKelolaRole";
 import TambahRole from "../../components/independent/TambahRole";
 import CContainer from "../../components/wrapper/CContainer";
-import CWrapper from "../../components/wrapper/CWrapper";
 import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
-import PengaturanNavs from "../../components/dependent/PengaturanNavs";
 
 export default function PengaturanKelolaRole() {
   // Filter Config
@@ -20,61 +18,45 @@ export default function PengaturanKelolaRole() {
   const lightDarkColor = useLightDarkColor();
 
   return (
-    <>
-      <CWrapper overflowY={"auto"}>
-        <Wrap
-          flex={1}
-          borderRadius={12}
-          overflowY={"auto"}
-          className="scrollY"
-          align={"start"}
-          pt={0}
-          spacing={responsiveSpacing}
-        >
-          <PengaturanNavs activeGroup={0} active={0} />
+    <CContainer
+      px={responsiveSpacing}
+      pb={responsiveSpacing}
+      pt={0}
+      h={"100%"}
+      overflowY={"auto"}
+      className="scrollY"
+      bg={lightDarkColor}
+      borderRadius={12}
+      flex={"1 1 600px"}
+    >
+      <HStack
+        py={responsiveSpacing}
+        justify={"space-between"}
+        w={"100%"}
+        className="tabelConfig scrollX"
+        overflowX={"auto"}
+        flexShrink={0}
+      >
+        <SearchComponent
+          minW={"165px"}
+          name="search"
+          onChangeSetter={(input) => {
+            setFilterConfig((ps: any) => ({
+              ...ps,
+              search: input,
+            }));
+          }}
+          inputValue={filterConfig.search}
+        />
 
-          <CContainer
-            px={responsiveSpacing}
-            pb={responsiveSpacing}
-            pt={0}
-            h={"100%"}
-            overflowY={"auto"}
-            className="scrollY"
-            bg={lightDarkColor}
-            borderRadius={12}
-            flex={"1 1 600px"}
-          >
-            <HStack
-              py={responsiveSpacing}
-              justify={"space-between"}
-              w={"100%"}
-              className="tabelConfig scrollX"
-              overflowX={"auto"}
-              flexShrink={0}
-            >
-              <SearchComponent
-                minW={"165px"}
-                name="search"
-                onChangeSetter={(input) => {
-                  setFilterConfig((ps: any) => ({
-                    ...ps,
-                    search: input,
-                  }));
-                }}
-                inputValue={filterConfig.search}
-              />
-
-              {/* <ExportModal url="" title="Export Kelola Role" />
+        {/* <ExportModal url="" title="Export Kelola Role" />
 
               <ImportModal url="" title="Import Kelola Role" /> */}
 
-              <TambahRole minW={"fit-content"} />
-            </HStack>
+        <TambahRole minW={"fit-content"} />
+      </HStack>
 
-            <TabelKelolaRole filterConfig={filterConfig} />
-          </CContainer>
-        </Wrap>
-      </CWrapper>
-    </>
+      <TabelKelolaRole filterConfig={filterConfig} />
+    </CContainer>
   );
 }
