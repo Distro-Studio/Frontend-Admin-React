@@ -1,5 +1,4 @@
 import {
-  Box,
   Center,
   HStack,
   Icon,
@@ -9,16 +8,15 @@ import {
 } from "@chakra-ui/react";
 import { RiDeleteBinLine, RiEditLine, RiHistoryLine } from "@remixicon/react";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { Interface__SelectOption } from "../../constant/interfaces";
 import useDataState from "../../hooks/useDataState";
-import formatDate from "../../lib/formatDate";
 import NoData from "../independent/NoData";
 import NotFound from "../independent/NotFound";
 import Skeleton from "../independent/Skeleton";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
-import BooleanBadge from "./BooleanBadge";
 import CustomTable from "./CustomTable";
 import Retry from "./Retry";
-import { Interface__SelectOption } from "../../constant/interfaces";
+import StatusDihapus from "./StatusDihapus";
 
 interface Props {
   filterConfig?: any;
@@ -271,10 +269,6 @@ export default function TabelPengaturanKuisioner({ filterConfig }: Props) {
       },
     },
     {
-      th: "Tanggal Dihapus",
-      isSortable: true,
-    },
-    {
       th: "Jabatan",
       isSortable: true,
     },
@@ -303,36 +297,11 @@ export default function TabelPengaturanKuisioner({ filterConfig }: Props) {
       },
       {
         value: item.deleted_at,
-        td: item.deleted_at ? (
-          <Tooltip
-            openDelay={500}
-            label={
-              "Data yang dihapus tidak akan muncul di dafta opsi, namun akan tetap menjadi legacy data"
-            }
-            placement="right"
-          >
-            <Box>
-              <BooleanBadge
-                w={"120px"}
-                data={item.deleted_at}
-                trueValue="Dihapus"
-                falseValue=""
-                colorScheme={item.deleted_at ? "red" : ""}
-              />
-            </Box>
-          </Tooltip>
-        ) : (
-          ""
-        ),
+        td: item.deleted_at ? <StatusDihapus data={item.deleted_at} /> : "",
         isDate: true,
         cProps: {
           justify: "center",
         },
-      },
-      {
-        value: item.deleted_at,
-        td: item.deleted_at ? formatDate(item.deleted_at) : "",
-        isDate: true,
       },
       {
         value: item.jabatan.nama_jabatan,

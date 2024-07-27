@@ -2,17 +2,16 @@ import { Center, HStack, Icon, MenuItem, Text } from "@chakra-ui/react";
 import { RiDeleteBinLine, RiEditLine, RiHistoryLine } from "@remixicon/react";
 import { dummyJabatan } from "../../const/dummy";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { Interface__SelectOption } from "../../constant/interfaces";
 import useDataState from "../../hooks/useDataState";
-import formatDate from "../../lib/formatDate";
 import formatNumber from "../../lib/formatNumber";
 import NoData from "../independent/NoData";
 import NotFound from "../independent/NotFound";
 import Skeleton from "../independent/Skeleton";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
-import BooleanBadge from "./BooleanBadge";
 import CustomTable from "./CustomTable";
 import Retry from "./Retry";
-import { Interface__SelectOption } from "../../constant/interfaces";
+import StatusDihapus from "./StatusDihapus";
 
 interface Props {
   filterConfig?: any;
@@ -98,10 +97,6 @@ export default function TabelPengaturanJabatan({ filterConfig }: Props) {
       },
     },
     {
-      th: "Tanggal Dihapus",
-      isSortable: true,
-    },
-    {
       th: "Besaran Tunjangan",
       isSortable: true,
       cProps: {
@@ -126,26 +121,11 @@ export default function TabelPengaturanJabatan({ filterConfig }: Props) {
       },
       {
         value: item.deleted_at,
-        td: item.deleted_at ? (
-          <BooleanBadge
-            w={"120px"}
-            data={item.deleted_at}
-            trueValue="Dihapus"
-            falseValue=""
-            colorScheme={item.deleted_at ? "red" : ""}
-          />
-        ) : (
-          ""
-        ),
+        td: item.deleted_at ? <StatusDihapus data={item.deleted_at} /> : "",
         isDate: true,
         cProps: {
           justify: "center",
         },
-      },
-      {
-        value: item.deleted_at,
-        td: item.deleted_at ? formatDate(item.deleted_at) : "",
-        isDate: true,
       },
       {
         value: item.tunjangan,

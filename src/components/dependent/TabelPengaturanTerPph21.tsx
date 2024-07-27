@@ -1,26 +1,17 @@
-import {
-  Box,
-  Center,
-  HStack,
-  Icon,
-  MenuItem,
-  Text,
-  Tooltip,
-} from "@chakra-ui/react";
+import { Center, HStack, Icon, MenuItem, Text } from "@chakra-ui/react";
 import { RiDeleteBinLine, RiEditLine, RiHistoryLine } from "@remixicon/react";
 import { dummyTerPph21 } from "../../const/dummy";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 import { Interface__SelectOption } from "../../constant/interfaces";
 import useDataState from "../../hooks/useDataState";
-import formatDate from "../../lib/formatDate";
 import formatNumber from "../../lib/formatNumber";
 import NoData from "../independent/NoData";
 import NotFound from "../independent/NotFound";
 import Skeleton from "../independent/Skeleton";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
-import BooleanBadge from "./BooleanBadge";
 import CustomTable from "./CustomTable";
 import Retry from "./Retry";
+import StatusDihapus from "./StatusDihapus";
 
 interface Props {
   filterConfig?: any;
@@ -105,10 +96,6 @@ export default function TabelPengaturanTerPph21({ filterConfig }: Props) {
         justify: "center",
       },
     },
-    // {
-    //   th: "Tanggal Dihapus",
-    //   isSortable: true,
-    // },
     {
       th: "Penghasilan Bruto Bulanan",
       isSortable: true,
@@ -142,34 +129,7 @@ export default function TabelPengaturanTerPph21({ filterConfig }: Props) {
       },
       {
         value: item.deleted_at,
-        td: item.deleted_at ? (
-          <Tooltip
-            openDelay={500}
-            label={
-              <>
-                <Text>Dihapus {formatDate(item.deleted_at)}</Text>
-
-                <Text opacity={0.4} mt={2}>
-                  Data yang dihapus tidak akan muncul di dafta opsi, namun akan
-                  tetap menjadi legacy data
-                </Text>
-              </>
-            }
-            placement="right"
-          >
-            <Box>
-              <BooleanBadge
-                w={"120px"}
-                data={item.deleted_at}
-                trueValue="Dihapus"
-                falseValue=""
-                colorScheme={item.deleted_at ? "red" : ""}
-              />
-            </Box>
-          </Tooltip>
-        ) : (
-          ""
-        ),
+        td: item.deleted_at ? <StatusDihapus data={item.deleted_at} /> : "",
         isDate: true,
         cProps: {
           justify: "center",
