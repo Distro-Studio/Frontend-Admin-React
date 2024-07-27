@@ -52,7 +52,9 @@ export default function TabelPresensi({ filterConfig }: Props) {
     {
       th: "Jenis Karyawan",
       isSortable: true,
-      justify: "center",
+      cProps: {
+        justify: "center",
+      },
     },
     {
       th: "Unit Kerja",
