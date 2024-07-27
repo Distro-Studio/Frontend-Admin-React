@@ -209,12 +209,14 @@ export default function DetailPresensiKaryawanModal({
                         overflowY={"auto"}
                         className="scrollY"
                       >
-                        <SimpleGrid columns={[1, null, 2]} overflowY={"auto"}>
+                        <Wrap overflowY={"auto"}>
                           <CContainer
                             gap={responsiveSpacing}
                             overflowY={"auto"}
                             className="scrollY"
                             px={responsiveSpacing}
+                            flex={"1 1 300px"}
+                            h={"100%"}
                           >
                             <Box flex={"1 1 200px"}>
                               <Text fontSize={20} fontWeight={600} mb={4}>
@@ -264,7 +266,11 @@ export default function DetailPresensiKaryawanModal({
                             </Box>
                           </CContainer>
 
-                          <CContainer overflowY={"auto"}>
+                          <CContainer
+                            overflowY={"auto"}
+                            flex={"1 1 600px"}
+                            h={"100%"}
+                          >
                             <HStack
                               px={[0, null, 4]}
                               position={"sticky"}
@@ -508,7 +514,7 @@ export default function DetailPresensiKaryawanModal({
                               </Box>
                             </CContainer>
                           </CContainer>
-                        </SimpleGrid>
+                        </Wrap>
                       </CContainer>
                     </CContainer>
                   )}
