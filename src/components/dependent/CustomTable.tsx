@@ -415,9 +415,11 @@ export default function CustomTable({
                   w={"52px"}
                   h={"60px"}
                   borderRight={"1px solid var(--divider3)"}
-                  _groupHover={{ bg: "var(--divider)" }}
+                  _groupHover={{
+                    bg: onRowClick ? "var(--p500a5)" : "var(--divider)",
+                  }}
                   _groupActive={
-                    onRowClick ? { bg: "var(--divider2)" } : undefined
+                    onRowClick ? { bg: "var(--p500a4)" } : undefined
                   }
                   transition={"200ms"}
                   cursor={"pointer"}
@@ -447,9 +449,11 @@ export default function CustomTable({
                 {...col?.props}
               >
                 <HStack
-                  _groupHover={{ bg: "var(--divider)" }}
+                  _groupHover={{
+                    bg: onRowClick ? "var(--p500a5)" : "var(--divider)",
+                  }}
                   _groupActive={
-                    onRowClick ? { bg: "var(--divider2)" } : undefined
+                    onRowClick ? { bg: "var(--p500a4)" } : undefined
                   }
                   py={3}
                   px={4}
@@ -482,9 +486,11 @@ export default function CustomTable({
                   h={"60px"}
                   w={"52px"}
                   borderLeft={"1px solid var(--divider3)"}
-                  _groupHover={{ bg: "var(--divider)" }}
+                  _groupHover={{
+                    bg: onRowClick ? "var(--p500a5)" : "var(--divider)",
+                  }}
                   _groupActive={
-                    onRowClick ? { bg: "var(--divider2)" } : undefined
+                    onRowClick ? { bg: "var(--p500a4)" } : undefined
                   }
                   transition={"200ms"}
                   onClick={(e) => {

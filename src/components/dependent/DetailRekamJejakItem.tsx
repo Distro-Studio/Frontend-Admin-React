@@ -248,6 +248,7 @@ export default function DetailRekamJejakItem({ dataList, data, index }: Props) {
               justify={"space-between"}
               py={4}
               px={6}
+              className="btn"
               onClick={() => {
                 setIsOpen(!isOpen);
               }}
