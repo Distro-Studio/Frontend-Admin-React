@@ -1,21 +1,35 @@
 import {
+  Box,
   Button,
+  Center,
   FormControl,
   FormErrorMessage,
   FormLabel,
+  SimpleGrid,
+  Text,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import DatePickerModal from "../../components/dependent/input/DatePickerModal";
 import RequiredForm from "../../components/form/RequiredForm";
 import CContainer from "../../components/wrapper/CContainer";
 import { useBodyColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
+import useDataState from "../../hooks/useDataState";
+import Retry from "../../components/dependent/Retry";
+import Skeleton from "../../components/independent/Skeleton";
+import NoData from "../../components/independent/NoData";
+import { useEffect } from "react";
 
 export default function PengaturanJadwalPenggajian() {
+  const { error, loading, data, retry } = useDataState<any>({
+    initialData: 16,
+    url: "",
+    dependencies: [],
+  });
+
   const formik = useFormik({
     validateOnChange: false,
-    initialValues: { tanggal: "" },
+    initialValues: { tanggal: data },
     validationSchema: yup
       .object()
       .shape({ tanggal: yup.string().required("Harus diisi") }),
@@ -24,6 +38,13 @@ export default function PengaturanJadwalPenggajian() {
       //TODO simpan jadwal penggajian
     },
   });
+
+  useEffect(() => {
+    if (data) {
+      formik.setFieldValue("tanggal", data);
+    }
+  }, [data]);
+
   return (
     <CContainer
       p={responsiveSpacing}
@@ -33,38 +54,103 @@ export default function PengaturanJadwalPenggajian() {
       overflowX={"auto"}
       h={"100%"}
     >
-      <form id="pengaturanJadwalPenggajianForm" onSubmit={formik.handleSubmit}>
-        <FormControl mb={4} isInvalid={formik.errors.tanggal ? true : false}>
-          <FormLabel>
-            Tanggal Penggajian
-            <RequiredForm />
-          </FormLabel>
-          <DatePickerModal
-            id="date-picker-jadwal-penggajian"
-            name="tanggal"
-            onConfirm={(input) => {
-              formik.setFieldValue("tanggal", input);
-            }}
-            inputValue={
-              formik.values.tanggal
-                ? new Date(formik.values.tanggal)
-                : undefined
-            }
-          />
-          <FormErrorMessage>{formik.errors.tanggal as string}</FormErrorMessage>
-        </FormControl>
-      </form>
-      <Button
-        mt={"auto"}
-        ml={"auto"}
-        w={"120px"}
-        className="btn-ap clicky"
-        colorScheme="ap"
-        type="submit"
-        form="pengaturanJadwalPenggajianForm"
-      >
-        Simpan
-      </Button>
+      {error && (
+        <Box my={"auto"}>
+          <Retry loading={loading} retry={retry} />
+        </Box>
+      )}
+      {!error && (
+        <>
+          {loading && (
+            <>
+              <FormLabel>
+                Tanggal Penggajian
+                <RequiredForm />
+              </FormLabel>
+              <SimpleGrid w={"100%"} columns={[7]} gap={4}>
+                {Array.from({ length: 28 }).map((_, i) => (
+                  <Skeleton
+                    key={i}
+                    p={4}
+                    borderRadius={12}
+                    aspectRatio={1}
+                    flex={"1 1 50px"}
+                    h={"auto"}
+                  />
+                ))}
+              </SimpleGrid>
+            </>
+          )}
+          {!loading && (
+            <>
+              {(!data || (data && data.length === 0)) && <NoData />}
+              {(data || (data && data.length > 0)) && (
+                <>
+                  <form
+                    id="pengaturanJadwalPenggajianForm"
+                    onSubmit={formik.handleSubmit}
+                  >
+                    <FormControl
+                      mb={4}
+                      isInvalid={formik.errors.tanggal ? true : false}
+                    >
+                      <FormLabel>
+                        Tanggal Penggajian
+                        <RequiredForm />
+                      </FormLabel>
+                      <SimpleGrid w={"100%"} columns={[7]} gap={4}>
+                        {Array.from({ length: 28 }).map((_, i) => (
+                          <Center
+                            p={4}
+                            borderRadius={12}
+                            className={
+                              i === formik.values.tanggal - 1
+                                ? "btn-apa clicky"
+                                : "btn-outline clicky"
+                            }
+                            border={
+                              i === formik.values.tanggal - 1
+                                ? "1px solid var(--p500a2)"
+                                : "1px solid var(--divider3)"
+                            }
+                            key={i}
+                            aspectRatio={1}
+                            cursor={"pointer"}
+                            flex={"1 1 50px"}
+                            onClick={() => {
+                              formik.setFieldValue("tanggal", i + 1);
+                            }}
+                          >
+                            <Text fontSize={22} fontWeight={600}>
+                              {i + 1}
+                            </Text>
+                          </Center>
+                        ))}
+                      </SimpleGrid>
+                      <FormErrorMessage>
+                        {formik.errors.tanggal as string}
+                      </FormErrorMessage>
+                    </FormControl>
+                  </form>
+
+                  <Button
+                    mt={"auto"}
+                    ml={"auto"}
+                    w={"120px"}
+                    className="btn-ap clicky"
+                    flexShrink={0}
+                    colorScheme="ap"
+                    type="submit"
+                    form="pengaturanJadwalPenggajianForm"
+                  >
+                    Simpan
+                  </Button>
+                </>
+              )}
+            </>
+          )}
+        </>
+      )}
     </CContainer>
   );
 }
