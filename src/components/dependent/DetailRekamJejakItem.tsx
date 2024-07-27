@@ -46,7 +46,7 @@ const PerubahanDataItem = ({ data }: { data: any }) => {
     sertifikat_kompetensi: "Sertifikat Kompetensi",
   };
 
-  const PerubahanDataRenderer = ({ kolom, type }: any) => {
+  const PerubahanDataRender = ({ kolom, type }: any) => {
     switch (kolom) {
       default:
         return <Text>{data[type]}</Text>;
@@ -114,13 +114,13 @@ const PerubahanDataItem = ({ data }: { data: any }) => {
 
         <HStack>
           <Box flex={1}>
-            <PerubahanDataRenderer kolom={data.kolom} type={"original_data"} />
+            <PerubahanDataRender kolom={data.kolom} type={"original_data"} />
           </Box>
 
           <Icon as={RiArrowRightLine} mx={2} />
 
           <Box flex={1}>
-            <PerubahanDataRenderer kolom={data.kolom} type={"updated_data"} />
+            <PerubahanDataRender kolom={data.kolom} type={"updated_data"} />
           </Box>
         </HStack>
       </HStack>
