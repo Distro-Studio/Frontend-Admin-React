@@ -27,8 +27,8 @@ const optionsKategoriTukarJadwal = [
 
 const optionsStatusTukarJadwal = [
   { value: null, label: "Menunggu" },
-  { value: true, label: "Disetujui" },
-  { value: false, label: "Tidak Disetujui" },
+  { value: 1, label: "Disetujui" },
+  { value: 0, label: "Tidak Disetujui" },
 ];
 
 const optionsStatusKerja = [
@@ -39,8 +39,13 @@ const optionsStatusKerja = [
 ];
 
 const optionsJenisKaryawan = [
-  { value: true, label: "Shift" },
-  { value: false, label: "Non-Shift" },
+  { value: 1, label: "Shift" },
+  { value: 0, label: "Non-Shift" },
+];
+
+const optionsJenisKompetensi = [
+  { value: 1, label: "Medis" },
+  { value: 0, label: "Non-Medis" },
 ];
 
 const optionsJenisAktivitasPresensi = [
@@ -139,4 +144,5 @@ export {
   optionsJenisKelamin,
   optionsInboxType,
   optionsHubunganKeluarga,
+  optionsJenisKompetensi,
 };

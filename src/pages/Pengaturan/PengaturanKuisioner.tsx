@@ -1,20 +1,22 @@
 import { HStack, Wrap } from "@chakra-ui/react";
 import { useState } from "react";
 import PengaturanNavs from "../../components/dependent/PengaturanNavs";
-import TabelPengaturanKompetensi from "../../components/dependent/TabelPengaturanKompetensi";
-import MultiSelectUnitKerja from "../../components/dependent/_Select/MultiSelectUnitKerja";
+import TabelPengaturanKuisioner from "../../components/dependent/TabelPengaturanKuisioner";
+import MultiSelectJabatan from "../../components/dependent/_Select/MultiSelectJabatan";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TambahKompetensi from "../../components/independent/TambahKompetensi";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
+import MultiSelectPengaturanDeletedAt from "../../components/dependent/MultiSelectPengaturanDeletedAt";
 
 export default function PengaturanKuisioner() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
-    unit_kerja: [],
+    jabatan: [],
+    is_deleted: [],
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
 
@@ -66,21 +68,38 @@ export default function PengaturanKuisioner() {
                 inputValue={filterConfig.search}
               />
 
-              <MultiSelectUnitKerja
-                name="unit_kerja"
+              <MultiSelectPengaturanDeletedAt
+                name="is_deleted"
                 onConfirm={(input) => {
                   setFilterConfig((ps: any) => ({
                     ...ps,
-                    unit_kerja: input,
+                    is_deleted: input,
                   }));
                 }}
-                inputValue={filterConfig.unit_kerja}
+                inputValue={filterConfig.is_deleted}
+                optionsDisplay="chip"
+                placeholder="Filter Dihapus"
+                maxW={"165px"}
+              />
+
+              <MultiSelectJabatan
+                name="jabatan"
+                onConfirm={(input) => {
+                  setFilterConfig((ps: any) => ({
+                    ...ps,
+                    jabatan: input,
+                  }));
+                }}
+                inputValue={filterConfig.jabatan}
+                optionsDisplay="chip"
+                placeholder="Filter Jabatan"
+                maxW={"165px"}
               />
 
               <TambahKompetensi minW={"fit-content"} />
             </HStack>
 
-            <TabelPengaturanKompetensi filterConfig={filterConfig} />
+            <TabelPengaturanKuisioner filterConfig={filterConfig} />
           </CContainer>
         </Wrap>
       </CWrapper>

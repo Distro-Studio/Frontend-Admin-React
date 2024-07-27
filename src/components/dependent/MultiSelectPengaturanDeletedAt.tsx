@@ -1,12 +1,11 @@
 import { ButtonProps, useDisclosure } from "@chakra-ui/react";
-import { Interface__SelectOption } from "../../../constant/interfaces";
-import SingleSelectModal from "../input/SingleSelectModal";
-import { optionsJenisKompetensi } from "../../../constant/selectOptions";
+import { Interface__SelectOption } from "../../constant/interfaces";
+import MultipleSelectModal from "./input/MultipleSelectModal";
 
 interface Props extends ButtonProps {
   name: string;
-  onConfirm: (inputValue: Interface__SelectOption | undefined) => void;
-  inputValue: Interface__SelectOption | undefined;
+  onConfirm: (inputValue: Interface__SelectOption[] | undefined) => void;
+  inputValue: Interface__SelectOption[] | undefined;
   withSearch?: boolean;
   optionsDisplay?: "list" | "chip";
   isError?: boolean;
@@ -14,7 +13,7 @@ interface Props extends ButtonProps {
   nonNullable?: boolean;
 }
 
-export default function SelectJenisKompetensi({
+export default function MultiSelectPengaturanDeletedAt({
   name,
   onConfirm,
   inputValue,
@@ -27,14 +26,25 @@ export default function SelectJenisKompetensi({
 }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const options = [
+    {
+      value: 1,
+      label: "Dihapus",
+    },
+    {
+      value: 0,
+      label: "Belum Dihapus",
+    },
+  ];
+
   return (
-    <SingleSelectModal
-      id="select-jenis-kompetensi-modal"
+    <MultipleSelectModal
+      id="select-pengaturan-deleted-at-modal"
       name={name}
       isOpen={isOpen}
       onOpen={onOpen}
       onClose={onClose}
-      options={optionsJenisKompetensi}
+      options={options}
       onConfirm={(input) => {
         onConfirm(input);
       }}
@@ -42,7 +52,7 @@ export default function SelectJenisKompetensi({
       withSearch={withSearch}
       optionsDisplay={optionsDisplay}
       isError={isError}
-      placeholder={placeholder || "Pilih Jenis Kompetensi"}
+      placeholder={placeholder || "Multi Pilih Hubungan Keluarga"}
       nonNullable={nonNullable}
       {...props}
     />
