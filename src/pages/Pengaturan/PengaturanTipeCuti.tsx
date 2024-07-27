@@ -4,10 +4,13 @@ import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelPengaturanCuti from "../../components/dependent/TabelPengaturanCuti";
 import TambahCuti from "../../components/independent/TambahCuti";
 import CContainer from "../../components/wrapper/CContainer";
-import { useBodyColor } from "../../const/colors";
+import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 
 export default function PengaturanTipeCuti() {
+  // SX
+  const lightDarkColor = useLightDarkColor();
+
   // Filter Config
   const defaultFilterConfig = {
     search: "",
@@ -16,12 +19,13 @@ export default function PengaturanTipeCuti() {
 
   return (
     <CContainer
-      p={responsiveSpacing}
-      bg={useBodyColor()}
+      px={responsiveSpacing}
+      pb={responsiveSpacing}
+      bg={lightDarkColor}
       borderRadius={12}
       flex={"1 1 600px"}
-      overflowX={"auto"}
       h={"100%"}
+      overflowY={"auto"}
     >
       <HStack
         py={responsiveSpacing}

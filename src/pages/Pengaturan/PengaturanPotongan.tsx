@@ -6,7 +6,7 @@ import MultiSelectPengaturanDeletedAt from "../../components/dependent/MultiSele
 import TabelPengaturanPotongan from "../../components/dependent/TabelPengaturanPotongan";
 import TambahPremi from "../../components/independent/TambahPremi";
 import CContainer from "../../components/wrapper/CContainer";
-import { useBodyColor } from "../../const/colors";
+import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 
 export default function PengaturanPremi() {
@@ -17,10 +17,14 @@ export default function PengaturanPremi() {
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
 
+  // SX
+  const lightDarkColor = useLightDarkColor();
+
   return (
     <CContainer
-      p={responsiveSpacing}
-      bg={useBodyColor()}
+      px={responsiveSpacing}
+      pb={responsiveSpacing}
+      bg={lightDarkColor}
       borderRadius={12}
       flex={"1 1 600px"}
       h={"100%"}

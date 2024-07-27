@@ -4,7 +4,7 @@ import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelTerPph21 from "../../components/dependent/TabelPengaturanTerPph21";
 import TambahTerPph21 from "../../components/independent/TambahTerPph21";
 import CContainer from "../../components/wrapper/CContainer";
-import { useBodyColor } from "../../const/colors";
+import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 
 export default function PengaturanTerPph21() {
@@ -14,14 +14,18 @@ export default function PengaturanTerPph21() {
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
 
+  // SX
+  const lightDarkColor = useLightDarkColor();
+
   return (
     <CContainer
-      p={responsiveSpacing}
-      bg={useBodyColor()}
+      px={responsiveSpacing}
+      pb={responsiveSpacing}
+      bg={lightDarkColor}
       borderRadius={12}
       flex={"1 1 600px"}
-      overflowX={"auto"}
       h={"100%"}
+      overflowY={"auto"}
     >
       <HStack
         py={responsiveSpacing}
