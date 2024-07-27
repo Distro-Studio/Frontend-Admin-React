@@ -23,7 +23,8 @@ export default function PengaturanPremi() {
       bg={useBodyColor()}
       borderRadius={12}
       flex={"1 1 600px"}
-      overflowX={"auto"}
+      h={"100%"}
+      overflowY={"auto"}
     >
       <HStack
         py={responsiveSpacing}
