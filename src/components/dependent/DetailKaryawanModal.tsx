@@ -114,7 +114,7 @@ export default function DetailKaryawanModal({
       onClose={backOnClose}
       initialFocusRef={initialRef}
       size={"full"}
-      scrollBehavior="inside"
+      scrollBehavior={"inside"}
       blockScrollOnMount={false}
     >
       <ModalOverlay />
@@ -163,7 +163,7 @@ export default function DetailKaryawanModal({
                             gap={responsiveSpacing}
                             borderRadius={12}
                             align={"center"}
-                            mb={12}
+                            mb={8}
                           >
                             <Avatar
                               w={"200px"}
