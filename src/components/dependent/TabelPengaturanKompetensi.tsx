@@ -100,6 +100,9 @@ export default function TabelPengaturanKompetensi({ filterConfig }: Props) {
     {
       th: "Besaran Tunjangan",
       isSortable: true,
+      cProps: {
+        justify: "end",
+      },
     },
   ];
   const formattedData = fd?.map((item: any) => ({
@@ -160,6 +163,9 @@ export default function TabelPengaturanKompetensi({ filterConfig }: Props) {
         value: item.total_tunjangan,
         td: `Rp ${formatNumber(item.total_tunjangan)}`,
         isNumeric: true,
+        cProps: {
+          justify: "end",
+        },
       },
     ],
   }));
