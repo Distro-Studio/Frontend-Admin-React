@@ -23,11 +23,33 @@ import Header from "../dependent/Header";
 import CContainer from "./CContainer";
 import Container from "./Container";
 import TopNavs from "../dependent/TopNavs";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const NavMenu = ({ nav, i, active }: any) => {
+const NavMenu = ({ nav, i, active, topNavActive }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const timeoutRef = useRef<any>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsOpen(false);
+    }, 50);
+  };
 
   return (
     <Menu isOpen={isOpen}>
@@ -46,15 +68,17 @@ const NavMenu = ({ nav, i, active }: any) => {
           navigate(nav.link);
         }}
         color={active === i ? "p.500" : ""}
-        onMouseEnter={() => setIsOpen(true)}
-        onMouseLeave={() => setIsOpen(false)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       />
 
       <Portal>
         <MenuList
           zIndex={20}
-          onMouseEnter={() => setIsOpen(true)}
-          onMouseLeave={() => setIsOpen(false)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={() => {
+            setIsOpen(false);
+          }}
           sx={{
             position: "absolute",
             top: "-50px", // Adjust this value as needed
@@ -63,7 +87,12 @@ const NavMenu = ({ nav, i, active }: any) => {
           }}
         >
           {nav.subNavs.map((subNav: any, ii: number) => (
-            <MenuItem key={ii} as={Link} to={subNav.link}>
+            <MenuItem
+              key={ii}
+              as={Link}
+              to={subNav.link}
+              color={(active === i && ii) === topNavActive ? "p.500" : ""}
+            >
               {subNav.label}
             </MenuItem>
           ))}
@@ -124,7 +153,13 @@ export default function NavContainer({
                 console.log(nav);
 
                 return nav.subNavs ? (
-                  <NavMenu key={i} nav={nav} i={i} active={active} />
+                  <NavMenu
+                    key={i}
+                    nav={nav}
+                    i={i}
+                    topNavActive={topNavActive}
+                    active={active}
+                  />
                 ) : (
                   <Tooltip key={i} label={nav.label} placement="right">
                     <IconButton
