@@ -74,7 +74,7 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
       user_id: 1,
       kategori: {
         id: 2,
-        label: "Mutasi Karyawan",
+        label: "Mutasi Pegawai",
       },
       content: {
         id: 1,
