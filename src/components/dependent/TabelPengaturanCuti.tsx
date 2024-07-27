@@ -97,6 +97,9 @@ export default function TabelPengaturanHariLibur({ filterConfig }: Props) {
     {
       th: "Durasi Maksimal",
       isSortable: true,
+      cProps: {
+        justify: "end",
+      },
     },
   ];
   const formattedData = fd?.map((item: any) => ({
@@ -125,7 +128,10 @@ export default function TabelPengaturanHariLibur({ filterConfig }: Props) {
       {
         value: item.durasi,
         td: `${formatNumber(item.durasi)} hari`,
-        isTime: true,
+        isNumeric: true,
+        cProps: {
+          justify: "end",
+        },
       },
     ],
   }));
