@@ -1,9 +1,9 @@
 import { Center, HStack, Icon, MenuItem, Text } from "@chakra-ui/react";
 import { RiDeleteBinLine, RiEditLine, RiHistoryLine } from "@remixicon/react";
-import { useErrorColor } from "../../const/colors";
 import { dummyKelompokGaji } from "../../const/dummy";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 import useDataState from "../../hooks/useDataState";
+import formatDate from "../../lib/formatDate";
 import formatNumber from "../../lib/formatNumber";
 import NoData from "../independent/NoData";
 import NotFound from "../independent/NotFound";
@@ -12,7 +12,6 @@ import CustomTableContainer from "../wrapper/CustomTableContainer";
 import BooleanBadge from "./BooleanBadge";
 import CustomTable from "./CustomTable";
 import Retry from "./Retry";
-import formatDate from "../../lib/formatDate";
 
 interface Props {
   filterConfig?: any;
@@ -20,7 +19,6 @@ interface Props {
 
 export default function TabelPengaturanKelompokGaji({ filterConfig }: Props) {
   // SX
-  const errorColor = useErrorColor();
 
   // Row Options Config
   const rowOptions = [
@@ -43,9 +41,9 @@ export default function TabelPengaturanKelompokGaji({ filterConfig }: Props) {
     "divider",
     (rowData: any) => {
       return (
-        <MenuItem>
-          <Text color={errorColor}>Delete</Text>
-          <Icon color={errorColor} as={RiDeleteBinLine} fontSize={iconSize} />
+        <MenuItem fontWeight={500}>
+          <Text color={"red.400"}>Delete</Text>
+          <Icon color={"red.400"} as={RiDeleteBinLine} fontSize={iconSize} />
         </MenuItem>
       );
     },
