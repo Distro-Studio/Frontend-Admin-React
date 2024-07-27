@@ -41,7 +41,7 @@ export default function TabelPengaturanHariLibur({ filterConfig }: Props) {
     "divider",
     (rowData: any) => {
       return (
-        <MenuItem fontWeight={500}>
+        <MenuItem fontWeight={500} isDisabled={rowData.columnsFormat[1].value}>
           <Text color={"red.400"}>Delete</Text>
           <Icon color={"red.400"} as={RiDeleteBinLine} fontSize={iconSize} />
         </MenuItem>
