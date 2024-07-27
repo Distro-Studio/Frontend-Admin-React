@@ -4,12 +4,12 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Icon,
   Input,
   InputGroup,
   InputLeftElement,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -17,28 +17,30 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { RiAddCircleFill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../lib/backOnCloseOld";
-import formatNumber from "../../lib/formatNumber";
-import parseNumber from "../../lib/parseNumber";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
-import RequiredForm from "../form/RequiredForm";
+import { iconSize } from "../../const/sizes";
+import useBackOnClose from "../../hooks/useBackOnClose";
+import backOnClose from "../../lib/backOnClose";
 import SelectJenisKompetensi from "../dependent/_Select/SelectJenisKompetensi";
+import DisclosureHeader from "../dependent/DisclosureHeader";
+import NumberInput from "../dependent/input/NumberInput";
+import RequiredForm from "../form/RequiredForm";
 
 interface Props extends ButtonProps {}
 
 export default function TambahKompetensi({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
+  useBackOnClose("tambah-kompetensi-modal", isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      nama_jabatan: "",
-      total_tunjangan: "" as any,
+      nama_jabatan: "" as any,
+      total_tunjangan: undefined,
       jenis_kompetensi: "" as any,
     },
     validationSchema: yup.object().shape({
@@ -57,6 +59,8 @@ export default function TambahKompetensi({ ...props }: Props) {
         className="btn-ap clicky"
         colorScheme="ap"
         onClick={onOpen}
+        leftIcon={<Icon as={RiAddCircleFill} fontSize={iconSize} />}
+        pl={5}
         {...props}
       >
         Tambah Kompetensi
@@ -65,7 +69,7 @@ export default function TambahKompetensi({ ...props }: Props) {
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          backOnClose(onClose);
+          backOnClose();
           formik.resetForm();
         }}
         initialFocusRef={initialRef}
@@ -73,8 +77,9 @@ export default function TambahKompetensi({ ...props }: Props) {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Tambah Kompetensi</ModalHeader>
+          <ModalHeader ref={initialRef}>
+            <DisclosureHeader title="Tambah Kompetensi" />
+          </ModalHeader>
           <ModalBody>
             <form id="tambahJabatanForm" onSubmit={formik.handleSubmit}>
               <FormControl
@@ -106,11 +111,10 @@ export default function TambahKompetensi({ ...props }: Props) {
                 </FormLabel>
                 <SelectJenisKompetensi
                   name="jenis_kompetensi"
-                  formik={formik}
-                  placeholder="Pilih Jenis Kompetensi"
-                  initialSelected={formik.values.jenis_kompetensi}
-                  noUseBackOnClose
-                  noSearch
+                  onConfirm={(input) => {
+                    formik.setFieldValue("jenis_kompetensi", input);
+                  }}
+                  inputValue={formik.values.jenis_kompetensi}
                 />
                 <FormErrorMessage>
                   {formik.errors.jenis_kompetensi as string}
@@ -125,25 +129,17 @@ export default function TambahKompetensi({ ...props }: Props) {
                   <RequiredForm />
                 </FormLabel>
                 <InputGroup>
-                  <InputLeftElement>
+                  <InputLeftElement pl={4}>
                     <Text>Rp</Text>
                   </InputLeftElement>
-                  <Input
+                  <NumberInput
+                    pl={12}
                     name="total_tunjangan"
-                    placeholder="4.000.000"
-                    onChange={(e) => {
-                      const newValue = parseNumber(e.target.value);
-                      if (newValue && newValue > 0) {
-                        formik.setFieldValue("total_tunjangan", newValue);
-                      } else {
-                        formik.setFieldValue("total_tunjangan", "");
-                      }
+                    placeholder="500.000"
+                    onChangeSetter={(input) => {
+                      formik.setFieldValue("total_tunjangan", input);
                     }}
-                    value={
-                      formik.values.total_tunjangan === ""
-                        ? ""
-                        : formatNumber(formik.values.total_tunjangan)
-                    }
+                    inputValue={formik.values.total_tunjangan}
                   />
                 </InputGroup>
                 <FormErrorMessage>

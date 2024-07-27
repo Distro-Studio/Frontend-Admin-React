@@ -3096,10 +3096,11 @@ const dummyKompetensi = [
   {
     id: 1,
     nama_kompetensi: "Petugas Kebersihan",
-    jenis_kompetensi: 2,
+    jenis_kompetensi: 0,
     total_tunjangan: 853165,
     created_at: "2024-04-07T03:18:23.000000Z",
     updated_at: "2024-05-07T03:18:23.000000Z",
+    deleted_at: null,
   },
   {
     id: 2,
@@ -3108,14 +3109,16 @@ const dummyKompetensi = [
     total_tunjangan: 2114169,
     created_at: "2024-03-10T03:18:23.000000Z",
     updated_at: "2024-05-07T03:18:23.000000Z",
+    deleted_at: null,
   },
   {
     id: 3,
     nama_kompetensi: "Dokter Spesialis Anak",
-    jenis_kompetensi: 2,
+    jenis_kompetensi: 1,
     total_tunjangan: 1475224,
     created_at: "2023-06-16T03:18:23.000000Z",
     updated_at: "2024-05-07T03:18:23.000000Z",
+    deleted_at: null,
   },
   {
     id: 4,
@@ -3124,6 +3127,7 @@ const dummyKompetensi = [
     total_tunjangan: 797643,
     created_at: "2024-02-02T03:18:23.000000Z",
     updated_at: "2024-05-07T03:18:23.000000Z",
+    deleted_at: null,
   },
   {
     id: 5,
@@ -3132,6 +3136,7 @@ const dummyKompetensi = [
     total_tunjangan: 618347,
     created_at: "2023-10-12T03:18:23.000000Z",
     updated_at: "2024-05-07T03:18:23.000000Z",
+    deleted_at: "2024-05-07T03:18:23.000000Z",
   },
   {
     id: 6,
@@ -3140,6 +3145,7 @@ const dummyKompetensi = [
     total_tunjangan: 2721133,
     created_at: "2023-11-29T03:18:23.000000Z",
     updated_at: "2024-05-07T03:18:23.000000Z",
+    deleted_at: "2024-05-07T03:18:23.000000Z",
   },
   {
     id: 7,
@@ -3148,22 +3154,25 @@ const dummyKompetensi = [
     total_tunjangan: 1989760,
     created_at: "2023-12-23T03:18:23.000000Z",
     updated_at: "2024-05-07T03:18:23.000000Z",
+    deleted_at: "2024-05-07T03:18:23.000000Z",
   },
   {
     id: 8,
     nama_kompetensi: "Ahli Gizi",
-    jenis_kompetensi: 2,
+    jenis_kompetensi: 0,
     total_tunjangan: 1280272,
     created_at: "2023-10-16T03:18:23.000000Z",
     updated_at: "2024-05-07T03:18:23.000000Z",
+    deleted_at: "2024-05-07T03:18:23.000000Z",
   },
   {
     id: 9,
     nama_kompetensi: "Tenaga Farmasi",
-    jenis_kompetensi: 2,
+    jenis_kompetensi: 0,
     total_tunjangan: 826164,
     created_at: "2023-07-03T03:18:23.000000Z",
     updated_at: "2024-05-07T03:18:23.000000Z",
+    deleted_at: "2024-05-07T03:18:23.000000Z",
   },
 ];
 
@@ -4031,6 +4040,7 @@ const dummyUnitKerja = [
     jenis_karyawan: 0,
     created_at: "2023-08-06T03:18:23.000000Z",
     updated_at: "2024-05-07T03:18:23.000000Z",
+    deleted_at: "2024-05-07T03:18:23.000000Z",
   },
   {
     id: 2,
