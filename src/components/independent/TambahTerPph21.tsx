@@ -4,13 +4,13 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Icon,
   Input,
   InputGroup,
   InputLeftElement,
   InputRightElement,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -19,22 +19,25 @@ import {
   useDisclosure,
   Wrap,
 } from "@chakra-ui/react";
+import { RiAddCircleFill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../lib/backOnCloseOld";
+import { iconSize } from "../../const/sizes";
+import useBackOnClose from "../../hooks/useBackOnClose";
+import backOnClose from "../../lib/backOnClose";
 import formatNumber from "../../lib/formatNumber";
 import parseNumber from "../../lib/parseNumber";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
-import SelectPtkp from "../dependent/_Select/SelectPtkp";
-import RequiredForm from "../form/RequiredForm";
 import SelectKategoriTer from "../dependent/_Select/SelectKategoriTer";
+import SelectPtkp from "../dependent/_Select/SelectPtkp";
+import DisclosureHeader from "../dependent/DisclosureHeader";
+import RequiredForm from "../form/RequiredForm";
 
 interface Props extends ButtonProps {}
 
 export default function TambahTerPph21({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
+  useBackOnClose("tambah-ter-modal", isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
   const formik = useFormik({
@@ -64,6 +67,8 @@ export default function TambahTerPph21({ ...props }: Props) {
         className="btn-ap clicky"
         colorScheme="ap"
         onClick={onOpen}
+        leftIcon={<Icon as={RiAddCircleFill} fontSize={iconSize} />}
+        pl={5}
         {...props}
       >
         Tambah TER pph21
@@ -72,7 +77,7 @@ export default function TambahTerPph21({ ...props }: Props) {
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          backOnClose(onClose);
+          backOnClose();
           formik.resetForm();
         }}
         initialFocusRef={initialRef}
@@ -80,8 +85,9 @@ export default function TambahTerPph21({ ...props }: Props) {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Tambah TER pph21</ModalHeader>
+          <ModalHeader ref={initialRef}>
+            <DisclosureHeader title="Tambah TER pph21" />
+          </ModalHeader>
           <ModalBody>
             <form id="tambahJabatanForm" onSubmit={formik.handleSubmit}>
               <FormControl

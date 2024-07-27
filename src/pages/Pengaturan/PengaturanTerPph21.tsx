@@ -1,15 +1,14 @@
-import { Button, Icon, Wrap } from "@chakra-ui/react";
-import { RiDownloadLine, RiUploadLine } from "@remixicon/react";
+import { Button, HStack, Wrap } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import TabelTerPph21 from "../../components/dependent/TabelPengaturanTerPph21";
-import SearchComponent from "../../components/dependent/SearchComponent";
 import TambahTerPph21 from "../../components/independent/TambahTerPph21";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useBodyColor } from "../../const/colors";
 import pengaturanTopNavs from "../../const/pengaturanTopNavs";
-import { iconSize, responsiveSpacing } from "../../const/sizes";
+import { responsiveSpacing } from "../../const/sizes";
+import SearchComponent from "../../components/dependent/input/SearchComponent";
 
 export default function PengaturanTerPph21() {
   // Filter Config
@@ -52,36 +51,28 @@ export default function PengaturanTerPph21() {
             flex={"1 1 600px"}
             overflowX={"auto"}
           >
-            <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
+            <HStack
+              py={responsiveSpacing}
+              justify={"space-between"}
+              w={"100%"}
+              className="tabelConfig scrollX"
+              overflowX={"auto"}
+              flexShrink={0}
+            >
               <SearchComponent
-                search={filterConfig.search}
-                setSearch={(newSearch) => {
-                  setFilterConfig((ps: any) => ({ ...ps, search: newSearch }));
+                minW={"165px"}
+                name="search"
+                onChangeSetter={(input) => {
+                  setFilterConfig((ps: any) => ({
+                    ...ps,
+                    search: input,
+                  }));
                 }}
+                inputValue={filterConfig.search}
               />
 
-              <Button
-                flex={"1 1 110px"}
-                variant={"outline"}
-                colorScheme="ap"
-                className="clicky"
-                rightIcon={<Icon as={RiUploadLine} fontSize={iconSize} />}
-              >
-                Export
-              </Button>
-
-              <Button
-                flex={"1 1 110px"}
-                variant={"outline"}
-                colorScheme="ap"
-                className="clicky"
-                rightIcon={<Icon as={RiDownloadLine} fontSize={iconSize} />}
-              >
-                Import
-              </Button>
-
-              <TambahTerPph21 flex={"1 1 180px"} />
-            </Wrap>
+              <TambahTerPph21 minW={"fit-content"} />
+            </HStack>
 
             <TabelTerPph21 filterConfig={filterConfig} />
           </CContainer>
