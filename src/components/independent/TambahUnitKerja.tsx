@@ -90,13 +90,13 @@ export default function TambahUnitKerja({ ...props }: Props) {
                 isInvalid={formik.errors.jenis_karyawan ? true : false}
               >
                 <FormLabel>
-                  Jenis Karyawan
+                  Jenis Pegawai
                   <RequiredForm />
                 </FormLabel>
                 <SelectJenisKaryawan
                   name="jenis_karyawan"
                   formik={formik}
-                  placeholder="Pilih Jenis Karyawan"
+                  placeholder="Pilih Jenis Pegawai"
                   initialSelected={formik.values.jenis_karyawan}
                   noUseBackOnClose
                   noSearch

@@ -494,7 +494,7 @@ export default function DetailKaryawanModal({
                                         unhighlightClassName="uw"
                                         searchWords={searchQuery}
                                         autoEscape={true}
-                                        textToHighlight="Jenis Karyawan"
+                                        textToHighlight="Jenis Pegawai"
                                       />
                                     </Box>
                                     <FlexLine />
@@ -987,14 +987,14 @@ export default function DetailKaryawanModal({
                                   </HStack>
 
                                   <HStack justify={"space-between"}>
-                                    {/* <Text opacity={0.6}>Status Karyawan</Text> */}
+                                    {/* <Text opacity={0.6}>Status Kepegawaian</Text> */}
                                     <Box opacity={0.6}>
                                       <Highlighter
                                         highlightClassName="hw"
                                         unhighlightClassName="uw"
                                         searchWords={searchQuery}
                                         autoEscape={true}
-                                        textToHighlight="Status Karyawan"
+                                        textToHighlight="Status Kepegawaian"
                                       />
                                     </Box>
                                     <FlexLine />

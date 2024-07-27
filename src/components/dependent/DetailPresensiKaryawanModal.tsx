@@ -194,7 +194,7 @@ export default function DetailPresensiKaryawanModal({
 
                         <VStack align={"stretch"}>
                           <Text fontSize={14} opacity={0.6}>
-                            Jenis Karyawan
+                            Jenis Pegawai
                           </Text>
                           <Text fontWeight={500}>
                             <JenisKaryawanBadge

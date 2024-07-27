@@ -621,13 +621,13 @@ export default function DetailKaryawan() {
                       </HStack>
 
                       <HStack justify={"space-between"}>
-                        {/* <Text opacity={0.6}>Status Karyawan</Text> */}
+                        {/* <Text opacity={0.6}>Status Kepegawaian</Text> */}
                         <Highlighter
                           highlightClassName="hw"
                           unhighlightClassName="uw"
                           searchWords={searchQuery}
                           autoEscape={true}
-                          textToHighlight="Status Karyawan"
+                          textToHighlight="Status Kepegawaian"
                         />
                         <FlexLine />
                         <Text fontWeight={500} textAlign={"right"}>

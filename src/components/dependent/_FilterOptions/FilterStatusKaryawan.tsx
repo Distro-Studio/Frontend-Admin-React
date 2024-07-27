@@ -30,7 +30,7 @@ export default function FilterStatusKaryawan({
 
   return (
     <FilterItemWrapper
-      title="Status Karyawan"
+      title="Status Kepegawaian"
       filterValue={filterConfig.status_karyawan}
       setFilterConfig={setFilterConfig}
       filterKey="status_karyawan"

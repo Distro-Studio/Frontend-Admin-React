@@ -17,7 +17,7 @@ export default function KaryawanTableColumnsConfig({ title, ...props }: Props) {
   const allColumns = [
     { column: "nama", label: "Nama" },
     { column: "status_aktif", label: "Status Aktif" },
-    { column: "status_karyawan", label: "Status Karyawan" },
+    { column: "status_karyawan", label: "Status Kepegawaian" },
     { column: "nik", label: "Nik" },
     { column: "no_rm", label: "No. Rekam Medis" },
     { column: "unit_kerja", label: "Unit Kerja" },

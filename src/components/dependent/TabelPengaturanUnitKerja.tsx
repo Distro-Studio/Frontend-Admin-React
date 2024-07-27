@@ -34,7 +34,7 @@ export default function TabelPengaturanUnitKerja({ filterConfig }: Props) {
     },
     {
       key: "jenis_karyawan",
-      label: "Jenis Karyawan",
+      label: "Jenis Pegawai",
       dataType: "string",
     },
   ];

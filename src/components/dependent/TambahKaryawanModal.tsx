@@ -270,7 +270,7 @@ export default function TambahKaryawanModal({ ...props }: Props) {
           isInvalid={!!formik.errors.status_karyawan}
         >
           <FormLabel>
-            Status Karyawan
+            Status Kepegawaian
             <RequiredForm />
           </FormLabel>
           <SelectStatusKaryawan
