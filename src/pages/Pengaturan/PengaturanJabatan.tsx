@@ -8,11 +8,13 @@ import CWrapper from "../../components/wrapper/CWrapper";
 import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import PengaturanNavs from "../../components/dependent/PengaturanNavs";
+import MultiSelectPengaturanDeletedAt from "../../components/dependent/MultiSelectPengaturanDeletedAt";
 
 export default function PengaturanJabatan() {
   // Filter Config
   const defaultFilterConfig = {
     search: "",
+    is_deleted: [],
   };
   const [filterConfig, setFilterConfig] = useState<any>(defaultFilterConfig);
 
@@ -61,6 +63,20 @@ export default function PengaturanJabatan() {
                   }));
                 }}
                 inputValue={filterConfig.search}
+              />
+
+              <MultiSelectPengaturanDeletedAt
+                name="is_deleted"
+                onConfirm={(input) => {
+                  setFilterConfig((ps: any) => ({
+                    ...ps,
+                    is_deleted: input,
+                  }));
+                }}
+                inputValue={filterConfig.is_deleted}
+                optionsDisplay="chip"
+                placeholder="Filter Dihapus"
+                maxW={"165px"}
               />
 
               <TambahJabatan minW={"fit-content"} />

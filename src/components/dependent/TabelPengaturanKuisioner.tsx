@@ -18,6 +18,7 @@ import CustomTableContainer from "../wrapper/CustomTableContainer";
 import BooleanBadge from "./BooleanBadge";
 import CustomTable from "./CustomTable";
 import Retry from "./Retry";
+import { Interface__SelectOption } from "../../constant/interfaces";
 
 interface Props {
   filterConfig?: any;
@@ -230,13 +231,28 @@ export default function TabelPengaturanKuisioner({ filterConfig }: Props) {
   });
 
   const fd = data?.filter((item: any) => {
-    const searchTerm = filterConfig.search.toLowerCase();
+    const searchTerm = filterConfig?.search.toLowerCase();
+    const isDeletedTerm = filterConfig?.is_deleted?.map(
+      (term: Interface__SelectOption) => term.value
+    );
+    const jabatanTerm = filterConfig?.jabatan?.map(
+      (term: Interface__SelectOption) => term.value
+    );
 
     const matchesSearchTerm = item.pertanyaan
       .toLowerCase()
       .includes(searchTerm);
+    const matchesIsDeletedTerm =
+      isDeletedTerm?.includes(1) && isDeletedTerm?.includes(0)
+        ? true
+        : isDeletedTerm?.includes(1)
+        ? !!item.deleted_at
+        : isDeletedTerm?.includes(0)
+        ? !item.deleted_at
+        : true;
+    const matchesJabatan = jabatanTerm?.includes(item.jabatan.id);
 
-    return matchesSearchTerm;
+    return matchesSearchTerm && matchesIsDeletedTerm && matchesJabatan;
   });
 
   const formattedHeader = [

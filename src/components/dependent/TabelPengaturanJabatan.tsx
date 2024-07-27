@@ -12,6 +12,7 @@ import CustomTableContainer from "../wrapper/CustomTableContainer";
 import BooleanBadge from "./BooleanBadge";
 import CustomTable from "./CustomTable";
 import Retry from "./Retry";
+import { Interface__SelectOption } from "../../constant/interfaces";
 
 interface Props {
   filterConfig?: any;
@@ -56,15 +57,25 @@ export default function TabelPengaturanJabatan({ filterConfig }: Props) {
   });
 
   const fd = data?.filter((item: any) => {
-    const searchTerm = filterConfig.search.toLowerCase();
+    const searchTerm = filterConfig?.search.toLowerCase();
+    const isDeletedTerm = filterConfig?.is_deleted?.map(
+      (term: Interface__SelectOption) => term.value
+    );
 
     const matchesSearchTerm = item.nama_jabatan
       .toLowerCase()
       .includes(searchTerm);
+    const matchesIsDeletedTerm =
+      isDeletedTerm?.includes(1) && isDeletedTerm?.includes(0)
+        ? true
+        : isDeletedTerm?.includes(1)
+        ? !!item.deleted_at
+        : isDeletedTerm?.includes(0)
+        ? !item.deleted_at
+        : true;
 
-    return matchesSearchTerm;
+    return matchesSearchTerm && matchesIsDeletedTerm;
   });
-
   const formattedHeader = [
     {
       th: "Nama Jabatan",
