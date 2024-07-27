@@ -250,7 +250,10 @@ export default function TabelPengaturanKuisioner({ filterConfig }: Props) {
         : isDeletedTerm?.includes(0)
         ? !item.deleted_at
         : true;
-    const matchesJabatan = jabatanTerm?.includes(item.jabatan.id);
+    const matchesJabatan =
+      jabatanTerm && jabatanTerm.length > 0
+        ? jabatanTerm?.includes(item.jabatan.id)
+        : true;
 
     return matchesSearchTerm && matchesIsDeletedTerm && matchesJabatan;
   });
