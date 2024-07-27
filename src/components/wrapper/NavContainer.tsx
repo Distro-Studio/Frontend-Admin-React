@@ -59,7 +59,7 @@ const NavMenu = ({ nav, i, active, topNavActive }: any) => {
         icon={
           <Icon
             as={nav.icon}
-            fontSize={iconSize} // Assuming iconSize is 24
+            fontSize={iconSize}
             opacity={active === i ? 1 : 0.6}
           />
         }
@@ -82,9 +82,9 @@ const NavMenu = ({ nav, i, active, topNavActive }: any) => {
           minW={"fit-content"}
           sx={{
             position: "absolute",
-            top: "-50px", // Adjust this value as needed
-            left: "calc(100% + 42px)", // Place it to the right of the button
-            marginLeft: "8px", // Optional: adjust space between button and menu
+            top: "-50px",
+            left: "calc(100% + 42px)",
+            marginLeft: "8px",
           }}
         >
           {nav.subNavs.map((subNav: any, ii: number) => (
