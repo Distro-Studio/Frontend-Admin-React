@@ -43,7 +43,7 @@ export default function PengaturanJadwalPenggajian() {
     if (data) {
       formik.setFieldValue("tanggal", data);
     }
-  }, [data]);
+  }, [data, formik]);
 
   return (
     <CContainer
