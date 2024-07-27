@@ -8,7 +8,6 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  SimpleGrid,
   Text,
   VStack,
   Wrap,

@@ -4,12 +4,17 @@ import {
   Icon,
   IconButton,
   Image,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Portal,
   StackProps,
   Tooltip,
   VStack,
 } from "@chakra-ui/react";
 import { RiLogoutBoxLine } from "@remixicon/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useBodyColor, useContentBgColor } from "../../const/colors";
 import navs from "../../const/navs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
@@ -18,6 +23,55 @@ import Header from "../dependent/Header";
 import CContainer from "./CContainer";
 import Container from "./Container";
 import TopNavs from "../dependent/TopNavs";
+import { useState } from "react";
+
+const NavMenu = ({ nav, i, active }: any) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  return (
+    <Menu isOpen={isOpen}>
+      <MenuButton
+        as={IconButton}
+        aria-label={`Nav Button ${nav.label}`}
+        icon={
+          <Icon
+            as={nav.icon}
+            fontSize={iconSize} // Assuming iconSize is 24
+            opacity={active === i ? 1 : 0.6}
+          />
+        }
+        className="btn"
+        onClick={() => {
+          navigate(nav.link);
+        }}
+        color={active === i ? "p.500" : ""}
+        onMouseEnter={() => setIsOpen(true)}
+        onMouseLeave={() => setIsOpen(false)}
+      />
+
+      <Portal>
+        <MenuList
+          zIndex={20}
+          onMouseEnter={() => setIsOpen(true)}
+          onMouseLeave={() => setIsOpen(false)}
+          sx={{
+            position: "absolute",
+            top: "-50px", // Adjust this value as needed
+            left: "calc(100% + 42px)", // Place it to the right of the button
+            marginLeft: "8px", // Optional: adjust space between button and menu
+          }}
+        >
+          {nav.subNavs.map((subNav: any, ii: number) => (
+            <MenuItem key={ii} as={Link} to={subNav.link}>
+              {subNav.label}
+            </MenuItem>
+          ))}
+        </MenuList>
+      </Portal>
+    </Menu>
+  );
+};
 
 interface Props extends StackProps {
   active: number;
@@ -66,24 +120,30 @@ export default function NavContainer({
           >
             <VStack>
               <Image src="/logo512.png" w={"40px"} mb={8} />
-              {navs.map((nav, i) => (
-                <Tooltip key={i} label={nav.label} placement="right">
-                  <IconButton
-                    aria-label={`Nav Button ${nav.label}`}
-                    icon={
-                      <Icon
-                        as={nav.icon}
-                        fontSize={iconSize}
-                        opacity={active === i ? 1 : 0.6}
-                      />
-                    }
-                    className="btn clicky"
-                    color={active === i ? "p.500" : ""}
-                    as={Link}
-                    to={nav.link}
-                  />
-                </Tooltip>
-              ))}
+              {navs.map((nav, i) => {
+                console.log(nav);
+
+                return nav.subNavs ? (
+                  <NavMenu key={i} nav={nav} i={i} active={active} />
+                ) : (
+                  <Tooltip key={i} label={nav.label} placement="right">
+                    <IconButton
+                      aria-label={`Nav Button ${nav.label}`}
+                      icon={
+                        <Icon
+                          as={nav.icon}
+                          fontSize={iconSize}
+                          opacity={active === i ? 1 : 0.6}
+                        />
+                      }
+                      className="btn"
+                      color={active === i ? "p.500" : ""}
+                      as={Link}
+                      to={nav.link}
+                    />
+                  </Tooltip>
+                );
+              })}
             </VStack>
 
             <Tooltip label={"Keluar"} placement="right" flexShrink={0}>
