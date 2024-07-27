@@ -22,23 +22,22 @@ import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
 import { iconSize } from "../../const/sizes";
-import backOnClose from "../../lib/backOnCloseOld";
-import formatNumber from "../../lib/formatNumber";
-import parseNumber from "../../lib/parseNumber";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
 import DisclosureHeader from "../dependent/DisclosureHeader";
+import NumberInput from "../dependent/input/NumberInput";
 import RequiredForm from "../form/RequiredForm";
+import useBackOnClose from "../../hooks/useBackOnClose";
+import backOnClose from "../../lib/backOnClose";
 
 interface Props extends ButtonProps {}
 
 export default function TambahJabatan({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
+  useBackOnClose("tambah-jabatan-modal", isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
   const formik = useFormik({
     validateOnChange: false,
-    initialValues: { nama_jabatan: "", tunjangan: "" as any },
+    initialValues: { nama_jabatan: undefined, tunjangan: undefined },
     validationSchema: yup.object().shape({
       nama_jabatan: yup.string().required("Harus diisi"),
       tunjangan: yup.number().required("Harus diisi"),
@@ -64,7 +63,7 @@ export default function TambahJabatan({ ...props }: Props) {
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          backOnClose(onClose);
+          backOnClose();
           formik.resetForm();
         }}
         initialFocusRef={initialRef}
@@ -102,25 +101,17 @@ export default function TambahJabatan({ ...props }: Props) {
                   <RequiredForm />
                 </FormLabel>
                 <InputGroup>
-                  <InputLeftElement>
+                  <InputLeftElement pl={4}>
                     <Text>Rp</Text>
                   </InputLeftElement>
-                  <Input
+                  <NumberInput
+                    pl={12}
                     name="tunjangan"
-                    placeholder="4.000.000"
-                    onChange={(e) => {
-                      const newValue = parseNumber(e.target.value);
-                      if (newValue && newValue > 0) {
-                        formik.setFieldValue("tunjangan", newValue);
-                      } else {
-                        formik.setFieldValue("tunjangan", "");
-                      }
+                    placeholder="500.000"
+                    onChangeSetter={(input) => {
+                      formik.setFieldValue("tunjangan", input);
                     }}
-                    value={
-                      formik.values.tunjangan === ""
-                        ? ""
-                        : formatNumber(formik.values.tunjangan)
-                    }
+                    inputValue={formik.values.tunjangan}
                   />
                 </InputGroup>
                 <FormErrorMessage>

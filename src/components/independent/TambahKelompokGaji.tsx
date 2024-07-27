@@ -22,11 +22,11 @@ import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
 import { iconSize } from "../../const/sizes";
+import useBackOnClose from "../../hooks/useBackOnClose";
+import backOnClose from "../../lib/backOnClose";
 import DisclosureHeader from "../dependent/DisclosureHeader";
 import NumberInput from "../dependent/input/NumberInput";
 import RequiredForm from "../form/RequiredForm";
-import useBackOnClose from "../../hooks/useBackOnClose";
-import backOnClose from "../../lib/backOnClose";
 
 interface Props extends ButtonProps {}
 
@@ -109,7 +109,7 @@ export default function TambahKelompokGaji({ ...props }: Props) {
                   <NumberInput
                     pl={12}
                     name="besaran_gaji"
-                    placeholder="4.500.000"
+                    placeholder="5.500.000"
                     onChangeSetter={(input) => {
                       formik.setFieldValue("besaran_gaji", input);
                     }}
