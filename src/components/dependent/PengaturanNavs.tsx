@@ -45,7 +45,7 @@ export default function PengaturanNavs({ activeGroup, active }: Props) {
             </Text>
             {nav.navs.map((subNav, ii) => (
               <Button
-                key={i}
+                key={ii}
                 justifyContent={"flex-start"}
                 leftIcon={
                   <Icon
