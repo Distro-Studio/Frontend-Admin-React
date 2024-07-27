@@ -416,10 +416,10 @@ export default function CustomTable({
                   h={"60px"}
                   borderRight={"1px solid var(--divider3)"}
                   _groupHover={{
-                    bg: onRowClick ? "var(--p500a5)" : "var(--divider)",
+                    bg: "var(--divider)",
                   }}
                   _groupActive={
-                    onRowClick ? { bg: "var(--p500a4)" } : undefined
+                    onRowClick ? { bg: "var(--divider2)" } : undefined
                   }
                   transition={"200ms"}
                   cursor={"pointer"}
@@ -450,10 +450,10 @@ export default function CustomTable({
               >
                 <HStack
                   _groupHover={{
-                    bg: onRowClick ? "var(--p500a5)" : "var(--divider)",
+                    bg: "var(--divider)",
                   }}
                   _groupActive={
-                    onRowClick ? { bg: "var(--p500a4)" } : undefined
+                    onRowClick ? { bg: "var(--divider2)" } : undefined
                   }
                   py={3}
                   px={4}
@@ -487,10 +487,10 @@ export default function CustomTable({
                   w={"52px"}
                   borderLeft={"1px solid var(--divider3)"}
                   _groupHover={{
-                    bg: onRowClick ? "var(--p500a5)" : "var(--divider)",
+                    bg: "var(--divider)",
                   }}
                   _groupActive={
-                    onRowClick ? { bg: "var(--p500a4)" } : undefined
+                    onRowClick ? { bg: "var(--divider2)" } : undefined
                   }
                   transition={"200ms"}
                   onClick={(e) => {
