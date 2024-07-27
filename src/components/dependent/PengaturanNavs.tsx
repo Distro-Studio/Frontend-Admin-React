@@ -25,7 +25,7 @@ export default function PengaturanNavs({ activeGroup, active }: Props) {
       gap={4}
       overflowY={"auto"}
       className="scrollY"
-      h={"100%"}
+      maxH={"100%"}
     >
       <CContainer
         px={4}
