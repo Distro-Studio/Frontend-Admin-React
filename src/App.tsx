@@ -31,7 +31,7 @@ import PengaturanKelolaRole from "./pages/Pengaturan/PengaturanKelolaRole";
 import PengaturanKelompokGaji from "./pages/Pengaturan/PengaturanKelompokGaji";
 import PengaturanKompetensi from "./pages/Pengaturan/PengaturanKompetensi";
 import PengaturanKuisioner from "./pages/Pengaturan/PengaturanKuisioner";
-import PengaturanPremi from "./pages/Pengaturan/PengaturanPremi";
+import PengaturanPremi from "./pages/Pengaturan/PengaturanPotongan";
 import PengaturanShift from "./pages/Pengaturan/PengaturanShift";
 import PengaturanTerPph21 from "./pages/Pengaturan/PengaturanTerPph21";
 import PengaturanThr from "./pages/Pengaturan/PengaturanThr";
