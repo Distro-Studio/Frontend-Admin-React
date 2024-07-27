@@ -3184,6 +3184,7 @@ const dummyPremi = [
     besaran_premi: 21,
     created_at: "2024-01-05T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
+    deleted_at: "2024-05-04T05:46:22.000000Z",
   },
   {
     id: 2,
@@ -3192,6 +3193,7 @@ const dummyPremi = [
     besaran_premi: 2280018,
     created_at: "2023-11-23T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
+    deleted_at: "2024-05-04T05:46:22.000000Z",
   },
   {
     id: 3,
@@ -3200,6 +3202,7 @@ const dummyPremi = [
     besaran_premi: 84,
     created_at: "2024-04-08T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
+    deleted_at: "2024-05-04T05:46:22.000000Z",
   },
   {
     id: 4,
@@ -3208,6 +3211,7 @@ const dummyPremi = [
     besaran_premi: 2421755,
     created_at: "2023-06-18T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
+    deleted_at: null,
   },
   {
     id: 5,
@@ -3216,6 +3220,7 @@ const dummyPremi = [
     besaran_premi: 96,
     created_at: "2023-06-21T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
+    deleted_at: null,
   },
   {
     id: 6,
@@ -3224,6 +3229,7 @@ const dummyPremi = [
     besaran_premi: 57,
     created_at: "2024-01-19T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
+    deleted_at: null,
   },
   {
     id: 7,
@@ -3232,6 +3238,7 @@ const dummyPremi = [
     besaran_premi: 46,
     created_at: "2024-02-10T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
+    deleted_at: null,
   },
   {
     id: 8,
@@ -3240,6 +3247,7 @@ const dummyPremi = [
     besaran_premi: 11,
     created_at: "2023-09-09T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
+    deleted_at: null,
   },
   {
     id: 9,
@@ -3248,6 +3256,7 @@ const dummyPremi = [
     besaran_premi: 2701838,
     created_at: "2023-05-12T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
+    deleted_at: null,
   },
   {
     id: 10,
@@ -3256,6 +3265,7 @@ const dummyPremi = [
     besaran_premi: 44,
     created_at: "2023-09-21T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
+    deleted_at: null,
   },
   {
     id: 11,
@@ -3264,6 +3274,7 @@ const dummyPremi = [
     besaran_premi: 775525,
     created_at: "2023-11-06T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
+    deleted_at: "2024-05-04T05:46:22.000000Z",
   },
   {
     id: 12,
@@ -3272,6 +3283,7 @@ const dummyPremi = [
     besaran_premi: 3909171,
     created_at: "2024-03-20T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
+    deleted_at: "2024-05-04T05:46:22.000000Z",
   },
   {
     id: 13,
@@ -3280,70 +3292,7 @@ const dummyPremi = [
     besaran_premi: 2087445,
     created_at: "2023-11-13T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
-  },
-  {
-    id: 14,
-    nama_premi: "Asuransi Jiwa dengan Manfaat Unit Link",
-    jenis_premi: 0,
-    besaran_premi: 88,
-    created_at: "2024-02-18T05:46:22.000000Z",
-    updated_at: "2024-05-04T05:46:22.000000Z",
-  },
-  {
-    id: 15,
-    nama_premi: "Asuransi Kendaraan - Mobil Full Coverage",
-    jenis_premi: 1,
-    besaran_premi: 3721795,
-    created_at: "2023-12-02T05:46:22.000000Z",
-    updated_at: "2024-05-04T05:46:22.000000Z",
-  },
-  {
-    id: 16,
-    nama_premi: "Asuransi Kesehatan - Santunan Rawat Inap",
-    jenis_premi: 1,
-    besaran_premi: 3581297,
-    created_at: "2023-07-12T05:46:22.000000Z",
-    updated_at: "2024-05-04T05:46:22.000000Z",
-  },
-  {
-    id: 17,
-    nama_premi: "Asuransi Kendaraan - Motor Full Coverage",
-    jenis_premi: 1,
-    besaran_premi: 3390289,
-    created_at: "2023-11-08T05:46:22.000000Z",
-    updated_at: "2024-05-04T05:46:22.000000Z",
-  },
-  {
-    id: 18,
-    nama_premi: "Asuransi Gagal Panen (per hektar)",
-    jenis_premi: 1,
-    besaran_premi: 4156494,
-    created_at: "2023-08-27T05:46:22.000000Z",
-    updated_at: "2024-05-04T05:46:22.000000Z",
-  },
-  {
-    id: 19,
-    nama_premi: "Asuransi Jiwa Term Life (10 tahun)",
-    jenis_premi: 0,
-    besaran_premi: 53,
-    created_at: "2023-06-21T05:46:22.000000Z",
-    updated_at: "2024-05-04T05:46:22.000000Z",
-  },
-  {
-    id: 20,
-    nama_premi: "Asuransi Kebakaran Rumah",
-    jenis_premi: 0,
-    besaran_premi: 56,
-    created_at: "2023-10-31T05:46:22.000000Z",
-    updated_at: "2024-05-04T05:46:22.000000Z",
-  },
-  {
-    id: 21,
-    nama_premi: "Test",
-    jenis_premi: 0,
-    besaran_premi: 2500000,
-    created_at: "2024-05-04T05:47:19.000000Z",
-    updated_at: "2024-05-04T05:47:19.000000Z",
+    deleted_at: "2024-05-04T05:46:22.000000Z",
   },
 ];
 

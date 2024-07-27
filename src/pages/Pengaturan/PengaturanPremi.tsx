@@ -3,7 +3,7 @@ import { useState } from "react";
 import MultiSelectJenisPotongan from "../../components/dependent/_Select/MultiSelectJenisPotongan";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
 import MultiSelectPengaturanDeletedAt from "../../components/dependent/MultiSelectPengaturanDeletedAt";
-import TabelPremi from "../../components/dependent/TabelPengaturanPremi";
+import TabelPengaturanPotongan from "../../components/dependent/TabelPengaturanPotongan";
 import TambahPremi from "../../components/independent/TambahPremi";
 import CContainer from "../../components/wrapper/CContainer";
 import { useBodyColor } from "../../const/colors";
@@ -76,7 +76,7 @@ export default function PengaturanPremi() {
         <TambahPremi minW={"fit-content"} />
       </HStack>
 
-      <TabelPremi filterConfig={filterConfig} />
+      <TabelPengaturanPotongan filterConfig={filterConfig} />
     </CContainer>
   );
 }
