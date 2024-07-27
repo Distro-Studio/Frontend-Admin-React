@@ -3180,7 +3180,7 @@ const dummyPremi = [
   {
     id: 1,
     nama_premi: "Asuransi Jiwa dengan Manfaat Unit Link",
-    jenis_premi: 0,
+    jenis_premi: 2,
     besaran_premi: 21,
     created_at: "2024-01-05T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
@@ -3198,7 +3198,7 @@ const dummyPremi = [
   {
     id: 3,
     nama_premi: "Asuransi Gagal Panen (per hektar)",
-    jenis_premi: 0,
+    jenis_premi: 2,
     besaran_premi: 84,
     created_at: "2024-04-08T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
@@ -3216,7 +3216,7 @@ const dummyPremi = [
   {
     id: 5,
     nama_premi: "Asuransi Kesehatan - Rawat Jalan & Rawat Inap",
-    jenis_premi: 0,
+    jenis_premi: 2,
     besaran_premi: 96,
     created_at: "2023-06-21T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
@@ -3225,7 +3225,7 @@ const dummyPremi = [
   {
     id: 6,
     nama_premi: "Asuransi Jiwa Term Life (10 tahun)",
-    jenis_premi: 0,
+    jenis_premi: 2,
     besaran_premi: 57,
     created_at: "2024-01-19T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
@@ -3234,7 +3234,7 @@ const dummyPremi = [
   {
     id: 7,
     nama_premi: "Asuransi Gagal Panen (per hektar)",
-    jenis_premi: 0,
+    jenis_premi: 2,
     besaran_premi: 46,
     created_at: "2024-02-10T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
@@ -3243,7 +3243,7 @@ const dummyPremi = [
   {
     id: 8,
     nama_premi: "Asuransi Pendidikan - Unit Link (5 tahun)",
-    jenis_premi: 0,
+    jenis_premi: 2,
     besaran_premi: 11,
     created_at: "2023-09-09T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",
@@ -3261,7 +3261,7 @@ const dummyPremi = [
   {
     id: 10,
     nama_premi: "Asuransi Kesehatan - Rawat Jalan & Rawat Inap",
-    jenis_premi: 0,
+    jenis_premi: 2,
     besaran_premi: 44,
     created_at: "2023-09-21T05:46:22.000000Z",
     updated_at: "2024-05-04T05:46:22.000000Z",

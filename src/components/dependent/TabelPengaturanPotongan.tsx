@@ -20,6 +20,7 @@ import CustomTable from "./CustomTable";
 import Retry from "./Retry";
 import { Interface__SelectOption } from "../../constant/interfaces";
 import { dummyPremi } from "../../const/dummy";
+import formatNumber from "../../lib/formatNumber";
 
 interface Props {
   filterConfig?: any;
@@ -63,12 +64,14 @@ export default function TabelPengaturanPotongan({ filterConfig }: Props) {
     dependencies: [],
   });
 
+  console.log(data);
+
   const fd = data?.filter((item: any) => {
     const searchTerm = filterConfig?.search.toLowerCase();
     const isDeletedTerm = filterConfig?.is_deleted?.map(
       (term: Interface__SelectOption) => term.value
     );
-    const jabatanTerm = filterConfig?.jabatan?.map(
+    const jenisPremiTerm = filterConfig?.jenis_premi?.map(
       (term: Interface__SelectOption) => term.value
     );
 
@@ -83,18 +86,26 @@ export default function TabelPengaturanPotongan({ filterConfig }: Props) {
         : isDeletedTerm?.includes(0)
         ? !item.deleted_at
         : true;
-    const matchesJabatan =
-      jabatanTerm && jabatanTerm.length > 0
-        ? jabatanTerm?.includes(item.jabatan.id)
+    const matchesjenis_premi =
+      jenisPremiTerm && jenisPremiTerm.length > 0
+        ? jenisPremiTerm?.includes(item.jenis_premi)
         : true;
 
-    return matchesSearchTerm && matchesIsDeletedTerm && matchesJabatan;
+    return matchesSearchTerm && matchesIsDeletedTerm && matchesjenis_premi;
   });
 
   const formattedHeader = [
     {
       th: "Nama Potongan",
       isSortable: true,
+      props: {
+        position: "sticky",
+        left: 0,
+        zIndex: 2,
+      },
+      cProps: {
+        borderRight: "1px solid var(--divider3)",
+      },
     },
     {
       th: "Status Dihapus",
@@ -114,6 +125,9 @@ export default function TabelPengaturanPotongan({ filterConfig }: Props) {
     {
       th: "Besaran Premi",
       isSortable: true,
+      cProps: {
+        justify: "end",
+      },
     },
   ];
   const formattedData = fd?.map((item: any) => ({
@@ -129,13 +143,18 @@ export default function TabelPengaturanPotongan({ filterConfig }: Props) {
               whiteSpace={"nowrap"}
               textOverflow={"ellipsis"}
             >
-              {item.pertanyaan}
+              {item.nama_premi}
             </Text>
           </Tooltip>
         ),
         isSortable: true,
+        props: {
+          position: "sticky",
+          left: 0,
+          zIndex: 2,
+        },
         cProps: {
-          justify: "center",
+          borderRight: "1px solid var(--divider3)",
         },
       },
       {
@@ -173,13 +192,19 @@ export default function TabelPengaturanPotongan({ filterConfig }: Props) {
       },
       {
         value: item.jenis_premi,
-        td: item.jenis_premi,
+        td: item.jenis_premi === 1 ? "Nominal" : "Persentase",
         isNumeric: true,
       },
       {
         value: item.besaran_premi,
-        td: item.besaran_premi,
+        td:
+          item.jenis_premi === 1
+            ? `Rp ${formatNumber(item.besaran_premi)}`
+            : `${item.besaran_premi}%`,
         isNumeric: true,
+        cProps: {
+          justify: "end",
+        },
       },
     ],
   }));
