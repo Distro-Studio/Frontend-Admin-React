@@ -13,17 +13,17 @@ import {
   Tooltip,
   VStack,
 } from "@chakra-ui/react";
-import { RiLogoutBoxLine } from "@remixicon/react";
+import { RiSettingsLine } from "@remixicon/react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useBodyColor, useContentBgColor } from "../../const/colors";
 import navs from "../../const/navs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 import useScreenWidth from "../../lib/useScreenWidth";
 import Header from "../dependent/Header";
+import TopNavs from "../dependent/TopNavs";
 import CContainer from "./CContainer";
 import Container from "./Container";
-import TopNavs from "../dependent/TopNavs";
-import { useEffect, useRef, useState } from "react";
 
 const NavMenu = ({ nav, i, active, topNavActive }: any) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -79,6 +79,7 @@ const NavMenu = ({ nav, i, active, topNavActive }: any) => {
           onMouseLeave={() => {
             setIsOpen(false);
           }}
+          minW={"fit-content"}
           sx={{
             position: "absolute",
             top: "-50px", // Adjust this value as needed
@@ -92,6 +93,7 @@ const NavMenu = ({ nav, i, active, topNavActive }: any) => {
               as={Link}
               to={subNav.link}
               color={(active === i && ii) === topNavActive ? "p.500" : ""}
+              whiteSpace={"nowrap"}
             >
               {subNav.label}
             </MenuItem>
@@ -150,8 +152,6 @@ export default function NavContainer({
             <VStack>
               <Image src="/logo512.png" w={"40px"} mb={8} />
               {navs.map((nav, i) => {
-                console.log(nav);
-
                 return nav.subNavs ? (
                   <NavMenu
                     key={i}
@@ -161,7 +161,12 @@ export default function NavContainer({
                     active={active}
                   />
                 ) : (
-                  <Tooltip key={i} label={nav.label} placement="right">
+                  <Tooltip
+                    key={i}
+                    color={i === active ? "p.500" : ""}
+                    label={nav.label}
+                    placement="right"
+                  >
                     <IconButton
                       aria-label={`Nav Button ${nav.label}`}
                       icon={
@@ -181,25 +186,42 @@ export default function NavContainer({
               })}
             </VStack>
 
-            <Tooltip label={"Keluar"} placement="right" flexShrink={0}>
-              <IconButton
-                flexShrink={0}
-                mt={8}
-                aria-label="Logout Butotn"
-                icon={
-                  <Icon
-                    as={RiLogoutBoxLine}
-                    fontSize={iconSize}
-                    transform={"scaleX(-1)"}
-                  />
-                }
-                bg={"var(--reda)"}
-                _hover={{ bg: "var(--reda)" }}
-                _active={{ bg: "var(--reda)" }}
-                color={"red.400"}
-                className="clicky"
-              />
-            </Tooltip>
+            <VStack>
+              <Tooltip label={"Pengaturan"} placement="right" flexShrink={0}>
+                <IconButton
+                  aria-label={`Nav Button Pengaturan`}
+                  icon={
+                    <Icon
+                      as={RiSettingsLine}
+                      fontSize={iconSize}
+                      // opacity={active === i ? 1 : 0.6}
+                    />
+                  }
+                  className="btn"
+                  // color={active === i ? "p.500" : ""}
+                  as={Link}
+                  to={"/pengaturan/akun/kelola-role"}
+                />
+              </Tooltip>
+
+              {/* <Tooltip label={"Keluar"} placement="right" flexShrink={0}>
+                <IconButton
+                  flexShrink={0}
+                  aria-label="Logout Butotn"
+                  icon={
+                    <Icon
+                      as={RiLogoutBoxLine}
+                      fontSize={iconSize}
+                      transform={"scaleX(-1)"}
+                    />
+                  }
+                  bg={"var(--reda)"}
+                  _hover={{ bg: "var(--reda)" }}
+                  _active={{ bg: "var(--reda)" }}
+                  color={"red.400"}
+                />
+              </Tooltip> */}
+            </VStack>
           </VStack>
         )}
 
