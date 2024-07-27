@@ -12,6 +12,12 @@ const navs = [
     label: "Dashboard",
     link: "/dashboard",
     icon: RiHome6Fill,
+    subNavs: [
+      {
+        label: "Dashboard",
+        link: "/dashboard",
+      },
+    ],
   },
   {
     label: "Karyawan",
@@ -32,6 +38,12 @@ const navs = [
     label: "Presensi",
     link: "/presensi",
     icon: RiTimerFill,
+    subNavs: [
+      {
+        label: "Presensi",
+        link: "/presensi",
+      },
+    ],
   },
   {
     label: "Jadwal",

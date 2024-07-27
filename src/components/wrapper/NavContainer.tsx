@@ -16,7 +16,7 @@ import {
 import { RiSettingsLine } from "@remixicon/react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useBodyColor, useContentBgColor } from "../../const/colors";
+import { useContentBgColor, useLightDarkColor } from "../../const/colors";
 import navs from "../../const/navs";
 import { iconSize, responsiveSpacing } from "../../const/sizes";
 import useScreenWidth from "../../lib/useScreenWidth";
@@ -131,7 +131,7 @@ export default function NavContainer({
   const smScreen = useScreenWidth() <= 768;
 
   // SX
-  const bodyColor = useBodyColor();
+  const lightDarkColor = useLightDarkColor();
 
   return (
     <Container>
@@ -236,7 +236,7 @@ export default function NavContainer({
               h={"70px"}
               pb={4}
               zIndex={99}
-              bg={bodyColor}
+              bg={lightDarkColor}
               justify={"center"}
             >
               {navs.map((nav, i) => (
