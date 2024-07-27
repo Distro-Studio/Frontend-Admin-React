@@ -3,7 +3,7 @@ import { useState } from "react";
 import PengaturanNavs from "../../components/dependent/PengaturanNavs";
 import TabelPengaturanJabatan from "../../components/dependent/TabelPengaturanJabatan";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
-import TambahKelompokGaji from "../../components/independent/TambahKelompokGaji";
+import TambahJabatan from "../../components/independent/TambahJabatan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
 import { useLightDarkColor } from "../../const/colors";
@@ -63,7 +63,7 @@ export default function PengaturanJabatan() {
                 inputValue={filterConfig.search}
               />
 
-              <TambahKelompokGaji minW={"fit-content"} />
+              <TambahJabatan minW={"fit-content"} />
             </HStack>
 
             <TabelPengaturanJabatan filterConfig={filterConfig} />

@@ -4,12 +4,12 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Icon,
   Input,
   InputGroup,
   InputLeftElement,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -17,13 +17,16 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { RiAddCircleFill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
+import { iconSize } from "../../const/sizes";
 import backOnClose from "../../lib/backOnCloseOld";
 import formatNumber from "../../lib/formatNumber";
 import parseNumber from "../../lib/parseNumber";
 import useBackOnClose from "../../lib/useBackOnCloseOld";
+import DisclosureHeader from "../dependent/DisclosureHeader";
 import RequiredForm from "../form/RequiredForm";
 
 interface Props extends ButtonProps {}
@@ -51,6 +54,8 @@ export default function TambahJabatan({ ...props }: Props) {
         className="btn-ap clicky"
         colorScheme="ap"
         onClick={onOpen}
+        leftIcon={<Icon as={RiAddCircleFill} fontSize={iconSize} />}
+        pl={5}
         {...props}
       >
         Tambah Jabatan
@@ -67,8 +72,9 @@ export default function TambahJabatan({ ...props }: Props) {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader ref={initialRef}> Tambah Jabatan</ModalHeader>
+          <ModalHeader ref={initialRef}>
+            <DisclosureHeader title="Tambah Jabatan" />
+          </ModalHeader>
           <ModalBody>
             <form id="tambahJabatanForm" onSubmit={formik.handleSubmit}>
               <FormControl
