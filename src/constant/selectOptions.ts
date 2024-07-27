@@ -132,6 +132,17 @@ const optionsInboxType = [
   },
 ];
 
+const optionsJenisPotongan = [
+  {
+    value: 1,
+    label: "Nominal",
+  },
+  {
+    value: 2,
+    label: "Persentase",
+  },
+];
+
 export {
   optionsStatusHidup,
   optionsAgama,
@@ -145,4 +156,5 @@ export {
   optionsInboxType,
   optionsHubunganKeluarga,
   optionsJenisKompetensi,
+  optionsJenisPotongan,
 };

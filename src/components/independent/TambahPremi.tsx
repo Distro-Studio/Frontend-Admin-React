@@ -4,13 +4,13 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Icon,
   Input,
   InputGroup,
   InputLeftElement,
   InputRightElement,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -18,29 +18,31 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { RiAddCircleFill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../lib/backOnCloseOld";
-import formatNumber from "../../lib/formatNumber";
-import parseNumber from "../../lib/parseNumber";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
-import SelectJenisPremi from "../dependent/_Select/SelectJenisPremi";
+import { iconSize } from "../../const/sizes";
+import useBackOnClose from "../../hooks/useBackOnClose";
+import backOnClose from "../../lib/backOnClose";
+import SelectJenisPremi from "../dependent/_Select/SelectJenisPotongan";
+import DisclosureHeader from "../dependent/DisclosureHeader";
+import NumberInput from "../dependent/input/NumberInput";
 import RequiredForm from "../form/RequiredForm";
 
 interface Props extends ButtonProps {}
 
 export default function TambahPremi({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
+  useBackOnClose("tambah-premi=modal", isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
       nama_premi: "",
-      jenis_premi: "" as any,
-      besaran_premi: "" as any,
+      jenis_premi: undefined as any,
+      besaran_premi: undefined,
     },
     validationSchema: yup.object().shape({
       nama_premi: yup.string().required("Harus diisi"),
@@ -58,15 +60,17 @@ export default function TambahPremi({ ...props }: Props) {
         className="btn-ap clicky"
         colorScheme="ap"
         onClick={onOpen}
+        leftIcon={<Icon as={RiAddCircleFill} fontSize={iconSize} />}
+        pl={5}
         {...props}
       >
-        Tambah Premi
+        Tambah Potongan
       </Button>
 
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          backOnClose(onClose);
+          backOnClose();
           formik.resetForm();
         }}
         initialFocusRef={initialRef}
@@ -74,8 +78,9 @@ export default function TambahPremi({ ...props }: Props) {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Tambah Premi</ModalHeader>
+          <ModalHeader ref={initialRef}>
+            <DisclosureHeader title="Tambah Potongan" />
+          </ModalHeader>
           <ModalBody>
             <form id="tambahJabatanForm" onSubmit={formik.handleSubmit}>
               <FormControl
@@ -83,7 +88,7 @@ export default function TambahPremi({ ...props }: Props) {
                 isInvalid={formik.errors.nama_premi ? true : false}
               >
                 <FormLabel>
-                  Nama Premi
+                  Nama Potongan
                   <RequiredForm />
                 </FormLabel>
                 <Input
@@ -102,16 +107,16 @@ export default function TambahPremi({ ...props }: Props) {
                 isInvalid={formik.errors.jenis_premi ? true : false}
               >
                 <FormLabel>
-                  Jenis Premi
+                  Jenis Potongan
                   <RequiredForm />
                 </FormLabel>
                 <SelectJenisPremi
                   name="jenis_premi"
-                  formik={formik}
-                  placeholder="Pilih Jenis Premi"
-                  initialSelected={formik.values.jenis_premi}
-                  noUseBackOnClose
-                  noSearch
+                  onConfirm={(input) => {
+                    formik.setFieldValue("jenis_premi", input);
+                  }}
+                  inputValue={formik.values.jenis_premi}
+                  isError={!!formik.errors.jenis_premi}
                 />
                 <FormErrorMessage>
                   {formik.errors.jenis_premi as string}
@@ -122,45 +127,43 @@ export default function TambahPremi({ ...props }: Props) {
                 isInvalid={formik.errors.besaran_premi ? true : false}
               >
                 <FormLabel>
-                  Besaran Premi
+                  Besaran Potongan
                   <RequiredForm />
                 </FormLabel>
-                <InputGroup>
-                  {formik.values.jenis_premi.value === 1 && (
-                    <InputLeftElement>
-                      <Text>Rp</Text>
-                    </InputLeftElement>
-                  )}
-                  <Input
-                    name="besaran_premi"
-                    isDisabled={formik.values.jenis_premi === ""}
-                    placeholder={
-                      formik.values.jenis_premi.value === 0
-                        ? "80"
-                        : formik.values.jenis_premi.value === 1
-                        ? "4.000.000"
-                        : "Pilih jenis premi dahulu"
-                    }
-                    onChange={(e) => {
-                      const numValue = parseNumber(e.target.value);
-                      if (formik.values.jenis_premi.value === 0) {
-                        if (numValue === null) {
-                          formik.setFieldValue("besaran_premi", "");
-                        } else if (numValue <= 100) {
-                          formik.setFieldValue("besaran_premi", numValue);
-                        }
-                      } else {
-                        formik.setFieldValue("besaran_premi", numValue);
-                      }
-                    }}
-                    value={formatNumber(formik.values.besaran_premi)}
-                  />
-                  {formik.values.jenis_premi.value === 0 && (
-                    <InputRightElement>
+
+                {formik?.values.jenis_premi &&
+                formik?.values.jenis_premi?.value === 2 ? (
+                  <InputGroup>
+                    <InputRightElement pr={4}>
                       <Text>%</Text>
                     </InputRightElement>
-                  )}
-                </InputGroup>
+                    <NumberInput
+                      pr={12}
+                      name="besaran_premi"
+                      placeholder="500.000"
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("besaran_premi", input);
+                      }}
+                      inputValue={formik.values.besaran_premi}
+                    />
+                  </InputGroup>
+                ) : (
+                  <InputGroup>
+                    <InputLeftElement pl={4}>
+                      <Text>Rp</Text>
+                    </InputLeftElement>
+                    <NumberInput
+                      isDisabled={formik.values.jenis_premi === undefined}
+                      pl={12}
+                      name="besaran_premi"
+                      placeholder="500.000"
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("besaran_premi", input);
+                      }}
+                      inputValue={formik.values.besaran_premi}
+                    />
+                  </InputGroup>
+                )}
                 <FormErrorMessage>
                   {formik.errors.besaran_premi as string}
                 </FormErrorMessage>
