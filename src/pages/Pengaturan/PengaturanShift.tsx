@@ -1,6 +1,6 @@
-import { Wrap } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import { useState } from "react";
-import SearchComponent from "../../components/dependent/SearchComponent";
+import SearchComponent from "../../components/dependent/input/SearchComponent";
 import TabelShift from "../../components/dependent/TabelPengaturanShift";
 import TambahShift from "../../components/independent/TambahShift";
 import CContainer from "../../components/wrapper/CContainer";
@@ -22,16 +22,27 @@ export default function PengaturanShift() {
       flex={"1 1 600px"}
       overflowX={"auto"}
     >
-      <Wrap w={"100%"} mb={responsiveSpacing} className="tabelConfig">
+      <HStack
+        py={responsiveSpacing}
+        justify={"space-between"}
+        w={"100%"}
+        className="tabelConfig scrollX"
+        overflowX={"auto"}
+        flexShrink={0}
+      >
         <SearchComponent
-          search={filterConfig.search}
-          setSearch={(newSearch) => {
-            setFilterConfig((ps: any) => ({ ...ps, search: newSearch }));
+          minW={"165px"}
+          name="search"
+          onChangeSetter={(input) => {
+            setFilterConfig((ps: any) => ({
+              ...ps,
+              search: input,
+            }));
           }}
+          inputValue={filterConfig.search}
         />
-
         <TambahShift minW={"fit-content"} />
-      </Wrap>
+      </HStack>
 
       <TabelShift filterConfig={filterConfig} />
     </CContainer>
