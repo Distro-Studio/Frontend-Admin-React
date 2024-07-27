@@ -5,7 +5,6 @@ import {
   FormErrorMessage,
   FormLabel,
   Icon,
-  Input,
   InputGroup,
   InputLeftElement,
   InputRightElement,
@@ -26,11 +25,9 @@ import * as yup from "yup";
 import { iconSize } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import backOnClose from "../../lib/backOnClose";
-import formatNumber from "../../lib/formatNumber";
-import parseNumber from "../../lib/parseNumber";
-import SelectKategoriTer from "../dependent/_Select/SelectKategoriTer";
 import SelectPtkp from "../dependent/_Select/SelectPtkp";
 import DisclosureHeader from "../dependent/DisclosureHeader";
+import NumberInput from "../dependent/input/NumberInput";
 import RequiredForm from "../form/RequiredForm";
 
 interface Props extends ButtonProps {}
@@ -43,18 +40,18 @@ export default function TambahTerPph21({ ...props }: Props) {
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      kategori_ter: "" as any,
+      // kategori_ter: "" as any,
       ptkp: "" as any,
-      from_ter: "" as any,
-      to_ter: "" as any,
-      percentage_ter: "" as any,
+      from_ter: undefined,
+      to_ter: undefined,
+      percentage: undefined,
     },
     validationSchema: yup.object().shape({
-      kategori_ter: yup.string().required("Harus diisi"),
+      // kategori_ter: yup.string().required("Harus diisi"),
       ptkp: yup.number().required("Harus diisi"),
       from_ter: yup.number().required("Harus diisi"),
       to_ter: yup.number().required("Harus diisi"),
-      percentage_ter: yup.number().required("Harus diisi"),
+      percentage: yup.number().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
@@ -90,7 +87,7 @@ export default function TambahTerPph21({ ...props }: Props) {
           </ModalHeader>
           <ModalBody>
             <form id="tambahJabatanForm" onSubmit={formik.handleSubmit}>
-              <FormControl
+              {/* <FormControl
                 mb={4}
                 isInvalid={formik.errors.kategori_ter ? true : false}
               >
@@ -109,7 +106,7 @@ export default function TambahTerPph21({ ...props }: Props) {
                 <FormErrorMessage>
                   {formik.errors.kategori_ter as string}
                 </FormErrorMessage>
-              </FormControl>
+              </FormControl> */}
 
               <FormControl mb={4} isInvalid={formik.errors.ptkp ? true : false}>
                 <FormLabel>
@@ -138,24 +135,17 @@ export default function TambahTerPph21({ ...props }: Props) {
                   isInvalid={formik.errors.from_ter ? true : false}
                 >
                   <InputGroup>
-                    <InputLeftElement>
+                    <InputLeftElement pl={4}>
                       <Text>Rp</Text>
                     </InputLeftElement>
-                    <Input
+                    <NumberInput
+                      pl={12}
                       name="from_ter"
-                      placeholder={"4.000.000"}
-                      onChange={(e) => {
-                        const newValue =
-                          e.target.value !== ""
-                            ? parseNumber(e.target.value)
-                            : "";
-                        formik.setFieldValue("from_ter", newValue);
+                      placeholder="500.000"
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("from_ter", input);
                       }}
-                      value={
-                        formik.values.from_ter === ""
-                          ? ""
-                          : formatNumber(formik.values.from_ter)
-                      }
+                      inputValue={formik.values.from_ter}
                     />
                   </InputGroup>
                   <FormErrorMessage>
@@ -172,25 +162,17 @@ export default function TambahTerPph21({ ...props }: Props) {
                   isInvalid={formik.errors.to_ter ? true : false}
                 >
                   <InputGroup>
-                    <InputLeftElement>
+                    <InputLeftElement pl={4}>
                       <Text>Rp</Text>
                     </InputLeftElement>
-                    <Input
+                    <NumberInput
+                      pl={12}
                       name="to_ter"
-                      placeholder={"4.000.000"}
-                      onChange={(e) => {
-                        const newValue = parseNumber(e.target.value);
-                        if (newValue && newValue > 0) {
-                          formik.setFieldValue("to_ter", newValue);
-                        } else {
-                          formik.setFieldValue("to_ter", "");
-                        }
+                      placeholder="500.000"
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("to_ter", input);
                       }}
-                      value={
-                        formik.values.to_ter === ""
-                          ? ""
-                          : formatNumber(formik.values.to_ter)
-                      }
+                      inputValue={formik.values.to_ter}
                     />
                   </InputGroup>
                   <FormErrorMessage>
@@ -201,28 +183,28 @@ export default function TambahTerPph21({ ...props }: Props) {
 
               <FormControl
                 flex={"1 1"}
-                isInvalid={formik.errors.percentage_ter ? true : false}
+                isInvalid={formik.errors.percentage ? true : false}
               >
                 <FormLabel>
                   Rate TER
                   <RequiredForm />
                 </FormLabel>
                 <InputGroup>
-                  <Input
-                    name="percentage_ter"
-                    placeholder={"2.5"}
-                    type="number"
-                    onChange={(e) => {
-                      formik.setFieldValue("percentage_ter", e.target.value);
-                    }}
-                    value={formik.values.percentage_ter}
-                  />
-                  <InputRightElement>
+                  <InputRightElement pr={4}>
                     <Text>%</Text>
                   </InputRightElement>
+                  <NumberInput
+                    pr={12}
+                    name="percentage"
+                    placeholder="500.000"
+                    onChangeSetter={(input) => {
+                      formik.setFieldValue("percentage", input);
+                    }}
+                    inputValue={formik.values.percentage}
+                  />
                 </InputGroup>
                 <FormErrorMessage>
-                  {formik.errors.percentage_ter as string}
+                  {formik.errors.percentage as string}
                 </FormErrorMessage>
               </FormControl>
             </form>
