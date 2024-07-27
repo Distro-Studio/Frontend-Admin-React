@@ -20,10 +20,10 @@ export default function PengaturanContainer({
       <Wrap
         flex={1}
         borderRadius={12}
-        overflowY={"auto"}
         className="scrollY"
         align={"start"}
         pt={0}
+        overflowY={"auto"}
         spacing={responsiveSpacing}
       >
         <PengaturanNavs activeGroup={activeGroup} active={active} />
