@@ -41,6 +41,7 @@ export default function Penggajian() {
     <>
       <CWrapper>
         <CContainer
+          flex={1}
           px={responsiveSpacing}
           pb={responsiveSpacing}
           pt={0}

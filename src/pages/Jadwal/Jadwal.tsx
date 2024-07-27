@@ -50,6 +50,7 @@ export default function Jadwal() {
     <>
       <CWrapper>
         <CContainer
+          flex={1}
           px={responsiveSpacing}
           pb={responsiveSpacing}
           pt={0}
