@@ -27,7 +27,7 @@ import {
   RiListCheck,
   RiMore2Fill,
 } from "@remixicon/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLightDarkColor } from "../../const/colors";
 import {
   Interface__FormattedTableData,
@@ -292,182 +292,119 @@ export default function CustomTable({
 
   const tableRef = useRef(null);
 
+  const [rowMouseEnter, setRowMouseEnter] = useState<boolean>(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      setPosition({
+        x: event.clientX,
+        y: event.clientY,
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
   // SX
   const lightDarkColor = useLightDarkColor();
 
   return (
-    <Table
-      ref={tableRef}
-      minW={"0"}
-      w={tableHeader.length > 1 ? "100%" : "fit-content"}
-    >
-      <Thead>
-        <Tr position={"sticky"} top={0} zIndex={3}>
-          {batchActions && (
-            <Td
-              h={"52px"}
-              w={"52px !important"}
-              minW={"0% !important"}
-              maxW={"52px !important"}
-              p={0}
-              position={"sticky"}
-              left={0}
-            >
-              <Center
-                h={"52px"}
-                w={"52px"}
-                borderRight={"1px solid var(--divider3)"}
-                borderBottom={"1px solid var(--divider3)"}
-                bg={lightDarkColor}
-              >
-                <BatchActions
-                  selectedRows={selectedRows}
-                  batchActions={batchActions}
-                  selectAllRows={selectAllRows}
-                  handleSelectAllRows={handleSelectAllRows}
-                  tableRef={tableRef}
-                />
-              </Center>
-            </Td>
-          )}
+    <>
+      {onRowClick && (
+        <Center
+          position="fixed"
+          w="16px"
+          h="16px"
+          zIndex={20}
+          opacity={rowMouseEnter ? 1 : 0}
+          // transition={"200ms"}
+          borderRadius="full"
+          bg="p.500"
+          left={`${position.x}px`}
+          top={`${position.y}px`}
+          transform="translate(-50%, -50%)" // Centers the Box around the cursor
+          pointerEvents="none" // Ensures the box does not interfere with cursor actions
+        >
+          <Box
+            position={"absolute"}
+            w={"32px"}
+            h={"32px"}
+            bg={"var(--p500)"}
+            borderRadius={"full"}
+            animation={"pulse 1s infinite"}
+          />
+        </Center>
+      )}
 
-          {tableHeader.map((header, i) => (
-            <Th
-              key={i}
-              bg={lightDarkColor}
-              whiteSpace={"nowrap"}
-              onClick={() => {
-                header.isSortable && requestSort(i);
-              }}
-              cursor={header.isSortable ? "pointer" : "auto"}
-              borderBottom={"none !important"}
-              p={0}
-              {...header?.props}
-            >
-              <HStack
-                borderBottom={"1px solid var(--divider3)"}
-                // justify={"space-between"}
-                px={4}
-                py={3}
-                gap={4}
-                h={"52px"}
-                pl={i === 0 ? 4 : ""}
-                pr={i === formattedHeader.length - 1 ? 4 : ""}
-                {...header?.cProps}
-              >
-                <Text>{header.th}</Text>
-
-                {renderSortIcon(i)}
-              </HStack>
-            </Th>
-          ))}
-
-          {rowOptions && (
-            <Td
-              h={"52px"}
-              w={"52px !important"}
-              minW={"0% !important"}
-              maxW={"52px !important"}
-              p={0}
-              position={"sticky"}
-              right={0}
-            >
-              <Center
-                h={"52px"}
-                w={"52px"}
-                borderLeft={"1px solid var(--divider3)"}
-                borderBottom={"1px solid var(--divider3)"}
-                bg={lightDarkColor}
-              ></Center>
-            </Td>
-          )}
-        </Tr>
-      </Thead>
-
-      <Tbody>
-        {sortedData().map((row, rowIndex) => (
-          <Tr
-            key={rowIndex}
-            role="group"
-            transition={"200ms"}
-            onClick={(e) => {
-              handleRowClick(row);
-            }}
-            cursor={onRowClick ? "pointer" : "auto"}
-            px={2}
-            borderBottom={"1px solid var(--divider)"}
-            {...trBodyProps}
-          >
+      <Table
+        ref={tableRef}
+        minW={"0"}
+        w={tableHeader.length > 1 ? "100%" : "fit-content"}
+      >
+        <Thead>
+          <Tr position={"sticky"} top={0} zIndex={3}>
             {batchActions && (
               <Td
-                h={"60px"}
+                h={"52px"}
                 w={"52px !important"}
                 minW={"0% !important"}
                 maxW={"52px !important"}
                 p={0}
                 position={"sticky"}
                 left={0}
-                bg={lightDarkColor}
-                zIndex={2}
-                className="btn"
               >
                 <Center
+                  h={"52px"}
                   w={"52px"}
-                  h={"60px"}
                   borderRight={"1px solid var(--divider3)"}
-                  _groupHover={{
-                    bg: "var(--divider)",
-                  }}
-                  _groupActive={
-                    onRowClick ? { bg: "var(--divider2)" } : undefined
-                  }
-                  transition={"200ms"}
-                  cursor={"pointer"}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleRowSelection(row.id);
-                  }}
+                  borderBottom={"1px solid var(--divider3)"}
+                  bg={lightDarkColor}
                 >
-                  <Checkbox
-                    colorScheme="ap"
-                    // size={"lg"}
-                    onChange={() => {
-                      toggleRowSelection(row.id);
-                    }}
-                    isChecked={selectedRows.includes(row.id)}
+                  <BatchActions
+                    selectedRows={selectedRows}
+                    batchActions={batchActions}
+                    selectAllRows={selectAllRows}
+                    handleSelectAllRows={handleSelectAllRows}
+                    tableRef={tableRef}
                   />
                 </Center>
               </Td>
             )}
 
-            {row.columnsFormat.map((col, colIndex) => (
-              <Td
-                key={colIndex}
-                whiteSpace={"nowrap"}
+            {tableHeader.map((header, i) => (
+              <Th
+                key={i}
                 bg={lightDarkColor}
+                whiteSpace={"nowrap"}
+                onClick={() => {
+                  header.isSortable && requestSort(i);
+                }}
+                cursor={header.isSortable ? "pointer" : "auto"}
+                borderBottom={"none !important"}
                 p={0}
-                {...col?.props}
+                {...header?.props}
               >
                 <HStack
-                  _groupHover={{
-                    bg: "var(--divider)",
-                  }}
-                  _groupActive={
-                    onRowClick ? { bg: "var(--divider2)" } : undefined
-                  }
-                  py={3}
+                  borderBottom={"1px solid var(--divider3)"}
+                  // justify={"space-between"}
                   px={4}
-                  h={"60px"}
-                  transition={"200ms"}
-                  {...col?.cProps}
+                  py={3}
+                  gap={4}
+                  h={"52px"}
+                  pl={i === 0 ? 4 : ""}
+                  pr={i === formattedHeader.length - 1 ? 4 : ""}
+                  {...header?.cProps}
                 >
-                  {typeof col.td === "string" || typeof col.td === "number" ? (
-                    <Text>{col.td}</Text>
-                  ) : (
-                    col.td
-                  )}
+                  <Text>{header.th}</Text>
+
+                  {renderSortIcon(i)}
                 </HStack>
-              </Td>
+              </Th>
             ))}
 
             {rowOptions && (
@@ -479,35 +416,151 @@ export default function CustomTable({
                 p={0}
                 position={"sticky"}
                 right={0}
-                bg={lightDarkColor}
-                zIndex={2}
               >
                 <Center
-                  h={"60px"}
+                  h={"52px"}
                   w={"52px"}
                   borderLeft={"1px solid var(--divider3)"}
-                  _groupHover={{
-                    bg: "var(--divider)",
-                  }}
-                  _groupActive={
-                    onRowClick ? { bg: "var(--divider2)" } : undefined
-                  }
-                  transition={"200ms"}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                  }}
-                >
-                  <RowOptions
-                    row={row}
-                    rowOptions={rowOptions}
-                    tableRef={tableRef}
-                  />
-                </Center>
+                  borderBottom={"1px solid var(--divider3)"}
+                  bg={lightDarkColor}
+                ></Center>
               </Td>
             )}
           </Tr>
-        ))}
-      </Tbody>
-    </Table>
+        </Thead>
+
+        <Tbody>
+          {sortedData().map((row, rowIndex) => (
+            <Tr
+              key={rowIndex}
+              role="group"
+              transition={"200ms"}
+              onClick={(e) => {
+                handleRowClick(row);
+              }}
+              cursor={onRowClick ? "pointer" : "auto"}
+              px={2}
+              borderBottom={"1px solid var(--divider)"}
+              onMouseEnter={() => {
+                setRowMouseEnter(true);
+              }}
+              onMouseLeave={() => {
+                setRowMouseEnter(false);
+              }}
+              {...trBodyProps}
+            >
+              {batchActions && (
+                <Td
+                  h={"60px"}
+                  w={"52px !important"}
+                  minW={"0% !important"}
+                  maxW={"52px !important"}
+                  p={0}
+                  position={"sticky"}
+                  left={0}
+                  bg={lightDarkColor}
+                  zIndex={2}
+                  className="btn"
+                >
+                  <Center
+                    w={"52px"}
+                    h={"60px"}
+                    borderRight={"1px solid var(--divider3)"}
+                    _groupHover={{
+                      bg: "var(--divider)",
+                    }}
+                    _groupActive={
+                      onRowClick ? { bg: "var(--divider2)" } : undefined
+                    }
+                    transition={"200ms"}
+                    cursor={"pointer"}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleRowSelection(row.id);
+                    }}
+                  >
+                    <Checkbox
+                      colorScheme="ap"
+                      // size={"lg"}
+                      onChange={() => {
+                        toggleRowSelection(row.id);
+                      }}
+                      isChecked={selectedRows.includes(row.id)}
+                    />
+                  </Center>
+                </Td>
+              )}
+
+              {row.columnsFormat.map((col, colIndex) => (
+                <Td
+                  key={colIndex}
+                  whiteSpace={"nowrap"}
+                  bg={lightDarkColor}
+                  p={0}
+                  {...col?.props}
+                >
+                  <HStack
+                    _groupHover={{
+                      bg: "var(--divider)",
+                    }}
+                    _groupActive={
+                      onRowClick ? { bg: "var(--divider2)" } : undefined
+                    }
+                    py={3}
+                    px={4}
+                    h={"60px"}
+                    transition={"200ms"}
+                    {...col?.cProps}
+                  >
+                    {typeof col.td === "string" ||
+                    typeof col.td === "number" ? (
+                      <Text>{col.td}</Text>
+                    ) : (
+                      col.td
+                    )}
+                  </HStack>
+                </Td>
+              ))}
+
+              {rowOptions && (
+                <Td
+                  h={"52px"}
+                  w={"52px !important"}
+                  minW={"0% !important"}
+                  maxW={"52px !important"}
+                  p={0}
+                  position={"sticky"}
+                  right={0}
+                  bg={lightDarkColor}
+                  zIndex={2}
+                >
+                  <Center
+                    h={"60px"}
+                    w={"52px"}
+                    borderLeft={"1px solid var(--divider3)"}
+                    _groupHover={{
+                      bg: "var(--divider)",
+                    }}
+                    _groupActive={
+                      onRowClick ? { bg: "var(--divider2)" } : undefined
+                    }
+                    transition={"200ms"}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                  >
+                    <RowOptions
+                      row={row}
+                      rowOptions={rowOptions}
+                      tableRef={tableRef}
+                    />
+                  </Center>
+                </Td>
+              )}
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </>
   );
 }

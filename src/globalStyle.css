@@ -470,6 +470,18 @@ button[aria-label="Close"] > svg {
     opacity: 1;
   }
 }
+
+@keyframes pulse {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+  }
+}
 /* Keyframes */
 
 .chakra-popover__close-btn > svg {
