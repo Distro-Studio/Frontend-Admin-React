@@ -27,7 +27,7 @@ import {
   RiListCheck,
   RiMore2Fill,
 } from "@remixicon/react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useLightDarkColor } from "../../const/colors";
 import {
   Interface__FormattedTableData,
@@ -51,7 +51,7 @@ const BatchActions = ({
   tableRef,
 }: BatchActionsProps) => {
   return (
-    <Menu closeOnSelect={false}>
+    <Menu>
       <MenuButton
         as={IconButton}
         h={"52px"}
@@ -73,6 +73,7 @@ const BatchActions = ({
               onClick={() => {
                 handleSelectAllRows(selectAllRows);
               }}
+              closeOnSelect={false}
             >
               <Text color={"p.500"} fontWeight={550}>
                 Pilih Semua
@@ -292,54 +293,12 @@ export default function CustomTable({
 
   const tableRef = useRef(null);
 
-  const [rowMouseEnter, setRowMouseEnter] = useState<boolean>(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      setPosition({
-        x: event.clientX,
-        y: event.clientY,
-      });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
   // SX
   const lightDarkColor = useLightDarkColor();
 
   return (
     <>
-      {onRowClick && (
-        <Center
-          position="fixed"
-          w="16px"
-          h="16px"
-          zIndex={20}
-          opacity={rowMouseEnter ? 1 : 0}
-          // transition={"200ms"}
-          borderRadius="full"
-          bg="p.500"
-          left={`${position.x}px`}
-          top={`${position.y}px`}
-          transform="translate(-50%, -50%)" // Centers the Box around the cursor
-          pointerEvents="none" // Ensures the box does not interfere with cursor actions
-        >
-          <Box
-            position={"absolute"}
-            w={"32px"}
-            h={"32px"}
-            bg={"var(--p500)"}
-            borderRadius={"full"}
-            animation={"pulse 1s infinite"}
-          />
-        </Center>
-      )}
+      {/* {onRowClick && <Box w={"4px"} h={"100%"} bg={"p.500"} />} */}
 
       <Table
         ref={tableRef}
@@ -441,12 +400,8 @@ export default function CustomTable({
               cursor={onRowClick ? "pointer" : "auto"}
               px={2}
               borderBottom={"1px solid var(--divider)"}
-              onMouseEnter={() => {
-                setRowMouseEnter(true);
-              }}
-              onMouseLeave={() => {
-                setRowMouseEnter(false);
-              }}
+              position={"relative"}
+              className={onRowClick ? "rowHoverOnClick" : ""}
               {...trBodyProps}
             >
               {batchActions && (

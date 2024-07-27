@@ -284,7 +284,7 @@ export default function TabelKaryawan() {
                   onOpen();
                 }}
                 columnsConfig={columnsConfig}
-                // batchActions={rowOptions}
+                batchActions={rowOptions}
                 rowOptions={rowOptions}
               />
             </CustomTableContainer>

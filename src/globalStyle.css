@@ -402,6 +402,26 @@ button[aria-label="Close"] > svg {
   pointer-events: none; /* agar tidak mengganggu klik tombol */
 }
 
+.rowHoverOnClick {
+  transition: 200ms;
+}
+.rowHoverOnClick::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--p500);
+  opacity: 0;
+  z-index: 20;
+  transition: 200ms !important;
+}
+.rowHoverOnClick:hover::after,
+.rowHoverOnClick:focus::after {
+  opacity: 1; /* Show the line on hover or focus */
+}
+
 /* Keyframes */
 @keyframes ripple {
   to {
