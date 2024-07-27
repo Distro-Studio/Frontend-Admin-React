@@ -49,7 +49,6 @@ export default function TabelKaryawan() {
       );
     },
   ];
-  const [userId, setUserId] = useState<number | undefined>(undefined);
 
   const { error, loading, data, retry } = useDataState<
     Interface__DetailKaryawan[]
@@ -253,6 +252,8 @@ export default function TabelKaryawan() {
     ],
   }));
 
+  const user_id = parseInt(localStorage.getItem("user_id") as string);
+
   const render = {
     error: (
       <Center my={"auto"} minH={"400px"}>
@@ -280,7 +281,8 @@ export default function TabelKaryawan() {
                 formattedHeader={formattedHeader}
                 formattedData={formattedData}
                 onRowClick={(row) => {
-                  setUserId(row.id);
+                  // setSearchParam("userId", row.id);
+                  localStorage.setItem("user_id", row.id);
                   onOpen();
                 }}
                 columnsConfig={columnsConfig}
@@ -306,8 +308,7 @@ export default function TabelKaryawan() {
               }
             />
             <DetailKaryawanModal
-              id={"detail-karyawan-row-on-click-modal"}
-              user_id={userId}
+              user_id={user_id}
               isOpen={isOpen}
               onOpen={onOpen}
               onClose={onClose}

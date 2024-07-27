@@ -157,7 +157,7 @@ export default function DetailPresensiKaryawanModal({
                       h={"calc(100vh - 70px)"}
                       overflowY={"auto"}
                       className="scrollY"
-                      gap={responsiveSpacing}
+                      gap={8}
                       mb={responsiveSpacing}
                     >
                       <Wrap

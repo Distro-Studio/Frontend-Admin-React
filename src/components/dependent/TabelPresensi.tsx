@@ -136,6 +136,8 @@ export default function TabelPresensi({ filterConfig }: Props) {
     ],
   }));
 
+  const presensi_id = parseInt(localStorage.getItem("presensi_id") as string);
+
   return (
     <>
       {error && (
@@ -165,7 +167,10 @@ export default function TabelPresensi({ filterConfig }: Props) {
                     <CustomTable
                       formattedHeader={formattedHeader}
                       formattedData={formattedData}
-                      onRowClick={onOpen}
+                      onRowClick={(row) => {
+                        localStorage.setItem("presensi_id", row.id);
+                        onOpen();
+                      }}
                       // columnsConfig={columnsConfig}
                     />
                   </CustomTableContainer>
@@ -188,7 +193,7 @@ export default function TabelPresensi({ filterConfig }: Props) {
                   />
 
                   <DetailPresensiKaryawanModal
-                    presensi_id={1}
+                    presensi_id={presensi_id}
                     isOpen={isOpen}
                     onOpen={onOpen}
                     onClose={onClose}

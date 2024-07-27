@@ -48,8 +48,8 @@ export default function DetailRekamJejakKaryawanModalDisclosure({
   );
   const initialRef = useRef(null);
   // 1 Perubahan Data
-  // 2 Mutasi Karyawan
-  // 3 Promosi Karyawan
+  // 2 Mutasi Pegawai
+  // 3 Promosi Pegawai
   // 4 Feedback
 
   const dummyRekamJejak = [
