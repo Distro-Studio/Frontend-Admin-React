@@ -102,7 +102,7 @@ export default function DashboardJabatan({ ...props }: Props) {
 
           <VStack
             align={"stretch"}
-            gap={3}
+            gap={4}
             pb={responsiveSpacing}
             overflowY={"auto"}
             px={responsiveSpacing}
