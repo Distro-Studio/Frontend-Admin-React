@@ -6,7 +6,7 @@ export default function Skeleton(props?: BoxProps) {
       className={"skeleton"}
       w={"100%"}
       h={"50px"}
-      bg={"var(--divider)"}
+      bg={"var(--divider2)"}
       borderRadius={8}
       {...props}
     />
