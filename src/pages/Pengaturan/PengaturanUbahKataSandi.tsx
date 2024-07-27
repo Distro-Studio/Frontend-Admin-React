@@ -37,6 +37,7 @@ export default function PengaturanUbahKataSandi() {
       bg={useBodyColor()}
       borderRadius={12}
       flex={"1 1 600px"}
+      h={"100%"}
     >
       <form id="ubahKataSandiForm" onSubmit={formik.handleSubmit}>
         {/* <Text fontSize={20} fontWeight={600} mb={responsiveSpacing}>
@@ -99,6 +100,7 @@ export default function PengaturanUbahKataSandi() {
       </form>
 
       <Button
+        mt={"auto"}
         ml={"auto"}
         w={"120px"}
         className="btn-ap clicky"
