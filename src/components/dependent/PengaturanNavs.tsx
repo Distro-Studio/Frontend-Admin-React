@@ -25,6 +25,7 @@ export default function PengaturanNavs({ activeGroup, active }: Props) {
       gap={4}
       overflowY={"auto"}
       className="scrollY"
+      h={"100%"}
     >
       {pengaturanNavs.map((nav, i) => (
         <CContainer key={i} gap={2}>

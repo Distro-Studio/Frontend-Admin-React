@@ -1,6 +1,12 @@
 import {
+  RiCalendarCheckLine,
+  RiCalendarCloseLine,
+  RiCalendarLine,
+  RiFilePaper2Line,
   RiGroup3Line,
+  RiHandCoinLine,
   RiIdCardLine,
+  RiLandscapeLine,
   RiLockLine,
   RiQuestionLine,
   RiUserSettingsLine,
@@ -52,6 +58,56 @@ const pengaturanNavs = [
         label: "Kuisioner",
         link: "/pengaturan/karyawan/kuisioner",
       },
+    ],
+  },
+  {
+    groupName: "Keuangan",
+    navs: [
+      {
+        icon: RiHandCoinLine,
+        label: "Potongan",
+        link: "/pengaturan/keuangan/premi",
+      },
+      {
+        icon: RiFilePaper2Line,
+        label: "TER pph21",
+        link: "/pengaturan/keuangan/ter-pph21",
+      },
+      {
+        icon: RiCalendarLine,
+        label: "Tanggal Penggajian",
+        link: "/pengaturan/keuangan/jadwal-penggajian",
+      },
+      // {
+      //   icon: RiVerifiedBadgeLine,
+      //   label: "THR",
+      //   link: "/pengaturan/karyawan/kompetensi",
+      // },
+    ],
+  },
+  {
+    groupName: "Manajemen Waktu",
+    navs: [
+      {
+        icon: RiCalendarCheckLine,
+        label: "Shift",
+        link: "/pengaturan/manajemen-waktu/shift",
+      },
+      {
+        icon: RiLandscapeLine,
+        label: "Hari Libur",
+        link: "/pengaturan/manajemen-waktu/hari-libur",
+      },
+      {
+        icon: RiCalendarCloseLine,
+        label: "Tipe Cuti",
+        link: "/pengaturan/manajemen-waktu/cuti",
+      },
+      // {
+      //   icon: RiVerifiedBadgeLine,
+      //   label: "THR",
+      //   link: "/pengaturan/karyawan/kompetensi",
+      // },
     ],
   },
 ];
