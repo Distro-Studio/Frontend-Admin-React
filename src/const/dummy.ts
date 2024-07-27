@@ -4102,7 +4102,6 @@ const dummyUnitKerja = [
     created_at: "2024-04-22T03:18:23.000000Z",
     updated_at: "2024-05-07T03:18:23.000000Z",
   },
-
   {
     id: 13,
     nama_unit: "Radiologi",

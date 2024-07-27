@@ -4,29 +4,32 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Icon,
   Input,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
+import { RiAddCircleFill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../lib/backOnCloseOld";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
+import { iconSize } from "../../const/sizes";
 import SelectJenisKaryawan from "../dependent/_Select/SelectJenisKaryawan";
+import DisclosureHeader from "../dependent/DisclosureHeader";
 import RequiredForm from "../form/RequiredForm";
+import useBackOnClose from "../../hooks/useBackOnClose";
+import backOnClose from "../../lib/backOnClose";
 
 interface Props extends ButtonProps {}
 
 export default function TambahUnitKerja({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
+  useBackOnClose("tambah-unit-kerja-modal", isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
   const formik = useFormik({
@@ -47,6 +50,8 @@ export default function TambahUnitKerja({ ...props }: Props) {
         className="btn-ap clicky"
         colorScheme="ap"
         onClick={onOpen}
+        leftIcon={<Icon as={RiAddCircleFill} fontSize={iconSize} />}
+        pl={5}
         {...props}
       >
         Tambah Unit Kerja
@@ -55,7 +60,7 @@ export default function TambahUnitKerja({ ...props }: Props) {
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          backOnClose(onClose);
+          backOnClose();
           formik.resetForm();
         }}
         initialFocusRef={initialRef}
@@ -63,8 +68,9 @@ export default function TambahUnitKerja({ ...props }: Props) {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader ref={initialRef}> Tambah Unit Kerja</ModalHeader>
+          <ModalHeader ref={initialRef}>
+            <DisclosureHeader title="Tambah Unit Kerja" />
+          </ModalHeader>
           <ModalBody>
             <form id="tambahUnitKerjaForm" onSubmit={formik.handleSubmit}>
               <FormControl
@@ -95,11 +101,11 @@ export default function TambahUnitKerja({ ...props }: Props) {
                 </FormLabel>
                 <SelectJenisKaryawan
                   name="jenis_karyawan"
-                  formik={formik}
+                  onConfirm={(input) => {
+                    formik.setFieldValue("jenis_karyawan", input);
+                  }}
+                  inputValue={formik.values.jenis_karyawan}
                   placeholder="Pilih Jenis Pegawai"
-                  initialSelected={formik.values.jenis_karyawan}
-                  noUseBackOnClose
-                  noSearch
                 />
                 <FormErrorMessage>
                   {formik.errors.jenis_karyawan as string}
