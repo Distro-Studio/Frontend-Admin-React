@@ -35,7 +35,7 @@ export default function PengaturanJadwalPenggajian() {
       .shape({ tanggal: yup.string().required("Harus diisi") }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
-      //TODO simpan jadwal penggajian
+      //TODO simpan tanggal penggajian
     },
   });
 
