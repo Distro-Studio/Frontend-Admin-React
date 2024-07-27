@@ -21,6 +21,7 @@ export default function PengaturanShift() {
       borderRadius={12}
       flex={"1 1 600px"}
       overflowX={"auto"}
+      h={"100%"}
     >
       <HStack
         py={responsiveSpacing}
