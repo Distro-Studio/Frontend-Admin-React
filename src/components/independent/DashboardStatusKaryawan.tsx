@@ -45,7 +45,7 @@ export default function DashboardStatusKaryawan({ ...props }: Props) {
           bg={bodyColor}
           borderRadius={12}
           minW={dashboardItemMinWidth}
-          p={6}
+          p={responsiveSpacing}
           gap={0}
           h={dashboardItemHeight}
           {...props}

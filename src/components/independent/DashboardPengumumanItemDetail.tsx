@@ -17,7 +17,7 @@ import {
 import { RiCalendar2Fill } from "@remixicon/react";
 import { useRef, useState } from "react";
 import { Pengumuman__Interface } from "../../const/interfaces";
-import { iconSize } from "../../const/sizes";
+import { iconSize, responsiveSpacing } from "../../const/sizes";
 import backOnClose from "../../lib/backOnCloseOld";
 import formatDate from "../../lib/formatDate";
 import useBackOnClose from "../../lib/useBackOnCloseOld";
@@ -51,7 +51,7 @@ export default function DashboardPengumumanItemDetail({
         align={"stretch"}
         borderBottom={"1px solid var(--divider3)"}
         py={4}
-        px={6}
+        px={responsiveSpacing}
         onClick={onOpen}
         cursor={"pointer"}
         _hover={{ bg: "var(--divider)" }}

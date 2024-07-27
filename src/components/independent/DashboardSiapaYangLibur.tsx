@@ -20,6 +20,7 @@ import {
   dashboardItemHeight,
   dashboardItemMinWidth,
   iconSize,
+  responsiveSpacing,
 } from "../../const/sizes";
 import whosOffPeriode from "../../const/whosOffPeriode";
 import Skeleton from "./Skeleton";
@@ -54,7 +55,7 @@ export default function DashboardSiapaYangLibur({ ...props }: Props) {
           h={dashboardItemHeight}
           {...props}
         >
-          <HStack justify={"space-between"} p={6}>
+          <HStack justify={"space-between"} p={responsiveSpacing}>
             <Text fontWeight={600}>Siapa Yang Libur</Text>
 
             <Menu>
@@ -86,10 +87,10 @@ export default function DashboardSiapaYangLibur({ ...props }: Props) {
 
           <VStack
             align={"stretch"}
-            gap={6}
-            pb={6}
+            gap={responsiveSpacing}
+            pb={responsiveSpacing}
             overflowY={"auto"}
-            px={6}
+            px={responsiveSpacing}
             className="scrollX scrollY"
             // className="scrollY"
           >

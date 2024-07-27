@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import { useBodyColor } from "../../const/colors";
 import { Jabatan__Interface } from "../../const/interfaces";
 import Skeleton from "./Skeleton";
-import { dashboardItemHeight, dashboardItemMinWidth } from "../../const/sizes";
+import {
+  dashboardItemHeight,
+  dashboardItemMinWidth,
+  responsiveSpacing,
+} from "../../const/sizes";
 import FlexLine from "./FlexLine";
 
 interface Props extends StackProps {}
@@ -89,7 +93,7 @@ export default function DashboardJabatan({ ...props }: Props) {
           h={dashboardItemHeight}
           {...props}
         >
-          <Box p={6}>
+          <Box p={responsiveSpacing}>
             <Text fontWeight={600}>Jabatan</Text>
             <Text fontSize={14} opacity={0.6}>
               Karyawan saat ini
@@ -98,10 +102,10 @@ export default function DashboardJabatan({ ...props }: Props) {
 
           <VStack
             align={"stretch"}
-            gap={4}
-            pb={6}
+            gap={3}
+            pb={responsiveSpacing}
             overflowY={"auto"}
-            px={6}
+            px={responsiveSpacing}
             // className="scrollY"
           >
             {data.map((jabatan, i) => (

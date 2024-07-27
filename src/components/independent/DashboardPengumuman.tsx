@@ -97,7 +97,7 @@ export default function DashboardPengumuman({ ...props }: Props) {
           h={dashboardItemHeight}
           {...props}
         >
-          <Box p={6}>
+          <Box p={responsiveSpacing}>
             <HStack
               justify={"space-between"}
               mb={responsiveSpacing}
