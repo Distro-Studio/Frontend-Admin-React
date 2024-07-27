@@ -23,7 +23,7 @@ import DetailPenggajian from "./pages/Keuangan/DetailPenggajian";
 import Penggajian from "./pages/Keuangan/Penggajian";
 import Thr from "./pages/Keuangan/Thr";
 import Login from "./pages/Login/Login";
-import PengaturanCuti from "./pages/Pengaturan/PengaturanCuti";
+import PengaturanCuti from "./pages/Pengaturan/PengaturanTipeCuti";
 import PengaturanHariLibur from "./pages/Pengaturan/PengaturanHariLibur";
 import PengaturanJabatan from "./pages/Pengaturan/PengaturanJabatan";
 import PengaturanJadwalPenggajian from "./pages/Pengaturan/PengaturanJadwalPenggajian";

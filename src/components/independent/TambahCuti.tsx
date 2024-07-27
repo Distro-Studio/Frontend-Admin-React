@@ -4,12 +4,12 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Icon,
   Input,
   InputGroup,
   InputRightElement,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -17,18 +17,21 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { RiAddCircleFill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
-import backOnClose from "../../lib/backOnCloseOld";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
+import { iconSize } from "../../const/sizes";
+import useBackOnClose from "../../hooks/useBackOnClose";
+import backOnClose from "../../lib/backOnClose";
+import DisclosureHeader from "../dependent/DisclosureHeader";
 import RequiredForm from "../form/RequiredForm";
 
 interface Props extends ButtonProps {}
 
 export default function TambahCuti({ ...props }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose(isOpen, onClose);
+  useBackOnClose("tambah-tipe-cuti-modal", isOpen, onOpen, onClose);
   const initialRef = useRef(null);
 
   const formik = useFormik({
@@ -54,6 +57,8 @@ export default function TambahCuti({ ...props }: Props) {
         className="btn-ap clicky"
         colorScheme="ap"
         onClick={onOpen}
+        leftIcon={<Icon as={RiAddCircleFill} fontSize={iconSize} />}
+        pl={5}
         {...props}
       >
         Tambah Cuti
@@ -62,7 +67,7 @@ export default function TambahCuti({ ...props }: Props) {
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          backOnClose(onClose);
+          backOnClose();
           formik.resetForm();
         }}
         initialFocusRef={initialRef}
@@ -70,8 +75,9 @@ export default function TambahCuti({ ...props }: Props) {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Tambah Cuti</ModalHeader>
+          <ModalHeader ref={initialRef}>
+            <DisclosureHeader title="Tambah Tipe Cuti" />
+          </ModalHeader>
           <ModalBody>
             <form id="tambahUnitKerjaForm" onSubmit={formik.handleSubmit}>
               <FormControl mb={4} isInvalid={formik.errors.nama ? true : false}>
