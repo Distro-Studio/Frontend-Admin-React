@@ -1,11 +1,15 @@
 import { Box, Text, Tooltip } from "@chakra-ui/react";
 import formatDate from "../../lib/formatDate";
 import BooleanBadge from "./BooleanBadge";
+import { useErrorColor } from "../../const/colors";
 
 interface Props {
   data: Date | string;
 }
 export default function StatusDihapus({ data }: Props) {
+  // SX
+  const errorColor = useErrorColor();
+
   return (
     <Tooltip
       openDelay={500}
@@ -27,7 +31,8 @@ export default function StatusDihapus({ data }: Props) {
           data={!!data}
           trueValue="Dihapus"
           falseValue=""
-          colorScheme={data ? "red" : ""}
+          color={data ? errorColor : ""}
+          bg={"var(--divider)"}
         />
       </Box>
     </Tooltip>
