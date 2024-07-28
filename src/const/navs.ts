@@ -3,7 +3,7 @@ import {
   RiGroupFill,
   RiHome6Fill,
   RiMoneyDollarCircleFill,
-  RiSettingsLine,
+  RiSettingsFill,
   RiTimeFill,
   RiTimerFill,
 } from "@remixicon/react";
@@ -106,7 +106,7 @@ const navs = [
   {
     label: "Pengaturan",
     link: "/pengaturan/akun/kelola-role",
-    icon: RiSettingsLine,
+    icon: RiSettingsFill,
     subNavs: [
       {
         label: "Pengaturan",
