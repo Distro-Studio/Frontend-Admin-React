@@ -9,11 +9,11 @@ import {
   Modal,
   ModalBody,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   SimpleGrid,
   useDisclosure,
+  Wrap,
 } from "@chakra-ui/react";
 import { RiUser2Fill } from "@remixicon/react";
 import { useFormik } from "formik";
@@ -25,11 +25,12 @@ import backOnClose from "../../lib/backOnClose";
 import SelectKategoriDiklat from "../dependent/_Select/SelectKategoriDiklat";
 import DisclosureHeader from "../dependent/DisclosureHeader";
 import DateRangePickerModal from "../dependent/input/DateRangePickerModal";
-import FileInput from "../dependent/input/FileInput";
+import FileInputLarge from "../dependent/input/FileInputLarge";
 import NumberInput from "../dependent/input/NumberInput";
 import Textarea from "../dependent/input/Textarea";
 import TimePickerModal from "../dependent/input/TimePickerModal";
 import RequiredForm from "../form/RequiredForm";
+import CContainer from "../wrapper/CContainer";
 
 interface Props extends ButtonProps {}
 
@@ -91,85 +92,95 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
           formik.resetForm();
         }}
         initialFocusRef={initialRef}
-        isCentered
+        scrollBehavior="inside"
         size={"full"}
         blockScrollOnMount={false}
       >
         <ModalOverlay />
-        <ModalContent minH={"calc(100vh - 32px)"}>
+        <ModalContent minH={"calc(100vh - 32px)"} borderRadius={12}>
           <ModalHeader ref={initialRef}>
             <DisclosureHeader title="Buat Acara Diklat" />
           </ModalHeader>
-          <ModalBody>
+          <ModalBody className="scrollY">
             <form id="tambahAcaraDiklatForm" onSubmit={formik.handleSubmit}>
-              <SimpleGrid columns={[1, 2]} gap={4}>
-                <FormControl mb={4} isInvalid={!!formik.errors.gambar}>
+              <SimpleGrid columns={[1, 2]} spacingX={4} mb={8}>
+                <FormControl
+                  flex={"1 1"}
+                  mb={4}
+                  isInvalid={!!formik.errors.gambar}
+                >
                   <FormLabel>
                     Gambar Thumbnail
                     <RequiredForm />
                   </FormLabel>
-                  <FileInput
+                  <FileInputLarge
                     name="gambar"
                     onChangeSetter={(input) => {
                       formik.setFieldValue("gambar", input);
                     }}
                     inputValue={formik.values.gambar}
+                    cProps={{ h: "100%" }}
                   />
                   <FormErrorMessage>
                     {formik.errors.gambar as string}
                   </FormErrorMessage>
                 </FormControl>
 
-                <FormControl mb={4} isInvalid={!!formik.errors.nama}>
-                  <FormLabel>
-                    Nama Acara
-                    <RequiredForm />
-                  </FormLabel>
-                  <Input
-                    name="nama"
-                    placeholder="Pendidikan & Latihan"
-                    onChange={formik.handleChange}
-                    value={formik.values.nama}
-                  />
-                  <FormErrorMessage>
-                    {formik.errors.nama as string}
-                  </FormErrorMessage>
-                </FormControl>
+                <CContainer flex={"1 1"} gap={4}>
+                  <FormControl mb={4} isInvalid={!!formik.errors.nama}>
+                    <FormLabel>
+                      Nama Acara
+                      <RequiredForm />
+                    </FormLabel>
+                    <Input
+                      name="nama"
+                      placeholder="Pendidikan & Latihan"
+                      onChange={formik.handleChange}
+                      value={formik.values.nama}
+                    />
+                    <FormErrorMessage>
+                      {formik.errors.nama as string}
+                    </FormErrorMessage>
+                  </FormControl>
 
-                <FormControl mb={4} isInvalid={!!formik.errors.kategori}>
-                  <FormLabel>
-                    Kategori
-                    <RequiredForm />
-                  </FormLabel>
-                  <SelectKategoriDiklat
-                    name="kategori"
-                    onConfirm={(input) => {
-                      formik.setFieldValue("kaergori", input);
-                    }}
-                    inputValue={formik.values.kategori}
-                  />
-                  <FormErrorMessage>
-                    {formik.errors.kategori as string}
-                  </FormErrorMessage>
-                </FormControl>
+                  <FormControl mb={4} isInvalid={!!formik.errors.kategori}>
+                    <FormLabel>
+                      Kategori
+                      <RequiredForm />
+                    </FormLabel>
+                    <SelectKategoriDiklat
+                      name="kategori"
+                      onConfirm={(input) => {
+                        formik.setFieldValue("kaergori", input);
+                      }}
+                      inputValue={formik.values.kategori}
+                    />
+                    <FormErrorMessage>
+                      {formik.errors.kategori as string}
+                    </FormErrorMessage>
+                  </FormControl>
 
-                <FormControl mb={4} isInvalid={!!formik.errors.deskripsi}>
-                  <FormLabel>
-                    Deskripsi
-                    <RequiredForm />
-                  </FormLabel>
-                  <Textarea
-                    name="deskripsi"
-                    onChangeSetter={(input) => {
-                      formik.setFieldValue("deskripsi", input);
-                    }}
-                    inputValue={formik.values.deskripsi}
-                  />
-                  <FormErrorMessage>
-                    {formik.errors.deskripsi as string}
-                  </FormErrorMessage>
-                </FormControl>
+                  <FormControl mb={4} isInvalid={!!formik.errors.deskripsi}>
+                    <FormLabel>
+                      Deskripsi
+                      <RequiredForm />
+                    </FormLabel>
+                    <Textarea
+                      name="deskripsi"
+                      onChangeSetter={(input) => {
+                        formik.setFieldValue("deskripsi", input);
+                      }}
+                      inputValue={formik.values.deskripsi}
+                      minH={"100%"}
+                    />
+                    <FormErrorMessage>
+                      {formik.errors.deskripsi as string}
+                    </FormErrorMessage>
+                  </FormControl>
+                </CContainer>
+              </SimpleGrid>
 
+              <SimpleGrid columns={[1, 2, 3]} spacingX={4}>
                 <FormControl mb={4} isInvalid={!!formik.errors.kuota}>
                   <FormLabel>
                     Kuota Peserta
@@ -278,18 +289,19 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
                 </FormControl>
               </SimpleGrid>
             </form>
-          </ModalBody>
-          <ModalFooter>
+
             <Button
+              my={6}
               type="submit"
               form="tambahAcaraDiklatForm"
               className="btn-ap clicky"
               colorScheme="ap"
               w={"100%"}
+              flexShrink={0}
             >
               Buat Acara Diklat
             </Button>
-          </ModalFooter>
+          </ModalBody>
         </ModalContent>
       </Modal>
     </>
