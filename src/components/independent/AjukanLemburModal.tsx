@@ -7,7 +7,6 @@ import {
   Icon,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -15,21 +14,22 @@ import {
   SimpleGrid,
   useDisclosure,
 } from "@chakra-ui/react";
+import { RiCalendarScheduleFill } from "@remixicon/react";
 import { useFormik } from "formik";
 import { useRef } from "react";
 import * as yup from "yup";
+import { iconSize } from "../../const/sizes";
 import backOnClose from "../../lib/backOnCloseOld";
 import useBackOnClose from "../../lib/useBackOnCloseOld";
 import SelectKaryawan from "../dependent/_Select/SelectKaryawan";
 import SelectKompensasi from "../dependent/_Select/SelectKompensasi";
 import SelectShift from "../dependent/_Select/SelectShift";
 import SelectTipeCuti from "../dependent/_Select/SelectTipeCuti";
+import DisclosureHeader from "../dependent/DisclosureHeader";
+import DatePickerModal from "../dependent/input/DatePickerModal";
+import TimePickerModal from "../dependent/input/TimePickerModal";
 import RequiredForm from "../form/RequiredForm";
 import Textarea from "../input/Textarea";
-import TimeInput from "../input/TimeInput";
-import DatePickerModal from "../dependent/input/DatePickerModal";
-import { RiCalendarScheduleFill } from "@remixicon/react";
-import { iconSize } from "../../const/sizes";
 
 interface Props extends ButtonProps {}
 
@@ -42,11 +42,11 @@ export default function AjukanLemburModal({ ...props }: Props) {
     validateOnChange: false,
     initialValues: {
       karyawan: undefined,
-      tgl_pengajuan: "" as any,
-      shift: "" as any,
-      kompensasi: "" as any,
-      tipe: "" as any,
-      durasi: "" as any,
+      tgl_pengajuan: undefined,
+      shift: undefined,
+      kompensasi: undefined,
+      tipe: undefined,
+      durasi: undefined,
       catatan: "",
     },
     validationSchema: yup.object().shape({
@@ -86,8 +86,14 @@ export default function AjukanLemburModal({ ...props }: Props) {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader ref={initialRef}>Ajukan Lembur</ModalHeader>
+          <ModalHeader ref={initialRef}>
+            <DisclosureHeader
+              title="Ajukan Lembur"
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
+          </ModalHeader>
           <ModalBody>
             <form id="ajukanLemburForm" onSubmit={formik.handleSubmit}>
               <FormControl mb={4} isInvalid={!!formik.errors.karyawan}>
@@ -101,6 +107,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
                     formik.setFieldValue("karyawan", input);
                   }}
                   inputValue={formik.values.karyawan}
+                  isError={!!formik.errors.karyawan}
                 />
                 <FormErrorMessage>
                   {formik.errors.karyawan as string}
@@ -123,6 +130,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
                       ? new Date(formik.values.tgl_pengajuan)
                       : undefined
                   }
+                  isError={!!formik.errors.tgl_pengajuan}
                 />
                 <FormErrorMessage>
                   {formik.errors.tgl_pengajuan as string}
@@ -141,6 +149,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
                     formik.setFieldValue("shift", input);
                   }}
                   inputValue={formik.values.shift}
+                  isError={!!formik.errors.shift}
                 />
                 <FormErrorMessage>
                   {formik.errors.shift as string}
@@ -176,6 +185,7 @@ export default function AjukanLemburModal({ ...props }: Props) {
                       formik.setFieldValue("tipe", input);
                     }}
                     inputValue={formik.values.tipe}
+                    isError={!!formik.errors.tipe}
                   />
                   <FormErrorMessage>
                     {formik.errors.tipe as string}
@@ -187,11 +197,14 @@ export default function AjukanLemburModal({ ...props }: Props) {
                     Durasi
                     <RequiredForm />
                   </FormLabel>
-                  <TimeInput
-                    value={formik.values.durasi}
-                    onChange={(newValue) => {
-                      formik.setFieldValue("durasi", newValue);
+                  <TimePickerModal
+                    id="ajukan-lembur"
+                    name="durasi"
+                    onConfirm={(input) => {
+                      formik.setFieldValue("durasi", input);
                     }}
+                    inputValue={formik.values.durasi}
+                    isError={!!formik.errors.durasi}
                   />
                   <FormErrorMessage>
                     {formik.errors.durasi as string}

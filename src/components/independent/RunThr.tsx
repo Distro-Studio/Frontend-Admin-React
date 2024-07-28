@@ -76,7 +76,12 @@ export default function RunThr({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title="Run THR" />
+            <DisclosureHeader
+              title="Run THR"
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
           <ModalBody>
             <Checkbox
@@ -105,6 +110,7 @@ export default function RunThr({ ...props }: Props) {
                   }}
                   inputValue={formik.values.list_karyawan}
                   isDisabled={formik.values.semua_karyawan}
+                  isError={!!formik.errors.list_karyawan}
                 />
                 <FormErrorMessage>
                   {formik.errors.list_karyawan as string}
@@ -127,6 +133,7 @@ export default function RunThr({ ...props }: Props) {
                       ? new Date(formik.values.tanggal)
                       : undefined
                   }
+                  isError={!!formik.errors.tanggal}
                 />
                 <FormErrorMessage>
                   {formik.errors.tanggal as string}

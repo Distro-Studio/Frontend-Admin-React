@@ -88,6 +88,7 @@ export default function AjukanCutiModal({ ...props }: Props) {
                     formik.setFieldValue("karyawan", input);
                   }}
                   inputValue={formik.values.karyawan}
+                  isError={!!formik.errors.karyawan}
                 />
                 <FormErrorMessage>
                   {formik.errors.karyawan as string}
@@ -108,6 +109,7 @@ export default function AjukanCutiModal({ ...props }: Props) {
                     formik.setFieldValue("tipe_cuti", input);
                   }}
                   inputValue={formik.values.tipe_cuti}
+                  isError={!!formik.errors.tipe_cuti}
                 />
                 <FormErrorMessage>
                   {formik.errors.tipe_cuti as string}
@@ -127,6 +129,7 @@ export default function AjukanCutiModal({ ...props }: Props) {
                   }}
                   inputValue={formik.values.range_tgl}
                   maxRange={31}
+                  isError={!!formik.errors.range_tgl}
                 />
                 <FormErrorMessage>
                   {formik.errors.range_tgl as string}

@@ -101,7 +101,12 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent borderRadius={12} minH={"calc(100vh - 32px)"}>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title={"Transfer Karyawan"} />
+            <DisclosureHeader
+              title={"Transfer Karyawan"}
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
           <ModalBody className="scrollY">
             <form id="transferKaryawanForm" onSubmit={formik.handleSubmit}>
@@ -117,6 +122,7 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
                       formik.setFieldValue("karyawan", input);
                     }}
                     inputValue={formik.values.karyawan}
+                    isError={!!formik.errors.karyawan}
                   />
                   <FormErrorMessage>
                     {formik.errors.karyawan as string}
@@ -129,7 +135,7 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
                     <RequiredForm />
                   </FormLabel>
                   <DatePickerModal
-                    id="ajukan-transfer-karyawan-tgl-masuk"
+                    id="ajukan-transfer-karyawan-tgl-mulai"
                     name="tgl_mulai"
                     onConfirm={(input) => {
                       formik.setFieldValue("tgl_mulai", input);
@@ -139,6 +145,7 @@ export default function AjukanTransferKaryawanModal({ ...props }: Props) {
                         ? new Date(formik.values.tgl_mulai)
                         : undefined
                     }
+                    isError={!!formik.errors.tgl_mulai}
                   />
                   <FormErrorMessage>
                     {formik.errors.tgl_mulai as string}

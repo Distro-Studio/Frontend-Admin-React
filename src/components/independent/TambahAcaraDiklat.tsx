@@ -13,7 +13,6 @@ import {
   ModalOverlay,
   SimpleGrid,
   useDisclosure,
-  Wrap,
 } from "@chakra-ui/react";
 import { RiUser2Fill } from "@remixicon/react";
 import { useFormik } from "formik";
@@ -88,8 +87,8 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          backOnClose();
           formik.resetForm();
+          backOnClose();
         }}
         initialFocusRef={initialRef}
         scrollBehavior="inside"
@@ -99,7 +98,12 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent minH={"calc(100vh - 32px)"} borderRadius={12}>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title="Buat Acara Diklat" />
+            <DisclosureHeader
+              title="Buat Acara Diklat"
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
           <ModalBody className="scrollY">
             <form id="tambahAcaraDiklatForm" onSubmit={formik.handleSubmit}>
@@ -154,6 +158,7 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
                         formik.setFieldValue("kaergori", input);
                       }}
                       inputValue={formik.values.kategori}
+                      isError={!!formik.errors.kuota}
                     />
                     <FormErrorMessage>
                       {formik.errors.kategori as string}
@@ -225,6 +230,9 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
                           }
                         : undefined
                     }
+                    isError={
+                      !!(formik.errors.tgl_mulai || formik.errors.tgl_selesai)
+                    }
                   />
                   <FormErrorMessage>
                     {
@@ -263,6 +271,7 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
                       formik.setFieldValue("jam_mulai", input);
                     }}
                     inputValue={formik.values.jam_mulai}
+                    isError={!!formik.errors.jam_mulai}
                   />
                   <FormErrorMessage>
                     {formik.errors.jam_mulai as string}
@@ -282,6 +291,7 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
                       formik.setFieldValue("jam_selesai", input);
                     }}
                     inputValue={formik.values.jam_selesai}
+                    isError={!!formik.errors.jam_selesai}
                   />
                   <FormErrorMessage>
                     {formik.errors.jam_selesai as string}

@@ -677,7 +677,12 @@ export default function TambahKaryawanModal({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent borderRadius={12} minH={"calc(100vh - 32px)"}>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title={"Tambah Karyawan"} />
+            <DisclosureHeader
+              title={"Tambah Karyawan"}
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
 
           <ModalBody px={0} pb={responsiveSpacing}>

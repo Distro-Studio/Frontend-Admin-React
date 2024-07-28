@@ -4,11 +4,13 @@ import BackOnCloseButton from "../independent/BackOnCloseButton";
 interface Props extends BoxProps {
   title: string;
   withoutCloseButton?: boolean;
+  onClose?: () => void;
 }
 
 export default function DisclosureHeader({
   title,
   withoutCloseButton,
+  onClose,
   ...props
 }: Props) {
   return (
@@ -19,7 +21,10 @@ export default function DisclosureHeader({
         </Text>
 
         {!withoutCloseButton && (
-          <BackOnCloseButton aria-label="back on close button" />
+          <BackOnCloseButton
+            aria-label="back on close button"
+            onClose={onClose}
+          />
         )}
       </HStack>
     </Box>

@@ -98,7 +98,12 @@ export default function TerapkanJadwalKaryawanTerpilih({
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            <DisclosureHeader title="Terapkan Jadwal" />
+            <DisclosureHeader
+              title="Terapkan Jadwal"
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
           <ModalBody>
             <VStack gap={responsiveSpacing} px={1} flexShrink={0} mb={4}>

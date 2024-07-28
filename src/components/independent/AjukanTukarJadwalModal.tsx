@@ -77,7 +77,12 @@ export default function AjukanTukarJadwalModal({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title="Ajukan Tukar Jadwal" />
+            <DisclosureHeader
+              title="Ajukan Tukar Jadwal"
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
           <ModalBody>
             <form id="ajukanPenukaranJadwalForm" onSubmit={formik.handleSubmit}>
@@ -95,6 +100,7 @@ export default function AjukanTukarJadwalModal({ ...props }: Props) {
                     formik.setFieldValue("user_pengajuan", input);
                   }}
                   inputValue={formik.values.user_pengajuan}
+                  isError={!!formik.errors.user_pengajuan}
                 />
                 <FormErrorMessage>
                   {formik.errors.user_pengajuan as string}
@@ -116,6 +122,7 @@ export default function AjukanTukarJadwalModal({ ...props }: Props) {
                     formik.setFieldValue("jadwal_pengajuan", input);
                   }}
                   inputValue={formik.values.jadwal_pengajuan}
+                  isError={!!formik.errors.jadwal_pengajuan}
                 />
                 <FormErrorMessage>
                   {formik.errors.jadwal_pengajuan as string}
@@ -143,6 +150,7 @@ export default function AjukanTukarJadwalModal({ ...props }: Props) {
                     formik.setFieldValue("user_ditukar", input);
                   }}
                   inputValue={formik.values.user_ditukar}
+                  isError={!!formik.errors.user_ditukar}
                 />
                 <FormErrorMessage>
                   {formik.errors.user_ditukar as string}
@@ -164,6 +172,7 @@ export default function AjukanTukarJadwalModal({ ...props }: Props) {
                     formik.setFieldValue("jadwal_ditukar", input);
                   }}
                   inputValue={formik.values.jadwal_ditukar}
+                  isError={!!formik.errors.jadwal_ditukar}
                 />
                 <FormErrorMessage>
                   {formik.errors.jadwal_ditukar as string}

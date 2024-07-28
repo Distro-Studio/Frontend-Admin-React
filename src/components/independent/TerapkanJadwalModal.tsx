@@ -76,7 +76,12 @@ export default function TerapkanJadwalModal({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader p={0}>
-            <DisclosureHeader title="Terapkan Jadwal" />
+            <DisclosureHeader
+              title="Terapkan Jadwal"
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
           <ModalBody>
             <form id="terapkanJadwalForm" onSubmit={formik.handleSubmit}>
