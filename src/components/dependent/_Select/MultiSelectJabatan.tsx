@@ -44,7 +44,7 @@ export default function MultiSelectJabatan({
 
   return (
     <MultipleSelectModal
-      id="select-jabatan-modal"
+      id="multi-select-jabatan-modal"
       name={name}
       isOpen={isOpen}
       onOpen={onOpen}

@@ -4,7 +4,7 @@ import MultiSelectPengaturanDeletedAt from "../../components/dependent/MultiSele
 import TabelPengaturanKuisioner from "../../components/dependent/TabelPengaturanKuisioner";
 import MultiSelectJabatan from "../../components/dependent/_Select/MultiSelectJabatan";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
-import TambahKompetensi from "../../components/independent/TambahKompetensi";
+import TambahKuisioner from "../../components/independent/TambahKuisioner";
 import CContainer from "../../components/wrapper/CContainer";
 import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
@@ -81,7 +81,7 @@ export default function PengaturanKuisioner() {
           maxW={"165px"}
         />
 
-        <TambahKompetensi minW={"fit-content"} />
+        <TambahKuisioner minW={"fit-content"} />
       </HStack>
 
       <TabelPengaturanKuisioner filterConfig={filterConfig} />
