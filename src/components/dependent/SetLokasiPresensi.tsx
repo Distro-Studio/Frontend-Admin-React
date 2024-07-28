@@ -1,14 +1,22 @@
 import { VStack } from "@chakra-ui/react";
-import { MapContainer, TileLayer, Marker, Circle, useMap } from "react-leaflet";
 import L from "leaflet";
 import { useEffect } from "react";
+import {
+  Circle,
+  MapContainer,
+  Marker,
+  TileLayer,
+  useMap,
+  useMapEvent,
+} from "react-leaflet";
 import { LatLng } from "../../const/interfaces";
 
 // Props untuk komponen GMaps
 interface Props {
   center: LatLng;
-  officeCenter: LatLng;
-  presence_radius: number;
+  officeCenter: LatLng | undefined;
+  presence_radius: number | undefined;
+  setOfficeLoc: (input: any) => void;
   zoom?: number;
 }
 
@@ -21,27 +29,42 @@ function SetViewOnClick({ center }: { center: LatLng }) {
   return null;
 }
 
-export default function LokasiPresensi({
+// Hook untuk menangani double-click pada peta
+function HandleDoubleClick({
+  setOfficeLoc,
+}: {
+  setOfficeLoc: (input: any) => void;
+}) {
+  useMapEvent("dblclick", (event) => {
+    const { lat, lng } = event.latlng;
+    setOfficeLoc({ lat, lng });
+  });
+  return null;
+}
+
+export default function SetLokasiPresensi({
   center,
   officeCenter,
   presence_radius,
+  setOfficeLoc,
   zoom = 20,
 }: Props) {
-  console.log(center);
-  const userIcon = new L.Icon({
-    iconUrl: "/vectors/icons/userPin.svg",
-    iconSize: [64, 64], // Ukuran ikon
-  });
+  // console.log(center);
+
+  // const userIcon = new L.Icon({
+  //   iconUrl: "/vectors/icons/userPin.svg",
+  //   iconSize: [64, 64], // Ukuran ikon
+  // });
 
   const officeIcon = new L.Icon({
     iconUrl: "/vectors/icons/hospital.svg",
-    iconSize: [150, 150], // Ukuran ikon
+    iconSize: [80, 80], // Ukuran ikon
   });
 
   const containerStyle = {
     width: `100%`,
     height: `auto`,
-    borderRadius: "12px",
+    borderRadius: "8px",
     aspectRatio: 1,
     // padding: "8px",
   };
@@ -58,9 +81,10 @@ export default function LokasiPresensi({
   return (
     <VStack
       w={"100%"}
-      h={"auto"}
+      minH={"300px"}
+      h={"50%"}
       aspectRatio={1}
-      borderRadius={12}
+      borderRadius={8}
       overflow={"clip"}
     >
       <MapContainer
@@ -72,34 +96,39 @@ export default function LokasiPresensi({
         maxZoom={maxZoomLevel}
         maxBounds={maxBounds}
         maxBoundsViscosity={1.0} // Biarkan peta memantul ketika mencapai batas
-        scrollWheelZoom={false} // Nonaktifkan scroll zoom
+        // scrollWheelZoom={false}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-        <Marker
-          position={[officeCenter.lat, officeCenter.lng]}
-          //@ts-ignore
-          icon={officeIcon}
-        />
+        {officeCenter && (
+          <Marker
+            position={[officeCenter.lat, officeCenter.lng]}
+            //@ts-ignore
+            icon={officeIcon}
+          />
+        )}
+        {officeCenter && presence_radius && (
+          <Circle
+            center={[officeCenter.lat, officeCenter.lng]}
+            //@ts-ignore
+            radius={presence_radius} // Radius dalam meter
+            pathOptions={{
+              color: "#16b3ac", // Warna garis lingkaran
+              fillColor: "#16b3ac", // Warna isi lingkaran
+              fillOpacity: 0.35, // Opasitas isi lingkaran
+            }}
+          />
+        )}
 
-        <Marker
+        {/* <Marker
           position={[center.lat, center.lng]}
           //@ts-ignore
           icon={userIcon}
-        />
+        /> */}
 
-        {/* Marker kantor */}
-        <Circle
-          center={[officeCenter.lat, officeCenter.lng]}
-          //@ts-ignore
-          radius={presence_radius} // Radius dalam meter
-          pathOptions={{
-            color: "#16b3ac", // Warna garis lingkaran
-            fillColor: "#16b3ac", // Warna isi lingkaran
-            fillOpacity: 0.35, // Opasitas isi lingkaran
-          }}
-        />
         <SetViewOnClick center={center} />
+
+        <HandleDoubleClick setOfficeLoc={setOfficeLoc} />
       </MapContainer>
     </VStack>
   );

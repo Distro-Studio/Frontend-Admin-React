@@ -579,3 +579,8 @@ export interface Interface__BatchAction {
   callback: (rowIds: number[]) => void;
   element: React.ReactNode;
 }
+
+export interface LatLng {
+  lat: number;
+  lng: number;
+}

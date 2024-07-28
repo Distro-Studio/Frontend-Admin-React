@@ -2,6 +2,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import "leaflet/dist/leaflet.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavContainer from "./components/wrapper/NavContainer";
+import PengaturanContainer from "./components/wrapper/PengaturanContainer";
 import jadwalTopNavs from "./const/jadwalTopNavs";
 import karyawanTopNavs from "./const/karyawanTopNavs";
 import keuanganTopNavs from "./const/keuanganTopNavs";
@@ -23,7 +24,6 @@ import DetailPenggajian from "./pages/Keuangan/DetailPenggajian";
 import Penggajian from "./pages/Keuangan/Penggajian";
 import Thr from "./pages/Keuangan/Thr";
 import Login from "./pages/Login/Login";
-import PengaturanCuti from "./pages/Pengaturan/PengaturanTipeCuti";
 import PengaturanHariLibur from "./pages/Pengaturan/PengaturanHariLibur";
 import PengaturanJabatan from "./pages/Pengaturan/PengaturanJabatan";
 import PengaturanJadwalPenggajian from "./pages/Pengaturan/PengaturanJadwalPenggajian";
@@ -31,10 +31,12 @@ import PengaturanKelolaRole from "./pages/Pengaturan/PengaturanKelolaRole";
 import PengaturanKelompokGaji from "./pages/Pengaturan/PengaturanKelompokGaji";
 import PengaturanKompetensi from "./pages/Pengaturan/PengaturanKompetensi";
 import PengaturanKuisioner from "./pages/Pengaturan/PengaturanKuisioner";
+import PengaturanLokasiPresensi from "./pages/Pengaturan/PengaturanLokasiPresensi";
 import PengaturanPremi from "./pages/Pengaturan/PengaturanPotongan";
 import PengaturanShift from "./pages/Pengaturan/PengaturanShift";
 import PengaturanTerPph21 from "./pages/Pengaturan/PengaturanTerPph21";
 import PengaturanThr from "./pages/Pengaturan/PengaturanThr";
+import PengaturanCuti from "./pages/Pengaturan/PengaturanTipeCuti";
 import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi";
 import PengaturanUnitKerja from "./pages/Pengaturan/PengaturanUnitKerja";
 import DetailPelaporanKaryawan from "./pages/Perusahaan/DetailPelaporanKaryawan";
@@ -47,7 +49,6 @@ import VerifikasiBerkas from "./pages/Perusahaan/VerifikasiBerkas";
 import DetailPresensi from "./pages/Presensi/DetailPresensi";
 import Presensi from "./pages/Presensi/Presensi";
 import { globalTheme } from "./theme/globalTheme";
-import PengaturanContainer from "./components/wrapper/PengaturanContainer";
 
 // github pekok
 
@@ -458,9 +459,9 @@ export const App = () => (
         <Route
           path="/pengaturan/manajemen-waktu/lokasi-presensi"
           element={
-            <NavContainer active={6} title="Pengaturan - Shift">
+            <NavContainer active={6} title="Pengaturan - Lokasi Presensi">
               <PengaturanContainer activeGroup={3} active={0}>
-                <PengaturanShift />
+                <PengaturanLokasiPresensi />
               </PengaturanContainer>
             </NavContainer>
           }
