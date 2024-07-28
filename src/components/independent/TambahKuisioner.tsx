@@ -72,7 +72,12 @@ export default function TambahKuisioner({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title="Tambah Kuisioner" />
+            <DisclosureHeader
+              title="Tambah Kuisioner"
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
           <ModalBody>
             <form id="tambahJabatanForm" onSubmit={formik.handleSubmit}>

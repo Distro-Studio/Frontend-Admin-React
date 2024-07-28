@@ -72,7 +72,12 @@ export default function TambahHariLibur({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title="Tambah Hari Libur" />
+            <DisclosureHeader
+              title="Tambah Hari Libur"
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
           <ModalBody>
             <form id="tambahUnitKerjaForm" onSubmit={formik.handleSubmit}>

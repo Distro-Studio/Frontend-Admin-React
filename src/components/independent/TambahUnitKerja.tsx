@@ -69,7 +69,12 @@ export default function TambahUnitKerja({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title="Tambah Unit Kerja" />
+            <DisclosureHeader
+              title="Tambah Unit Kerja"
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
           <ModalBody>
             <form id="tambahUnitKerjaForm" onSubmit={formik.handleSubmit}>

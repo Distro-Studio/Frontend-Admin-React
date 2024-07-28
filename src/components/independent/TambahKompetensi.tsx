@@ -78,7 +78,12 @@ export default function TambahKompetensi({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title="Tambah Kompetensi" />
+            <DisclosureHeader
+              title="Tambah Kompetensi"
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
           <ModalBody>
             <form id="tambahJabatanForm" onSubmit={formik.handleSubmit}>

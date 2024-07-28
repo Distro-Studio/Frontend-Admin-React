@@ -78,7 +78,12 @@ export default function TambahShift({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title="Tambah Shift" />
+            <DisclosureHeader
+              title="Tambah Shift"
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
           <ModalBody>
             <form id="tambahUnitKerjaForm" onSubmit={formik.handleSubmit}>

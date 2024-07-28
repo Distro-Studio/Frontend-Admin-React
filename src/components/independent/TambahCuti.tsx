@@ -61,7 +61,7 @@ export default function TambahCuti({ ...props }: Props) {
         pl={5}
         {...props}
       >
-        Tambah Cuti
+        Tambah Tipe Cuti
       </Button>
 
       <Modal
@@ -76,7 +76,12 @@ export default function TambahCuti({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title="Tambah Tipe Cuti" />
+            <DisclosureHeader
+              title="Tambah Tipe Cuti"
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
           <ModalBody>
             <form id="tambahUnitKerjaForm" onSubmit={formik.handleSubmit}>

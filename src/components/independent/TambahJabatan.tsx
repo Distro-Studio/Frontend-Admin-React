@@ -72,7 +72,12 @@ export default function TambahJabatan({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title="Tambah Jabatan" />
+            <DisclosureHeader
+              title="Tambah Jabatan"
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
           <ModalBody>
             <form id="tambahJabatanForm" onSubmit={formik.handleSubmit}>

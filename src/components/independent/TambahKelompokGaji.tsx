@@ -72,7 +72,12 @@ export default function TambahKelompokGaji({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title="Tambah Kelompok Gaji" />
+            <DisclosureHeader
+              title="Tambah Kelompok Gaji"
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
           <ModalBody>
             <form id="tambahKelompokGajiForm" onSubmit={formik.handleSubmit}>

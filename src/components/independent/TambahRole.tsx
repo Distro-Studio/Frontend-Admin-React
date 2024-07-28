@@ -68,7 +68,12 @@ export default function TambahRole({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title="Tambah Role" />
+            <DisclosureHeader
+              title="Tambah Role"
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
           <ModalBody>
             <form id="tambahRoleForm">

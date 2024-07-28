@@ -79,7 +79,12 @@ export default function TambahPremi({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title="Tambah Potongan" />
+            <DisclosureHeader
+              title="Tambah Potongan"
+              onClose={() => {
+                formik.resetForm();
+              }}
+            />
           </ModalHeader>
           <ModalBody>
             <form id="tambahJabatanForm" onSubmit={formik.handleSubmit}>

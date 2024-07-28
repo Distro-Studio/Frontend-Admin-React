@@ -101,7 +101,7 @@ const pengaturanNavs = [
       },
       {
         icon: RiLandscapeLine,
-        label: "Hari Libur",
+        label: "Hari Libur Non-Shift",
         link: "/pengaturan/manajemen-waktu/hari-libur",
       },
       {
