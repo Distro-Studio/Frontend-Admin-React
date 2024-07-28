@@ -56,6 +56,7 @@ export default function TabelPengaturanShift({ filterConfig }: Props) {
   });
 
   const fd = data?.filter((item: any) => {
+    console.log(item);
     const searchTerm = filterConfig?.search.toLowerCase();
     const isDeletedTerm = filterConfig?.is_deleted?.map(
       (term: Interface__SelectOption) => term.value

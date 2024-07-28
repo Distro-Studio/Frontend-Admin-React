@@ -256,16 +256,19 @@ export default function CustomTable({
           //@ts-ignore
           b.columnsFormat[sortConfig.sortColumnIndex].isTime
         ) {
-          // Extract the time portion (HH:mm:ss) from the jam_masuk string
-          const timeA = (aValue as string).split(" ")[1];
-          const timeB = (bValue as string).split(" ")[1];
+          // Konversi string waktu menjadi objek Date dan ambil hanya bagian waktu
+          const dateA = new Date(aValue as string);
+          const dateB = new Date(bValue as string);
 
-          // Convert the time strings to Date objects for comparison
-          const dateA = new Date(`1970-01-01T${timeA}Z`);
-          const dateB = new Date(`1970-01-01T${timeB}Z`);
+          const timeA = dateA.toTimeString().split(" ")[0];
+          const timeB = dateB.toTimeString().split(" ")[0];
 
-          //@ts-ignore
-          return sortConfig.direction === "asc" ? dateA - dateB : dateB - dateA;
+          // Bandingkan waktu
+          if (sortConfig.direction === "asc") {
+            return timeA.localeCompare(timeB);
+          } else {
+            return timeB.localeCompare(timeA);
+          }
         } else {
           return sortConfig.direction === "asc"
             ? String(aValue).localeCompare(String(bValue))
