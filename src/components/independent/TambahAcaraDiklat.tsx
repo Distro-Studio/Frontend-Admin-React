@@ -13,7 +13,6 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
-  Wrap,
 } from "@chakra-ui/react";
 import { RiUser2Fill } from "@remixicon/react";
 import { useFormik } from "formik";
@@ -22,9 +21,9 @@ import * as yup from "yup";
 import { iconSize } from "../../const/sizes";
 import backOnClose from "../../lib/backOnCloseOld";
 import useBackOnClose from "../../lib/useBackOnCloseOld";
+import SelectKategoriDiklat from "../dependent/_Select/SelectKategoriDiklat";
 import DisclosureHeader from "../dependent/DisclosureHeader";
 import RequiredForm from "../form/RequiredForm";
-import Textarea from "../input/Textarea";
 import TimeInput from "../input/TimeInput";
 
 interface Props extends ButtonProps {}
@@ -38,21 +37,17 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
     validateOnChange: false,
     initialValues: {
       nama: "",
-      jenis: "",
-      tgl: "",
+      kategori: undefined,
+      tgl: undefined,
       tempat: "",
       waktu: "",
-      penanggung_jawab: "",
-      peserta: "",
     },
     validationSchema: yup.object().shape({
       nama: yup.string().required("Harus diisi"),
-      jenis: yup.string().required("Harus diisi"),
+      kategori: yup.object().required("Harus diisi"),
       tgl: yup.string().required("Harus diisi"),
       tempat: yup.string().required("Harus diisi"),
       waktu: yup.string().required("Harus diisi"),
-      penanggung_jawab: yup.string().required("Harus diisi"),
-      peserta: yup.string().required("Harus diisi"),
     }),
     onSubmit: (values, { resetForm }) => {
       console.log(values);
@@ -73,7 +68,7 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
         pl={5}
         {...props}
       >
-        Ajukan Diklat
+        Buat Acara Diklat
       </Button>
 
       <Modal
@@ -88,7 +83,7 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title="Ajukan Diklat" />
+            <DisclosureHeader title="Buat Acara Diklat" />
           </ModalHeader>
           <ModalBody>
             <form id="tambahAcaraDiklatForm" onSubmit={formik.handleSubmit}>
@@ -108,102 +103,68 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
                 </FormErrorMessage>
               </FormControl>
 
-              <Wrap spacing={4} mb={4}>
-                <FormControl flex={"1 1"} isInvalid={!!formik.errors.jenis}>
-                  <FormLabel>
-                    Jenis Acara
-                    <RequiredForm />
-                  </FormLabel>
-                  <Input
-                    name="jenis"
-                    placeholder="Pendidikan & Latihan"
-                    onChange={formik.handleChange}
-                    value={formik.values.jenis}
-                  />
-                  <FormErrorMessage>
-                    {formik.errors.jenis as string}
-                  </FormErrorMessage>
-                </FormControl>
-
-                <FormControl flex={"1 1"} isInvalid={!!formik.errors.tgl}>
-                  <FormLabel>
-                    Tanggal
-                    <RequiredForm />
-                  </FormLabel>
-                  <Input
-                    name="tgl"
-                    placeholder="Pendidikan & Latihan"
-                    onChange={formik.handleChange}
-                    value={formik.values.tgl}
-                  />
-                  <FormErrorMessage>
-                    {formik.errors.tgl as string}
-                  </FormErrorMessage>
-                </FormControl>
-              </Wrap>
-
-              <Wrap spacing={4} mb={4}>
-                <FormControl flex={"1 1"} isInvalid={!!formik.errors.tempat}>
-                  <FormLabel>
-                    Tempat
-                    <RequiredForm />
-                  </FormLabel>
-                  <Input
-                    name="tempat"
-                    placeholder="Gedung Serba Guna"
-                    onChange={formik.handleChange}
-                    value={formik.values.tempat}
-                  />
-                  <FormErrorMessage>
-                    {formik.errors.tempat as string}
-                  </FormErrorMessage>
-                </FormControl>
-
-                <FormControl flex={"1 1"} isInvalid={!!formik.errors.waktu}>
-                  <FormLabel>
-                    Waktu
-                    <RequiredForm />
-                  </FormLabel>
-                  <TimeInput
-                    value={formik.values.waktu}
-                    onChange={(newValue) => {
-                      formik.setFieldValue("waktu", newValue);
-                    }}
-                  />
-                  <FormErrorMessage>
-                    {formik.errors.waktu as string}
-                  </FormErrorMessage>
-                </FormControl>
-              </Wrap>
-
-              <FormControl mb={4} isInvalid={!!formik.errors.penanggung_jawab}>
+              <FormControl mb={4} isInvalid={!!formik.errors.kategori}>
                 <FormLabel>
-                  Penanggung Jawab
+                  Kategori
                   <RequiredForm />
                 </FormLabel>
-                <Input
-                  name="penanggung_jawab"
-                  placeholder="Jolitos Kurniawan"
-                  onChange={formik.handleChange}
-                  value={formik.values.penanggung_jawab}
+                <SelectKategoriDiklat
+                  name="kategori"
+                  onConfirm={(input) => {
+                    formik.setFieldValue("kaergori", input);
+                  }}
+                  inputValue={formik.values.kategori}
                 />
                 <FormErrorMessage>
-                  {formik.errors.penanggung_jawab as string}
+                  {formik.errors.kategori as string}
                 </FormErrorMessage>
               </FormControl>
 
-              <FormControl mb={4} isInvalid={!!formik.errors.peserta}>
+              <FormControl isInvalid={!!formik.errors.tgl}>
                 <FormLabel>
-                  Peserta
+                  Tanggal
                   <RequiredForm />
                 </FormLabel>
-                <Textarea
-                  name="peserta"
-                  placeholder="Tulis Daftar Peserta"
-                  formik={formik}
+                <Input
+                  name="tgl"
+                  placeholder="Pendidikan & Latihan"
+                  onChange={formik.handleChange}
+                  value={formik.values.tgl}
                 />
                 <FormErrorMessage>
-                  {formik.errors.peserta as string}
+                  {formik.errors.tgl as string}
+                </FormErrorMessage>
+              </FormControl>
+
+              <FormControl mb={4} isInvalid={!!formik.errors.tempat}>
+                <FormLabel>
+                  Tempat
+                  <RequiredForm />
+                </FormLabel>
+                <Input
+                  name="tempat"
+                  placeholder="Gedung Serba Guna"
+                  onChange={formik.handleChange}
+                  value={formik.values.tempat}
+                />
+                <FormErrorMessage>
+                  {formik.errors.tempat as string}
+                </FormErrorMessage>
+              </FormControl>
+
+              <FormControl mb={4} isInvalid={!!formik.errors.waktu}>
+                <FormLabel>
+                  Waktu
+                  <RequiredForm />
+                </FormLabel>
+                <TimeInput
+                  value={formik.values.waktu}
+                  onChange={(newValue) => {
+                    formik.setFieldValue("waktu", newValue);
+                  }}
+                />
+                <FormErrorMessage>
+                  {formik.errors.waktu as string}
                 </FormErrorMessage>
               </FormControl>
             </form>

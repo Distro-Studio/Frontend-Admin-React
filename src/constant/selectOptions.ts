@@ -143,7 +143,19 @@ const optionsJenisPotongan = [
   },
 ];
 
+const optionsKategoriDiklat = [
+  {
+    value: 1,
+    label: "Internal",
+  },
+  {
+    value: 2,
+    label: "Eksternal",
+  },
+];
+
 export {
+  optionsKategoriDiklat,
   optionsStatusHidup,
   optionsAgama,
   optionsKategoriCuti,
