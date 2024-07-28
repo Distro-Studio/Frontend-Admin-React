@@ -36,7 +36,7 @@ export default function NumberInput({
       inputValue={
         (noFormat ? inputValue?.toString() : formatNumber(inputValue)) || ""
       }
-      placeholder={placeholder}
+      placeholder={placeholder || "Masukan Nominal"}
       {...props}
     />
   );
