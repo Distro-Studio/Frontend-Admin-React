@@ -454,11 +454,32 @@ export const App = () => (
             </NavContainer>
           }
         />
+
+        <Route
+          path="/pengaturan/manajemen-waktu/lokasi-presensi"
+          element={
+            <NavContainer active={6} title="Pengaturan - Shift">
+              <PengaturanContainer activeGroup={3} active={0}>
+                <PengaturanShift />
+              </PengaturanContainer>
+            </NavContainer>
+          }
+        />
         <Route
           path="/pengaturan/manajemen-waktu/shift"
           element={
             <NavContainer active={6} title="Pengaturan - Shift">
-              <PengaturanContainer activeGroup={3} active={0}>
+              <PengaturanContainer activeGroup={3} active={1}>
+                <PengaturanShift />
+              </PengaturanContainer>
+            </NavContainer>
+          }
+        />
+        <Route
+          path="/pengaturan/manajemen-waktu/shift"
+          element={
+            <NavContainer active={6} title="Pengaturan - Shift">
+              <PengaturanContainer activeGroup={3} active={1}>
                 <PengaturanShift />
               </PengaturanContainer>
             </NavContainer>
@@ -471,7 +492,7 @@ export const App = () => (
               active={6}
               title="Pengaturan - Hari Libur Karyawan Non-Shift"
             >
-              <PengaturanContainer activeGroup={3} active={1}>
+              <PengaturanContainer activeGroup={3} active={2}>
                 <PengaturanHariLibur />
               </PengaturanContainer>
             </NavContainer>
@@ -481,7 +502,7 @@ export const App = () => (
           path="/pengaturan/manajemen-waktu/cuti"
           element={
             <NavContainer active={6} title="Pengaturan - Tipe Cuti">
-              <PengaturanContainer activeGroup={3} active={2}>
+              <PengaturanContainer activeGroup={3} active={3}>
                 <PengaturanCuti />
               </PengaturanContainer>
             </NavContainer>

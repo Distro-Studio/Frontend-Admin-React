@@ -8,6 +8,7 @@ import {
   RiIdCardLine,
   RiLandscapeLine,
   RiLockLine,
+  RiMapPinLine,
   RiQuestionLine,
   RiUserSettingsLine,
   RiVerifiedBadgeLine,
@@ -88,6 +89,11 @@ const pengaturanNavs = [
   {
     groupName: "Manajemen Waktu",
     navs: [
+      {
+        icon: RiMapPinLine,
+        label: "Lokasi Presensi",
+        link: "/pengaturan/manajemen-waktu/lokasi-presensi",
+      },
       {
         icon: RiCalendarCheckLine,
         label: "Shift",
