@@ -143,8 +143,9 @@ export default function FileInputLarge({
               alt={fileName}
               h="100%"
               w="100%"
-              maxH="194px"
+              maxH="186px"
               objectFit={"contain"}
+              mb={2}
               {...iProps}
             />
           ) : (
