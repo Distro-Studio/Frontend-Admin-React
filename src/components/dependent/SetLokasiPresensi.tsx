@@ -81,7 +81,7 @@ export default function SetLokasiPresensi({
   return (
     <VStack
       w={"100%"}
-      minH={"300px"}
+      minH={"450px"}
       h={"50%"}
       aspectRatio={1}
       borderRadius={8}
