@@ -3,10 +3,7 @@ import "leaflet/dist/leaflet.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavContainer from "./components/wrapper/NavContainer";
 import PengaturanContainer from "./components/wrapper/PengaturanContainer";
-import jadwalTopNavs from "./const/jadwalTopNavs";
-import karyawanTopNavs from "./const/karyawanTopNavs";
-import keuanganTopNavs from "./const/keuanganTopNavs";
-import perusahaanTopNavs from "./const/perusahaanTopNavs";
+import navs from "./const/navs";
 import "./globalStyle.css";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import MissingPage from "./pages/Error/MissingPage";
@@ -14,9 +11,7 @@ import Cuti from "./pages/Jadwal/Cuti";
 import Jadwal from "./pages/Jadwal/Jadwal";
 import Lembur from "./pages/Jadwal/Lembur";
 import PenukaranJadwal from "./pages/Jadwal/PenukaranJadwal";
-import DetailKaryawan from "./pages/Karyawan/DetailKaryawan";
 import Karyawan from "./pages/Karyawan/Karyawan";
-import RekamJejak from "./pages/Karyawan/RekamJejak";
 import TransferKaryawan from "./pages/Karyawan/TransferKaryawan";
 import DetailLaporanRiwayatPenggajian from "./pages/Keuangan/DetailLaporanRiwayatPenggajian";
 import DetailLaporanThr from "./pages/Keuangan/DetailLaporanThr";
@@ -35,13 +30,11 @@ import PengaturanLokasiPresensi from "./pages/Pengaturan/PengaturanLokasiPresens
 import PengaturanPremi from "./pages/Pengaturan/PengaturanPotongan";
 import PengaturanShift from "./pages/Pengaturan/PengaturanShift";
 import PengaturanTerPph21 from "./pages/Pengaturan/PengaturanTerPph21";
-import PengaturanThr from "./pages/Pengaturan/PengaturanThr";
 import PengaturanCuti from "./pages/Pengaturan/PengaturanTipeCuti";
 import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi";
 import PengaturanUnitKerja from "./pages/Pengaturan/PengaturanUnitKerja";
 import DetailPelaporanKaryawan from "./pages/Perusahaan/DetailPelaporanKaryawan";
 import DetailPenilaianKaryawan from "./pages/Perusahaan/DetailPenilaianKaryawan";
-import DetailVerifikasiBerkas from "./pages/Perusahaan/DetailVerifikasiBerkas ";
 import Perusahaan from "./pages/Perusahaan/Diklat";
 import PelaporanKaryawan from "./pages/Perusahaan/PelaporanKaryawan";
 import PenilaianKaryawan from "./pages/Perusahaan/PenilaianKaryawan";
@@ -57,7 +50,6 @@ export const App = () => (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-
         <Route
           path="/dashboard"
           element={
@@ -66,43 +58,16 @@ export const App = () => (
             </NavContainer>
           }
         />
-
         <Route
           path="/karyawan"
           element={
             <NavContainer
               active={1}
               title="Karyawan"
-              topNavsData={karyawanTopNavs}
+              topNavsData={navs[1].subNavs}
               topNavActive={0}
             >
               <Karyawan />
-            </NavContainer>
-          }
-        />
-        <Route
-          path="/karyawan/:karyawanId"
-          element={
-            <NavContainer
-              active={1}
-              title="Detail Karyawan"
-              left={"back"}
-              // backLink="/karyawan"
-            >
-              <DetailKaryawan />
-            </NavContainer>
-          }
-        />
-        <Route
-          path="/karyawan/rekam-jejak"
-          element={
-            <NavContainer
-              active={1}
-              title="Rekam Jejak"
-              topNavsData={karyawanTopNavs}
-              topNavActive={4}
-            >
-              <RekamJejak />
             </NavContainer>
           }
         />
@@ -112,14 +77,26 @@ export const App = () => (
             <NavContainer
               active={1}
               title="Transfer Karyawan"
-              topNavsData={karyawanTopNavs}
+              topNavsData={navs[1].subNavs}
               topNavActive={1}
             >
               <TransferKaryawan />
             </NavContainer>
           }
         />
-
+        <Route
+          path="/karyawan/verifikasi-data-karyawan"
+          element={
+            <NavContainer
+              active={1}
+              title="Transfer Karyawan"
+              topNavsData={navs[1].subNavs}
+              topNavActive={2}
+            >
+              <VerifikasiBerkas />
+            </NavContainer>
+          }
+        />
         <Route
           path="/presensi"
           element={
@@ -141,14 +118,13 @@ export const App = () => (
             </NavContainer>
           }
         />
-
         <Route
           path="/jadwal"
           element={
             <NavContainer
               active={3}
               title="Jadwal"
-              topNavsData={jadwalTopNavs}
+              topNavsData={navs[3].subNavs}
               topNavActive={0}
             >
               <Jadwal />
@@ -161,7 +137,7 @@ export const App = () => (
             <NavContainer
               active={3}
               title="Penukaran Jadwal"
-              topNavsData={jadwalTopNavs}
+              topNavsData={navs[3].subNavs}
               topNavActive={1}
             >
               <PenukaranJadwal />
@@ -174,7 +150,7 @@ export const App = () => (
             <NavContainer
               active={3}
               title="Lembur"
-              topNavsData={jadwalTopNavs}
+              topNavsData={navs[3].subNavs}
               topNavActive={2}
             >
               <Lembur />
@@ -187,21 +163,20 @@ export const App = () => (
             <NavContainer
               active={3}
               title="Cuti"
-              topNavsData={jadwalTopNavs}
+              topNavsData={navs[3].subNavs}
               topNavActive={3}
             >
               <Cuti />
             </NavContainer>
           }
         />
-
         <Route
           path="/keuangan/penggajian"
           element={
             <NavContainer
               active={4}
               title="Penggajian"
-              topNavsData={keuanganTopNavs}
+              topNavsData={navs[4].subNavs}
               topNavActive={0}
             >
               <Penggajian />
@@ -235,7 +210,7 @@ export const App = () => (
             <NavContainer
               active={4}
               title="THR"
-              topNavsData={keuanganTopNavs}
+              topNavsData={navs[4].subNavs}
               topNavActive={1}
             >
               <Thr />
@@ -255,14 +230,13 @@ export const App = () => (
             </NavContainer>
           }
         />
-
         <Route
           path="/perusahaan/diklat"
           element={
             <NavContainer
               active={5}
               title="Diklat"
-              topNavsData={perusahaanTopNavs}
+              topNavsData={navs[5].subNavs}
               topNavActive={0}
             >
               <Perusahaan />
@@ -275,7 +249,7 @@ export const App = () => (
             <NavContainer
               active={5}
               title="Pelaporan Karyawan"
-              topNavsData={perusahaanTopNavs}
+              topNavsData={navs[5].subNavs}
               topNavActive={1}
             >
               <PelaporanKaryawan />
@@ -300,7 +274,7 @@ export const App = () => (
             <NavContainer
               active={5}
               title="Penilaian Karyawan"
-              topNavsData={perusahaanTopNavs}
+              topNavsData={navs[5].subNavs}
               topNavActive={2}
             >
               <PenilaianKaryawan />
@@ -319,32 +293,6 @@ export const App = () => (
             </NavContainer>
           }
         />
-        <Route
-          path="/perusahaan/verifikasi-berkas"
-          element={
-            <NavContainer
-              active={5}
-              title="Verifikasi-Berkas"
-              topNavsData={perusahaanTopNavs}
-              topNavActive={3}
-            >
-              <VerifikasiBerkas />
-            </NavContainer>
-          }
-        />
-        <Route
-          path="/perusahaan/verifikasi-berkas/:karyawanId"
-          element={
-            <NavContainer
-              active={5}
-              title="Detail Verifikasi Berkas"
-              left={"back"}
-            >
-              <DetailVerifikasiBerkas />
-            </NavContainer>
-          }
-        />
-
         <Route
           path="/pengaturan/akun/kelola-role"
           element={
@@ -446,17 +394,6 @@ export const App = () => (
           }
         />
         <Route
-          path="/pengaturan/keuangan/thr"
-          element={
-            <NavContainer active={6} title="Pengaturan - THR">
-              <PengaturanContainer activeGroup={2} active={3}>
-                <PengaturanThr />
-              </PengaturanContainer>
-            </NavContainer>
-          }
-        />
-
-        <Route
           path="/pengaturan/manajemen-waktu/lokasi-presensi"
           element={
             <NavContainer active={6} title="Pengaturan - Lokasi Presensi">
@@ -509,7 +446,6 @@ export const App = () => (
             </NavContainer>
           }
         />
-
         <Route path="*" element={<MissingPage />} />
       </Routes>
     </BrowserRouter>
