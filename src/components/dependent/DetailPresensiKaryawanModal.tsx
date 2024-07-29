@@ -89,7 +89,7 @@ export default function DetailPresensiKaryawanModal({
     lat: "33.749358",
     long: "-84.38842",
     foto_masuk: "/reza.jpg",
-    foto_keluar: "/reza.jpg",
+    foto_keluar: "/images/gear5.jpg",
     absensi: "Izin",
     kategori: "Terlambat",
     created_at: "2024-05-30T10:27:14.000000Z",
