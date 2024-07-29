@@ -9,8 +9,8 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  SimpleGrid,
   Text,
-  Wrap,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { Dispatch } from "react";
@@ -18,13 +18,13 @@ import * as yup from "yup";
 import SelectJabatan from "../../components/dependent/_Select/SelectJabatan";
 import SelectKelompokGaji from "../../components/dependent/_Select/SelectKelompokGaji";
 import SelectKompetensi from "../../components/dependent/_Select/SelectKompetensi";
+import SelectPotongan from "../../components/dependent/_Select/SelectPotongan";
 import SelectPtkp from "../../components/dependent/_Select/SelectPtkp";
 import SelectRole from "../../components/dependent/_Select/SelectRole";
 import SelectStatusKaryawan from "../../components/dependent/_Select/SelectStatusKaryawan";
 import SelectUnitKerja from "../../components/dependent/_Select/SelectUnitKerja";
-import RequiredForm from "../../components/form/RequiredForm";
 import DatePickerModal from "../../components/dependent/input/DatePickerModal";
-import SelectPotongan from "../../components/dependent/_Select/SelectPotongan";
+import RequiredForm from "../../components/form/RequiredForm";
 
 const validationSchemaStep1 = yup.object({
   // nama_karyawan: yup.string().required("Harus diisi"),
@@ -140,7 +140,7 @@ export default function EditKaryawanForm({
 
   const Step1 = () => {
     return (
-      <Wrap spacingX={4}>
+      <SimpleGrid columns={[1, 2, 3]} spacingX={4}>
         <FormControl
           mb={4}
           flex={"1 1 300px"}
@@ -350,7 +350,7 @@ export default function EditKaryawanForm({
             {formik.errors.role as string as string}
           </FormErrorMessage>
         </FormControl>
-      </Wrap>
+      </SimpleGrid>
     );
   };
 
@@ -373,7 +373,7 @@ export default function EditKaryawanForm({
 
   const Step2 = () => {
     return (
-      <Wrap spacingX={4}>
+      <SimpleGrid columns={[1, 2, 3]} spacingX={4}>
         <FormControl
           mb={4}
           flex={"1 1 300px"}
@@ -600,7 +600,7 @@ export default function EditKaryawanForm({
             {formik.errors.potongan as string}
           </FormErrorMessage>
         </FormControl>
-      </Wrap>
+      </SimpleGrid>
     );
   };
 
