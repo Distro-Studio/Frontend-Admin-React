@@ -158,7 +158,7 @@ export default function DokumenKaryawanModalDisclosure({
         <ModalOverlay />
         <ModalContent borderRadius={12} minH={"calc(100vh - 32px)"}>
           <ModalHeader ref={initialRef}>
-            <DisclosureHeader title={"Detail Keluarga Karyawan"} />
+            <DisclosureHeader title={"Dokumen Karyawan"} />
           </ModalHeader>
           <ModalBody>
             {error && (
