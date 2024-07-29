@@ -395,40 +395,38 @@ export default function TimePickerModal({
             </HStack>
           </ModalBody>
 
-          <ModalFooter>
-            <CContainer gap={2}>
-              <Button
-                className="btn-solid clicky"
-                w={"100%"}
-                onClick={() => {
-                  if (time && hours === 0 && minutes === 0 && seconds === 0) {
-                    setTime(undefined);
-                    setHours(0);
-                    setMinutes(0);
-                    setSeconds(0);
-                  } else {
-                    setTime(defaultTime);
-                    setHours(0);
-                    setMinutes(0);
-                    setSeconds(0);
-                  }
-                }}
-              >
-                {time && hours === 0 && minutes === 0 && seconds === 0
-                  ? "Clear"
-                  : "Reset"}
-              </Button>
+          <ModalFooter gap={2}>
+            <Button
+              className="btn-solid clicky"
+              w={"100%"}
+              onClick={() => {
+                if (time && hours === 0 && minutes === 0 && seconds === 0) {
+                  setTime(undefined);
+                  setHours(0);
+                  setMinutes(0);
+                  setSeconds(0);
+                } else {
+                  setTime(defaultTime);
+                  setHours(0);
+                  setMinutes(0);
+                  setSeconds(0);
+                }
+              }}
+            >
+              {time && hours === 0 && minutes === 0 && seconds === 0
+                ? "Clear"
+                : "Reset"}
+            </Button>
 
-              <Button
-                colorScheme="ap"
-                className="btn-ap clicky"
-                w={"100%"}
-                isDisabled={nonNullable ? (time ? false : true) : false}
-                onClick={confirmSelected}
-              >
-                Konfirmasi
-              </Button>
-            </CContainer>
+            <Button
+              colorScheme="ap"
+              className="btn-ap clicky"
+              w={"100%"}
+              isDisabled={nonNullable ? (time ? false : true) : false}
+              onClick={confirmSelected}
+            >
+              Konfirmasi
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
