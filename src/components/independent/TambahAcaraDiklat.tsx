@@ -301,7 +301,8 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
             </form>
 
             <Button
-              my={6}
+              mt={"auto"}
+              mb={6}
               type="submit"
               form="tambahAcaraDiklatForm"
               className="btn-ap clicky"
