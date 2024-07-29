@@ -155,10 +155,10 @@ export default function TambahAcaraDiklat({ ...props }: Props) {
                     <SelectKategoriDiklat
                       name="kategori"
                       onConfirm={(input) => {
-                        formik.setFieldValue("kaergori", input);
+                        formik.setFieldValue("kategori", input);
                       }}
                       inputValue={formik.values.kategori}
-                      isError={!!formik.errors.kuota}
+                      isError={!!formik.errors.kategori}
                     />
                     <FormErrorMessage>
                       {formik.errors.kategori as string}

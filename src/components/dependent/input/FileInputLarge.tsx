@@ -1,5 +1,6 @@
 import {
   Button,
+  Center,
   Icon,
   Image,
   ImageProps,
@@ -142,16 +143,18 @@ export default function FileInputLarge({
               alt={fileName}
               h="100%"
               w="100%"
-              maxH="186px"
+              maxH="154px"
               objectFit={"contain"}
               mb={2}
               {...iProps}
             />
           ) : (
-            <Icon
-              as={inputValue ? RiFileLine : RiUploadCloud2Line}
-              fontSize={100}
-            />
+            <Center mb={2}>
+              <Icon
+                as={inputValue ? RiFileLine : RiUploadCloud2Line}
+                fontSize={100}
+              />
+            </Center>
           )}
 
           {!fileName && (

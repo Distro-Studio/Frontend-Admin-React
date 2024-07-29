@@ -20,7 +20,6 @@ import { useErrorColor } from "../../../constant/colors";
 import useBackOnClose from "../../../hooks/useBackOnClose";
 import backOnClose from "../../../lib/backOnClose";
 import formatTimeFromDate from "../../../lib/formatTimeFromDate";
-import CContainer from "../../independent/wrapper/CContainer";
 import DisclosureHeader from "../DisclosureHeader";
 
 interface Props extends ButtonProps {
