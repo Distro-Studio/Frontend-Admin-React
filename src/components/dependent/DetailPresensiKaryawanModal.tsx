@@ -8,6 +8,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  SimpleGrid,
   Text,
   VStack,
   Wrap,
@@ -208,13 +209,12 @@ export default function DetailPresensiKaryawanModal({
                         overflowY={"auto"}
                         className="scrollY"
                       >
-                        <Wrap overflowY={"auto"}>
+                        <SimpleGrid columns={[1, 2]} overflowY={"auto"}>
                           <CContainer
                             gap={responsiveSpacing}
                             overflowY={"auto"}
                             className="scrollY"
                             px={responsiveSpacing}
-                            flex={"1 1 300px"}
                             h={"100%"}
                           >
                             <Box flex={"1 1 200px"}>
@@ -232,44 +232,45 @@ export default function DetailPresensiKaryawanModal({
                               />
                             </Box>
 
-                            <Box flex={"1 1 200px"}>
-                              <Text fontSize={20} fontWeight={600} mb={4}>
-                                Foto Presensi Masuk
-                              </Text>
+                            <SimpleGrid
+                              columns={[1, 2]}
+                              gap={responsiveSpacing}
+                            >
+                              <Box flex={"1 1 200px"}>
+                                <Text fontSize={20} fontWeight={600} mb={4}>
+                                  Foto Presensi Masuk
+                                </Text>
 
-                              <Image
-                                src={
-                                  data.foto_masuk ||
-                                  "/images/defaultProfilePhoto.webp"
-                                }
-                                borderRadius={12}
-                                aspectRatio={1}
-                                objectFit={"cover"}
-                              />
-                            </Box>
+                                <Image
+                                  src={
+                                    data.foto_masuk ||
+                                    "/images/defaultProfilePhoto.webp"
+                                  }
+                                  borderRadius={12}
+                                  aspectRatio={1}
+                                  objectFit={"cover"}
+                                />
+                              </Box>
 
-                            <Box flex={"1 1 200px"}>
-                              <Text fontSize={20} fontWeight={600} mb={4}>
-                                Foto Presensi Keluar
-                              </Text>
+                              <Box flex={"1 1 200px"}>
+                                <Text fontSize={20} fontWeight={600} mb={4}>
+                                  Foto Presensi Keluar
+                                </Text>
 
-                              <Image
-                                src={
-                                  data.foto_keluar ||
-                                  "/images/defaultProfilePhoto.webp"
-                                }
-                                borderRadius={12}
-                                aspectRatio={1}
-                                objectFit={"cover"}
-                              />
-                            </Box>
+                                <Image
+                                  src={
+                                    data.foto_keluar ||
+                                    "/images/defaultProfilePhoto.webp"
+                                  }
+                                  borderRadius={12}
+                                  aspectRatio={1}
+                                  objectFit={"cover"}
+                                />
+                              </Box>
+                            </SimpleGrid>
                           </CContainer>
 
-                          <CContainer
-                            overflowY={"auto"}
-                            flex={"1 1 600px"}
-                            h={"100%"}
-                          >
+                          <CContainer overflowY={"auto"} h={"100%"}>
                             <HStack
                               px={[0, null, 4]}
                               position={"sticky"}
@@ -513,7 +514,7 @@ export default function DetailPresensiKaryawanModal({
                               </Box>
                             </CContainer>
                           </CContainer>
-                        </Wrap>
+                        </SimpleGrid>
                       </CContainer>
                     </CContainer>
                   )}

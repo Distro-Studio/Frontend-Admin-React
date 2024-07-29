@@ -5,6 +5,7 @@ import {
   HStack,
   Icon,
   Image,
+  SimpleGrid,
   Text,
   VStack,
   Wrap,
@@ -79,10 +80,9 @@ export default function DetailPresensi() {
       <VStack spacing={responsiveSpacing} align={"stretch"}>
         {!loading && data && (
           <>
-            <Wrap flex={"1 1 0"} spacing={responsiveSpacing}>
+            <SimpleGrid columns={[1, 2]} spacing={responsiveSpacing}>
               <CContainer
                 p={responsiveSpacing}
-                flex={"1 1 400px"}
                 bg={bodyColor}
                 borderRadius={12}
               >
@@ -124,7 +124,6 @@ export default function DetailPresensi() {
 
               <CContainer
                 p={responsiveSpacing}
-                flex={"1 1 350px"}
                 bg={bodyColor}
                 borderRadius={12}
               >
@@ -176,7 +175,7 @@ export default function DetailPresensi() {
                   </VStack>
                 </VStack>
               </CContainer>
-            </Wrap>
+            </SimpleGrid>
 
             <CContainer
               p={responsiveSpacing}
