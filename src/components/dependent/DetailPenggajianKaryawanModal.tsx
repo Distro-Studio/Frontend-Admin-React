@@ -1,19 +1,21 @@
 import {
   Avatar,
   Box,
+  Button,
   HStack,
   Modal,
   ModalBody,
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  SimpleGrid,
   Text,
   VStack,
   Wrap,
 } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
-import { useLightDarkColor } from "../../const/colors";
+import { useErrorColor, useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import useDataState from "../../hooks/useDataState";
@@ -85,7 +87,7 @@ export default function DetailPenggajianKaryawanModal({
       created_at: "2024-07-06 10:04:37",
       updated_at: "2024-07-06 10:04:37",
     },
-    detail_gaji: [
+    pendapatan: [
       {
         kategori: "Gaji Pokok",
         nama_detail: "Gaji Pokok",
@@ -131,12 +133,16 @@ export default function DetailPenggajianKaryawanModal({
         nama_detail: "Bonus Presensi",
         besaran: 300000,
       },
+    ],
+    total_pendapatan: 7800400,
+    potongan: [
       {
         kategori: "Pengurang",
         nama_detail: "PPH21",
         besaran: 168659,
       },
     ],
+    total_potongan: 1800400,
     take_home_pay: 9469015,
   };
 
@@ -164,6 +170,7 @@ export default function DetailPenggajianKaryawanModal({
 
   // SX
   const lightDarkColor = useLightDarkColor();
+  const errorColor = useErrorColor();
 
   return (
     <Modal
@@ -258,6 +265,10 @@ export default function DetailPenggajianKaryawanModal({
                           }}
                           inputValue={search}
                         />
+
+                        <Button className="btn-ap clicky" colorScheme="ap">
+                          Penyesuaian Gaji
+                        </Button>
                       </HStack>
 
                       <CContainer
@@ -274,64 +285,193 @@ export default function DetailPenggajianKaryawanModal({
                           px={responsiveSpacing}
                         >
                           <VStack align={"stretch"} gap={0}>
-                            <Text fontSize={20} fontWeight={600} mb={4}>
-                              Rincian Penggajian
-                            </Text>
-
                             <VStack
                               align={"stretch"}
                               gap={4}
                               // ref={dataPresensiRef}
                             >
-                              {data.detail_gaji.map((item: any, i: number) => (
-                                <HStack key={i} justify={"space-between"}>
-                                  <Box opacity={0.6}>
-                                    <Highlighter
-                                      highlightClassName="hw"
-                                      unhighlightClassName="uw"
-                                      searchWords={searchQuery}
-                                      autoEscape={true}
-                                      textToHighlight={item.nama_detail}
-                                    />
-                                  </Box>
-                                  <FlexLine />
-                                  <Text
-                                    fontWeight={500}
-                                    textAlign={"right"}
-                                    color={
-                                      item.kategori === "Pengurang"
-                                        ? "red.400"
-                                        : ""
-                                    }
-                                  >
-                                    {item.kategori === "Pengurang" ? "-" : ""}{" "}
-                                    Rp {formatNumber(item.besaran) || 0}
-                                  </Text>
-                                </HStack>
-                              ))}
-
-                              <HStack
-                                justify={"space-between"}
-                                borderTop={"1px solid var(--divider3)"}
-                                pt={4}
-                                mt={1}
+                              <SimpleGrid
+                                columns={[1, 2]}
+                                gap={responsiveSpacing}
                               >
-                                <Text
-                                  fontSize={18}
-                                  fontWeight={600}
-                                  opacity={0.6}
+                                <CContainer
+                                  border={"1px solid var(--divider3)"}
+                                  borderRadius={12}
+                                  overflow={"clip"}
                                 >
-                                  Take Home Pay
-                                </Text>
-                                <FlexLine />
+                                  <HStack px={4} pt={4}>
+                                    <Text
+                                      fontSize={18}
+                                      fontWeight={600}
+                                      color={"green.400"}
+                                    >
+                                      Pendapatan
+                                    </Text>
+                                  </HStack>
+
+                                  <CContainer py={2}>
+                                    {data.pendapatan.map(
+                                      (item: any, i: number) => {
+                                        return (
+                                          <HStack
+                                            key={i}
+                                            justify={"space-between"}
+                                            py={2}
+                                            px={4}
+                                          >
+                                            <Box>
+                                              <Highlighter
+                                                highlightClassName="hw"
+                                                unhighlightClassName="uw"
+                                                searchWords={searchQuery}
+                                                autoEscape={true}
+                                                textToHighlight={
+                                                  item.nama_detail
+                                                }
+                                              />
+                                            </Box>
+                                            <FlexLine />
+                                            <Text
+                                              fontWeight={500}
+                                              textAlign={"right"}
+                                            >
+                                              Rp{" "}
+                                              {formatNumber(item.besaran) || 0}
+                                            </Text>
+                                          </HStack>
+                                        );
+                                      }
+                                    )}
+                                  </CContainer>
+
+                                  <HStack
+                                    mt={"auto"}
+                                    justify={"space-between"}
+                                    // bg={"var(--p500a5)"}
+                                    color={"green.400"}
+                                    p={4}
+                                  >
+                                    <Box>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight={"Total Pendapatan"}
+                                      />
+                                    </Box>
+                                    <FlexLine />
+                                    <Text fontWeight={600} textAlign={"right"}>
+                                      Rp{" "}
+                                      {formatNumber(data.total_pendapatan) || 0}
+                                    </Text>
+                                  </HStack>
+                                </CContainer>
+
+                                <CContainer
+                                  border={"1px solid var(--divider3)"}
+                                  borderRadius={12}
+                                  overflow={"clip"}
+                                >
+                                  <HStack px={4} pt={4}>
+                                    <Text
+                                      fontSize={18}
+                                      fontWeight={600}
+                                      color={errorColor}
+                                    >
+                                      Potongan
+                                    </Text>
+                                  </HStack>
+
+                                  <CContainer py={2}>
+                                    {data.potongan.map(
+                                      (item: any, i: number) => {
+                                        return (
+                                          <HStack
+                                            key={i}
+                                            justify={"space-between"}
+                                            py={2}
+                                            px={4}
+                                          >
+                                            <Box>
+                                              <Highlighter
+                                                highlightClassName="hw"
+                                                unhighlightClassName="uw"
+                                                searchWords={searchQuery}
+                                                autoEscape={true}
+                                                textToHighlight={
+                                                  item.nama_detail
+                                                }
+                                              />
+                                            </Box>
+                                            <FlexLine />
+                                            <Text
+                                              fontWeight={500}
+                                              textAlign={"right"}
+                                            >
+                                              Rp{" "}
+                                              {formatNumber(item.besaran) || 0}
+                                            </Text>
+                                          </HStack>
+                                        );
+                                      }
+                                    )}
+                                  </CContainer>
+
+                                  <HStack
+                                    mt={"auto"}
+                                    justify={"space-between"}
+                                    // bg={"var(--p500a5)"}
+                                    color={errorColor}
+                                    p={4}
+                                  >
+                                    <Box>
+                                      <Highlighter
+                                        highlightClassName="hw"
+                                        unhighlightClassName="uw"
+                                        searchWords={searchQuery}
+                                        autoEscape={true}
+                                        textToHighlight={"Total Potongan"}
+                                      />
+                                    </Box>
+                                    <FlexLine />
+                                    <Text fontWeight={600} textAlign={"right"}>
+                                      Rp{" "}
+                                      {formatNumber(data.total_potongan) || 0}
+                                    </Text>
+                                  </HStack>
+                                </CContainer>
+                              </SimpleGrid>
+
+                              <CContainer
+                                mt={1}
+                                ml={"auto"}
+                                justify={"space-between"}
+                                p={4}
+                                px={5}
+                                bg={"var(--p500a5)"}
+                                borderRadius={12}
+                                w={"fit-content"}
+                              >
                                 <Text
                                   fontSize={18}
                                   fontWeight={600}
                                   textAlign={"right"}
                                 >
+                                  Take Home Pay
+                                </Text>
+
+                                <FlexLine />
+
+                                <Text
+                                  color={"p.500"}
+                                  fontSize={24}
+                                  fontWeight={600}
+                                  textAlign={"right"}
+                                >
                                   Rp {formatNumber(data.take_home_pay)}
                                 </Text>
-                              </HStack>
+                              </CContainer>
                             </VStack>
                           </VStack>
                         </VStack>

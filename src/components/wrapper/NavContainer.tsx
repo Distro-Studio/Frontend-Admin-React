@@ -91,7 +91,9 @@ const NavMenu = ({ nav, i, active, topNavActive }: any) => {
               key={ii}
               as={Link}
               to={subNav.link}
+              fontWeight={(active === i && ii) === topNavActive ? 600 : ""}
               color={(active === i && ii) === topNavActive ? "p.500" : ""}
+              bg={(active === i && ii) === topNavActive ? "var(--p500a5)" : ""}
               whiteSpace={"nowrap"}
             >
               {subNav.label}
