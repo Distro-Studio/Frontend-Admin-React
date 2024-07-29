@@ -470,22 +470,6 @@ export default function DetailPresensiKaryawanModal({
                                         unhighlightClassName="uw"
                                         searchWords={searchQuery}
                                         autoEscape={true}
-                                        textToHighlight={"Absen"}
-                                      />
-                                    </Box>
-                                    <FlexLine />
-                                    <Text fontWeight={500} textAlign={"right"}>
-                                      {data.absensi || "-"}
-                                    </Text>
-                                  </HStack>
-
-                                  <HStack justify={"space-between"}>
-                                    <Box opacity={0.6}>
-                                      <Highlighter
-                                        highlightClassName="hw"
-                                        unhighlightClassName="uw"
-                                        searchWords={searchQuery}
-                                        autoEscape={true}
                                         textToHighlight={"Latitude"}
                                       />
                                     </Box>
