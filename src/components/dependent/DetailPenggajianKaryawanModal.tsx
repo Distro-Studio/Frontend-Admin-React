@@ -303,7 +303,7 @@ export default function DetailPenggajianKaryawanModal({
                                     <Text
                                       fontSize={18}
                                       fontWeight={600}
-                                      color={"green.400"}
+                                      // color={"green.400"}
                                     >
                                       Pendapatan
                                     </Text>
@@ -377,7 +377,7 @@ export default function DetailPenggajianKaryawanModal({
                                     <Text
                                       fontSize={18}
                                       fontWeight={600}
-                                      color={errorColor}
+                                      // color={errorColor}
                                     >
                                       Potongan
                                     </Text>
