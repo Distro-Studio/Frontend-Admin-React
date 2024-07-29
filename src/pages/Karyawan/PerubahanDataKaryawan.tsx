@@ -9,7 +9,7 @@ import { useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
 
-export default function VerifikasiData() {
+export default function PerubahanDataKaryawan() {
   // Filter Config
   const { filterKaryawan, setFilterKaryawan } = useFilterKaryawan();
   const [search, setSearch] = useState("");

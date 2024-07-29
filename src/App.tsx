@@ -38,7 +38,7 @@ import DetailPenilaianKaryawan from "./pages/Perusahaan/DetailPenilaianKaryawan"
 import Perusahaan from "./pages/Perusahaan/Diklat";
 import PelaporanKaryawan from "./pages/Perusahaan/PelaporanKaryawan";
 import PenilaianKaryawan from "./pages/Perusahaan/PenilaianKaryawan";
-import VerifikasiBerkas from "./pages/Karyawan/VerifikasiData";
+import PerubahanDataKaryawan from "./pages/Karyawan/PerubahanDataKaryawan";
 import DetailPresensi from "./pages/Presensi/DetailPresensi";
 import Presensi from "./pages/Presensi/Presensi";
 import { globalTheme } from "./theme/globalTheme";
@@ -85,15 +85,15 @@ export const App = () => (
           }
         />
         <Route
-          path="/karyawan/verifikasi-data-karyawan"
+          path="/karyawan/perubahan-data-karyawan"
           element={
             <NavContainer
               active={1}
-              title="Transfer Karyawan"
+              title="Perubahan Data Karyawan"
               topNavsData={navs[1].subNavs}
               topNavActive={2}
             >
-              <VerifikasiBerkas />
+              <PerubahanDataKaryawan />
             </NavContainer>
           }
         />
