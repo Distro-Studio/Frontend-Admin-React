@@ -1,34 +1,27 @@
 import {
   Box,
-  Button,
   HStack,
   Icon,
   Input,
   InputGroup,
   InputLeftElement,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   StackProps,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { RiArrowDownSLine, RiSearch2Line } from "@remixicon/react";
+import { RiSearch2Line } from "@remixicon/react";
 import { useEffect, useState } from "react";
 import { useBodyColor } from "../../const/colors";
 import { Pengumuman__Interface } from "../../const/interfaces";
 import {
   dashboardItemHeight,
   dashboardItemMinWidth,
-  iconSize,
   responsiveSpacing,
 } from "../../const/sizes";
-import whosOffPeriode from "../../const/whosOffPeriode";
 import Skeleton from "./Skeleton";
 
-import DashboardPengumumanItemDetail from "./DashboardPengumumanItemDetail";
 import DashboardBuatPengumumanModal from "./DashboardBuatPengumumanModal";
+import DashboardPengumumanItemDetail from "./DashboardPengumumanItemDetail";
 
 interface Props extends StackProps {}
 
@@ -101,30 +94,19 @@ export default function DashboardPengumuman({ ...props }: Props) {
             <HStack
               justify={"space-between"}
               mb={responsiveSpacing}
-              align={"flex-start"}
+              align={"start"}
             >
-              <Text fontWeight={600}>Pengumuman</Text>
+              <Box>
+                <Text fontWeight={600}>Pengumuman</Text>
+                <Text fontSize={14} opacity={0.6}>
+                  Pengumuman saat ini
+                </Text>
+              </Box>
 
               <DashboardBuatPengumumanModal />
             </HStack>
 
             <HStack>
-              <Menu>
-                <MenuButton
-                  flexShrink={0}
-                  as={Button}
-                  className="btn-solid"
-                  rightIcon={<Icon as={RiArrowDownSLine} fontSize={iconSize} />}
-                >
-                  Filter
-                </MenuButton>
-                <MenuList minW={"160px"}>
-                  {whosOffPeriode.map((periodeLabel, i) => (
-                    <MenuItem key={i}>{periodeLabel}</MenuItem>
-                  ))}
-                </MenuList>
-              </Menu>
-
               <InputGroup>
                 <InputLeftElement>
                   <Icon as={RiSearch2Line} />

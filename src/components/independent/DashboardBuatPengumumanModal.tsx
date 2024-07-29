@@ -12,23 +12,23 @@ import {
 import { RiAddLine } from "@remixicon/react";
 import { useRef } from "react";
 import { iconSize } from "../../const/sizes";
-import backOnClose from "../../lib/backOnCloseOld";
-import useBackOnClose from "../../lib/useBackOnCloseOld";
+import useBackOnClose from "../../hooks/useBackOnClose";
+import backOnClose from "../../lib/backOnClose";
 import DisclosureHeader from "../dependent/DisclosureHeader";
 import FormDashboardBuatPengumuman from "../form/Dashboard/FormDashboardBuatPengumuman";
 
 export default function DashboardBuatPengumumanModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = useRef(null);
-  useBackOnClose(isOpen, onClose);
+  useBackOnClose("buat-pengumuman-modal", isOpen, onOpen, onClose);
 
   return (
     <>
       <Button
-        size={"xs"}
+        size={"sm"}
         leftIcon={<Icon as={RiAddLine} fontSize={iconSize} />}
         pl={2}
-        className="btn-clear clicky"
+        className="btn-apa clicky"
         color={"p.500"}
         onClick={onOpen}
       >
@@ -38,7 +38,7 @@ export default function DashboardBuatPengumumanModal() {
       <Modal
         isOpen={isOpen}
         onClose={() => {
-          backOnClose(onClose);
+          backOnClose();
         }}
         initialFocusRef={initialRef}
         isCentered
