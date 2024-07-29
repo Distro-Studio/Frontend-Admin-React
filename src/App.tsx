@@ -14,7 +14,6 @@ import PenukaranJadwal from "./pages/Jadwal/PenukaranJadwal";
 import Karyawan from "./pages/Karyawan/Karyawan";
 import PerubahanDataKaryawan from "./pages/Karyawan/PerubahanDataKaryawan";
 import TransferKaryawan from "./pages/Karyawan/TransferKaryawan";
-import VerifikasiDokumenKaryawan from "./pages/Karyawan/VerifikasiDokumenKaryawan";
 import Penggajian from "./pages/Keuangan/Penggajian";
 import Thr from "./pages/Keuangan/Thr";
 import Login from "./pages/Login/Login";
@@ -97,7 +96,7 @@ export const App = () => (
             </NavContainer>
           }
         />
-        <Route
+        {/* <Route
           path="/karyawan/verifikasi-dokumen-karyawan"
           element={
             <NavContainer
@@ -109,7 +108,7 @@ export const App = () => (
               <VerifikasiDokumenKaryawan />
             </NavContainer>
           }
-        />
+        /> */}
 
         <Route
           path="/presensi"
