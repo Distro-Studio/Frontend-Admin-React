@@ -2,6 +2,8 @@ import {
   Avatar,
   Box,
   BoxProps,
+  Button,
+  Icon,
   Modal,
   ModalBody,
   ModalContent,
@@ -13,9 +15,10 @@ import {
   VStack,
   Wrap,
 } from "@chakra-ui/react";
+import { RiVerifiedBadgeFill } from "@remixicon/react";
 import { useRef } from "react";
 import { dummyDokumens } from "../../const/dummy";
-import { responsiveSpacing } from "../../const/sizes";
+import { iconSize, responsiveSpacing } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import useDataState from "../../hooks/useDataState";
 import backOnClose from "../../lib/backOnClose";
@@ -23,6 +26,7 @@ import ComponentSpinner from "../independent/ComponentSpinner";
 import NoData from "../independent/NoData";
 import NotFound from "../independent/NotFound";
 import CContainer from "../wrapper/CContainer";
+import BooleanBadge from "./BooleanBadge";
 import DisclosureHeader from "./DisclosureHeader";
 import DokumenFileItem from "./DokumenFileItem";
 import Retry from "./Retry";
@@ -211,6 +215,35 @@ export default function DokumenKaryawanModalDisclosure({
                               {data.jumlah_dokumen || 0}
                             </Text>
                           </VStack>
+                          <VStack align={"stretch"}>
+                            <Text fontSize={14} opacity={0.6}>
+                              Status Verifikasi
+                            </Text>
+                            <Text fontWeight={500}>
+                              <BooleanBadge
+                                data={data.status_verifikasi_berkas}
+                                trueValue="Diverifikasi"
+                                falseValue="Belum Diverifikasi"
+                              />
+                            </Text>
+                          </VStack>
+
+                          <Button
+                            ml={"auto"}
+                            size={"lg"}
+                            colorScheme="ap"
+                            className="btn-ap clcicky"
+                            leftIcon={
+                              <Icon
+                                as={RiVerifiedBadgeFill}
+                                fontSize={iconSize}
+                              />
+                            }
+                            pl={5}
+                            isDisabled={data.status_verifikasi_berkas}
+                          >
+                            Verifikasi
+                          </Button>
                         </Wrap>
 
                         {data && data.data_dokumen.length === 0 && <NotFound />}
