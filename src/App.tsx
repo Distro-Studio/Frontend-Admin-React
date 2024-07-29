@@ -15,9 +15,6 @@ import Karyawan from "./pages/Karyawan/Karyawan";
 import PerubahanDataKaryawan from "./pages/Karyawan/PerubahanDataKaryawan";
 import TransferKaryawan from "./pages/Karyawan/TransferKaryawan";
 import VerifikasiDokumenKaryawan from "./pages/Karyawan/VerifikasiDokumenKaryawan";
-import DetailLaporanRiwayatPenggajian from "./pages/Keuangan/DetailLaporanRiwayatPenggajian";
-import DetailLaporanThr from "./pages/Keuangan/DetailLaporanThr";
-import DetailPenggajian from "./pages/Keuangan/DetailPenggajian";
 import Penggajian from "./pages/Keuangan/Penggajian";
 import Thr from "./pages/Keuangan/Thr";
 import Login from "./pages/Login/Login";
@@ -35,12 +32,9 @@ import PengaturanTerPph21 from "./pages/Pengaturan/PengaturanTerPph21";
 import PengaturanCuti from "./pages/Pengaturan/PengaturanTipeCuti";
 import PengaturanUbahKataSandi from "./pages/Pengaturan/PengaturanUbahKataSandi";
 import PengaturanUnitKerja from "./pages/Pengaturan/PengaturanUnitKerja";
-import DetailPelaporanKaryawan from "./pages/Perusahaan/DetailPelaporanKaryawan";
-import DetailPenilaianKaryawan from "./pages/Perusahaan/DetailPenilaianKaryawan";
 import Perusahaan from "./pages/Perusahaan/Diklat";
 import PelaporanKaryawan from "./pages/Perusahaan/PelaporanKaryawan";
 import PenilaianKaryawan from "./pages/Perusahaan/PenilaianKaryawan";
-import DetailPresensi from "./pages/Presensi/DetailPresensi";
 import Presensi from "./pages/Presensi/Presensi";
 import { globalTheme } from "./theme/globalTheme";
 
@@ -54,7 +48,12 @@ export const App = () => (
         <Route
           path="/dashboard"
           element={
-            <NavContainer active={0} title="Dashboard">
+            <NavContainer
+              active={0}
+              title="Dashboard"
+              topNavsData={navs[0].subNavs}
+              topNavActive={0}
+            >
               <Dashboard />
             </NavContainer>
           }
@@ -115,24 +114,17 @@ export const App = () => (
         <Route
           path="/presensi"
           element={
-            <NavContainer active={2} title="Presensi">
+            <NavContainer
+              active={2}
+              title="Presensi"
+              topNavsData={navs[2].subNavs}
+              topNavActive={0}
+            >
               <Presensi />
             </NavContainer>
           }
         />
-        <Route
-          path="/presensi/:presensiId"
-          element={
-            <NavContainer
-              active={2}
-              title="Detail Presensi"
-              left={"back"}
-              // backLink="/presensi"
-            >
-              <DetailPresensi />
-            </NavContainer>
-          }
-        />
+
         <Route
           path="/jadwal"
           element={
@@ -199,27 +191,6 @@ export const App = () => (
           }
         />
         <Route
-          path="/keuangan/penggajian/:penggajianId"
-          element={
-            <NavContainer active={4} title="Detail Penggajian" left={"back"}>
-              <DetailPenggajian />
-            </NavContainer>
-          }
-        />
-        <Route
-          path="/keuangan/riwayat-penggajian/laporan/:laporan_id"
-          element={
-            <NavContainer
-              active={4}
-              title="Laporan Penggajian"
-              left={"back"}
-              // backLink="/keuangan/riwayat-penggajian"
-            >
-              <DetailLaporanRiwayatPenggajian />
-            </NavContainer>
-          }
-        />
-        <Route
           path="/keuangan/thr"
           element={
             <NavContainer
@@ -232,19 +203,7 @@ export const App = () => (
             </NavContainer>
           }
         />
-        <Route
-          path="/keuangan/thr/laporan/:thr_id"
-          element={
-            <NavContainer
-              active={4}
-              title="Laporan THR"
-              left={"back"}
-              // backLink="/keuangan/thr"
-            >
-              <DetailLaporanThr />
-            </NavContainer>
-          }
-        />
+
         <Route
           path="/perusahaan/diklat"
           element={
@@ -272,18 +231,6 @@ export const App = () => (
           }
         />
         <Route
-          path="/perusahaan/pelaporan-karyawan/:pelaporanId"
-          element={
-            <NavContainer
-              active={5}
-              title="Detail Pelaporan Karyawan"
-              left={"back"}
-            >
-              <DetailPelaporanKaryawan />
-            </NavContainer>
-          }
-        />
-        <Route
           path="/perusahaan/penilaian-karyawan"
           element={
             <NavContainer
@@ -296,18 +243,7 @@ export const App = () => (
             </NavContainer>
           }
         />
-        <Route
-          path="/perusahaan/penilaian-karyawan/:karyawanId"
-          element={
-            <NavContainer
-              active={5}
-              title="Detail Penilaian Karyawan"
-              left={"back"}
-            >
-              <DetailPenilaianKaryawan />
-            </NavContainer>
-          }
-        />
+
         <Route
           path="/pengaturan/akun/kelola-role"
           element={
