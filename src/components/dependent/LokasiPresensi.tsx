@@ -40,7 +40,7 @@ export default function LokasiPresensi({
 
   const containerStyle = {
     width: `100%`,
-    height: `auto`,
+    height: `100%`,
     borderRadius: "12px",
     aspectRatio: 1,
     // padding: "8px",
@@ -58,7 +58,8 @@ export default function LokasiPresensi({
   return (
     <VStack
       w={"100%"}
-      h={"auto"}
+      minH={"450px"}
+      h={`calc(100% - 46px)`}
       aspectRatio={1}
       borderRadius={12}
       overflow={"clip"}

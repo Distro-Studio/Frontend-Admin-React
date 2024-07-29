@@ -1,7 +1,9 @@
 import {
   Avatar,
   Box,
+  Center,
   HStack,
+  Icon,
   Image,
   Modal,
   ModalBody,
@@ -10,12 +12,14 @@ import {
   ModalOverlay,
   SimpleGrid,
   Text,
+  Tooltip,
   VStack,
   Wrap,
 } from "@chakra-ui/react";
+import { RiLoginBoxLine, RiLogoutBoxLine } from "@remixicon/react";
 import { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
-import { useLightDarkColor } from "../../const/colors";
+import { useErrorColor, useLightDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import useDataState from "../../hooks/useDataState";
@@ -121,6 +125,7 @@ export default function DetailPresensiKaryawanModal({
 
   // SX
   const lightDarkColor = useLightDarkColor();
+  const errorColor = useErrorColor();
 
   return (
     <Modal
@@ -231,43 +236,6 @@ export default function DetailPresensiKaryawanModal({
                                 presence_radius={100}
                               />
                             </Box>
-
-                            <SimpleGrid
-                              columns={[1, 2]}
-                              gap={responsiveSpacing}
-                            >
-                              <Box flex={"1 1 200px"}>
-                                <Text fontSize={20} fontWeight={600} mb={4}>
-                                  Foto Presensi Masuk
-                                </Text>
-
-                                <Image
-                                  src={
-                                    data.foto_masuk ||
-                                    "/images/defaultProfilePhoto.webp"
-                                  }
-                                  borderRadius={12}
-                                  aspectRatio={1}
-                                  objectFit={"cover"}
-                                />
-                              </Box>
-
-                              <Box flex={"1 1 200px"}>
-                                <Text fontSize={20} fontWeight={600} mb={4}>
-                                  Foto Presensi Keluar
-                                </Text>
-
-                                <Image
-                                  src={
-                                    data.foto_keluar ||
-                                    "/images/defaultProfilePhoto.webp"
-                                  }
-                                  borderRadius={12}
-                                  aspectRatio={1}
-                                  objectFit={"cover"}
-                                />
-                              </Box>
-                            </SimpleGrid>
                           </CContainer>
 
                           <CContainer overflowY={"auto"} h={"100%"}>
@@ -495,6 +463,80 @@ export default function DetailPresensiKaryawanModal({
                                     </Text>
                                   </HStack>
                                 </CContainer>
+                              </Box>
+
+                              <Box>
+                                <Text fontSize={20} fontWeight={600} mb={4}>
+                                  Foto Presensi
+                                </Text>
+
+                                <SimpleGrid
+                                  columns={[1, 2]}
+                                  gap={responsiveSpacing}
+                                >
+                                  <Box position={"relative"} flex={"1 1 200px"}>
+                                    <Tooltip
+                                      label={"Foto Presensi Masuk"}
+                                      placement="right"
+                                    >
+                                      <Center
+                                        p={2}
+                                        bg={"p.500"}
+                                        position={"absolute"}
+                                        borderRadius={"12px 0px 20px 0"}
+                                        top={0}
+                                        left={0}
+                                      >
+                                        <Icon
+                                          as={RiLoginBoxLine}
+                                          fontSize={20}
+                                          color={lightDarkColor}
+                                        />
+                                      </Center>
+                                    </Tooltip>
+                                    <Image
+                                      src={
+                                        data.foto_masuk ||
+                                        "/images/defaultProfilePhoto.webp"
+                                      }
+                                      borderRadius={12}
+                                      aspectRatio={1}
+                                      objectFit={"cover"}
+                                    />
+                                  </Box>
+
+                                  <Box position={"relative"} flex={"1 1 200px"}>
+                                    <Tooltip
+                                      label={"Foto Presensi Keluar"}
+                                      placement="right"
+                                    >
+                                      <Center
+                                        p={2}
+                                        bg={errorColor}
+                                        position={"absolute"}
+                                        borderRadius={"12px 0px 20px 0"}
+                                        top={0}
+                                        left={0}
+                                      >
+                                        <Icon
+                                          as={RiLogoutBoxLine}
+                                          fontSize={20}
+                                          color={lightDarkColor}
+                                          transform={"rotate(180deg)"}
+                                        />
+                                      </Center>
+                                    </Tooltip>
+                                    <Image
+                                      src={
+                                        data.foto_keluar ||
+                                        "/images/defaultProfilePhoto.webp"
+                                      }
+                                      borderRadius={12}
+                                      aspectRatio={1}
+                                      objectFit={"cover"}
+                                    />
+                                  </Box>
+                                </SimpleGrid>
                               </Box>
                             </CContainer>
                           </CContainer>
