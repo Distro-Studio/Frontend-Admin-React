@@ -34,7 +34,7 @@ const navs = [
         link: "/karyawan/transfer-karyawan",
       },
       {
-        label: "Perubahan Data",
+        label: "Permintaan Perubahan Data",
         link: "/karyawan/perubahan-data-karyawan",
       },
       // {

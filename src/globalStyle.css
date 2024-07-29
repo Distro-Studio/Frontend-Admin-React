@@ -410,7 +410,7 @@ button[aria-label="Close"] > svg {
   position: absolute;
   left: 0;
   top: 0;
-  width: 4px;
+  width: 2px;
   height: 100%;
   background: var(--p500);
   opacity: 0;

@@ -88,7 +88,7 @@ export const App = () => (
           element={
             <NavContainer
               active={1}
-              title="Perubahan Data Karyawan"
+              title="Permintaan Perubahan Data"
               topNavsData={navs[1].subNavs}
               topNavActive={2}
             >

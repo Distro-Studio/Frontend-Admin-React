@@ -23,6 +23,7 @@ import formatDate from "../../lib/formatDate";
 import useBackOnClose from "../../lib/useBackOnCloseOld";
 import DisclosureHeader from "../dependent/DisclosureHeader";
 import FormDashboardUpdatePengumuman from "../form/Dashboard/FormDashboardUpdatePengumuman";
+import { useErrorAlphaColor } from "../../const/colors";
 
 interface Props extends StackProps {
   data: Pengumuman__Interface;
@@ -44,6 +45,7 @@ export default function DashboardPengumumanItemDetail({
   }
 
   // SX
+  const errorAlphaColor = useErrorAlphaColor();
 
   return (
     <>
@@ -94,11 +96,10 @@ export default function DashboardPengumumanItemDetail({
               <Button
                 w={"50%"}
                 className="clicky"
-                colorScheme="red"
+                colorScheme="error"
                 variant={"ghost"}
                 isDisabled={loadingUpdate}
-                bg={"var(--reda)"}
-                _hover={{ bg: "var(--reda)" }}
+                bg={errorAlphaColor}
               >
                 Hapus
               </Button>

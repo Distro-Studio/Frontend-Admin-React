@@ -24,6 +24,7 @@ import BackButton from "../independent/BackButton";
 import { ColorModeSwitcherHeaderMenu } from "../independent/ColorModeSwitcherHeaderMenu";
 import NotificationButton from "../independent/NotificationModal";
 import { useContentBgColor } from "../../const/colors";
+import formatDate from "../../lib/formatDate";
 
 interface Props extends StackProps {
   title?: string;
@@ -64,24 +65,33 @@ export default function Header({
       </HStack>
 
       {!smScreen && (
-        <ButtonGroup>
-          <IconButton
-            aria-label="refresh button"
-            className="btn-solid clicky"
-            icon={
-              <Icon
-                as={RiRestartLine}
-                fontSize={20}
-                onClick={() => {
-                  window.location.reload();
-                }}
-              />
-            }
-          />
-          <NotificationButton aria-label="Notification Button" />
-          <ColorModeSwitcher />
-          <AdminMiniProfile />
-        </ButtonGroup>
+        <>
+          <Text ml={"auto"} opacity={0.6}>
+            {formatDate(new Date(), "long")}
+          </Text>
+
+          <ButtonGroup>
+            <IconButton
+              aria-label="refresh button"
+              className="btn-solid clicky"
+              icon={
+                <Icon
+                  as={RiRestartLine}
+                  fontSize={20}
+                  onClick={() => {
+                    window.location.reload();
+                  }}
+                />
+              }
+            />
+
+            <NotificationButton aria-label="Notification Button" />
+
+            <ColorModeSwitcher />
+
+            <AdminMiniProfile />
+          </ButtonGroup>
+        </>
       )}
 
       {smScreen && (
