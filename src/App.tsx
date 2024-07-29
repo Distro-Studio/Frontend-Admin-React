@@ -12,7 +12,9 @@ import Jadwal from "./pages/Jadwal/Jadwal";
 import Lembur from "./pages/Jadwal/Lembur";
 import PenukaranJadwal from "./pages/Jadwal/PenukaranJadwal";
 import Karyawan from "./pages/Karyawan/Karyawan";
+import PerubahanDataKaryawan from "./pages/Karyawan/PerubahanDataKaryawan";
 import TransferKaryawan from "./pages/Karyawan/TransferKaryawan";
+import VerifikasiDokumenKaryawan from "./pages/Karyawan/VerifikasiDokumenKaryawan";
 import DetailLaporanRiwayatPenggajian from "./pages/Keuangan/DetailLaporanRiwayatPenggajian";
 import DetailLaporanThr from "./pages/Keuangan/DetailLaporanThr";
 import DetailPenggajian from "./pages/Keuangan/DetailPenggajian";
@@ -38,7 +40,6 @@ import DetailPenilaianKaryawan from "./pages/Perusahaan/DetailPenilaianKaryawan"
 import Perusahaan from "./pages/Perusahaan/Diklat";
 import PelaporanKaryawan from "./pages/Perusahaan/PelaporanKaryawan";
 import PenilaianKaryawan from "./pages/Perusahaan/PenilaianKaryawan";
-import PerubahanDataKaryawan from "./pages/Karyawan/PerubahanDataKaryawan";
 import DetailPresensi from "./pages/Presensi/DetailPresensi";
 import Presensi from "./pages/Presensi/Presensi";
 import { globalTheme } from "./theme/globalTheme";
@@ -97,6 +98,20 @@ export const App = () => (
             </NavContainer>
           }
         />
+        <Route
+          path="/karyawan/verifikasi-dokumen-karyawan"
+          element={
+            <NavContainer
+              active={1}
+              title="Verifikasi Dokumen Karyawan"
+              topNavsData={navs[1].subNavs}
+              topNavActive={3}
+            >
+              <VerifikasiDokumenKaryawan />
+            </NavContainer>
+          }
+        />
+
         <Route
           path="/presensi"
           element={
