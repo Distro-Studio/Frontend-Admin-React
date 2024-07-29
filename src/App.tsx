@@ -38,7 +38,7 @@ import DetailPenilaianKaryawan from "./pages/Perusahaan/DetailPenilaianKaryawan"
 import Perusahaan from "./pages/Perusahaan/Diklat";
 import PelaporanKaryawan from "./pages/Perusahaan/PelaporanKaryawan";
 import PenilaianKaryawan from "./pages/Perusahaan/PenilaianKaryawan";
-import VerifikasiBerkas from "./pages/Perusahaan/VerifikasiBerkas";
+import VerifikasiBerkas from "./pages/Karyawan/VerifikasiData";
 import DetailPresensi from "./pages/Presensi/DetailPresensi";
 import Presensi from "./pages/Presensi/Presensi";
 import { globalTheme } from "./theme/globalTheme";
