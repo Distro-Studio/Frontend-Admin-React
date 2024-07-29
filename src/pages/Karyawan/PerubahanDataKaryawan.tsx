@@ -1,7 +1,7 @@
 import { HStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import SearchComponent from "../../components/dependent/input/SearchComponent";
-import TabelVerifikasiData from "../../components/dependent/TabelVerifikasiData";
+import TabelPerubahanData from "../../components/dependent/TabelPerubahanData";
 import FilterKaryawan from "../../components/independent/FilterKaryawan";
 import CContainer from "../../components/wrapper/CContainer";
 import CWrapper from "../../components/wrapper/CWrapper";
@@ -64,7 +64,7 @@ export default function PerubahanDataKaryawan() {
             <FilterKaryawan />
           </HStack>
 
-          <TabelVerifikasiData />
+          <TabelPerubahanData />
         </CContainer>
       </CWrapper>
     </>
