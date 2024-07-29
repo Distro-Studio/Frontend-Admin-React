@@ -33,6 +33,11 @@ export default function TabelJadwal({ filterConfig }: Props) {
     dependencies: [limitConfig, pageConfig, filterConfig],
   });
 
+  const dateList = eachDayOfInterval({
+    start: filterConfig.range_tgl.from,
+    end: filterConfig.range_tgl.to,
+  });
+
   const formattedHeader = [
     {
       th: "Nama",
@@ -47,10 +52,7 @@ export default function TabelJadwal({ filterConfig }: Props) {
         borderRight: "1px solid var(--divider3)",
       },
     },
-    ...eachDayOfInterval({
-      start: filterConfig.range_tgl.from,
-      end: filterConfig.range_tgl.to,
-    }).map((date) => ({
+    ...dateList.map((date) => ({
       th: formatDate(date, "longShort"),
     })),
   ];
@@ -86,7 +88,7 @@ export default function TabelJadwal({ filterConfig }: Props) {
             <TabelJadwalItem
               data={item}
               jadwal={jadwal}
-              // tgl={new Date()}
+              tgl={dateList[i]}
               index={i}
               rowIndex={rowIndex}
             />
@@ -94,7 +96,7 @@ export default function TabelJadwal({ filterConfig }: Props) {
             // "-"
             <TerapkanJadwalKaryawanTerpilih
               data={item}
-              // tgl={new Date()}
+              tgl={dateList[i]}
               index={i}
               rowIndex={rowIndex}
             />

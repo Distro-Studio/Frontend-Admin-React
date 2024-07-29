@@ -20,11 +20,11 @@ import {
 import { RiEditBoxLine } from "@remixicon/react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useBodyColor, useWhiteDarkColor } from "../../const/colors";
 import { responsiveSpacing } from "../../const/sizes";
 import useBackOnClose from "../../hooks/useBackOnClose";
 import backOnClose from "../../lib/backOnClose";
 import formatDate from "../../lib/formatDate";
+import isDatePassed from "../../lib/isDatePassed";
 import RequiredForm from "../form/RequiredForm";
 import SelectShift from "./_Select/SelectShift";
 import DisclosureHeader from "./DisclosureHeader";
@@ -32,7 +32,7 @@ import JenisKaryawanBadge from "./JenisKaryawanBadge";
 
 interface Props {
   data: any;
-  tgl?: Date | string;
+  tgl: Date | string;
   index?: number;
   rowIndex?: number;
 }
@@ -63,27 +63,27 @@ export default function TerapkanJadwalKaryawanTerpilih({
   });
 
   // SX
-  const bodyColor = useBodyColor();
-  const whiteDarkColor = useWhiteDarkColor();
 
   return (
     <>
       <VStack
+        as={Button}
         p={3}
         gap={1}
         borderRadius={8}
         w={"100%"}
+        h={"100%"}
         minH={"74px"}
         cursor={"pointer"}
-        bg={bodyColor}
-        color={whiteDarkColor}
         className="btn-ap clicky"
+        colorScheme="ap"
         onClick={onOpen}
         justify={"center"}
+        isDisabled={isDatePassed(tgl)}
         // border={"1px solid var(--divider3) !important"}
       >
         <Icon as={RiEditBoxLine} fontSize={20} />
-        <Text>Terapkan</Text>
+        <Text fontWeight={500}>Terapkan</Text>
       </VStack>
 
       <Modal
