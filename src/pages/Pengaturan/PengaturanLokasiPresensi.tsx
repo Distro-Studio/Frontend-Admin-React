@@ -6,6 +6,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  SimpleGrid,
   Text,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
@@ -101,61 +102,63 @@ export default function PengaturanLokasiPresensi() {
 
               <CContainer mt={responsiveSpacing}>
                 <form>
-                  <FormControl mb={4} isInvalid={!!formik.errors.lat}>
-                    <FormLabel>
-                      Latitude
-                      <RequiredForm />
-                    </FormLabel>
-                    <Input
-                      name="lat"
-                      placeholder="-6.28376273"
-                      onChange={formik.handleChange}
-                      value={formik.values.lat || ""}
-                    />
-                    <FormErrorMessage>
-                      {formik.errors.lat as string}
-                    </FormErrorMessage>
-                  </FormControl>
-
-                  <FormControl mb={4} isInvalid={!!formik.errors.long}>
-                    <FormLabel>
-                      Longitude
-                      <RequiredForm />
-                    </FormLabel>
-                    <Input
-                      name="long"
-                      placeholder="110.28376273"
-                      onChange={formik.handleChange}
-                      value={formik.values.long || ""}
-                    />
-                    <FormErrorMessage>
-                      {formik.errors.long as string}
-                    </FormErrorMessage>
-                  </FormControl>
-
-                  <FormControl mb={4} isInvalid={!!formik.errors.radius}>
-                    <FormLabel>
-                      Radius Presensi
-                      <RequiredForm />
-                    </FormLabel>
-                    <InputGroup>
-                      <InputRightElement pr={4}>
-                        <Text>m</Text>
-                      </InputRightElement>
-                      <NumberInput
-                        pr={12}
-                        name="radius"
-                        placeholder="100"
-                        onChangeSetter={(input) => {
-                          formik.setFieldValue("radius", input);
-                        }}
-                        inputValue={formik.values.radius}
+                  <SimpleGrid columns={[1, null, 3]} gap={4}>
+                    <FormControl mb={4} isInvalid={!!formik.errors.lat}>
+                      <FormLabel>
+                        Latitude
+                        <RequiredForm />
+                      </FormLabel>
+                      <Input
+                        name="lat"
+                        placeholder="-6.28376273"
+                        onChange={formik.handleChange}
+                        value={formik.values.lat || ""}
                       />
-                    </InputGroup>
-                    <FormErrorMessage>
-                      {formik.errors.radius as string}
-                    </FormErrorMessage>
-                  </FormControl>
+                      <FormErrorMessage>
+                        {formik.errors.lat as string}
+                      </FormErrorMessage>
+                    </FormControl>
+
+                    <FormControl mb={4} isInvalid={!!formik.errors.long}>
+                      <FormLabel>
+                        Longitude
+                        <RequiredForm />
+                      </FormLabel>
+                      <Input
+                        name="long"
+                        placeholder="110.28376273"
+                        onChange={formik.handleChange}
+                        value={formik.values.long || ""}
+                      />
+                      <FormErrorMessage>
+                        {formik.errors.long as string}
+                      </FormErrorMessage>
+                    </FormControl>
+
+                    <FormControl mb={4} isInvalid={!!formik.errors.radius}>
+                      <FormLabel>
+                        Radius Presensi
+                        <RequiredForm />
+                      </FormLabel>
+                      <InputGroup>
+                        <InputRightElement pr={4}>
+                          <Text>m</Text>
+                        </InputRightElement>
+                        <NumberInput
+                          pr={12}
+                          name="radius"
+                          placeholder="100"
+                          onChangeSetter={(input) => {
+                            formik.setFieldValue("radius", input);
+                          }}
+                          inputValue={formik.values.radius}
+                        />
+                      </InputGroup>
+                      <FormErrorMessage>
+                        {formik.errors.radius as string}
+                      </FormErrorMessage>
+                    </FormControl>
+                  </SimpleGrid>
 
                   <FormControl isInvalid={!!formik.errors.radius}>
                     <FormLabel>
