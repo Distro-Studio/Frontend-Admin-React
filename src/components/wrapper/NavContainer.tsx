@@ -221,13 +221,15 @@ export default function NavContainer({
             p={responsiveSpacing}
           />
 
-          {topNavsData && typeof topNavActive === "number" && (
-            <TopNavs
-              data={topNavsData}
-              active={topNavActive}
-              mb={responsiveSpacing}
-            />
-          )}
+          {topNavsData &&
+            topNavsData.length > 1 &&
+            typeof topNavActive === "number" && (
+              <TopNavs
+                data={topNavsData}
+                active={topNavActive}
+                mb={responsiveSpacing}
+              />
+            )}
 
           <VStack
             gap={0}
