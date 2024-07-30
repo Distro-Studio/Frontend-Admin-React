@@ -140,6 +140,9 @@ export default function SetLokasiPresensiLeafletMap({
   useEffect(() => {
     if (!searchAddress) {
       onClose();
+      setTimeout(() => {
+        setSearchResult(undefined);
+      }, 200);
     } else {
       setLoading(true);
       onOpen();

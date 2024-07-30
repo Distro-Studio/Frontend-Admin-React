@@ -81,6 +81,15 @@ export default function PengaturanJadwalPenggajian() {
                   />
                 ))}
               </SimpleGrid>
+
+              <Box mt={"auto"}>
+                <Skeleton
+                  mt={responsiveSpacing}
+                  ml={"auto"}
+                  w={"120px"}
+                  h={"40px"}
+                />
+              </Box>
             </>
           )}
           {!loading && (
@@ -93,7 +102,7 @@ export default function PengaturanJadwalPenggajian() {
                     onSubmit={formik.handleSubmit}
                   >
                     <FormControl
-                      mb={4}
+                      mb={responsiveSpacing}
                       isInvalid={formik.errors.tanggal ? true : false}
                     >
                       <FormLabel>
