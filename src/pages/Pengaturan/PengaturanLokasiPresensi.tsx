@@ -100,7 +100,7 @@ export default function PengaturanLokasiPresensi() {
                 *Klik 2x pada peta untuk menentukan titik presensi
               </Text>
 
-              <CContainer mt={responsiveSpacing}>
+              <CContainer mt={responsiveSpacing} flex={1}>
                 <form>
                   <SimpleGrid columns={[1, null, 3]} gap={4}>
                     <FormControl mb={4} isInvalid={!!formik.errors.lat}>
@@ -179,15 +179,17 @@ export default function PengaturanLokasiPresensi() {
                   </FormControl>
                 </form>
 
-                <Button
-                  mt={responsiveSpacing}
-                  ml={"auto"}
-                  w={"fit-content"}
-                  colorScheme="ap"
-                  className="btn-ap clicky"
-                >
-                  Simpan
-                </Button>
+                <CContainer mt={"auto"}>
+                  <Button
+                    mt={responsiveSpacing}
+                    ml={"auto"}
+                    w={"fit-content"}
+                    colorScheme="ap"
+                    className="btn-ap clicky"
+                  >
+                    Simpan
+                  </Button>
+                </CContainer>
               </CContainer>
             </>
           )}
