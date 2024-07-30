@@ -49,13 +49,6 @@ export default function SetLokasiPresensi({
   setOfficeLoc,
   zoom = 20,
 }: Props) {
-  // console.log(center);
-
-  // const userIcon = new L.Icon({
-  //   iconUrl: "/vectors/icons/userPin.svg",
-  //   iconSize: [64, 64], // Ukuran ikon
-  // });
-
   const officeIcon = new L.Icon({
     iconUrl: "/vectors/icons/hospital.svg",
     iconSize: [80, 80], // Ukuran ikon
@@ -66,7 +59,6 @@ export default function SetLokasiPresensi({
     height: `auto`,
     borderRadius: "8px",
     aspectRatio: 1,
-    // padding: "8px",
   };
 
   const minZoomLevel = 3; // Tentukan level zoom minimum di sini
@@ -78,6 +70,20 @@ export default function SetLokasiPresensi({
     L.latLng(90, 180) // Batas atas kanan (utara timur)
   );
 
+  useEffect(() => {
+    const map = L.DomUtil.get("map");
+
+    const handleDoubleClick = (e: MouseEvent) => {
+      e.stopPropagation();
+    };
+
+    map?.addEventListener("dblclick", handleDoubleClick);
+
+    return () => {
+      map?.removeEventListener("dblclick", handleDoubleClick);
+    };
+  }, []);
+
   return (
     <VStack
       w={"100%"}
@@ -88,6 +94,7 @@ export default function SetLokasiPresensi({
       overflow={"clip"}
     >
       <MapContainer
+        id="map"
         //@ts-ignore
         center={[center.lat, center.lng]}
         zoom={zoom}
@@ -96,7 +103,7 @@ export default function SetLokasiPresensi({
         maxZoom={maxZoomLevel}
         maxBounds={maxBounds}
         maxBoundsViscosity={1.0} // Biarkan peta memantul ketika mencapai batas
-        // scrollWheelZoom={false}
+        doubleClickZoom={false} // Nonaktifkan zoom saat double-klik
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
@@ -119,12 +126,6 @@ export default function SetLokasiPresensi({
             }}
           />
         )}
-
-        {/* <Marker
-          position={[center.lat, center.lng]}
-          //@ts-ignore
-          icon={userIcon}
-        /> */}
 
         <SetViewOnClick center={center} />
 
