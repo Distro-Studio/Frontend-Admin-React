@@ -18,7 +18,7 @@ interface Props extends InputGroupProps {
   placeholder?: string;
 }
 
-export default function SearchComponent({
+export default function SearchComponentOld({
   search,
   setSearch,
   resetSearch,

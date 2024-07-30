@@ -1,6 +1,16 @@
-import { VStack } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  Menu,
+  MenuItem,
+  MenuList,
+  Text,
+  useDisclosure,
+  VStack,
+} from "@chakra-ui/react";
+import axios from "axios";
 import L from "leaflet";
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Circle,
   MapContainer,
@@ -10,6 +20,10 @@ import {
   useMapEvent,
 } from "react-leaflet";
 import { LatLng } from "../../const/interfaces";
+import { responsiveSpacing } from "../../const/sizes";
+import NotFound from "../independent/NotFound";
+import CContainer from "../wrapper/CContainer";
+import SearchComponent from "./input/SearchComponent";
 
 // Props untuk komponen GMaps
 interface Props {
@@ -49,6 +63,14 @@ export default function SetLokasiPresensi({
   setOfficeLoc,
   zoom = 20,
 }: Props) {
+  const [searchAddress, setSearchAddress] = useState<string>("");
+  const [searchResult, setSearchResult] = useState<any>(undefined);
+  const [selectedSearchResult, setSelectedSearchResult] = useState<
+    any | undefined
+  >(undefined);
+  const searchComponentRef = useRef<HTMLDivElement>(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const officeIcon = new L.Icon({
     iconUrl: "/vectors/icons/hospital.svg",
     iconSize: [80, 80], // Ukuran ikon
@@ -57,7 +79,7 @@ export default function SetLokasiPresensi({
   const containerStyle = {
     width: `100%`,
     height: `auto`,
-    borderRadius: "8px",
+    borderRadius: "12px",
     aspectRatio: 1,
   };
 
@@ -69,6 +91,37 @@ export default function SetLokasiPresensi({
     L.latLng(-90, -180), // Batas bawah kiri (selatan barat)
     L.latLng(90, 180) // Batas atas kanan (utara timur)
   );
+
+  const handleSearch = useCallback(async () => {
+    try {
+      const response = await axios.get(
+        `https://nominatim.openstreetmap.org/search`,
+        {
+          params: {
+            format: "json",
+            q: searchAddress,
+          },
+        }
+      );
+      const data = response.data;
+      setSearchResult(data);
+      onOpen();
+    } catch (error) {
+      console.error("Error searching address:", error);
+    }
+  }, [searchAddress, onOpen]);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if (searchAddress) {
+        handleSearch();
+      }
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchAddress, handleSearch]);
 
   useEffect(() => {
     const map = L.DomUtil.get("map");
@@ -84,6 +137,12 @@ export default function SetLokasiPresensi({
     };
   }, []);
 
+  useEffect(() => {
+    if (!searchAddress) {
+      onClose();
+    }
+  }, [searchAddress, onClose]);
+
   return (
     <VStack
       w={"100%"}
@@ -93,10 +152,72 @@ export default function SetLokasiPresensi({
       borderRadius={8}
       overflow={"clip"}
     >
+      <Box position={"relative"} w={"100%"} zIndex={9999}>
+        <HStack w={"100%"} ref={searchComponentRef}>
+          <SearchComponent
+            name="Search"
+            onChangeSetter={(input) => {
+              setSearchAddress(input);
+            }}
+            inputValue={searchAddress}
+            placeholder="Cari Alamat"
+            onFocus={onOpen}
+          />
+        </HStack>
+
+        <Box
+          w={"100%"}
+          position={"absolute"}
+          top={"calc(48px + 8px)"}
+          left={"8px"}
+        >
+          <Menu isOpen={isOpen}>
+            <MenuList
+              minW={`calc(${searchComponentRef?.current?.offsetWidth}px - 16px)`}
+              maxW={`calc(${searchComponentRef?.current?.offsetWidth}px - 16px)`}
+            >
+              {searchResult?.length === 0 && (
+                <CContainer p={responsiveSpacing}>
+                  <NotFound minH={"100px"} label="Alamat tidak ditemukan" />
+                </CContainer>
+              )}
+
+              {searchResult?.length > 0 &&
+                searchResult.map((res: any, i: number) => {
+                  return (
+                    i < 5 && (
+                      <MenuItem
+                        key={i}
+                        onClick={() => {
+                          setSelectedSearchResult(res);
+                          onClose();
+                          // setSearchAddress("");
+                        }}
+                        w={"100%"}
+                      >
+                        <Text
+                          overflow={"hidden"}
+                          whiteSpace={"nowrap"}
+                          textOverflow={"ellipsis"}
+                        >
+                          {res.display_name}
+                        </Text>
+                      </MenuItem>
+                    )
+                  );
+                })}
+            </MenuList>
+          </Menu>
+        </Box>
+      </Box>
+
       <MapContainer
         id="map"
         //@ts-ignore
-        center={[center.lat, center.lng]}
+        center={[
+          selectedSearchResult ? selectedSearchResult?.lat : center.lat,
+          selectedSearchResult ? selectedSearchResult?.lng : center.lng,
+        ]}
         zoom={zoom}
         style={containerStyle as any}
         minZoom={minZoomLevel}
@@ -127,7 +248,22 @@ export default function SetLokasiPresensi({
           />
         )}
 
-        <SetViewOnClick center={center} />
+        {selectedSearchResult && (
+          <Marker
+            position={[selectedSearchResult.lat, selectedSearchResult.lon]}
+            //@ts-ignore
+            icon={
+              new L.Icon({
+                iconUrl: "/vectors/icons/mapPin.svg",
+                iconSize: [32, 32],
+              })
+            }
+          />
+        )}
+
+        <SetViewOnClick
+          center={selectedSearchResult ? selectedSearchResult : center}
+        />
 
         <HandleDoubleClick setOfficeLoc={setOfficeLoc} />
       </MapContainer>

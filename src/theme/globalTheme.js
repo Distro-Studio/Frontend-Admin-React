@@ -204,6 +204,11 @@ export const globalTheme = extendTheme({
           // borderRadius: "6px",
           bg: "transparent",
           _hover: { bg: "var(--divider3)" },
+          _focus: { border: "none !important", boxShadow: "none !important" },
+          _focusVisible: {
+            border: "none !important",
+            boxShadow: "none !important",
+          },
           fontSize: 14,
           justifyContent: "space-between",
           py: 3,
