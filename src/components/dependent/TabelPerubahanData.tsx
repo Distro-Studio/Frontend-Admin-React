@@ -1,64 +1,18 @@
-import {
-  Button,
-  Center,
-  HStack,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Center, HStack } from "@chakra-ui/react";
 import { useState } from "react";
-import { dummyTransferKaryawan } from "../../const/dummy";
 import { responsiveSpacing } from "../../const/sizes";
+import perubahanDataKolom from "../../constant/perubahanDataKolom";
 import useFilterKaryawan from "../../global/useFilterKaryawan";
 import useDataState from "../../hooks/useDataState";
 import NoData from "../independent/NoData";
 import Skeleton from "../independent/Skeleton";
 import CustomTableContainer from "../wrapper/CustomTableContainer";
 import AvatarAndNameTableData from "./AvatarAndNameTableData";
+import BooleanBadge from "./BooleanBadge";
 import CustomTable from "./CustomTable";
+import PerubahanDataRender from "./PerubahanDataRender";
 import Retry from "./Retry";
 import TabelFooterConfig from "./TabelFooterConfig";
-import BooleanBadge from "./BooleanBadge";
-import backOnClose from "../../lib/backOnClose";
-import DisclosureHeader from "./DisclosureHeader";
-import useBackOnClose from "../../hooks/useBackOnClose";
-
-interface DataDetailProps {
-  data: any;
-}
-
-const DataDetail = ({ data }: DataDetailProps) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  useBackOnClose("detail-data-verif-modal", isOpen, onOpen, onClose);
-
-  return (
-    <>
-      <Button colorScheme="ap" variant={"ghost"} onClick={onOpen}>
-        Lihat
-      </Button>
-
-      <Modal
-        isOpen={isOpen}
-        onClose={backOnClose}
-        isCentered
-        blockScrollOnMount={false}
-      >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>
-            <DisclosureHeader title={"Detail Data"} />
-          </ModalHeader>
-          <ModalBody></ModalBody>
-          <ModalFooter></ModalFooter>
-        </ModalContent>
-      </Modal>
-    </>
-  );
-};
 
 export default function TabelVerifikasiData() {
   // Limit Config
@@ -68,8 +22,61 @@ export default function TabelVerifikasiData() {
   // Filter Config
   const { filterKaryawan } = useFilterKaryawan();
 
+  const dummy = [
+    {
+      user_id: 1,
+      user: {
+        id: 1,
+        nama: "User 1",
+        username: "username1",
+        email_verified_at: null,
+        role_id: null,
+        foto_profil: null,
+        data_completion_step: 1,
+        status_akun: 0,
+        created_at: "2024-06-11T04:39:19.000000Z",
+        updated_at: "2024-06-11T04:39:19.000000Z",
+      },
+      content: {
+        id: 1,
+        kolom: "tgl_lahir",
+        original_data: "2001-11-01",
+        updated_data: "2001-11-05",
+        status_perubahan: true,
+        created_at: "2024-07-10",
+        updated_at: "2024-07-11",
+      },
+      created_at: "2023-05-02",
+    },
+    {
+      user_id: 2,
+      user: {
+        id: 2,
+        nama: "User 2",
+        username: "username2",
+        email_verified_at: null,
+        role_id: null,
+        foto_profil: null,
+        data_completion_step: 1,
+        status_akun: 0,
+        created_at: "2024-06-11T04:39:19.000000Z",
+        updated_at: "2024-06-11T04:39:19.000000Z",
+      },
+      content: {
+        id: 2,
+        kolom: "foto_profil",
+        original_data: "https://bit.ly/dan-abramov",
+        updated_data: "/images/gear5.jpg",
+        status_perubahan: false,
+        created_at: "2024-07-22",
+        updated_at: "2024-07-23",
+      },
+      created_at: "2024-07-22",
+    },
+  ];
+
   const { error, loading, data, retry } = useDataState<any>({
-    initialData: dummyTransferKaryawan,
+    initialData: dummy,
     url: "",
     payload: filterKaryawan,
     dependencies: [],
@@ -97,7 +104,20 @@ export default function TabelVerifikasiData() {
       },
     },
     {
-      th: "Data",
+      th: "Kolom",
+      isSortable: true,
+      cProps: {
+        justify: "center",
+      },
+    },
+    {
+      th: "Data Lama",
+      cProps: {
+        justify: "center",
+      },
+    },
+    {
+      th: "Data Baru",
       cProps: {
         justify: "center",
       },
@@ -127,11 +147,11 @@ export default function TabelVerifikasiData() {
         },
       },
       {
-        value: item.status_verifikasi,
+        value: item.content.status_perubahan,
         td: (
           <BooleanBadge
             w={"150px"}
-            data={item.status_verifikasi}
+            data={item.content.status_perubahan}
             trueValue="Diverifikasi"
             falseValue="Verifikasi Ditolak"
             nullValue="Menunggu"
@@ -142,8 +162,34 @@ export default function TabelVerifikasiData() {
         },
       },
       {
+        value: item.content.status_perubahan,
+        //@ts-ignore
+        td: perubahanDataKolom[item.content.kolom],
+
+        cProps: {
+          justify: "center",
+        },
+      },
+      {
         value: item.data,
-        td: <DataDetail data={item.data} />,
+        td: (
+          <PerubahanDataRender
+            column={item.content.kolom}
+            data={item.content.original_data}
+          />
+        ),
+        cProps: {
+          justify: "center",
+        },
+      },
+      {
+        value: item.data,
+        td: (
+          <PerubahanDataRender
+            column={item.content.kolom}
+            data={item.content.updated_data}
+          />
+        ),
         cProps: {
           justify: "center",
         },
