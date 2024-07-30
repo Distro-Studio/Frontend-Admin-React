@@ -97,7 +97,8 @@ export default function AdminMiniProfile({ ...props }: Props) {
       <MenuButton>
         <HStack
           p={2}
-          px={4}
+          pr={4}
+          pl={3}
           borderRadius={8}
           ref={menuButtonRef}
           className="btn-solid"

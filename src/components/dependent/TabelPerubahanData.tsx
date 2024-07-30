@@ -111,13 +111,13 @@ export default function TabelVerifikasiData() {
       },
     },
     {
-      th: "Data Lama",
+      th: "Data Original",
       cProps: {
         justify: "center",
       },
     },
     {
-      th: "Data Baru",
+      th: "Data Pengajuan",
       cProps: {
         justify: "center",
       },
