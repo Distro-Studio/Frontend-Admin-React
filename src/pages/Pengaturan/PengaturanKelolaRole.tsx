@@ -49,10 +49,6 @@ export default function PengaturanKelolaRole() {
           inputValue={filterConfig.search}
         />
 
-        {/* <ExportModal url="" title="Export Kelola Role" />
-
-              <ImportModal url="" title="Import Kelola Role" /> */}
-
         <TambahRole minW={"fit-content"} />
       </HStack>
 
