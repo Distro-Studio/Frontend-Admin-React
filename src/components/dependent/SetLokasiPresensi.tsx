@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useDisclosure } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { LatLng } from "../../const/interfaces";
 import { responsiveSpacing } from "../../const/sizes";
@@ -11,7 +11,6 @@ interface Props {
   officeCenter: LatLng | undefined;
   presence_radius: number | undefined;
   setOfficeLoc: (input: any) => void;
-  zoom?: number;
 }
 
 export default function SetLokasiPresensi({
@@ -19,10 +18,10 @@ export default function SetLokasiPresensi({
   officeCenter,
   presence_radius,
   setOfficeLoc,
-  zoom = 20,
 }: Props) {
   const [searchAddress, setSearchAddress] = useState<string>("");
   const searchComponentRef = useRef<HTMLDivElement>(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
@@ -35,9 +34,8 @@ export default function SetLokasiPresensi({
           }}
           inputValue={searchAddress}
           placeholder="Cari Alamat"
-          onBlur={() => {
-            console.log("blur asww");
-          }}
+          onFocus={onOpen}
+          onBlur={onClose}
         />
       </Box>
 
@@ -46,9 +44,12 @@ export default function SetLokasiPresensi({
         officeCenter={officeCenter}
         setOfficeLoc={setOfficeLoc}
         presence_radius={presence_radius}
-        zoom={zoom}
+        zoom={12}
         searchAddress={searchAddress}
         searchComponentRef={searchComponentRef}
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onClose={onClose}
       />
     </>
   );

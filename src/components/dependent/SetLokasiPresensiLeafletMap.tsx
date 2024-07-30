@@ -1,12 +1,4 @@
-import {
-  Box,
-  Menu,
-  MenuItem,
-  MenuList,
-  Text,
-  useDisclosure,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Button, Text, VStack } from "@chakra-ui/react";
 import axios from "axios";
 import L from "leaflet";
 import { useCallback, useEffect, useState } from "react";
@@ -33,6 +25,9 @@ interface Props {
   zoom?: number;
   searchComponentRef: any;
   searchAddress: string;
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
 }
 
 // Hook untuk mengatur peta saat klik
@@ -65,6 +60,9 @@ export default function SetLokasiPresensiLeafletMap({
   searchComponentRef,
   zoom = 20,
   searchAddress,
+  isOpen,
+  onOpen,
+  onClose,
 }: Props) {
   const officeIcon = new L.Icon({
     iconUrl: "/vectors/icons/hospital.svg",
@@ -101,7 +99,6 @@ export default function SetLokasiPresensiLeafletMap({
     };
   }, []);
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const [loading, setLoading] = useState<boolean>(false);
   const [searchResult, setSearchResult] = useState<any>(undefined);
   const [selectedSearchResult, setSelectedSearchResult] = useState<
@@ -160,16 +157,65 @@ export default function SetLokasiPresensiLeafletMap({
       position={"relative"}
     >
       <Box
-        w={"100%"}
+        w={"calc(100% - 16px)"}
         position={"absolute"}
-        top={"8px"}
+        top={isOpen ? "8px" : 0}
         left={"8px"}
         zIndex={9999}
+        bg={"#303030df"}
+        backdropFilter={"blur(20px)"}
+        borderRadius={8}
+        opacity={isOpen ? 1 : 0}
+        visibility={isOpen ? "visible" : "hidden"}
+        transition={"200ms"}
       >
-        <Menu isOpen={isOpen} initialFocusRef={undefined} autoSelect={false}>
+        {loading && <ComponentSpinner minH={"200px"} />}
+
+        {!loading && (
+          <>
+            {searchResult?.length === 0 && (
+              <CContainer p={responsiveSpacing}>
+                <NotFound minH={"200px"} label="Alamat tidak ditemukan" />
+              </CContainer>
+            )}
+
+            {searchResult?.length > 0 &&
+              searchResult.map((res: any, i: number) => {
+                return (
+                  i < 5 && (
+                    <Button
+                      className="btn"
+                      h={"48px"}
+                      justifyContent={"start"}
+                      key={i}
+                      onClick={() => {
+                        setSelectedSearchResult(res);
+                        onClose();
+                      }}
+                      w={"100%"}
+                      px={4}
+                      py={2}
+                    >
+                      <Text
+                        overflow={"hidden"}
+                        whiteSpace={"nowrap"}
+                        textOverflow={"ellipsis"}
+                        fontWeight={500}
+                      >
+                        {res.display_name}
+                      </Text>
+                    </Button>
+                  )
+                );
+              })}
+          </>
+        )}
+
+        {/* <Menu isOpen={isOpen} initialFocusRef={undefined} autoSelect={true}>
           <MenuList
             minW={`calc(${searchComponentRef?.current?.offsetWidth}px - 16px)`}
             maxW={`calc(${searchComponentRef?.current?.offsetWidth}px - 16px)`}
+            onMouseEnter={() => searchComponentRef.current?.focus()}
           >
             {loading && <ComponentSpinner minH={"200px"} />}
 
@@ -190,9 +236,6 @@ export default function SetLokasiPresensiLeafletMap({
                           onClick={() => {
                             setSelectedSearchResult(res);
                             onClose();
-                            setTimeout(() => {
-                              searchComponentRef.current?.focus();
-                            }, 0);
                           }}
                           w={"100%"}
                           tabIndex={-1}
@@ -212,7 +255,7 @@ export default function SetLokasiPresensiLeafletMap({
               </>
             )}
           </MenuList>
-        </Menu>
+        </Menu> */}
       </Box>
 
       <MapContainer
